@@ -1,0 +1,36 @@
+Freckle Restful API
+===================
+
+General
+-------
+
+The API for a freckle account can only be accessed via the accounts full URL.
+So each API request has to be made to http://myfreckle.letsfreckle.com/api/<some-api-call>
+where *myfreckle* is the account's subdomain.
+
+An *authtoken* is need for accessing the API. The token identifies the user and can be obtained from the users personal settings page.
+It has to be sent for each request in either one of this two ways:
+
+* as query parameter named `token`
+
+  e.g `curl http://myfreckle.letsfreckle.com/api/projects.xml?token=10ee9d50a2f540518c5d1f9448e43f96056af626`
+
+* as a custom HTTP header `X-FreckleToken`
+
+  e.g `curl -H "X-FreckleToken:10ee9d50a2f540518c5d1f9448e43f96056af626" http://myfreckle.letsfreckle.com/api/projects.xml`
+
+
+API Test Account
+----------------
+
+Testaccount data:
+
+Domain: apitest.letsfreckle.com
+Token: d5qbub49eq79x054y7r0qffc2b60i9a
+
+
+Data Formats
+------------
+
+In the examples XML will be used as data format. However, the API calls will mostly also accept and respond
+to JSON.
