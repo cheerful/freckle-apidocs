@@ -34,3 +34,15 @@ Data Formats
 
 In the examples XML will be used as data format. However, the API calls will mostly also accept and respond
 to JSON.
+
+Contents
+--------
+
+* Entries
+ * create a single entry
+ * bulk import entries
+* Projects
+  * list available projects
+* Tags
+  * list available tags
+  
