@@ -29,6 +29,7 @@ Testaccount data:
 Domain: apitest.letsfreckle.com
 Token: lx3gi6pxdjtjn57afp8c2bv1me7g89j
 
+*Note*: The data from this test account will be regularly wiped, so don't rely on it.
 
 Data Formats
 ------------
