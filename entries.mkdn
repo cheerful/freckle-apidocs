@@ -8,7 +8,7 @@ POST to /api/entries.xml
 
 Sample request:
 
-    curl -d @data/entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:d5qbub49eq79x054y7r0qffc2b60i9a" http://apitest.letsfreckle.com/api/entries.xml
+    curl -d @data/entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/entries.xml
 
 Sample POST body:
 
@@ -65,7 +65,7 @@ POST to /api/entries/import.xml
 
 Sample request:
 
-    curl -d @data/entries_import.xml -H "Content-type: text/xml" -H "X-FreckleToken:d5qbub49eq79x054y7r0qffc2b60i9a" http://apitest.letsfreckle.com/api/entries/import.xml
+    curl -d @data/entries_import.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/entries/import.xml
 
 Sample POST body:
 

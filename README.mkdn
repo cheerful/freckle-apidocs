@@ -27,7 +27,7 @@ API Test Account
 Testaccount data:
 
 Domain: apitest.letsfreckle.com
-Token: d5qbub49eq79x054y7r0qffc2b60i9a
+Token: lx3gi6pxdjtjn57afp8c2bv1me7g89j
 
 
 Data Formats

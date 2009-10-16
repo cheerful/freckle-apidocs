@@ -8,7 +8,7 @@ GET to /api/projects.xml
 
 Sample request:
 
-    curl -H "X-FreckleToken:d5qbub49eq79x054y7r0qffc2b60i9a" http://apitest.letsfreckle.com/api/projects.xml
+    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/projects.xml
 
 XML Response:
 
