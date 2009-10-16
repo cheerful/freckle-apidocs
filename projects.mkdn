@@ -1,0 +1,50 @@
+Projects
+========
+
+Receiving a list of possible projects
+-------------------------------------
+
+GET to /api/projects.xml
+
+Sample request:
+
+    curl -H "X-FreckleToken:d5qbub49eq79x054y7r0qffc2b60i9a" http://apitest.letsfreckle.com/api/projects.xml
+
+XML Response:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <projects type="array">
+      <project>
+        <account-id type="integer">100</account-id>
+        <budget type="integer" nil="true"></budget>
+        <created-at type="datetime">2008-12-19T16:21:34Z</created-at>
+        <enabled type="boolean">true</enabled>
+        <id type="integer">1343</id>
+        <name>TestProject1</name>
+        <stepping type="integer">15</stepping>
+        <updated-at type="datetime">2008-12-19T16:21:34Z</updated-at>
+        <user-id type="integer" nil="true"></user-id>
+      </project>
+      <project>
+        <account-id type="integer">100</account-id>
+        <budget type="integer" nil="true"></budget>
+        <created-at type="datetime">2008-12-19T16:23:06Z</created-at>
+        <enabled type="boolean">true</enabled>
+        <id type="integer">1344</id>
+        <name>TestProject2</name>
+        <stepping type="integer">15</stepping>
+        <updated-at type="datetime">2008-12-19T16:23:06Z</updated-at>
+        <user-id type="integer" nil="true"></user-id>
+      </project>
+    </projects>
+
+Error Response Codes:
+
+  * 401 Unauthorized
+
+    The user is not authorized to access this information or the authtoken is not valid.
+
+  * 500 Internal Server Error
+
+    An error occurred. The API call was not processed correctly and should be retried later.
+
