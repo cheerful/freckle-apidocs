@@ -73,3 +73,21 @@ Error Response Codes:
 
     An error occurred. The API call was not processed correctly and should be retried later.
 
+Receive a user's auth token
+---------------------------
+
+Note: This call is only available through HTTPS
+
+Note: This call requireds HTTP Basic Authentiaction
+    
+HTTPS GET to /api/user/api_auth_token.xml
+
+    curl https://test:testtest@apitest.letsfreckle.com/api/user/api_auth_token.xml
+
+Response
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <user>
+      <api-auth-token>d5qbub49eq79x054y7r0qffc2b60i9a</api-auth-token>
+    </user>
+    

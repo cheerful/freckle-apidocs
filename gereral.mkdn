@@ -19,6 +19,7 @@ It has to be sent for each request in either one of this two ways:
 
   e.g `curl -H "X-FreckleToken:10ee9d50a2f540518c5d1f9448e43f96056af626" http://myfreckle.letsfreckle.com/api/projects.xml`
 
+*Note*: To simplify authentication on mobile devices, the token can be received with the *api_auth_token* call, see the users section for more information.
 
 API Test Account
 ----------------
