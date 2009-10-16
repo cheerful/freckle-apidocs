@@ -86,6 +86,8 @@ Sample POST body:
       </entry>
     </entries>
 
+Note the *type="array"* attribute on the *entries* tag.
+
 *ATTENTION*: the entry format for the import is slightly different to the format used for the create single entry format!
 
 * entry
