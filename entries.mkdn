@@ -6,6 +6,8 @@ Creating a Time Entry
 
 POST to /api/entries.xml
 
+Sample request:
+
     curl -d @data/entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:d5qbub49eq79x054y7r0qffc2b60i9a" http://apitest.letsfreckle.com/api/entries.xml
 
 Sample POST body:
@@ -13,10 +15,10 @@ Sample POST body:
     <?xml version="1.0" encoding="UTF-8"?>
     <entry>
       <minutes>2h</minutes>
-      <user>user@test.com</user>
-      <project-id type="integer">1</project-id>
+      <user>apitest@letsfreckle.com</user>
+      <project-id type="integer">8475</project-id>
       <description>freckle restful api test</description>
-      <date>2008-12-15</date>
+      <date>2009-10-15</date>
     </entry>
 
   * minutes *required*
@@ -52,3 +54,57 @@ Error Response Codes:
   * 500 Internal Server Error
 
     An error occurred. The API call was not processed correctly and should be retried later.
+
+
+Bulk Import
+-----------
+
+Use this method to bootstrap your freckle account by importing existing data.
+
+POST to /api/entries/import.xml
+
+Sample request:
+
+    curl -d @data/entries_import.xml -H "Content-type: text/xml" -H "X-FreckleToken:d5qbub49eq79x054y7r0qffc2b60i9a" http://apitest.letsfreckle.com/api/entries/import.xml
+
+Sample POST body:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <entries type="array">
+      <entry>
+        <minutes>2h</minutes>
+        <user>apitest@letsfreckle.com</user>
+        <project-name>Fixture Company</project-name>
+        <description>freckle restful api test, bulk import</description>
+        <date>2009-10-11</date>
+      </entry>
+      <entry>
+        <minutes>30min</minutes>
+        <user>apitest@letsfreckle.com</user>
+        <description>freckle restful api test, bulk import</description>
+        <date>2009-10-12</date>
+      </entry>
+    </entries>
+
+*ATTENTION*: the entry format for the import is slightly different to the format used for the create single entry format!
+
+* entry
+  * minutes *required*
+
+    Amount of time which should be tracked for the entry in a valid format.
+
+  * user *required*
+
+    Email or login of the user the entry should be associated with.
+
+  * project-name
+
+    Name of the project the entry should be associated with. The project will be created if it doesn't exist.
+
+  * description
+
+    Description for the entry, including tags.
+
+  * date
+
+    Date formated in _YYYY-MM-DD_
