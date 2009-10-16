@@ -1,0 +1,54 @@
+Entries
+=======
+
+Creating a Time Entry
+---------------------
+
+POST to /api/entries.xml
+
+    curl -d @data/entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:d5qbub49eq79x054y7r0qffc2b60i9a" http://apitest.letsfreckle.com/api/entries.xml
+
+Sample POST body:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <entry>
+      <minutes>2h</minutes>
+      <user>user@test.com</user>
+      <project-id type="integer">1</project-id>
+      <description>freckle restful api test</description>
+      <date>2008-12-15</date>
+    </entry>
+
+  * minutes *required*
+
+    Amount of time which should be tracked for the entry in a valid format
+
+  * user *required*
+
+    email or login of the user the entry should be associated with
+
+  * project-id
+
+    ID of the project the entry should be associated with
+
+  * description
+
+    Description for the entry, including tags
+
+  * date
+
+    Date formated in YYYY-MM-DD
+
+Error Response Codes:
+
+  * 401 Unauthorized
+
+    The user is not authorized to access this information or the authtoken is not valid.
+
+  * 422 Unprocessable Entity
+
+    The request data was not valid.
+
+  * 500 Internal Server Error
+
+    An error occurred. The API call was not processed correctly and should be retried later.
