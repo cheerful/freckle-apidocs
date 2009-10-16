@@ -1,8 +1,8 @@
 Projects
 ========
 
-Receiving a list of possible projects
--------------------------------------
+List projects
+------------------
 
 GET to /api/projects.xml
 
