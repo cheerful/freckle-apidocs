@@ -1,6 +1,27 @@
 Entries
 =======
 
+Fetching time entires
+---------------------
+
+This feature exposes the complete report functionality.
+
+GET to /api/entries.xml
+
+Sample request:
+
+    curl -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/entries.xml -d search[from]=2009-10-10
+
+supported options in the search hash:
+
+* people: comma separated user ids
+* projects:  comma separated project ids
+* tags: comma separated tag ids
+* from: entries from this date
+* to: entries to this date
+
+Note that entries are currently always sorted by 'date DESC'
+
 Creating a Time Entry
 ---------------------
 
