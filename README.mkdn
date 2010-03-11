@@ -8,7 +8,7 @@ The API for a freckle account can only be accessed via the accounts full URL.
 So each API request has to be made to http://myfreckle.letsfreckle.com/api/<some-api-call>
 where *myfreckle* is the account's subdomain.
 
-An *authtoken* is need for accessing the API. The token identifies the user and can be obtained from the users personal settings page.
+An *authtoken* is needed for accessing the API. The token identifies the user and can be obtained from the users personal settings page.
 It has to be sent for each request in either one of this two ways:
 
 * as query parameter named `token`
