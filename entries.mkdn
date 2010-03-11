@@ -19,6 +19,7 @@ supported options in the search hash:
 * tags: comma separated tag ids
 * from: entries from this date
 * to: entries to this date
+* billable: _true_ only shows billable entries; _false_ only shows unbillable entries
 
 Note that entries are currently always sorted by 'date DESC'
 
