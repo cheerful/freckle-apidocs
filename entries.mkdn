@@ -16,7 +16,7 @@ supported options in the search hash:
 
 * people: comma separated user ids
 * projects:  comma separated project ids
-* tags: comma separated tag ids
+* tags: comma separated tag ids or names (can be mixed, multiple tags will search using AND)
 * from: entries from this date
 * to: entries to this date
 * billable: _true_ only shows billable entries; _false_ only shows unbillable entries
