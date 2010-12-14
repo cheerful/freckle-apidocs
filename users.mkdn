@@ -6,7 +6,7 @@ Users
 List users
 ------------------
 
-GET to `/api/users.xml
+GET to `/api/users.xml`
 
 Sample request:
 
