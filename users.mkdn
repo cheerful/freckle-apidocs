@@ -1,0 +1,93 @@
+Users
+=====
+
+List users
+------------------
+
+GET to /api/users.xml
+
+Sample request:
+
+    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/users.xml
+
+XML Response:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <users type="array">
+      <user>
+        <email>apitest@letsfreckle.com</email>
+        <first-name>Test</first-name>
+        <id type="integer">5538</id>
+        <last-name>User</last-name>
+        <login>test</login>
+        <time-format>fraction</time-format>
+      </user>
+      <user>
+        <email>apitest2@letsfreckle.com</email>
+        <first-name>Test2</first-name>
+        <id type="integer">5539</id>
+        <last-name>User</last-name>
+        <login>test2</login>
+        <time-format>fraction</time-format>
+      </user>
+    </users>
+
+Error Response Codes:
+
+  * 401 Unauthorized
+
+    The user is not authorized to access this information or the authtoken is not valid.
+
+  * 500 Internal Server Error
+
+    An error occurred. The API call was not processed correctly and should be retried later.
+
+Show user
+----------
+
+GET to /api/users/<id>.xml
+
+Sample request:
+
+    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/users/5538.xml
+
+XML Response:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <user>
+      <email>apitest@letsfreckle.com</email>
+      <first-name>Test</first-name>
+      <id type="integer">5538</id>
+      <last-name>User</last-name>
+      <login>test</login>
+      <time-format>fraction</time-format>
+    </user>
+
+Error Response Codes:
+
+  * 401 Unauthorized
+
+    The user is not authorized to access this information or the authtoken is not valid.
+
+  * 500 Internal Server Error
+
+    An error occurred. The API call was not processed correctly and should be retried later.
+
+Receive a user's auth token
+---------------------------
+
+Note: This call is only available through HTTPS
+
+Note: This call requireds HTTP Basic Authentiaction
+    
+HTTPS GET to /api/user/api_auth_token.xml
+
+    curl https://test:testtest@apitest.letsfreckle.com/api/user/api_auth_token.xml
+
+Response
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <user>
+      <api-auth-token>lx3gi6pxdjtjn57afp8c2bv1me7g89j</api-auth-token>
+    </user>
+    

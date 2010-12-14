@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entries type="array">
+  <entry>
+    <minutes>2h</minutes>
+    <user>apitest@letsfreckle.com</user>
+    <project-name>Fixture Company</project-name>
+    <description>freckle restful api test, bulk import</description>
+    <date>2009-10-11</date>
+  </entry>
+  <entry>
+    <minutes>30min</minutes>
+    <user>apitest@letsfreckle.com</user>
+    <description>freckle restful api test, bulk import</description>
+    <date>2009-10-12</date>
+  </entry>
+</entries>
