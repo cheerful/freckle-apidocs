@@ -6,7 +6,7 @@ Tags
 List tags
 --------------
 
-GET to /api/tags.xml
+GET to `/api/tags.xml`
 
 Sample request:
 

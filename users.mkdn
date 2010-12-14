@@ -6,7 +6,7 @@ Users
 List users
 ------------------
 
-GET to /api/users.xml
+GET to `/api/users.xml
 
 Sample request:
 
@@ -47,7 +47,7 @@ Error Response Codes:
 Show user
 ----------
 
-GET to /api/users/<id>.xml
+GET to `/api/users/<id>.xml`
 
 Sample request:
 
@@ -82,7 +82,7 @@ Note: This call is only available through HTTPS
 
 Note: This call requireds HTTP Basic Authentiaction
     
-HTTPS GET to /api/user/api_auth_token.xml
+HTTPS GET to `/api/user/api_auth_token.xml`
 
     curl https://test:testtest@apitest.letsfreckle.com/api/user/api_auth_token.xml
 

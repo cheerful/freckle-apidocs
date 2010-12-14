@@ -6,7 +6,7 @@ Projects
 List projects
 ------------------
 
-GET to /api/projects.xml
+GET to `/api/projects.xml`
 
 Sample request:
 
