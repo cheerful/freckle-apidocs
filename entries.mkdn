@@ -92,7 +92,7 @@ Sample request:
 Sample POST body:
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <entries type="array">
+    <entries>
       <entry>
         <minutes>2h</minutes>
         <user>apitest@letsfreckle.com</user>
@@ -107,8 +107,6 @@ Sample POST body:
         <date>2009-10-12</date>
       </entry>
     </entries>
-
-Note the *type="array"* attribute on the *entries* tag.
 
 *ATTENTION*: the entry format for the import is slightly different to the format used for the create single entry format!
 
