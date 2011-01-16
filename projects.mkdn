@@ -51,3 +51,30 @@ Error Response Codes:
 
     An error occurred. The API call was not processed correctly and should be retried later.
 
+Add Project
+-----------
+
+POST to `/api/projects.[xml|json]`
+
+Sample request:
+
+    curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/projects.xml
+
+Sample POST body:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project>
+      <name>foobar</name>
+    </project>
+
+In case the project was successfully created, you get a HTTP 201 Created back, with the Location header containing the URL of the project (e.g. http://someaccount.letsfreckle.com/api/project/123).
+
+Error Response Codes:
+
+  * 401 Unauthorized
+
+    The user is not authorized to access this information or the authtoken is not valid.
+
+  * 422 Unprocessable Entity
+
+    An error occurred. The project already exists or the account project limit has been reached
