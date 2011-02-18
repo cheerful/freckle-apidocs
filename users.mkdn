@@ -81,8 +81,8 @@ Receive a user's auth token
 
 Note: This call is only available through HTTPS
 
-Note: This call requireds HTTP Basic Authentiaction
-    
+Note: This call requireds HTTP Basic Authentication
+
 HTTPS GET to `/api/user/api_auth_token.xml`
 
     curl https://test:testtest@apitest.letsfreckle.com/api/user/api_auth_token.xml
@@ -93,4 +93,101 @@ Response
     <user>
       <api-auth-token>lx3gi6pxdjtjn57afp8c2bv1me7g89j</api-auth-token>
     </user>
-    
+
+
+Add User
+--------
+
+Note: Only the account owner can make this call.
+
+Note: The apitest account and key do now allow this operation.
+
+POST to `/api/users.[xml|json]`
+
+Sample request:
+
+    curl -d @data/users.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://somaccount.letsfreckle.com/api/users.xml
+
+Sample POST body:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <user>
+      <email>foo.bar@example.com</user>
+      <first_name>foo</first_name>
+      <last_name>bar</last_name>
+    </user>
+
+In case the user was successfully created, you get a HTTP 201 Created back, with the Location header containing the URL of the user (e.g. http://someaccount.letsfreckle.com/api/users/123).
+
+Error Response Codes:
+
+  * 401 Unauthorized
+
+    The user is not authorized to access this information or the authtoken is not valid.
+
+  * 422 Unprocessable Entity
+
+    An error occurred. Another user with the given email already exists or the account user limit has been reached.
+
+
+Update User
+-----------
+
+Note: Only the account owner can make this call.
+
+Note: The apitest account and key do now allow this operation.
+
+PUT to `/api/users/ID.[xml|json]`
+
+Sample request:
+
+    curl -d @data/user.xml -X PUT -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://somaccount.letsfreckle.com/api/user/ID.xml
+
+Sample POST body:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <user>
+      <email>foozinho.barzinho@example.com</user>
+      <first_name>foozinho</first_name>
+      <last_name>barzinho</last_name>
+    </user>
+
+In case the user was successfully updated, you get a HTTP 200 Ok back, with the Location header containing the URL of the user (e.g. http://someaccount.letsfreckle.com/api/users/123).
+
+Error Response Codes:
+
+  * 401 Unauthorized
+
+    The user is not authorized to access this information or the authtoken is not valid.
+
+  * 422 Unprocessable Entity
+
+    An error occurred. Another user with the given email already exists.
+
+
+Remove User
+-----------
+
+Note: Only the account owner can make this call.
+
+Note: The apitest account and key do now allow this operation.
+
+Note: Users are never actually removed, rather, they are just deactivated. For the moment, reactivation of an user can only be done through the web the interface.
+
+DELETE to `/api/users/ID[.[xml|json]]`
+
+Sample request:
+
+    curl -d @data/user.xml -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/user/ID.xml
+
+In case the user was successfully removed (deactivated), you get a HTTP 200 Ok back.
+
+Error Response Codes:
+
+  * 401 Unauthorized
+
+    The user is not authorized to access this information or the authtoken is not valid.
+
+  * 422 Unprocessable Entity
+
+    An error occurred. You are probably trying to remove the account owner or yourself.

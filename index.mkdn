@@ -51,4 +51,9 @@ Contents
 * Tags
   * list available tags
 * Users
-
+  * list users
+  * get user data
+  * get api token for a user
+  * add user
+  * update user
+  * deactivate user
