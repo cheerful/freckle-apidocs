@@ -1,15 +1,11 @@
 body {
   font-family: Helvetica, Arial;
+  margin: 0 2em 1em 2em;
 }
-
 code, pre {
   font-family: monospace;
 }
 
-tt {
-  background-color: #dfd;
-  color: #060;
-}
 pre {
   padding: .5em;
   background-color: #111;
@@ -30,4 +26,44 @@ em
 {
   font-style: none;
   font-weight: bold;
+}
+
+h1, h2, h3, h4
+{
+  font-weight: normal;
+}
+h2
+{
+  border-bottom: 1px solid #999;
+  padding: 3px 0px;
+}
+
+ul
+{
+  padding: 0;
+  margin: 0;
+}
+li
+{
+  list-style-position: outside;
+}
+li p
+{
+  margin: .3em 0;
+}
+
+#nav
+{
+  padding: .5em 1em;
+  background-color: #000;
+}
+#nav a
+{
+  margin-right: 1em;
+  color: #fff;
+  text-decoration: none;
+}
+#nav a:hover
+{
+  color: #dfd;
 }
