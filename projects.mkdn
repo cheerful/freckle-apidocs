@@ -5,15 +5,17 @@ Projects
 ========
 
 List projects
-------------------
+-------------
 
-GET to `/api/projects.xml`
+The projects resource returns all projects accessible by the user. For all roles except freelancer this includes all projects in the account. Freelancers see all projects they have access to.
+
+GET `/api/projects.xml`
 
 Sample request:
 
-    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/projects.xml
+    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
 
-XML Response:
+Sample XML response:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <projects type="array">
@@ -41,24 +43,25 @@ XML Response:
       </project>
     </projects>
 
-Error Response Codes:
+### Response codes
 
-  * 401 Unauthorized
+* 401 Unauthorized
 
-    The user is not authorized to access this information or the authtoken is not valid.
+  The user is not authorized to access this information or the authtoken is not valid.
 
-  * 500 Internal Server Error
+* 500 Internal Server Error
 
-    An error occurred. The API call was not processed correctly and should be retried later.
+  An error occurred. The API call was not processed correctly and should be retried later.
 
 Add Project
 -----------
 
-POST to `/api/projects.[xml|json]`
+POST `/api/projects.xml`
 
 Sample request:
 
-    curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/projects.xml
+    curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
+      https://apitest.letsfreckle.com/api/projects.xml
 
 Sample POST body:
 
@@ -67,14 +70,14 @@ Sample POST body:
       <name>foobar</name>
     </project>
 
-In case the project was successfully created, you get a HTTP 201 Created back, with the Location header containing the URL of the project (e.g. http://someaccount.letsfreckle.com/api/project/123).
+In case the project was successfully created, you get a `HTTP 201 Created` back, with the `Location` header containing the URL of the project (e.g. https://apitest.letsfreckle.com/api/project/123).
 
-Error Response Codes:
+### Response codes
 
-  * 401 Unauthorized
+* 401 Unauthorized
 
-    The user is not authorized to access this information or the authtoken is not valid.
+  The user is not authorized to access this information or the authtoken is not valid.
 
-  * 422 Unprocessable Entity
+* 422 Unprocessable Entity
 
-    An error occurred. The project already exists or the account project limit has been reached
+  An error occurred. The project already exists or the account project limit has been reached
