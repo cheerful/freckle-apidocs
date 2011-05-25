@@ -27,6 +27,11 @@ An *authtoken* is needed for accessing the API. You can get your personal authen
 
 *Note*: To simplify authentication on mobile devices, the token can also be retrieved from `/api/user/api_auth_token`. See the Users section for more information.
 
+Roles
+-----
+
+There are currently three roles in Freckle: `administrator`, `owner`, `member`, and `freelancer`. Depending on which of these you are you can access certain parts of the API. For each resource we explain who can access it, and in which way.
+
 API Test Account
 ----------------
 
