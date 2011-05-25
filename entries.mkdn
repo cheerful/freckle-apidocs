@@ -33,7 +33,7 @@ Entries are sorted descending by date.
 
 All roles can access this resource. Freelancers will only see entries made by themselves in accessible projects.
 
-Creating a Time Entry
+Creating a time entry
 ---------------------
 
 POST `/api/entries.xml`
@@ -80,7 +80,7 @@ Sample POST body:
 
 * 401 Unauthorized
 
-  The user is not authorized to access this information or the authtoken is not valid.
+  The user is not authorized to access this information or the authentication token is not valid.
 
 * 422 Unprocessable Entity
 
@@ -94,7 +94,7 @@ Sample POST body:
 
 All roles can access this resource. Freelancers can only create entries in accessible projects. You can fetch the accessible projects through the Projects resource.
 
-Bulk Import
+Bulk import
 -----------
 
 You can POST a big bunch of entries to this resource to create a large number of entries at once. This is great when you want to import existing data to your Freckle accunt.
@@ -186,7 +186,7 @@ The response will be an array of all created time entries.
 
 * 401 Unauthorized
 
-  The user is not authorized to access this information or the authtoken is not valid.
+  The user is not authorized to access this information or the authentication token is not valid.
 
 * 500 Internal Server Error
 

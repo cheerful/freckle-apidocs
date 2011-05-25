@@ -6,24 +6,24 @@ Freckle Restful API
 
 You access the Freckle API through the complete account URL:
 
-    http://<account>.letsfreckle.com/api/<resource>
+    https://<account>.letsfreckle.com/api/<resource>
 
-Where *account* is your account name and *resource* is the resource you want to access. Getting all projects from Bill's account would result in the following URL: `http://bill.letsfreckle.com/api/projects.xml`.
+Where *account* is your account name and *resource* is the resource you want to access. Getting all projects from Bill's account would result in the following URL: `https://bill.letsfreckle.com/api/projects.xml`.
 
-Some resources can only be accessed through SSL. They shared the same endpoint, only starting with *https*. When you accidentally use the wrong URL, you will get a `302 Found` response.
+Resources are normally accessed through SSL. Some resources can also be access through a regular HTTP request.
 
 Authentication
 --------------
 
-An *authtoken* is needed for accessing the API. You can get your personal authentication token from Settings & Tools >> API in the Freckle interface. The token has to be sent for each request in either one of these two ways:
+An *authentication token* is needed for accessing the API. You can get your personal authentication token from Settings & Tools >> API in the Freckle interface. The token has to be sent for each request in either one of these two ways:
 
 * as query parameter named `token`
 
-  `curl http://myfreckle.letsfreckle.com/api/projects.xml?token=10ee9d50a2f540518c5d1f9448e43f96056af626`
+  `curl https://myfreckle.letsfreckle.com/api/projects.xml?token=10ee9d50a2f540518c5d1f9448e43f96056af626`
 
 * in the HTTP header `X-FreckleToken`
 
-  `curl -H "X-FreckleToken:10ee9d50a2f540518c5d1f9448e43f96056af626" http://myfreckle.letsfreckle.com/api/projects.xml`
+  `curl -H "X-FreckleToken:10ee9d50a2f540518c5d1f9448e43f96056af626" https://myfreckle.letsfreckle.com/api/projects.xml`
 
 *Note*: To simplify authentication on mobile devices, the token can also be retrieved from `/api/user/api_auth_token`. See the Users section for more information.
 
@@ -54,16 +54,17 @@ Contents
 
 * Entries
   * Fetching time entries
-  * Creating a Time Entry
-  * Bulk Import
+  * Creating a time entry
+  * Bulk import
 * Projects
-  * list available projects
+  * List projects
+  * Add project
 * Tags
-  * list available tags
+  * List tags
 * Users
-  * list users
-  * get user data
-  * get api token for a user
-  * add user
-  * update user
-  * deactivate user
+  * List users
+  * Show user
+  * Receive a user’s authentication token
+  * Add user
+  * Update user
+  * Remove user

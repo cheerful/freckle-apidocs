@@ -5,3 +5,29 @@ body {
 code, pre {
   font-family: monospace;
 }
+
+tt {
+  background-color: #dfd;
+  color: #060;
+}
+pre {
+  padding: .5em;
+  background-color: #111;
+  color: #9f9;
+  font-size: 90%;
+  line-height: 110%;
+}
+code {
+  background-color: #dfd;
+  color: #000;
+}
+pre code
+{
+  background-color: #111;
+  color: #9f9;
+}
+em
+{
+  font-style: none;
+  font-weight: bold;
+}

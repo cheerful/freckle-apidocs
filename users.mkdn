@@ -120,7 +120,7 @@ Sample response:
 
 Anyone can retrieve their authentication token using this resource.
 
-Add User
+Add user
 --------
 
 You can create new users by POSTing to the user resource.
@@ -129,7 +129,8 @@ POST `/api/users.xml`
 
 Sample request:
 
-    curl -d @data/users.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://somaccount.letsfreckle.com/api/users.xml
+    curl -d @data/users.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
+      https://somaccount.letsfreckle.com/api/users.xml
 
 Sample POST body:
 
@@ -156,7 +157,7 @@ In case the user was successfully created, you get a `HTTP 201 Created` back, wi
 
 Only the account owner can use this resource. The `apitest` account doesn't allow you to create new users for obvious reasons.
 
-Update User
+Update user
 -----------
 
 You can PUT to the user resource to update its attributes.
@@ -165,7 +166,8 @@ PUT `/api/users/<id>.xml`
 
 Sample request:
 
-    curl -d @data/user.xml -X PUT -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://somaccount.letsfreckle.com/api/user/ID.xml
+    curl -d @data/user.xml -X PUT -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
+      https://somaccount.letsfreckle.com/api/user/ID.xml
 
 Sample POST body:
 
@@ -192,7 +194,7 @@ In case the user was successfully updated, you get a `HTTP 200 Ok` back, with th
 
 Only the account owner can use this resource. The `apitest` account doesn't allow you to create new users for obvious reasons.
 
-Remove User
+Remove user
 -----------
 
 Delete this resource to deactivate the user.
@@ -203,7 +205,8 @@ DELETE `/api/users/<id>.xml`
 
 Sample request:
 
-    curl -d @data/user.xml -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/user/ID.xml
+    curl -d @data/user.xml -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
+      https://apitest.letsfreckle.com/api/user/ID.xml
 
 In case the user was successfully removed, you get a `HTTP 200 Ok` back.
 

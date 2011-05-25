@@ -47,7 +47,7 @@ Sample XML response:
 
 * 401 Unauthorized
 
-  The user is not authorized to access this information or the authtoken is not valid.
+  The user is not authorized to access this information or the authentication token is not valid.
 
 * 500 Internal Server Error
 
@@ -57,7 +57,7 @@ Sample XML response:
 
 Everyone has access to this resource.
 
-Add Project
+Add project
 -----------
 
 POST `/api/projects.xml`
@@ -80,7 +80,7 @@ In case the project was successfully created, you get a `HTTP 201 Created` back,
 
 * 401 Unauthorized
 
-  The user is not authorized to access this information or the authtoken is not valid.
+  The user is not authorized to access this information or the authentication token is not valid.
 
 * 422 Unprocessable Entity
 

@@ -7,13 +7,15 @@ Tags
 List tags
 --------------
 
-GET to `/api/tags.xml`
+The tags resource returns all tags for the account.
+
+GET `/api/tags.xml`
 
 Sample request:
 
-    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" http://apitest.letsfreckle.com/api/tags.xml
+    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/tags.xml
 
-XML Response:
+Sample XML response:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <tags type="array">
@@ -35,13 +37,16 @@ XML Response:
       </tag>
     </tags>
 
-Error Response Codes:
+### Response codes
 
-  * 401 Unauthorized
+* 401 Unauthorized
 
-    The user is not authorized to access this information or the authtoken is not valid.
+  The user is not authorized to access this information or the authentication token is not valid.
 
-  * 500 Internal Server Error
+* 500 Internal Server Error
 
-    An error occurred. The API call was not processed correctly and should be retried later.
+  An error occurred. The API call was not processed correctly and should be retried later.
 
+### Roles
+
+Freelancers don't have access to this resource.
