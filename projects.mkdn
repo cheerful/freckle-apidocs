@@ -53,6 +53,10 @@ Sample XML response:
 
   An error occurred. The API call was not processed correctly and should be retried later.
 
+### Roles
+
+Everyone has access to this resource.
+
 Add Project
 -----------
 
@@ -81,3 +85,7 @@ In case the project was successfully created, you get a `HTTP 201 Created` back,
 * 422 Unprocessable Entity
 
   An error occurred. The project already exists or the account project limit has been reached
+
+### Roles
+
+Everyone except freelancers can create projects.
