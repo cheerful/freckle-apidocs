@@ -49,4 +49,4 @@ Sample XML response:
 
 ### Roles
 
-Freelancers don't have access to this resource.
+Freelancers have access to this resource, but will only see tags that are used in assigned projects.
