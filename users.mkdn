@@ -26,7 +26,8 @@ Sample XML response:
         <last-name>User</last-name>
         <login>test</login>
         <time-format>fraction</time-format>
-	<week-start>Sunday</week-start>
+	    <week-start>Sunday</week-start>
+	    <permissions>integration, time, invoicing, reports, tags, expenses, projects, team, people, account, billing, import</permissions>
       </user>
       <user>
         <email>apitest2@letsfreckle.com</email>
@@ -35,7 +36,8 @@ Sample XML response:
         <last-name>User</last-name>
         <login>test2</login>
         <time-format>fraction</time-format>
-	<week-start>Monday</week-start>
+	    <week-start>Monday</week-start>
+	    <permissions>integration, time, invoicing, reports, tags, expenses, projects, team</permissions
       </user>
     </users>
 
@@ -75,6 +77,7 @@ Sample XML response:
       <login>test</login>
       <time-format>fraction</time-format>
       <week-start>Sunday</week-start>
+      <permissions>integration, time, invoicing, reports, tags, expenses, projects, team, people, account, billing, import</permissions>
     </user>
 
 ### Response codes
