@@ -26,6 +26,8 @@ Sample XML response:
         <last-name>User</last-name>
         <login>test</login>
         <time-format>fraction</time-format>
+	    <week-start>Sunday</week-start>
+	    <permissions>integration, time, invoicing, reports, tags, expenses, projects, team, people, account, billing, import</permissions>
       </user>
       <user>
         <email>apitest2@letsfreckle.com</email>
@@ -34,6 +36,8 @@ Sample XML response:
         <last-name>User</last-name>
         <login>test2</login>
         <time-format>fraction</time-format>
+	    <week-start>Monday</week-start>
+	    <permissions>integration, time, invoicing, reports, tags, expenses, projects, team</permissions
       </user>
     </users>
 
@@ -72,6 +76,42 @@ Sample XML response:
       <last-name>User</last-name>
       <login>test</login>
       <time-format>fraction</time-format>
+      <week-start>Sunday</week-start>
+      <permissions>integration, time, invoicing, reports, tags, expenses, projects, team, people, account, billing, import</permissions>
+    </user>
+
+### Response codes
+
+* 401 Unauthorized
+
+  The user is not authorized to access this information or the authentication token is not valid.
+
+* 500 Internal Server Error
+
+  An error occurred. The API call was not processed correctly and should be retried later.
+
+### Roles
+
+The freelancer can only see details about herself. Other roles have access to all users in the account.
+
+Receive a user's avatar
+----------
+
+Returns path to user avatar & thumbnail.
+
+GET `/api/users/<id>/avatar.xml`
+
+Sample request:
+
+    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538/avatar.xml
+
+Sample XML response:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <user>
+      <avatar>http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg</avatar>
+      <thumbnail>http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg</thumbnail>
+      <id type="integer">5538</id>
     </user>
 
 ### Response codes

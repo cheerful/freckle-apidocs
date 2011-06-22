@@ -64,6 +64,7 @@ Contents
 * Users
   * List users
   * Show user
+  * Receive a user's avatar
   * Receive a user’s authentication token
   * Add user
   * Update user
