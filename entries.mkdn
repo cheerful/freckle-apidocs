@@ -94,6 +94,98 @@ Sample POST body:
 
 All roles can access this resource. Freelancers can only create entries in accessible projects. You can fetch the accessible projects through the Projects resource.
 
+Edit a time entry
+---------------------
+
+Changed can be only entries which are not invoiced yet and not belongs to projects which are archived.
+
+PUT `/api/entries/33.xml`
+
+Sample request:
+
+    curl -X PUT -d @data/entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
+      https://apitest.letsfreckle.com/api/entries/33.xml
+
+Sample PUT body:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <entry>
+      <minutes>2h</minutes>
+      <user>apitest@letsfreckle.com</user>
+      <project-id type="integer">8475</project-id>
+      <description>freckle restful api test</description>
+      <date>2009-10-15</date>
+    </entry>
+
+### Entry attributes
+
+* minutes
+
+  Amount of time which should be tracked for the entry in a valid format
+
+* user
+
+  email or login of the user the entry should be associated with
+
+* project-id
+
+  ID of the project the entry should be associated with
+
+* description
+
+  Description for the entry, including tags
+
+* date
+
+  Date formated in YYYY-MM-DD
+
+### Response codes
+
+* 401 Unauthorized
+
+  The user is not authorized to access this information or the authentication token is not valid.
+
+* 422 Unprocessable Entity
+
+  The request data was not valid.
+
+* 500 Internal Server Error
+
+  An error occurred. The API call was not processed correctly and should be retried later.
+
+### Roles
+
+All roles can access this resource. Freelancers can only create entries in accessible projects. You can fetch the accessible projects through the Projects resource.
+
+Remove a time entry
+---------------------
+
+Removed can be only entries which are not invoiced yet and not belongs to projects which are archived.
+
+DELETE `/api/entries/33.xml`
+
+Sample request:
+
+    curl -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/33.xml
+
+### Response codes
+
+* 401 Unauthorized
+
+  The user is not authorized to access this information or the authentication token is not valid.
+
+* 422 Unprocessable Entity
+
+  The request data was not valid.
+
+* 500 Internal Server Error
+
+  An error occurred. The API call was not processed correctly and should be retried later.
+
+### Roles
+
+All roles can access this resource. Freelancers can only create entries in accessible projects. You can fetch the accessible projects through the Projects resource.
+
 Bulk import
 -----------
 
