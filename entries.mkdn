@@ -97,7 +97,7 @@ All roles can access this resource. Freelancers can only create entries in acces
 Edit a time entry
 ---------------------
 
-Changed can be only entries which are not invoiced yet and not belongs to projects which are archived.
+Changed can be only entries which are not invoiced yet and not belongs to archived project.
 
 PUT `/api/entries/33.xml`
 
@@ -160,7 +160,7 @@ All roles can access this resource. Freelancers can only create entries in acces
 Remove a time entry
 ---------------------
 
-Removed can be only entries which are not invoiced yet and not belongs to projects which are archived.
+Removed can be only entries which are not invoiced yet and not belongs to archived project.
 
 DELETE `/api/entries/33.xml`
 
