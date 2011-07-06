@@ -21,10 +21,13 @@ Sample XML response:
     <projects type="array">
       <project>
         <account-id type="integer">100</account-id>
+        <billable type="boolean">true</billable>
         <budget type="integer" nil="true"></budget>
         <created-at type="datetime">2008-12-19T16:21:34Z</created-at>
         <enabled type="boolean">true</enabled>
         <id type="integer">1343</id>
+        <import-id type="integer">6</import-id>
+        <invoice-recipient-details nil="true"/>
         <name>TestProject1</name>
         <stepping type="integer">15</stepping>
         <updated-at type="datetime">2008-12-19T16:21:34Z</updated-at>
@@ -32,10 +35,13 @@ Sample XML response:
       </project>
       <project>
         <account-id type="integer">100</account-id>
+        <billable type="boolean">true</billable>
         <budget type="integer" nil="true"></budget>
         <created-at type="datetime">2008-12-19T16:23:06Z</created-at>
         <enabled type="boolean">true</enabled>
         <id type="integer">1344</id>
+        <import-id type="integer" nil="true"/>
+        <invoice-recipient-details nil="true"/>        
         <name>TestProject2</name>
         <stepping type="integer">15</stepping>
         <updated-at type="datetime">2008-12-19T16:23:06Z</updated-at>
@@ -48,6 +54,141 @@ Sample XML response:
 * 401 Unauthorized
 
   The user is not authorized to access this information or the authentication token is not valid.
+
+* 500 Internal Server Error
+
+  An error occurred. The API call was not processed correctly and should be retried later.
+
+### Roles
+
+Everyone has access to this resource.
+
+Show project
+-------------
+
+GET `/api/projects/2.xml`
+
+Sample request:
+
+    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2.xml
+
+Sample XML response:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project>
+      <account-id type="integer">100</account-id>
+      <billable type="boolean">true</billable>
+      <budget type="integer" nil="true"></budget>
+      <created-at type="datetime">2008-12-19T16:21:34Z</created-at>
+      <enabled type="boolean">true</enabled>
+      <id type="integer">1343</id>
+      <import-id type="integer">6</import-id>
+      <invoice-recipient-details nil="true"/>
+      <name>TestProject1</name>
+      <stepping type="integer">15</stepping>
+      <updated-at type="datetime">2008-12-19T16:21:34Z</updated-at>
+      <user-id type="integer" nil="true"></user-id>
+    </project>
+
+### Response codes
+
+* 401 Unauthorized
+
+  The user is not authorized to access this information or the authentication token is not valid.
+
+* 404 Not Found
+
+  An error occurred. Project with given id not exists.
+
+* 500 Internal Server Error
+
+  An error occurred. The API call was not processed correctly and should be retried later.
+
+### Roles
+
+Everyone has access to this resource.
+
+Activate project
+-------------
+
+GET `/api/projects/2/active.xml`
+
+Sample request:
+
+    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/active.xml
+
+Sample XML response:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project>
+      <account-id type="integer">100</account-id>
+      <billable type="boolean">true</billable>
+      <budget type="integer" nil="true"></budget>
+      <created-at type="datetime">2008-12-19T16:21:34Z</created-at>
+      <enabled type="boolean">true</enabled>
+      <id type="integer">1343</id>
+      <import-id type="integer">6</import-id>
+      <invoice-recipient-details nil="true"/>
+      <name>TestProject1</name>
+      <stepping type="integer">15</stepping>
+      <updated-at type="datetime">2008-12-19T16:21:34Z</updated-at>
+      <user-id type="integer" nil="true"></user-id>
+    </project>
+
+### Response codes
+
+* 401 Unauthorized
+
+  The user is not authorized to access this information or the authentication token is not valid.
+
+* 404 Not Found
+
+  An error occurred. Project with given id not exists.
+
+* 500 Internal Server Error
+
+  An error occurred. The API call was not processed correctly and should be retried later.
+
+### Roles
+
+Everyone has access to this resource.
+
+Archive project
+-------------
+
+GET `/api/projects/2/archive.xml`
+
+Sample request:
+
+    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/archive.xml
+
+Sample XML response:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project>
+      <account-id type="integer">100</account-id>
+      <billable type="boolean">true</billable>
+      <budget type="integer" nil="true"></budget>
+      <created-at type="datetime">2008-12-19T16:21:34Z</created-at>
+      <enabled type="boolean">false</enabled>
+      <id type="integer">1343</id>
+      <import-id type="integer">6</import-id>
+      <invoice-recipient-details nil="true"/>
+      <name>TestProject1</name>
+      <stepping type="integer">15</stepping>
+      <updated-at type="datetime">2008-12-19T16:21:34Z</updated-at>
+      <user-id type="integer" nil="true"></user-id>
+    </project>
+
+### Response codes
+
+* 401 Unauthorized
+
+  The user is not authorized to access this information or the authentication token is not valid.
+
+* 404 Not Found
+
+  An error occurred. Project with given id not exists.
 
 * 500 Internal Server Error
 
