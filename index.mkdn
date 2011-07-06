@@ -64,6 +64,7 @@ Contents
   * Activate project
   * Archive project
   * Add project
+  * Remove project
 * Tags
   * List tags
 * Users

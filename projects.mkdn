@@ -117,23 +117,7 @@ Sample request:
 
     curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/active.xml
 
-Sample XML response:
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <project>
-      <account-id type="integer">100</account-id>
-      <billable type="boolean">true</billable>
-      <budget type="integer" nil="true"></budget>
-      <created-at type="datetime">2008-12-19T16:21:34Z</created-at>
-      <enabled type="boolean">true</enabled>
-      <id type="integer">1343</id>
-      <import-id type="integer">6</import-id>
-      <invoice-recipient-details nil="true"/>
-      <name>TestProject1</name>
-      <stepping type="integer">15</stepping>
-      <updated-at type="datetime">2008-12-19T16:21:34Z</updated-at>
-      <user-id type="integer" nil="true"></user-id>
-    </project>
+In case the project was successfully activated, you get a `HTTP 200 Ok` back, with the `Location` header containing the URL of the project (e.g. https://apitest.letsfreckle.com/api/project/2).
 
 ### Response codes
 
@@ -151,7 +135,7 @@ Sample XML response:
 
 ### Roles
 
-Everyone has access to this resource.
+Everyone except freelancers can activate projects.
 
 Archive project
 -------------
@@ -162,23 +146,7 @@ Sample request:
 
     curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/archive.xml
 
-Sample XML response:
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <project>
-      <account-id type="integer">100</account-id>
-      <billable type="boolean">true</billable>
-      <budget type="integer" nil="true"></budget>
-      <created-at type="datetime">2008-12-19T16:21:34Z</created-at>
-      <enabled type="boolean">false</enabled>
-      <id type="integer">1343</id>
-      <import-id type="integer">6</import-id>
-      <invoice-recipient-details nil="true"/>
-      <name>TestProject1</name>
-      <stepping type="integer">15</stepping>
-      <updated-at type="datetime">2008-12-19T16:21:34Z</updated-at>
-      <user-id type="integer" nil="true"></user-id>
-    </project>
+In case the project was successfully archived, you get a `HTTP 200 Ok` back, with the `Location` header containing the URL of the project (e.g. https://apitest.letsfreckle.com/api/project/2).
 
 ### Response codes
 
@@ -196,7 +164,7 @@ Sample XML response:
 
 ### Roles
 
-Everyone has access to this resource.
+Everyone except freelancers can archive projects.
 
 Add project
 -----------
@@ -227,6 +195,46 @@ In case the project was successfully created, you get a `HTTP 201 Created` back,
 
   An error occurred. The project already exists or the account project limit has been reached
 
+* 500 Internal Server Error
+
+  An error occurred. The API call was not processed correctly and should be retried later.
+
 ### Roles
 
 Everyone except freelancers can create projects.
+
+Remove project
+-----------
+
+Removed can be only projects without any entries, expenses and invoices.
+
+DELETE `/api/projects/2.xml`
+
+Sample request:
+
+    curl -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2.xml
+
+
+In case the project was successfully removed, you get a `HTTP 200 Ok` back, with the `Location` header containing the URL of the project (e.g. https://apitest.letsfreckle.com/api/project/123).
+
+### Response codes
+
+* 401 Unauthorized
+
+  The user is not authorized to access this information or the authentication token is not valid.
+
+* 404 Not Found
+
+  An error occurred. Project with given id not exists.
+
+* 422 Unprocessable Entity
+
+  An error occurred. The project have some entries, expenses or invoices.
+
+* 500 Internal Server Error
+
+  An error occurred. The API call was not processed correctly and should be retried later.
+
+### Roles
+
+Everyone except freelancers can remove projects.
