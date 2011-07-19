@@ -32,6 +32,10 @@ Sample XML response:
         <stepping type="integer">15</stepping>
         <updated-at type="datetime">2008-12-19T16:21:34Z</updated-at>
         <user-id type="integer" nil="true"></user-id>
+        <minutes type="integer">900</minutes>
+        <budget-minutes nil="true"/>
+        <remaining-minutes nil="true"/>
+        <unbillable-minutes type="integer">0</unbillable-minutes>
       </project>
       <project>
         <account-id type="integer">100</account-id>
@@ -46,6 +50,10 @@ Sample XML response:
         <stepping type="integer">15</stepping>
         <updated-at type="datetime">2008-12-19T16:23:06Z</updated-at>
         <user-id type="integer" nil="true"></user-id>
+        <minutes type="integer">615</minutes>
+        <budget-minutes type="integer">900</budget-minutes>
+        <remaining-minutes type="integer">285</remaining-minutes>
+        <unbillable-minutes type="integer">0</unbillable-minutes>
       </project>
     </projects>
 
@@ -88,6 +96,10 @@ Sample XML response:
       <stepping type="integer">15</stepping>
       <updated-at type="datetime">2008-12-19T16:21:34Z</updated-at>
       <user-id type="integer" nil="true"></user-id>
+      <minutes type="integer">615</minutes>
+      <budget-minutes type="integer">900</budget-minutes>
+      <remaining-minutes type="integer">285</remaining-minutes>
+      <unbillable-minutes type="integer">0</unbillable-minutes>
     </project>
 
 ### Response codes
