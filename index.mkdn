@@ -30,7 +30,7 @@ An *authentication token* is needed for accessing the API. You can get your pers
 Roles
 -----
 
-There are currently three roles in Freckle: `administrator`, `owner`, `member`, and `freelancer`. Depending on which of these you are you can access certain parts of the API. For each resource we explain who can access it, and in which way.
+There are currently four roles in Freckle: `administrator`, `owner`, `member`, and `freelancer`. Depending on which of these you are you can access certain parts of the API. For each resource we explain who can access it, and in which way.
 
 API Test Account
 ----------------
