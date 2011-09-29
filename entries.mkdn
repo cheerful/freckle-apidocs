@@ -188,6 +188,10 @@ The response will be an array of all created time entries.
 
   The user is not authorized to access this information or the authentication token is not valid.
 
+* 422 Unprocessable Entity
+
+  The request data was not valid.
+
 * 500 Internal Server Error
 
   An error occurred. The API call was not processed correctly and should be retried later.
