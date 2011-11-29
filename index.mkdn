@@ -55,10 +55,16 @@ Contents
 * Entries
   * Fetching time entries
   * Creating a time entry
+  * Edit a time entry
+  * Remove a time entry
   * Bulk import
 * Projects
   * List projects
+  * Show project
+  * Activate project
+  * Archive project
   * Add project
+  * Remove project
 * Tags
   * List tags
 * Users
