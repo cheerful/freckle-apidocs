@@ -54,6 +54,8 @@ Sample POST body:
       <date>2009-10-15</date>
     </entry>
 
+In case the entry was successfully created, you get a HTTP 201 Created back, with the Location header containing the URL of the entry (e.g. https://someaccount.letsfreckle.com/api/entry/123).
+
 ### Entry attributes
 
 * minutes (*required*)
