@@ -176,7 +176,7 @@ Sample POST body:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <user>
-      <email>foo.bar@example.com</user>
+      <email>foo.bar@example.com</email>
       <first_name>foo</first_name>
       <last_name>bar</last_name>
     </user>
@@ -213,7 +213,7 @@ Sample POST body:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <user>
-      <email>foozinho.barzinho@example.com</user>
+      <email>foozinho.barzinho@example.com</email>
       <first_name>foozinho</first_name>
       <last_name>barzinho</last_name>
     </user>
