@@ -123,8 +123,8 @@ Creating an entry
 
     POST /api/entries.xml
 
-This call creates a single entry. The data for the entry must be given in the post body,
-as either XML or JSON.
+This call creates a single entry. The data for the entry must be given in the 
+post body, as either XML or JSON.
 
 Sample request:
 
@@ -186,43 +186,102 @@ Try this example on <a href="http://hurl.it/hurls/e3ad022b4f7b750f98dc70245c3cf9
 
 ### Entry attributes
 
-* minutes (*required*)
+These are the **required attributes** when creating new entries:
 
-  Amount of time which should be tracked for the entry in a valid format
+**`minutes`** (required) is a string containing the amount of time which should be 
+logged for the entry. Freckle uses the <a href="http://letsfreckle.com/blog/2011/10/more-than-meets-the-eye-the-quick-entry-box/">same logic that the QuickEntry box uses</a>
+to parse the minutes field:
 
-* user (*required*)
+    0:01 → 1 minute
+    0:30 → 30 minutes
+    0.5  → 30 minutes
+    1    → 1 hour
+    5    → 5 hours
+    5m   → 5 minutes
+    15   → 15 minutes
+    15h  → 15 hours
+  
+If you do your own time parsing, we recommended to use the `HH:MM` format
+in this field.
 
-  email or login of the user the entry should be associated with
+**`date`** (required) is the date the entry should be logged for, given as YYYY-MM-DD.
+ 
+The following fields are **optional**:
+   
+**`user`** (optional) can contain a user ID, the email address of a user
+or the full name of a user (first name and last name separated by a single space).
+If no user is given time is logged for the user authorized by the API token.
 
-* project-id
+**`project_id`** (optional) specifies the ID of the project the entry should be 
+associated with. This field takes precedence if `project_name` is given also.
 
-  ID of the project the entry should be associated with
+**`project_name`** (optional) specifies the name of the project the entry should be 
+associated with.
 
-* description
+**`description`** (optional) contains the entries description, including tags. Tags are any
+substrings of the description that are not preceded by a "!!",
+are one or two words in length, start and end with the beginning of the 
+entry, the end of the entry or a comma ",", are 30 characters or less in
+total and don't start with a "!". 
 
-  Description for the entry, including tags
+Here are some examples how tags are parsed:
 
-* date
+{% highlight js %}
+// no tags; description text: "This is a description."
+"This is a description."
 
-  Date formated in YYYY-MM-DD
+// tags: TagA, Tag B; no description text
+"TagA, Tag B"
+
+// tags: TagA, Tag B; description text: ThisWouldBeATagButItsLongerThan30Chars
+"TagA, Tag B, ThisWouldBeATagButItsLongerThan30Chars"
+
+// no tags; description text: "TagA, TagB"
+"!!TagA, Tag B"
+
+// tags: TagB; description text: "TagA"
+"!TagA, Tag B"
+
+// tags: TagA; description text: "TagB"
+"TagA, !Tag B"
+
+// tags: TagA; description text: "This is quite the description"
+"This is quite the description, TagA"
+{% endhighlight %}
+
+A "!!" anywhere in the description will stop tag parsing afterwards.
+
+Descriptions are automatically normalized by Freckle, by removing any extra whitespace,
+and moving tags to the front in alphabetical order.
 
 ### Response codes
 
-* 401 Unauthorized
+**`201 Created`** means that the entry was successfully created in is now visible in Freckle. The `Location` header in the HTTP response contains the path to this
+new entry in the API. This path contains the entry ID which your application can
+store so it can update the same entry later.
+  
+Here's an example response:
 
-  The user is not authorized to access this information or the authentication token is not valid.
+    HTTP/1.1 201 Created
+    Server: nginx/1.2.1
+    Date: Sun, 02 Dec 2012 20:56:54 GMT
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 1
+    Connection: keep-alive
+    Status: 201 Created
+    Location: /api/entries/3187878
+    X-Runtime: 33
+    Cache-Control: private, max-age=0, must-revalidate
 
-* 422 Unprocessable Entity
-
-  The request data was not valid.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+**`422 Unprocessable Entity`** means the request data was not valid, for example a
+required field was omitted, or the exact same entry was submitted within the last
+minute (this prevents duplicates).
 
 ### Roles
 
-All roles can access this resource. Freelancers can only create entries in accessible projects. You can fetch the accessible projects through the Projects resource.
+All roles can access this resource. Freelancers can only create entries in
+for projects which they currently have access to (you can query the list of
+projects through the Projects resource.
 
 Edit a time entry
 ---------------------
