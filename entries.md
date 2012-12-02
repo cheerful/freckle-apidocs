@@ -9,25 +9,32 @@ update, delete, and mass import time entries (logged time).
 List & Search
 -------------
 
-    GET /api/entries.xml
+    GET /api/entries
 
 The parameters to list and search entries via the API is very similar to the
 blue quick reports box in the Freckle user interface.
 
-Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://hurl.it/hurls/36457ed377666e29733df92e0b88ddb9a8fdeb5c/8394c77547a5fb5bc4b83f6de488fe6f1f99017d"><img src="hurl.png" width="35"></a>:
-
-{% highlight sh %}
-curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml \
-  -d 'search[people]=5538' -d 'search[tags]=conf call'
-{% endhighlight %}
-
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
 Example request (search for entries with tag "freckle" after December 1, 2010, return JSON), try with 
 <a href="http://hurl.it/hurls/31bbedd3f866bd6d68e4c8181c1116d3085d91ad/8922a193b7dd6a4f53ac962428ca1352884a6cf0"><img src="hurl.png" width="35"></a>:
 
 {% highlight sh %}
-curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json \
-  -d 'search[tags]=freckle' -d 'search[from]=2010-12-01'
+curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json -d 'search[tags]=freckle' -d 'search[from]=2010-12-01'
 {% endhighlight %}
+</div>
+<div class="tab xml">
+Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://hurl.it/hurls/36457ed377666e29733df92e0b88ddb9a8fdeb5c/8394c77547a5fb5bc4b83f6de488fe6f1f99017d"><img src="hurl.png" width="35"></a>:
+
+{% highlight sh %}
+curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml -d 'search[people]=5538' -d 'search[tags]=conf call'
+{% endhighlight %}
+</div>
+</div>
 
 Supported options for searching are:
 
@@ -121,7 +128,7 @@ expect project IDs to be present.
 Creating an entry
 ---------------------
 
-    POST /api/entries.xml
+    POST /api/entries
 
 This call creates a single entry. The data for the entry must be given in the 
 post body, as either XML or JSON.
@@ -283,93 +290,85 @@ All roles can access this resource. Freelancers can only create entries in
 for projects which they currently have access to (you can query the list of
 projects through the Projects resource.
 
-Edit a time entry
----------------------
+Update an entry
+---------------
 
-Changed can be only entries which are not invoiced yet and not belongs to archived project.
+    PUT /api/entries/<id>
+    
+Update a single entry, that is not invoiced and doesn't 
+belong to an archived project.
 
-PUT `/api/entries/33.xml`
+<div class="tabs">
+<div class="selector">
+  <div class="xml active">XML</div>
+</div>
+<div class="tab xml active">
+Sample request (assumes a `entry.xml` file in the current directory`):
 
-Sample request:
+{% highlight sh %}
+$ curl -v -X PUT -d @entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/33.xml
+{% endhighlight %}
 
-    curl -X PUT -d @data/entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
-      https://apitest.letsfreckle.com/api/entries/33.xml
+Contents of PUT body (`entry.xml` file in current directory):
 
-Sample PUT body:
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <entry>
-      <minutes>2h</minutes>
-      <user>apitest@letsfreckle.com</user>
-      <project-id type="integer">8475</project-id>
-      <description>freckle restful api test</description>
-      <date>2009-10-15</date>
-    </entry>
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<entry>
+  <minutes>2h</minutes>
+  <user>apitest@letsfreckle.com</user>
+  <project-id type="integer">8475</project-id>
+  <description>freckle restful api test</description>
+  <date>2009-10-15</date>
+</entry>
+{% endhighlight %}
+</div>
+</div>
 
 ### Entry attributes
 
-* minutes
-
-  Amount of time which should be tracked for the entry in a valid format
-
-* user
-
-  email or login of the user the entry should be associated with
-
-* project-id
-
-  ID of the project the entry should be associated with
-
-* description
-
-  Description for the entry, including tags
-
-* date
-
-  Date formated in YYYY-MM-DD
+See POST /api/entries for a reference.
 
 ### Response codes
 
-* 401 Unauthorized
+**`200 OK`** is returned when the entry was updated successfully.
 
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 422 Unprocessable Entity
-
-  The request data was not valid.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+**`422 Unprocessable Entity`** means the request data was not valid, for example a
+required field was omitted, the entry is already invoiced or that the entry belongs
+to an archived project.
 
 ### Roles
 
-All roles can access this resource. Freelancers can only create entries in accessible projects. You can fetch the accessible projects through the Projects resource.
+All roles can access this resource. Freelancers can only create entries in
+for projects which they currently have access to (you can query the list of
+projects through the Projects resource.
 
-Remove a time entry
+Delete an entry
 ---------------------
 
-Removed can be only entries which are not invoiced yet and not belongs to archived project.
+    DELETE /api/entries/<id>
 
-DELETE `/api/entries/33.xml`
+Delete a single entry, that is not invoiced and
+doesn't belong to an archived project.
 
+<div class="tabs">
+<div class="selector">
+  <div class="xml active">XML</div>
+</div>
+<div class="tab xml active">
 Sample request:
 
-    curl -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/33.xml
+{% highlight sh %}
+curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/33.xml
+{% endhighlight %}
+</div>
+</div>
 
 ### Response codes
 
-* 401 Unauthorized
+**`200 OK`** is returned when the entry was deleted successfully.
 
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 422 Unprocessable Entity
-
-  The request data was not valid.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+**`422 Unprocessable Entity`** means that the entry is already 
+invoiced or that the entry belongs to an archived project.
 
 ### Roles
 
@@ -378,33 +377,43 @@ All roles can access this resource. Freelancers can only create entries in acces
 Bulk import
 -----------
 
-You can POST a big bunch of entries to this resource to create a large number of entries at once. This is great when you want to import existing data to your Freckle accunt.
+    POST /api/entries/import
 
-POST `/api/entries/import.xml`
+Use this method call instead of individual calls to POST /api/entries to create a larger number of entries at once. This is great when you want to import existing data to your Freckle account, and also a great fit for applications that collect data offline and want to bulk upload entries in one go.
 
-Sample request:
+<div class="tabs">
+<div class="selector">
+  <div class="xml active">XML</div>
+</div>
+<div class="tab xml active">
+Sample request (assumes a `entries_import.xml` file in the current directory):
 
-    curl -d @data/entries_import.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
-     https://apitest.letsfreckle.com/api/entries/import.xml
+{% highlight sh %}
+$ curl -d @entries_import.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/import.xml
+{% endhighlight %}
 
 Sample POST body:
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <entries>
-      <entry>
-        <minutes>2h</minutes>
-        <user>apitest@letsfreckle.com</user>
-        <project-name>Fixture Company</project-name>
-        <description>freckle restful api test, bulk import</description>
-        <date>2009-10-11</date>
-      </entry>
-      <entry>
-        <minutes>30min</minutes>
-        <user>apitest@letsfreckle.com</user>
-        <description>freckle restful api test, bulk import</description>
-        <date>2009-10-12</date>
-      </entry>
-    </entries>
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<entries>
+  <entry>
+    <minutes>2h</minutes>
+    <user>apitest@letsfreckle.com</user>
+    <project-name>Fixture Company</project-name>
+    <description>freckle restful api test, bulk import</description>
+    <date>2009-10-11</date>
+  </entry>
+  <entry>
+    <minutes>30min</minutes>
+    <user>apitest@letsfreckle.com</user>
+    <description>freckle restful api test, bulk import</description>
+    <date>2009-10-12</date>
+  </entry>
+</entries>
+{% endhighlight %}
+</div>
+</div>
 
 ### Entry attributes
 
@@ -430,38 +439,39 @@ Sample POST body:
 
   Date formated in _YYYY-MM-DD_
 
-
-Response:
+### Response
 
 The response will be an array of all created time entries.
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <entries type="array">
-      <entry>
-        <billable type="boolean">true</billable>
-        <created-at type="datetime">2009-10-16T09:57:22Z</created-at>
-        <date type="date">2009-10-11</date>
-        <description>freckle restful api test, bulk import</description>
-        <id type="integer">83601</id>
-        <minutes type="integer">120</minutes>
-        <project-id type="integer">8475</project-id>
-        <updated-at type="datetime">2009-10-16T09:57:22Z</updated-at>
-        <url nil="true"></url>
-        <user-id type="integer">5538</user-id>
-      </entry>
-      <entry>
-        <billable type="boolean">true</billable>
-        <created-at type="datetime">2009-10-16T09:57:22Z</created-at>
-        <date type="date">2009-10-12</date>
-        <description>freckle restful api test, bulk import</description>
-        <id type="integer">83602</id>
-        <minutes type="integer">30</minutes>
-        <project-id type="integer" nil="true"></project-id>
-        <updated-at type="datetime">2009-10-16T09:57:22Z</updated-at>
-        <url nil="true"></url>
-        <user-id type="integer">5538</user-id>
-      </entry>
-    </entries>
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<entries type="array">
+  <entry>
+    <billable type="boolean">true</billable>
+    <created-at type="datetime">2009-10-16T09:57:22Z</created-at>
+    <date type="date">2009-10-11</date>
+    <description>freckle restful api test, bulk import</description>
+    <id type="integer">83601</id>
+    <minutes type="integer">120</minutes>
+    <project-id type="integer">8475</project-id>
+    <updated-at type="datetime">2009-10-16T09:57:22Z</updated-at>
+    <url nil="true"></url>
+    <user-id type="integer">5538</user-id>
+  </entry>
+  <entry>
+    <billable type="boolean">true</billable>
+    <created-at type="datetime">2009-10-16T09:57:22Z</created-at>
+    <date type="date">2009-10-12</date>
+    <description>freckle restful api test, bulk import</description>
+    <id type="integer">83602</id>
+    <minutes type="integer">30</minutes>
+    <project-id type="integer" nil="true"></project-id>
+    <updated-at type="datetime">2009-10-16T09:57:22Z</updated-at>
+    <url nil="true"></url>
+    <user-id type="integer">5538</user-id>
+  </entry>
+</entries>
+{% endhighlight %}
 
 ### Response codes
 
@@ -479,4 +489,4 @@ The response will be an array of all created time entries.
 
 ### Roles
 
-Everyone can import entries, except for freelancers.
+Every role except for freelancers can use the import entries API method.
