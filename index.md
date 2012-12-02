@@ -22,6 +22,11 @@ We plan to extend and adapt the API to allow access to more resources
 in the future. If you have any questions or feedback, please don't hesitate
 to use the big blue feedback button on the left.
 
+Freckle's API docs are on Github: if you find an error or omission
+in the API documentation, you can help fix it quickly by cloning
+the <a href="https://github.com/madrobby/freckle-apidocs">Freckle API docs
+GitHub repository</a> and submitting a pull request!
+
 <p class="note">
 If you plan to release a public client app for Freckle (such as a native 
 mobile app, regardless if it's paid-for or free) you're welcome to do so. 
