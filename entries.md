@@ -1,58 +1,188 @@
 ---
 layout: default
+title: Entries
 ---
-Entries
-=======
 
-Fetching time entries
----------------------
+The entries resource can be used to list/search, read, create, 
+update, delete, and mass import time entries (logged time).
 
-The entries resource is used to fetch entries within your account. The interface for selecting entries is the same as the report interface, which we will explain below.
+List & Search
+-------------
 
-GET `/api/entries.xml`
+    GET /api/entries.xml
 
-Sample requests:
+The parameters to list and search entries via the API is very similar to the
+blue quick reports box in the Freckle user interface.
 
-    curl -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml \
-      -d 'search[from]=2009-10-10'
-    curl -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml \
-      -d 'search[tags]=development,design' -d 'search[people]=342,7653,212'
+Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://hurl.it/hurls/36457ed377666e29733df92e0b88ddb9a8fdeb5c/8394c77547a5fb5bc4b83f6de488fe6f1f99017d"><img src="hurl.png" width="35"></a>:
 
-supported options in the search hash:
+{% highlight sh %}
+curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml \
+  -d 'search[people]=5538' -d 'search[tags]=conf call'
+{% endhighlight %}
 
-* people: comma separated user ids
-* projects:  comma separated project ids
-* tags: comma separated tag ids or names (can be mixed, multiple tags will search using AND)
-* from: entries from this date
-* to: entries to this date
-* billable: _true_ only shows billable entries; _false_ only shows unbillable entries
+Example request (search for entries with tag "freckle" after December 1, 2010, return JSON), try with 
+<a href="http://hurl.it/hurls/31bbedd3f866bd6d68e4c8181c1116d3085d91ad/8922a193b7dd6a4f53ac962428ca1352884a6cf0"><img src="hurl.png" width="35"></a>:
 
-Entries are sorted descending by date.
+{% highlight sh %}
+curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json \
+  -d 'search[tags]=freckle' -d 'search[from]=2010-12-01'
+{% endhighlight %}
+
+Supported options for searching are:
+
+* `people`: comma separated user ids
+* `projects`:  comma separated project ids
+* `tags`: comma separated tag ids or names (can be mixed, multiple tags will search using AND)
+* `from`: entries from this date
+* `to`: entries to this date
+* `billable`: _true_ only shows billable entries; _false_ only shows unbillable entries
+
+Entries are returned sorted descending by date.
+
+<p class="note">
+Please note that API call can return a very large number of entries and might take a while
+to execute. Currently we're not limiting the number of returned entries, but we reserve
+the right to do so in the future (and add paging).
+</p>
 
 ### Roles
 
-All roles can access this resource. Freelancers will only see entries made by themselves in accessible projects.
+All roles can list entries. Freelancers will only see entries made by themselves
+in projects they currently have access to.
 
-Creating a time entry
+### Structure of an entry
+
+Here's an example entry and a description of all the field returned.
+
+{% highlight js %}
+{
+  "entry": {
+    // ID of the entry (integer)
+    "id": 1711626,
+    
+    // date the time is logged for YYYY-MM-DD
+    "date": "2012-01-09",
+    // User ID the time is logged for (integer)
+    "user_id": 5538,
+
+    // false if entry or project are unbillable
+    "billable": true,
+    // UTC timestamp when entry was created
+    "created_at": "2012-01-09T08:33:29Z",
+    // logged time in minutes (integer)
+    "minutes": 60,
+    // UTC timestamp when entry was last updated
+    "updated_at": "2012-01-09T08:33:29Z",
+    // full description text (includes tags)
+    "description": "freckle",
+
+    // All following fields are OPTIONAL
+    // (optional) project_id, can be null
+    "project_id": 37396,                         
+    // (optional) array of tags assigned to entry
+    "tags": [                                      
+      {
+        "name": "freckle",
+        "billable": true,
+        "id": 249397
+      }
+    ],
+    // (optional) link to source of entry (e.g. Github commit)
+    "url": null,
+    // (optional) UTC timestamp when entry was added to an invoice
+    "invoiced_at": null,
+    // (optional) Invoice ID
+    "project_invoice_id": null,
+    // (optional) set if imported from a file
+    "import_id": null,
+    
+    // all following fields are deprecated, and will 
+    // be removed in the next API version
+    "time_to": null,                               
+    "recently_updated_at": "2012-01-09T08:33:29Z", 
+    "description_text": "",                        
+    "formatted_description": "",                   
+    "money_status": "not_invoiced",                
+    "time_from": null,                             
+    "billable_status": "billable"                  
+  }
+}
+{% endhighlight %}
+
+<p class="note">
+Please note that in Freckle an entry does not have to belong to a Project so the 
+project_id field is optional. It's set to <code>null</code> in JSON or 
+<code>&lt;project-id type='integer' nil='true'/&gt;</code> in XML
+when there's no project assigned to an entry. Make sure your application does not
+expect project IDs to be present.
+</p>
+
+Creating an entry
 ---------------------
 
-POST `/api/entries.xml`
+    POST /api/entries.xml
+
+This call creates a single entry. The data for the entry must be given in the post body,
+as either XML or JSON.
 
 Sample request:
 
-    curl -d @data/entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
-      https://apitest.letsfreckle.com/api/entries.xml
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
 
-Sample POST body:
+This call assumes there's an <code>entry.json</code> file in the current directory:
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <entry>
-      <minutes>2h</minutes>
-      <user>apitest@letsfreckle.com</user>
-      <project-id type="integer">8475</project-id>
-      <description>freckle restful api test</description>
-      <date>2009-10-15</date>
-    </entry>
+{% highlight sh %}
+$ curl -v -d @entry.json -H "Content-type: application/json" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json
+{% endhighlight %}
+
+Here's what <code>entry.json</code> looks like:
+
+{% highlight json %}
+{
+  "entry": {
+    "minutes": "2h",
+    "user": "apitest@letsfreckle.com",
+    "project-id": 8475,
+    "description": "Freckle RESTful API test",
+    "date": "2012-12-02"
+  }
+}
+{% endhighlight %}
+
+Try this example on <a href="http://hurl.it/hurls/2247782b74ea116e23ca09ddab147f597590f46b/04836270410bdf2eccca12361dcd03a4569b0db2"><img src="hurl.png" width="35"></a>.
+
+</div>
+<div class="tab xml">
+
+This call assumes there's an <code>entry.xml</code> file in the current directory:
+
+{% highlight sh %}
+$ curl -v -d @entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml
+{% endhighlight %}
+
+Here's what <code>entry.xml</code> looks like:
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<entry>
+  <minutes>2h</minutes>
+  <user>apitest@letsfreckle.com</user>
+  <project-id type="integer">8475</project-id>
+  <description>freckle restful api test</description>
+  <date>2009-10-15</date>
+</entry>
+{% endhighlight %}
+
+Try this example on <a href="http://hurl.it/hurls/e3ad022b4f7b750f98dc70245c3cf9f250efbf72/0eb353652d77578e976492782882e9639721b450"><img src="hurl.png" width="35"></a>.
+
+</div>
+</div>
 
 ### Entry attributes
 

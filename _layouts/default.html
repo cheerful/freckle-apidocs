@@ -1,19 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Freckle API Docs</title>
-  <link rel="stylesheet" href="main.css" type="text/css" />
+  <meta charset="utf-8">
+  <title>Freckle API: {{ page.title }}</title>
+  <link rel="stylesheet" href="main.css" type="text/css">
 </head>
 
 <body>
   <div id="nav">
-    <a href="index.html">Index</a> |
-    <a href="entries.html">Entries</a> |
-    <a href="projects.html">Projects</a> |
-    <a href="tags.html">Tags</a> |
+    <div>
+    <a href="index.html">Basics</a>
+    <a href="entries.html">Entries</a>
+    <a href="projects.html">Projects</a>
+    <a href="tags.html">Tags</a>
     <a href="users.html">Users</a>
+    </div>
   </div>
-  {{ content }}
+  
+  <div id="content">
+    <h1><img src="freckle.png" width="150"> API: {{ page.title }}</h1>
+    
+    {{ content }}
+  </div>
+
+  <div id="footer">
+    <div>
+      
+    <div class="columns four">
+      <div class="column">
+        <h3>About Freckle</h3>
+        <ul>
+          <li><a href="https://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
+          <li><a href="https://letsfreckle.com/plans/"> Freckle plans and pricing</a></li>
+          <li><a href="https://letsfreckle.com/terms/">Our user agreement</a></li>
+        </ul>
+      </div>
+    
+      <div class="column">
+        <h3>Us &amp; our company</h3>
+        <ul>
+          <li><a href="https://letsfreckle.com/team/">Meet our team</a></li>
+          <li><a href="https://letsfreckle.com/blog/">Read our blog about Freckle</a></li>
+          <li><a href="https://letsfreckle.com/contact/">Write us</a></li>
+        </ul>
+      </div>
+    
+      <div class="column">
+        <h3>Docs</h3>
+        <ul>
+          <li><a href="https://letsfreckle.com/help/">FAQs</a></li>
+          <li><a href="https://letsfreckle.com/quick-start">Quick Start Guide</a></li>
+          <li><a href="https://letsfreckle.com/help/api/">API Documentation</a></li>
+        </ul>
+      </div>
+    
+      <div class="column">
+        <h3>You &amp; your account</h3>
+        <ul>
+          <li><a href="https://letsfreckle.com/help/accounts/">How to sign in</a></li>
+          <li><a href="https://letsfreckle.com/help/">Get help &amp; contact support</a></li>
+        </ul>
+      </div>
+    
+    </div>
+    
+    <div class="copyright">
+      &copy; 2008-2012 Slash7 LLC, all rights reserved.
+    </div>
+    </div>
+  </div>
+  
+  <script>
+  var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
+  </script>
+  <script src="https://secure.charmhq.com/feedback.js"></script>
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  
+  <script>
+    $(function(){
+      $('.tabs .selector div').on('click', function(){
+        var selected = $(this).attr('class'), tabs = $(this).closest('.tabs')
+        tabs.find('.selector DIV').removeClass('active')
+        $(this).addClass('active')
+        tabs.find('.tab').removeClass('active')
+        tabs.find('.tab.'+selected).addClass('active')
+      })
+    })
+  </script>
 </body>
 </html>

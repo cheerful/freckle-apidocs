@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby -rubygems
+require 'jekyll/live_site'
+
+options = Jekyll.configuration('safe' => true)
+site = Jekyll::LiveSite.new(options)
+
+if ARGV.empty?
+  puts "Building site: %s -> %s" % [ options['source'], options['destination'] ]
+  site.process
+else
+  site.read
+  workdir = File.join(Dir.pwd, '')
+
+  site.process_files ARGV do |processed|
+    puts processed.sub(workdir, '')
+  end
+end
