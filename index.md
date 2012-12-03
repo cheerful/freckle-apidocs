@@ -8,6 +8,11 @@ access **entries** (list/search, create, update, delete, mass import),
 **projects** (list, read, create, update, delete, archive, activate),
 **tags** (list) and **users** (list, read, create, update, deactivate, get avatar).
 
+Jump to: [Libraries](#libraries) | [URLs](#urls) | [Authentication](#authentication) 
+| [Response codes](#codes) 
+| [Roles](#roles) | [Data formats](#formats) | [Field formats](#fields) 
+| [API Test Account](#test)
+
 Many applications use the Freckle API every day, among them web applications
 like <a href="http://beanstalkapp.com">Beanstalk</a>, 
 <a href="http://github.com">GitHub</a> and 
@@ -35,7 +40,7 @@ Please contact us first with more details about your app if you want to
 use "Freckle" or the Freckle logo as name or icon of your app!
 </p>
 
-Freckle API Libraries
+<a id="libraries"></a>Freckle API Libraries
 ---------------------
 
 There are several 3rd-party open source libraries for popular languages
@@ -55,7 +60,7 @@ These are 3rd-party libraries and Freckle can't provide support for them.
 Please contact the library authors directly if you need help with these.
 </p>
 
-URLs
+<a id="urls"></a>URLs
 ----
 
 Accessing the Freckle API uses the following URL schema:
@@ -73,7 +78,7 @@ result in the URL:
 Resources are normally accessed via SSL only. Some resources can also be 
 accessed through a regular HTTP request.
 
-Authentication
+<a id="authentication"></a>Authentication
 --------------
 
 An *authentication token* is needed for accessing the API. This token authenticates
@@ -111,15 +116,16 @@ such as on mobile devices, the token can be retrieved via the
 user's email and password. See the Users section for more information.
 </p>
 
-Response codes and error handling
+<a id="codes"></a>Response codes and error handling
 ---------------------------------
 
 A call to the API can result in one of five different outcomes:
 
 * Everything works fine—a HTTP status code in the 200 range is returned;
-  for reads and updates `200 OK` and for newly created resources `201 Created`.
+  for reads and updates **`200 OK`** and for newly created resources **`201 Created`**
+  (which also return a `Location` header pointing to the newly created resource).
 
-* Authentication fails or the user's role doesn't permit an action: `401 Unauthorized`.
+* Authentication fails or the user's role doesn't permit an action: **`401 Unauthorized`**.
   If your application is an interactive, you likely want to ask the user for
   new security credentials and not use the API again until a new API token is provided.
   Ideally, your interactive app doesn't ever run into the case that a users' role doesn't permit
@@ -127,26 +133,52 @@ A call to the API can result in one of five different outcomes:
   (for example the projects a "freelancer" user has access to). If you run into this
   issue, it's a good idea to invalidate your caches and fetch the data from the API again.
   
-* On creating or updating, if required fields are missing, `422 Unprocessable Entity` is returned.
+* On creating or updating, if required fields are missing, **`422 Unprocessable Entity`** is returned.
 
-* There was an unhandled exception on the server side: `500 Internal Server Error`:
+* There was an unhandled exception on the server side: **`500 Internal Server Error`**:
   This is rare, but can happen in exceptional circumstances. The best thing to do
   is to try the same call later.
 
-* There's a timeout or a network issue and the connection is dropped without response:
+* There's a timeout or a network issue and the connection is dropped without response.
   This is rare but it does happen. Try the call again.
 
-Roles
+<a id="roles"></a>Roles
 -----
 
-There are currently four user roles in Freckle: `administrator`, `owner`, `member`, and `freelancer`. 
+There are currently four user roles in Freckle: **`administrator`**, **`owner`**, **`member`**, and **`freelancer`**. 
 
 Each Freckle user is assigned to one of these roles. Depending on the role, certain parts of the API
 may not be available. For each resource, this documentation explains which roles have access and 
 if there are any per-role restrictions (for example, a user with the "freelancer" role doesn't 
 have access to all projects).
 
-API Test Account
+
+<a id="formats"></a>Data Formats
+------------
+
+The Freckle API can accept and return data in JSON or XML. 
+
+Because it's awesome, we'll mostly use examples in JSON in this documentation,
+however, XML works just as well.
+
+There's no default format—to choose the data format you need to either add
+a `.xml` or `.json` extension to URL you are calling, or set the
+`Accept` HTTP header to `text/xml` or `application/json`.
+
+<a id="fields"></a>Field formats
+-------------
+
+Freckle uses the following field formats:
+
+* **IDs** are stored as 4-byte integers (range 1 to 2147483647)
+* **Timestamps** are given UTC-based, e.g. `2012-01-09T08:33:29Z`
+* **Dates** are given YYYY-MM-DD, e.g. `2011-07-26`
+
+There's limits on the text length of some fields, but, with the exception
+of tags which are limited to 30 characters, it's highly unlikely
+that you'll hit those.
+
+<a id="test"></a>API Test Account
 ----------------
 
 You can use our API test account for testing your code. The data from this test account 
@@ -186,31 +218,6 @@ You should see something like:
   }
 ]
 {% endhighlight %}
-
-Data Formats
-------------
-
-The Freckle API can accept and return data in JSON or XML. 
-
-Because it's awesome, we'll mostly use examples in JSON in this documentation,
-however, XML works just as well.
-
-There's no default format—to choose the data format you need to either add
-a `.xml` or `.json` extension to URL you are calling, or set the
-`Accept` HTTP header to `text/xml` or `application/json`.
-
-Field formats
--------------
-
-Freckle uses the following field formats:
-
-* **IDs** are stored as 4-byte integers (range 1 to 2147483647)
-* **Timestamps** are given UTC-based, e.g. `2012-01-09T08:33:29Z`
-* **Dates** are given YYYY-MM-DD, e.g. `2011-07-26`
-
-There's limits on the text length of some fields, but, with the exception
-of tags which are limited to 30 characters, it's highly unlikely
-that you'll hit those.
 
 [letsfreckle-client]: https://github.com/ryanlecompte/letsfreckle-client
 [ipmb/freckle]: https://github.com/ipmb/freckle

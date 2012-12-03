@@ -3,7 +3,7 @@ layout: default
 title: Entries
 ---
 
-The entries resource represents logged time. Each entry, at the minim is assigned to a user, has 0 or more minutes logged and has a date set (all other fields, including project, tags and description are optional).
+The entries resource represents logged time. Each entry, at the minimum, is assigned to a user, has 0 or more minutes logged and has a date set (all other fields, including project, tags and description are optional).
 
 Jump to: [List](#list) | [Create](#create) | [Update](#update) | [Delete](#delete) | [Import](#import)
 
@@ -61,7 +61,7 @@ in projects they currently have access to.
 
 ### Structure of an entry
 
-Here's an example entry and a description of all the field returned.
+Here's an example entry and a description of all the fields returned.
 
 {% highlight js %}
 {
