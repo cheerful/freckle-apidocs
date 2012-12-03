@@ -3,8 +3,8 @@ layout: default
 title: Basics
 ---
 
-Freckle's RESTful API enabled your application or script to 
-access **entries** (list/search, read, create, update, delete, mass import),
+Freckle's RESTful API enables your application or script to 
+access **entries** (list/search, create, update, delete, mass import),
 **projects** (list, read, create, update, delete, archive, activate),
 **tags** (list) and **users** (list, read, create, update, deactivate, get avatar).
 

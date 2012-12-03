@@ -79,13 +79,32 @@
   
   <script>
     $(function(){
-      $('.tabs .selector div').on('click', function(){
-        var selected = $(this).attr('class'), tabs = $(this).closest('.tabs')
+      function setTabs(to){
+        // change all tabs on page to value
+        var tabs = $('.tabs')
         tabs.find('.selector DIV').removeClass('active')
-        $(this).addClass('active')
+        tabs.find('.selector DIV.'+to).addClass('active')
         tabs.find('.tab').removeClass('active')
-        tabs.find('.tab.'+selected).addClass('active')
+        tabs.find('.tab.'+to).addClass('active')
+        
+        // change tabs that don't have an active tab to show first tab
+        tabs.find('.selector').each(function(){
+          if ($(this).find('DIV.active').length > 0) return
+          
+          console.log(this)
+          $(this).find('DIV').first().addClass('active')
+          $(this).closest('.tabs').find('.tab').first().addClass('active')
+        })
+        
+        // save for later
+        localStorage && (localStorage.dataFormat = to)
+      }
+      
+      $('.tabs .selector div').on('click', function(){
+        setTabs($(this).attr('class'))
       })
+      
+      setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
     })
   </script>
 </body>

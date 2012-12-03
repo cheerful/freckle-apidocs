@@ -3,10 +3,11 @@ layout: default
 title: Entries
 ---
 
-The entries resource can be used to list/search, read, create, 
-update, delete, and mass import time entries (logged time).
+The entries resource represents logged time. Each entry, at the minim is assigned to a user, has 0 or more minutes logged and has a date set (all other fields, including project, tags and description are optional).
 
-List & Search
+Jump to: [List](#list) | [Create](#create) | [Update](#update) | [Delete](#delete) | [Import](#import)
+
+<a id="list"></a>List & Search
 -------------
 
     GET /api/entries
@@ -125,7 +126,7 @@ when there's no project assigned to an entry. Make sure your application does no
 expect project IDs to be present.
 </p>
 
-Creating an entry
+<a id="create"></a>Creating entries
 ---------------------
 
     POST /api/entries
@@ -290,7 +291,7 @@ All roles can access this resource. Freelancers can only create entries in
 for projects which they currently have access to (you can query the list of
 projects through the Projects resource.
 
-Update an entry
+<a id="update"></a>Update entries
 ---------------
 
     PUT /api/entries/<id>
@@ -342,7 +343,7 @@ All roles can access this resource. Freelancers can only create entries in
 for projects which they currently have access to (you can query the list of
 projects through the Projects resource.
 
-Delete an entry
+<a id="delete"></a>Deleting entries
 ---------------------
 
     DELETE /api/entries/<id>
@@ -374,12 +375,14 @@ invoiced or that the entry belongs to an archived project.
 
 All roles can access this resource. Freelancers can only create entries in accessible projects. You can fetch the accessible projects through the Projects resource.
 
-Bulk import
+<a id="import"></a>Bulk import
 -----------
 
     POST /api/entries/import
 
-Use this method call instead of individual calls to POST /api/entries to create a larger number of entries at once. This is great when you want to import existing data to your Freckle account, and also a great fit for applications that collect data offline and want to bulk upload entries in one go.
+Use this API method instead of individual calls to POST /api/entries to create a larger number of entries at once. This is great when you want to import existing data to your Freckle account, and also a great fit for applications that collect data offline and want to bulk upload entries in one go.
+
+<p class="note">This is not the same as the *data import* functionality in the Freckle UI (where you can import files from various other services). Imports done with this API call can not be automatically rolled back.</p>
 
 <div class="tabs">
 <div class="selector">
@@ -417,75 +420,51 @@ Sample POST body:
 
 ### Entry attributes
 
-*ATTENTION*: the entry format for the import is slightly different to the format used for the create single entry format!
+Entry attributes are the same as for `POST /api/entries`.
 
-* minutes (*required*)
+<p class="note">
+Please note that for historical reasons, for bulk imports only the `project_name` field takes
+precedence over the `project_id` field if both are given.
+</p>
 
-  Amount of time which should be tracked for the entry in a valid format.
+### Response codes
 
-* user (*required*)
-
-  Email or login of the user the entry should be associated with.
-
-* project-name
-
-  Name of the project the entry should be associated with. The project will be created if it doesn't exist.
-
-* description
-
-  Description for the entry, including tags.
-
-* date
-
-  Date formated in _YYYY-MM-DD_
-
-### Response
-
-The response will be an array of all created time entries.
+**`200 OK`** means that the the bulk import completed successfully. The response body will contain
+an array of the newly created entries:
 
 {% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <entries type="array">
   <entry>
     <billable type="boolean">true</billable>
-    <created-at type="datetime">2009-10-16T09:57:22Z</created-at>
+    <created-at type="date time">2009-10-16T09:57:22Z</created-at>
     <date type="date">2009-10-11</date>
     <description>freckle restful api test, bulk import</description>
     <id type="integer">83601</id>
     <minutes type="integer">120</minutes>
     <project-id type="integer">8475</project-id>
-    <updated-at type="datetime">2009-10-16T09:57:22Z</updated-at>
+    <updated-at type="date time">2009-10-16T09:57:22Z</updated-at>
     <url nil="true"></url>
     <user-id type="integer">5538</user-id>
   </entry>
   <entry>
     <billable type="boolean">true</billable>
-    <created-at type="datetime">2009-10-16T09:57:22Z</created-at>
+    <created-at type="date time">2009-10-16T09:57:22Z</created-at>
     <date type="date">2009-10-12</date>
     <description>freckle restful api test, bulk import</description>
     <id type="integer">83602</id>
     <minutes type="integer">30</minutes>
     <project-id type="integer" nil="true"></project-id>
-    <updated-at type="datetime">2009-10-16T09:57:22Z</updated-at>
+    <updated-at type="date time">2009-10-16T09:57:22Z</updated-at>
     <url nil="true"></url>
     <user-id type="integer">5538</user-id>
   </entry>
 </entries>
 {% endhighlight %}
 
-### Response codes
-
-* 401 Unauthorized
-
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 422 Unprocessable Entity
-
-  The request data was not valid.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+**`422 Unprocessable Entity`** means the no entries where created,
+for example when the import data didn't contain any items, or all
+entries referenced users that don't exist or a no longer active.
 
 ### Roles
 
