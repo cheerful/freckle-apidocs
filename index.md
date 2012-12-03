@@ -194,6 +194,12 @@ so you can be sure your data stays intact while you develop!
 
 Try it now!
 
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
 {% highlight sh %}
 $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
 {% endhighlight %}
@@ -202,22 +208,79 @@ Instead of using cURL, you can also try it directly in your browser with <a href
 
 You should see something like:
 
-{% highlight json %}
+{% highlight js %}
 [ 
   { 
     "project": {
-      "name": "Fixture Company",
-      "unbillable_minutes": 120,
-      "created_at": "2009-10-16T09:04:50Z",
+      "group_name": null,
+      "remaining_minutes": null,
+      "name": "From iPhone 5",
       "billable": true,
+      "created_at": "2011-02-04T06:12:31Z",
+      "cached_tags": [ /* ... */ ],
+      "minutes": 15,
+      "import_id": null,
+      "updated_at": "2011-10-19T15:59:56Z",
+      "account_id": 5039,
+      "billable_minutes": 15,
+      "enabled": true,
+      "id": 40413,
+      "project_group_id": null,
+      "user_id": null,
+      "unbillable_minutes": 0,
+      "budget": null,
+      "color_hex": "55c9ef",
       "budget_minutes": null,
-      "minutes": 7560,
-      "cached_tags": [ { /*...*/ } ]
+      "invoice_recipient_details": null,
+      "stepping": 15
     }
-    /*...*/
+    /* ... */
   }
 ]
 {% endhighlight %}
+</div>
+<div class="tab xml">
+{% highlight sh %}
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
+{% endhighlight %}
+
+Instead of using cURL, you can also try it directly in your browser with <a href="http://hurl.it/hurls/3a761e6e60f3a24517d19e07af5310ef67b798ad/a4186277db8ef2a48152fdf4ea17584699073a89"><img src="hurl.png" width="35"></a>.
+
+You should see something like:
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<projects type="array">
+  <project>
+    <account-id type="integer">5039</account-id>
+    <billable type="boolean">true</billable>
+    <billable-minutes type="integer">7440</billable-minutes>
+    <budget type="integer" nil="true"></budget>
+    <cached-tags type="yaml"><!-- YAML of cached tags --></cached-tags>
+    <color-hex>13a480</color-hex>
+    <created-at type="date time">2009-10-16T09:04:50Z</created-at>
+    <enabled type="boolean">true</enabled>
+    <id type="integer">8475</id>
+    <import-id type="integer" nil="true"></import-id>
+    <invoice-recipient-details nil="true"></invoice-recipient-details>
+    <minutes type="integer">7560</minutes>
+    <name>Fixture Company</name>
+    <project-group-id type="integer" nil="true"></project-group-id>
+    <stepping type="integer">5</stepping>
+    <unbillable-minutes type="integer">120</unbillable-minutes>
+    <updated-at type="date time">2011-10-19T15:59:56Z</updated-at>
+    <user-id type="integer" nil="true"></user-id>
+    <minutes type="integer">7560</minutes>
+    <budget-minutes nil="true"></budget-minutes>
+    <remaining-minutes nil="true"></remaining-minutes>
+    <unbillable-minutes type="integer">120</unbillable-minutes>
+    <group-name nil="true"></group-name>
+  </project>
+  <!-- ...more projects -->
+</projects>
+{% endhighlight %}
+</div>
+</div>
 
 [letsfreckle-client]: https://github.com/ryanlecompte/letsfreckle-client
 [ipmb/freckle]: https://github.com/ipmb/freckle
