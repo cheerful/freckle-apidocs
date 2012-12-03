@@ -194,46 +194,35 @@ Response:
 
 ### Response codes
 
-* 401 Unauthorized
+If successful **`200 OK`** with the project information in the response body is returned.
 
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 404 Not Found
-
-  An error occurred. Project with given id not exists.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+If the project is not known or the user doesn't have access to the project, **`404 Not found`** is returned.
 
 ### Roles
 
-Everyone has access to this resource.
+All roles have access to this resource.
 
 <a id="activate"></a>Activate project
 -------------
 
    GET /api/projects/<id>/active
+   
+(Re-)Activates an archived project.
 
-Sample request:
-
-    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/active.xml
-
-In case the project was successfully activated, you get a `HTTP 200 Ok` back, with the `Location` header containing the URL of the project (e.g. https://apitest.letsfreckle.com/api/project/2).
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+</div>
+<div class="tab json active">
+{% highlight sh %}
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/active.json
+{% endhighlight %}
+</div>
+</div>
 
 ### Response codes
 
-* 401 Unauthorized
-
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 404 Not Found
-
-  An error occurred. Project with given id not exists.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+If successful or in case the project was already active, **`200 OK`** with a `Location` is returned, pointing to the project.
 
 ### Roles
 
@@ -244,66 +233,79 @@ Everyone except freelancers can activate projects.
 
     GET /api/projects/<id>/archive
 
-Sample request:
+Archive a project. Archived projects are "frozen" and time can't be logged for them.
 
-    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/archive.xml
-
-In case the project was successfully archived, you get a `HTTP 200 Ok` back, with the `Location` header containing the URL of the project (e.g. https://apitest.letsfreckle.com/api/project/2).
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+</div>
+<div class="tab json active">
+{% highlight sh %}
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/archive.json
+{% endhighlight %}
+</div>
+</div>
 
 ### Response codes
 
-* 401 Unauthorized
-
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 404 Not Found
-
-  An error occurred. Project with given id not exists.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+If successful or in case the project was already archived, **`200 OK`** with a `Location` is returned, pointing to the project.
 
 ### Roles
 
 Everyone except freelancers can archive projects.
 
-<a id="create"></a>Add project
+<a id="create"></a>Create project
 -----------
 
     POST /api/projects
 
-Sample request:
+<div class="tabs">
+<div class="selector">
+  <div class="xml active">XML</div>
+</div>
+<div class="tab xml active">
+{% highlight sh %}
+$ curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
+{% endhighlight %}
 
-    curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
-      https://apitest.letsfreckle.com/api/projects.xml
+Post body:
 
-Sample POST body:
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <project>
-      <name>foobar</name>
-    </project>
-
-In case the project was successfully created, you get a `HTTP 201 Created` back, with the `Location` header containing the URL of the project (e.g. https://apitest.letsfreckle.com/api/project/123).
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <name>foobar</name>
+</project>
+{% endhighlight %}
+</div>
+</div>
 
 ### Response codes
 
-* 401 Unauthorized
+**`201 Created`** means that the project was successfully created in is now visible in Freckle.
+The `Location` header in the HTTP response contains the path to this new project in the API. 
+This path contains the project ID which your application can
+store so it can use the project later in other API calls.
 
-  The user is not authorized to access this information or the authentication token is not valid.
+Here's an example response:
 
-* 422 Unprocessable Entity
+    HTTP/1.1 201 Created
+    Server: nginx/1.2.1
+    Date: Sun, 02 Dec 2012 20:56:54 GMT
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 1
+    Connection: keep-alive
+    Status: 201 Created
+    Location: /api/projects/3187878
+    X-Runtime: 33
+    Cache-Control: private, max-age=0, must-revalidate
 
-  An error occurred. The project already exists or the account project limit has been reached
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+**`422 Unprocessable Entity`** means the request data was not valid, for example a
+required field was omitted, a project with the same name already exists, or the 
+1 project limit of free Freckle accounts has been reached.
 
 ### Roles
 
-Everyone except freelancers can create projects.
+All roles except for the **freelancer** role can create projects.
 
 <a id="delete"></a>Remove project
 -----------
@@ -317,25 +319,6 @@ Sample request:
     curl -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2.xml
 
 
-In case the project was successfully removed, you get a `HTTP 200 Ok` back, with the `Location` header containing the URL of the project (e.g. https://apitest.letsfreckle.com/api/project/123).
-
-### Response codes
-
-* 401 Unauthorized
-
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 404 Not Found
-
-  An error occurred. Project with given id not exists.
-
-* 422 Unprocessable Entity
-
-  An error occurred. The project have some entries, expenses or invoices.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
 
 ### Roles
 
