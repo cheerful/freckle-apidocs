@@ -3,7 +3,10 @@ layout: default
 title: Projects
 ---
 
-Jump to: [List](#list) | [Create](#create) | [Read](#read), [Update](#update) | [Delete](#delete) | [Archive](#archive) | [Activate](#activate)
+Jump to: [List](#list) | [Create](#create) | 
+[Read](#read) | [Update](#update) | 
+[Delete](#delete) | [Archive](#archive) | 
+[Activate](#activate)
 
 <a id="list"></a>List projects
 -------------
@@ -307,19 +310,33 @@ required field was omitted, a project with the same name already exists, or the
 
 All roles except for the **freelancer** role can create projects.
 
-<a id="delete"></a>Remove project
+<a id="delete"></a>Delete project
 -----------
 
     DELETE /api/projects/<id>
 
-Removed can be only projects without any entries, expenses and invoices.
+Only projects that do not have any entries, expenses or invoices can be deleted.
+We recommend to archive projects instead.
 
-Sample request:
+<div class="tabs">
+<div class="selector">
+  <div class="xml active">XML</div>
+</div>
+<div class="tab xml active">
+{% highlight sh %}
+$ curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2.xml
+{% endhighlight %}
+</div>
+</div>
 
-    curl -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2.xml
+### Response codes
 
+If deletion is successful, **`200 OK`** will be returned.
 
+**`422 Unprocessable Entity`** means that one of the preconditions (no entries,
+expenses or invoices) was not met. A reason like `Project has entries` will be returned
+as plain text in the response body.
 
 ### Roles
 
-Everyone except freelancers can remove projects.
+All roles except freelancers can delete projects.
