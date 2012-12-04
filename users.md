@@ -5,7 +5,7 @@ title: Users
 
 Jump to: [List](#list) | 
 [Create](#create) | [Show](#read) | [Update](#update) | [Delete](#delete) | 
-[Get avatar](#avatar) | [Get authentication token](#token)
+[Get current user](#self) | [Get avatar](#avatar) | [Get authentication token](#token)
 
 <a id="list"></a>List users
 ------------------
@@ -150,6 +150,16 @@ Returns **`200 OK`** and a users in the response body.
 
 A freelancer can only see details about him- or herself.
 Other roles have access to all users in the account.
+
+<a id="self"></a>Get current user
+----------
+
+    GET /api/users/self
+
+Returns details about the currently logged in user. 
+This method is otherwise identical with `GET /api/users/<id>`.
+
+Try on <a href="http://hurl.it/hurls/2efbe6dbd81369627cef46e32be0c7bc9716c6ec/9a1da2d5468189c3f00fd05186c0a0eaa13f9e0a"><img src="hurl.png" width="35"></a>.
 
 <a id="avatar"></a>Get a user's avatar
 ----------
