@@ -297,106 +297,107 @@ email and password.
 
 Anyone can retrieve their authentication token using this resource.
 
-Add user
+<a id="create"></a>Create user
 --------
 
-You can create new users by POSTing to the user resource.
+    POST /api/users
 
-POST `/api/users.xml`
+You can create new users, as long as your account limits are not reached.
+This method, as well as the update and delete methods, are intended to make
+it easier to synchronize users with your own systems. Note that you can't set
+or change passwords.
 
-Sample request:
+Only the `first_name`, `last_name` and `email` fields can be set.
 
-    curl -d @data/users.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
-      https://somaccount.letsfreckle.com/api/users.xml
+Creating a user immediately sends them an invite email to the Freckle account.
 
-Sample POST body:
+Request example, expects a `users.xml` file in the current directory:
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <user>
-      <email>foo.bar@example.com</user>
-      <first_name>foo</first_name>
-      <last_name>bar</last_name>
-    </user>
+{% highlight sh %}
+$ curl -d @data/users.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j https://somaccount.letsfreckle.com/api/users.xml
+{% endhighlight %}
 
-In case the user was successfully created, you get a `HTTP 201 Created` back, with the `Location` header containing the URL of the user (e.g. https://someaccount.letsfreckle.com/api/users/123).
+Sample post body:
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+  <email>foobar@letsfreckle.com</user>
+  <first_name>foo</first_name>
+  <last_name>bar</last_name>
+</user>
+{% endhighlight %}
 
 ### Response codes
 
-* 401 Unauthorized
-
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 422 Unprocessable Entity
-
-  An error occurred. Another user with the given email already exists or the account user limit has been reached.
+**`201 Created`** means that the user was successfully created. 
+The `Location` header in the HTTP response contains the path to this 
+new user (in the API). This path contains the user ID if the newly
+created user.
 
 ### Roles
 
-Only the account owner can use this resource. The `apitest` account doesn't allow you to create new users for obvious reasons.
+Only the account owner can use this API method.
 
-Update user
+<a id="update"></a>Update user
 -----------
 
-You can PUT to the user resource to update its attributes.
+    PUT /api/users/<id>
 
-PUT `/api/users/<id>.xml`
+The method updates a user's name and email address.
 
-Sample request:
+Request example, expects a `users.xml` file in the current directory:
 
-    curl -d @data/user.xml -X PUT -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
-      https://somaccount.letsfreckle.com/api/user/ID.xml
+{% highlight sh %}
+$ curl -d @user.xml -X PUT -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://somaccount.letsfreckle.com/api/user/ID.xml
+{% endhighlight %}
 
-Sample POST body:
+Request body example:
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <user>
-      <email>foozinho.barzinho@example.com</user>
-      <first_name>foozinho</first_name>
-      <last_name>barzinho</last_name>
-    </user>
-
-In case the user was successfully updated, you get a `HTTP 200 Ok` back, with the Location header containing the URL of the user (e.g. https://someaccount.letsfreckle.com/api/users/123).
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+  <email>foobar@letsfreckle.com</user>
+  <first_name>foo</first_name>
+  <last_name>bar</last_name>
+</user>
+{% endhighlight %}
 
 ### Response codes
 
-* 401 Unauthorized
+**`200 OK`** is returned if the user was successfully updated.
 
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 422 Unprocessable Entity
-
-  An error occurred. Another user with the given email already exists.
+**`422 Unprocessable Entity`** is returned in case the API user
+is not authorized to manage users in the account or if the given
+data was invalid (for example, email address is a invalid format).
 
 ### Roles
 
-Only the account owner can use this resource. The `apitest` account doesn't allow you to create new users for obvious reasons.
+Only administrators and the account owner can use this API method.
 
-Remove user
+<a id="delete"></a>Delete user
 -----------
 
-Delete this resource to deactivate the user.
+    DELETE /api/users/<id>
 
-Users are never actually removed completely, but just deactivated. Reactivation of a user can only be done through the web the interface.
+Deactivates a user.
 
-DELETE `/api/users/<id>.xml`
+Users are never actually deleted, just deactivated.
+Currently, reactivation of a user is only available
+on the team page in the Freckle interface.
 
-Sample request:
-
-    curl -d @data/user.xml -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" \
-      https://apitest.letsfreckle.com/api/user/ID.xml
-
-In case the user was successfully removed, you get a `HTTP 200 Ok` back.
+{% highlight sh %}
+$ curl -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/user/12345678.xml
+{% endhighlight %}
 
 ### Response codes
 
-* 401 Unauthorized
+**`200 OK`** is returned when the user was successfully deactivated.
 
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 422 Unprocessable Entity
-
-  An error occurred. You are probably trying to remove the account owner or yourself.
+**`422 Unprocessable Entity`** is returned in case the API user is not the
+account owner or the account owner is trying to delete him- or herself.
 
 ### Roles
 
-Only the account owner can use this resource. The `apitest` account doesn't allow you to create new users for obvious reasons.
+Only the account owner can use this API method.
+The account owner can't delete him- or herself.
