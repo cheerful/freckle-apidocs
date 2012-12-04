@@ -337,7 +337,7 @@ created user.
 
 ### Roles
 
-Only the account owner can use this API method.
+Only administrators and the account owner can use this API method.
 
 <a id="update"></a>Update user
 -----------
