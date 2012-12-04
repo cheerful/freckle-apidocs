@@ -23,22 +23,30 @@ and <a href="http://punch.fousa.be">Punch</a>
 as well as many internal applications that our customers write to integrate 
 with other software and services. Be creative!
 
-We plan to extend and adapt the API to allow access to more resources
-in the future. If you have any questions or feedback, please don't hesitate
-to use the big blue feedback button on the left.
-
 Freckle's API docs are on Github: if you find an error or omission
 in the API documentation, you can help fix it quickly by cloning
 the <a href="https://github.com/madrobby/freckle-apidocs">Freckle API docs
 GitHub repository</a> and submitting a pull request!
 
-<p class="note">
+### API limitations
+
+We plan to extend and adapt the API to allow access to more resources
+in the future. If you have any questions or feedback, please don't hesitate
+to use the big blue feedback button on the left. Currently, there are no APIs
+for timers, expense tracking, invoices or assigning freelancers to projects.
+If you have specialized needs for an API, let us know!
+
+There are no API call limits in place, but we reserve the right to lock
+out abusive clients that call the API too often. Use common sense, caching,
+and don't do expensive API calls (mostly listing a lot of entries) too often.
+
+### Naming client applications
+
 If you plan to release a public client app for Freckle (such as a native 
 mobile app, regardless if it's paid-for or free) you're welcome to do so. 
 <i>Do not name apps "Freckle" or "Freckle for &lt;platform&gt;".</i>
 Please contact us first with more details about your app if you want to 
 use "Freckle" or the Freckle logo as name or icon of your app!
-</p>
 
 <a id="libraries"></a>Freckle API Libraries
 ---------------------

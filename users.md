@@ -1,98 +1,155 @@
 ---
 layout: default
+title: Users
 ---
-Users
-=====
 
-List users
+Jump to: [List](#list) | 
+[Create](#create) | [Show](#read) | [Update](#update) | [Delete](#delete) | 
+[Get avatar](#avatar) | [Get authentication token](#token)
+
+<a id="list"></a>List users
 ------------------
 
-The users resource returns all users in the account.
+    GET /api/users
 
-GET `/api/users.xml`
+Return a list of all active users in the account (doesn't return any deactivated users).
 
-Sample request:
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
+{% highlight sh %}
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users.json
+{% endhighlight %}
 
-    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users.xml
+Response:
+{% highlight js %}
+[
+  {
+    "user": {
+      "week_start": null,
+      "id": 5538,
+      "last_name": "Freckle",
+      "permissions": "integration, time, invoicing, reports, tags, 
+        expenses, projects, team, people, account, billing, import",
+      "login": "admin",
+      "time_format": "fraction",
+      "email": "apitestadmin@letsfreckle.com",
+      "first_name": "Lets"
+    }
+},
+{% endhighlight %}
 
-Sample XML response:
+Try with <a href="http://hurl.it/hurls/65445f00cf62621462e47c2819c81d45200ed685/aa956b48bb5399379b37f3003907a03d32831a51"><img src="hurl.png" width="35"></a>.
+</div>
+<div class="tab xml">
+{% highlight sh %}
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users.xml
+{% endhighlight %}
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <users type="array">
-      <user>
-        <email>apitest@letsfreckle.com</email>
-        <first-name>Test</first-name>
-        <id type="integer">5538</id>
-        <last-name>User</last-name>
-        <login>test</login>
-        <time-format>fraction</time-format>
-	    <week-start>Sunday</week-start>
-	    <permissions>integration, time, invoicing, reports, tags, expenses, projects, team, people, account, billing, import</permissions>
-      </user>
-      <user>
-        <email>apitest2@letsfreckle.com</email>
-        <first-name>Test2</first-name>
-        <id type="integer">5539</id>
-        <last-name>User</last-name>
-        <login>test2</login>
-        <time-format>fraction</time-format>
-	    <week-start>Monday</week-start>
-	    <permissions>integration, time, invoicing, reports, tags, expenses, projects, team</permissions
-      </user>
-    </users>
+Response:
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<users type="array">
+  <user>
+    <email>apitestadmin@letsfreckle.com</email>
+    <first-name>Lets</first-name>
+    <id type="integer">5538</id>
+    <last-name>Freckle</last-name>
+    <login>admin</login>
+    <time-format>fraction</time-format>
+    <week-start nil="true"></week-start>
+    <permissions>integration, time, invoicing, reports, tags,
+      expenses, projects, team, people, account, billing, import</permissions>
+  </user>
+  <!-- ...more users... -->
+</users>
+{% endhighlight %}
+
+Try with <a href="http://hurl.it/hurls/f2ccff7df61041ec4baf4cfc0eebf9dec1ea978c/fc5198d19edc68ac54a5f81eea9cf703c1fc19e6"><img src="hurl.png" width="35"></a>.
+</div>
+</div>
 
 ### Response codes
 
-* 401 Unauthorized
-
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+Returns **`200 OK`** and an array of users in the response body.
 
 ### Roles
 
-Everyone except the freelancer can access this resource.
+All roles except the freelancer role can access this resource.
 
-Show user
+<a id="read"></a>Show user
 ----------
 
-Returns details about a specific user.
+    GET /api/users/<id>
 
-GET `/api/users/<id>.xml`
+Returns details about a specific user. This method works with active and deactivated users.
 
-Sample request:
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
+{% highlight sh %}
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538.json
+{% endhighlight %}
 
-    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538.xml
+Response:
+{% highlight js %}
+{
+  "user": {
+    "week_start": null,
+    "id": 5538,
+    "last_name": "Freckle",
+    "permissions": "integration, time, invoicing, reports, tags,
+      expenses, projects, team, people, account, billing, import",
+    "time_format": "fraction",
+    "email": "apitestadmin@letsfreckle.com",
+    "first_name": "Lets"
+  }
+}
+{% endhighlight %}
 
-Sample XML response:
+Try with <a href="http://hurl.it/hurls/0698e4a92c826fb31533ce8ed13e6aa45d4c529b/8ecc28d1274ba300523cbd933142af7bff11479f"><img src="hurl.png" width="35"></a>.
+</div>
+<div class="tab xml">
+{% highlight sh %}
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538.xml
+{% endhighlight %}
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <user>
-      <email>apitest@letsfreckle.com</email>
-      <first-name>Test</first-name>
-      <id type="integer">5538</id>
-      <last-name>User</last-name>
-      <login>test</login>
-      <time-format>fraction</time-format>
-      <week-start>Sunday</week-start>
-      <permissions>integration, time, invoicing, reports, tags, expenses, projects, team, people, account, billing, import</permissions>
-    </user>
+Response:
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+  <email>apitestadmin@letsfreckle.com</email>
+  <first-name>Lets</first-name>
+  <id type="integer">5538</id>
+  <last-name>Freckle</last-name>
+  <time-format>fraction</time-format>
+  <week-start nil="true"></week-start>
+  <permissions>integration, time, invoicing, reports, tags, 
+    expenses, projects, team, people, account, billing, import</permissions>
+</user>
+{% endhighlight %}
+
+Try with <a href="http://hurl.it/hurls/c684a50cfdc4875c2f997c42b9f71d1bfeab11ac/d5bd7af6123e4214688becf22fcd8ba4234788c1"><img src="hurl.png" width="35"></a>.
+</div>
+</div>
 
 ### Response codes
 
-* 401 Unauthorized
+Returns **`200 OK`** and a users in the response body.
 
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+**`401 Unauthorized`** is returned if there's no user with the given ID.
+(This will be changed to a `404 Not Found` in a future version of the API).
 
 ### Roles
 
-The freelancer can only see details about herself. Other roles have access to all users in the account.
+A freelancer can only see details about him or herself.
+Other roles have access to all users in the account.
 
 Receive a user's avatar
 ----------
