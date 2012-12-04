@@ -144,74 +144,154 @@ Try with <a href="http://hurl.it/hurls/c684a50cfdc4875c2f997c42b9f71d1bfeab11ac/
 Returns **`200 OK`** and a users in the response body.
 
 **`401 Unauthorized`** is returned if there's no user with the given ID.
-(This will be changed to a `404 Not Found` in a future version of the API).
+(This will be changed to `404 Not Found` in a future version of the API).
 
 ### Roles
 
-A freelancer can only see details about him or herself.
+A freelancer can only see details about him- or herself.
 Other roles have access to all users in the account.
 
-Receive a user's avatar
+<a id="avatar"></a>Get a user's avatar
 ----------
 
-Returns path to user avatar & thumbnail.
+    GET /api/users/<id>/avatar
 
-GET `/api/users/<id>/avatar.xml`
+Returns URLs to a user's avatar & thumbnail. If you build a client application,
+we strongly suggest caching these images.
 
-Sample request:
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
+{% highlight sh %}
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538/avatar.json
+{% endhighlight %}
 
-    curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538/avatar.xml
+Response:
 
-Sample XML response:
+{% highlight js %}
+{
+  "thumbnail": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
+  "id": 5538,
+  "avatar": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
+}
+{% endhighlight %}
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <user>
-      <avatar>http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg</avatar>
-      <thumbnail>http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg</thumbnail>
-      <id type="integer">5538</id>
-    </user>
+If the user has no current avatar, the `thumbnail` and `avatar` tag attributes are set to empty strings.
+
+Try with <a href="http://hurl.it/hurls/2173dd3bcb51045a43588f0d2ad8ea945fae188a/8c98e3a2fd0dff5a6e3c64a2c36d7b12fedbae60"><img src="hurl.png" width="35"></a>.
+</div>
+<div class="tab xml">
+{% highlight sh %}
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538/avatar.xml
+{% endhighlight %}
+
+Response:
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+  <thumbnail>http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg</thumbnail>
+  <avatar>http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg</avatar>
+  <id type="integer">5538</id>
+</user>
+{% endhighlight %}
+
+If the user has no current avatar, the `thumbnail` and `avatar` tags will be empty:
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+  <thumbnail></thumbnail>
+  <avatar></avatar>
+  <id type="integer">5538</id>
+</user>
+{% endhighlight %}
+
+Try with <a href="http://hurl.it/hurls/94b3590ba30ea64bbb4dcc9cc44b308c7ec35acc/0ba0c549cf2dfb6a15a42bf7ef20a77b1c61848f"><img src="hurl.png" width="35"></a>.
+</div>
+</div>
 
 ### Response codes
 
-* 401 Unauthorized
+Returns **`200 OK`** and the avatar URLs in the response body.
 
-  The user is not authorized to access this information or the authentication token is not valid.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+**`401 Unauthorized`** is returned if there's no user with the given ID.
+(This will be changed to `404 Not Found` in a future version of the API).
 
 ### Roles
 
-The freelancer can only see details about herself. Other roles have access to all users in the account.
+The freelancer can only see the avatar for him- or herself. 
+Other roles have access to all users in the account.
 
-Receive a user's authentication token
+
+<a id="token"></a>Get authentication token
 -------------------------------------
 
-The authentication token can be retrieved through the `api_auth_token` resource. 3rd party applications may prefer to ask its users for their login credentials instead of the authentication token because they're easier to remember.
+    GET /api/user/api_auth_token
 
-Note that this part of the API uses HTTP Basic Authentication instead of token authentication.
+The authentication token can be retrieved through the `api_auth_token` resource. 
+3rd-party applications may prefer to ask their users for their email and password 
+instead of the authentication token because those are easier to remember.
 
-GET `/api/user/api_auth_token.xml`
+We strongly recommend using this method only for interactive applications.
 
-    curl https://test:testtest@apitest.letsfreckle.com/api/user/api_auth_token.xml
+Note that this part of the API uses HTTP Basic Authentication instead of token 
+authentication.
 
-Sample response:
+<p class="note">
+We plan to support OAuth authentication in a future API version.
+</p>
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <user>
-      <api-auth-token>lx3gi6pxdjtjn57afp8c2bv1me7g89j</api-auth-token>
-    </user>
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
+{% highlight sh %}
+$ curl https://test:testtest@apitest.letsfreckle.com/api/user/api_auth_token.json
+{% endhighlight %}
+
+Note that no API token is given, instead HTTP Basic Auth is used.
+
+Response:
+
+{% highlight js %}
+{
+  "user": {
+    "api_auth_token": "lx3gi6pxdjtjn57afp8c2bv1me7g89j"
+  }
+}
+{% endhighlight %}
+</div>
+<div class="tab xml">
+{% highlight sh %}
+$ curl https://test:testtest@apitest.letsfreckle.com/api/user/api_auth_token.xml
+{% endhighlight %}
+
+Note that no API token is given, instead HTTP Basic Auth is used.
+
+Response:
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+  <api-auth-token>lx3gi6pxdjtjn57afp8c2bv1me7g89j</api-auth-token>
+</user>
+{% endhighlight %}
+</div>
+</div>
 
 ### Response codes
 
-* 401 Unauthorized
+If the HTTP Basic Auth email and password are correct, returns 
+**`200 OK`** and the token information in the response body.
 
-  The supplied credentials are incorrect and should probably be re-requested from the user.
-
-* 500 Internal Server Error
-
-  An error occurred. The API call was not processed correctly and should be retried later.
+**`401 Unauthorized`** is returned if authentication with
+email and password.
 
 ### Roles
 
