@@ -22,14 +22,14 @@ blue quick reports box in the Freckle user interface.
 </div>
 <div class="tab json active">
 Example request (search for entries with tag "freckle" after December 1, 2010, return JSON), try with 
-<a href="http://hurl.it/hurls/31bbedd3f866bd6d68e4c8181c1116d3085d91ad/8922a193b7dd6a4f53ac962428ca1352884a6cf0"><img src="hurl.png" width="35"></a>:
+<a href="http://apitest.developer.letsfreckle.com/hurls/28c60e00fd2f4b3bcaadcb274464004c679b0e69/8323c115a9d614ace633e4b4a5a18c187030d338"><img src="hurl.png" width="35"></a>:
 
 {% highlight sh %}
 curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json -d 'search[tags]=freckle' -d 'search[from]=2010-12-01'
 {% endhighlight %}
 </div>
 <div class="tab xml">
-Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://hurl.it/hurls/36457ed377666e29733df92e0b88ddb9a8fdeb5c/8394c77547a5fb5bc4b83f6de488fe6f1f99017d"><img src="hurl.png" width="35"></a>:
+Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://apitest.developer.letsfreckle.com/hurls/dcba9d3b9fac45715e9e4db6741eff3bcdd5db72/0caa433303fad6052248c4790b829a82fe895b0c"><img src="hurl.png" width="35"></a>:
 
 {% highlight sh %}
 curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml -d 'search[people]=5538' -d 'search[tags]=conf call'
@@ -163,7 +163,7 @@ Here's what <code>entry.json</code> looks like:
 }
 {% endhighlight %}
 
-Try this example on <a href="http://hurl.it/hurls/2247782b74ea116e23ca09ddab147f597590f46b/04836270410bdf2eccca12361dcd03a4569b0db2"><img src="hurl.png" width="35"></a>.
+Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/de1f2d95cb0dd113180de90e40d77bd849257acd/958090a5395705c87fa80c1fd6d39dc715c4b860"><img src="hurl.png" width="35"></a>.
 
 </div>
 <div class="tab xml">
@@ -181,13 +181,13 @@ Here's what <code>entry.xml</code> looks like:
 <entry>
   <minutes>2h</minutes>
   <user>apitest@letsfreckle.com</user>
-  <project-id type="integer">8475</project-id>
+  <project_id type="integer">8475</project_id>
   <description>freckle restful api test</description>
   <date>2009-10-15</date>
 </entry>
 {% endhighlight %}
 
-Try this example on <a href="http://hurl.it/hurls/e3ad022b4f7b750f98dc70245c3cf9f250efbf72/0eb353652d77578e976492782882e9639721b450"><img src="hurl.png" width="35"></a>.
+Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/2a4d0713be0f86371c920616fdef8818b22d6074/62e180ae64e8ae4f6f9b99a3823effb9a2c9e537"><img src="hurl.png" width="35"></a>.
 
 </div>
 </div>
@@ -220,10 +220,10 @@ The following fields are **optional**:
 or the full name of a user (first name and last name separated by a single space).
 If no user is given time is logged for the user authorized by the API token.
 
-**`project_id`** (optional) specifies the ID of the project the entry should be 
-associated with. This field takes precedence if `project_name` is given also.
+**`project-id` (JSON) or `project_id` (XML)** (optional) specifies the ID of the project the entry should be 
+associated with. This field takes precedence if `project-name` or `project_name` is given also.
 
-**`project_name`** (optional) specifies the name of the project the entry should be 
+**`project-name (JSON) or `project_name` (XML)`** (optional) specifies the name of the project the entry should be 
 associated with.
 
 **`description`** (optional) contains the entries description, including tags. Tags are any
@@ -264,7 +264,8 @@ and moving tags to the front in alphabetical order.
 
 ### Response codes
 
-**`201 Created`** means that the entry was successfully created in is now visible in Freckle. The `Location` header in the HTTP response contains the path to this
+**`201 Created`** means that the entry was successfully created in is now visible in Freckle. 
+The `Location` header in the HTTP response contains the path to this
 new entry in the API. This path contains the entry ID which your application can
 store so it can update the same entry later.
   
