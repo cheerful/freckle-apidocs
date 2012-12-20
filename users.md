@@ -42,7 +42,7 @@ Response:
 },
 {% endhighlight %}
 
-Try with <a href="http://hurl.it/hurls/65445f00cf62621462e47c2819c81d45200ed685/aa956b48bb5399379b37f3003907a03d32831a51"><img src="hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/274cffe2634174d4be8aedc1ede1b7aa8b1152e1/3effedf1507d0e1f33e601216e60ef059291dabe"><img src="hurl.png" width="35"></a>.
 </div>
 <div class="tab xml">
 {% highlight sh %}
@@ -68,7 +68,7 @@ Response:
 </users>
 {% endhighlight %}
 
-Try with <a href="http://hurl.it/hurls/f2ccff7df61041ec4baf4cfc0eebf9dec1ea978c/fc5198d19edc68ac54a5f81eea9cf703c1fc19e6"><img src="hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/3d18d9ab851f3f7a5b97a92a22d9a07901afae4f/5774bcd466bb2529d08ab4f4bd69b81233d73ee1"><img src="hurl.png" width="35"></a>.
 </div>
 </div>
 
@@ -113,7 +113,7 @@ Response:
 }
 {% endhighlight %}
 
-Try with <a href="http://hurl.it/hurls/0698e4a92c826fb31533ce8ed13e6aa45d4c529b/8ecc28d1274ba300523cbd933142af7bff11479f"><img src="hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/406175f1eb7a4e07c9b8f284217c084b23e7cb20/9cdff37a372430b3721f557537ce5595c828bb5a"><img src="hurl.png" width="35"></a>.
 </div>
 <div class="tab xml">
 {% highlight sh %}
@@ -135,7 +135,7 @@ Response:
 </user>
 {% endhighlight %}
 
-Try with <a href="http://hurl.it/hurls/c684a50cfdc4875c2f997c42b9f71d1bfeab11ac/d5bd7af6123e4214688becf22fcd8ba4234788c1"><img src="hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/9e4b54872c4c0ccc8f2d87a304e15bb918b6e1e5/859678e18961ddc7a59b5931ffc1070476c66541"><img src="hurl.png" width="35"></a>.
 </div>
 </div>
 
@@ -159,7 +159,7 @@ Other roles have access to all users in the account.
 Returns details about the currently logged in user. 
 This method is otherwise identical with `GET /api/users/<id>`.
 
-Try on <a href="http://hurl.it/hurls/2efbe6dbd81369627cef46e32be0c7bc9716c6ec/9a1da2d5468189c3f00fd05186c0a0eaa13f9e0a"><img src="hurl.png" width="35"></a>.
+Try on <a href="http://apitest.developer.letsfreckle.com/hurls/2ada287ae61ad278c44fdf081db506e88deb22b2/17b262450ddfd8195aa4f3e77626dfa115988ced"><img src="hurl.png" width="35"></a>.
 
 <a id="avatar"></a>Get a user's avatar
 ----------
@@ -191,7 +191,7 @@ Response:
 
 If the user has no current avatar, the `thumbnail` and `avatar` tag attributes are set to empty strings.
 
-Try with <a href="http://hurl.it/hurls/2173dd3bcb51045a43588f0d2ad8ea945fae188a/8c98e3a2fd0dff5a6e3c64a2c36d7b12fedbae60"><img src="hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/fa45bad8cdbcf57ee5d39f2086d74360d6d2ffd8/73f2a3532443e9f206f4809c656ecb5a84178c42"><img src="hurl.png" width="35"></a>.
 </div>
 <div class="tab xml">
 {% highlight sh %}
@@ -220,7 +220,7 @@ If the user has no current avatar, the `thumbnail` and `avatar` tags will be emp
 </user>
 {% endhighlight %}
 
-Try with <a href="http://hurl.it/hurls/94b3590ba30ea64bbb4dcc9cc44b308c7ec35acc/0ba0c549cf2dfb6a15a42bf7ef20a77b1c61848f"><img src="hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/fc7ae5b212e6271a6a92c64a605d748b4b04f692/a23d67c210866dbe9dc9dfa96593c58532253b82"><img src="hurl.png" width="35"></a>.
 </div>
 </div>
 

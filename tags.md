@@ -41,7 +41,7 @@ Response:
 ]
 {% endhighlight %}
 
-Try with <a href="http://hurl.it/hurls/ddb28de14d7432c64aac2f0a72aaa62531ace8e8/5a1b828fdebcecec7e51463194ea58223f739841"><img src="hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/684cc1abac7137e24757f6f75cbbd16e3d20e6f4/43ef044616088dee5cbb94e4e254271c40120908"><img src="hurl.png" width="35"></a>.
 </div>
 <div class="tab xml">
 {% highlight sh %}
@@ -66,7 +66,7 @@ Response:
 </tags>
 {% endhighlight %}
 
-Try with <a href="http://hurl.it/hurls/2c41a602a527de54dcee72c4248845eb593efffc/e667babb9a5800cfaa405e03c7b7ce0ec889f7a8"><img src="hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/32172677f730772b2bf29ed8c816fc00dd7277ef/05ceba40a58d8800d6b2a0be136dbaee6a1f4a8d"><img src="hurl.png" width="35"></a>.
 </div>
 </div>
 

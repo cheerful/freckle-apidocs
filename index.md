@@ -212,7 +212,7 @@ Try it now!
 $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
 {% endhighlight %}
 
-Instead of using cURL, you can also try it directly in your browser with <a href="http://hurl.it/hurls/4e6a8b89f7390b9b1408c966306db7301acbb6e4/f77acc2c0c6f7f44d2215025a9beab9191778233"><img src="hurl.png" width="35"></a>.
+Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/21d1e53251a9bf5941d0bd25aeb7557a3ca52a26"><img src="hurl.png" width="35"></a>.
 
 You should see something like:
 
@@ -252,7 +252,7 @@ You should see something like:
 $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
 {% endhighlight %}
 
-Instead of using cURL, you can also try it directly in your browser with <a href="http://hurl.it/hurls/3a761e6e60f3a24517d19e07af5310ef67b798ad/a4186277db8ef2a48152fdf4ea17584699073a89"><img src="hurl.png" width="35"></a>.
+Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/d35c949a5d7d4fe2d8f94fd095f324825a70696a/ff572a02badd43a6e6e62d3a9f963c56c53e7fdc"><img src="hurl.png" width="35"></a>.
 
 You should see something like:
 
