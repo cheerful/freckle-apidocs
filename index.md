@@ -25,7 +25,7 @@ with other software and services. Be creative!
 
 Freckle's API docs are on Github: if you find an error or omission
 in the API documentation, you can help fix it quickly by cloning
-the <a href="https://github.com/madrobby/freckle-apidocs">Freckle API docs
+the <a href="https://github.com/cheerful/freckle-apidocs">Freckle API docs
 GitHub repository</a> and submitting a pull request!
 
 ### API limitations
