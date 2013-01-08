@@ -4,7 +4,7 @@ title: Projects
 ---
 
 Jump to: [List](#list) | [Create](#create) | 
-[Read](#read) | [Update](#update) | 
+[Read](#read) | 
 [Delete](#delete) | [Archive](#archive) | 
 [Activate](#activate)
 
