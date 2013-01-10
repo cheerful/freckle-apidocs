@@ -9,6 +9,7 @@ access **entries** (list/search, create, update, delete, mass import),
 **tags** (list) and **users** (list, read, create, update, deactivate, get avatar).
 
 Jump to: [Libraries](#libraries) | [URLs](#urls) | [Authentication](#authentication) 
+| [Pagination](#pagination) 
 | [Response codes](#codes) 
 | [Roles](#roles) | [Data formats](#formats) | [Field formats](#fields) 
 | [API Test Account](#test)
