@@ -124,6 +124,25 @@ such as on mobile devices, the token can be retrieved via the
 user's email and password. See the Users section for more information.
 </p>
 
+## <a id="pagination"></a>Pagination
+
+Most API resources are non-paginated, meaning they return the full result set.
+However [Entries](/entries.html#list) list is paginated, and more resources
+could become paginated in the future.
+
+When there are more results available for a request, a "next" URL will be
+present in the `Link` response header
+
+    GET https://apitest.letsfreckle.com/api/entries.json
+    Link: <https://apitest.letsfreckle.com/api/entries.json?page=2&per_page=100>; rel="next"
+
+To get more results, simply repeat the request with the new URL until there are
+enough results in total, or there is no more "next" link (if it's necessary to
+fetch all data).
+
+It's safe to apply this logic to all API requests, even when fetching resources
+that are not currently paginated.
+
 <a id="codes"></a>Response codes and error handling
 ---------------------------------
 
