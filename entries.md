@@ -220,7 +220,7 @@ The following fields are **optional**:
 or the full name of a user (first name and last name separated by a single space).
 If no user is given time is logged for the user authorized by the API token.
 
-**`project-id` (JSON)** or **`project_id` (XML) (optional) specifies the ID of 
+**`project-id` (JSON)** or **`project_id` (XML)** (optional) specifies the ID of 
 the project the entry should be associated with. This field takes precedence if 
 `project-name` or `project_name` is given also.
 
