@@ -24,6 +24,11 @@ and <a href="http://punch.fousa.be">Punch</a>
 as well as many internal applications that our customers write to integrate 
 with other software and services. Be creative!
 
+Freckle is also one of the many services listed on 
+<a href="https://zapier.com/zapbook/freckle/">Zapier</a>,
+which allows drag-and-drop integration of Freckle with other internet-based
+software (for example, you can send new Freckle entries to your Campfire chat room!).
+
 Freckle's API docs are on Github: if you find an error or omission
 in the API documentation, you can help fix it quickly by cloning
 the <a href="https://github.com/cheerful/freckle-apidocs">Freckle API docs
