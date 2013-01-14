@@ -52,6 +52,11 @@ h2 {
   text-transform: lowercase;
 }
 
+#nav a.back {
+  background: #5e8b31;
+  color: #fff;
+}
+
 #footer {
   margin: 40px 0 0 0;
   padding: 0 0 10px 0;
