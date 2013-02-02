@@ -21,6 +21,9 @@ The projects resource returns projects accessible by the user. For all roles exc
   <div class="xml">XML</div>
 </div>
 <div class="tab json active">
+Example request (<a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/147e67ebb705a6a4a60bbf5f6b38883bc9f906b7">try live</a>):
+
+
 {% highlight sh %}
 $ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
 {% endhighlight %}
@@ -108,6 +111,65 @@ If successful, the response code is **`200 OK`** with the results of the call gi
 ### Roles
 
 All roles have access to this resource. For freelancers, only projects they have access to are returned.
+
+### Structure of a project
+
+Here's an example project and a description of all the fields returned.
+
+{% highlight js %}
+{
+  "project": {
+    // ID of the project (integer)
+    "id": 34580,    
+    // Name of the project
+    "name": "Gear GmbH",
+    // Group name of the project (or null)
+    "group_name": "Sprockets, Inc.",
+    // Group ID of the project (or null)
+    "project_group_id": 3768,
+    
+    // UTC timestamp when the project was created
+    "created_at": "2012-01-09T08:33:29Z",
+    // UTC timestamp when the project was last updated
+    "updated_at": "2012-01-09T08:33:29Z",
+    
+    // total amount of logged minutes (can be null)
+    "minutes": 180,
+    // total amount of logged billable minutes (can be null)
+    "billable_minutes": 120,
+    // total amount of unbillable minutes (can be null)
+    "unbillable_minutes": 60,
+    // total amount of logged invoiced minutes (can be null)
+    "invoiced_minutes": 120,
+    // amount of remaining minutes within budget (can be null)
+    "remaining_minutes": 630,
+    // budgeted minutes (can be null)
+    "budget_minutes": 750,
+
+    // true if project is billable
+    "billable": true,
+    // ID of the import if the project was part of an import (can be null)
+    "import_id": null,
+    // true if project is enabled, false if archived
+    "enabled": true,
+    // rrggbb hexadecimal color for the project
+    "color_hex": "ff9898",
+    // billing increment in minutes
+    // if you build client software that creates entries
+    // it should only allow multiples of stepping logged
+    // (in minutes). if the user enters a non-multiple you
+    // should round time up.
+    "stepping": 10,
+    
+    // all following fields are deprecated, and may 
+    // be removed in the next API version
+    "user_id": null,
+    "budget": 750,
+    "account_id": 5039,
+    "invoice_recipient_details": null
+  }
+}
+{% endhighlight %}
 
 <a id="read"></a>Show project
 -------------
