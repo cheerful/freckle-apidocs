@@ -166,7 +166,8 @@ Here's an example project and a description of all the fields returned.
     "user_id": null,
     "budget": 750,
     "account_id": 5039,
-    "invoice_recipient_details": null
+    "invoice_recipient_details": null,
+    "cached_tags": [ ... ]
   }
 }
 {% endhighlight %}
