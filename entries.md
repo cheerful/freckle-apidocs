@@ -48,8 +48,8 @@ Supported options for searching are:
 * `search[billable]`: _true_ only shows billable entries; _false_ only shows unbillable entries
 
 Entries are returned sorted _descending by date_. By default, at most 100 entries
-are returned per page. You can fetch multiple pages by reading the "next" URL
-from the `Link` response header and using it to repeat the request.
+are returned per page. You can [fetch multiple pages](/#pagination) by reading
+the "next" URL from the `Link` response header and using it to repeat the request.
 
     GET https://apitest.letsfreckle.com/api/entries.json
     Link: <https://apitest.letsfreckle.com/api/entries.json?page=2&per_page=100>; rel="next"
