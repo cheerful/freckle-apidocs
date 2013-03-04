@@ -40,12 +40,12 @@ curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.l
 Supported options for searching are:
 
 * `per_page`: a number from 1–1000 to limit the number of results (default: 100)
-* `people`: comma separated user ids
-* `projects`:  comma separated project ids
-* `tags`: comma separated tag ids or names (can be mixed, multiple tags will search using AND)
-* `from`: entries from this date
-* `to`: entries to this date
-* `billable`: _true_ only shows billable entries; _false_ only shows unbillable entries
+* `search[people]`: comma separated user ids
+* `search[projects]`:  comma separated project ids
+* `search[tags]`: comma separated tag ids or names (can be mixed, multiple tags will search using AND)
+* `search[from]`: entries from this date
+* `search[to]`: entries to this date
+* `search[billable]`: _true_ only shows billable entries; _false_ only shows unbillable entries
 
 Entries are returned sorted _descending by date_. By default, at most 100 entries
 are returned per page. You can fetch multiple pages by reading the "next" URL
