@@ -22,7 +22,7 @@ blue quick reports box in the Freckle user interface.
 </div>
 <div class="tab json active">
 Example request (search for entries with tag "freckle" after December 1, 2010, return JSON), try with 
-<a href="http://apitest.developer.letsfreckle.com/hurls/28c60e00fd2f4b3bcaadcb274464004c679b0e69/8323c115a9d614ace633e4b4a5a18c187030d338"><img src="hurl.png" width="35"></a>:
+<a href="http://apitest.developer.letsfreckle.com/hurls/ed0cec41f1abe07dd0e78086d78286b5c96d4742/9ff564aafaf908d23976cb0c3747c7d9acbd3ad2"><img src="hurl.png" width="35"></a>:
 
 {% highlight sh %}
 curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json -d 'search[tags]=freckle' -d 'search[from]=2010-12-01'
