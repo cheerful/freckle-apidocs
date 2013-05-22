@@ -46,7 +46,6 @@ Response:
       "import_id":null,
       "account_id":5039,
       "group_name":null,
-      "minutes":0,
       "project_group_id":null,
       "id":34580,
       "enabled":true,
@@ -92,7 +91,6 @@ Response:
     <unbillable-minutes type="integer">0</unbillable-minutes>
     <updated-at type="date time">2011-10-19T15:59:56Z</updated-at>
     <user-id type="integer" nil="true"></user-id>
-    <minutes type="integer">0</minutes>
     <budget-minutes nil="true"></budget-minutes>
     <remaining-minutes nil="true"></remaining-minutes>
     <unbillable-minutes type="integer">0</unbillable-minutes>
