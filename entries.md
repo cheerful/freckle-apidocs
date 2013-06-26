@@ -21,7 +21,7 @@ blue quick reports box in the Freckle user interface.
   <div class="xml">XML</div>
 </div>
 <div class="tab json active">
-Example request (search for entries with tag "freckle" after December 1, 2010, return JSON), try with 
+Example request (search for entries with tag "freckle" after December 1, 2010, return JSON), try with
 <a href="http://apitest.developer.letsfreckle.com/hurls/ed0cec41f1abe07dd0e78086d78286b5c96d4742/9ff564aafaf908d23976cb0c3747c7d9acbd3ad2"><img src="hurl.png" width="35"></a>:
 
 {% highlight sh %}
@@ -68,7 +68,7 @@ Here's an example entry and a description of all the fields returned.
   "entry": {
     // ID of the entry (integer)
     "id": 1711626,
-    
+
     // date the time is logged for YYYY-MM-DD
     "date": "2012-01-09",
     // User ID the time is logged for (integer)
@@ -87,9 +87,9 @@ Here's an example entry and a description of all the fields returned.
 
     // All following fields are OPTIONAL
     // (optional) project_id, can be null
-    "project_id": 37396,                         
+    "project_id": 37396,
     // (optional) array of tags assigned to entry
-    "tags": [                                      
+    "tags": [
       {
         "name": "freckle",
         "billable": true,
@@ -104,23 +104,23 @@ Here's an example entry and a description of all the fields returned.
     "project_invoice_id": null,
     // (optional) set if imported from a file
     "import_id": null,
-    
-    // all following fields are deprecated, and will 
+
+    // all following fields are deprecated, and will
     // be removed in the next API version
-    "time_to": null,                               
-    "recently_updated_at": "2012-01-09T08:33:29Z", 
-    "description_text": "",                        
-    "formatted_description": "",                   
-    "money_status": "not_invoiced",                
-    "time_from": null,                             
-    "billable_status": "billable"                  
+    "time_to": null,
+    "recently_updated_at": "2012-01-09T08:33:29Z",
+    "description_text": "",
+    "formatted_description": "",
+    "money_status": "not_invoiced",
+    "time_from": null,
+    "billable_status": "billable"
   }
 }
 {% endhighlight %}
 
 <p class="note">
-Please note that in Freckle an entry does not have to belong to a Project so the 
-project_id field is optional. It's set to <code>null</code> in JSON or 
+Please note that in Freckle an entry does not have to belong to a Project so the
+project_id field is optional. It's set to <code>null</code> in JSON or
 <code>&lt;project-id type='integer' nil='true'/&gt;</code> in XML
 when there's no project assigned to an entry. Make sure your application does not
 expect project IDs to be present.
@@ -131,7 +131,7 @@ expect project IDs to be present.
 
     POST /api/entries
 
-This call creates a single entry. The data for the entry must be given in the 
+This call creates a single entry. The data for the entry must be given in the
 post body, as either XML or JSON.
 
 Sample request:
@@ -157,8 +157,9 @@ Here's what <code>entry.json</code> looks like:
     "minutes": "2h",
     "user": "apitest@letsfreckle.com",
     "project-id": 8475,
-    "description": "Freckle RESTful API test",
-    "date": "2012-12-02"
+    "description": "Freckle RESTful API #test",
+    "date": "2012-12-02",
+    "allow_hashtags": true
   }
 }
 {% endhighlight %}
@@ -182,8 +183,9 @@ Here's what <code>entry.xml</code> looks like:
   <minutes>2h</minutes>
   <user>apitest@letsfreckle.com</user>
   <project_id type="integer">8475</project_id>
-  <description>freckle restful api test</description>
+  <description>freckle restful api #test</description>
   <date>2009-10-15</date>
+  <allow_hashtags type="boolean">true</allow_hashtags>
 </entry>
 {% endhighlight %}
 
@@ -196,7 +198,7 @@ Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/2a4d
 
 These are the **required attributes** when creating new entries:
 
-**`minutes`** (required) is a string containing the amount of time which should be 
+**`minutes`** (required) is a string containing the amount of time which should be
 logged for the entry. Freckle uses the <a href="http://letsfreckle.com/blog/2011/10/more-than-meets-the-eye-the-quick-entry-box/">same logic that the QuickEntry box uses</a>
 to parse the minutes field:
 
@@ -208,30 +210,37 @@ to parse the minutes field:
     5m   → 5 minutes
     15   → 15 minutes
     15h  → 15 hours
-  
+
 If you do your own time parsing, we recommended to use the `HH:MM` format
 in this field.
 
 **`date`** (required) is the date the entry should be logged for, given as YYYY-MM-DD.
- 
+
 The following fields are **optional**:
-   
+
 **`user`** (optional) can contain a user ID, the email address of a user
 or the full name of a user (first name and last name separated by a single space).
 If no user is given time is logged for the user authorized by the API token.
 
-**`project-id` (JSON)** or **`project_id` (XML)** (optional) specifies the ID of 
-the project the entry should be associated with. This field takes precedence if 
+**`project-id` (JSON)** or **`project_id` (XML)** (optional) specifies the ID of
+the project the entry should be associated with. This field takes precedence if
 `project-name` or `project_name` is given also.
 
-**`project-name` (JSON)** or **`project_name` (XML)`** (optional) 
+**`project-name` (JSON)** or **`project_name` (XML)`** (optional)
 specifies the name of the project the entry should be associated with.
 
-**`description`** (optional) contains the entries description, including tags. Tags are any
-substrings of the description that are not preceded by a "!!",
-are one or two words in length, start and end with the beginning of the 
-entry, the end of the entry or a comma ",", are 30 characters or less in
-total and don't start with a "!". 
+**`description`** (optional) contains the entries description, including tags.
+For classic Freckle accounts, and if you do not set the `allow_hashtags`
+option, tags are any substrings of the description that are not preceded
+by a "!!", are one or two words in length, start and end with the beginning
+of the entry, the end of the entry or a comma ",", are 30 characters or less in
+total and don't start with a "!".
+
+**`allow_hashtags`** (optional, defaults to false) can be set to `true` if
+your application is hashtag-aware. In this case, Freckle will create hashtags
+for Hashtag-enabled accounts. This defaults to false so Freckle stays
+backwards-compatible with existing API clients.
+
 
 Here are some examples how tags are parsed:
 
@@ -265,11 +274,11 @@ and moving tags to the front in alphabetical order.
 
 ### Response codes
 
-**`201 Created`** means that the entry was successfully created in is now visible in Freckle. 
+**`201 Created`** means that the entry was successfully created in is now visible in Freckle.
 The `Location` header in the HTTP response contains the path to this
 new entry in the API. This path contains the entry ID which your application can
 store so it can update the same entry later.
-  
+
 Here's an example response:
 
     HTTP/1.1 201 Created
@@ -297,8 +306,8 @@ projects through the Projects resource.
 ---------------
 
     PUT /api/entries/<id>
-    
-Update a single entry, that is not invoiced and doesn't 
+
+Update a single entry, that is not invoiced and doesn't
 belong to an archived project.
 
 <div class="tabs">
@@ -370,7 +379,7 @@ curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://ap
 
 **`200 OK`** is returned when the entry was deleted successfully.
 
-**`422 Unprocessable Entity`** means that the entry is already 
+**`422 Unprocessable Entity`** means that the entry is already
 invoiced or that the entry belongs to an archived project.
 
 ### Roles
