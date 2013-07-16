@@ -15,9 +15,6 @@
     },
     "state":"active",
     "role" : "member",
-    "url": "http://apitest.letsfreckle.com/api/users/5538",
-    "created_at": "2010-06-09T20:44:57Z",
-    "updated_at": "2010-06-09T20:44:57Z",
 
     "participating_projects": 0,
     "participating_projects_url" : "http://apitest.letsfreckle.com/api/users/5538/participating_projects",
@@ -33,6 +30,10 @@
 
     "add_project_access" : "http://apitest.letsfreckle.com/api/users/5538/project_access/add",
     "remove_project_access" : "http://apitest.letsfreckle.com/api/users/5538/project_access/remove",
+
+    "url": "http://apitest.letsfreckle.com/api/users/5538",
+    "created_at": "2010-06-09T20:44:57Z",
+    "updated_at": "2010-06-09T20:44:57Z",
   }
 }
 
