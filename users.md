@@ -5,6 +5,7 @@
 {
   "user":{
     "id": : 5538,
+    "email": "john.test@test.com",
     "first_name": "John",
     "last_name": "Test",
     "avatar":{

@@ -13,6 +13,7 @@ Here is an example of an Entry object returned by the API
 	    // User the time is logged for
 	    "user":{
 	    	"id": : 5538,
+	    	"email": "john.test@test.com",
 	    	"first_name": "John",
 	    	"last_name": "Test",
 	    	"avatar":{
