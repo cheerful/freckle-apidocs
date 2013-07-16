@@ -150,3 +150,5 @@
 ## Edit a Project
 
 ## Delete a Project
+
+## Merge a Project
