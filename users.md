@@ -35,9 +35,5 @@
   }
 }
 
-## Current User Object Specification
-
-## Add entries for user
-## Add expenses for user
 ## Give User Access to a Project
 ## Revoke User Access to a Project
