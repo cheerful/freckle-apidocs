@@ -63,6 +63,7 @@ Here is an example of an Entry object returned by the API
 	    	"id" : 12345678,
 	    	"invoice_number": "AA001",
 	    	"state": "unpaid",
+	    	"total": 189.33,
 	    	"url": "http://apitest.letsfreckle.com/api/invoices/12345678",
 	    }
 	    // (optional) The import this entry was generated from
