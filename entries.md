@@ -25,12 +25,8 @@ Here is an example of an Entry object returned by the API
 
 	    // false if entry or project are unbillable
 	    "billable": true,
-	    // UTC timestamp when entry was created
-	    "created_at": "2012-01-09T08:33:29Z",
 	    // logged time in minutes (integer)
 	    "minutes": 60,
-	    // UTC timestamp when entry was last updated
-	    "updated_at": "2012-01-09T08:33:29Z",
 	    // full description text (includes tags)
 	    "description": "freckle",
 
@@ -73,6 +69,11 @@ Here is an example of an Entry object returned by the API
 	    },
 	    //a url to this entry
 	    "url": "http://apitest.letsfreckle.com/api/entries/1711626"
+
+	    // UTC timestamp when entry was created
+	    "created_at": "2012-01-09T08:33:29Z",
+	    // UTC timestamp when entry was last updated
+	    "updated_at": "2012-01-09T08:33:29Z",
 	  }
 	}
 
