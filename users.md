@@ -14,6 +14,7 @@
       "avatar": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
     },
     "state":"active",
+    "role" : "member",
     "url": "http://apitest.letsfreckle.com/api/users/5538",
     "created_at": "2010-06-09T20:44:57Z",
     "updated_at": "2010-06-09T20:44:57Z",
