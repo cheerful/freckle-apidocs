@@ -3,44 +3,57 @@ layout: default
 title: Account
 ---
 
-
-# Account API
-
 ## Account Object Specification
 
-{
-	"account" :{
-		"id" : 3344,
-		"plan_name" : "Freelancer",
-		"subdomain" : "testit",
-		"title" : "Test It!",
-		"address" : {
-			"address1" : "1345 Main Street",
-			"address2" : "Room 3",
-			"city" : "Mainsville",
-			"state" : "MA",
-			"zip" : "12345"
-			"country" : "USA",
-			"phone" : "(111)-222-3333",
-		},
+<%= json :account %>
 
-		"ccinvoices": "john.test@test.com",
-		"invoicing_enabled": true,
-		"owner" : {
-			"id": : 5538,
-    	"email": "john.test@test.com",
-    	"first_name": "John",
-    	"last_name": "Test",
-    	"avatar":{
-    		"id": 5538,
-    		"thumbnail": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
-				"avatar": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
-    	},
-    	"url": "http://apitest.letsfreckle.com/api/users/5538",
-		},
+## Get your Account's details
 
-		"url": "http://apitest.letsfreckle.com/api/account/",
-		"created_at": "2010-06-09T20:44:57Z",
-  	"updated_at": "2010-06-09T20:44:57Z",
-	}
-}
+~~~
+GET /account/
+~~~
+
+### Response
+<%= headers 200 %>
+<%= json :account %>
+
+## Edit your Account's details
+
+~~~
+PATCH /account/
+~~~
+
+### Input
+
+title
+: *Optional* **string**: the Title used in your account.
+
+address
+: *Optional* **object**: The address fields used as the contact information for the invoice. The accepted fields are:
+
+	address1
+	: *Optional* **string**: the first part of the mailing address
+
+	address2
+	: *Optional* **string**: the second part of the mailing address
+
+	city
+	: *Optional* **string**
+
+	state
+	: *Optional* **string**
+
+	zip
+	: *Optional* **string**
+
+	country
+	: *Optional* **string**
+
+	phone
+	: *Optional* **string**
+
+<%= json :account_editable_fields %>
+
+### Response
+<%= headers 200 %>
+<%= json :account %>
