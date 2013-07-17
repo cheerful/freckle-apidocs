@@ -1,6 +1,6 @@
 module Jekyll
 	module APIObjects
-		USER_SHORT = {
+		SIMPLE_USER = {
 			"id" =>  5538,
     	"email" =>  "john.test@test.com",
     	"first_name" =>  "John",
@@ -32,7 +32,7 @@ module Jekyll
 
 				"ccinvoices"=>  "john.test@test.com",
 				"invoicing_enabled"=>  true,
-				"owner" =>  USER_SHORT,
+				"owner" =>  SIMPLE_USER,
 
 				"url" =>  "http=> //apitest.letsfreckle.com/api/account/",
 				"created_at" =>  "2010-06-09T20=> 44=> 57Z",
