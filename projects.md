@@ -1,3 +1,8 @@
+---
+layout: default
+title: Project
+---
+
 #Project API
 
 ## Project Object Specification

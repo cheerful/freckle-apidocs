@@ -1,6 +1,12 @@
+---
+layout: default
+title: Account
+---
 # Account API
 
 ## Account Object Specification
+
+{% highlight js %}
 
 {
 	"account" :{
@@ -38,3 +44,5 @@
   	"updated_at": "2010-06-09T20:44:57Z",
 	}
 }
+
+{% endhighlight %}

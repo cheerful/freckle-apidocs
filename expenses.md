@@ -1,3 +1,7 @@
+---
+layout: default
+title: Expense
+---
 # Expense API
 
 ## Expense Object Specification
