@@ -2,7 +2,6 @@
 layout: default
 title: Entry
 ---
-
 # Entry API
 
 ## Entry Object Specification

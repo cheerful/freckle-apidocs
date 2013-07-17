@@ -2,6 +2,7 @@
 layout: default
 title: Project Group
 ---
+
 # Project Group API
 
 ## Project Group Object Specification

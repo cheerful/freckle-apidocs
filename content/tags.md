@@ -2,6 +2,7 @@
 layout: default
 title: Tag
 ---
+
 # Tag API
 
 ## Tag Object Specification

@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Freckle API: {{ page.title }}</title>
-  <link rel="stylesheet" href="main.css" type="text/css">
+  <title>Freckle API: <%= @item[:title] %></title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
 </head>
 
 <body>
   <div id="nav">
     <div>
     <a href="http://letsfreckle.com" class="back">&larr; Freckle</a>
-    <a href="index.html">API Basics</a>
-    <a href="entries.html">Entries</a>
-    <a href="projects.html">Projects</a>
-    <a href="tags.html">Tags</a>
-    <a href="users.html">Users</a>
+    <a href="/">API Basics</a>
+    <a href="/entries">Entries</a>
+    <a href="/projects">Projects</a>
+    <a href="/tags">Tags</a>
+    <a href="/users">Users</a>
     </div>
   </div>
   
   <div id="content">
-    <h1><img src="freckle.png" width="150" height="43"> API: {{ page.title }}</h1>
+    <h1><img src="/freckle.png" width="150" height="43"> API: <%= @item[:title] %></h1>
     
-    {{ content }}
+    <%= yield %>
   </div>
 
   <div id="footer">

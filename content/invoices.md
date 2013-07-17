@@ -2,6 +2,7 @@
 layout: default
 title: Invoice
 ---
+
 # Invoice API
 
 ## Invoice Object Specification

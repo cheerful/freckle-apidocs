@@ -1,9 +1,0 @@
-{
-  "entry": {
-    "minutes": "2h",
-    "user": "apitest@letsfreckle.com",
-    "project-id": 8475,
-    "description": "Freckle RESTful API test",
-    "date": "2012-12-02"
-  }
-}
