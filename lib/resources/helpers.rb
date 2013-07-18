@@ -1,8 +1,8 @@
 require 'json'
 
 module Freckle
-		module Resources
-			module Helpers
+	module Resources
+		module Helpers
 			def json(key)
 			  hash = case key
 			    when Hash
