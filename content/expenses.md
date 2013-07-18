@@ -49,7 +49,7 @@ apply_taxes
 ## Get a single Expense
 
 ~~~
-GET /expense/:id
+GET /expenses/:id
 ~~~
 
 <%= headers 200 %>
@@ -58,7 +58,7 @@ GET /expense/:id
 ## Create an Expense
 
 ~~~
-POST /expense/
+POST /expenses/
 ~~~
 
 ### Input
@@ -91,7 +91,7 @@ project
 ## Edit an Expense
 
 ~~~
-PATCH /expense/:id
+PATCH /expenses/:id
 ~~~
 
 ### Input
@@ -124,7 +124,7 @@ project
 ## Delete an Expense
 
 ~~~
-DELETE /expense/:id
+DELETE /expenses/:id
 ~~~
 
 ### Response
