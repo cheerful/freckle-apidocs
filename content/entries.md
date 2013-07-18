@@ -46,6 +46,12 @@ from
 to
 : *Optional* **string** of a date in ISO 8061 format: `YYYY-MM-DD`. Only entries on or before this date will be returned.
 
+invoiced_at_from
+: *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`: Only entries invoiced from or after this date will be returned.
+
+invoiced_at_to
+: *Optional* **string** of a date in ISO 8061 format: `YYYY-MM-DD`. Only entries invoiced on or before this date will be returned.
+
 billable
 : *Optional* **boolean**: `true` only shows billable entries, `false` only shows unbillable entries
 
@@ -128,6 +134,21 @@ source_url
 
 <%= headers 200 %>
 <%= json :entry %>
+
+## Mark Entry as invoiced outside of Freckle
+
+~~~
+PUT /entries/:id/invoiced_outside_of_freckle
+~~~
+
+### Input
+
+date
+: *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`: the date the time entry was invoiced outside of Freckle.
+
+### Response
+
+<%= headers 204 %>
 
 ## Delete an Entry
 
