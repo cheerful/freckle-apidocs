@@ -3,48 +3,130 @@ layout: default
 title: Expense
 ---
 
-# Expense API
-
 ## Expense Object Specification
-{
-	"expense" :{
-		"id": 2233,
-		"price" : 14.55,
-		"description" : "new software",
-		"apply_tax": true,
-		"date" : "2010-06-09",
+<%= json :expense %>
 
-		"project": {
-    	"id": 37396,
-    	"name":"Gear GmbH",
-    	"stepping": 10,
-    	"enabled":  true,
-    	"billable": true,
-    	"color_hex": "ff9898",
-    	"url": "http://apitest.letsfreckle.com/api/projects/37396",
-  	},
-  	"invoice": {
-	    	"id" : 12345678,
-	    	"invoice_number": "AA001",
-	    	"state": "unpaid",
-	    	"total": 189.33,
-	    	"url": "http://apitest.letsfreckle.com/api/invoices/12345678",
-	    },
-		"user":{
-    	"id": : 5538,
-    	"email": "john.test@test.com",
-    	"first_name": "John",
-    	"last_name": "Test",
-    	"avatar":{
-    		"id": 5538,
-    		"thumbnail": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
-				"avatar": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
-    	},
-    	"url": "http://apitest.letsfreckle.com/api/users/5538",
-    },
+## List Expenses
 
-    "url": "http://apitest.letsfreckle.com/api/expense/2233",
-		"created_at": "2010-06-09T20:44:57Z",
-    "updated_at": "2010-06-09T20:44:57Z",
-	}
-}
+Get all the expenses, sorted by the most recent date.
+
+~~~
+GET /expenses/
+~~~
+
+### Parameters
+
+Each parameter passed will filter the results, and parameters are chained (meaning that if you search by `users` and `projects`, it will only return expenses from those users for the specified projects).
+
+users
+: *Optional* **string**: a comma-separated list of user IDs to filter by.
+Example: `users=1,2,3`
+
+projects
+: *Optional* **string**: a comma-separated list of project IDs to filter by.
+Example: `projects=4,5,6`
+
+invoices
+: *Optional* **string**: a comma-separated list of invoices to filter by
+
+imports
+: *Optional* **string**: a comma-separated list of imports to filter by
+
+from
+: *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`: Only expenses from or after this date will be returned.
+
+to
+: *Optional* **string** of a date in ISO 8061 format: `YYYY-MM-DD`. Only expenses on or before this date will be returned.
+
+apply_taxes
+: *Optional* **boolean**: `true` only shows expenses where taxes are applied, `false` only shows expenses were taxes are not applied.
+
+### Response
+
+<%= headers 200, :pagination => true, :pagination_resource => "expenses" %>
+<%= json :expense %>
+
+## Get a single Expense
+
+~~~
+GET /expense/:id
+~~~
+
+<%= headers 200 %>
+<%= json :expense %>
+
+## Create an Expense
+
+~~~
+POST /expense/
+~~~
+
+### Input
+
+date
+: *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the expense.
+
+user
+: *Optional* **integer**: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.
+
+price
+: *Required* **decimal**: The numeric price of this expense. **Do not add the currency to this price**.
+
+apply_tax
+: *Optional* **boolean**: `true` indicates that the expense is taxable. `false` indicates that the expense is tax-free. Defaults to `true`.
+
+description
+: *Optional* **string**: The description of the expense. Note that tags or hashtags will not be parsed.
+
+project
+: *Required* **integer**: The ID of the project this expense is for.
+
+<%= json :expense_editable_fields %>
+
+### Reponse
+
+<%= headers 201, :Location => "https://apitest.letsfreckle.com/api/expenses/1" %>
+<%= json :expense %>
+
+## Edit an Expense
+
+~~~
+PATCH /expense/:id
+~~~
+
+### Input
+
+date
+: *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the expense.
+
+user
+: *Optional* **integer**: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.
+
+price
+: *Required* **decimal**: The numeric price of this expense. **Do not add the currency to this price**.
+
+apply_tax
+: *Optional* **boolean**: `true` indicates that the expense is taxable. `false` indicates that the expense is tax-free. Defaults to `true`.
+
+description
+: *Optional* **string**: The description of the expense. Note that tags or hashtags will not be parsed.
+
+project
+: *Required* **integer**: The ID of the project this expense is for.
+
+<%= json :expense_editable_fields %>
+
+### Response
+
+<%= headers 200 %>
+<%= json :expense %>
+
+## Delete an Expense
+
+~~~
+DELETE /expense/:id
+~~~
+
+### Response
+
+<%= headers 204 %>

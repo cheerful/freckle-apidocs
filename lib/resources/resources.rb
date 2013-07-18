@@ -98,5 +98,30 @@ module Freckle
 		  "project" => SIMPLE_PROJECT["id"],
 		  "source_url" => ENTRY["source_url"],
 		}
+
+		EXPENSE = {
+			"id" => 2233,
+			"price" => 14.55,
+			"description" => "new software",
+			"apply_tax" => true,
+			"date" => "2010-06-09",
+
+			"project" => SIMPLE_PROJECT,
+	  	"invoice" => SIMPLE_INVOICE,
+			"user" => SIMPLE_USER,
+
+	    "url" => "http://apitest.letsfreckle.com/api/expense/2233",
+			"created_at" => "2010-06-09T20:44:57Z",
+	    "updated_at" => "2010-06-09T20:44:57Z",
+		}
+
+		EXPENSE_EDITABLE_FIELDS = {
+			"date" => EXPENSE["date"],
+			"user" => SIMPLE_USER["id"],
+			"price" => EXPENSE["price"],
+			"apply_tax" => EXPENSE["apply_tax"],
+			"description" => EXPENSE["description"],
+			"project" => SIMPLE_PROJECT["id"]
+		}
 	end
 end
