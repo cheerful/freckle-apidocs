@@ -32,9 +32,9 @@ module Freckle
 			"invoicing_enabled"=>  true,
 			"owner" =>  SIMPLE_USER,
 
-			"url" =>  "http=> //apitest.letsfreckle.com/api/account/",
-			"created_at" =>  "2010-06-09T20=> 44=> 57Z",
-	  	"updated_at" =>  "2010-06-09T20=> 44=> 57Z",
+			"url" =>  "http://apitest.letsfreckle.com/api/account/",
+			"created_at" => "2012-01-09T08:33:29Z",
+		  "updated_at" => "2012-01-09T08:33:29Z",
 		}
 
 		ACCOUNT_EDITABLE_FIELDS = {
