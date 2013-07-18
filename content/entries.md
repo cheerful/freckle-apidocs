@@ -18,7 +18,7 @@ GET /entries/
 
 ### Parameters
 
-Each parameter passed will filter the results, and parameters are chainged (meaning that if you search by `users` and `projects`, it will only return entries from those users for the specified projects).
+Each parameter passed will filter the results, and parameters are chained (meaning that if you search by `users` and `projects`, it will only return entries from those users for the specified projects).
 
 users
 : *Optional* **string**: a comma-separated list of user IDs to filter by.
@@ -34,6 +34,12 @@ tags
 tag_filter_type
 : *Optional* **string**: an indicator of how to filter by tags. Accepted values are: `and`, `any`. Defaults to: `and`
 
+invoices
+: *Optional* **string**: a comma-separated list of invoices to filter by
+
+imports
+: *Optional* **string**: a comma-separated list of imports to filter by
+
 from
 : *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`: Only entries from or after this date will be returned.
 
@@ -45,7 +51,7 @@ billable
 
 ### Response
 
-<%= headers 200, :pagination => true %>
+<%= headers 200, :pagination => true, :pagination_resource => "entries" %>
 <%= json :entry %>
 
 ## Get a single Entry
