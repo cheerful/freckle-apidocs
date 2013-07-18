@@ -2,92 +2,133 @@
 layout: default
 title: Entry
 ---
-# Entry API
 
 ## Entry Object Specification
 Here is an example of an Entry object returned by the API
 
-	{
-	  "entry": {
-	    // ID of the entry (integer)
-	    "id": 1711626,
-
-	    // date the time is logged for YYYY-MM-DD
-	    "date": "2012-01-09",
-	    // User the time is logged for
-	    "user":{
-	    	"id": : 5538,
-	    	"email": "john.test@test.com",
-	    	"first_name": "John",
-	    	"last_name": "Test",
-	    	"avatar":{
-	    		"id": 5538,
-	    		"thumbnail": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
-  				"avatar": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
-	    	},
-	    	"url": "http://apitest.letsfreckle.com/api/users/5538",
-	    }
-
-	    // false if entry or project are unbillable
-	    "billable": true,
-	    // logged time in minutes (integer)
-	    "minutes": 60,
-	    // full description text (includes tags)
-	    "description": "freckle",
-
-	    // All following fields are OPTIONAL
-	    // (optional) the project this entry was created for
-	    "project": {
-	    	"id": 37396,
-	    	"name":"Gear GmbH",
-	    	"stepping": 10,
-	    	"enabled":  true,
-	    	"billable": true,
-	    	"color_hex": "ff9898",
-	    	"url": "http://apitest.letsfreckle.com/api/projects/37396",
-    	},
-	    // (optional) array of tags assigned to entry
-	    "tags": [
-	      {
-	      	"id": 249397,
-	        "name": "freckle",
-	        "billable": true,
-	        "url": "http://apitest.letsfreckle.com/api/tags/249397"
-	      }
-	    ],
-	    // (optional) link to the source of the entry (e.g. Github commit)
-	    "source_url": null,
-	    // (optional) UTC timestamp when entry was added to an invoice
-	    "invoiced_at": "2012-01-10T08:33:29Z",
-	    // (optional) The invoice this project has been assigned to
-	    "invoice": {
-	    	"id" : 12345678,
-	    	"invoice_number": "AA001",
-	    	"state": "unpaid",
-	    	"total": 189.33,
-	    	"url": "http://apitest.letsfreckle.com/api/invoices/12345678",
-	    }
-	    // (optional) The import this entry was generated from
-	    "import": {
-	    	"id": 8910,
-	    	"url": "http://apitest.letsfreckle.com/api/imports/8910"
-	    },
-	    //a url to this entry
-	    "url": "http://apitest.letsfreckle.com/api/entries/1711626"
-
-	    // UTC timestamp when entry was created
-	    "created_at": "2012-01-09T08:33:29Z",
-	    // UTC timestamp when entry was last updated
-	    "updated_at": "2012-01-09T08:33:29Z",
-	  }
-	}
+<%= json :entry %>
 
 ## List Entries
 
+Get all the entries, sorted by the most recent entry date.
+
+~~~
+GET /entries/
+~~~
+
+### Parameters
+
+Each parameter passed will filter the results, and parameters are chainged (meaning that if you search by `users` and `projects`, it will only return entries from those users for the specified projects).
+
+users
+: *Optional* **string**: a comma-separated list of user IDs to filter by.
+Example: `users=1,2,3`
+
+projects
+: *Optional* **string**: a comma-separated list of project IDs to filter by.
+Example: `projects=4,5,6`
+
+tags
+: *Optional* **string**: a comma-separated list of tags to filter by.
+
+tag_filter_type
+: *Optional* **string**: an indicator of how to filter by tags. Accepted values are: `and`, `any`. Defaults to: `and`
+
+from
+: *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`: Only entries from or after this date will be returned.
+
+to
+: *Optional* **string** of a date in ISO 8061 format: `YYYY-MM-DD`. Only entries on or before this date will be returned.
+
+billable
+: *Optional* **boolean**: `true` only shows billable entries, `false` only shows unbillable entries
+
+### Response
+
+<%= headers 200, :pagination => true %>
+<%= json :entry %>
+
 ## Get a single Entry
+
+~~~
+GET /entries/:id
+~~~
+
+<%= headers 200 %>
+<%= json :entry %>
 
 ## Create an Entry
 
+~~~
+POST /entries/
+~~~
+
+### Input
+
+date
+: *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the time entry.
+
+user
+: *Optional* **integer**: The ID of the user who logged this time entry. If no value is provided, the authenticated user will be used.
+
+minutes
+: *Required* **integer**: The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's "stepping" settings.
+
+description
+: *Optional* **string**: The description of the time entry. Any tags or hashtags will be automatically parsed.
+
+project
+: *Optional* **integer**: The ID of the project this time entry is logged under. If no value is provided, this time entry will not be logged under any project.
+
+source_url
+: *Optional* **string**: a URL that corresponds to the work completed in this time entry. An good example is a URL to a commit when [integrating with Github or Beanstalk](http://help.letsfreckle.com/import-export-api/log-time-from-commit-messages).
+
+<%= json :entry_editable_fields %>
+
+### Reponse
+
+<%= headers 201, :Location => "https://apitest.letsfreckle.com/api/entries/1" %>
+<%= json :entry %>
+
 ## Edit an Entry
 
+~~~
+PATCH /entry/:id
+~~~
+
+### Input
+
+date
+: *Optional* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the time entry.
+
+user
+: *Optional* **integer**: The ID of the user who logged this time entry. If no value is provided, the authenticated user will be used.
+
+minutes
+: *Optional* **integer**: The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's "stepping" settings.
+
+description
+: *Optional* **string**: The description of the time entry. Any tags or hashtags will be automatically parsed.
+
+project
+: *Optional* **integer**: The ID of the project this time entry is logged under. If no value is provided, this time entry will not be logged under any project.
+
+source_url
+: *Optional* **string**: a URL that corresponds to the work completed in this time entry. An good example is a URL to a commit when [integrating with Github or Beanstalk](http://help.letsfreckle.com/import-export-api/log-time-from-commit-messages).
+
+<%= json :entry_editable_fields %>
+
+### Response
+
+<%= headers 200 %>
+<%= json :entry %>
+
 ## Delete an Entry
+
+~~~
+DELETE /entries/:id
+~~~
+
+### Response
+
+<%= headers 204 %>
