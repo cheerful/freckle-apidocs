@@ -41,5 +41,62 @@ module Freckle
 			"title" => ACCOUNT["title"],
 			"address" => ACCOUNT["address"]
 		}
+
+		SIMPLE_PROJECT = {
+	  	"id" => 37396,
+	  	"name" =>"Gear GmbH",
+	  	"stepping" => 10,
+	  	"enabled" =>  true,
+	  	"billable" => true,
+	  	"color_hex" => "ff9898",
+	  	"url" => "http://apitest.letsfreckle.com/api/projects/37396",
+		}
+
+		SIMPLE_TAG = {
+    	"id" => 249397,
+      "name" => "freckle",
+      "billable" => true,
+      "url" => "http://apitest.letsfreckle.com/api/tags/249397"
+    }
+
+    SIMPLE_INVOICE = {
+	  	"id" => 12345678,
+	  	"invoice_number" => "AA001",
+	  	"state" => "unpaid",
+	  	"total" => 189.33,
+	  	"url" => "http://apitest.letsfreckle.com/api/invoices/12345678",
+	  }
+
+	  SIMPLE_IMPORT = {
+	  	"id" => 8910,
+	  	"url" => "http://apitest.letsfreckle.com/api/imports/8910"
+	  }
+
+	  ENTRY = {
+		  "id" => 1,
+		  "date" => "2012-01-09",
+		  "user" => SIMPLE_USER,
+		  "billable" => true,
+		  "minutes" => 60,
+		  "description" => "freckle",
+		  "project" => SIMPLE_PROJECT,
+		  "tags" => [SIMPLE_TAG],
+		  "source_url" => "http://someapp.com/special/url/",
+		  "invoiced_at" => "2012-01-10T08:33:29Z",
+		  "invoice" => SIMPLE_INVOICE,
+		  "import" => SIMPLE_IMPORT,
+		  "url" => "http://apitest.letsfreckle.com/api/entries/1711626",
+		  "created_at" => "2012-01-09T08:33:29Z",
+		  "updated_at" => "2012-01-09T08:33:29Z",
+		}
+
+		ENTRY_EDITABLE_FIELDS = {
+			"date" => ENTRY["date"],
+		  "user" => SIMPLE_USER["id"],
+		  "minutes" => ENTRY["minutes"],
+		  "description" => ENTRY["description"],
+		  "project" => SIMPLE_PROJECT["id"],
+		  "source_url" => ENTRY["source_url"],
+		}
 	end
 end
