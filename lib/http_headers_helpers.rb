@@ -22,12 +22,15 @@ module Freckle
 
       def headers(status, head = {})
         css_class = (status == 204 || status == 404) ? 'headers no-response' : 'headers'
+        pagination_resource = !head[:pagination_resource].nil? ? head[:pagination_resource] : 'resource'
         lines = ["Status: #{STATUSES[status]}"]
         head.each do |key, value|
           case key
             when :pagination
-              lines << 'Link: <https://apitest.letsfreckle.com/api/resource?page=2>; rel="next",'
-              lines << ' <https://apitest.letsfreckle.com/api/resource?page=5>; rel="last"'
+              lines << "Link: <https://apitest.letsfreckle.com/api/#{pagination_resource}?page=2>; rel=\"next\","
+              lines << " <https://apitest.letsfreckle.com/api/#{pagination_resource}?page=5>; rel=\"last\""
+            when :pagination_resource
+              nil
             else lines << "#{key}: #{value}"
           end
         end
