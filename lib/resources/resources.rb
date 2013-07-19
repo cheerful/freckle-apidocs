@@ -1,5 +1,33 @@
 module Freckle
 	module Resources
+		VALIDATION_ERROR_EXAMPLE = {
+       "message" => "Validation Failed",
+       "errors" => [
+        {
+          "resource" => "Entry",
+          "field" => "title",
+        	"code" => "missing_field"
+        }
+      ]
+		}
+
+		OAUTH_AUTHORIZATION_TOKEN = {
+      "id" => 1,
+      "url" => "https://apitest.letsfreckle.com/authorizations/1",
+      "scopes" => ["current_user","project"],
+      "token" => "abc123",
+      "app" => {
+        "url" => "http://dabestfreckleapp.com",
+        "name" => "Da Best Freckle App",
+        "client_id" => "98643ycvfjfswx"
+      },
+      "note" => "describes what the token is generated for",
+      "note_url" => "http://explanation.com/",
+      "updated_at" => "2011-09-06T20:39:23Z",
+      "created_at" => "2011-09-06T17:26:27Z"
+
+    }
+
 		SIMPLE_USER = {
 			"id" =>  5538,
 			"email" =>  "john.test@test.com",

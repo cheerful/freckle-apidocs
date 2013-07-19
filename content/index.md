@@ -3,321 +3,225 @@ layout: default
 title: Basics
 ---
 
-Freckle's RESTful API enables your application or script to 
-access **entries** (list/search, create, update, delete, mass import),
-**projects** (list, read, create, update, delete, archive, activate),
-**tags** (list) and **users** (list, read, create, update, deactivate, get avatar).
-
-Jump to: [Libraries](#libraries) | [URLs](#urls) | [Authentication](#authentication) 
-| [Pagination](#pagination) 
-| [Response codes](#codes) 
-| [Roles](#roles) | [Data formats](#formats) | [Field formats](#fields) 
-| [API Test Account](#test)
+# Introduction
 
 Many applications use the Freckle API every day, among them web applications
-like <a href="http://beanstalkapp.com">Beanstalk</a>, 
-<a href="http://github.com">GitHub</a> and 
-<a href="http://planscope.io">Planscope</a>, 
-native mobile and desktop applications
-like <a href="http://pigmentapp.com">Pigment</a> 
-and <a href="http://punch.fousa.be">Punch</a>
-as well as many internal applications that our customers write to integrate 
-with other software and services. Be creative!
+like [Beanstalk]("http://beanstalkapp.com"), [Github]("http://github.com"), and[Planscope]("http://planscope.io"); native mobile and desktop applications like [Pigment](http://pigmentapp.com) and [Punch](http://punch.fousa.be); as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you're using the Freckle API, please [send us an email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
 
-Freckle is also one of the many services listed on 
-<a href="https://zapier.com/zapbook/freckle/">Zapier</a>,
-which allows drag-and-drop integration of Freckle with other internet-based
-software (for example, you can send new Freckle entries to your Campfire chat room!).
+Freckle is also one of the many services listed on [Zapier](https://zapier.com/zapbook/freckle/) which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Campfire chat room!).
 
 Freckle's API docs are on Github: if you find an error or omission
-in the API documentation, you can help fix it quickly by cloning
-the <a href="https://github.com/cheerful/freckle-apidocs">Freckle API docs
-GitHub repository</a> and submitting a pull request!
+in the API documentation, you can help fix it quickly by [forking the Freckle API docs](https://github.com/cheerful/freckle-apidocs) and submitting a pull request!
 
-### API limitations
-
-We plan to extend and adapt the API to allow access to more resources
-in the future. If you have any questions or feedback, please don't hesitate
-to use the big blue feedback button on the left. Currently, there are no APIs
-for timers, expense tracking, invoices or assigning freelancers to projects.
-If you have specialized needs for an API, let us know!
-
-There are no API call limits in place, but we reserve the right to lock
-out abusive clients that call the API too often. Use common sense, caching,
-and don't do expensive API calls (mostly listing a lot of entries) too often.
-
-### Naming client applications
-
-If you plan to release a public client app for Freckle (such as a native 
-mobile app, regardless if it's paid-for or free) you're welcome to do so. 
-<i>Do not name apps "Freckle" or "Freckle for &lt;platform&gt;".</i>
-Please contact us first with more details about your app if you want to 
-use "Freckle" or the Freckle logo as name or icon of your app!
-
-<a id="libraries"></a>Freckle API Libraries
----------------------
+# [Freckle API Libraries](#libraries)
 
 There are several 3rd-party open source libraries for popular languages
 available:
 
-* Ruby: [letsfreckle-client]
-* Python: [ipmb/freckle]
-* Node.js: [nodefreckle]
-* Clojure: [clj-freckle]
+* Ruby: [letsfreckle-client](https://github.com/ryanlecompte/letsfreckle-client)
+* Python: [ipmb/freckle](https://github.com/ipmb/freckle)
+* Node.js: [nodefreckle](https://github.com/tbranyen/nodefreckle)
+* Clojure: [clj-freckle](https://github.com/mlehman/clj-freckle)
 
-Additionally, the command-line tool [Pippi] can log time and access
-other API functionality, which is great if you want to use the Freckle API
-from a shell script.
+Additionally, the command-line tool [Pippi](https://github.com/sirkitree/pippi) can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script.
 
 <p class="note">
 These are 3rd-party libraries and Freckle can't provide support for them.
 Please contact the library authors directly if you need help with these.
 </p>
 
-<a id="urls"></a>URLs
-----
+-----------
 
-Accessing the Freckle API uses the following URL schema:
+# API URL
 
-    https://<subdomain>.letsfreckle.com/api/<resource>
+The URL used to access the API is based on the subdomain of the account, and follows the format:
 
-Where **subdomain** is the subdomain of the account you want to access and 
-**resource** is the resource (e.g. entries, projects, tags, users and so on).
+~~~
+subdomain.letsfreckle.com/api
+~~~
 
-For example, getting a list of projects from the "apitest" account via JSON would 
-result in the URL:
+For example: if our account subdomain was: `apitest`, the API URL would be:
 
-    https://apitest.letsfreckle.com/api/projects.json
+~~~
+apitest.letsfreckle.com/api
+~~~
 
-Resources are normally accessed via SSL only. Some resources can also be 
-accessed through a regular HTTP request.
+# Schema
 
-<a id="authentication"></a>Authentication
---------------
+The following rules define the general schema of the API:
 
-An *authentication token* is needed for accessing the API. This token authenticates
-a specific user of the account and can be found in 
-<a href="http://letsfreckle.com/help/#faq_40">"settings & tools > API"</a> 
-in the Freckle user interface. Treat authentications tokens like passwords!
+* Only HTTPS traffic is allowed when accessing the API.
+* All data is sent and received as JSON, with the exception of [File Uploads](#file_uploads).
+* Blank fields are included as `null` in responses.
+* The ISO 8061 Date and Timestamp formats are used across the application (`YYYY-MM-DD` and `YYYY-MM-DDTHH:MM:SSZ` respectively).
 
-A user can reset the API token at any time—be sure to handle authentication errors
-in your application.
+# Client Errors
 
-The token has to be sent for each request your application makes to the Freckle API.
+There are a few errors that can occur while making API calls. the following are the kinds of errors you may encounter when using the API.
 
-There are two ways to send the token—examples are given using the [cURL] command line tool:
+## Invalid JSON
 
-As *query parameter* named `token`:
+<%= headers 400 %>
+<%= json :message => "JSON Parsing Error" %>
 
-{% highlight sh %}
-curl -v https://apitest.letsfreckle.com/api/projects.json?token=lx3gi6pxdjtjn57afp8c2bv1me7g89j
-{% endhighlight %}
+## Wrong type of JSON sent
 
-As *HTTP header* `X-FreckleToken`:
+<%= headers 400 %>
+<%= json :message => "Body should be JSON Hash" %>
 
-{% highlight sh %}
-curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
-{% endhighlight %}
+## The user does not have the necessary permissions to perform an action
 
-For better readability of URLs, in this documentation the HTTP header method will be used for
-the cURL examples. It's generally also a good idea to use the HTTP header method if you wrap
-Freckle API calls in a library or module in your code.
+<%= headers 401 %>
 
-<p class=note>
-In order to make it easier for users to authenticate in interactive client applications
-such as on mobile devices, the token can be retrieved via the 
-<code>/api/user/api_auth_token</code> API method by using HTTP Basic Auth with the
-user's email and password. See the Users section for more information.
-</p>
+## Fields were invalid
 
-## <a id="pagination"></a>Pagination
+<%= headers 422 %>
+<%= json :validation_error_example %>
 
-Most API resources are non-paginated, meaning they return the full result set.
-However [Entries](/entries.html#list) list is paginated, and more resources
-could become paginated in the future.
+### The `errors` array
 
-When there are more results available for a request, a "next" URL will be
-present in the `Link` response header
+When validation errors occur, the `errors` array is populated with hashes that explain why the request was invalid. Each hash has the following fields:
 
-    GET https://apitest.letsfreckle.com/api/entries.json
-    Link: <https://apitest.letsfreckle.com/api/entries.json?page=2&per_page=100>; rel="next"
+  * **resource**: The type of object the user was trying to affect.
 
-To get more results, simply repeat the request with the new URL until there are
-enough results in total, or there is no more "next" link (if it's necessary to
-fetch all data).
+  * **field**: The field where the error occured.
 
-It's safe to apply this logic to all API requests, even when fetching resources
-that are not currently paginated.
+  * **Code**: Why the request was invalid. The standard error codes are:
 
-<a id="codes"></a>Response codes and error handling
----------------------------------
+    * **missing**: the resource does not exist
+    * **missing_field**: a required field on the resource has not been set
+    * **already_exists**: another resource has the same value as this field.
+    * **Custom errors codes can be defined for resources, and will be documented in the resource's API page.**
 
-A call to the API can result in one of five different outcomes:
+# HTTP Redirection
 
-* Everything works fine—a HTTP status code in the 200 range is returned;
-  for reads and updates **`200 OK`** and for newly created resources **`201 Created`**
-  (which also return a `Location` header pointing to the newly created resource).
+HTTP Redirection will be used when appropriate, meaning that clients should assume any request may result in a redirection.
 
-* Authentication fails or the user's role doesn't permit an action: **`401 Unauthorized`**.
-  If your application is an interactive, you likely want to ask the user for
-  new security credentials and not use the API again until a new API token is provided.
-  Ideally, your interactive app doesn't ever run into the case that a users' role doesn't permit
-  an action, but it can happen especially if you cache data and it gets out of sync
-  (for example the projects a "freelancer" user has access to). If you run into this
-  issue, it's a good idea to invalidate your caches and fetch the data from the API again.
-  
-* On creating or updating, if required fields are missing, **`422 Unprocessable Entity`** is returned.
+Redirect responses will have a `Location` header field which contains the URI of the resource to which the client should repeat the requests.
 
-* There was an unhandled exception on the server side: **`500 Internal Server Error`**:
-  This is rare, but can happen in exceptional circumstances. The best thing to do
-  is to try the same call later.
+### Permanent Redirection
+<%= headers 301, :Location => "apitest.letsfreckle.com/api/new/url" %>
 
-* There's a timeout or a network issue and the connection is dropped without response.
-  This is rare but it does happen. Try the call again.
+This and all future requests should be directed to the new URI
 
-<a id="roles"></a>Roles
------
+### Temporary Redirection
+<%= headers 302, :Location => "apitest.letsfreckle.com/api/new/url" %>
+<%= headers 307, :Location => "apitest.letsfreckle.com/api/new/url" %>
 
-There are currently four user roles in Freckle: **`administrator`**, **`owner`**, **`member`**, and **`freelancer`**. 
+Repeat the request verbatim to the URI specified in the `Location` header, but clients should still continue to use th original URI in future requests
 
-Each Freckle user is assigned to one of these roles. Depending on the role, certain parts of the API
-may not be available. For each resource, this documentation explains which roles have access and 
-if there are any per-role restrictions (for example, a user with the "freelancer" role doesn't 
-have access to all projects).
+# Supported HTTP Verbs:
+
+**`HEAD`**
+: Can be issued against any resource to get just the HTTP header info
+
+**`GET`**
+
+**`POST`**
+
+**`PATCH`**
+: Used for updating resources with partial data. For instance, an Tag resource has `name`  and `billable` fields. A PATCH request may accept one or more attributes to update the resource. Since PATCH is relatively new and uncommon, resource endpoints also accept POST requests
+
+**`PUT`**
+: Used for replacing resources or collections and performing actions on a resource.
+
+**`DELETE`**
+
+# Authentication
+
+##Supported methods:
+
+* Basic Authentication
+* OAuth2 Token (sent in Header)
+* OAuth2 Token (sent as a parameter)
+* OAuth2 Key/Secret
+
+# Hypermedia
+
+All resources have one or more `*_url` properties linking to other resources. They are meant to provide explicit URLs so clients don't have to generate them. Using these URLs will make API upgrades easier for developers. All URLs follow [RFC 6570 URI templates](http://tools.ietf.org/html/rfc6570).
+
+## Example (Tag Object):
+
+<%= json :tag %>
+
+# Pagination
+
+Responses including multiple items will be paginated to 30 items by default. The page can be changed by using the `page` query parameter. Note that the `page` paremter starts with 1.
 
 
-<a id="formats"></a>Data Formats
-------------
+Some actions can use the `per_page` parameter, will be documented in the resource's API page.
 
-The Freckle API can accept and return data in JSON or XML. 
+## Link Header
 
-Because it's awesome, we'll mostly use examples in JSON in this documentation,
-however, XML works just as well.
+When pagination is used, the `Link` header includes the Used in Pagination. Clients should use these links instead of following their own, in case pagination rules change in the future.
 
-There's no default format—to choose the data format you need to either add
-a `.xml` or `.json` extension to URL you are calling, or set the
-`Accept` HTTP header to `text/xml` or `application/json`.
+~~~
+Link: <https://apitest.letsfreckle.com/api/users/?page=3&per_page=100>; rel="next",
+  <https://apitest.letsfreckle.com/api/users/?page=2&per_page=100>; rel="prev",
+  <https://apitest.letsfreckle.com/api/users/?page=1&per_page=100>; rel="first",
+  <https://apitest.letsfreckle.com/api/users/?page=50&per_page=100>; rel="last"
+~~~
 
-<a id="fields"></a>Field formats
--------------
+the `rel` attribute indicates what the URL links to:
 
-Freckle uses the following field formats:
+* **next**: shows the URL of the immediate next page of results
+* **last**: shows the URL of the last page of results
+* **first**: shows the URL of the first page of results
+* **prev**: shows the URL of the immediate previous page of results
 
-* **IDs** are stored as 4-byte integers (range 1 to 2147483647)
-* **Timestamps** are given UTC-based, e.g. `2012-01-09T08:33:29Z`
-* **Dates** are given YYYY-MM-DD, e.g. `2011-07-26`
+# User Agent Required
 
-There's limits on the text length of some fields, but, with the exception
-of tags which are limited to 30 characters, it's highly unlikely
-that you'll hit those.
+All API Requests must include a valid `User-Agent` header. Requests with no `User-Agent` header will be rejected. We recommend two options:
 
-<a id="test"></a>API Test Account
-----------------
+* Your Freckle account subdomain
+* The name of the application
 
-You can use our API test account for testing your code. The data from this test account 
-will be regularly wiped—don't rely on your test data being there the next day. Also note that you 
-might not be the only person using this token at a certain time.
+## Example:
+~~~
+User-Agent: DaBest-Freckle-App
+~~~
 
-Domain: `apitest.letsfreckle.com`<br>
+# Scopes
+
+Scopes specify the type of permissions that an API action accepts and your application needs access to. Scopes do not promise any additional permission beyond what the user already has (so if the user has read-only access to something, a "write" scope will not affect their ability to write)
+
+There are two parameters associated with Scopes:
+
+* **`X-OAuth-Scopes`**: the scopes your token has been authorized to access
+* **`X-Accepted-OAuth-Scopes`**: The scopes the current action checks for.
+
+The currently supported scopes are:
+
+* **current_user**: read/write access to profile info only. (includes: **user:email**)
+* **project**: read/write access to the projects the user has access to
+* **user**: Read/Write info for all the other users in the account
+* **entry**: Read/Write access to the current user's time entries
+* **tag**: read/write access to the tags in the account
+* **import**: read/write access to the imports in the account
+* **goal**: read/write access to the goals in the account
+* **invoice**: read/write access to the invoices in the account
+
+# [API Test Account](#test)
+
+You can use our API test account for testing your code. The data from this test account will be regularly wiped, so don't rely on your test data being there the next day. Also note that you might not be the only person using this token at a certain time.
+
+Domain: `apitest.letsfreckle.com`
 Token: `lx3gi6pxdjtjn57afp8c2bv1me7g89j`
 
-If you do any kind of non-trivial client application or have special needs for API testing,
-we recommend that you create a Freckle account specifically just for testing your application,
-so you can be sure your data stays intact while you develop!
+If you do any kind of non-trivial client application or have special needs for API testing, we recommend that you create a Freckle account specifically just for testing your application, so you can be sure your data stays intact while you develop!
 
 Try it now!
 
-<div class="tabs">
-<div class="selector">
-  <div class="json active">JSON</div>
-  <div class="xml">XML</div>
-</div>
-<div class="tab json active">
-{% highlight sh %}
+~~~
 $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
-{% endhighlight %}
+~~~
 
 Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/21d1e53251a9bf5941d0bd25aeb7557a3ca52a26"><img src="hurl.png" width="35"></a>.
 
-You should see something like:
+You should see something like this:
 
-{% highlight js %}
-[ 
-  { 
-    "project": {
-      "group_name": null,
-      "remaining_minutes": null,
-      "name": "From iPhone 5",
-      "billable": true,
-      "created_at": "2011-02-04T06:12:31Z",
-      "cached_tags": [ /* ... */ ],
-      "minutes": 15,
-      "import_id": null,
-      "updated_at": "2011-10-19T15:59:56Z",
-      "account_id": 5039,
-      "billable_minutes": 15,
-      "enabled": true,
-      "id": 40413,
-      "project_group_id": null,
-      "user_id": null,
-      "unbillable_minutes": 0,
-      "budget": null,
-      "color_hex": "55c9ef",
-      "budget_minutes": null,
-      "invoice_recipient_details": null,
-      "stepping": 15
-    }
-    /* ... */
-  }
-]
-{% endhighlight %}
-</div>
-<div class="tab xml">
-{% highlight sh %}
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
-{% endhighlight %}
+<%= json :project %>
 
-Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/d35c949a5d7d4fe2d8f94fd095f324825a70696a/ff572a02badd43a6e6e62d3a9f963c56c53e7fdc"><img src="hurl.png" width="35"></a>.
+# Acknowledgements
 
-You should see something like:
-
-{% highlight xml %}
-<?xml version="1.0" encoding="UTF-8"?>
-<projects type="array">
-  <project>
-    <account-id type="integer">5039</account-id>
-    <billable type="boolean">true</billable>
-    <billable-minutes type="integer">7440</billable-minutes>
-    <budget type="integer" nil="true"></budget>
-    <cached-tags type="yaml"><!-- YAML of cached tags --></cached-tags>
-    <color-hex>13a480</color-hex>
-    <created-at type="date time">2009-10-16T09:04:50Z</created-at>
-    <enabled type="boolean">true</enabled>
-    <id type="integer">8475</id>
-    <import-id type="integer" nil="true"></import-id>
-    <invoice-recipient-details nil="true"></invoice-recipient-details>
-    <minutes type="integer">7560</minutes>
-    <name>Fixture Company</name>
-    <project-group-id type="integer" nil="true"></project-group-id>
-    <stepping type="integer">5</stepping>
-    <unbillable-minutes type="integer">120</unbillable-minutes>
-    <updated-at type="date time">2011-10-19T15:59:56Z</updated-at>
-    <user-id type="integer" nil="true"></user-id>
-    <minutes type="integer">7560</minutes>
-    <budget-minutes nil="true"></budget-minutes>
-    <remaining-minutes nil="true"></remaining-minutes>
-    <unbillable-minutes type="integer">120</unbillable-minutes>
-    <group-name nil="true"></group-name>
-  </project>
-  <!-- ...more projects -->
-</projects>
-{% endhighlight %}
-</div>
-</div>
-
-[letsfreckle-client]: https://github.com/ryanlecompte/letsfreckle-client
-[ipmb/freckle]: https://github.com/ipmb/freckle
-[nodefreckle]: https://github.com/tbranyen/nodefreckle
-[clj-freckle]: https://github.com/mlehman/clj-freckle
-[Pippi]: https://npmjs.org/package/pippi
-[cURL]: http://curl.haxx.se
+The design of the Freckle API is based on [Github's v3 API](http://developer.github.com/v3). Thanks to them for creating an excellent API design.
