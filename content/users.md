@@ -124,7 +124,7 @@ role
 
 ### Response
 
-<%= header 200 %>
+<%= headers 200 %>
 <%= json :user %>
 
 ## Edit a User
@@ -153,7 +153,7 @@ role
 
 ### Response
 
-<%= header 200 %>
+<%= headers 200 %>
 <%= json :user %>
 
 ## Resend a pending user's invitation email
