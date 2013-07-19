@@ -90,10 +90,20 @@ module Freckle
 			"address" => ACCOUNT["address"]
 		}
 
+    SIMPLE_PROJECT = {
+	  	"id" => 37396,
+	  	"name" =>"Gear GmbH",
+	  	"stepping" => 10,
+	  	"enabled" =>  true,
+	  	"billable" => true,
+	  	"color_hex" => "ff9898",
+	  	"url" => "http://apitest.letsfreckle.com/api/projects/37396",
+		}
+
 		SIMPLE_PROJECT_GROUP = {
-    	"id" => SIMPLE_PROJECT["id"],
-    	"name" => SIMPLE_PROJECT["name"],
-    	"url" => SIMPLE_PROJECT["url"]
+    	"id" => 3768,
+    	"name" => "Sprockets, Inc.",
+    	"url" => "http://apitest.letsfreckle.com/api/project_groups/3768"
     }
 
 	  PROJECT_GROUP = {
@@ -112,113 +122,14 @@ module Freckle
 
 		PROJECT_GROUP_CREATE_FIELDS = {
 			"name" => PROJECT_GROUP["name"],
-			"projects" => [PROJECT["id"]],
+			"projects" => [1,2,3],
 		}
 
 		PROJECT_GROUP_EDIT_FIELDS = {
 			"name" => PROJECT_GROUP["name"]
 		}
 
-		SIMPLE_PROJECT = {
-	  	"id" => 37396,
-	  	"name" =>"Gear GmbH",
-	  	"stepping" => 10,
-	  	"enabled" =>  true,
-	  	"billable" => true,
-	  	"color_hex" => "ff9898",
-	  	"url" => "http://apitest.letsfreckle.com/api/projects/37396",
-		}
-
-		PROJECT_GOAL = {
-    	"id" => 445566,
-    	"budgeted_minutes" => 500,
-    	"total_logged_minutes" => 300,
-    	"billable_logged_minutes" => 200,
-    	"unbillable_logged_minutes" => 100,
-    	"starts_on" => "2001-01-02",
-    	"ends_on" => "2001-01-03",
-    	"recurring_goal" =>{
-    		"id" => 8899,
-    		"renews" =>"yearly",
-    		"budgeted_minutes" => 1000,
-    		"starts_on" => "2001-01-02",
-    		"ends_on" => "2001-01-03",
-    		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
-    	},
-    	"url" =>"http://apitest.letsfreckle.com/api/goals/445566"
-    }
-
-    PROJECT_GOAL_EDITABLE_FIELDS = {
-    	"budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
-    	"starts_on" => PROJECT_GOAL["starts_on"],
-    	"ends_on" => PROJECT_GOAL["ends_on"],
-    }
-
-    PROJECT_RECURRING_GOAL = {
-  		"id" => 8899,
-  		"renews" =>"yearly",
-  		"budgeted_minutes" => 1000,
-  		"starts_on" => "2001-01-02",
-  		"ends_on" => "2001-01-03",
-
-  		"goals" => [PROJECT_GOAL],
-
-  		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
-  	}
-
-  	PROJECT_GOAL_CREATE_FIELDS = {
-  		"budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
-    	"starts_on" => PROJECT_GOAL["starts_on"],
-    	"ends_on" => PROJECT_GOAL["ends_on"],
-    	"renews" => "yearly"
-  	}
-
-
-
-		PROJECT = SIMPLE_PROJECT.merge({
-	    "project_group" => SIMPLE_PROJECT_GROUP,
-	    "minutes" => 180,
-	    "billable_minutes" => 120,
-	    "unbillable_minutes" => 60,
-	    "invoiced_minutes" => 120,
-	    "remaining_minutes" => 630,
-	    "budget_minutes" => 750,
-
-	    "import" => IMPORT,
-	    "invoices" => [SIMPLE_INVOICE],
-	    "participants" => [SIMPLE_USER],
-	    "goals" => [PROJECT_GROUP],
-	    "recurring_goals" => [PROJECT_RECURRING_GOAL],
-
-	    "entries" => 0,
-	    "entries_url" =>"http://apitest.letsfreckle.com/api/projects/34580/entries",
-	    "expenses" => 0,
-	    "expenses_url" => "http://apitest.letsfreckle.com/api/projects/34580/expenses",
-	    "url" =>"http://apitest.letsfreckle.com/api/projects/34580",
-	    "created_at" => "2012-01-09T08:33:29Z",
-	    "updated_at" => "2012-01-09T08:33:29Z",
-	  })
-
-		SIMPLE_TAG = {
-    	"id" => 249397,
-      "name" => "freckle",
-      "billable" => true,
-      "url" => "http://apitest.letsfreckle.com/api/tags/249397"
-    }
-
-    TAG = SIMPLE_TAG.merge({
-			"import" => {
-				"id" => 8910,
-				"url" => "http://apitest.letsfreckle.com/api/imports/8910"
-			},
-			"entries" => 0,
-			"entries_url" => "http://apitest.letsfreckle.com/api/tags/55629/entries",
-
-			"created_at" => "2010-06-09T20:44:57Z",
-			"updated_at" => "2010-06-09T20:44:57Z",
-    })
-
-	  SIMPLE_IMPORT = {
+		SIMPLE_IMPORT = {
 	  	"id" => 8910,
 	  	"url" => "http://apitest.letsfreckle.com/api/imports/8910"
 	  }
@@ -297,6 +208,101 @@ module Freckle
 			"entries_imported" => 48
 		}
 
+		PROJECT_GOAL = {
+    	"id" => 445566,
+    	"budgeted_minutes" => 500,
+    	"total_logged_minutes" => 300,
+    	"billable_logged_minutes" => 200,
+    	"unbillable_logged_minutes" => 100,
+    	"starts_on" => "2001-01-02",
+    	"ends_on" => "2001-01-03",
+    	"recurring_goal" =>{
+    		"id" => 8899,
+    		"renews" =>"yearly",
+    		"budgeted_minutes" => 1000,
+    		"starts_on" => "2001-01-02",
+    		"ends_on" => "2001-01-03",
+    		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
+    	},
+    	"url" =>"http://apitest.letsfreckle.com/api/goals/445566"
+    }
+
+    PROJECT_GOAL_EDITABLE_FIELDS = {
+    	"budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
+    	"starts_on" => PROJECT_GOAL["starts_on"],
+    	"ends_on" => PROJECT_GOAL["ends_on"],
+    }
+
+    PROJECT_RECURRING_GOAL = {
+  		"id" => 8899,
+  		"renews" =>"yearly",
+  		"budgeted_minutes" => 1000,
+  		"starts_on" => "2001-01-02",
+  		"ends_on" => "2001-01-03",
+
+  		"goals" => [PROJECT_GOAL],
+
+  		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
+  	}
+
+  	PROJECT_GOAL_CREATE_FIELDS = {
+  		"budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
+    	"starts_on" => PROJECT_GOAL["starts_on"],
+    	"ends_on" => PROJECT_GOAL["ends_on"],
+    	"renews" => "yearly"
+  	}
+
+  	SIMPLE_INVOICE = {
+	  	"id" => 12345678,
+	  	"invoice_number" => "AA001",
+	  	"state" => "unpaid",
+	  	"total" => 189.33,
+	  	"url" => "http://apitest.letsfreckle.com/api/invoices/12345678",
+	  }
+
+		PROJECT = SIMPLE_PROJECT.merge({
+	    "project_group" => SIMPLE_PROJECT_GROUP,
+	    "minutes" => 180,
+	    "billable_minutes" => 120,
+	    "unbillable_minutes" => 60,
+	    "invoiced_minutes" => 120,
+	    "remaining_minutes" => 630,
+	    "budget_minutes" => 750,
+
+	    "import" => IMPORT,
+	    "invoices" => [SIMPLE_INVOICE],
+	    "participants" => [SIMPLE_USER],
+	    "goals" => [PROJECT_GROUP],
+	    "recurring_goals" => [PROJECT_RECURRING_GOAL],
+
+	    "entries" => 0,
+	    "entries_url" =>"http://apitest.letsfreckle.com/api/projects/34580/entries",
+	    "expenses" => 0,
+	    "expenses_url" => "http://apitest.letsfreckle.com/api/projects/34580/expenses",
+	    "url" =>"http://apitest.letsfreckle.com/api/projects/34580",
+	    "created_at" => "2012-01-09T08:33:29Z",
+	    "updated_at" => "2012-01-09T08:33:29Z",
+	  })
+
+		SIMPLE_TAG = {
+    	"id" => 249397,
+      "name" => "freckle",
+      "billable" => true,
+      "url" => "http://apitest.letsfreckle.com/api/tags/249397"
+    }
+
+    TAG = SIMPLE_TAG.merge({
+			"import" => {
+				"id" => 8910,
+				"url" => "http://apitest.letsfreckle.com/api/imports/8910"
+			},
+			"entries" => 0,
+			"entries_url" => "http://apitest.letsfreckle.com/api/tags/55629/entries",
+
+			"created_at" => "2010-06-09T20:44:57Z",
+			"updated_at" => "2010-06-09T20:44:57Z",
+    })
+
 	  ENTRY = {
 		  "id" => 1,
 		  "date" => "2012-01-09",
@@ -349,14 +355,6 @@ module Freckle
 			"project" => SIMPLE_PROJECT["id"]
 		}
 
-		SIMPLE_INVOICE = {
-	  	"id" => 12345678,
-	  	"invoice_number" => "AA001",
-	  	"state" => "unpaid",
-	  	"total" => 189.33,
-	  	"url" => "http://apitest.letsfreckle.com/api/invoices/12345678",
-	  }
-
 	  INVOICE_CUSTOMIZATION = {
       "title" => "Invoice",
       "date" => "Date",
@@ -403,14 +401,14 @@ module Freckle
     INVOICE_PAYMENT_TYPE_FIELDS = {
     	#accepted values: default, simple_hourly_rate, custom_hourly_rates, flat_rate
     	"payment_type" => "custom_hourly_rates",
-			# if simple_hourly_rate or custom_hourly_rate are selected: "simple_hourly_rate": 30.75,
+			# if simple_hourly_rate or custom_hourly_rate are selected: "simple_hourly_rate" => 30.75,
 			"custom_hourly_rates" => [
 				{
 					"user" => "id or simple_user_object",
 					"hourly_rate" => 15.25,
 				},
 			],
-			# if flat_rate is selected: "flat_rate": 11000.72,
+			# if flat_rate is selected: "flat_rate" => 11000.72,
     }
 
     INVOICE_ENTRY_AND_EXPENSES_SELECTION_FIELDS = {
@@ -559,3 +557,5 @@ module Freckle
     }
 	end
 end
+
+include Freckle::Resources
