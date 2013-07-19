@@ -3,33 +3,76 @@ layout: default
 title: Tag
 ---
 
-# Tag API
-
 ## Tag Object Specification
-
-	{
-	  "tag": {
-	  	"id": 55629
-	  	//the text of the tag
-	    "name": "meeting",
-	    //the boolean indicating whether the tag is considered billable
-	    "billable": true,
-
-	    "import": {
-	    	"id": 8910,
-	    	"url": "http://apitest.letsfreckle.com/api/imports/8910"
-	    },
-
-	    //the number of entries which include this tag
-	    "entries": 0,
-	    "entries_url": "http://apitest.letsfreckle.com/api/tags/55629/entries",
-
-	    "url": "http://apitest.letsfreckle.com/api/tags/55629"
-	    "created_at": "2010-06-09T20:44:57Z",
-	    "updated_at": "2010-06-09T20:44:57Z",
-	  }
-	}
+<%= json :tag %>
 
 ## List all Tags
 
-## List all entries for a tag
+~~~
+GET /tags/
+~~~
+
+### Parameters
+
+name
+: *Optional* **string**: Only tags containing this string will be returned.
+
+billable
+: *Optional* **boolean**: `true` returns all billable tags, `false` returns all unbillable tags.
+
+### Response
+
+<%= headers 200, :pagination => true, :pagination_resource => "tags" %>
+<%= json :tag %>
+
+## Get a single tag
+
+~~~
+GET /tags/:id
+~~~
+
+### Response
+
+<%= headers 200 %>
+<%= json :tag %>
+
+## Get the entries for a tag
+
+~~~
+GET /tags/:id/entries
+~~~
+
+### Parameters
+
+You can use the parameters specified in the [Entry API's List Action](/entries/index.html#list) to further limit the results
+
+### Response
+
+<%= headers 200, :pagination => true, :pagination_resource => "tags/:id/entries" %>
+<%= json :entry %>
+
+## Edit a Tag
+
+~~~
+PATCH /tags/:id
+~~~
+
+### Inputs
+
+name
+: *Optional* **string**: the new name for the tag. add "*" at the end to make the tag unbillable.
+
+### Response
+
+<%= headers 200 %>
+<%= json :tag %>
+
+## Delete a Tag
+
+~~~
+DELETE /tags/:id
+~~~
+
+### Response
+
+<%= headers 204 %>

@@ -13,6 +13,46 @@ module Freckle
 			"url" =>  "http=> //apitest.letsfreckle.com/api/users/5538",
 		}
 
+		USER = {
+	    "id" => 5538,
+	    "email" => "john.test@test.com",
+	    "first_name" => "John",
+	    "last_name" => "Test",
+	    "avatar" =>{
+	      "id" => 5538,
+	      "thumbnail" => "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
+	      "avatar" => "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
+	    },
+	    "state" =>"active",
+	    "role" => "member",
+
+	    "participating_projects" => 0,
+	    "participating_projects_url" => "http://apitest.letsfreckle.com/api/users/5538/participating_projects",
+
+	    "accessible_projects" => 0,
+	    "accessible_projects_url" => "http://apitest.letsfreckle.com/api/users/5538/accessible_projects",
+
+	    "entries" => 0,
+	    "entries_url" => "http://apitest.letsfreckle.com/api/users/5538/entries",
+
+	    "expenses" => 0,
+	    "expenses_url" => "http://apitest.letsfreckle.com/api/users/5538/entries",
+
+	    "add_project_access" => "http://apitest.letsfreckle.com/api/users/5538/project_access/add",
+	    "remove_project_access" => "http://apitest.letsfreckle.com/api/users/5538/project_access/remove",
+
+	    "url" => "http://apitest.letsfreckle.com/api/users/5538",
+	    "created_at" => "2010-06-09T20:44:57Z",
+	    "updated_at" => "2010-06-09T20:44:57Z",
+	  }
+
+	  USER_EDITABLE_FIELDS = {
+	  	"email" => USER["email"],
+	  	"first_name" => USER["first_name"],
+	  	"last_name" => USER["last_name"],
+	  	"role" => USER["role"]
+	  }
+
 		ACCOUNT = {
 			"id" =>  3344,
 			"plan_name" =>  "Freelancer",
@@ -42,6 +82,35 @@ module Freckle
 			"address" => ACCOUNT["address"]
 		}
 
+		SIMPLE_PROJECT_GROUP = {
+    	"id" => SIMPLE_PROJECT["id"],
+    	"name" => SIMPLE_PROJECT["name"],
+    	"url" => SIMPLE_PROJECT["url"]
+    }
+
+	  PROJECT_GROUP = {
+			"id" => 3768,
+	  	"name" => "Sprockets, Inc.",
+	  	"projects" => [SIMPLE_PROJECT],
+	    "participants" => [SIMPLE_USER],
+	  	"url" => "http://apitest.letsfreckle.com/api/project_groups/3768",
+	  	"entries_url" => "http://apitest.letsfreckle.com/api/project_groups/3768/entries/",
+			"invoices_url" => "http://apitest.letsfreckle.com/api/project_groups/3768/invoices/",
+			"projects_url" => "http://apitest.letsfreckle.com/api/project_groups/3768/projects/",
+	    "created_at" => "2012-01-09T08:33:29Z",
+	    "updated_at" => "2012-01-09T08:33:29Z",
+		}
+
+
+		PROJECT_GROUP_CREATE_FIELDS = {
+			"name" => PROJECT_GROUP["name"],
+			"projects" => [PROJECT["id"]],
+		}
+
+		PROJECT_GROUP_EDIT_FIELDS = {
+			"name" => PROJECT_GROUP["name"]
+		}
+
 		SIMPLE_PROJECT = {
 	  	"id" => 37396,
 	  	"name" =>"Gear GmbH",
@@ -52,13 +121,54 @@ module Freckle
 	  	"url" => "http://apitest.letsfreckle.com/api/projects/37396",
 		}
 
+		PROJECT_GOAL = {
+    	"id" => 445566,
+    	"budgeted_minutes" => 500,
+    	"total_logged_minutes" => 300,
+    	"billable_logged_minutes" => 200,
+    	"unbillable_logged_minutes" => 100,
+    	"starts_on" => "2001-01-02",
+    	"ends_on" => "2001-01-03",
+    	"recurring_goal" =>{
+    		"id" => 8899,
+    		"renews" =>"yearly",
+    		"budgeted_minutes" => 1000,
+    		"starts_on" => "2001-01-02",
+    		"ends_on" => "2001-01-03",
+    		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
+    	},
+    	"url" =>"http://apitest.letsfreckle.com/api/goals/445566"
+    }
+
+    PROJECT_GOAL_EDITABLE_FIELDS = {
+    	"budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
+    	"starts_on" => PROJECT_GOAL["starts_on"],
+    	"ends_on" => PROJECT_GOAL["ends_on"],
+    }
+
+    PROJECT_RECURRING_GOAL = {
+  		"id" => 8899,
+  		"renews" =>"yearly",
+  		"budgeted_minutes" => 1000,
+  		"starts_on" => "2001-01-02",
+  		"ends_on" => "2001-01-03",
+
+  		"goals" => [PROJECT_GOAL],
+
+  		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
+  	}
+
+  	PROJECT_GOAL_CREATE_FIELDS = {
+  		"budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
+    	"starts_on" => PROJECT_GOAL["starts_on"],
+    	"ends_on" => PROJECT_GOAL["ends_on"],
+    	"renews" => "yearly"
+  	}
+
+
+
 		PROJECT = SIMPLE_PROJECT.merge({
-	    "project_group" =>
-	    {
-	    	"id" => 3768,
-	    	"name" => "Sprockets, Inc.",
-	    	"url" => "http://apitest.letsfreckle.com/api/project_groups/3768"
-	    },
+	    "project_group" => SIMPLE_PROJECT_GROUP,
 	    "minutes" => 180,
 	    "billable_minutes" => 120,
 	    "unbillable_minutes" => 60,
@@ -66,79 +176,12 @@ module Freckle
 	    "remaining_minutes" => 630,
 	    "budget_minutes" => 750,
 
-	    "import" => {
-	    	"id" => 8910,
-	    	"url" => "http://apitest.letsfreckle.com/api/imports/8910"
-	    },
+	    "import" => IMPORT,
+	    "invoices" => [SIMPLE_INVOICE],
+	    "participants" => [SIMPLE_USER],
+	    "goals" => [PROJECT_GROUP],
+	    "recurring_goals" => [PROJECT_RECURRING_GOAL],
 
-	    "invoices" => [
-		    {
-		    	"id" => 12345678,
-		    	"invoice_number" => "AA001",
-		    	"state" => "unpaid",
-		    	"total" => 189.33,
-		    	"url" => "http://apitest.letsfreckle.com/api/invoices/12345678",
-		    }
-	    ],
-
-	    "participants" => [
-	    	{
-		    	"id" => 5538,
-		    	"email" => "john.test@test.com",
-		    	"first_name" => "John",
-		    	"last_name" => "Test",
-		    	"avatar" =>{
-		    		"id" => 5538,
-		    		"thumbnail" => "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
-	  				"avatar" => "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
-		    	},
-		    	"url" => "http://apitest.letsfreckle.com/api/users/5538",
-		    }
-	    ],
-
-	    "goals" => [
-	    	{
-		    	"id" => 445566,
-		    	"budgeted_minutes" => 500,
-		    	"total_logged_minutes" => 300,
-		    	"billable_logged_minutes" => 200,
-		    	"unbillable_logged_minutes" => 100,
-		    	"starts_on" => "2001-01-02",
-		    	"ends_on" => "2001-01-03",
-		    	"recurring_goal" =>{
-		    		"id" => 8899,
-		    		"renews" =>"yearly",
-		    		"budgeted_minutes" => 1000,
-		    		"starts_on" => "2001-01-02",
-		    		"ends_on" => "2001-01-03",
-		    		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
-		    	},
-		    	"url" =>"http://apitest.letsfreckle.com/api/goals/445566"
-		    }
-	    ],
-
-	    "recurring_goals" => [
-    		{
-	    		"id" => 8899,
-	    		"renews" =>"yearly",
-	    		"budgeted_minutes" => 1000,
-	    		"starts_on" => "2001-01-02",
-	    		"ends_on" => "2001-01-03",
-
-	    		"goals" => [
-	    			"id" => 445566,
-			    	"budgeted_minutes" => 500,
-			    	"total_logged_minutes" => 300,
-			    	"billable_logged_minutes" => 200,
-			    	"unbillable_logged_minutes" => 100,
-			    	"starts_on" => "2001-01-02",
-			    	"ends_on" => "2001-01-03",
-			    	"url" =>"http://apitest.letsfreckle.com/api/goals/445566"
-	    		],
-
-	    		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
-	    	}
-		  ],
 	    "entries" => 0,
 	    "entries_url" =>"http://apitest.letsfreckle.com/api/projects/34580/entries",
 	    "expenses" => 0,
