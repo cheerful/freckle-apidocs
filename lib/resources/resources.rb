@@ -167,14 +167,6 @@ module Freckle
 			"updated_at" => "2010-06-09T20:44:57Z",
     })
 
-    SIMPLE_INVOICE = {
-	  	"id" => 12345678,
-	  	"invoice_number" => "AA001",
-	  	"state" => "unpaid",
-	  	"total" => 189.33,
-	  	"url" => "http://apitest.letsfreckle.com/api/invoices/12345678",
-	  }
-
 	  SIMPLE_IMPORT = {
 	  	"id" => 8910,
 	  	"url" => "http://apitest.letsfreckle.com/api/imports/8910"
@@ -305,5 +297,214 @@ module Freckle
 			"description" => EXPENSE["description"],
 			"project" => SIMPLE_PROJECT["id"]
 		}
+
+		SIMPLE_INVOICE = {
+	  	"id" => 12345678,
+	  	"invoice_number" => "AA001",
+	  	"state" => "unpaid",
+	  	"total" => 189.33,
+	  	"url" => "http://apitest.letsfreckle.com/api/invoices/12345678",
+	  }
+
+	  INVOICE_CUSTOMIZATION = {
+      "title" => "Invoice",
+      "date" => "Date",
+      "project" => "Projects",
+      "reference" => "Invoice reference",
+      "total_due" => "Total amount due",
+      "summary" => "Summary",
+      "work_time" => "work time",
+      "no_tax" => "no tax",
+      "tax" => "tax",
+      "subtotal" => "subtotal",
+      "total" => "TOTAL",
+      "report" => "Report",
+      "locale" => "en-US",
+      "currency_name" => "",
+      "currency_symbol" => "$",
+      "taxable_total" => "Total taxable",
+      "tax_total" => "Total tax",
+      "taxfree_total" => "Total taxfree",
+      "total_report" => "TOTAL",
+      "custom_css" => nil,
+      "custom_html" => "",
+      "allow_paypal_invoice" => true,
+      "paypal_invoice_title" => "",
+      "paypal_currency_code" => "USD",
+      "paypal_address" => "payment@test.com",
+
+      "created_at" => "2013-04-24T17:39:51Z",
+      "updated_at" => "2013-04-24T17:39:51Z",
+    }
+
+    INVOICE_CUSTOM_HOURLY_RATE = {
+      "id" => 446655,
+      "user" => SIMPLE_USER,
+      "rate" => 30.50,
+      "hourly_rate_with_currency" => "$30.50"
+    }
+
+    INVOICE_PAYMENT_TYPE = {
+    	"payment_type" => "custom_hourly_rates",
+    	"custom_hourly_rates" => [INVOICE_CUSTOM_HOURLY_RATE]
+    }
+
+    INVOICE_PAYMENT_TYPE_FIELDS = {
+    	#accepted values: default, simple_hourly_rate, custom_hourly_rates, flat_rate
+    	"payment_type" => "custom_hourly_rates",
+			# if simple_hourly_rate or custom_hourly_rate are selected: "simple_hourly_rate": 30.75,
+			"custom_hourly_rates" => [
+				{
+					"user" => "id or simple_user_object",
+					"hourly_rate" => 15.25,
+				},
+			],
+			# if flat_rate is selected: "flat_rate": 11000.72,
+    }
+
+    INVOICE_ENTRY_AND_EXPENSES_SELECTION_FIELDS = {
+    	"entries_and_expenses_selection" => "all_uninvoiced",
+    	"from" => "2013-01-01",
+    	"to" => "2013-01-01"
+    }
+
+    INVOICE_TAX = {
+      "id" => 88292,
+     	#the name of the tax
+      "name" =>"Sales Tax",
+     	#the numeric value of the percentage of the tax
+      "percentage" => 15.00,
+    }
+
+    INVOICE_TAX_FIELDS = {
+    	#the name of the tax
+      "name" =>"Sales Tax",
+     	#the numeric value of the percentage of the tax
+      "percentage" => 15.00,
+    }
+
+	  INVOICE = {
+			#basic invoice information
+			"id" => 26642,
+      #the current state of the invoice
+			"state" => "awaiting_payment",
+      #the displayed number for the invoice
+			"invoice_number" => "",
+	    #the generated name for the invoice
+			"name" => "Knockd, Freckle Support",
+	    #whether the invoice is currently locked due to a pending paypal payment attempt
+			"locked" => false,
+
+			#invoice display information
+			"from" => "2013-07-01T04:00:00Z",
+			"to" => "2013-07-31T04:00:00Z",
+      "company_name" => "Thomas Cannon",
+      "company_details" => "4 Boxthorne Court\\r\\nGreenville, SC 29615",
+      "recipient_details" => "",
+			"description" => "",
+			"invoice_date" => "2013-07-09",
+			"footer" => "",
+			"show_hours" => true,
+			"show_details" => false,
+			"show_summaries" => false,
+
+       #the customizations for the invoice
+      "customization" => INVOICE_CUSTOMIZATION,
+
+			#calculation fields
+
+      #a boolean used to determine if unpaid expenses are included in the invoice
+			"include_expenses" => true,
+      #indicates the payment type for the invoice (whether hourly or flat-rate)
+      "payment_type" => INVOICE_PAYMENT_TYPE,
+
+      "taxes" => [INVOICE_TAX],
+      #the amount of the invoice which is taxable
+			"amount_taxable" => 100,
+      #the amount of the invoice which is tax-free
+			"amount_taxfree" => 0,
+      #the total amount of tax owed
+			"amount_tax_total" => 0,
+
+      #the numerical invoice total
+			"amount_total" => 1,
+      #the invoice total prepended formatted in the invoice's currency
+			"amount_total_with_currency" => "$1.00",
+
+			# payment information
+
+      #the token used to generate the share URL
+			"token" => "bqrnbojlbxqswtq9xla9uc40z",
+      #the paypal payment details for this invoice
+			"payment" => nil,
+
+      #a read-only breakdown of payment activity for this invoice
+      "payment_transactions" =>[
+          {
+              "description" => "Notified that payment has been completed",
+              "state" => "paid",
+              "payment_method" => "paypal",
+              "reference" => "AP-AAAAABBBCCCCDDD111",
+              "created_at" => "2013-07-09T23:04:05Z",
+              "updated_at" => "2013-07-09T23:04:06Z",
+          }
+      ],
+
+      "projects" => [SIMPLE_PROJECT],
+
+      #a count of all the entries in the invoice
+      "entries" =>0,
+      #the url to view all of the entries for this invoice
+      "entries_url" => "http#apitest.letsfreckle.com/invoices/26642/entries",
+
+      #a count of all the expenses in the invoice
+      "expenses" => 0,
+      #the url to view all of the expenses for this invoice
+      "expenses_url" => "http#apitest.letsfreckle.com/invoices/26642/expenses",
+
+      "created_at" => "2013-07-09T23:04:05Z",
+      "updated_at" => "2013-07-09T23:04:06Z",
+
+      #deprecated fields?
+      "from_address" => nil,
+      "to_address" => nil,
+      "tax_in_percent" => nil,
+      "tax" => nil,
+      "total" => nil,
+      "subtotal" => nil,
+    }
+
+    INVOICE_CREATE_FIELDS = {
+    	"date" => INVOICE["date"],
+    	"invoice_number" => INVOICE["invoice_number"],
+    	"company_name" => INVOICE["company_name"],
+    	"company_details" => INVOICE["company_details"],
+    	"recipient" => INVOICE["recipient"],
+    	"description" => INVOICE["description"],
+    	"footer" => INVOICE["footer"],
+    	"show_hours" => INVOICE["show_hours"],
+    	"show_details" => INVOICE["show_details"],
+    	"payment_type" => INVOICE_PAYMENT_TYPE_FIELDS,
+    	"entries_and_expenses_selection" => INVOICE_ENTRY_AND_EXPENSES_SELECTION_FIELDS,
+    	"projects" => [PROJECT["id"]],
+    	"entries" => [ENTRY["id"]],
+    	"expenses" => [EXPENSE["id"]],
+    	"include_expenses" => INVOICE["include_expenses"],
+    	"taxes" => [INVOICE_TAX_FIELDS],
+    	"customization" => INVOICE_CUSTOMIZATION
+    }
+
+    INVOICE_EDIT_FIELDS = {
+    	"date" => INVOICE["date"],
+    	"invoice_number" => INVOICE["invoice_number"],
+    	"company_name" => INVOICE["company_name"],
+    	"company_details" => INVOICE["company_details"],
+    	"recipient" => INVOICE["recipient"],
+    	"description" => INVOICE["description"],
+    	"footer" => INVOICE["footer"],
+    	"show_hours" => INVOICE["show_hours"],
+    	"show_details" => INVOICE["show_details"],
+    	"customization" => INVOICE_CUSTOMIZATION
+    }
 	end
 end
