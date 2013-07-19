@@ -449,7 +449,7 @@ module Freckle
 			#invoice display information
 			"from" => "2013-07-01T04:00:00Z",
 			"to" => "2013-07-31T04:00:00Z",
-      "company_name" => "Thomas Cannon",
+      "company_name" => "John Test",
       "company_details" => "4 Boxthorne Court\\r\\nGreenville, SC 29615",
       "recipient_details" => "",
 			"description" => "",
