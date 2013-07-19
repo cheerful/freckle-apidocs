@@ -3,6 +3,10 @@ require 'json'
 module Freckle
 	module Resources
 		module Helpers
+			def json_array(key)
+				[json(key)]
+			end
+
 			def json(key)
 			  hash = case key
 			    when Hash
