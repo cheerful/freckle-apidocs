@@ -46,6 +46,14 @@ module Freckle
 	    "updated_at" => "2010-06-09T20:44:57Z",
 	  }
 
+	  CURRENT_USER = USER.merge({
+	  	"time_format" => "fraction",
+    	"week_start"=> "Sunday",
+    	"utc_offset" => -28800,
+    	"send_personal_weekly_report_email" => true,
+    	"send_team_weekly_report_email" => true,
+    })
+
 	  USER_EDITABLE_FIELDS = {
 	  	"email" => USER["email"],
 	  	"first_name" => USER["first_name"],
