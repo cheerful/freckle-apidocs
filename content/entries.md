@@ -24,6 +24,9 @@ users
 : *Optional* **string**: a comma-separated list of user IDs to filter by.
 Example: `users=1,2,3`
 
+descripton
+: *Optional* **string**: Only entries containing this text in their description are returned.
+
 projects
 : *Optional* **string**: a comma-separated list of project IDs to filter by.
 Example: `projects=4,5,6`
