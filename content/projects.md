@@ -6,155 +6,262 @@ title: Project
 #Project API
 
 ## Project Object Specification
-	{
-	  "project": {
-	    // ID of the project (integer)
-	    "id": 34580,
-	    // Name of the project
-	    "name": "Gear GmbH",
-	    "project_group":
-	    {
-	    	"id": 3768,
-	    	"name": "Sprockets, Inc.",
-	    	"url": "http://apitest.letsfreckle.com/api/project_groups/3768"
-	    },
-	    // total amount of logged minutes (can be null)
-	    "minutes": 180,
-	    // total amount of logged billable minutes (can be null)
-	    "billable_minutes": 120,
-	    // total amount of unbillable minutes (can be null)
-	    "unbillable_minutes": 60,
-	    // total amount of logged invoiced minutes (can be null)
-	    "invoiced_minutes": 120,
-	    // amount of remaining minutes within budget (can be null)
-	    "remaining_minutes": 630,
-	    // budgeted minutes (can be null)
-	    "budget_minutes": 750,
-	    // true if project is billable
-	    "billable": true,
-	    // true if project is enabled, false if archived
-	    "enabled": true,
-	    // rrggbb hexadecimal color for the project
-	    "color_hex": "ff9898",
-	    // billing increment in minutes
-	    // if you build client software that creates entries
-	    // it should only allow multiples of stepping logged
-	    // (in minutes). if the user enters a non-multiple you
-	    // should round time up.
-	    "stepping": 10,
 
-	    // (optional) The import this entry was generated from
-	    "import": {
-	    	"id": 8910,
-	    	"url": "http://apitest.letsfreckle.com/api/imports/8910"
-	    },
-
-	    //the invoices associated with this project
-	    "invoices": [
-		    {
-		    	"id" : 12345678,
-		    	"invoice_number": "AA001",
-		    	"state": "unpaid",
-		    	"total": 189.33,
-		    	"url": "http://apitest.letsfreckle.com/api/invoices/12345678",
-		    }
-	    ]
-
-	    //the participating users in the project
-	    "participants": [
-	    	{
-		    	"id": : 5538,
-		    	"email": "john.test@test.com",
-		    	"first_name": "John",
-		    	"last_name": "Test",
-		    	"avatar":{
-		    		"id": 5538,
-		    		"thumbnail": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
-	  				"avatar": "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
-		    	},
-		    	"url": "http://apitest.letsfreckle.com/api/users/5538",
-		    }
-	    ]
-
-	    "goals" : [
-	    	{
-		    	"id" : 445566,
-		    	"budgeted_minutes": 500,
-		    	"total_logged_minutes": 300,
-		    	"billable_logged_minutes": 200,
-		    	"unbillable_logged_minutes": 100,
-		    	"starts_on": "2001-01-02",
-		    	"ends_on": "2001-01-03",
-		    	"recurring_goal":{
-		    		"id": 8899,
-		    		"renews":"yearly",
-		    		"budgeted_minutes": 1000,
-		    		"starts_on": "2001-01-02",
-		    		"ends_on": "2001-01-03",
-		    		"url": "http://apitest.letsfreckle.com/recurring_goals/8899"
-		    	}
-		    	"url":"http://apitest.letsfreckle.com/api/goals/445566"
-		    }
-	    ]
-
-	    "recurring_goals": [
-    		{
-	    		"id": 8899,
-	    		"renews":"yearly",
-	    		"budgeted_minutes": 1000,
-	    		"starts_on": "2001-01-02",
-	    		"ends_on": "2001-01-03",
-
-	    		"goals": [
-	    			"id" : 445566,
-			    	"budgeted_minutes": 500,
-			    	"total_logged_minutes": 300,
-			    	"billable_logged_minutes": 200,
-			    	"unbillable_logged_minutes": 100,
-			    	"starts_on": "2001-01-02",
-			    	"ends_on": "2001-01-03",
-			    	"url":"http://apitest.letsfreckle.com/api/goals/445566"
-	    		]
-
-	    		"url": "http://apitest.letsfreckle.com/recurring_goals/8899"
-	    	}
-		  ]
-
-	    //the number of entries associated with this project
-	    "entries": 0,
-	    //the url to access this project's entries
-	    "entries_url":"http://apitest.letsfreckle.com/api/projects/34580/entries",
-
-	    //the number of expenses associated with this project
-	    "expenses" : 0,
-	    "expenses_url" : "http://apitest.letsfreckle.com/api/projects/34580/expenses",
-
-	    //the url to this project
-	    "url":"http://apitest.letsfreckle.com/api/projects/34580",
-
-	    // UTC timestamp when the project was created
-	    "created_at": "2012-01-09T08:33:29Z",
-	    // UTC timestamp when the project was last updated
-	    "updated_at": "2012-01-09T08:33:29Z",
-	  }
-	}
+<%= json :project %>
 
 ## List Projects
 
-## List Entries for a project
+~~~
+GET /projects/
+~~~
 
-## List Projects in Project Group
+### Parameters
 
-## List users who have logged entries in the project
+name
+: *Optional* **string**
 
-## List entries in the project
+stepping
+: *Optional* **integer**: projects with a specific rounding value.
+
+enabled
+: *Optional* **boolean**: `true` returns all enabled projects, `false` returns all disabled projects
+
+billable
+: *Optional* **boolean**: `true` returns all billable tags, `false` returns all unbillable tags.
+
+### Response
+
+<%= headers 200, :pagination => true, :pagination_resource => "projects" %>
+<%= json :project %>
 
 ## Get a single project
 
+~~~
+GET /projects/:id
+~~~
+
+### Response
+
+<%= headers 200 %>
+<%= json :project %>
+
 ## Create a Project
+
+~~~
+POST /projects/
+~~~
+
+### Inputs
+
+name
+: *Required* **string**: The name of the project
+
+project_group
+: *Optional* **integer**: The ID of the project group this project is assigned under. Defaults to 15
+
+color_hex
+: *Optional* **string**: a hexadecimal color code for the project
+
+project_goals
+: *Optional* **array of hashes**: the project goals to create for this project. The fields are:
+
+	budgeted_minutes
+	: *Required* **integer**: the number of minutes to budget for this goal
+
+	starts_on
+	: *Required* **string in the format of ISO 8061 date format `YYYY-MM-DD`: when the goal starts.
+
+	ends_on
+	: *Required* **string in the format of ISO 8061 date format `YYYY-MM-DD`: when the goal ends.
+
+	renews
+	: *Optional* **string**: how the goal renews. Supported values are:
+
+		* `none` (**default**)
+		* `yearly`
+    * `quarterly`
+    * `monthly`
+    * `weekly-sunday`
+    * `weekly-monday`
+    * `daily`
+
+### Response
+
+<%= headers 200 %>
+<%= json :project %>
 
 ## Edit a Project
 
+~~~
+PATCH /projects/:id
+~~~
+
+### Inputs
+
+name
+: *Required* **string**: The name of the project
+
+project_group
+: *Optional* **integer**: The ID of the project group this project is assigned under. Defaults to 15
+
+color_hex
+: *Optional* **string**: a hexadecimal color code for the project
+
+### Response
+
+<%= headers 200 %>
+<%= json :project %>
+
+## Add goals to a project
+
+~~~
+POST /projects/:id/goals
+~~~
+
+### Inputs
+
+project_goals
+: *Optional* **array of hashes**: the project goals to create for this project. The fields are:
+
+	budgeted_minutes
+	: *Required* **integer**: the number of minutes to budget for this goal
+
+	starts_on
+	: *Required* **string in the format of ISO 8061 date format `YYYY-MM-DD`: when the goal starts.
+
+	ends_on
+	: *Required* **string in the format of ISO 8061 date format `YYYY-MM-DD`: when the goal ends.
+
+	renews
+	: *Optional* **string**: how the goal renews. Supported values are:
+
+		* `none` (**default**)
+		* `yearly`
+    * `quarterly`
+    * `monthly`
+    * `weekly-sunday`
+    * `weekly-monday`
+    * `daily`
+
+## Update a project's goal
+
+~~~
+PATCH /projects/:id/goals/:id
+~~~
+
+### Inputs
+
+budgeted_minutes
+: *Optional* **integer**: the number of minutes to budget for this goal
+
+starts_on
+: *Optional* **string in the format of ISO 8061 date format `YYYY-MM-DD`: when the goal starts.
+
+ends_on
+: *Optional* **string in the format of ISO 8061 date format `YYYY-MM-DD`: when the goal ends.
+
+renews
+: *Optional* **string**: how the goal renews. Supported values are:
+
+	* `none`
+	* `yearly`
+  * `quarterly`
+  * `monthly`
+  * `weekly-sunday`
+  * `weekly-monday`
+  * `daily`
+
+### Response
+
+<%= headers 200 %>
+<%= json :project %>
+
+## Remove a goal from a project
+
+~~~
+DELETE /projects/:id/goals/:id
+~~~
+
+### Response
+
+<%= headers 204 %>
+
+## Remove all Goals from a Project
+
+~~~
+DELETE /projects/:id/goals
+~~~
+
+### Response
+
+<%= headers 204 %>
+
+## Get the entries for a project
+
+~~~
+GET /projects/:id/entries
+~~~
+
+### Parameters
+
+You can use the parameters specified in the [Entry API's List Action](/entries/index.html#list) to further limit the results
+
+### Response
+
+<%= headers 200, :pagination => true, :pagination_resource => "projects/:id/entries" %>
+<%= json :entry %>
+
+## List the Invoices for a project
+
+~~~
+GET /projects/:id/invoices
+~~~
+
+### Parameters
+
+You can use the parameters specified in the [Invoice API's List Action](/invoices/index.html#list) to further limit the results
+
+### Response
+
+<%= headers 200, :pagination => true, :pagination_resource => "projects/:id/invoices" %>
+<%= json :invoice %>
+
+## List The participants in a Project
+
+~~~
+GET /projects/:id/participants
+~~~
+
+### Parameters
+
+You can use the parameters specified in the [User API's List Action](/users/index.html#list) to further limit the results
+
+### Response
+
+<%= headers 200, :pagination => true, :pagination_resource => "projects/:id/participants" %>
+<%= json :user %>
+
+## Merge a Project into this project
+
+~~~
+PUT /projects/:id/merge
+~~~
+
+### Inputs
+
+project
+: *Required* **integer**: the ID of the project to merge into this project
+
+### Response
+
+<%= headers 204 %>
+
 ## Delete a Project
 
-## Merge a Project
+~~~
+DELETE /projects/:id
+~~~
+
+### Response
+
+<%= headers 204 %>
