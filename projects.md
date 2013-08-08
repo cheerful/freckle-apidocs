@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Projects
+description: Access Freckle projects with the Freckle Time Tracking RESTful API.
 ---
 
 Jump to: [List](#list) | [Create](#create) | 

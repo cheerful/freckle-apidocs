@@ -7,7 +7,7 @@ on the ZeptoJS documentation site.
 The site can be built with:
 
 ~~~ sh
-$ jekyll
+$ jekyll build
 $ open public/index.html
 ~~~
 

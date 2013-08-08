@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Entries
+description: Create and search for time entries with the Freckle Time Tracking RESTful API.
 ---
 
 The entries resource represents logged time. Each entry, at the minimum, is assigned to a user, has 0 or more minutes logged and has a date set (all other fields, including project, tags and description are optional).

@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Freckle API: {{ page.title }}</title>
   <link rel="stylesheet" href="main.css" type="text/css">
+  <meta name="description" content="{{ page.description }}">
 </head>
 
 <body>
@@ -17,16 +18,16 @@
     <a href="users.html">Users</a>
     </div>
   </div>
-  
+
   <div id="content">
     <h1><img src="freckle.png" width="150" height="43"> API: {{ page.title }}</h1>
-    
+
     {{ content }}
   </div>
 
   <div id="footer">
     <div>
-      
+
     <div class="columns four">
       <div class="column">
         <h3>About Freckle</h3>
@@ -37,7 +38,7 @@
           <li><a href="http://letsfreckle.com/privacy/">Privacy policy</a></li>
         </ul>
       </div>
-    
+
       <div class="column">
         <h3>Us &amp; our company</h3>
         <ul>
@@ -46,7 +47,7 @@
           <li><a href="http://letsfreckle.com/contact/">Write us</a></li>
         </ul>
       </div>
-    
+
       <div class="column">
         <h3>Docs</h3>
         <ul>
@@ -55,7 +56,7 @@
           <li><a href="http://developer.letsfreckle.com">API Documentation</a></li>
         </ul>
       </div>
-    
+
       <div class="column">
         <h3>You &amp; your account</h3>
         <ul>
@@ -63,22 +64,17 @@
           <li><a href="http://letsfreckle.com/help/">Get help &amp; contact support</a></li>
         </ul>
       </div>
-    
+
     </div>
-    
+
     <div class="copyright">
       &copy; 2008-2013 Slash7 LLC, all rights reserved.
     </div>
     </div>
   </div>
-  
-  <script>
-  var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
-  </script>
-  <script src="https://secure.charmhq.com/feedback.js"></script>
-  
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  
+
   <script>
     $(function(){
       function setTabs(to){
@@ -88,41 +84,53 @@
         tabs.find('.selector DIV.'+to).addClass('active')
         tabs.find('.tab').removeClass('active')
         tabs.find('.tab.'+to).addClass('active')
-        
+
         // change tabs that don't have an active tab to show first tab
         tabs.find('.selector').each(function(){
           if ($(this).find('DIV.active').length > 0) return
-          
+
           console.log(this)
           $(this).find('DIV').first().addClass('active')
           $(this).closest('.tabs').find('.tab').first().addClass('active')
         })
-        
+
         // save for later
         localStorage && (localStorage.dataFormat = to)
       }
-      
+
       $('.tabs .selector div').on('click', function(){
         setTabs($(this).attr('class'))
       })
-      
+
       setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
     })
   </script>
-  
-  <script type="text/javascript">
-  
+
+  <script>
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-37896092-1']);
     _gaq.push(['_setDomainName', 'letsfreckle.com']);
     _gaq.push(['_trackPageview']);
-  
+
     (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-  
   </script>
+
+  <script>
+    (function() {
+      window._pa = window._pa || {};
+      var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+      pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/  serve/51fbcda0dc91ad725f0000eb.js";
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+    })();
+  </script>
+
+    <script>
+  var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
+  </script>
+  <script src="https://secure.charmhq.com/feedback.js" async></script>
 </body>
 </html>

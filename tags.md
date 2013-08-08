@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Tags
+description: Access Tags with the Freckle Time Tracking RESTful API.
 ---
 
 Currently the only available tags API method is listing tags.

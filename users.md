@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Users
+description: Manage Freckle users with the Freckle Time Tracking RESTful API.
 ---
 
 Jump to: [List](#list) | 

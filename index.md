@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Basics
+description: Connect your application to Freckle's RESTful API and track time, access projects and more.
 ---
 
 Freckle's RESTful API enables your application or script to 
