@@ -56,8 +56,8 @@ POST /projects/
 name
 : *Required* **string**: The name of the project
 
-project_group
-: *Optional* **integer**: The ID of the project group this project is assigned under. Defaults to 15
+group
+: *Optional* **integer**: The ID of the group this project is assigned under. Defaults to 15
 
 color_hex
 : *Optional* **string**: a hexadecimal color code for the project
@@ -101,8 +101,8 @@ PATCH /projects/:id
 name
 : *Required* **string**: The name of the project
 
-project_group
-: *Optional* **integer**: The ID of the project group this project is assigned under. Defaults to 15
+group
+: *Optional* **integer**: The ID of the group this project is assigned under. Defaults to 15
 
 color_hex
 : *Optional* **string**: a hexadecimal color code for the project

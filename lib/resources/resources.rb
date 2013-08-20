@@ -128,33 +128,33 @@ module Freckle
 	  	"url" => "http://apitest.letsfreckle.com/api/projects/37396",
 		}
 
-		SIMPLE_PROJECT_GROUP = {
+		SIMPLE_GROUP = {
     	"id" => 3768,
     	"name" => "Sprockets, Inc.",
-    	"url" => "http://apitest.letsfreckle.com/api/project_groups/3768"
+    	"url" => "http://apitest.letsfreckle.com/api/groups/3768"
     }
 
-	  PROJECT_GROUP = {
+	  GROUP = {
 			"id" => 3768,
 	  	"name" => "Sprockets, Inc.",
 	  	"projects" => [SIMPLE_PROJECT],
 	    "participants" => [SIMPLE_USER],
-	  	"url" => "http://apitest.letsfreckle.com/api/project_groups/3768",
-	  	"entries_url" => "http://apitest.letsfreckle.com/api/project_groups/3768/entries/",
-			"invoices_url" => "http://apitest.letsfreckle.com/api/project_groups/3768/invoices/",
-			"projects_url" => "http://apitest.letsfreckle.com/api/project_groups/3768/projects/",
+	  	"url" => "http://apitest.letsfreckle.com/api/groups/3768",
+	  	"entries_url" => "http://apitest.letsfreckle.com/api/groups/3768/entries/",
+			"invoices_url" => "http://apitest.letsfreckle.com/api/groups/3768/invoices/",
+			"projects_url" => "http://apitest.letsfreckle.com/api/groups/3768/projects/",
 	    "created_at" => "2012-01-09T08:33:29Z",
 	    "updated_at" => "2012-01-09T08:33:29Z",
 		}
 
 
-		PROJECT_GROUP_CREATE_FIELDS = {
-			"name" => PROJECT_GROUP["name"],
+		GROUP_CREATE_FIELDS = {
+			"name" => GROUP["name"],
 			"projects" => [1,2,3],
 		}
 
-		PROJECT_GROUP_EDIT_FIELDS = {
-			"name" => PROJECT_GROUP["name"]
+		GROUP_EDIT_FIELDS = {
+			"name" => GROUP["name"]
 		}
 
 		SIMPLE_IMPORT = {
@@ -289,7 +289,7 @@ module Freckle
 	  }
 
 		PROJECT = SIMPLE_PROJECT.merge({
-	    "project_group" => SIMPLE_PROJECT_GROUP,
+	    "group" => SIMPLE_GROUP,
 	    "minutes" => 180,
 	    "billable_minutes" => 120,
 	    "unbillable_minutes" => 60,
@@ -300,7 +300,7 @@ module Freckle
 	    "import" => IMPORT,
 	    "invoices" => [SIMPLE_INVOICE],
 	    "participants" => [SIMPLE_USER],
-	    "goals" => [PROJECT_GROUP],
+	    "goals" => [GROUP],
 	    "recurring_goals" => [PROJECT_RECURRING_GOAL],
 
 	    "entries" => 0,

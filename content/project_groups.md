@@ -1,24 +1,24 @@
 ---
 layout: default
-title: Project Group
+title: Group
 ---
 
-# Project Group API
+# Group API
 
-## Project Group Object Specification
+## Group Object Specification
 
-<%= json :project_group %>
+<%= json :group %>
 
-## List Project Groups
+## List Groups
 
 ~~~
-GET /project_groups/
+GET /groups/
 ~~~
 
 ### Parameters
 
 name
-: *Optional* **string**: Only Project Groups containing this string in their name will be returned
+: *Optional* **string**: Only Groups containing this string in their name will be returned
 
 projects
 : *Optional* **array of integers**: a comma-separated list of project IDs to filter by.
@@ -28,14 +28,14 @@ participants
 
 ### Response
 
-<%= headers 200, :pagination => true, :pagination_resource => "project_groups" %>
-<%= json :project_group %>
+<%= headers 200, :pagination => true, :pagination_resource => "groups" %>
+<%= json :group %>
 
 
-## Create a Project Group
+## Create a Group
 
 ~~~
-POST /project_groups/
+POST /groups/
 ~~~
 
 ### Inputs
@@ -44,30 +44,30 @@ name
 : *Required* **string**
 
 projects
-: *Optional* **array of integers**: a comma-separated list of project IDs to add to the project group.
+: *Optional* **array of integers**: a comma-separated list of project IDs to add to the group.
 
-<%= json :project_group_create_fields %>
-
-### Response
-
-<%= headers 200 %>
-<%= json :project_group %>
-
-## Get a Project Group
-
-~~~
-GET /project_groups/:id
-~~~
+<%= json :group_create_fields %>
 
 ### Response
 
 <%= headers 200 %>
-<%= json :project_group %>
+<%= json :group %>
 
-## Edit a Project Group
+## Get a Group
 
 ~~~
-PUT /project_groups/:id/
+GET /groups/:id
+~~~
+
+### Response
+
+<%= headers 200 %>
+<%= json :group %>
+
+## Edit a Group
+
+~~~
+PUT /groups/:id/
 ~~~
 
 ### Inputs
@@ -75,17 +75,17 @@ PUT /project_groups/:id/
 name
 : *Optional* **string**
 
-<%= json :project_group_edit_fields %>
+<%= json :group_edit_fields %>
 
 ### Response
 
 <%= headers 200 %>
 <%= json :project %>
 
-## Get the entries for projects in a project group
+## Get the entries for projects in a group
 
 ~~~
-GET /project_groups/:id/entries
+GET /groups/:id/entries
 ~~~
 
 ### Parameters
@@ -94,13 +94,13 @@ You can use the parameters specified in the [Entry API's List Action](/entries/i
 
 ### Response
 
-<%= headers 200, :pagination => true, :pagination_resource => "project_groups/:id/entries" %>
+<%= headers 200, :pagination => true, :pagination_resource => "groups/:id/entries" %>
 <%= json :entry %>
 
-## List Invoices for projects in a project group
+## List Invoices for projects in a group
 
 ~~~
-GET /project_groups/:id/invoices
+GET /groups/:id/invoices
 ~~~
 
 ### Parameters
@@ -109,10 +109,10 @@ You can use the parameters specified in the [Invoice API's List Action](/invoice
 
 ### Response
 
-<%= headers 200, :pagination => true, :pagination_resource => "project_groups/:id/invoices" %>
+<%= headers 200, :pagination => true, :pagination_resource => "groups/:id/invoices" %>
 <%= json :invoice %>
 
-## List participants in a Project Group
+## List participants in a Group
 
 ~~~
 GET /imports/:id/participants
@@ -124,10 +124,10 @@ You can use the parameters specified in the [User API's List Action](/users/inde
 
 ### Response
 
-<%= headers 200, :pagination => true, :pagination_resource => "project_groups/:id/participants" %>
+<%= headers 200, :pagination => true, :pagination_resource => "groups/:id/participants" %>
 <%= json :user %>
 
-## Add a Project to a Project Group
+## Add a Project to a Group
 
 ~~~
 POST /imports/:id/projects
@@ -136,7 +136,7 @@ POST /imports/:id/projects
 ### Input
 
 projects
-: *Required* **array of integers**: the IDs of each project to add to the project group.
+: *Required* **array of integers**: the IDs of each project to add to the group.
 
 ### Response
 
@@ -152,13 +152,13 @@ PUT /imports/:id/projects
 ### Input
 
 projects
-: *Required* **array of integers**: the IDs of each project to remove from the project group.
+: *Required* **array of integers**: the IDs of each project to remove from the group.
 
 ### Response
 
 <%= headers 204 %>
 
-## Remove all Projects from a Project Group
+## Remove all Projects from a Group
 
 ~~~
 DELETE /imports/:id/projects/
@@ -168,10 +168,10 @@ DELETE /imports/:id/projects/
 
 <%= headers 204 %>
 
-## Delete a Project Group
+## Delete a Group
 
 ~~~
-DELETE /project_groups/:id/
+DELETE /groups/:id/
 ~~~
 
 ### Response
