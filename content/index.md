@@ -129,7 +129,6 @@ Repeat the request verbatim to the URI specified in the `Location` header, but c
 
 ##Supported methods:
 
-* Basic Authentication
 * OAuth2 Token (sent in Header)
 * OAuth2 Token (sent as a parameter)
 * OAuth2 Key/Secret
