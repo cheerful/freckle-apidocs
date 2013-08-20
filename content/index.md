@@ -6,7 +6,7 @@ title: Basics
 # Introduction
 
 Many applications use the Freckle API every day, among them web applications
-like [Beanstalk]("http://beanstalkapp.com"), [Github]("http://github.com"), and[Planscope]("http://planscope.io"); native mobile and desktop applications like [Pigment](http://pigmentapp.com) and [Punch](http://punch.fousa.be); as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you're using the Freckle API, please [send us an email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
+like [Beanstalk]("http://beanstalkapp.com"), [Github]("http://github.com"), and [Planscope]("http://planscope.io"); native mobile and desktop applications like [Pigment](http://pigmentapp.com) and [Punch](http://punch.fousa.be); as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
 
 Freckle is also one of the many services listed on [Zapier](https://zapier.com/zapbook/freckle/) which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Campfire chat room!).
 
@@ -29,8 +29,6 @@ Additionally, the command-line tool [Pippi](https://github.com/sirkitree/pippi) 
 These are 3rd-party libraries and Freckle can't provide support for them.
 Please contact the library authors directly if you need help with these.
 </p>
-
------------
 
 # API URL
 
