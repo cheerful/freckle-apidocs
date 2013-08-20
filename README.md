@@ -54,7 +54,7 @@ Instead of writing JSON objects by hand, we create Ruby hashes and use the `to_j
 
 Our objects are stored in `lib/resources/resources.rb`, and we use special helper methods to retrieve the object and generate it as JSON:
 
-~~~~ ruby
+~~~~ erb
 <%= json :user %>
 <%= json_array :user %>
 ~~~~
@@ -70,7 +70,7 @@ We also use a helper method to specify the HTTP headers for our responses. This 
 * include any other HTTP headers as a key-value pair.
 
 
-~~~~ ruby
+~~~~ erb
 <%= headers 200, :pagination => true, :pagination_resource => "invoices" %>
 ~~~~
 
