@@ -25,6 +25,7 @@ GEM
       guard (>= 1.8.0)
       nanoc (>= 3.6.3)
     http_parser.rb (0.5.3)
+    json (1.8.0)
     kramdown (1.1.0)
     listen (1.2.2)
       rb-fsevent (>= 0.9.3)
@@ -59,5 +60,6 @@ DEPENDENCIES
   guard
   guard-livereload
   guard-nanoc
+  json
   kramdown
   pygments.rb
