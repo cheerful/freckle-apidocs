@@ -174,10 +174,10 @@ scopes
 <%= headers 200 %>
 <%= json :oauth_authorization_token %>
 
-## Remove all Projects from a Project Group
+## Remove all scopes from an Authorization
 
 ~~~
-DELETE /imports/:id/scopes/
+DELETE /authorizations/:id/scopes/
 ~~~
 
 ### Response
