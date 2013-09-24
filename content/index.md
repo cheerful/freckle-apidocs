@@ -146,11 +146,11 @@ All resources have one or more `*_url` properties linking to other resources. Th
 Responses including multiple items will be paginated to 30 items by default. The page can be changed by using the `page` query parameter. Note that the `page` paremter starts with 1.
 
 
-Some actions can use the `per_page` parameter, will be documented in the resource's API page.
+Some actions can use the `per_page` parameter, which will be documented in the resource's API page.
 
 ## Link Header
 
-When pagination is used, the `Link` header includes the Used in Pagination. Clients should use these links instead of following their own, in case pagination rules change in the future.
+When pagination is used, the `Link` header includes the URLs used in Pagination. Clients should use these links instead of following their own, in case pagination rules change in the future.
 
 ~~~
 Link: <https://apitest.letsfreckle.com/api/v2/users/?page=3&per_page=100>; rel="next",
