@@ -170,6 +170,8 @@ DELETE /imports/:id/projects/
 
 ## Delete a Group
 
+When a Project Group is deleted, the projects in the group **are not** deleted. Instead, they are not associated with any project group.
+
 ~~~
 DELETE /groups/:id/
 ~~~
