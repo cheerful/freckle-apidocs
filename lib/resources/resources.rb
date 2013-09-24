@@ -11,6 +11,28 @@ module Freckle
       ]
 		}
 
+		DELETE_ERROR_EXAMPLE = {
+			"message" => "Unable to be deleted",
+			"errors" => [
+				{
+					"resource" => "Project",
+					"field" => "entries",
+					"code" => "dependent"
+				}
+			]
+		}
+
+		ARCHIVE_ERROR_EXAMPLE = {
+			"message" => "Should be deleted",
+			"errors" => [
+				{
+					"resource" => "Project",
+					"field" => "id",
+					"code" => "deletable"
+				}
+			]
+		}
+
 		OAUTH_AUTHORIZATION_TOKEN = {
       "id" => 1,
       "url" => "https://apitest.letsfreckle.com/authorizations/1",

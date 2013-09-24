@@ -91,6 +91,30 @@ When validation errors occur, the `errors` array is populated with hashes that e
     * **already_exists**: another resource has the same value as this field.
     * **Custom errors codes can be defined for resources, and will be documented in the resource's API page.**
 
+# Deleting or Archiving Resources
+
+In certain cases, some resources can only be deleted if certain conditions are met. If these resources cannot be deleted, then they may be archived. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).
+
+For these resources, we have two separate actions for deleting and archiving. The Delete action is accessible through the `DELETE` HTTP verb, while the archive action is accessible via `PUT archive/`.
+
+## When a resource cannot be deleted
+
+The delete action will only succeed if the resource is able to deleted. If the resource is unable to be deleted, a `422` error will be returned, with an explanation for why the resource cannot be deleted.
+
+This explanation uses a new error code: **dependent**, and the **field** field will indicate which associated resources exist and are preventing this resource from being deleted.
+
+<%= headers 422 %>
+<%= json :delete_error_example %>
+
+## When a resource cannot be archived
+
+The archive action will only succeeed if the resource is able to archived. If the resource is able to be deleted, then it is unable to be archived. If a resource is unable to be archived, a `422` error will be returned, with an explanation for why the resource cannot be archived.
+
+This explanation uses a new error code: **deletable**, and the **field** field will point to the `id` field. This error code indicates that the delete action should be called on this resource.
+
+<%= headers 422 %>
+<%= json :archive_error_example %>
+
 # HTTP Redirection
 
 HTTP Redirection will be used when appropriate, meaning that clients should assume any request may result in a redirection.
