@@ -28,7 +28,7 @@ type
 user
 : *Optional* **integer**: the ID of the user who started the import.
 
-user
+fallback_user
 : *Optional* **integer**: the ID of the user who was designated as the fallback user for entries where the user did not exist. if `null` is explictly passed, then only `null` entries are returned.
 
 import_tags
