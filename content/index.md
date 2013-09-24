@@ -35,13 +35,13 @@ Please contact the library authors directly if you need help with these.
 The URL used to access the API is based on the subdomain of the account, and follows the format:
 
 ~~~
-subdomain.letsfreckle.com/api/v2/v2
+subdomain.letsfreckle.com/api/v2
 ~~~
 
 For example: if our account subdomain was: `apitest`, the API URL would be:
 
 ~~~
-apitest.letsfreckle.com/api/v2/v2
+apitest.letsfreckle.com/api/v2
 ~~~
 
 # Schema
