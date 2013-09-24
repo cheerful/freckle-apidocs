@@ -176,16 +176,6 @@ PUTS /users/:id/activate
 
 <%= headers 204 %>
 
-## Deactive a User
-
-~~~
-PUTS /users/:id/deactivate
-~~~
-
-### Response
-
-<%= headers 204 %>
-
 ## Give a Freelancer Access to Projects
 
 ~~~
@@ -225,3 +215,27 @@ DELETE /users/:id
 ### Response
 
 <%= headers 204 %>
+
+### A note about user deletion
+
+A user cannot be deleted if there are any entries this user.
+
+You can deactivate the user, which will remove this user from the list of active users and increment the number of available users available until the account limit is reached.
+
+The error message for the delete action follows the pattern explained in the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources), but instead of using an "Archive" action, the [Disable](#disable) action is used.
+
+## Deactive a User
+
+~~~
+PUTS /users/:id/deactivate
+~~~
+
+### Response
+
+<%= headers 204 %>
+
+### A note about user deactivation
+
+A user cannot be deactivated if there are no entries associated with this user. Instead, you can only delete the user.
+
+For more information about how deleting a user works, please the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources)
