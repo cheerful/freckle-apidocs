@@ -91,7 +91,7 @@ When validation errors occur, the `errors` array is populated with hashes that e
     * **already_exists**: another resource has the same value as this field.
     * **Custom errors codes can be defined for resources, and will be documented in the resource's API page.**
 
-# Deleting or Archiving Resources
+# [Deleting or Archiving Resources](#deleting-or-archiving-resources)
 
 In certain cases, some resources can only be deleted if certain conditions are met. If these resources cannot be deleted, then they may be archived. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).
 
