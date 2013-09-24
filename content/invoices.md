@@ -709,8 +709,6 @@ DELETE /imports/:id/taxes/
 
 ## Delete an Invoice
 
-An invoice can only be deleted if it has not been paid yet. When an invoice is deleted, all of the entries and expenses associated with it are marked as uninvoiced.
-
 ~~~
 DELETE /invoices/:id
 ~~~
@@ -718,3 +716,9 @@ DELETE /invoices/:id
 ### Response
 
 <%= headers 204 %>
+
+### a note about invoice deletion
+
+An invoice can only be deleted if it has not been paid yet. When an invoice is deleted, all of the entries and expenses associated with it are marked as uninvoiced.
+
+The error code used to indicate that an invoice has been paid is: **paid**.
