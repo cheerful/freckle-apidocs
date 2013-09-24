@@ -35,13 +35,13 @@ Please contact the library authors directly if you need help with these.
 The URL used to access the API is based on the subdomain of the account, and follows the format:
 
 ~~~
-subdomain.letsfreckle.com/api
+subdomain.letsfreckle.com/api/v2/v2
 ~~~
 
 For example: if our account subdomain was: `apitest`, the API URL would be:
 
 ~~~
-apitest.letsfreckle.com/api
+apitest.letsfreckle.com/api/v2/v2
 ~~~
 
 # Schema
@@ -98,13 +98,13 @@ HTTP Redirection will be used when appropriate, meaning that clients should assu
 Redirect responses will have a `Location` header field which contains the URI of the resource to which the client should repeat the requests.
 
 ### Permanent Redirection
-<%= headers 301, :Location => "apitest.letsfreckle.com/api/new/url" %>
+<%= headers 301, :Location => "apitest.letsfreckle.com/api/v2/new/url" %>
 
 This and all future requests should be directed to the new URI
 
 ### Temporary Redirection
-<%= headers 302, :Location => "apitest.letsfreckle.com/api/new/url" %>
-<%= headers 307, :Location => "apitest.letsfreckle.com/api/new/url" %>
+<%= headers 302, :Location => "apitest.letsfreckle.com/api/v2/new/url" %>
+<%= headers 307, :Location => "apitest.letsfreckle.com/api/v2/new/url" %>
 
 Repeat the request verbatim to the URI specified in the `Location` header, but clients should still continue to use th original URI in future requests
 
@@ -153,10 +153,10 @@ Some actions can use the `per_page` parameter, will be documented in the resourc
 When pagination is used, the `Link` header includes the Used in Pagination. Clients should use these links instead of following their own, in case pagination rules change in the future.
 
 ~~~
-Link: <https://apitest.letsfreckle.com/api/users/?page=3&per_page=100>; rel="next",
-  <https://apitest.letsfreckle.com/api/users/?page=2&per_page=100>; rel="prev",
-  <https://apitest.letsfreckle.com/api/users/?page=1&per_page=100>; rel="first",
-  <https://apitest.letsfreckle.com/api/users/?page=50&per_page=100>; rel="last"
+Link: <https://apitest.letsfreckle.com/api/v2/users/?page=3&per_page=100>; rel="next",
+  <https://apitest.letsfreckle.com/api/v2/users/?page=2&per_page=100>; rel="prev",
+  <https://apitest.letsfreckle.com/api/v2/users/?page=1&per_page=100>; rel="first",
+  <https://apitest.letsfreckle.com/api/v2/users/?page=50&per_page=100>; rel="last"
 ~~~
 
 the `rel` attribute indicates what the URL links to:
@@ -210,7 +210,7 @@ If you do any kind of non-trivial client application or have special needs for A
 Try it now!
 
 ~~~
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/v2/projects.json
 ~~~
 
 Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/21d1e53251a9bf5941d0bd25aeb7557a3ca52a26"><img src="hurl.png" width="35"></a>.

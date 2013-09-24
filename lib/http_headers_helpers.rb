@@ -28,8 +28,8 @@ module Freckle
         head.each do |key, value|
           case key
             when :pagination
-              lines << "Link: <https://apitest.letsfreckle.com/api/#{pagination_resource}?page=2>; rel=\"next\","
-              lines << " <https://apitest.letsfreckle.com/api/#{pagination_resource}?page=5>; rel=\"last\""
+              lines << "Link: <https://apitest.letsfreckle.com/api/v2/#{pagination_resource}?page=2>; rel=\"next\","
+              lines << " <https://apitest.letsfreckle.com/api/v2/#{pagination_resource}?page=5>; rel=\"last\""
             when :pagination_resource
               nil
             else lines << "#{key}: #{value}"
