@@ -69,6 +69,8 @@ name
 
 ## Delete a Tag
 
+When a tag is deleted, the entries associated with that tag **are not** deleted. Instead, their descriptions are updated so that the tag's text becomes part of the description.
+
 ~~~
 DELETE /tags/:id
 ~~~
