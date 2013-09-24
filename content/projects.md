@@ -265,3 +265,27 @@ DELETE /projects/:id
 ### Response
 
 <%= headers 204 %>
+
+### A note about project deletion
+
+A project cannot be deleted if there are any entries, invoices, or expenses associated with this project.
+
+You can archive the project, which will flag the project as "archived" while keeping any entries, invoices, or expenses associated with this project.
+
+For more information about how deleting and archiving a project works, please the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources)
+
+## Archive a Project
+
+~~~
+PUT /projects/:id/archive
+~~~
+
+### Response
+
+<%= headers 204 %>
+
+### A note about project archiving
+
+A project cannot be archived if there are no entries, invoices, or expenses associated with this project. Instead, you can only delete the project.
+
+For more information about how deleting and archiving a project works, please the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources)
