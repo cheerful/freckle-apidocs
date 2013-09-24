@@ -146,7 +146,27 @@ p.note a {
   display: block;
 }
 
-/* syntax */
+/* "http block" example styling */
+
+.headers{
+  margin-bottom: 0px;
+}
+
+.headers > code {
+  border-radius: 5px 5px 0px 0px;
+  background: #F0EEEE;
+  border-bottom: 0px;
+}
+
+.headers + .highlight{
+  margin-top: 0px;
+}
+
+.headers + .highlight > code{
+  border-radius: 0px 0px 5px 5px;
+}
+
+/* default syntax highlighting */
 code {
   white-space: pre;
 }
