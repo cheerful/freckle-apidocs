@@ -162,3 +162,12 @@ DELETE /entries/:id
 ### Response
 
 <%= headers 204 %>
+
+### A note about entry deletion
+
+An entry cannot be deleted if it has been invoiced or is associated with an archived project. In this case, response will include detailed information about why the entry couldn't be deleted.
+
+There are two error codes that will be used to indicate why the entry could not be deleted:
+
+* **invoiced**
+* **archived_project**
