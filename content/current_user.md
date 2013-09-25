@@ -108,8 +108,8 @@ send_team_weekly_report_email
 PUT /current_user/upload_picture
 ~~~
 
-### Important note acout setting Content-Type
-You **must** set your `Content-Type` headers to: `application/x-ww-form-urlencoded` in order to create an import. Otherwise, we cannot process the uploaded file and a `400 Bad Request` error will be returned.
+### An Important Note about Uploading Files
+In order to upload a new picture, you must send the request parameters as traditional HTTP key/value pairs and set the `Content-Type` header to `application/x-ww-form-urlencoded`. For more details, please review the API Basics section on [Uploading Files](/#uploading-files)
 
 ### Input
 

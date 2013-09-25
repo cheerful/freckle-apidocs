@@ -115,6 +115,12 @@ This explanation uses a new error code: **deletable**, and the **field** field w
 <%= headers 422 %>
 <%= json :archive_error_example %>
 
+# [Uploading Files](#uploading-files)
+
+If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional HTTP key/value pairs instead of as a JSON object.
+
+Additionally, the `Content-Type` header of the request **must** be set to: `application/x-ww-form-urlencoded`, otherwise the request will not be processed and a `400 Bad Request` error will be returned.
+
 # HTTP Redirection
 
 HTTP Redirection will be used when appropriate, meaning that clients should assume any request may result in a redirection.
