@@ -67,6 +67,21 @@ name
 <%= headers 200 %>
 <%= json :tag %>
 
+## Merge Tags into this tag
+
+~~~
+PUT /tags/:id/merge
+~~~
+
+### Inputs
+
+tags
+: *Required* **array of integer**: the IDs of the tags to merge into this tag
+
+### Response
+
+<%= headers 204 %>
+
 ## Delete a Tag
 
 When a tag is deleted, the entries associated with that tag **are not** deleted. Instead, their descriptions are updated so that the tag's text becomes part of the description.
