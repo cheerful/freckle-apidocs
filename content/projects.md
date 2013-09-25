@@ -289,3 +289,22 @@ PUT /projects/:id/archive
 A project cannot be archived if there are no entries, invoices, or expenses associated with this project. Instead, you can only delete the project.
 
 For more information about how deleting and archiving a project works, please the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources)
+
+## Archive multiple Projects at once
+
+~~~
+PUT /projects/archive
+~~~
+
+### Inputs
+
+projects
+: *Required* **array of integers**: the IDs of the projects to be archived
+
+### Response
+
+<%= headers 204 %>
+
+### A note about projects that cannot be archived
+
+Any projects are included in this request that cannot be archived will be ignored and will not affect the Response.
