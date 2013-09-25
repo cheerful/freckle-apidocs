@@ -93,3 +93,21 @@ DELETE /tags/:id
 ### Response
 
 <%= headers 204 %>
+
+## Delete Multiple Tags at once
+
+When a tag is deleted, the entries associated with that tag **are not** deleted. Instead, their descriptions are updated so that the tag's text becomes part of the description.
+
+~~~
+DELETE /tags/
+~~~
+
+### Inputs
+
+tags
+: *Required* **array of integer**: the IDs of the tags to delete. If no IDs are provided, then no tags are deleted.
+
+### Response
+
+<%= headers 204 %>
+
