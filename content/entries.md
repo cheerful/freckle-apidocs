@@ -153,6 +153,24 @@ date
 
 <%= headers 204 %>
 
+## Mark multiple Entries as invoiced outside of Freckle
+
+~~~
+PUT /entries/invoiced_outside_of_freckle
+~~~
+
+### Input
+
+entries
+: *Required* **array of integers**: the IDs of the entries that will be marked as invoiced outside of Freckle.
+
+date
+: *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`: the date the time entry was invoiced outside of Freckle.
+
+### Response
+
+<%= headers 204 %>
+
 ## Delete an Entry
 
 ~~~
