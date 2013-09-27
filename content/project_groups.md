@@ -3,12 +3,6 @@ layout: default
 title: Group
 ---
 
-# Group API
-
-## Group Object Specification
-
-<%= json :group %>
-
 ## List Groups
 
 ~~~

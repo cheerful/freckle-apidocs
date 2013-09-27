@@ -3,10 +3,6 @@ layout: default
 title: Account
 ---
 
-## Account Object Specification
-
-<%= json :account %>
-
 ## Get your Account's details
 
 ~~~

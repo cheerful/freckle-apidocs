@@ -3,9 +3,6 @@ layout: default
 title: Expense
 ---
 
-## Expense Object Specification
-<%= json :expense %>
-
 ## List Expenses
 
 Get all the expenses, sorted by the most recent date.

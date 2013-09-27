@@ -3,10 +3,6 @@ layout: default
 title: Import
 ---
 
-## Import Object Specification
-
-<%= json :import %>
-
 ## List Imports
 
 ~~~

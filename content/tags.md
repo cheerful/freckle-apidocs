@@ -3,9 +3,6 @@ layout: default
 title: Tag
 ---
 
-## Tag Object Specification
-<%= json :tag %>
-
 ## List all Tags
 
 ~~~

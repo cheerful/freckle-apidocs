@@ -3,9 +3,6 @@ layout: default
 title: Current User
 ---
 
-## Current User Object Specification
-<%= json :current_user %>
-
 ## Get the Current User
 
 ~~~

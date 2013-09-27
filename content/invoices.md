@@ -3,9 +3,6 @@ layout: default
 title: Invoice
 ---
 
-## Invoice Object Specification
-<%= json :invoice %>
-
 ## List Invoices
 
 ~~~

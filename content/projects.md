@@ -3,12 +3,6 @@ layout: default
 title: Project
 ---
 
-#Project API
-
-## Project Object Specification
-
-<%= json :project %>
-
 ## List Projects
 
 ~~~

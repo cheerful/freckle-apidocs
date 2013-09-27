@@ -3,11 +3,6 @@ layout: default
 title: Entry
 ---
 
-## Entry Object Specification
-Here is an example of an Entry object returned by the API
-
-<%= json :entry %>
-
 ## List Entries
 
 Get all the entries, sorted by the most recent entry date.
