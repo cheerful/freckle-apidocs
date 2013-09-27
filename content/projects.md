@@ -5,6 +5,8 @@ title: Project
 
 ## List Projects
 
+List all projects the authenticated user has access to
+
 ~~~
 GET /projects/
 ~~~
