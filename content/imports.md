@@ -73,7 +73,7 @@ fallback_user
 
 ### Response
 
-<%= headers 201 %>
+<%= headers 202 %>
 <%= json :created_import_response %>
 
 ## Checking an Import's status
