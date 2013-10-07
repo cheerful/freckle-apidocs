@@ -11,8 +11,9 @@ GET /imports/
 
 ### Parameters
 
-type
-: *Optional* **string**: the type of the import. Accepted values are:
+format
+: *Optional* **string**
+: The format of the import. Accepted values are:
 
 	* `freckle`
 	* `basecamp`
@@ -22,16 +23,24 @@ type
 	* `toggl`
 
 user
-: *Optional* **integer**: the ID of the user who started the import.
+: *Optional* **integer**
+: The ID of the user who started the import.
+: Example: `user=1`
 
 fallback_user
-: *Optional* **integer**: the ID of the user who was designated as the fallback user for entries where the user did not exist. if `null` is explictly passed, then only `null` entries are returned.
+: *Optional* **integer**
+: The ID of the user who was designated as the fallback user for entries where the user did not exist. If `null` is explictly passed, then only imports without a fallback user will be returned.
+: Example: `user=null`
 
 import_tags
-: *Optional* **boolean**: `true` returns imports where tags were imported. `false` returns imports were tags were not imported.
+: *Optional* **boolean**
+: `true` returns imports where tags were imported. `false` returns imports were tags were not imported.
+: Example: `import_tags=true`
 
 autocreate_projects
-: *Optional* **boolean**: `true` returns imports where projects were autocreated. `false` returns imports were projects were not autocreated.
+: *Optional* **boolean**
+: `true` returns imports where projects were autocreated. `false` returns imports were projects were not autocreated.
+: Example: `autocreate_projects=true`
 
 
 ## Get a Single Import
@@ -52,15 +61,21 @@ POST /imports/
 ### An Important Note about Uploading Files
 In order to create an import, you must send the request parameters as traditional HTTP key/value pairs and set the `Content-Type` header to `application/x-ww-form-urlencoded`. For more details, please review the API Basics section on [Uploading Files](/#uploading-files)
 
+### An important note about when an import is processed:
+
+When an import is created, it is not immediately processed. Instead, it is sent to a background queue to be processed. After an import is created, you can [check whether it has been processed or is still in progress](#checking-an-imports-status)
+
 ### Input
 
 file
-: *Required* **file**: an HTTP file object containing the import file
+: *Required* **file**
+: An HTTP file object containing the import file
 
 type
-: *Optional* **string**: the file format for this import. Accepted values are:
+: *Optional* **string**
+: The file format for this import. Accepted values are:
 
-	* `auto` (**Default**)
+	* `autodetect` (**Default**)
 	* `freckle`
 	* `basecamp`
 	* `freshbooks`
@@ -68,17 +83,40 @@ type
 	* `tempo`
 	* `toggl`
 
+create_projects
+: *Optional* **boolean**
+: `true` (**Default**): The import creates any projects it finds that are not in Freckle
+: `false`: Entries in the import that are associated with projects that are not in Freckle will be imported, but will not be assigned to any project.
+
 fallback_user
-: *Optional* **integer**: the user who will be used if the user for an entry cannot be found. If `null` is passed, then entries where the user cannot be found will be ignored. Defaults to the authenticated user.
+: *Optional* **integer**
+: The ID of the user who will be assigned to entries where the user cannot be found. If `null` is passed, then entries where the user cannot be found will be ignored. If no value is provided, then the authenticated user will be used.
+
+field_delimeter
+: *Optional* **string**
+: The custom field delimeter used in your CSV. If no value is provided, Freckle will attempt to auto-detect the field delimeter used.
 
 ### Response
 
 <%= headers 202 %>
 <%= json :created_import_response %>
 
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **invalid_file**: The uploaded file is not a valid CSV file
+* **too_large**: The uploaded file is too large
+* **invalid_filed_delimeter**: the field delimeter provided was invalid
+
 ## Checking an Import's status
 
-You can check on the status of the import by using the following URL:
+When an import is created, it is not immediately processed. Instead, it is sent to a background queue to be processed. This action will allow you to check the status of the import.
+
+The Possible values are:
+
+* `in_progress`
+* `complete`
 
 ~~~
 GET /imports/:id/status
@@ -89,14 +127,17 @@ GET /imports/:id/status
 <%= headers 200 %>
 <%= json :import_status %>
 
-Possible values are:
-
-* in_progress
-* complete
-
 ## Get the details of an import
 
-You can get the details of a report once it has been completed by using the following URL:
+You can use this action to get the details of a completed import. The following information is returned:
+
+* The number of entries that are imported or discarded
+* The users in the import that were not found in Freckle
+* Any projects in the import that were found in Freckle
+* Any errors for individual lines in the import. Each line error includes:
+	* The line where the error occured
+	* The fields that were parsed for this line
+	* The error message
 
 ~~~
 GET /imports/:id/details
@@ -158,7 +199,7 @@ You can use the parameters specified in the [Project API's List Action](/project
 
 ## Deleting an Import
 
-Deleting an import means that the imported entries, tags and projects will be deleted. Entries updated after they were imported will be deleted as well. However, Imported projects and tags containing non-import entries will be preserved.
+Deleting an import means that the imported entries, tags, and projects will be deleted. Entries updated after they were imported will be deleted as well. **However, Imported projects and tags containing non-import entries will be preserved.**
 
 ~~~
 DELETE /imports/:id
