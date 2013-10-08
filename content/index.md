@@ -78,7 +78,7 @@ There are a few errors that can occur while making API calls. the following are 
 
 ### The `errors` array
 
-When validation errors occur, the `errors` array is populated with hashes that explain why the request was invalid. Each hash has the following fields:
+When validation errors occur, the `errors` array is populated with objects that explain why the request was invalid. Each object has the following fields:
 
   * **resource**: The type of object the user was trying to affect.
 

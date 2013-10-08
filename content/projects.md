@@ -59,7 +59,7 @@ color_hex
 : *Optional* **string**: a hexadecimal color code for the project
 
 project_goals
-: *Optional* **array of hashes**: the project goals to create for this project. The fields are:
+: *Optional* **array of objects**: the project goals to create for this project. The fields are:
 
 	budgeted_minutes
 	: *Required* **integer**: the number of minutes to budget for this goal
@@ -117,7 +117,7 @@ POST /projects/:id/goals
 ### Inputs
 
 project_goals
-: *Optional* **array of hashes**: the project goals to create for this project. The fields are:
+: *Optional* **array of objects**: the project goals to create for this project. The fields are:
 
 	budgeted_minutes
 	: *Required* **integer**: the number of minutes to budget for this goal
