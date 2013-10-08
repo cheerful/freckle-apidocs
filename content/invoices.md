@@ -60,9 +60,9 @@ show_summaries
 : `true`  Only return invoices that show the summary of hours worked for each time member.
 : `false` Only return invoices that do not show the summary of hours worked for each time member.
 
-payment_type
+hours_calculation
 : *Optional* **string**
-: The payment type used for the invoices. The Accepted values are:
+: How the total dollar amount for hours worked is calculated. The Accepted values are:
 
     * `custom_hourly_rates`
     * `simple_hourly_rate`
@@ -113,7 +113,7 @@ recipient
 : the mailing address and other information invoice's recipient.
 
 description
-: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/invoicing/customizable-invoices))
+: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/invoicing/customizable-invoices)
 : a description of the invoice.
 
 footer
@@ -175,6 +175,7 @@ entries_and_expenses_selection
     selection_rules
     : *Optional* **string**
     : the selection pattern used. Accepted values are:
+
         * `all_uninvoiced` (**Default**): All uninvoiced entries and expenses will be included.
         * `date_range`: Only entries and expenses in this specific date range will be returned.
         * `none`: Do not search for any uninvoiced entries and expenses.
@@ -654,6 +655,7 @@ entries_and_expenses_selection
     selection_rules
     : *Optional* **string**
     : the selection pattern used. Accepted values are:
+    
         * `all_uninvoiced` (**Default**): All uninvoiced entries and expenses will be included.
         * `date_range`: Only entries and expenses in this specific date range will be returned.
         * `none`: Do not search for any uninvoiced entries and expenses.
