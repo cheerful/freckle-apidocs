@@ -437,32 +437,33 @@ module Freckle
     }
 
     INVOICE_CUSTOM_HOURLY_RATE = {
-      "id" => 446655,
       "user" => SIMPLE_USER,
       "rate" => 30.50,
       "hourly_rate_with_currency" => "$30.50"
     }
 
-    INVOICE_PAYMENT_TYPE = {
-    	"payment_type" => "custom_hourly_rates",
+    HOURS_CALCULATION = {
+    	"calculation_method" => "custom_hourly_rates",
     	"custom_hourly_rates" => [INVOICE_CUSTOM_HOURLY_RATE]
     }
 
-    INVOICE_PAYMENT_TYPE_FIELDS = {
+    INVOICE_HOURS_CALCULATION_FIELDS = {
     	#accepted values: default, simple_hourly_rate, custom_hourly_rates, flat_rate
-    	"payment_type" => "custom_hourly_rates",
+    	"calculation_method" => "custom_hourly_rates",
 			# if simple_hourly_rate or custom_hourly_rate are selected: "simple_hourly_rate" => 30.75,
 			"custom_hourly_rates" => [
 				{
-					"user" => "id or simple_user_object",
+					"user" => SIMPLE_USER["id"],
 					"hourly_rate" => 15.25,
 				},
 			],
 			# if flat_rate is selected: "flat_rate" => 11000.72,
+			#a boolean used to determine if unpaid expenses are included in the invoice
+			"include_expenses" => true,
     }
 
     INVOICE_ENTRY_AND_EXPENSES_SELECTION_FIELDS = {
-    	"entries_and_expenses_selection" => "all_uninvoiced",
+    	"selection_rules" => "all_uninvoiced",
     	"from" => "2013-01-01",
     	"to" => "2013-01-01"
     }
@@ -488,18 +489,17 @@ module Freckle
       #the current state of the invoice
 			"state" => "awaiting_payment",
       #the displayed number for the invoice
-			"invoice_number" => "",
+			"invoice_number" => "AB 0001",
+			#the date the invoice was posted on
+			"invoice_date" => "2013-07-09",
 	    #the generated name for the invoice
 			"name" => "Knockd, Freckle Support",
-	    #whether the invoice is currently locked due to a pending paypal payment attempt
-			"locked" => false,
 
 			#invoice display information
       "company_name" => "John Test",
       "company_details" => "1 Main Street\\r\\nMainsville, MA 11122",
       "recipient_details" => "",
 			"description" => "",
-			"invoice_date" => "2013-07-09",
 			"footer" => "",
 			"show_hours" => true,
 			"show_details" => false,
@@ -510,10 +510,8 @@ module Freckle
 
 			#calculation fields
 
-      #a boolean used to determine if unpaid expenses are included in the invoice
-			"include_expenses" => true,
       #indicates the payment type for the invoice (whether hourly or flat-rate)
-      "payment_type" => INVOICE_PAYMENT_TYPE,
+      "hours_calculation" => HOURS_CALCULATION,
 
       "taxes" => [INVOICE_TAX],
       #the amount of the invoice which is taxable
@@ -530,8 +528,8 @@ module Freckle
 
 			# payment information
 
-      #the token used to generate the share URL
-			"token" => "bqrnbojlbxqswtq9xla9uc40z",
+			"share_url" => "http#apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z",
+
       #the paypal payment details for this invoice
 			"payment" => nil,
 
@@ -581,7 +579,7 @@ module Freckle
     	"footer" => INVOICE["footer"],
     	"show_hours" => INVOICE["show_hours"],
     	"show_details" => INVOICE["show_details"],
-    	"payment_type" => INVOICE_PAYMENT_TYPE_FIELDS,
+    	"hours_calculation" => INVOICE_HOURS_CALCULATION_FIELDS,
     	"entries_and_expenses_selection" => INVOICE_ENTRY_AND_EXPENSES_SELECTION_FIELDS,
     	"projects" => [PROJECT["id"]],
     	"entries" => [ENTRY["id"]],
