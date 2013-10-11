@@ -12,13 +12,19 @@ GET /project_groups/
 ### Parameters
 
 name
-: *Optional* **string**: Only Project Groups containing this string in their name will be returned
+: *Optional* **string**
+: Only Project Groups containing this string in their name will be returned.
+: Example: `name=Sprockets`
 
 projects
-: *Optional* **array of integers** : a comma-separated list of project IDs to filter by.
+: *Optional* **string**
+: A comma-separated list of project IDs to filter by.
+: Example: `projects=1,2,3`
 
 participants
-: *Optional* **array of integers**: a comma-separated list of user IDs to filter by.
+: *Optional* **string**
+: A comma-separated list of user IDs to filter by.
+: Example: `participants=4,5,6`
 
 ### Response
 
@@ -36,9 +42,11 @@ POST /project_groups/
 
 name
 : *Required* **string**
+: The name of the Project Group.
 
 projects
-: *Optional* **array of integers**: a comma-separated list of project IDs to add to the project_group.
+: *Required* **array of integers**
+: The IDs of the Projects to include in this Project Group.
 
 <%= json :project_group_create_fields %>
 
@@ -46,6 +54,13 @@ projects
 
 <%= headers 200 %>
 <%= json :project_group %>
+
+### If one of the Projects is already associated with a Project Group
+
+If any of the Projects provided are already associated with another group Project Group, a `422` error will be returned:
+
+<%= headers 422 %>
+<%= json :validation_error_project_already_associated_with_a_group %>
 
 ## Get a Project Group
 
@@ -130,7 +145,8 @@ POST /imports/:id/projects
 ### Input
 
 projects
-: *Required* **array of integers**: the IDs of each project to add to the project_group.
+: *Required* **array of integers**
+: The IDs of the Projects to add to the Project Group. Any Projects that are already associated with another Project Group will be ignored and will not affect the Response.
 
 ### Response
 
@@ -146,7 +162,8 @@ PUT /imports/:id/projects
 ### Input
 
 projects
-: *Required* **array of integers**: the IDs of each project to remove from the project_group.
+: *Required* **array of integers**
+: The IDs of the Projects to remove from the Project Group. Any Projects that are not associated with the Project Group will be ignored and will not affect the Response.
 
 ### Response
 
@@ -164,7 +181,7 @@ DELETE /imports/:id/projects/
 
 ## Delete a Project Group
 
-When a Project Project Group is deleted, the projects in the project_group **are not** deleted. Instead, they are not associated with any project project_group.
+When a Project Group is deleted, the Project in the Project Group **are not** deleted. Instead, they are not associated with any project Project Group.
 
 ~~~
 DELETE /project_groups/:id/

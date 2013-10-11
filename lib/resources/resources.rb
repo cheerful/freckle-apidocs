@@ -150,13 +150,13 @@ module Freckle
 	  	"url" => "http://apitest.letsfreckle.com/api/v2/projects/37396",
 		}
 
-		SIMPLE_GROUP = {
+		SIMPLE_PROJECT_GROUP = {
     	"id" => 3768,
     	"name" => "Sprockets, Inc.",
     	"url" => "http://apitest.letsfreckle.com/api/v2/groups/3768"
     }
 
-	  GROUP = {
+	  PROJECT_GROUP = {
 			"id" => 3768,
 	  	"name" => "Sprockets, Inc.",
 	  	"projects" => [SIMPLE_PROJECT],
@@ -170,13 +170,24 @@ module Freckle
 		}
 
 
-		GROUP_CREATE_FIELDS = {
-			"name" => GROUP["name"],
+		PROJECT_GROUP_CREATE_FIELDS = {
+			"name" => PROJECT_GROUP["name"],
 			"projects" => [1,2,3],
 		}
 
-		GROUP_EDIT_FIELDS = {
-			"name" => GROUP["name"]
+		PROJECT_GROUP_EDIT_FIELDS = {
+			"name" => PROJECT_GROUP["name"]
+		}
+
+		VALIDATION_ERROR_PROJECT_ALREADY_ASSOCIATED_WITH_A_GROUP = {
+		  "message" => "Validation Failed",
+		  "errors" => [
+		    {
+		      "resource" => "Project Group",
+		      "field" => "projects",
+		      "code" => "already_exists"
+		    }
+		  ]
 		}
 
 		SIMPLE_IMPORT = {
@@ -311,7 +322,7 @@ module Freckle
 	  }
 
 		PROJECT = SIMPLE_PROJECT.merge({
-	    "group" => SIMPLE_GROUP,
+	    "group" => SIMPLE_PROJECT_GROUP,
 	    "minutes" => 180,
 	    "billable_minutes" => 120,
 	    "unbillable_minutes" => 60,
@@ -322,7 +333,7 @@ module Freckle
 	    "import" => IMPORT,
 	    "invoices" => [SIMPLE_INVOICE],
 	    "participants" => [SIMPLE_USER],
-	    "goals" => [GROUP],
+	    "goals" => [PROJECT_GROUP],
 	    "recurring_goals" => [PROJECT_RECURRING_GOAL],
 
 	    "entries" => 0,
