@@ -12,10 +12,14 @@ GET /tags/
 ### Parameters
 
 name
-: *Optional* **string**: Only tags containing this string will be returned.
+: *Optional* **string**
+: Only tags containing this string will be returned.
+: Example: `name=meeting`
 
 billable
-: *Optional* **boolean**: `true` returns all billable tags, `false` returns all unbillable tags.
+: *Optional* **boolean**
+: `true`: return all billable tags.
+: `false`: returns all unbillable tags.
 
 ### Response
 
@@ -57,7 +61,8 @@ PATCH /tags/:id
 ### Inputs
 
 name
-: *Optional* **string**: the new name for the tag. add "*" at the end to make the tag unbillable.
+: *Optional* **string**
+: The name for the tag. Adding a "*" at the end of the string indicates that the tag is unbillable.
 
 ### Response
 
@@ -66,6 +71,8 @@ name
 
 ## Merge Tags into this tag
 
+When one tag is merged into another, the entries associated with the tag are associated with the new tag, and any instances of the old tags are replaced with the new tags in the Entry Description. **This action is permanent**, so you cannot undo after you merge tags.
+
 ~~~
 PUT /tags/:id/merge
 ~~~
@@ -73,7 +80,8 @@ PUT /tags/:id/merge
 ### Inputs
 
 tags
-: *Required* **array of integer**: the IDs of the tags to merge into this tag
+: *Required* **array of integers**
+: The IDs of the tags to merge into this tag.
 
 ### Response
 
@@ -102,7 +110,8 @@ DELETE /tags/
 ### Inputs
 
 tags
-: *Required* **array of integer**: the IDs of the tags to delete. If no IDs are provided, then no tags are deleted.
+: *Required* **array of integers**
+: The IDs of the tags to delete. If no IDs are provided, then no tags are deleted.
 
 ### Response
 
