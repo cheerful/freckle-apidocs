@@ -22,16 +22,20 @@ PATCH /account/
 ### Input
 
 title
-: *Optional* **string**: the Title used in your account.
+: *Optional* **string**
+: the Title used in your account.
 
 address
-: *Optional* **object**: The address fields used as the contact information for the invoice. The accepted fields are:
+: *Optional* **object**
+: The address fields used as the contact information for the invoice. The accepted fields are:
 
-	address1
-	: *Optional* **string**: the first part of the mailing address
+	address_1
+	: *Optional* **string**
+	: the first part of the mailing address
 
-	address2
-	: *Optional* **string**: the second part of the mailing address
+	address_2
+	: *Optional* **string**
+	: the second part of the mailing address
 
 	city
 	: *Optional* **string**
