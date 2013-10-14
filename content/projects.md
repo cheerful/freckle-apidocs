@@ -266,7 +266,7 @@ DELETE /projects/:id/goals
 
 ## Merge a Project into this project
 
-When a project is merged, all of its entries, expenses, and invoices are moved into this project. The original projects will be deleted. Note that projects cannot be merged into this project if this project is archived.
+When a project is merged, all of its entries, expenses, and invoices are moved into this project. The original projects will be deleted. Note that projects cannot be merged into this project if this project is archived.  **This action is permanent**, so you cannot undo after you merge projects.
 
 ~~~
 PUT /projects/:id/merge
