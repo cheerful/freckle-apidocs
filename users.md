@@ -38,7 +38,8 @@ Response:
       "login": "admin",
       "time_format": "fraction",
       "email": "apitestadmin@letsfreckle.com",
-      "first_name": "Lets"
+      "first_name": "Lets",
+      "hashtags": true,
     }
 },
 {% endhighlight %}
@@ -64,6 +65,7 @@ Response:
     <week-start nil="true"></week-start>
     <permissions>integration, time, invoicing, reports, tags,
       expenses, projects, team, people, account, billing, import</permissions>
+    <hashtags type="boolean">true</hashtags>
   </user>
   <!-- ...more users... -->
 </users>
@@ -109,7 +111,8 @@ Response:
       expenses, projects, team, people, account, billing, import",
     "time_format": "fraction",
     "email": "apitestadmin@letsfreckle.com",
-    "first_name": "Lets"
+    "first_name": "Lets",
+    "hashtags": true,
   }
 }
 {% endhighlight %}
@@ -133,6 +136,7 @@ Response:
   <week-start nil="true"></week-start>
   <permissions>integration, time, invoicing, reports, tags, 
     expenses, projects, team, people, account, billing, import</permissions>
+  <hashtags type="boolean">true</hashtags>
 </user>
 {% endhighlight %}
 
