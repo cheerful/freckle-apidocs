@@ -12,20 +12,26 @@ GET /users/
 ### Parameters
 
 name
-: *Optional* **string**: Only users with this string in their name will be returned
+: *Optional* **string**
+: Only users with this string in their name are returned.
+: Example: `name=John`
 
 email
-: *Optional* **string**: only users with this string in their email address will be returned
+: *Optional* **string**
+: Only users with this string in their email address are returned.
+: Example: `email=mary`
 
 role
-: *Optional* **string**: only users with this role will be returned. Accepted values are:
+: *Optional* **string**
+: Only users with this role will be returned. Accepted values are:
 
     * admin
     * member
     * freelancer
 
 state
-: *Optional* **string**: only uses with this state will be returned. Accepted values are:
+: *Optional* **string**
+: Only users with this state will be returned. Accepted values are:
 
     * disabled
     * pending
@@ -78,10 +84,10 @@ You can use the parameters specified in the [Expense API's List Action](/expense
 <%= headers 200, :pagination => true, :pagination_resource => "users/:id/expenses" %>
 <%= json :expense %>
 
-## Get the Projects a User is Participating In
+## Get the Projects the User has logged entries or expenses for
 
 ~~~
-GET /users/:id/participating_projects
+GET /users/:id/projects
 ~~~
 
 ### Parameters
@@ -90,7 +96,7 @@ You can use the parameters specified in the [Project API's List Action](/project
 
 ### Response
 
-<%= headers 200, :pagination => true, :pagination_resource => "users/:id/participating_projects" %>
+<%= headers 200, :pagination => true, :pagination_resource => "users/:id/projects" %>
 <%= json :project %>
 
 ## Create a User
@@ -102,16 +108,20 @@ POST /users/
 ### Inputs
 
 email
-: *Required* **string**: the email address of the user.
+: *Required* **string**
+: The email address of the user.
 
 first name
-: *Optional* **string**: the first name of the user
+: *Optional* **string**
+: The first name of the user.
 
 last name
-: *Optional* **string**: the last name of the user
+: *Optional* **string**
+: The last name of the user.
 
 role
-: *Optional* **string**: the role for the user. Accepted values are:
+: *Optional* **string**
+: The user's role. Accepted values are:
 
     * member (**default**)
     * admin
@@ -122,6 +132,12 @@ role
 <%= headers 200 %>
 <%= json :user %>
 
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **reached_user_limit**: the account has reached the maximum number of active users available for the current plan. The account owner will have to [upgrade their account](http://help.letsfreckle.com/accounts-billing/upgrading-downgrading).
+
 ## Edit a User
 
 ~~~
@@ -131,16 +147,20 @@ PATCH /users/:id
 ### Inputs
 
 email
-: *Optional* **string**: the email address of the user.
+: *Optional* **string**
+: The email address of the user.
 
 first name
-: *Optional* **string**: the first name of the user
+: *Optional* **string**
+: The first name of the user
 
 last name
-: *Optional* **string**: the last name of the user
+: *Optional* **string**
+: The last name of the user
 
 role
-: *Optional* **string**: the role for the user. Accepted values are:
+: *Optional* **string**
+: The user's role. Accepted values are:
 
     * member
     * admin
@@ -151,7 +171,15 @@ role
 <%= headers 200 %>
 <%= json :user %>
 
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **deactivated**: The user is deactivated, and therefore cannot be edited until it is reactivated.
+
 ## Resend a pending user's invitation email
+
+This action re-sends the invitation email for a pending user. This email allows pending users to set their password and start using Freckle.
 
 ~~~
 PUTS /users/:id/resend_invitation_email
@@ -161,7 +189,15 @@ PUTS /users/:id/resend_invitation_email
 
 <%= headers 204 %>
 
-## Activate a User
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **not_pending**: The user is not pending, meaning that they cannot be sent an invitiation email. This is usually because the user has used a previous invitation email to set their password and start using Freckle.
+
+## Reactivate a Deactivated User
+
+This action reactivates a previously deactivated user, which allows the user to start using Freckle again.
 
 ~~~
 PUTS /users/:id/activate
@@ -171,7 +207,15 @@ PUTS /users/:id/activate
 
 <%= headers 204 %>
 
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **not_deactivated**: The user is not deactivated, and therefore cannot be reactivated.
+
 ## Give a Freelancer Access to Projects
+
+Giving a Freelancer Access to a project allows them to view and create entries and expenses for the project. Any projects the user already has access to are ignored.
 
 ~~~
 PUTS /users/:id/give_access_to_projects
@@ -186,7 +230,17 @@ projects
 
 <%= headers 204 %>
 
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **not_a_freelancer**: The user is not a freelancer
+* **already_has_access**: The user already has access to this project
+* **deactivated**: The user is deactivated, and therefore cannot be given access to any projects.
+
 ## Revoke a Freelancer's Access to Projects
+
+Revoking a Freelancer's access to a project prevents them from viewing the entries and expenses for the project. Note that the freelancer's entries and expenses logged for the project **are not deleted**. Any projects that the user does not have access to are ignored.
 
 ~~~
 PUTS /users/:id/revoke_access_to_projects
@@ -200,6 +254,13 @@ projects
 ### Response
 
 <%= headers 204 %>
+
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **not_a_freelancer**: The user is not a freelancer
+* **deactivated**: The user is deactivated, and therefore cannot be modified.
 
 ## Delete a User
 
