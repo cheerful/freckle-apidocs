@@ -71,6 +71,11 @@ There are a few errors that can occur while making API calls. the following are 
 
 <%= headers 401 %>
 
+## Account is currently locked for migration
+
+<%= headers 503 %>
+<%= json :message => "Freckle is changing the internal data for your account so you can start using hashtags" %>
+
 ## Fields were invalid
 
 <%= headers 422 %>
