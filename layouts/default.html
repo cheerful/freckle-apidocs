@@ -7,32 +7,35 @@
 </head>
 
 <body>
-  <div id="nav">
-    <div>
-    <a href="http://letsfreckle.com" class="back">&larr; Freckle</a>
-    <a href="/">API Basics</a>
-    <a href="/account">Account</a>
-    <a href="/authentication">Authentication</a>
-    <a href="/current_user">Current User</a>
-    <a href="/entries">Entries</a>
-    <a href="/expenses">Expenses</a>
-    <a href="/imports">Imports</a>
-    <a href="/projects">Projects</a>
-    <a href="/project_groups">Project Groups</a>
-    <a href="/tags">Tags</a>
-    <a href="/users">Users</a>
-    </div>
+  <div id="header">
+    <h1><img src="/freckle.png" width="150" height="43"> API</h1>
   </div>
-  
-  <div id="content">
-    <h1><img src="/freckle.png" width="150" height="43"> API: <%= @item[:title] %></h1>
-    
-    <%= yield %>
+
+  <div id="container">
+    <div id="nav">
+      <ul id="resources">
+        <li><a href="/">API Basics</a></li>
+        <li><a href="/account">Account</a></li>
+        <li><a href="/authentication">Authentication</a></li>
+        <li><a href="/current_user">Current User</a></li>
+        <li><a href="/entries">Entries</a></li>
+        <li><a href="/expenses">Expenses</a></li>
+        <li><a href="/imports">Imports</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/project_groups">Project Groups</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/users">Users</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <h1><%= @item[:title] %></h1>
+      <%= yield %>
+    </div>
   </div>
 
   <div id="footer">
     <div>
-      
+
     <div class="columns four">
       <div class="column">
         <h3>About Freckle</h3>
@@ -43,7 +46,7 @@
           <li><a href="http://letsfreckle.com/privacy/">Privacy policy</a></li>
         </ul>
       </div>
-    
+
       <div class="column">
         <h3>Us &amp; our company</h3>
         <ul>
@@ -52,7 +55,7 @@
           <li><a href="http://letsfreckle.com/contact/">Write us</a></li>
         </ul>
       </div>
-    
+
       <div class="column">
         <h3>Docs</h3>
         <ul>
@@ -61,7 +64,7 @@
           <li><a href="http://developer.letsfreckle.com">API Documentation</a></li>
         </ul>
       </div>
-    
+
       <div class="column">
         <h3>You &amp; your account</h3>
         <ul>
@@ -69,22 +72,22 @@
           <li><a href="http://letsfreckle.com/help/">Get help &amp; contact support</a></li>
         </ul>
       </div>
-    
+
     </div>
-    
+
     <div class="copyright">
       &copy; 2008-2013 Slash7 LLC, all rights reserved.
     </div>
     </div>
   </div>
-  
+
   <script>
   var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
   </script>
   <script src="https://secure.charmhq.com/feedback.js"></script>
-  
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  
+
   <script>
     $(function(){
       function setTabs(to){
@@ -94,41 +97,41 @@
         tabs.find('.selector DIV.'+to).addClass('active')
         tabs.find('.tab').removeClass('active')
         tabs.find('.tab.'+to).addClass('active')
-        
+
         // change tabs that don't have an active tab to show first tab
         tabs.find('.selector').each(function(){
           if ($(this).find('DIV.active').length > 0) return
-          
+
           console.log(this)
           $(this).find('DIV').first().addClass('active')
           $(this).closest('.tabs').find('.tab').first().addClass('active')
         })
-        
+
         // save for later
         localStorage && (localStorage.dataFormat = to)
       }
-      
+
       $('.tabs .selector div').on('click', function(){
         setTabs($(this).attr('class'))
       })
-      
+
       setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
     })
   </script>
-  
+
   <script type="text/javascript">
-  
+
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-37896092-1']);
     _gaq.push(['_setDomainName', 'letsfreckle.com']);
     _gaq.push(['_trackPageview']);
-  
+
     (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-  
+
   </script>
 </body>
 </html>
