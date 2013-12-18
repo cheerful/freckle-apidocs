@@ -612,6 +612,18 @@ module Freckle
     	"show_details" => INVOICE["show_details"],
     	"customization" => INVOICE_CUSTOMIZATION
     }
+
+    TIMER = {
+    	"initial_start_time" => "2013-07-09T23:04:05Z",
+    	"last_start_time" => "2013-07-10T01:04:05Z",
+    	"state" => "running",
+    	"seconds" => 180,
+    	"entry_date" => "2013-07-09",
+    	"description" => "freckle work",
+    	"user" => SIMPLE_USER,
+    	"project" => SIMPLE_PROJECT,
+    	"url" => "https://api.letsfreckle.com/api/v2/projects/34580/timer",
+    }
 	end
 end
 
