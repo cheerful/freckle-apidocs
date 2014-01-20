@@ -78,6 +78,10 @@ PUT /projects/:project_id/timer/start
 
 ## Input
 
+entry_date
+: *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`
+: The date that will be used when creating an entry based on this timer.
+
 description
 : *Optional* **string**
 : The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.
@@ -101,6 +105,12 @@ PUT /projects/:project_id/timer/pause
 <%= headers 200 %>
 <%= json :timer %>
 
+### A note about Getting a project's timer
+
+If the project does not have a currently running or paused timer, then the response will return a `404` status code.
+
+<%= headers 404 %>
+
 ## Log the time in a project's timer
 
 When a timer is logged, a new entry is created for the user with the description provided.
@@ -114,7 +124,15 @@ PUT /projects/:project_id/timer/log
 
 ## Input
 
-description
+entry_date
+: *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
+: The date that will be used when creating an entry based on this timer. If no value is provided, then the `entry_date` provided when the timer was started will be used.
+
+minutes
+: *Optional* **integer**
+: The number of minutes logged in the time entry. This number will automatically be rounded up based on the project's "stepping" settings. If no value is provided, then the timer's elapsed minutes will be used.
+
+description.
 : *Optional* **string**
 : The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.
 
