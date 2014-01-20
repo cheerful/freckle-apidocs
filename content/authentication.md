@@ -10,7 +10,7 @@ The Freckle API provides multiple different ways to handle authentication in you
 
 ## Which Authentication method do I choose?
 
-[OAuth](oauth) (**Strongly recommended**)
+[OAuth](/oauth) (**Strongly recommended**)
 : My application will be running in a production environment, is not a script, or I am concerned about security.
 
 [Basic Authentication using User's credentials](#via-username-and-password)
