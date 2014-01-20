@@ -248,58 +248,13 @@ note_url
 : *Optional* **string**
 : a URL to remind users what app the OAuth token was generated for.
 
+add_scopes
+: *Optional* **array of strings**
+: The list of scopes to add to this authorization. Adding new scopes allows your application to access additional information from the user's Freckle account. Non-existent scopes, or scopes already applied for this authorization will be ignored.
 
-### Response
-
-<%= headers 200 %>
-<%= json :oauth_authorization_token %>
-
-
-## Add scopes to an Authorization
-
-Adding new scopes allows your application to access additional information from the user's Freckle account. Non-existent scopes, or scopes already applied for this authorization will be ignored.
-
-~~~
-POST /authroizations/:id/scopes
-~~~
-
-### Input
-
-scopes
-: *Required* **array of strings**
-: The scopes to add to this authorization
-
-### Response
-
-<%= headers 200 %>
-<%= json :oauth_authorization_token %>
-
-## Remove scopes from an Authorization
-
-Removing scopes prevents your application from accessing specific information from the user's Freckle account. Scopes that are not currently applied for this authorization will be ignored.
-
-~~~
-PUT /authroizations/:id/scopes
-~~~
-
-### Input
-
-scopes
-: *Required* **array of strings**
-: The scopes to remove from this authorization
-
-### Response
-
-<%= headers 200 %>
-<%= json :oauth_authorization_token %>
-
-## Remove all scopes from an Authorization
-
-Removing all scopes prevents your application from accessing the information in a user's Freckle account. This method is useful for "clearing out" all of the current permissions your application has for a user's Freckle account, so that you can load a new set of permissions.
-
-~~~
-DELETE /authorizations/:id/scopes/
-~~~
+remove_scopes
+: *Optional* **array of strings**
+: The list of scopes to remove from this authorization. Removing scopes prevents your application from accessing specific information from the user's Freckle account. Scopes that are not currently applied for this authorization will be ignored.
 
 ### Response
 
