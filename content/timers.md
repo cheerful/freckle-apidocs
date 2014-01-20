@@ -86,6 +86,10 @@ description
 
 When a timer is started, the currently running timer is paused.
 
+### A note about restarting a paused or stopped timer
+
+When starting a timer that has been paused or stopped, the entry date will not change. The entry date for a timer that has already been started can be changed when the timer is logged.
+
 ## Pause a project's timer
 
 The response does not change if the timer has already been paused or does not exist
