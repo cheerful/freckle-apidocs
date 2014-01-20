@@ -122,7 +122,7 @@ description
 
 If the timer is not currently running or paused the response code will be `404`
 
-<%= headers 404 $>
+<%= headers 404 %>
 
 
 ## Discard a project's timer
