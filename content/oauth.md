@@ -337,3 +337,27 @@ GET /applications/:client_id/tokens/:access_token
 
 <%= headers 200 %>
 <%= json :oauth_authorization_token %>
+
+## Revoke all Authorizations for an application
+
+The owner of an OAuth application can revoke every token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the `client_id` of the application and the password is its `client_secret`
+
+~~~
+DELETE /applications/:client_id/tokens
+~~~
+
+###Response
+<%= headers 204 %>
+
+## Revoke a single authorization for an application
+
+The owner of an OAuth application can also revoke a single token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the `client_id` of the application and the password is its `client_secret`
+
+~~~
+DELETE /applications/:client_id/tokens
+~~~
+
+
+### Response
+
+<%= headers 204 %>
