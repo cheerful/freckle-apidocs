@@ -194,6 +194,44 @@ note_url
 <%= headers 200 %>
 <%= json :oauth_authorization_token %>
 
+## Get-or-create an authorization for a specific app
+
+This method checks for an authorization for the specified OAuth application. If the authorization does not exist for this user, it is automatically created.
+
+
+~~~
+PUT /authorizations/clients/:client_id
+~~~
+
+### Inputs
+
+client_secret
+: *Required* **string**
+: the client secret generated for your application.
+
+scopes
+: *Optional* **array of strings**
+: The type of access your application needs to the user's Freckle data.
+: If no value is provided, then the permissions you chose when you setup your application will be used.
+
+note
+: *Optional* **string**
+: a note to remind users why the OAuth token was generated
+
+note_url
+: *Optional* **string**
+: a URL to remind users what app the OAuth token was generated for.
+
+
+## Response if a new authorization is created
+<%= headers 201 %>
+<%= json :oauth_authorization_token %>
+
+
+### Response if an authorization already exists
+<%= headers 200 %>
+<%= json :oauth_authorization_token %>
+
 ## Update an existing Authorization
 
 ~~~
