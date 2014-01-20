@@ -309,7 +309,7 @@ DELETE /applications/:client_id/tokens
 The owner of an OAuth application can also revoke a single token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the `client_id` of the application and the password is its `client_secret`
 
 ~~~
-DELETE /applications/:client_id/tokens
+DELETE /applications/:client_id/tokens/:access_token
 ~~~
 
 
