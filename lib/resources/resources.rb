@@ -115,7 +115,6 @@ module Freckle
 			"id" =>  3344,
 			"plan_name" =>  "Freelancer",
 			"subdomain" =>  "testit",
-			"title" =>  "Test It!",
 			"address" =>  {
 				"address1" =>  "1345 Main Street",
 				"address2" =>  "Room 3",
@@ -136,7 +135,6 @@ module Freckle
 		}
 
 		ACCOUNT_EDITABLE_FIELDS = {
-			"title" => ACCOUNT["title"],
 			"address" => ACCOUNT["address"]
 		}
 
