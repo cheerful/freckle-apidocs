@@ -89,6 +89,11 @@ Here's an example entry and a description of all the fields returned.
     // All following fields are OPTIONAL
     // (optional) project_id, can be null
     "project_id": 37396,
+    // (optional) project object, can be null
+    "project": {
+      "id": 37396,
+      "name": "Sprocketwerks, Inc."
+    },
     // (optional) array of tags assigned to entry
     "tags": [
       {
