@@ -33,9 +33,12 @@ GEM
       rb-kqueue (>= 0.2)
     lumberjack (1.0.4)
     method_source (0.8.1)
+    mini_portile (0.5.2)
     multi_json (1.7.7)
     nanoc (3.6.4)
       cri (~> 2.3)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     posix-spawn (0.3.6)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -62,4 +65,5 @@ DEPENDENCIES
   guard-nanoc
   json
   kramdown
+  nokogiri
   pygments.rb
