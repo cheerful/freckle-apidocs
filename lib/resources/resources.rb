@@ -620,6 +620,11 @@ module Freckle
     	"project" => SIMPLE_PROJECT,
     	"url" => "https://api.letsfreckle.com/api/v2/projects/34580/timer",
     }
+
+    SUBDOMAIN = {
+      :subdomain => ACCOUNT["subdomain"],
+      :avatar => USER["avatar"]
+    }
 	end
 end
 

@@ -135,21 +135,46 @@ If your application is not a Web-app, you will need to use the OAuth Authorizati
 
 This API allows users to manage their tokens, and is only accessible via [Basic Authentication](authentication).
 
-## List all authorizations
+Access Tokens are not shared across accounts. When using the OAuth Authorizations API, you will need to specify which account you are accessing. This is done by including the desired account's subdomain as part of the request URL.
+
+The process for selecting which account to access should be:
+
+1. Present the user with a list of all the subdomains (with the corresponding avatar) they are associated with.
+2. User selects which account they want to access
+3. Use the user-selected subdomain to access the OAuth Authorizations API
+
+## List all the subdomains associated with this user
+
+In order to use the OAuth Authorizations API, you will need to specify which subdomain the user wants to authenticate with. This method returns a list of all the subdomains associated with the user, along with URLs to their respective avatars.
 
 ~~~
-GET /authorizations
+GET /subdomains
 ~~~
 
 ### Response
 
 <%= headers 200 %>
-<%= json :oauth_authorization_token %>
+<%= json_array :subdomain %>
+
+## List all authorizations
+
+~~~
+GET /authorizations/:subdomain
+~~~
+
+### Response
+
+<%= headers 200 %>
+<%= json_array :oauth_authorization_token %>
+
+### Response if the user is not associated with the subdomain provided
+
+<%= headers 404 %>
 
 ### Get a single Authorization
 
 ~~~
-GET /authorizations/:id
+GET /authorizations/:subdomain/:id
 ~~~
 
 ### Response
@@ -162,7 +187,7 @@ GET /authorizations/:id
 When you are not building a Web Application, it might be easier to generate a token using a single POST request.
 
 ~~~~
-POST /authorizations
+POST /authorizations/:subdomain
 ~~~~
 
 
@@ -194,13 +219,17 @@ note_url
 <%= headers 200 %>
 <%= json :oauth_authorization_token %>
 
+### Response if the user is not associated with the subdomain provided
+
+<%= headers 404 %>
+
 ## Get-or-create an authorization for a specific app
 
 This method checks for an authorization for the specified OAuth application. If the authorization does not exist for this user, it is automatically created.
 
 
 ~~~
-PUT /authorizations/clients/:client_id
+PUT /authorizations/:subdomain/clients/:client_id
 ~~~
 
 ### Inputs
@@ -232,10 +261,14 @@ note_url
 <%= headers 200 %>
 <%= json :oauth_authorization_token %>
 
+### Response if the user is not associated with the subdomain provided
+
+<%= headers 404 %>
+
 ## Update an existing Authorization
 
 ~~~
-PATCH /authroizations/:id
+PATCH /authroizations/:subdomain/:id
 ~~~
 
 ### Parameters:
@@ -261,10 +294,14 @@ remove_scopes
 <%= headers 200 %>
 <%= json :oauth_authorization_token %>
 
+### Response if the user is not associated with the subdomain provided
+
+<%= headers 404 %>
+
 ##Delete an Authorization
 
 ~~~
-DELETE /authorizations/:id
+DELETE /authorizations/:subdomain/:id
 ~~~
 
 ### Response
