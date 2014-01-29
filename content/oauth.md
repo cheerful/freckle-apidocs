@@ -308,15 +308,19 @@ DELETE /authorizations/:subdomain/:id
 
 <%= headers 204 %>
 
-## Check an Authorization
+# OAuth Application API
 
-This method allows you to confirm a token's validity. In order to use this method, you must use Basic Authentication as follows:
+These methods are provided to allow your application to confirm a token's validity and revoke tokens as necessary. They are only accessible by using Basic Authentication as follows:
 
 Username
 : Your application's `client_id`
 
 Password
 : Your application's `client_secret`
+
+## Check an Authorization
+
+This method allows you to confirm a token's validity. The owner must use Basic Authentication when calling this method, where the username is the `client_id` of the application and the password is its `client_secret`
 
 ~~~
 GET /applications/:client_id/tokens/:access_token
