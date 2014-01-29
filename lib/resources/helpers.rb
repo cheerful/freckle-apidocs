@@ -4,11 +4,17 @@ module Freckle
 	module Resources
 		module Helpers
 			def json_array(key)
-				[json(key)]
+				%(<pre class="highlight"><code class="language-javascript">) +
+			    JSON.pretty_generate([generate_hash(key)]) + "</code></pre>"
 			end
 
 			def json(key)
-			  hash = case key
+			  %(<pre class="highlight"><code class="language-javascript">) +
+			    JSON.pretty_generate(generate_hash(key)) + "</code></pre>"
+			end
+
+			def generate_hash(key)
+				hash = case key
 			    when Hash
 			      h = {}
 			      key.each { |k, v| h[k.to_s] = v }
@@ -20,8 +26,7 @@ module Freckle
 
 			  hash = yield hash if block_given?
 
-			  %(<pre class="highlight"><code class="language-javascript">) +
-			    JSON.pretty_generate(hash) + "</code></pre>"
+			  return hash
 			end
 	  end
 	end
