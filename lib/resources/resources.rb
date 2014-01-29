@@ -56,7 +56,6 @@ module Freckle
 			"first_name" =>  "John",
 			"last_name" =>  "Test",
 			"avatar" => {
-				"id" =>  5538,
 				"thumbnail" =>  "http=> //apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
 				"avatar" =>  "http=> //apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
 			},
@@ -69,7 +68,6 @@ module Freckle
 	    "first_name" => "John",
 	    "last_name" => "Test",
 	    "avatar" =>{
-	      "id" => 5538,
 	      "thumbnail" => "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
 	      "avatar" => "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
 	    },
