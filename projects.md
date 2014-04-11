@@ -5,6 +5,7 @@ description: Access Freckle projects with the Freckle Time Tracking RESTful API.
 ---
 
 Jump to: [List](#list) | [Create](#create) | 
+[Update](#update)
 [Read](#read) | 
 [Delete](#delete) | [Archive](#archive) | 
 [Activate](#activate)
@@ -371,6 +372,49 @@ required field was omitted, a project with the same name already exists, or the
 ### Roles
 
 All roles except for the **freelancer** role can create projects.
+
+<a id="update"></a>Update project
+-----------
+
+    POST /api/projects/:id
+
+<div class="tabs">
+<div class="selector">
+  <div class="xml active">XML</div>
+</div>
+<div class="tab xml active">
+{% highlight sh %}
+$ curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.xml
+{% endhighlight %}
+
+Post body:
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <name>foobar</name>
+  <group_name>Sprockets, Inc.</group_name>
+  <billable type="boolean">true</billable>
+  <budget-minutes type="integer">60</budget-minutes>
+  <color-hex>f1f353</color-hex>
+</project>
+{% endhighlight %}
+</div>
+</div>
+
+### Response codes
+
+**`200 Created`** means that the project was successfully updated
+
+**`422 Unprocessable Entity`** means the request data was not valid, for example a
+required field was omitted, a project with the same name already exists, or the 
+1 project limit of free Freckle accounts has been reached.
+
+**`400 Bad Request`** means the request data wasn't properly formatted, for example a field has the incorrect data type.
+
+### Roles
+
+All roles except for the **freelancer** role can update projects.
 
 <a id="delete"></a>Delete project
 -----------
