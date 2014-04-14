@@ -5,7 +5,7 @@ description: Access Freckle projects with the Freckle Time Tracking RESTful API.
 ---
 
 Jump to: [List](#list) | [Create](#create) | 
-[Update](#update)
+[Update](#update) | 
 [Read](#read) | 
 [Delete](#delete) | [Archive](#archive) | 
 [Activate](#activate)
