@@ -376,7 +376,7 @@ All roles except for the **freelancer** role can create projects.
 <a id="update"></a>Update project
 -----------
 
-    POST /api/projects/:id
+    PUT /api/projects/:id
 
 <div class="tabs">
 <div class="selector">
@@ -384,7 +384,7 @@ All roles except for the **freelancer** role can create projects.
 </div>
 <div class="tab xml active">
 {% highlight sh %}
-$ curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.xml
+$ curl -v -X PUT -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.xml
 {% endhighlight %}
 
 Post body:
