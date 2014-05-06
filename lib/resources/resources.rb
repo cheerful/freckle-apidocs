@@ -1,5 +1,8 @@
 module Freckle
 	module Resources
+    BASE_URL = "https://api.letsfreckle.com"
+    API_V2_URL = BASE_URL + "/v2"
+
 		VALIDATION_ERROR_EXAMPLE = {
        "message" => "Validation Failed",
        "errors" => [
@@ -35,7 +38,7 @@ module Freckle
 
 		OAUTH_AUTHORIZATION_TOKEN = {
       "id" => 1,
-      "url" => "https://apitest.letsfreckle.com/authorizations/1",
+      "url" => "#{API_V2_URL}/authorizations/1",
       "scopes" => ["current_user","project"],
       "token" => "abc123",
       "app" => {
@@ -56,10 +59,10 @@ module Freckle
 			"first_name" =>  "John",
 			"last_name" =>  "Test",
 			"avatar" => {
-				"thumbnail" =>  "http=> //apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
-				"avatar" =>  "http=> //apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
+				"thumbnail" =>  "#{BASE_URL}/images/avatars/0000/0001/avatar_profile.jpg",
+				"avatar" =>  "#{BASE_URL}/images/avatars/0000/0001/avatar.jpg"
 			},
-			"url" =>  "http=> //apitest.letsfreckle.com/api/v2/users/5538",
+			"url" =>  "#{API_V2_URL}/users/5538",
 		}
 
 		USER = {
@@ -68,28 +71,28 @@ module Freckle
 	    "first_name" => "John",
 	    "last_name" => "Test",
 	    "avatar" =>{
-	      "thumbnail" => "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg",
-	      "avatar" => "http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"
+	      "thumbnail" => "#{BASE_URL}/images/avatars/0000/0001/avatar_profile.jpg",
+	      "avatar" => "#{BASE_URL}/images/avatars/0000/0001/avatar.jpg"
 	    },
 	    "state" =>"active",
 	    "role" => "member",
 
 	    "participating_projects" => 0,
-	    "participating_projects_url" => "http://apitest.letsfreckle.com/api/v2/users/5538/participating_projects",
+	    "participating_projects_url" => "#{API_V2_URL}/users/5538/participating_projects",
 
 	    "accessible_projects" => 0,
-	    "accessible_projects_url" => "http://apitest.letsfreckle.com/api/v2/users/5538/accessible_projects",
+	    "accessible_projects_url" => "#{API_V2_URL}/users/5538/accessible_projects",
 
 	    "entries" => 0,
-	    "entries_url" => "http://apitest.letsfreckle.com/api/v2/users/5538/entries",
+	    "entries_url" => "#{API_V2_URL}/users/5538/entries",
 
 	    "expenses" => 0,
-	    "expenses_url" => "http://apitest.letsfreckle.com/api/v2/users/5538/entries",
+	    "expenses_url" => "#{API_V2_URL}/users/5538/expenses",
 
-	    "add_project_access" => "http://apitest.letsfreckle.com/api/v2/users/5538/project_access/add",
-	    "remove_project_access" => "http://apitest.letsfreckle.com/api/v2/users/5538/project_access/remove",
+	    "add_project_access" => "#{API_V2_URL}/users/5538/project_access/add",
+	    "remove_project_access" => "#{API_V2_URL}/users/5538/project_access/remove",
 
-	    "url" => "http://apitest.letsfreckle.com/api/v2/users/5538",
+	    "url" => "#{API_V2_URL}/users/5538",
 	    "created_at" => "2010-06-09T20:44:57Z",
 	    "updated_at" => "2010-06-09T20:44:57Z",
 	  }
@@ -127,7 +130,7 @@ module Freckle
 			"invoicing_enabled"=>  true,
 			"owner" =>  SIMPLE_USER,
 
-			"url" =>  "http://apitest.letsfreckle.com/api/v2/account/",
+			"url" =>  "#{API_V2_URL}/account/",
 			"created_at" => "2012-01-09T08:33:29Z",
 		  "updated_at" => "2012-01-09T08:33:29Z",
 		}
@@ -143,13 +146,13 @@ module Freckle
 	  	"enabled" =>  true,
 	  	"billable" => true,
 	  	"color_hex" => "ff9898",
-	  	"url" => "http://apitest.letsfreckle.com/api/v2/projects/37396",
+	  	"url" => "#{API_V2_URL}/projects/37396",
 		}
 
 		SIMPLE_PROJECT_GROUP = {
     	"id" => 3768,
     	"name" => "Sprockets, Inc.",
-    	"url" => "http://apitest.letsfreckle.com/api/v2/groups/3768"
+    	"url" => "#{API_V2_URL}/groups/3768"
     }
 
 	  PROJECT_GROUP = {
@@ -157,10 +160,10 @@ module Freckle
 	  	"name" => "Sprockets, Inc.",
 	  	"projects" => [SIMPLE_PROJECT],
 	    "participants" => [SIMPLE_USER],
-	  	"url" => "http://apitest.letsfreckle.com/api/v2/groups/3768",
-	  	"entries_url" => "http://apitest.letsfreckle.com/api/v2/groups/3768/entries/",
-			"invoices_url" => "http://apitest.letsfreckle.com/api/v2/groups/3768/invoices/",
-			"projects_url" => "http://apitest.letsfreckle.com/api/v2/groups/3768/projects/",
+	  	"url" => "#{API_V2_URL}/groups/3768",
+	  	"entries_url" => "#{API_V2_URL}/groups/3768/entries/",
+			"invoices_url" => "#{API_V2_URL}/groups/3768/invoices/",
+			"projects_url" => "#{API_V2_URL}/groups/3768/projects/",
 	    "created_at" => "2012-01-09T08:33:29Z",
 	    "updated_at" => "2012-01-09T08:33:29Z",
 		}
@@ -188,7 +191,7 @@ module Freckle
 
 		SIMPLE_IMPORT = {
 	  	"id" => 8910,
-	  	"url" => "http://apitest.letsfreckle.com/api/v2/imports/8910"
+	  	"url" => "#{API_V2_URL}/imports/8910"
 	  }
 
 	  IMPORT = {
@@ -201,19 +204,19 @@ module Freckle
 
 			"status" => "completed",
 
-			"report_url" => "http://apitest.letsfreckle.com/api/v2/imports/8910/report",
+			"report_url" => "#{API_V2_URL}/imports/8910/report",
 
 			"entries" => 0,
-			"entries_url" => "http://apitest.letsfreckle.com/api/v2/imports/8910/entries",
+			"entries_url" => "#{API_V2_URL}/imports/8910/entries",
 
 			"tags" => 0,
-			"tags_url" => "http://apitest.letsfreckle.com/api/v2/imports/8910/tags",
+			"tags_url" => "#{API_V2_URL}/imports/8910/tags",
 
 			"projects" => 0,
-			"projects_url" => "http://apitest.letsfreckle.com/api/v2/imports/8910/projects",
+			"projects_url" => "#{API_V2_URL}/imports/8910/projects",
 
 
-			"url" => "http://apitest.letsfreckle.com/api/v2/imports/8910",
+			"url" => "#{API_V2_URL}/imports/8910",
 			"created_at" => "2010-06-09T20:44:57Z",
 			"updated_at" => "2010-06-09T20:44:57Z",
 		}
@@ -279,9 +282,9 @@ module Freckle
     		"budgeted_minutes" => 1000,
     		"starts_on" => "2001-01-02",
     		"ends_on" => "2001-01-03",
-    		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
+    		"url" => "#{API_V2_URL}/recurring_goals/8899"
     	},
-    	"url" =>"http://apitest.letsfreckle.com/api/v2/goals/445566"
+    	"url" =>"#{API_V2_URL}/goals/445566"
     }
 
     PROJECT_GOAL_EDITABLE_FIELDS = {
@@ -299,7 +302,7 @@ module Freckle
 
   		"goals" => [PROJECT_GOAL],
 
-  		"url" => "http://apitest.letsfreckle.com/recurring_goals/8899"
+  		"url" => "#{API_V2_URL}/recurring_goals/8899"
   	}
 
   	PROJECT_GOAL_CREATE_FIELDS = {
@@ -314,7 +317,7 @@ module Freckle
 	  	"invoice_number" => "AA001",
 	  	"state" => "unpaid",
 	  	"total" => 189.33,
-	  	"url" => "http://apitest.letsfreckle.com/api/v2/invoices/12345678",
+	  	"url" => "#{API_V2_URL}/invoices/12345678",
 	  }
 
 		PROJECT = SIMPLE_PROJECT.merge({
@@ -333,10 +336,10 @@ module Freckle
 	    "recurring_goals" => [PROJECT_RECURRING_GOAL],
 
 	    "entries" => 0,
-	    "entries_url" =>"http://apitest.letsfreckle.com/api/v2/projects/34580/entries",
+	    "entries_url" =>"#{API_V2_URL}/projects/34580/entries",
 	    "expenses" => 0,
-	    "expenses_url" => "http://apitest.letsfreckle.com/api/v2/projects/34580/expenses",
-	    "url" =>"http://apitest.letsfreckle.com/api/v2/projects/34580",
+	    "expenses_url" => "#{API_V2_URL}/projects/34580/expenses",
+	    "url" =>"#{API_V2_URL}/projects/34580",
 	    "created_at" => "2012-01-09T08:33:29Z",
 	    "updated_at" => "2012-01-09T08:33:29Z",
 	  })
@@ -345,16 +348,16 @@ module Freckle
     	"id" => 249397,
       "name" => "freckle",
       "billable" => true,
-      "url" => "http://apitest.letsfreckle.com/api/v2/tags/249397"
+      "url" => "#{API_V2_URL}/tags/249397"
     }
 
     TAG = SIMPLE_TAG.merge({
 			"import" => {
 				"id" => 8910,
-				"url" => "http://apitest.letsfreckle.com/api/v2/imports/8910"
+				"url" => "#{API_V2_URL}/imports/8910"
 			},
 			"entries" => 0,
-			"entries_url" => "http://apitest.letsfreckle.com/api/v2/tags/55629/entries",
+			"entries_url" => "#{API_V2_URL}/tags/55629/entries",
 
 			"created_at" => "2010-06-09T20:44:57Z",
 			"updated_at" => "2010-06-09T20:44:57Z",
@@ -373,7 +376,7 @@ module Freckle
 		  "invoiced_at" => "2012-01-10T08:33:29Z",
 		  "invoice" => SIMPLE_INVOICE,
 		  "import" => SIMPLE_IMPORT,
-		  "url" => "http://apitest.letsfreckle.com/api/v2/entries/1711626",
+		  "url" => "#{API_V2_URL}/entries/1711626",
 		  "created_at" => "2012-01-09T08:33:29Z",
 		  "updated_at" => "2012-01-09T08:33:29Z",
 		}
@@ -398,7 +401,7 @@ module Freckle
 	  	"invoice" => SIMPLE_INVOICE,
 			"user" => SIMPLE_USER,
 
-	    "url" => "http://apitest.letsfreckle.com/api/v2/expense/2233",
+	    "url" => "#{API_V2_URL}/expense/2233",
 			"created_at" => "2010-06-09T20:44:57Z",
 	    "updated_at" => "2010-06-09T20:44:57Z",
 		}
@@ -535,7 +538,7 @@ module Freckle
 
 			# payment information
 
-			"share_url" => "http#apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z",
+			"share_url" => "https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z",
 
       #the paypal payment details for this invoice
 			"payment" => nil,
@@ -557,12 +560,12 @@ module Freckle
       #a count of all the entries in the invoice
       "entries" =>0,
       #the url to view all of the entries for this invoice
-      "entries_url" => "http#apitest.letsfreckle.com/invoices/26642/entries",
+      "entries_url" => "#{API_V2_URL}/invoices/26642/entries",
 
       #a count of all the expenses in the invoice
       "expenses" => 0,
       #the url to view all of the expenses for this invoice
-      "expenses_url" => "http#apitest.letsfreckle.com/invoices/26642/expenses",
+      "expenses_url" => "#{API_V2_URL}/invoices/26642/expenses",
 
       "created_at" => "2013-07-09T23:04:05Z",
       "updated_at" => "2013-07-09T23:04:06Z",
@@ -618,7 +621,7 @@ module Freckle
     	"description" => "freckle work",
     	"user" => SIMPLE_USER,
     	"project" => SIMPLE_PROJECT,
-    	"url" => "https://api.letsfreckle.com/api/v2/projects/34580/timer",
+    	"url" => "#{API_V2_URL}/projects/34580/timer",
     }
 
     SUBDOMAIN = {
