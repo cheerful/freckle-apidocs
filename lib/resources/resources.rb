@@ -622,6 +622,9 @@ module Freckle
     	"user" => SIMPLE_USER,
     	"project" => SIMPLE_PROJECT,
     	"url" => "#{API_V2_URL}/projects/34580/timer",
+      "start_url" => "#{API_V2_URL}/projects/34580/timer/start",
+      "pause_url" => "#{API_V2_URL}/projects/34580/timer/pause",
+      "log_url"   => "#{API_V2_URL}/projects/34580/timer/log"
     }
 
     SUBDOMAIN = {

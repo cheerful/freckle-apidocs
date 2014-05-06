@@ -55,7 +55,7 @@ If the project does not have a currently running or paused timer, then the respo
 Updates the details for a project's timer. If the timer does not exist, it will automatically be created.
 
 ~~~
-PATCH /projects/:project_id/start
+PATCH /projects/:project_id/timer
 ~~~
 
 <%= headers 200 %>
