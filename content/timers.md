@@ -79,8 +79,8 @@ PUT /projects/:project_id/timer/start
 ## Input
 
 entry_date
-: *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`
-: The date that will be used when creating an entry based on this timer.
+: *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
+: If no value is provided, the current date will be used.
 
 description
 : *Optional* **string**
@@ -90,9 +90,9 @@ description
 
 When a timer is started, the currently running timer is paused.
 
-### A note about restarting a paused or stopped timer
+### A note about the changing the entry date for a timer that has been started
 
-When starting a timer that has been paused or stopped, the entry date will not change. The entry date for a timer that has already been started can be changed when the timer is logged.
+The entry date for a timer that has already been started cannot be changed with the "start" action, even if it is paused or stopped. You can change the entry date for the timer when the timer is logged.
 
 ## Pause a project's timer
 
