@@ -6,6 +6,7 @@ gem 'kramdown'
 gem 'pygments.rb'
 gem 'json'
 gem 'nokogiri'
+gem 'nanoc'
 
 group :development do
 	gem 'guard'

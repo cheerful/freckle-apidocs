@@ -65,5 +65,6 @@ DEPENDENCIES
   guard-nanoc
   json
   kramdown
+  nanoc
   nokogiri
   pygments.rb
