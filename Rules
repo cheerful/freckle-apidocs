@@ -13,9 +13,7 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-compile '/stylesheet/' do
-  # don’t filter or layout
-end
+passthrough '/assets/*'
 
 compile '*' do
   if item.binary?
@@ -27,10 +25,6 @@ compile '*' do
     :colorizers => {:javascript => :pygmentsrb, :bash => :pygmentsrb}
     layout 'default'
   end
-end
-
-route '/stylesheet/' do
-  '/style.css'
 end
 
 route '*' do

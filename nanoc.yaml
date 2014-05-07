@@ -57,6 +57,10 @@ data_sources:
     # will have the identifier “/about/” when turned off, but when turned on
     # it will become “/about.html/” instead.
     allow_periods_in_identifiers: false
+  # For assets that are just copied over
+  -
+    type: static
+    items_root: /assets/
 
 # Configuration for the “watch” command, which watches a site for changes and
 # recompiles if necessary.
@@ -66,7 +70,7 @@ watcher:
   # because recompiling the site will cause these directories to change, which
   # will cause the site to be recompiled, which will cause these directories
   # to change, which will cause the site to be recompiled again, and so on.
-  dirs_to_watch: [ 'content', 'layouts', 'lib' ]
+  dirs_to_watch: [ 'content', 'layouts', 'lib', 'static' ]
 
   # A list of single files to watch for changes. As mentioned above, don’t put
   # any files from the “output/” or “tmp/” directories in here.
