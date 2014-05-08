@@ -3,6 +3,11 @@ layout: default
 title: Timer
 ---
 
+<div class="note">
+<h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
+<p>This means that the API will grow and its functionality may change at any time.</p>
+</div>
+
 ## List all currently running or paused Timers
 
 Get all the currently running or paused Timers. The running Timer will be shown first, then the paused timers

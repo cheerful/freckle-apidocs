@@ -3,42 +3,29 @@ layout: default
 title: Authentication
 ---
 
-* TOC
-{:toc}
+<div class="note">
+<h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
+<p>This means that the API will grow and its functionality may change at any time.</p>
+</div>
 
-The Freckle API provides multiple different ways to handle authentication in your application, each one suited for a particular type of application. It's important to pick the right authentication method for your application, so we've created the guide below to help you choose the right one:
+## Using Personal Access Tokens
 
-## Which Authentication method do I choose?
+[Personal Access Tokens](http://help.letsfreckle.com/import-export-api/api) allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!
 
-[OAuth](/oauth) (**Strongly recommended**)
-: My application will be running in a production environment, is not a script, or I am concerned about security.
+The token has to be sent for each request your application makes to the Freckle API.
 
-[Basic Authentication using User's credentials](#via-username-and-password)
-: I'm writing a script whichs asks the user to authenticate each time, or I can store the user's authentication information.
+There are two ways to send the token—examples are given using the cURL command line tool:
 
-[Basic Authentication using OAuth Tokens](#via-oauth-tokens)
-: My tools only allow me to use Basic Authentication, but I want to use OAuth for it's security features.
+As *query parameter* named `token`:
 
-## Basic Authentication
 
-The API supports Basic Authentication as defined in [RFC2617](http://www.ietf.org/rfc/rfc2617.txt). There are two ways to use Basic Authentication: using the user's credentials or using an OAuth token.
-
-### Via Username and Password
-
-To use Basic Authentication with the Freckle API, simply send the email and password associated with the user.
-
-For example, if you're accessing the API via [cURL](http://curl.haxx.se/), the following command would authenticate with `john@test.com` as the email. (cURL will prompt you to enter the password).
-
-<pre class='terminal'>
-curl -u john@test.com https://apitest.letsfreckle.com/api/v2/entries
+<pre class="terminal">
+curl -v <%= API_V2_URL %>/timers.json?token=eeee4gqoj2814c45h02ilr9z2e6wkkb$iytjzqvf4u2xxljmvu4haua92jbhf8p
 </pre>
 
-### Via OAuth Tokens
 
-Alternatively, you can authenticate using [personal access tokens](http://help.letsfreckle.com/import-export-api/api) or OAuth tokens. This approach is useful if your tools only support Basic Authentication but you want to take advantage of the security benefits provided by OAuth access tokens.
+As *HTTP header* `X-FreckleToken`:
 
-To do so, provide the token as the username and provide a blank password or a password of `x-oauth-basic`. For example:
-
-<pre class='terminal'>
-curl -u abcdefghijklmnop1234567890:x-oauth-basic https://apitest.letsfreckle.com/api/v2/entries
+<pre class="terminal">
+curl -v -H "X-FreckleToken:eeee4gqoj2814c45h02ilr9z2e6wkkb$iytjzqvf4u2xxljmvu4haua92jbhf8p" <%= API_V2_URL %>/timers.json
 </pre>
