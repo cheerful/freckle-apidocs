@@ -74,6 +74,7 @@ Here's an example entry and a description of all the fields returned.
     "date": "2012-01-09",
     // User ID the time is logged for (integer)
     "user_id": 5538,
+    "user_name" : "Lets Freckle"
 
     // false if entry or project are unbillable
     "billable": true,
