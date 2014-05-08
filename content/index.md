@@ -76,6 +76,10 @@ There are a few errors that can occur while making API calls. the following are 
 <%= headers 400 %>
 <%= json :message => "Body should be JSON Hash" %>
 
+## Fields were not in the correct format
+
+<%= headers 400 %>
+
 ## The user does not have the necessary permissions to perform an action
 
 <%= headers 403 %>
