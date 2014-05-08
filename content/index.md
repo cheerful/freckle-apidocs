@@ -69,7 +69,7 @@ There are a few errors that can occur while making API calls. the following are 
 
 ## The user does not have the necessary permissions to perform an action
 
-<%= headers 401 %>
+<%= headers 403 %>
 
 ## Account is currently locked for migration
 
