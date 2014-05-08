@@ -1,7 +1,9 @@
 module Freckle
   module Resources
-    BASE_URL = "https://api.letsfreckle.com"
-    API_V2_URL = BASE_URL + "/v2"
+    BASE_DOMAIN = "api.letsfreckle.com"
+    API_V2_DOMAIN = BASE_DOMAIN + "/v2"
+    BASE_URL   = "https://" + BASE_DOMAIN
+    API_V2_URL = "https://" + API_V2_DOMAIN
 
     VALIDATION_ERROR_EXAMPLE = {
        "message" => "Validation Failed",
