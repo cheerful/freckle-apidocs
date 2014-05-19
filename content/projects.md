@@ -334,3 +334,22 @@ projects
 ### A note about projects that cannot be archived
 
 Any projects are included in this request that cannot be archived will be ignored and will not affect the Response.
+
+## Delete multiple Projects at once
+
+~~~
+DELETE /projects
+~~~
+
+### Inputs
+
+projects
+: *Required* **array of integers**: the IDs of the projects to be deleted
+
+### Response
+
+<%= headers 204 %>
+
+### A note about projects that cannot be deleted
+
+Any projects are included in this request that cannot be deleted will be ignored and will not affect the Response.
