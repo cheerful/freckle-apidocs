@@ -130,9 +130,7 @@ Repeat the request verbatim to the URI specified in the `Location` header, but c
 
 ##Supported methods:
 
-* OAuth2 Token (sent in Header)
-* OAuth2 Token (sent as a parameter)
-* OAuth2 Key/Secret
+* Personal Access Tokens
 
 # Hypermedia
 
@@ -141,7 +139,3 @@ All resources have one or more `*_url` properties linking to other resources or 
 ## Example (Timer Object):
 
 <%= json :timer %>
-
-# Acknowledgements
-
-The design of the Freckle API is based on [Github's v3 API](http://developer.github.com/v3).
