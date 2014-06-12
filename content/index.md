@@ -62,6 +62,18 @@ The following rules define the general schema of the API:
 * Blank fields are included as `null` in responses.
 * The ISO 8061 Date and Timestamp formats are used across the application (`YYYY-MM-DD` and `YYYY-MM-DDTHH:MM:SSZ` respectively).
 
+# A User Agent is Required
+
+All API Requests must include a valid `User-Agent` header. Requests with no `User-Agent` header will be rejected. We recommend two options:
+
+* Your Freckle account subdomain
+* The name of the application
+
+## Example:
+~~~
+User-Agent: My-Freckle-App
+~~~
+
 # Client Errors
 
 There are a few errors that can occur while making API calls. the following are the kinds of errors you may encounter when using the API.
