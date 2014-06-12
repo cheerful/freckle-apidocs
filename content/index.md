@@ -214,7 +214,7 @@ All API Requests must include a valid `User-Agent` header. Requests with no `Use
 
 ## Example:
 ~~~
-User-Agent: DaBest-Freckle-App
+User-Agent: My-Freckle-App
 ~~~
 
 # Scopes
