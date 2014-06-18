@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Freckle API: Timer</title>
+  <link rel="stylesheet" href="/v2/assets/stylesheet.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="nav">
+      <div id="logo">
+        <a href="/v2/">
+          <img src="/v2/assets/freckle.svg" width="125" height="36">
+        </a>
+      </div>
+      API Documentation
+      <h2>Topics</h2>
+      <ul id="resources">
+        <li><a href="/v2/">API Basics</a></li>
+        <li><a href="/v2/authentication">Authentication</a></li>
+      </ul>
+      <h2>Resources</h2>
+      <ul id="resources">
+        <li><a href="/v2/timers">Timers</a></li>
+      </ul>
+
+      <ul id="resources">
+        <li><a href="/v2/entries">Entries</a></li>
+      </ul>
+      <ul id="resources">
+        <li><a href="/v2/expenses">Expenses</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <h1>Timer</h1>
+      <div class="note">
+<h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
+<p>This means that the API will grow and its functionality may change at any time.</p>
+</div>
+
+<h2 id="list-all-currently-running-or-paused-timers">List all currently running or paused Timers</h2>
+
+<p>Get all the currently running or paused Timers. The running Timer will be shown first, then the paused timers</p>
+
+<pre><code>GET /timers/
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<p>Each parameter passed will filter the results, and parameters are chained (meaning that if you search by <code>description</code> and <code>projects</code>, it will only return the timers with that description text for those projects).</p>
+
+<dl>
+<dt>descripton</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>Only timers containing this text in their description are returned.</dd>
+  <dd>Example: <code>description=meeting</code>
+</dd>
+  <dt>projects</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>A comma-separated list of project IDs to filter by.</dd>
+  <dd>Example: <code>projects=4,5,6</code>
+</dd>
+  <dt>billable</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>: only show timers for billable projects</dd>
+  <dd>
+<code>false</code>: only show timers for unbillable projects</dd>
+</dl><h3 id="response">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK
+Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
+ &lt;https://api.letsfreckle.com/v2/timers?page=5&gt;; rel="last"</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"initial_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"last_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-10T01:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"running"</span><span class="p">,</span>
+  <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+  <span class="s2">"entry_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
+      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
+    <span class="p">},</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+  <span class="p">},</span>
+  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+  <span class="p">},</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/log"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="get-a-projects-timer">Get a project’s timer</h2>
+
+<pre><code>GET /projects/:project_id/timer
+</code></pre>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"initial_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"last_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-10T01:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"running"</span><span class="p">,</span>
+  <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+  <span class="s2">"entry_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
+      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
+    <span class="p">},</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+  <span class="p">},</span>
+  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+  <span class="p">},</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/log"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="a-note-about-getting-a-projects-timer">A note about Getting a project’s timer</h3>
+
+<p>If the project does not have a currently running or paused timer, then the response will return a <code>404</code> status code.</p>
+
+<pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
+
+<h2 id="edit-a-projects-timer">Edit a project’s timer</h2>
+
+<p>Updates the details for a project’s timer. If the timer does not exist, it will automatically be created.</p>
+
+<pre><code>PUT /projects/:project_id/timer
+</code></pre>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"initial_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"last_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-10T01:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"running"</span><span class="p">,</span>
+  <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+  <span class="s2">"entry_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
+      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
+    <span class="p">},</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+  <span class="p">},</span>
+  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+  <span class="p">},</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/log"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="input">Input</h2>
+
+<dl>
+<dt>description</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.</dd>
+</dl><h2 id="start-a-projects-timer">Start a project’s timer</h2>
+
+<pre><code>PUT /projects/:project_id/timer/start
+</code></pre>
+
+<pre class="headers"><code>Status: 201 Created</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"initial_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"last_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-10T01:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"running"</span><span class="p">,</span>
+  <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+  <span class="s2">"entry_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
+      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
+    <span class="p">},</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+  <span class="p">},</span>
+  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+  <span class="p">},</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/log"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="input-1">Input</h2>
+
+<dl>
+<dt>entry_date</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>If no value is provided, the current date will be used.</dd>
+  <dt>description</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.</dd>
+</dl><h3 id="a-note-about-starting-a-timer-when-another-time-is-already-running">A note about starting a timer when another time is already running</h3>
+
+<p>When a timer is started, the currently running timer is paused.</p>
+
+<h3 id="a-note-about-the-changing-the-entry-date-for-a-timer-that-has-been-started">A note about the changing the entry date for a timer that has been started</h3>
+
+<p>The entry date for a timer that has already been started cannot be changed with the “start” action, even if it is paused or stopped. You can change the entry date for the timer when the timer is logged.</p>
+
+<h2 id="pause-a-projects-timer">Pause a project’s timer</h2>
+
+<p>The response does not change if the timer has already been paused or does not exist</p>
+
+<pre><code>PUT /projects/:project_id/timer/pause
+</code></pre>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"initial_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"last_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-10T01:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"running"</span><span class="p">,</span>
+  <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+  <span class="s2">"entry_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
+      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
+    <span class="p">},</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+  <span class="p">},</span>
+  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+  <span class="p">},</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/log"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="a-note-about-getting-a-projects-timer-1">A note about Getting a project’s timer</h3>
+
+<p>If the project does not have a currently running or paused timer, then the response will return a <code>404</code> status code.</p>
+
+<pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
+
+<h2 id="log-the-time-in-a-projects-timer">Log the time in a project’s timer</h2>
+
+<p>When a timer is logged, a new entry is created for the user with the description provided.</p>
+
+<pre><code>PUT /projects/:project_id/timer/log
+</code></pre>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="input-2">Input</h2>
+
+<dl>
+<dt>entry_date</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>The date that will be used when creating an entry based on this timer. If no value is provided, then the <code>entry_date</code> provided when the timer was started will be used.</dd>
+  <dt>minutes</dt>
+  <dd>
+<em>Optional</em> <strong>integer</strong>
+</dd>
+  <dd>The number of minutes logged in the time entry. This number will automatically be rounded up based on the project’s “stepping” settings. If no value is provided, then the timer’s elapsed minutes will be used.</dd>
+  <dt>description.</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.</dd>
+</dl><h3 id="a-note-about-logging-a-timer-that-isnt-paused-or-currently-running">A note about logging a timer that isn’t paused or currently running</h3>
+
+<p>If the timer is not currently running or paused the response code will be <code>404</code></p>
+
+<pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
+
+<h2 id="discard-a-projects-timer">Discard a project’s timer</h2>
+
+<p>When a project’s timer is discarded, the timer is deleted and no time entry is recorded.</p>
+
+<pre><code>DELETE /projects/:project_id/timer/
+</code></pre>
+
+<h3 id="response-1">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div>
+
+    <div class="columns four">
+      <div class="column">
+        <h3>About Freckle</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
+          <li><a href="http://letsfreckle.com/plans/"> Freckle plans and pricing</a></li>
+          <li><a href="http://letsfreckle.com/terms/">Our user agreement</a></li>
+          <li><a href="http://letsfreckle.com/privacy/">Privacy policy</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Us &amp; our company</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/team/">Meet our team</a></li>
+          <li><a href="http://letsfreckle.com/blog/">Read our blog about Freckle</a></li>
+          <li><a href="http://letsfreckle.com/contact/">Write us</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Docs</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/">FAQs</a></li>
+          <li><a href="http://letsfreckle.com/quick-start">Quick Start Guide</a></li>
+          <li><a href="http://developer.letsfreckle.com">API Documentation</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>You &amp; your account</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/accounts/">How to sign in</a></li>
+          <li><a href="http://letsfreckle.com/help/">Get help &amp; contact support</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      &copy; 2008-2014 Slash7 LLC, all rights reserved.
+    </div>
+    </div>
+  </div>
+
+  <script>
+  var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
+  </script>
+  <script src="https://secure.charmhq.com/feedback.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      function setTabs(to){
+        // change all tabs on page to value
+        var tabs = $('.tabs')
+        tabs.find('.selector DIV').removeClass('active')
+        tabs.find('.selector DIV.'+to).addClass('active')
+        tabs.find('.tab').removeClass('active')
+        tabs.find('.tab.'+to).addClass('active')
+
+        // change tabs that don't have an active tab to show first tab
+        tabs.find('.selector').each(function(){
+          if ($(this).find('DIV.active').length > 0) return
+
+          console.log(this)
+          $(this).find('DIV').first().addClass('active')
+          $(this).closest('.tabs').find('.tab').first().addClass('active')
+        })
+
+        // save for later
+        localStorage && (localStorage.dataFormat = to)
+      }
+
+      $('.tabs .selector div').on('click', function(){
+        setTabs($(this).attr('class'))
+      })
+
+      setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
+    })
+  </script>
+
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37896092-1']);
+    _gaq.push(['_setDomainName', 'letsfreckle.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</body>
+</html>
