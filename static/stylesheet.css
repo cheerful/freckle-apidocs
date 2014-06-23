@@ -188,6 +188,9 @@ h2 {
   padding: 4px 10px;
   background: #ffe;
   color: #3d3d13;
+}
+
+.note.sticky{
   position: -webkit-sticky;
   position: -moz-sticky;
   position: -ms-sticky;
