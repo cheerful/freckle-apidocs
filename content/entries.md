@@ -104,7 +104,7 @@ date
 : *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`
 : The date of the time entry.
 
-user
+user_id
 : *Optional* **integer**
 : The ID of the user who logged this time entry. If no value is provided, the authenticated user will be used.
 
@@ -159,7 +159,7 @@ date
 : *Optional* **string** of a date in ISO 8061 format `YYY-MM-DD`
 : the date of the time entry.
 
-user
+user_id
 : *Optional* **integer**
 : The ID of the user who logged this time entry. If no value is provided, the user will not be changed.
 
@@ -171,9 +171,15 @@ description
 : *Optional* **string**
 : The description of the time entry. Any tags or hashtags will be automatically parsed.
 
-project
+project_id
 : *Optional* **integer**
 : The ID of the project this time entry is logged under. If no value is provided, the project will not be changed.
+
+project_name
+: *Optional* **string**
+: The name of the project this time entry is logged under. If no value is provided, the project will not be changed.
+: This value is only used if no value is provided for `project_id`.
+: If a project with this name does not exist yet, it will automatically be created with this entry.
 
 source_url
 : *Optional* **string**

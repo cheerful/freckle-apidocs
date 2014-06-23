@@ -60,22 +60,11 @@ module Freckle
       "email" =>  "john.test@test.com",
       "first_name" =>  "John",
       "last_name" =>  "Test",
-      "avatar" => {
-        "thumbnail" =>  "#{BASE_URL}/images/avatars/0000/0001/avatar_profile.jpg",
-        "avatar" =>  "#{BASE_URL}/images/avatars/0000/0001/avatar.jpg"
-      },
+      "profile_image_url" => "#{BASE_URL}/images/avatars/0000/0001/avatar.jpg",
       "url" =>  "#{API_V2_URL}/users/5538",
     }
 
-    USER = {
-      "id" => 5538,
-      "email" => "john.test@test.com",
-      "first_name" => "John",
-      "last_name" => "Test",
-      "avatar" =>{
-        "thumbnail" => "#{BASE_URL}/images/avatars/0000/0001/avatar_profile.jpg",
-        "avatar" => "#{BASE_URL}/images/avatars/0000/0001/avatar.jpg"
-      },
+    USER = SIMPLE_USER.merge({
       "state" =>"active",
       "role" => "member",
 
@@ -94,10 +83,9 @@ module Freckle
       "add_project_access" => "#{API_V2_URL}/users/5538/project_access/add",
       "remove_project_access" => "#{API_V2_URL}/users/5538/project_access/remove",
 
-      "url" => "#{API_V2_URL}/users/5538",
       "created_at" => "2010-06-09T20:44:57Z",
       "updated_at" => "2010-06-09T20:44:57Z",
-    }
+    })
 
     CURRENT_USER = USER.merge({
       "time_format" => "fraction",
@@ -117,7 +105,7 @@ module Freckle
     ACCOUNT = {
       "id" =>  3344,
       "plan_name" =>  "Freelancer",
-      "subdomain" =>  "testit",
+      "name" =>  "testit",
       "address" =>  {
         "address1" =>  "1345 Main Street",
         "address2" =>  "Room 3",
@@ -128,11 +116,12 @@ module Freckle
         "phone" =>  "(111)-222-3333",
       },
 
-      "ccinvoices"=>  "john.test@test.com",
+      "billing_email_cc"=>  "john.test@test.com",
       "invoicing_enabled"=>  true,
       "owner" =>  SIMPLE_USER,
 
       "url" =>  "#{API_V2_URL}/account/",
+      "signin_url" =>  "https://testit.letsfreckle.com/signin",
       "created_at" => "2012-01-09T08:33:29Z",
       "updated_at" => "2012-01-09T08:33:29Z",
     }
@@ -144,10 +133,10 @@ module Freckle
     SIMPLE_PROJECT = {
       "id" => 37396,
       "name" =>"Gear GmbH",
-      "stepping" => 10,
+      "billing_increment" => 10,
       "enabled" =>  true,
       "billable" => true,
-      "color_hex" => "ff9898",
+      "color" => "#ff9898",
       "url" => "#{API_V2_URL}/projects/37396",
     }
 
@@ -316,7 +305,7 @@ module Freckle
 
     SIMPLE_INVOICE = {
       "id" => 12345678,
-      "invoice_number" => "AA001",
+      "number" => "AA001",
       "state" => "unpaid",
       "total" => 189.33,
       "url" => "#{API_V2_URL}/invoices/12345678",
@@ -385,10 +374,11 @@ module Freckle
 
     ENTRY_EDITABLE_FIELDS = {
       "date" => ENTRY["date"],
-      "user" => SIMPLE_USER["id"],
+      "user_id" => SIMPLE_USER["id"],
       "minutes" => ENTRY["minutes"],
       "description" => ENTRY["description"],
-      "project" => SIMPLE_PROJECT["id"],
+      "project_id" => SIMPLE_PROJECT["id"],
+      "project_name" => SIMPLE_PROJECT["name"],
       "source_url" => ENTRY["source_url"],
     }
 
@@ -396,7 +386,7 @@ module Freckle
       "id" => 2233,
       "price" => 14.55,
       "description" => "new software",
-      "apply_tax" => true,
+      "taxable" => true,
       "date" => "2010-06-09",
 
       "project" => SIMPLE_PROJECT,
@@ -410,11 +400,11 @@ module Freckle
 
     EXPENSE_EDITABLE_FIELDS = {
       "date" => EXPENSE["date"],
-      "user" => SIMPLE_USER["id"],
+      "user_id" => SIMPLE_USER["id"],
       "price" => EXPENSE["price"],
-      "apply_tax" => EXPENSE["apply_tax"],
+      "taxable" => EXPENSE["taxable"],
       "description" => EXPENSE["description"],
-      "project" => SIMPLE_PROJECT["id"]
+      "project_id" => SIMPLE_PROJECT["id"]
     }
 
     INVOICE_CUSTOMIZATION = {
@@ -501,7 +491,7 @@ module Freckle
       #the current state of the invoice
       "state" => "awaiting_payment",
       #the displayed number for the invoice
-      "invoice_number" => "AB 0001",
+      "number" => "AB 0001",
       #the date the invoice was posted on
       "invoice_date" => "2013-07-09",
       #the generated name for the invoice
@@ -583,7 +573,7 @@ module Freckle
 
     INVOICE_CREATE_FIELDS = {
       "date" => INVOICE["date"],
-      "invoice_number" => INVOICE["invoice_number"],
+      "number" => INVOICE["number"],
       "company_name" => INVOICE["company_name"],
       "company_details" => INVOICE["company_details"],
       "recipient" => INVOICE["recipient"],
@@ -603,7 +593,7 @@ module Freckle
 
     INVOICE_EDIT_FIELDS = {
       "date" => INVOICE["date"],
-      "invoice_number" => INVOICE["invoice_number"],
+      "number" => INVOICE["number"],
       "company_name" => INVOICE["company_name"],
       "company_details" => INVOICE["company_details"],
       "recipient" => INVOICE["recipient"],
@@ -615,11 +605,11 @@ module Freckle
     }
 
     TIMER = {
-      "initial_start_time" => "2013-07-09T23:04:05Z",
-      "last_start_time" => "2013-07-10T01:04:05Z",
+      "id" => 123456,
       "state" => "running",
       "seconds" => 180,
-      "entry_date" => "2013-07-09",
+      "formatted_time" => "00:03:00",
+      "date" => "2013-07-09",
       "description" => "freckle work",
       "user" => SIMPLE_USER,
       "project" => SIMPLE_PROJECT,

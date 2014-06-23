@@ -38,7 +38,7 @@ from
 to
 : *Optional* **string** of a date in ISO 8061 format: `YYYY-MM-DD`. Only expenses on or before this date will be returned.
 
-apply_taxes
+taxable
 : *Optional* **boolean**: `true` only shows expenses where taxes are applied, `false` only shows expenses were taxes are not applied.
 
 ### Response
@@ -66,19 +66,19 @@ POST /expenses/
 date
 : *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the expense.
 
-user
+user_id
 : *Optional* **integer**: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.
 
 price
 : *Required* **decimal**: The numeric price of this expense. **Do not add the currency to this price**.
 
-apply_tax
+taxable
 : *Optional* **boolean**: `true` indicates that the expense is taxable. `false` indicates that the expense is tax-free. Defaults to `true`.
 
 description
 : *Optional* **string**: The description of the expense. Note that tags or hashtags will not be parsed.
 
-project
+project_id
 : *Required* **integer**: The ID of the project this expense is for.
 
 <%= json :expense_editable_fields %>
@@ -99,19 +99,19 @@ PATCH /expenses/:id
 date
 : *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the expense.
 
-user
+user_id
 : *Optional* **integer**: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.
 
 price
 : *Required* **decimal**: The numeric price of this expense. **Do not add the currency to this price**.
 
-apply_tax
+taxable
 : *Optional* **boolean**: `true` indicates that the expense is taxable. `false` indicates that the expense is tax-free. Defaults to `true`.
 
 description
 : *Optional* **string**: The description of the expense. Note that tags or hashtags will not be parsed.
 
-project
+project_id
 : *Required* **integer**: The ID of the project this expense is for.
 
 <%= json :expense_editable_fields %>
