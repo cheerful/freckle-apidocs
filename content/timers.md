@@ -41,7 +41,7 @@ billable
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "timers" %>
-<%= json :timer %>
+<%= json_array :timer %>
 
 ## Get a project's timer
 

@@ -44,7 +44,7 @@ taxable
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "expenses" %>
-<%= json :expense %>
+<%= json_array :expense %>
 
 ## Get a single Expense
 

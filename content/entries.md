@@ -81,7 +81,7 @@ billable
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "entries" %>
-<%= json :entry %>
+<%= json_array :entry %>
 
 ## Get a single Entry
 
