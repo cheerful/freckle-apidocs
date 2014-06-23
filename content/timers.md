@@ -49,7 +49,7 @@ GET /projects/:project_id/timer
 
 ### Notes
 
-* If a project does not have a currently running or paused timer, then the response will return a `404` status code.
+If a project does not have a currently running or paused timer, then the response will return a `404` status code.
 
 <%= headers 404 %>
 
@@ -92,7 +92,7 @@ description
 ### Notes
 
 * When a timer is started, the currently running timer (if any) is paused.
-* Once a timer has been started, its entry date cannot be changed with the "start" action, even if it is paused or stopped. However, you can change the entry date for the timer when the timer is logged.
+* Once a timer has been started, its entry date cannot be changed with the `start` action, even if it is paused or stopped. However, you can change the entry date for the timer when the timer is logged.
 
 ## Pause a project's timer
 
@@ -107,7 +107,7 @@ PUT /projects/:project_id/timer/pause
 
 ### Notes
 
-* If a project does not have a currently running or paused timer, then the response will return a `404` status code.
+If a project does not have a currently running or paused timer, then the response will return a `404` status code.
 
 <%= headers 404 %>
 
@@ -138,7 +138,7 @@ description.
 
 ### Notes
 
-* If a project does not have a currently running or paused timer, then the response will return a `404` status code.
+If a project does not have a currently running or paused timer, then the response will return a `404` status code.
 
 <%= headers 404 %>
 

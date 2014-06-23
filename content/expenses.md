@@ -137,8 +137,6 @@ DELETE /expenses/:id
 
 <%= headers 204 %>
 
-### A note about expense deletion
+### Notes
 
-An expense cannot be deleted if it has been invoiced. In this case, response will include an error message which will notify users that the expense cannot be deleted.
-
-The error code that will be used to indicate that the expense has already been invoiced (and therefore cannot be deleted) is: **invoiced**.
+* An expense cannot be deleted if it has been invoiced. In this case, the response will include an error message with the code **invoiced**.
