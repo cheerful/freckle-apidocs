@@ -3,6 +3,9 @@ layout: default
 title: Timer
 ---
 
+* TOC
+{:toc}
+
 <div class="note">
 <h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
 <p>This means that the API will grow and its functionality may change at any time.</p>
@@ -66,7 +69,7 @@ PUT /projects/:project_id/timer
 <%= headers 200 %>
 <%= json :timer %>
 
-## Input
+### Input
 
 description
 : *Optional* **string**
@@ -81,7 +84,7 @@ PUT /projects/:project_id/timer/start
 <%= headers 201 %>
 <%= json :timer %>
 
-## Input
+### Input
 
 entry_date
 : *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
@@ -127,7 +130,7 @@ PUT /projects/:project_id/timer/log
 
 <%= headers 204 %>
 
-## Input
+### Input
 
 entry_date
 : *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`

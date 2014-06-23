@@ -3,6 +3,9 @@ layout: default
 title: Expense
 ---
 
+* TOC
+{:toc}
+
 ## List Expenses
 
 Get all the expenses, sorted by the most recent date.
