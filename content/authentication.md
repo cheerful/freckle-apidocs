@@ -20,12 +20,12 @@ As *query parameter* named `token`:
 
 
 <pre class="terminal">
-curl -v <%= API_V2_URL %>/timers.json?token=eeee4gqoj2814c45h02ilr9z2e6wkkb$iytjzqvf4u2xxljmvu4haua92jbhf8p
+curl -v <%= API_V2_URL %>/timers.json?token=eeee4gqoj2814c45h02ilr9z2e6wkkb-iytjzqvf4u2xxljmvu4haua92jbhf8p
 </pre>
 
 
 As *HTTP header* `X-FreckleToken`:
 
 <pre class="terminal">
-curl -v -H "X-FreckleToken:eeee4gqoj2814c45h02ilr9z2e6wkkb$iytjzqvf4u2xxljmvu4haua92jbhf8p" <%= API_V2_URL %>/timers.json
+curl -v -H "X-FreckleToken:eeee4gqoj2814c45h02ilr9z2e6wkkb-iytjzqvf4u2xxljmvu4haua92jbhf8p" <%= API_V2_URL %>/timers.json
 </pre>
