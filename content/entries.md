@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Entry
+title: Entries
 ---
 
 <div class="note warning">

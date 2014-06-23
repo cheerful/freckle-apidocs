@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Expense
+title: Expenses
 ---
 
 

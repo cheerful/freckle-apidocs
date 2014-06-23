@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Timer
+title: Timers
 ---
 
 * TOC
