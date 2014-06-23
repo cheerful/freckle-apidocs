@@ -117,13 +117,13 @@ HTTP Redirection will be used when appropriate, meaning that clients should assu
 Redirect responses will have a `Location` header field which contains the URI of the resource to which the client should repeat the requests.
 
 ### Permanent Redirection
-<%= headers 301, :Location => API_V2_URL + "/new/url" %>
+<%= headers 301, :Location => API_V2_URL + "/new/uri" %>
 
 This and all future requests should be directed to the new URI
 
 ### Temporary Redirection
-<%= headers 302, :Location => API_V2_URL + "/new/url" %>
-<%= headers 307, :Location => API_V2_URL + "/new/url" %>
+<%= headers 302, :Location => API_V2_URL + "/new/uri" %>
+<%= headers 307, :Location => API_V2_URL + "/new/uri" %>
 
 Repeat the request verbatim to the URI specified in the `Location` header, but clients should still continue to use th original URI in future requests
 
@@ -145,7 +145,7 @@ Repeat the request verbatim to the URI specified in the `Location` header, but c
 
 ###Supported methods:
 
-* Personal Access Tokens
+* [Personal Access Tokens](authentication/#using-personal-access-tokens)
 
 ## Hypermedia
 
