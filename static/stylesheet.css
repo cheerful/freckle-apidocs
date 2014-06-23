@@ -267,7 +267,7 @@ code.sh {
   background: #fff;
   border: 2px solid #eaeaea;
 }
-pre > code {
+pre > code, pre.terminal {
   display: block;
   padding: 5px;
   border-radius: 5px;
