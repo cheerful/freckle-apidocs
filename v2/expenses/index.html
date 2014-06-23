@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Freckle API: Expense</title>
+  <title>Freckle API: Expenses</title>
   <link rel="stylesheet" href="/v2/assets/stylesheet.css" type="text/css">
 </head>
 
@@ -33,8 +33,23 @@
       </ul>
     </div>
     <div id="content">
-      <h1>Expense</h1>
-      <h2 id="list-expenses">List Expenses</h2>
+      <div class="note sticky">
+        <h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
+        <p>This means that the API will grow and its functionality may change at any time.</p>
+      </div>
+      <h1>Expenses</h1>
+      <div class="note warning sticky">
+  <h2>Not implemented yet!</h2>
+  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+</div>
+
+<ul id="markdown-toc">
+<li><a href="#list-expenses">List Expenses</a></li>
+  <li><a href="#get-a-single-expense">Get a single Expense</a></li>
+  <li><a href="#create-an-expense">Create an Expense</a></li>
+  <li><a href="#edit-an-expense">Edit an Expense</a></li>
+  <li><a href="#delete-an-expense">Delete an Expense</a></li>
+</ul><h2 id="list-expenses">List Expenses</h2>
 
 <p>Get all the expenses, sorted by the most recent date.</p>
 
@@ -68,7 +83,7 @@ Example: <code>projects=4,5,6</code>
   <dt>to</dt>
   <dd>
 <em>Optional</em> <strong>string</strong> of a date in ISO 8061 format: <code>YYYY-MM-DD</code>. Only expenses on or before this date will be returned.</dd>
-  <dt>apply_taxes</dt>
+  <dt>taxable</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>: <code>true</code> only shows expenses where taxes are applied, <code>false</code> only shows expenses were taxes are not applied.</dd>
 </dl><h3 id="response">Response</h3>
@@ -77,43 +92,42 @@ Example: <code>projects=4,5,6</code>
 Link: &lt;https://api.letsfreckle.com/v2/expenses?page=2&gt;; rel="next",
  &lt;https://api.letsfreckle.com/v2/expenses?page=5&gt;; rel="last"</code></pre>
 
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2233</span><span class="p">,</span>
-  <span class="s2">"price"</span><span class="o">:</span> <span class="mf">14.55</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"new software"</span><span class="p">,</span>
-  <span class="s2">"apply_tax"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
-  <span class="p">},</span>
-  <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"invoice_number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
-  <span class="p">},</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
-      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
+<pre class="highlight"><code class="language-javascript"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2233</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="o">:</span> <span class="mf">14.55</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"new software"</span><span class="p">,</span>
+    <span class="s2">"taxable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
+    <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+      <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
     <span class="p">},</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-  <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/expense/2233"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
-<span class="p">}</span></code></pre>
+    <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
+      <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
+      <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
+    <span class="p">},</span>
+    <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="p">},</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/expense/2233"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
+  <span class="p">}</span>
+<span class="p">]</span></code></pre>
 
 <h2 id="get-a-single-expense">Get a single Expense</h2>
 
@@ -126,20 +140,20 @@ Link: &lt;https://api.letsfreckle.com/v2/expenses?page=2&gt;; rel="next",
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2233</span><span class="p">,</span>
   <span class="s2">"price"</span><span class="o">:</span> <span class="mf">14.55</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"new software"</span><span class="p">,</span>
-  <span class="s2">"apply_tax"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"taxable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
   <span class="p">},</span>
   <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"invoice_number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
     <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
     <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
@@ -149,10 +163,7 @@ Link: &lt;https://api.letsfreckle.com/v2/expenses?page=2&gt;; rel="next",
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
-      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
-    <span class="p">},</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/expense/2233"</span><span class="p">,</span>
@@ -171,28 +182,28 @@ Link: &lt;https://api.letsfreckle.com/v2/expenses?page=2&gt;; rel="next",
 <dt>date</dt>
   <dd>
 <em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYY-MM-DD</code>: the date of the expense.</dd>
-  <dt>user</dt>
+  <dt>user_id</dt>
   <dd>
 <em>Optional</em> <strong>integer</strong>: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.</dd>
   <dt>price</dt>
   <dd>
 <em>Required</em> <strong>decimal</strong>: The numeric price of this expense. <strong>Do not add the currency to this price</strong>.</dd>
-  <dt>apply_tax</dt>
+  <dt>taxable</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>: <code>true</code> indicates that the expense is taxable. <code>false</code> indicates that the expense is tax-free. Defaults to <code>true</code>.</dd>
   <dt>description</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>: The description of the expense. Note that tags or hashtags will not be parsed.</dd>
-  <dt>project</dt>
+  <dt>project_id</dt>
   <dd>
 <em>Required</em> <strong>integer</strong>: The ID of the project this expense is for.</dd>
 </dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+  <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
   <span class="s2">"price"</span><span class="o">:</span> <span class="mf">14.55</span><span class="p">,</span>
-  <span class="s2">"apply_tax"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"taxable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"new software"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="mi">37396</span>
+  <span class="s2">"project_id"</span><span class="o">:</span> <span class="mi">37396</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="reponse">Reponse</h3>
@@ -204,20 +215,20 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2233</span><span class="p">,</span>
   <span class="s2">"price"</span><span class="o">:</span> <span class="mf">14.55</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"new software"</span><span class="p">,</span>
-  <span class="s2">"apply_tax"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"taxable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
   <span class="p">},</span>
   <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"invoice_number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
     <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
     <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
@@ -227,10 +238,7 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
-      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
-    <span class="p">},</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/expense/2233"</span><span class="p">,</span>
@@ -249,28 +257,28 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
 <dt>date</dt>
   <dd>
 <em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYY-MM-DD</code>: the date of the expense.</dd>
-  <dt>user</dt>
+  <dt>user_id</dt>
   <dd>
 <em>Optional</em> <strong>integer</strong>: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.</dd>
   <dt>price</dt>
   <dd>
 <em>Required</em> <strong>decimal</strong>: The numeric price of this expense. <strong>Do not add the currency to this price</strong>.</dd>
-  <dt>apply_tax</dt>
+  <dt>taxable</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>: <code>true</code> indicates that the expense is taxable. <code>false</code> indicates that the expense is tax-free. Defaults to <code>true</code>.</dd>
   <dt>description</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>: The description of the expense. Note that tags or hashtags will not be parsed.</dd>
-  <dt>project</dt>
+  <dt>project_id</dt>
   <dd>
 <em>Required</em> <strong>integer</strong>: The ID of the project this expense is for.</dd>
 </dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+  <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
   <span class="s2">"price"</span><span class="o">:</span> <span class="mf">14.55</span><span class="p">,</span>
-  <span class="s2">"apply_tax"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"taxable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"new software"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="mi">37396</span>
+  <span class="s2">"project_id"</span><span class="o">:</span> <span class="mi">37396</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="response-1">Response</h3>
@@ -281,20 +289,20 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2233</span><span class="p">,</span>
   <span class="s2">"price"</span><span class="o">:</span> <span class="mf">14.55</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"new software"</span><span class="p">,</span>
-  <span class="s2">"apply_tax"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"taxable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
   <span class="p">},</span>
   <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"invoice_number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
     <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
     <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
@@ -304,10 +312,7 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
-      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
-    <span class="p">},</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/expense/2233"</span><span class="p">,</span>
@@ -324,11 +329,11 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="a-note-about-expense-deletion">A note about expense deletion</h3>
+<h3 id="notes">Notes</h3>
 
-<p>An expense cannot be deleted if it has been invoiced. In this case, response will include an error message which will notify users that the expense cannot be deleted.</p>
-
-<p>The error code that will be used to indicate that the expense has already been invoiced (and therefore cannot be deleted) is: <strong>invoiced</strong>.</p>
+<ul>
+<li>An expense cannot be deleted if it has been invoiced. In this case, the response will include an error message with the code <strong>invoiced</strong>.</li>
+</ul>
     </div>
   </div>
 

@@ -33,13 +33,27 @@
       </ul>
     </div>
     <div id="content">
+      <div class="note sticky">
+        <h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
+        <p>This means that the API will grow and its functionality may change at any time.</p>
+      </div>
       <h1>Basics</h1>
-      <div class="note">
-<h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
-<p>This means that the API will grow and its functionality may change at any time.</p>
-</div>
-
-<h1 id="introduction">Introduction</h1>
+      <ul id="markdown-toc">
+<li><a href="#introduction">Introduction</a></li>
+  <li>
+<a href="#freckle-api-librarieslibraries"></a><a href="#libraries">Freckle API Libraries</a>
+</li>
+  <li><a href="#naming-client-applications">Naming client applications</a></li>
+  <li><a href="#api-url">API URL</a></li>
+  <li><a href="#schema">Schema</a></li>
+  <li><a href="#a-user-agent-is-required">A User Agent is Required</a></li>
+  <li><a href="#client-errors">Client Errors</a></li>
+  <li><a href="#uploading-files">Uploading Files</a></li>
+  <li><a href="#http-redirection">HTTP Redirection</a></li>
+  <li><a href="#supported-http-verbs">Supported HTTP Verbs:</a></li>
+  <li><a href="#authentication">Authentication</a></li>
+  <li><a href="#hypermedia">Hypermedia</a></li>
+</ul><h2 id="introduction">Introduction</h2>
 
 <p>Many applications use the Freckle API every day, among them web applications
 like <a href="%22http://beanstalkapp.com%22">Beanstalk</a>, <a href="%22http://github.com%22">Github</a>, and <a href="%22http://planscope.io%22">Planscope</a>; native mobile and desktop applications like <a href="http://pigmentapp.com">Pigment</a> and <a href="http://punch.fousa.be">Punch</a>; as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a>, <a href="http://twitter.com/letsfreckle">tweet</a>, or <a href="https://www.facebook.com/FreckleTimeTracking">send us a message on Facebook</a>.</p>
@@ -49,7 +63,7 @@ like <a href="%22http://beanstalkapp.com%22">Beanstalk</a>, <a href="%22http://g
 <p>Freckle’s API docs are on Github: if you find an error or omission
 in the API documentation, you can help fix it quickly by <a href="https://github.com/cheerful/freckle-apidocs">forking the Freckle API docs</a> and submitting a pull request!</p>
 
-<h1 id="freckle-api-librarieslibraries"><a href="#libraries">Freckle API Libraries</a></h1>
+<h2 id="freckle-api-librarieslibraries"><a href="#libraries">Freckle API Libraries</a></h2>
 
 <p>There are several 3rd-party open source libraries for popular languages
 available:</p>
@@ -70,11 +84,11 @@ These are 3rd-party libraries and Freckle can't provide support for them.
 Please contact the library authors directly if you need help with these.
 </p>
 
-<h1 id="naming-client-applications">Naming client applications</h1>
+<h2 id="naming-client-applications">Naming client applications</h2>
 
 <p>If you plan to release a public client app for Freckle (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so. Do not name apps “Freckle” or “Freckle for <platform>”. Please contact us first with more details about your app if you want to use “Freckle” or the Freckle logo as name or icon of your app!</platform></p>
 
-<h1 id="api-url">API URL</h1>
+<h2 id="api-url">API URL</h2>
 
 <p>The API is accessed through a single endpoint:</p>
 
@@ -86,7 +100,7 @@ Please contact the library authors directly if you need help with these.
 <pre><code>api.letsfreckle.com/v2/timers
 </code></pre>
 
-<h1 id="schema">Schema</h1>
+<h2 id="schema">Schema</h2>
 
 <p>The following rules define the general schema of the API:</p>
 
@@ -95,22 +109,22 @@ Please contact the library authors directly if you need help with these.
   <li>All data is sent and received as JSON, with the exception of <a href="#uploading-files">File Uploads</a>.</li>
   <li>Blank fields are included as <code>null</code> in responses.</li>
   <li>The ISO 8061 Date and Timestamp formats are used across the application (<code>YYYY-MM-DD</code> and <code>YYYY-MM-DDTHH:MM:SSZ</code> respectively).</li>
-</ul><h1 id="a-user-agent-is-required">A User Agent is Required</h1>
+</ul><h2 id="a-user-agent-is-required">A User Agent is Required</h2>
 
 <p>All API Requests must include a valid <code>User-Agent</code> header. Requests with no <code>User-Agent</code> header will be rejected. We recommend two options:</p>
 
 <ul>
 <li>Your Freckle account subdomain</li>
   <li>The name of the application</li>
-</ul><h2 id="example">Example:</h2>
+</ul><h3 id="example">Example:</h3>
 <pre><code>User-Agent: My-Freckle-App
 </code></pre>
 
-<h1 id="client-errors">Client Errors</h1>
+<h2 id="client-errors">Client Errors</h2>
 
 <p>There are a few errors that can occur while making API calls. the following are the kinds of errors you may encounter when using the API.</p>
 
-<h2 id="invalid-json">Invalid JSON</h2>
+<h3 id="invalid-json">Invalid JSON</h3>
 
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
@@ -118,7 +132,7 @@ Please contact the library authors directly if you need help with these.
   <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"JSON Parsing Error"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="wrong-type-of-json-sent">Wrong type of JSON sent</h2>
+<h3 id="wrong-type-of-json-sent">Wrong type of JSON sent</h3>
 
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
@@ -126,15 +140,15 @@ Please contact the library authors directly if you need help with these.
   <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Body should be JSON Hash"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="fields-were-not-in-the-correct-format">Fields were not in the correct format</h2>
+<h3 id="fields-were-not-in-the-correct-format">Fields were not in the correct format</h3>
 
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
-<h2 id="the-user-does-not-have-the-necessary-permissions-to-perform-an-action">The user does not have the necessary permissions to perform an action</h2>
+<h3 id="the-user-does-not-have-the-necessary-permissions-to-perform-an-action">The user does not have the necessary permissions to perform an action</h3>
 
 <pre class="headers"><code>Status: 403 Forbidden</code></pre>
 
-<h2 id="account-is-currently-locked-for-migration">Account is currently locked for migration</h2>
+<h3 id="account-is-currently-locked-for-migration">Account is currently locked for migration</h3>
 
 <pre class="headers"><code>Status: 503 Service Unavailable</code></pre>
 
@@ -142,13 +156,13 @@ Please contact the library authors directly if you need help with these.
   <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Freckle is changing the internal data for your account so you can start using hashtags"</span>
 <span class="p">}</span></code></pre>
 
-<h1 id="uploading-files">Uploading Files</h1>
+<h2 id="uploading-files">Uploading Files</h2>
 
 <p>If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional multipart HTTP key/value pairs instead of as a JSON object.</p>
 
 <p>Additionally, the <code>Content-Type</code> header of the request <strong>must</strong> be set to: <code>multipart/form-data</code>, otherwise the request will not be processed and a <code>400 Bad Request</code> error will be returned.</p>
 
-<h1 id="http-redirection">HTTP Redirection</h1>
+<h2 id="http-redirection">HTTP Redirection</h2>
 
 <p>HTTP Redirection will be used when appropriate, meaning that clients should assume any request may result in a redirection.</p>
 
@@ -156,20 +170,20 @@ Please contact the library authors directly if you need help with these.
 
 <h3 id="permanent-redirection">Permanent Redirection</h3>
 <pre class="headers"><code>Status: 301 Moved Permanently
-Location: https://api.letsfreckle.com/v2/new/url</code></pre>
+Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
 
 <p>This and all future requests should be directed to the new URI</p>
 
 <h3 id="temporary-redirection">Temporary Redirection</h3>
 <pre class="headers"><code>Status: 302 Found
-Location: https://api.letsfreckle.com/v2/new/url</code></pre>
+Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
 
 <pre class="headers"><code>Status: 307 Temporary Redirect
-Location: https://api.letsfreckle.com/v2/new/url</code></pre>
+Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
 
 <p>Repeat the request verbatim to the URI specified in the <code>Location</code> header, but clients should still continue to use th original URI in future requests</p>
 
-<h1 id="supported-http-verbs">Supported HTTP Verbs:</h1>
+<h2 id="supported-http-verbs">Supported HTTP Verbs:</h2>
 
 <dl>
 <dt><strong><code>HEAD</code></strong></dt>
@@ -183,43 +197,40 @@ Location: https://api.letsfreckle.com/v2/new/url</code></pre>
   <dd>Used for replacing resources or collections and performing actions on a resource.</dd>
 </dl><p><strong><code>DELETE</code></strong></p>
 
-<h1 id="authentication">Authentication</h1>
+<h2 id="authentication">Authentication</h2>
 
-<h2 id="supported-methods">Supported methods:</h2>
+<h3 id="supported-methods">Supported methods:</h3>
 
 <ul>
-<li>Personal Access Tokens</li>
-</ul><h1 id="hypermedia">Hypermedia</h1>
+<li><a href="authentication/#using-personal-access-tokens">Personal Access Tokens</a></li>
+</ul><h2 id="hypermedia">Hypermedia</h2>
 
 <p>All resources have one or more <code>*_url</code> properties linking to other resources or custom actions on this resource. They are meant to provide explicit URLs so clients don’t have to generate them. Using these URLs will make API upgrades easier for developers. All URLs follow <a href="http://tools.ietf.org/html/rfc6570">RFC 6570 URI templates</a>.</p>
 
-<h2 id="example-timer-object">Example (Timer Object):</h2>
+<h3 id="example-timer-object">Example (Timer Object):</h3>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"initial_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-  <span class="s2">"last_start_time"</span><span class="o">:</span> <span class="s2">"2013-07-10T01:04:05Z"</span><span class="p">,</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
   <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"running"</span><span class="p">,</span>
   <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
-  <span class="s2">"entry_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"formatted_time"</span><span class="o">:</span> <span class="s2">"00:03:00"</span><span class="p">,</span>
+  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
   <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"avatar"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
-      <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
-    <span class="p">},</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
   <span class="p">},</span>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer"</span><span class="p">,</span>

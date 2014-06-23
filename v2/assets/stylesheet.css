@@ -1,40 +1,40 @@
 @font-face {
   font-family: 'MuseoSlab500';
-  src: url('/assets/fonts/Museo_Slab_500-webfont.eot');
-  src: url('/assets/fonts/Museo_Slab_500-webfont.eot?iefix') format('eot'),
-       url('/assets/fonts/Museo_Slab_500-webfont.woff') format('woff'),
-       url('/assets/fonts/Museo_Slab_500-webfont.ttf') format('truetype'),
-       url('/assets/fonts/Museo_Slab_500-webfont.svg#webfont8VbsAwew') format('svg');
+  src: url('/v2/assets/fonts/Museo_Slab_500-webfont.eot');
+  src: url('/v2/assets/fonts/Museo_Slab_500-webfont.eot?iefix') format('eot'),
+       url('/v2/assets/fonts/Museo_Slab_500-webfont.woff') format('woff'),
+       url('/v2/assets/fonts/Museo_Slab_500-webfont.ttf') format('truetype'),
+       url('/v2/assets/fonts/Museo_Slab_500-webfont.svg#webfont8VbsAwew') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
     font-family: 'OpenSansRegular';
-    src: url('/assets/fonts/OpenSans-Regular-webfont.eot');
-    src: url('/assets/fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/OpenSans-Regular-webfont.woff') format('woff'),
-         url('/assets/fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
-         url('/assets/fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    src: url('/v2/assets/fonts/OpenSans-Regular-webfont.eot');
+    src: url('/v2/assets/fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/v2/assets/fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('/v2/assets/fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('/v2/assets/fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'OpenSansItalic';
-    src: url('/assets/fonts/OpenSans-Italic-webfont.eot');
-    src: url('/assets/fonts/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/OpenSans-Italic-webfont.woff') format('woff'),
-         url('/assets/fonts/OpenSans-Italic-webfont.ttf') format('truetype'),
-         url('/assets/fonts/OpenSans-Italic-webfont.svg#OpenSansItalic') format('svg');
+    src: url('/v2/assets/fonts/OpenSans-Italic-webfont.eot');
+    src: url('/v2/assets/fonts/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/v2/assets/fonts/OpenSans-Italic-webfont.woff') format('woff'),
+         url('/v2/assets/fonts/OpenSans-Italic-webfont.ttf') format('truetype'),
+         url('/v2/assets/fonts/OpenSans-Italic-webfont.svg#OpenSansItalic') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'OpenSansBold';
-    src: url('/assets/fonts/OpenSans-Bold-webfont.eot');
-    src: url('/assets/fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/OpenSans-Bold-webfont.woff') format('woff'),
-         url('/assets/fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
-         url('/assets/fonts/OpenSans-Bold-webfont.svg#OpenSansBold') format('svg');
+    src: url('/v2/assets/fonts/OpenSans-Bold-webfont.eot');
+    src: url('/v2/assets/fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/v2/assets/fonts/OpenSans-Bold-webfont.woff') format('woff'),
+         url('/v2/assets/fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('/v2/assets/fonts/OpenSans-Bold-webfont.svg#OpenSansBold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -135,6 +135,14 @@ h2 {
   padding-left: 240px;
 }
 
+#markdown-toc{
+  padding-left: 30px;
+}
+
+#markdown-toc li{
+  list-style-type: lower-roman ;
+}
+
 #footer {
   margin: 40px 0 0 0;
   padding: 0 0 10px 0;
@@ -180,6 +188,21 @@ h2 {
   padding: 4px 10px;
   background: #ffe;
   color: #3d3d13;
+}
+
+.note.sticky{
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  position: sticky;
+  top: 0px;
+  height: 80px;
+}
+
+.note.warning{
+  background: #FFEAAD;
+  top: 80px;
 }
 
 .note a {
@@ -259,7 +282,7 @@ code.sh {
   background: #fff;
   border: 2px solid #eaeaea;
 }
-pre > code {
+pre > code, pre.terminal {
   display: block;
   padding: 5px;
   border-radius: 5px;

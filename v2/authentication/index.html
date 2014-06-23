@@ -33,13 +33,14 @@
       </ul>
     </div>
     <div id="content">
+      <div class="note sticky">
+        <h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
+        <p>This means that the API will grow and its functionality may change at any time.</p>
+      </div>
       <h1>Authentication</h1>
-      <div class="note">
-<h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
-<p>This means that the API will grow and its functionality may change at any time.</p>
-</div>
-
-<h2 id="using-personal-access-tokens">Using Personal Access Tokens</h2>
+      <ul id="markdown-toc">
+<li><a href="#using-personal-access-tokens">Using Personal Access Tokens</a></li>
+</ul><h2 id="using-personal-access-tokens">Using Personal Access Tokens</h2>
 
 <p><a href="http://help.letsfreckle.com/import-export-api/api">Personal Access Tokens</a> allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!</p>
 
@@ -50,13 +51,13 @@
 <p>As <em>query parameter</em> named <code>token</code>:</p>
 
 <pre class="terminal">
-curl -v https://api.letsfreckle.com/v2/timers.json?token=eeee4gqoj2814c45h02ilr9z2e6wkkb$iytjzqvf4u2xxljmvu4haua92jbhf8p
+curl -v https://api.letsfreckle.com/v2/timers.json?token=eeee4gqoj2814c45h02ilr9z2e6wkkb-iytjzqvf4u2xxljmvu4haua92jbhf8p
 </pre>
 
 <p>As <em>HTTP header</em> <code>X-FreckleToken</code>:</p>
 
 <pre class="terminal">
-curl -v -H "X-FreckleToken:eeee4gqoj2814c45h02ilr9z2e6wkkb$iytjzqvf4u2xxljmvu4haua92jbhf8p" https://api.letsfreckle.com/v2/timers.json
+curl -v -H "X-FreckleToken:eeee4gqoj2814c45h02ilr9z2e6wkkb-iytjzqvf4u2xxljmvu4haua92jbhf8p" https://api.letsfreckle.com/v2/timers.json
 </pre>
     </div>
   </div>
