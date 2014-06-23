@@ -3,6 +3,12 @@ layout: default
 title: Expense
 ---
 
+
+<div class="note warning">
+  <h2>Not implemented yet!</h2>
+  <p>This resource has not been implemented yet. Attempting to call any actions will result in a 404 error.</p>
+</div>
+
 * TOC
 {:toc}
 

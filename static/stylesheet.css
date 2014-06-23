@@ -197,6 +197,9 @@ h2 {
   height: 80px;
 }
 
+.note.warning{
+  background: #FFEAAD;
+  top: 80px;
 }
 
 .note a {
