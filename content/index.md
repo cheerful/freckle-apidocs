@@ -6,11 +6,6 @@ title: Basics
 * TOC
 {:toc}
 
-<div class="note">
-<h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
-<p>This means that the API will grow and its functionality may change at any time.</p>
-</div>
-
 ## Introduction
 
 Many applications use the Freckle API every day, among them web applications

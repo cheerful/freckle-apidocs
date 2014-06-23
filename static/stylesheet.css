@@ -188,6 +188,15 @@ h2 {
   padding: 4px 10px;
   background: #ffe;
   color: #3d3d13;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  position: sticky;
+  top: 0px;
+  height: 80px;
+}
+
 }
 
 .note a {

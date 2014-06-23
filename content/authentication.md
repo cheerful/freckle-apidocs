@@ -6,11 +6,6 @@ title: Authentication
 * TOC
 {:toc}
 
-<div class="note">
-<h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
-<p>This means that the API will grow and its functionality may change at any time.</p>
-</div>
-
 ## Using Personal Access Tokens
 
 [Personal Access Tokens](http://help.letsfreckle.com/import-export-api/api) allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!
