@@ -135,6 +135,14 @@ h2 {
   padding-left: 240px;
 }
 
+#markdown-toc{
+  padding-left: 30px;
+}
+
+#markdown-toc li{
+  list-style-type: lower-roman ;
+}
+
 #footer {
   margin: 40px 0 0 0;
   padding: 0 0 10px 0;
