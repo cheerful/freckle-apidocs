@@ -11,9 +11,9 @@ title: Timer
 <p>This means that the API will grow and its functionality may change at any time.</p>
 </div>
 
-## List all currently running or paused Timers
+## List all currently running or paused timers
 
-Get all the currently running or paused Timers. The running Timer will be shown first, then the paused timers
+Get all the currently running or paused timers. The running timer will be shown first, then the paused timers
 
 ~~~
 GET /timers/
@@ -52,9 +52,9 @@ GET /projects/:project_id/timer
 <%= headers 200 %>
 <%= json :timer %>
 
-### A note about Getting a project's timer
+### Notes
 
-If the project does not have a currently running or paused timer, then the response will return a `404` status code.
+* If a project does not have a currently running or paused timer, then the response will return a `404` status code.
 
 <%= headers 404 %>
 
@@ -94,13 +94,10 @@ description
 : *Optional* **string**
 : The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.
 
-### A note about starting a timer when another time is already running
+### Notes
 
-When a timer is started, the currently running timer is paused.
-
-### A note about the changing the entry date for a timer that has been started
-
-The entry date for a timer that has already been started cannot be changed with the "start" action, even if it is paused or stopped. You can change the entry date for the timer when the timer is logged.
+* When a timer is started, the currently running timer (if any) is paused.
+* Once a timer has been started, its entry date cannot be changed with the "start" action, even if it is paused or stopped. However, you can change the entry date for the timer when the timer is logged.
 
 ## Pause a project's timer
 
@@ -113,9 +110,9 @@ PUT /projects/:project_id/timer/pause
 <%= headers 200 %>
 <%= json :timer %>
 
-### A note about Getting a project's timer
+### Notes
 
-If the project does not have a currently running or paused timer, then the response will return a `404` status code.
+* If a project does not have a currently running or paused timer, then the response will return a `404` status code.
 
 <%= headers 404 %>
 
@@ -144,9 +141,9 @@ description.
 : *Optional* **string**
 : The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.
 
-### A note about logging a timer that isn't paused or currently running
+### Notes
 
-If the timer is not currently running or paused the response code will be `404`
+* If a project does not have a currently running or paused timer, then the response will return a `404` status code.
 
 <%= headers 404 %>
 
