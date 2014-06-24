@@ -15,6 +15,20 @@
 
 passthrough '/assets/*'
 
+# Use a specific compiler for anything in the `/v2` directory, since it needs to use the v2 layout
+compile '/v2/*' do
+  if item.binary?
+    # don’t filter binary items
+  else
+    filter :erb
+    filter :kramdown, :toc_levels => [2]
+    filter :colorize_syntax,
+    :colorizers => {:javascript => :pygmentsrb, :bash => :pygmentsrb}
+    layout 'v2'
+  end
+end
+
+# a fallback compiler, which uses the barebones, unstylized "default" layout for any `md` files that haven't been compiled yet
 compile '*' do
   if item.binary?
     # don’t filter binary items
