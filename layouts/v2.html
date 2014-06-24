@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Freckle API: <%= @item[:title] %></title>
+  <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="nav">
+      <div id="logo">
+        <a href="/v2">
+          <img src="/assets/freckle.svg" width="125" height="36">
+        </a>
+      </div>
+      API Documentation
+      <h2>Topics</h2>
+      <ul id="resources">
+        <li><a href="/v2">API Basics</a></li>
+        <li><a href="/v2/authentication">Authentication</a></li>
+      </ul>
+      <h2>Resources</h2>
+      <ul id="resources">
+        <li><a href="/v2/timers">Timers</a></li>
+      </ul>
+
+      <ul id="resources">
+        <li><a href="/v2/entries">Entries</a></li>
+      </ul>
+      <ul id="resources">
+        <li><a href="/v2/expenses">Expenses</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <div class="note sticky">
+        <h2>We're currently Alpha Testing Version 2 of the Freckle API!</h2>
+        <p>This means that the API will grow and its functionality may change at any time.</p>
+      </div>
+      <h1><%= @item[:title] %></h1>
+      <%= yield %>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div>
+
+    <div class="columns four">
+      <div class="column">
+        <h3>About Freckle</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
+          <li><a href="http://letsfreckle.com/plans/"> Freckle plans and pricing</a></li>
+          <li><a href="http://letsfreckle.com/terms/">Our user agreement</a></li>
+          <li><a href="http://letsfreckle.com/privacy/">Privacy policy</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Us &amp; our company</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/team/">Meet our team</a></li>
+          <li><a href="http://letsfreckle.com/blog/">Read our blog about Freckle</a></li>
+          <li><a href="http://letsfreckle.com/contact/">Write us</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Docs</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/">FAQs</a></li>
+          <li><a href="http://letsfreckle.com/quick-start">Quick Start Guide</a></li>
+          <li><a href="http://developer.letsfreckle.com">API Documentation</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>You &amp; your account</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/accounts/">How to sign in</a></li>
+          <li><a href="http://letsfreckle.com/help/">Get help &amp; contact support</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      &copy; 2008-2014 Slash7 LLC, all rights reserved.
+    </div>
+    </div>
+  </div>
+
+  <script>
+  var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
+  </script>
+  <script src="https://secure.charmhq.com/feedback.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      function setTabs(to){
+        // change all tabs on page to value
+        var tabs = $('.tabs')
+        tabs.find('.selector DIV').removeClass('active')
+        tabs.find('.selector DIV.'+to).addClass('active')
+        tabs.find('.tab').removeClass('active')
+        tabs.find('.tab.'+to).addClass('active')
+
+        // change tabs that don't have an active tab to show first tab
+        tabs.find('.selector').each(function(){
+          if ($(this).find('DIV.active').length > 0) return
+
+          console.log(this)
+          $(this).find('DIV').first().addClass('active')
+          $(this).closest('.tabs').find('.tab').first().addClass('active')
+        })
+
+        // save for later
+        localStorage && (localStorage.dataFormat = to)
+      }
+
+      $('.tabs .selector div').on('click', function(){
+        setTabs($(this).attr('class'))
+      })
+
+      setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
+    })
+  </script>
+
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37896092-1']);
+    _gaq.push(['_setDomainName', 'letsfreckle.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</body>
+</html>
