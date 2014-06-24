@@ -28,6 +28,19 @@ compile '/v2/*' do
   end
 end
 
+# Use a specific compiler for anything in the `/v1` directory, since it needs to use the v1 layout
+compile '/v1/*' do
+  if item.binary?
+    # don’t filter binary items
+  else
+    filter :erb
+    filter :kramdown, :toc_levels => [2]
+    filter :colorize_syntax,
+    :colorizers => {:javascript => :pygmentsrb, :bash => :pygmentsrb}
+    layout 'v1'
+  end
+end
+
 # a fallback compiler, which uses the barebones, unstylized "default" layout for any `md` files that haven't been compiled yet
 compile '*' do
   if item.binary?
@@ -38,6 +51,20 @@ compile '*' do
     filter :colorize_syntax,
     :colorizers => {:javascript => :pygmentsrb, :bash => :pygmentsrb}
     layout 'default'
+  end
+end
+
+route 'v1/*' do
+  if item.binary?
+    # Write item with identifier /foo/ to /foo.ext
+    item.identifier.chop + '.' + item[:extension]
+  else
+    # Write item with identifier /foo/ to /foo/index.html
+    if item.identifier == '/v1/'
+      "/index.html"
+    else
+      item.identifier.gsub("v1/","").chop + ".html"
+    end
   end
 end
 

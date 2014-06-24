@@ -13,6 +13,18 @@ module Freckle
 			    JSON.pretty_generate(generate_hash(key)) + "</code></pre>"
 			end
 
+			def code_block_start_tag_custom_language(language)
+				%(<pre class="highlight"><code class="#{language}">)
+			end
+
+			def code_block_start_tag(language)
+				%(<pre class="highlight"><code class="language-#{language}">)
+			end
+
+			def code_block_end_tag
+				%(</code></pre>)
+			end
+
 			def generate_hash(key)
 				hash = case key
 			    when Hash
