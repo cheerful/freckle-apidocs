@@ -23,14 +23,14 @@ blue quick reports box in the Freckle user interface.
 </div>
 <div class="tab json active">
 Example request (search for entries with tag "freckle" after December 1, 2010, return JSON), try with
-<a href="http://apitest.developer.letsfreckle.com/hurls/ed0cec41f1abe07dd0e78086d78286b5c96d4742/9ff564aafaf908d23976cb0c3747c7d9acbd3ad2"><img src="/assets/hurl.png" width="35"></a>:
+<a href="http://apitest.developer.letsfreckle.com/hurls/ed0cec41f1abe07dd0e78086d78286b5c96d4742/9ff564aafaf908d23976cb0c3747c7d9acbd3ad2"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
 
 <%= code_block_start_tag_custom_language("sh") %>
 curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json -d 'search[tags]=freckle' -d 'search[from]=2010-12-01'
 <%= code_block_end_tag %>
 </div>
 <div class="tab xml">
-Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://apitest.developer.letsfreckle.com/hurls/dcba9d3b9fac45715e9e4db6741eff3bcdd5db72/0caa433303fad6052248c4790b829a82fe895b0c"><img src="/assets/hurl.png" width="35"></a>:
+Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://apitest.developer.letsfreckle.com/hurls/dcba9d3b9fac45715e9e4db6741eff3bcdd5db72/0caa433303fad6052248c4790b829a82fe895b0c"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
 
 <%= code_block_start_tag_custom_language("sh") %>
 curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml -d 'search[people]=5538' -d 'search[tags]=conf call'
@@ -170,7 +170,7 @@ Here's what <code>entry.json</code> looks like:
 }
 <%= code_block_end_tag %>
 
-Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/de1f2d95cb0dd113180de90e40d77bd849257acd/958090a5395705c87fa80c1fd6d39dc715c4b860"><img src="/assets/hurl.png" width="35"></a>.
+Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/de1f2d95cb0dd113180de90e40d77bd849257acd/958090a5395705c87fa80c1fd6d39dc715c4b860"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
 </div>
 <div class="tab xml">
@@ -195,7 +195,7 @@ Here's what <code>entry.xml</code> looks like:
 </code></pre>
 </div>
 
-Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/2a4d0713be0f86371c920616fdef8818b22d6074/62e180ae64e8ae4f6f9b99a3823effb9a2c9e537"><img src="/assets/hurl.png" width="35"></a>.
+Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/2a4d0713be0f86371c920616fdef8818b22d6074/62e180ae64e8ae4f6f9b99a3823effb9a2c9e537"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
 </div>
 </div>

@@ -41,7 +41,7 @@ Response:
 ]
 <%= code_block_end_tag %>
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/684cc1abac7137e24757f6f75cbbd16e3d20e6f4/43ef044616088dee5cbb94e4e254271c40120908"><img src="/assets/hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/684cc1abac7137e24757f6f75cbbd16e3d20e6f4/43ef044616088dee5cbb94e4e254271c40120908"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
@@ -66,7 +66,7 @@ Response:
 </code></pre>
 </div>
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/32172677f730772b2bf29ed8c816fc00dd7277ef/05ceba40a58d8800d6b2a0be136dbaee6a1f4a8d"><img src="/assets/hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/32172677f730772b2bf29ed8c816fc00dd7277ef/05ceba40a58d8800d6b2a0be136dbaee6a1f4a8d"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 </div>
 

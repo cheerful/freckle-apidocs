@@ -42,7 +42,7 @@ Response:
 },
 <%= code_block_end_tag %>
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/274cffe2634174d4be8aedc1ede1b7aa8b1152e1/3effedf1507d0e1f33e601216e60ef059291dabe"><img src="/assets/hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/274cffe2634174d4be8aedc1ede1b7aa8b1152e1/3effedf1507d0e1f33e601216e60ef059291dabe"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
@@ -71,7 +71,7 @@ Response:
 </div>
 
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/3d18d9ab851f3f7a5b97a92a22d9a07901afae4f/5774bcd466bb2529d08ab4f4bd69b81233d73ee1"><img src="/assets/hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/3d18d9ab851f3f7a5b97a92a22d9a07901afae4f/5774bcd466bb2529d08ab4f4bd69b81233d73ee1"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 </div>
 
@@ -116,7 +116,7 @@ Response:
 }
 <%= code_block_end_tag %>
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/406175f1eb7a4e07c9b8f284217c084b23e7cb20/9cdff37a372430b3721f557537ce5595c828bb5a"><img src="/assets/hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/406175f1eb7a4e07c9b8f284217c084b23e7cb20/9cdff37a372430b3721f557537ce5595c828bb5a"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
@@ -141,7 +141,7 @@ Response:
 </div>
 
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/9e4b54872c4c0ccc8f2d87a304e15bb918b6e1e5/859678e18961ddc7a59b5931ffc1070476c66541"><img src="/assets/hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/9e4b54872c4c0ccc8f2d87a304e15bb918b6e1e5/859678e18961ddc7a59b5931ffc1070476c66541"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 </div>
 
@@ -164,7 +164,7 @@ Other roles have access to all users in the account.
 Returns details about the currently logged in user. 
 This method is otherwise identical with `GET /api/users/<id>`.
 
-Try on <a href="http://apitest.developer.letsfreckle.com/hurls/2ada287ae61ad278c44fdf081db506e88deb22b2/17b262450ddfd8195aa4f3e77626dfa115988ced"><img src="/assets/hurl.png" width="35"></a>.
+Try on <a href="http://apitest.developer.letsfreckle.com/hurls/2ada287ae61ad278c44fdf081db506e88deb22b2/17b262450ddfd8195aa4f3e77626dfa115988ced"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
 ## Get a user's avatar
 
@@ -195,7 +195,7 @@ Response:
 
 If the user has no current avatar, the `thumbnail` and `avatar` tag attributes are set to empty strings.
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/fa45bad8cdbcf57ee5d39f2086d74360d6d2ffd8/73f2a3532443e9f206f4809c656ecb5a84178c42"><img src="/assets/hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/fa45bad8cdbcf57ee5d39f2086d74360d6d2ffd8/73f2a3532443e9f206f4809c656ecb5a84178c42"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
@@ -224,7 +224,7 @@ If the user has no current avatar, the `thumbnail` and `avatar` tags will be emp
 </code></pre>
 </div>
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/fc7ae5b212e6271a6a92c64a605d748b4b04f692/a23d67c210866dbe9dc9dfa96593c58532253b82"><img src="/assets/hurl.png" width="35"></a>.
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/fc7ae5b212e6271a6a92c64a605d748b4b04f692/a23d67c210866dbe9dc9dfa96593c58532253b82"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 </div>
 

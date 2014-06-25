@@ -12,7 +12,7 @@ access **entries** (list/search, create, update, delete, mass import),
 * TOC
 {:toc}
 
-Many applications use the Freckle API every day, among them web applications like [Beanstalk]("http://beanstalkapp.com"), [Github]("http://github.com"), and [Planscope]("http://planscope.io"); native mobile and desktop applications like [Pigment](http://pigmentapp.com) and [Punch](http://punch.fousa.be); as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
+Many applications use the Freckle API every day, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Pigment](http://pigmentapp.com) and [Punch](http://punch.fousa.be); as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
 
 Freckle is also one of the many services listed on [Zapier](https://zapier.com/zapbook/freckle/) which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Campfire chat room!).
 
@@ -115,7 +115,7 @@ user's email and password. See the Users section for more information.
 ## Pagination
 
 Most API resources are non-paginated, meaning they return the full result set.
-However [Entries](/entries.html#list) list is paginated, and more resources
+However [Entries](/entries.html#list--search) list is paginated, and more resources
 could become paginated in the future.
 
 When there are more results available for a request, a "next" URL will be
@@ -215,7 +215,7 @@ Try it now!
     $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
     <%= code_block_end_tag %>
 
-    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/21d1e53251a9bf5941d0bd25aeb7557a3ca52a26"><img src="/assets/hurl.png" width="35"></a>.
+    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/21d1e53251a9bf5941d0bd25aeb7557a3ca52a26"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
     You should see something like:
 
@@ -257,7 +257,7 @@ Try it now!
     $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
     <%= code_block_end_tag %>
 
-    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/d35c949a5d7d4fe2d8f94fd095f324825a70696a/ff572a02badd43a6e6e62d3a9f963c56c53e7fdc"><img src="/assets/hurl.png" width="35"></a>.
+    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/d35c949a5d7d4fe2d8f94fd095f324825a70696a/ff572a02badd43a6e6e62d3a9f963c56c53e7fdc"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
     You should see something like:
 
