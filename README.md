@@ -1,6 +1,8 @@
 Freckle API docs
 ===========================
 
+*This is a backup in case I mess something up creating the nanoc deployment steps*
+
 This site is built with [Jekyll][]. This specific implementation is based
 on the ZeptoJS documentation site.
 
