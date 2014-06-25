@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Freckle API: Tags</title>
+  <link rel="stylesheet" href="/assets/v1/stylesheet.css" type="text/css">
+  <meta name="description" content="Access Tags with the Freckle Time Tracking RESTful API.">
+</head>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W7NHRF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WKPP62');</script>
+<!-- End Google Tag Manager -->
+
+<body>
+  <div id="nav">
+    <div>
+    <a href="http://letsfreckle.com" class="back">&larr; Freckle</a>
+    <a href="index.html">API Basics</a>
+    <a href="entries.html">Entries</a>
+    <a href="projects.html">Projects</a>
+    <a href="tags.html">Tags</a>
+    <a href="users.html">Users</a>
+    </div>
+  </div>
+
+  <div id="content">
+    <h1><img src="/assets/freckle.svg" width="150" height="43" alt="Freckle"> API: Tags</h1>
+
+    <p>Currently the only available tags API method is listing tags.</p>
+
+<h2 id="list-tags">List tags</h2>
+
+<pre><code>GET /api/tags
+</code></pre>
+
+<p>The tags resource returns all tags for the account.</p>
+
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
+<pre class="highlight"><code class="sh">
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/tags.json
+</code></pre>
+
+Response:
+
+<pre class="highlight"><code class="language-javascript"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"tag"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"a"</span><span class="p">,</span>
+      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
+      <span class="s2">"import_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
+      <span class="s2">"account_id"</span><span class="o">:</span> <span class="mi">5039</span><span class="p">,</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">55629</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="cm">/* ...more tags... */</span>
+<span class="p">]</span></code></pre>
+
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/684cc1abac7137e24757f6f75cbbd16e3d20e6f4/43ef044616088dee5cbb94e4e254271c40120908"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+</div>
+<div class="tab xml">
+<pre class="highlight"><code class="sh">
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/tags.xml
+</code></pre>
+
+Response:
+
+<div class="highlight">
+<pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;tags</span> <span class="na">type=</span><span class="s">"array"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;tag&gt;</span>
+    <span class="nt">&lt;account-id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>5039<span class="nt">&lt;/account-id&gt;</span>
+    <span class="nt">&lt;billable</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/billable&gt;</span>
+    <span class="nt">&lt;created-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2010-06-09T20:44:57Z<span class="nt">&lt;/created-at&gt;</span>
+    <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>55629<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;import-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/import-id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>a<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;updated-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2010-06-09T20:44:57Z<span class="nt">&lt;/updated-at&gt;</span>
+  <span class="nt">&lt;/tag&gt;</span>
+  <span class="c">&lt;!-- ...more tags... --&gt;</span>
+<span class="nt">&lt;/tags&gt;</span>
+</code></pre>
+</div>
+
+Try with <a href="http://apitest.developer.letsfreckle.com/hurls/32172677f730772b2bf29ed8c816fc00dd7277ef/05ceba40a58d8800d6b2a0be136dbaee6a1f4a8d"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+</div>
+</div>
+
+<h3 id="response-codes">Response codes</h3>
+
+<p>Returns <strong><code>200 OK</code></strong> and an array of tags in the response body.</p>
+
+<h3 id="roles">Roles</h3>
+
+<p>Freelancers have access to this resource, but will only see tags that are used in assigned projects.</p>
+  </div>
+
+  <div id="footer">
+    <div>
+
+    <div class="columns four">
+      <div class="column">
+        <h3>About Freckle</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
+          <li><a href="http://letsfreckle.com/plans/"> Freckle plans and pricing</a></li>
+          <li><a href="http://letsfreckle.com/terms/">Our user agreement</a></li>
+          <li><a href="http://letsfreckle.com/privacy/">Privacy policy</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Us &amp; our company</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/team/">Meet our team</a></li>
+          <li><a href="http://letsfreckle.com/blog/">Read our blog about Freckle</a></li>
+          <li><a href="http://letsfreckle.com/contact/">Write us</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Docs</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/">FAQs</a></li>
+          <li><a href="http://letsfreckle.com/quick-start">Quick Start Guide</a></li>
+          <li><a href="http://developer.letsfreckle.com">API Documentation</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>You &amp; your account</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/accounts/">How to sign in</a></li>
+          <li><a href="http://letsfreckle.com/help/">Get help &amp; contact support</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      &copy; 2008-2014 Slash7 LLC, all rights reserved.
+    </div>
+    </div>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      function setTabs(to){
+        // change all tabs on page to value
+        var tabs = $('.tabs')
+        tabs.find('.selector DIV').removeClass('active')
+        tabs.find('.selector DIV.'+to).addClass('active')
+        tabs.find('.tab').removeClass('active')
+        tabs.find('.tab.'+to).addClass('active')
+
+        // change tabs that don't have an active tab to show first tab
+        tabs.find('.selector').each(function(){
+          if ($(this).find('DIV.active').length > 0) return
+
+          console.log(this)
+          $(this).find('DIV').first().addClass('active')
+          $(this).closest('.tabs').find('.tab').first().addClass('active')
+        })
+
+        // save for later
+        localStorage && (localStorage.dataFormat = to)
+      }
+
+      $('.tabs .selector div').on('click', function(){
+        setTabs($(this).attr('class'))
+      })
+
+      setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
+    })
+  </script>
+
+  <script>
+    (function() {
+      window._pa = window._pa || {};
+      var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+      pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/  serve/51fbcda0dc91ad725f0000eb.js";
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+    })();
+  </script>
+
+    <script>
+  var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
+  </script>
+  <script src="https://secure.charmhq.com/feedback.js" async></script>
+</body>
+</html>

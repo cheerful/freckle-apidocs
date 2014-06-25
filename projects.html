@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Freckle API: Projects</title>
+  <link rel="stylesheet" href="/assets/v1/stylesheet.css" type="text/css">
+  <meta name="description" content="Access Freckle projects with the Freckle Time Tracking RESTful API.">
+</head>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W7NHRF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WKPP62');</script>
+<!-- End Google Tag Manager -->
+
+<body>
+  <div id="nav">
+    <div>
+    <a href="http://letsfreckle.com" class="back">&larr; Freckle</a>
+    <a href="index.html">API Basics</a>
+    <a href="entries.html">Entries</a>
+    <a href="projects.html">Projects</a>
+    <a href="tags.html">Tags</a>
+    <a href="users.html">Users</a>
+    </div>
+  </div>
+
+  <div id="content">
+    <h1><img src="/assets/freckle.svg" width="150" height="43" alt="Freckle"> API: Projects</h1>
+
+    <ul id="markdown-toc">
+<li><a href="#list-projects">List projects</a></li>
+  <li><a href="#show-project">Show project</a></li>
+  <li><a href="#create-project">Create project</a></li>
+  <li><a href="#update-project">Update project</a></li>
+  <li><a href="#delete-project">Delete project</a></li>
+  <li><a href="#activate-project">Activate project</a></li>
+  <li><a href="#archive-project">Archive project</a></li>
+</ul><h2 id="list-projects">List projects</h2>
+
+<pre><code>GET /api/projects
+</code></pre>
+
+<p>The projects resource returns projects accessible by the user. For all roles except freelancers this includes all projects in the account. Freelancers see all projects they currently have been given access to. This method returns active and archived projects.</p>
+
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
+Example request (<a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/147e67ebb705a6a4a60bbf5f6b38883bc9f906b7">try live</a>):
+
+
+<pre class="highlight"><code class="sh">
+$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
+</code></pre>
+
+Response:
+
+<pre class="highlight"><code class="language-javascript"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"project"</span><span class="o">:</span><span class="p">{</span>
+      <span class="s2">"name"</span><span class="o">:</span><span class="s2">"Nutsnbolts"</span><span class="p">,</span>
+      <span class="s2">"unbillable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span><span class="s2">"2010-11-30T21:56:39Z"</span><span class="p">,</span>
+      <span class="s2">"billable"</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"budget_minutes"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"cached_tags"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"remaining_minutes"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="o">:</span><span class="s2">"2011-10-19T15:59:56Z"</span><span class="p">,</span>
+      <span class="s2">"import_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"account_id"</span><span class="o">:</span><span class="mi">5039</span><span class="p">,</span>
+      <span class="s2">"group_name"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"project_group_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"id"</span><span class="o">:</span><span class="mi">34580</span><span class="p">,</span>
+      <span class="s2">"enabled"</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"billable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"user_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"unbillable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"color_hex"</span><span class="o">:</span><span class="s2">"ff9898"</span><span class="p">,</span>
+      <span class="s2">"budget"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"stepping"</span><span class="o">:</span><span class="mi">15</span><span class="p">,</span>
+      <span class="s2">"invoice_recipient_details"</span><span class="o">:</span><span class="kc">null</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">// ...more projects...</span>
+<span class="p">]</span></code></pre>
+</div>
+<div class="tab xml">
+<pre class="highlight"><code class="sh">
+$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
+</code></pre>
+
+Response:
+
+
+<div class="highlight">
+<pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;projects</span> <span class="na">type=</span><span class="s">"array"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;project&gt;</span>
+    <span class="nt">&lt;account-id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>5039<span class="nt">&lt;/account-id&gt;</span>
+    <span class="nt">&lt;billable</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/billable&gt;</span>
+    <span class="nt">&lt;billable-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/billable-minutes&gt;</span>
+    <span class="nt">&lt;budget</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/budget&gt;</span>
+    <span class="nt">&lt;cached-tags</span> <span class="na">type=</span><span class="s">"yaml"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/cached-tags&gt;</span>
+    <span class="nt">&lt;color-hex&gt;</span>f1f353<span class="nt">&lt;/color-hex&gt;</span>
+    <span class="nt">&lt;created-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2010-11-30T21:56:39Z<span class="nt">&lt;/created-at&gt;</span>
+    <span class="nt">&lt;enabled</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+    <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>34572<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;import-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/import-id&gt;</span>
+    <span class="nt">&lt;invoice-recipient-details</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/invoice-recipient-details&gt;</span>
+    <span class="nt">&lt;minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/minutes&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Activity_1_doloressequiunde<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;project-group-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/project-group-id&gt;</span>
+    <span class="nt">&lt;stepping</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>15<span class="nt">&lt;/stepping&gt;</span>
+    <span class="nt">&lt;unbillable-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/unbillable-minutes&gt;</span>
+    <span class="nt">&lt;updated-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2011-10-19T15:59:56Z<span class="nt">&lt;/updated-at&gt;</span>
+    <span class="nt">&lt;user-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/user-id&gt;</span>
+    <span class="nt">&lt;budget-minutes</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/budget-minutes&gt;</span>
+    <span class="nt">&lt;remaining-minutes</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/remaining-minutes&gt;</span>
+    <span class="nt">&lt;unbillable-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/unbillable-minutes&gt;</span>
+    <span class="nt">&lt;group-name</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/group-name&gt;</span>
+  <span class="nt">&lt;/project&gt;</span>
+  <span class="c">&lt;!-- ...more projects... --&gt;</span>
+<span class="nt">&lt;/projects&gt;</span>
+</code></pre>
+</div>
+
+
+</div>
+</div>
+
+<h3 id="response-codes">Response codes</h3>
+
+<p>If successful, the response code is <strong><code>200 OK</code></strong> with the results of the call given in the response body.</p>
+
+<h3 id="roles">Roles</h3>
+
+<p>All roles have access to this resource. For freelancers, only projects they have access to are returned.</p>
+
+<h3 id="structure-of-a-project">Structure of a project</h3>
+
+<p>Here’s an example project and a description of all the fields returned.</p>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// ID of the project (integer)</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">34580</span><span class="p">,</span>    
+    <span class="c1">// Name of the project</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="c1">// Group name of the project (or null)</span>
+    <span class="s2">"group_name"</span><span class="o">:</span> <span class="s2">"Sprockets, Inc."</span><span class="p">,</span>
+    <span class="c1">// Group ID of the project (or null)</span>
+    <span class="s2">"project_group_id"</span><span class="o">:</span> <span class="mi">3768</span><span class="p">,</span>
+    
+    <span class="c1">// UTC timestamp when the project was created</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+    <span class="c1">// UTC timestamp when the project was last updated</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+    
+    <span class="c1">// total amount of logged minutes (can be null)</span>
+    <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+    <span class="c1">// total amount of logged billable minutes (can be null)</span>
+    <span class="s2">"billable_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="c1">// total amount of unbillable minutes (can be null)</span>
+    <span class="s2">"unbillable_minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="c1">// total amount of logged invoiced minutes (can be null)</span>
+    <span class="s2">"invoiced_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="c1">// amount of remaining minutes within budget (can be null)</span>
+    <span class="s2">"remaining_minutes"</span><span class="o">:</span> <span class="mi">630</span><span class="p">,</span>
+    <span class="c1">// budgeted minutes (can be null)</span>
+    <span class="s2">"budget_minutes"</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
+
+    <span class="c1">// true if project is billable</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="c1">// ID of the import if the project was part of an import (can be null)</span>
+    <span class="s2">"import_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="c1">// true if project is enabled, false if archived</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="c1">// rrggbb hexadecimal color for the project</span>
+    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="c1">// billing increment in minutes</span>
+    <span class="c1">// if you build client software that creates entries</span>
+    <span class="c1">// it should only allow multiples of stepping logged</span>
+    <span class="c1">// (in minutes). if the user enters a non-multiple you</span>
+    <span class="c1">// should round time up.</span>
+    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    
+    <span class="c1">// all following fields are deprecated, and may </span>
+    <span class="c1">// be removed in the next API version</span>
+    <span class="s2">"user_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"budget"</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
+    <span class="s2">"account_id"</span><span class="o">:</span> <span class="mi">5039</span><span class="p">,</span>
+    <span class="s2">"invoice_recipient_details"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"cached_tags"</span><span class="o">:</span> <span class="p">[</span> <span class="p">...</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="show-project">Show project</h2>
+
+<pre><code>GET /api/projects/&lt;id&gt;
+</code></pre>
+
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+  <div class="xml">XML</div>
+</div>
+<div class="tab json active">
+<pre class="highlight"><code class="sh">
+$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.json
+</code></pre>
+
+Response:
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+   <span class="s2">"project"</span><span class="o">:</span><span class="p">{</span>
+      <span class="s2">"name"</span><span class="o">:</span><span class="s2">"Activity_1_doloressequiunde"</span><span class="p">,</span>
+      <span class="s2">"unbillable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span><span class="s2">"2010-11-30T21:56:39Z"</span><span class="p">,</span>
+      <span class="s2">"billable"</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"budget_minutes"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"cached_tags"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"remaining_minutes"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="o">:</span><span class="s2">"2011-10-19T15:59:56Z"</span><span class="p">,</span>
+      <span class="s2">"import_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"account_id"</span><span class="o">:</span><span class="mi">5039</span><span class="p">,</span>
+      <span class="s2">"group_name"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"project_group_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"id"</span><span class="o">:</span><span class="mi">34572</span><span class="p">,</span>
+      <span class="s2">"enabled"</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"billable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"user_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"unbillable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"color_hex"</span><span class="o">:</span><span class="s2">"f1f353"</span><span class="p">,</span>
+      <span class="s2">"budget"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"stepping"</span><span class="o">:</span><span class="mi">15</span><span class="p">,</span>
+      <span class="s2">"invoice_recipient_details"</span><span class="o">:</span><span class="kc">null</span>
+   <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+</div>
+<div class="tab xml">
+<pre class="highlight"><code class="sh">
+$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.xml
+</code></pre>
+
+Response:
+
+
+<div class="highlight">
+<pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;account-id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>5039<span class="nt">&lt;/account-id&gt;</span>
+  <span class="nt">&lt;billable</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/billable&gt;</span>
+  <span class="nt">&lt;billable-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/billable-minutes&gt;</span>
+  <span class="nt">&lt;budget</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/budget&gt;</span>
+  <span class="nt">&lt;cached-tags</span> <span class="na">type=</span><span class="s">"yaml"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/cached-tags&gt;</span>
+  <span class="nt">&lt;color-hex&gt;</span>f1f353<span class="nt">&lt;/color-hex&gt;</span>
+  <span class="nt">&lt;created-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2010-11-30T21:56:39Z<span class="nt">&lt;/created-at&gt;</span>
+  <span class="nt">&lt;enabled</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+  <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>34572<span class="nt">&lt;/id&gt;</span>
+  <span class="nt">&lt;import-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/import-id&gt;</span>
+  <span class="nt">&lt;invoice-recipient-details</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/invoice-recipient-details&gt;</span>
+  <span class="nt">&lt;minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/minutes&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Activity_1_doloressequiunde<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;project-group-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/project-group-id&gt;</span>
+  <span class="nt">&lt;stepping</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>15<span class="nt">&lt;/stepping&gt;</span>
+  <span class="nt">&lt;unbillable-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/unbillable-minutes&gt;</span>
+  <span class="nt">&lt;updated-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2011-10-19T15:59:56Z<span class="nt">&lt;/updated-at&gt;</span>
+  <span class="nt">&lt;user-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/user-id&gt;</span>
+  <span class="nt">&lt;minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/minutes&gt;</span>
+  <span class="nt">&lt;budget-minutes</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/budget-minutes&gt;</span>
+  <span class="nt">&lt;remaining-minutes</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/remaining-minutes&gt;</span>
+  <span class="nt">&lt;unbillable-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/unbillable-minutes&gt;</span>
+  <span class="nt">&lt;group-name</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/group-name&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre>
+</div>
+
+
+</div>
+</div>
+
+<h3 id="response-codes-1">Response codes</h3>
+
+<p>If successful <strong><code>200 OK</code></strong> with the project information in the response body is returned.</p>
+
+<p>If the project is not known or the user doesn’t have access to the project, <strong><code>404 Not found</code></strong> is returned.</p>
+
+<h3 id="roles-1">Roles</h3>
+
+<p>All roles have access to this resource.</p>
+
+<h2 id="create-project">Create project</h2>
+
+<pre><code>POST /api/projects
+</code></pre>
+
+<div class="tabs">
+<div class="selector">
+  <div class="xml active">XML</div>
+</div>
+<div class="tab xml active">
+<pre class="highlight"><code class="sh">
+$ curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
+</code></pre>
+
+Post body:
+
+<div class="highlight">
+<pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;name&gt;</span>foobar<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre>
+</div>
+
+
+</div>
+</div>
+
+<h3 id="response-codes-2">Response codes</h3>
+
+<p><strong><code>201 Created</code></strong> means that the project was successfully created in is now visible in Freckle.
+The <code>Location</code> header in the HTTP response contains the path to this new project in the API. 
+This path contains the project ID which your application can
+store so it can use the project later in other API calls.</p>
+
+<p>Here’s an example response:</p>
+
+<pre><code>HTTP/1.1 201 Created
+Server: nginx/1.2.1
+Date: Sun, 02 Dec 2012 20:56:54 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 1
+Connection: keep-alive
+Status: 201 Created
+Location: /api/projects/3187878
+X-Runtime: 33
+Cache-Control: private, max-age=0, must-revalidate
+</code></pre>
+
+<p><strong><code>422 Unprocessable Entity</code></strong> means the request data was not valid, for example a
+required field was omitted, a project with the same name already exists, or the 
+1 project limit of free Freckle accounts has been reached.</p>
+
+<h3 id="roles-2">Roles</h3>
+
+<p>All roles except for the <strong>freelancer</strong> role can create projects.</p>
+
+<h2 id="update-project">Update project</h2>
+
+<pre><code>PUT /api/projects/:id
+</code></pre>
+
+<div class="tabs">
+<div class="selector">
+  <div class="xml active">XML</div>
+</div>
+<div class="tab xml active">
+<pre class="highlight"><code class="sh">
+$ curl -v -X PUT -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.xml
+</code></pre>
+
+Post body:
+
+<div class="highlight">
+<pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;name&gt;</span>foobar<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;group_name&gt;</span>Sprockets, Inc.<span class="nt">&lt;/group_name&gt;</span>
+  <span class="nt">&lt;billable</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/billable&gt;</span>
+  <span class="nt">&lt;budget-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>60<span class="nt">&lt;/budget-minutes&gt;</span>
+  <span class="nt">&lt;color-hex&gt;</span>f1f353<span class="nt">&lt;/color-hex&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre>
+</div>
+
+
+</div>
+</div>
+
+<h3 id="response-codes-3">Response codes</h3>
+
+<p><strong><code>200 Created</code></strong> means that the project was successfully updated</p>
+
+<p><strong><code>422 Unprocessable Entity</code></strong> means the request data was not valid, for example a
+required field was omitted, a project with the same name already exists, or the 
+1 project limit of free Freckle accounts has been reached.</p>
+
+<p><strong><code>400 Bad Request</code></strong> means the request data wasn’t properly formatted, for example a field has the incorrect data type.</p>
+
+<h3 id="roles-3">Roles</h3>
+
+<p>All roles except for the <strong>freelancer</strong> role can update projects.</p>
+
+<h2 id="delete-project">Delete project</h2>
+
+<pre><code>DELETE /api/projects/&lt;id&gt;
+</code></pre>
+
+<p>Only projects that do not have any entries, expenses or invoices can be deleted.
+We recommend to archive projects instead.</p>
+
+<div class="tabs">
+<div class="selector">
+  <div class="xml active">XML</div>
+</div>
+<div class="tab xml active">
+<pre class="highlight"><code class="sh">
+$ curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2.xml
+</code></pre>
+</div>
+</div>
+
+<h3 id="response-codes-4">Response codes</h3>
+
+<p>If deletion is successful, <strong><code>200 OK</code></strong> will be returned.</p>
+
+<p><strong><code>422 Unprocessable Entity</code></strong> means that one of the preconditions (no entries,
+expenses or invoices) was not met. A reason like <code>Project has entries</code> will be returned
+as plain text in the response body.</p>
+
+<h3 id="roles-4">Roles</h3>
+
+<p>All roles except freelancers can delete projects.</p>
+
+<h2 id="activate-project">Activate project</h2>
+
+<p>GET /api/projects/<id>/active</id></p>
+
+<p>(Re-)Activates an archived project.</p>
+
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+</div>
+<div class="tab json active">
+<pre class="highlight"><code class="sh">
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/active.json
+</code></pre>
+</div>
+</div>
+
+<h3 id="response-codes-5">Response codes</h3>
+
+<p>If successful or in case the project was already active, <strong><code>200 OK</code></strong> with a <code>Location</code> is returned, pointing to the project.</p>
+
+<h3 id="roles-5">Roles</h3>
+
+<p>Everyone except freelancers can activate projects.</p>
+
+<h2 id="archive-project">Archive project</h2>
+
+<pre><code>GET /api/projects/&lt;id&gt;/archive
+</code></pre>
+
+<p>Archive a project. Archived projects are “frozen” and time can’t be logged for them.</p>
+
+<div class="tabs">
+<div class="selector">
+  <div class="json active">JSON</div>
+</div>
+<div class="tab json active">
+<pre class="highlight"><code class="sh">
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/archive.json
+</code></pre>
+</div>
+</div>
+
+<h3 id="response-codes-6">Response codes</h3>
+
+<p>If successful or in case the project was already archived, <strong><code>200 OK</code></strong> with a <code>Location</code> is returned, pointing to the project.</p>
+
+<h3 id="roles-6">Roles</h3>
+
+<p>Everyone except freelancers can archive projects.</p>
+  </div>
+
+  <div id="footer">
+    <div>
+
+    <div class="columns four">
+      <div class="column">
+        <h3>About Freckle</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
+          <li><a href="http://letsfreckle.com/plans/"> Freckle plans and pricing</a></li>
+          <li><a href="http://letsfreckle.com/terms/">Our user agreement</a></li>
+          <li><a href="http://letsfreckle.com/privacy/">Privacy policy</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Us &amp; our company</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/team/">Meet our team</a></li>
+          <li><a href="http://letsfreckle.com/blog/">Read our blog about Freckle</a></li>
+          <li><a href="http://letsfreckle.com/contact/">Write us</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Docs</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/">FAQs</a></li>
+          <li><a href="http://letsfreckle.com/quick-start">Quick Start Guide</a></li>
+          <li><a href="http://developer.letsfreckle.com">API Documentation</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>You &amp; your account</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/accounts/">How to sign in</a></li>
+          <li><a href="http://letsfreckle.com/help/">Get help &amp; contact support</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      &copy; 2008-2014 Slash7 LLC, all rights reserved.
+    </div>
+    </div>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      function setTabs(to){
+        // change all tabs on page to value
+        var tabs = $('.tabs')
+        tabs.find('.selector DIV').removeClass('active')
+        tabs.find('.selector DIV.'+to).addClass('active')
+        tabs.find('.tab').removeClass('active')
+        tabs.find('.tab.'+to).addClass('active')
+
+        // change tabs that don't have an active tab to show first tab
+        tabs.find('.selector').each(function(){
+          if ($(this).find('DIV.active').length > 0) return
+
+          console.log(this)
+          $(this).find('DIV').first().addClass('active')
+          $(this).closest('.tabs').find('.tab').first().addClass('active')
+        })
+
+        // save for later
+        localStorage && (localStorage.dataFormat = to)
+      }
+
+      $('.tabs .selector div').on('click', function(){
+        setTabs($(this).attr('class'))
+      })
+
+      setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
+    })
+  </script>
+
+  <script>
+    (function() {
+      window._pa = window._pa || {};
+      var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+      pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/  serve/51fbcda0dc91ad725f0000eb.js";
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+    })();
+  </script>
+
+    <script>
+  var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
+  </script>
+  <script src="https://secure.charmhq.com/feedback.js" async></script>
+</body>
+</html>

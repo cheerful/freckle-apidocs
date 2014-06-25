@@ -8,6 +8,26 @@ body {
   margin: 0 auto;
 }
 
+#markdown-toc{
+  display: inline;
+  padding-left: 0px;
+}
+
+#markdown-toc:before{
+  content: 'Jump to:';
+  margin-right: 5px;
+}
+
+#markdown-toc li{
+  display: inline;
+  border-right: 1px solid black;
+  padding-right: 5px;
+}
+
+#markdown-toc li:last-child{
+  border-right: none;
+}
+
 a {
   color: #ec497c;
 }
