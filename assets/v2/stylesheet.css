@@ -78,6 +78,11 @@ h2 {
   padding-left: 10px;
 }
 
+#logo{
+  padding-top: 5px;
+  width: 125px;
+}
+
 #container{
   max-width: 1000px;
   padding: 0 50px 20px 0;
