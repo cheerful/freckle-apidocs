@@ -8,7 +8,7 @@ task :default => [:compile]
 
 desc "Compile the site"
 task :compile do
-  `nanoc compile`
+  puts `nanoc compile`
 end
 
 desc "Test the output"
