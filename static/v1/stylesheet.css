@@ -3,6 +3,10 @@ body {
   font: 14px/19px "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
+#logo{
+  height: 43px;
+}
+
 #content {
   width: 700px;
   margin: 0 auto;
