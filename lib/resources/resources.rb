@@ -4,6 +4,7 @@ module Freckle
     API_V2_DOMAIN = BASE_DOMAIN + "/v2"
     BASE_URL   = "https://" + BASE_DOMAIN
     API_V2_URL = "https://" + API_V2_DOMAIN
+    API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN = "scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d"
 
     VALIDATION_ERROR_EXAMPLE = {
        "message" => "Validation Failed",
