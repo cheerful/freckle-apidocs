@@ -74,6 +74,24 @@ We also use a helper method to specify the HTTP headers for our responses. This 
 <%= headers 200, :pagination => true, :pagination_resource => "invoices" %>
 ~~~~
 
+## Testing
+
+You can test the site for bad links and other basic HTML no-nos by running:
+
+~~~sh
+rake test
+~~~
+
+## Publishing
+
+To publish the site, run:
+
+~~~sh
+rake publish
+~~~
+
+This will grab the latest commit from the specified branch (defaults to `alpha`), compiles the site, and pushes the contents of `public/` to the `gh-pages` branch.
+
 ## Relevant Libraries:
 
 * [nanoc](http://nanoc.ws/)
