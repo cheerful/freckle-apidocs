@@ -23,7 +23,7 @@ GET /entries/
 
 Each parameter passed will filter the results, and parameters are chained (meaning that if you search by `users` and `projects`, it will only return entries from those users for those projects).
 
-users
+user_ids
 : *Optional* **string**
 : A comma-separated list of user IDs to filter by.
 : Example: `users=1,2,3`
@@ -33,14 +33,14 @@ descripton
 : Only entries containing this text in their description are returned.
 : Example: `description=meeting`
 
-projects
+project_ids
 : *Optional* **string**
 : A comma-separated list of project IDs to filter by.
 : Example: `projects=4,5,6`
 
-tags
+tag_ids
 : *Optional* **string**
-: A comma-separated list of tags to filter by.
+: A comma-separated list of tag IDs to filter by.
 : Example: `tags=7,8,9`
 
 tag_filter_type
@@ -48,12 +48,12 @@ tag_filter_type
 : Indicates how to filter by tags.
 : Accepted values: `and` (**default**), `any`
 
-invoices
+invoice_ids
 : *Optional* **string**
 : A comma-separated list of invoice IDs to filter by.
 : Example: `invoices=1,2,3`
 
-imports
+import_ids
 : *Optional* **string**
 : A comma-separated list of import IDs to filter by.
 : Example: `imports=4,5,6`
@@ -244,7 +244,7 @@ PUT /entries/invoiced_outside_of_freckle
 
 ### Input
 
-entries
+entry_ids
 : *Required* **array of integers**
 : The IDs of the entries that will be marked as invoiced outside of Freckle.
 
