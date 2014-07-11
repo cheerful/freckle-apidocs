@@ -46,7 +46,7 @@ tag_ids
 tag_filter_type
 : *Optional* **string**
 : Indicates how to filter by tags.
-: Accepted values: `and` (**default**), `any`
+: Accepted values: `and` (**default**), `combination of`
 
 invoice_ids
 : *Optional* **string**
