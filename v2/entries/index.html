@@ -66,7 +66,7 @@
 <p>Each parameter passed will filter the results, and parameters are chained (meaning that if you search by <code>users</code> and <code>projects</code>, it will only return entries from those users for those projects).</p>
 
 <dl>
-<dt>users</dt>
+<dt>user_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -80,18 +80,18 @@
   <dd>Only entries containing this text in their description are returned.</dd>
   <dd>Example: <code>description=meeting</code>
 </dd>
-  <dt>projects</dt>
+  <dt>project_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>A comma-separated list of project IDs to filter by.</dd>
   <dd>Example: <code>projects=4,5,6</code>
 </dd>
-  <dt>tags</dt>
+  <dt>tag_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>A comma-separated list of tags to filter by.</dd>
+  <dd>A comma-separated list of tag IDs to filter by.</dd>
   <dd>Example: <code>tags=7,8,9</code>
 </dd>
   <dt>tag_filter_type</dt>
@@ -101,14 +101,14 @@
   <dd>Indicates how to filter by tags.</dd>
   <dd>Accepted values: <code>and</code> (<strong>default</strong>), <code>any</code>
 </dd>
-  <dt>invoices</dt>
+  <dt>invoice_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>A comma-separated list of invoice IDs to filter by.</dd>
   <dd>Example: <code>invoices=1,2,3</code>
 </dd>
-  <dt>imports</dt>
+  <dt>import_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -573,7 +573,7 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 <h3 id="input-3">Input</h3>
 
 <dl>
-<dt>entries</dt>
+<dt>entry_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
