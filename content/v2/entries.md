@@ -16,7 +16,7 @@ title: Entries
 Get all entries, sorted by the most recent entry date.
 
 ~~~
-GET /entries/
+GET /v2/entries
 ~~~
 
 ### Parameters
@@ -91,7 +91,7 @@ billable
 ## Get a single Entry
 
 ~~~
-GET /entries/:id
+GET /v2/entries/:id
 ~~~
 
 <%= headers 200 %>
@@ -100,7 +100,7 @@ GET /entries/:id
 ## Create an Entry
 
 ~~~
-POST /entries/
+POST /v2/entries
 ~~~
 
 ### Input
@@ -155,7 +155,7 @@ source_url
 ## Edit an Entry
 
 ~~~
-PATCH /entry/:id
+PATCH /v2/entry/:id
 ~~~
 
 ### Input
@@ -213,7 +213,7 @@ Update the Entry so that is recognized as being invoiced outside of Freckle by p
 If the entry has already been marked as invoiced outside of freckle, this action modifies the `invoiced_at` date for the entry.
 
 ~~~
-PUT /entries/:id/invoiced_outside_of_freckle
+PUT /v2/entries/:id/invoiced_outside_of_freckle
 ~~~
 
 ### Input
@@ -239,7 +239,7 @@ Update the Entries provided so that they are recognized as being invoiced outsid
 If an entry has already been marked as invoiced outside of Freckle, this action modifies the `invoiced_at` date for that entry.
 
 ~~~
-PUT /entries/invoiced_outside_of_freckle
+PUT /v2/entries/invoiced_outside_of_freckle
 ~~~
 
 ### Input
@@ -263,7 +263,7 @@ Any entries that are included in this request that cannot be marked as invoiced 
 ## Delete an Entry
 
 ~~~
-DELETE /entries/:id
+DELETE /v2/entries/:id
 ~~~
 
 ### Response

@@ -11,7 +11,7 @@ title: Timers
 Get all the currently running or paused timers. The running timer will be shown first, then the paused timers
 
 ~~~
-GET /timers/
+GET /v2/timers
 ~~~
 
 ### Parameters
@@ -41,7 +41,7 @@ billable
 ## Get a project's timer
 
 ~~~
-GET /projects/:project_id/timer
+GET /v2/projects/:project_id/timer
 ~~~
 
 <%= headers 200 %>
@@ -58,7 +58,7 @@ If a project does not have a currently running or paused timer, then the respons
 Updates the details for a project's timer. If the timer does not exist, it will automatically be created.
 
 ~~~
-PUT /projects/:project_id/timer
+PUT /v2/projects/:project_id/timer
 ~~~
 
 <%= headers 200 %>
@@ -73,7 +73,7 @@ description
 ## Start a project's timer
 
 ~~~
-PUT /projects/:project_id/timer/start
+PUT /v2/projects/:project_id/timer/start
 ~~~
 
 <%= headers 201 %>
@@ -99,7 +99,7 @@ description
 The response does not change if the timer has already been paused or does not exist
 
 ~~~
-PUT /projects/:project_id/timer/pause
+PUT /v2/projects/:project_id/timer/pause
 ~~~
 
 <%= headers 200 %>
@@ -117,7 +117,7 @@ When a timer is logged, a new entry is created for the user with the description
 
 
 ~~~
-PUT /projects/:project_id/timer/log
+PUT /v2/projects/:project_id/timer/log
 ~~~
 
 <%= headers 204 %>
@@ -148,7 +148,7 @@ If a project does not have a currently running or paused timer, then the respons
 When a project's timer is discarded, the timer is deleted and no time entry is recorded.
 
 ~~~
-DELETE /projects/:project_id/timer/
+DELETE /v2/projects/:project_id/timer
 ~~~
 
 ### Response

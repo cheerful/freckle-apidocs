@@ -17,7 +17,7 @@ title: Expenses
 Get all the expenses, sorted by the most recent date.
 
 ~~~
-GET /expenses/
+GET /v2/expenses
 ~~~
 
 ### Parameters
@@ -55,7 +55,7 @@ taxable
 ## Get a single Expense
 
 ~~~
-GET /expenses/:id
+GET /v2/expenses/:id
 ~~~
 
 <%= headers 200 %>
@@ -64,7 +64,7 @@ GET /expenses/:id
 ## Create an Expense
 
 ~~~
-POST /expenses/
+POST /v2/expenses
 ~~~
 
 ### Input
@@ -97,7 +97,7 @@ project_id
 ## Edit an Expense
 
 ~~~
-PATCH /expenses/:id
+PATCH /v2/expenses/:id
 ~~~
 
 ### Input
@@ -130,7 +130,7 @@ project_id
 ## Delete an Expense
 
 ~~~
-DELETE /expenses/:id
+DELETE /v2/expenses/:id
 ~~~
 
 ### Response
