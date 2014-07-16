@@ -98,6 +98,21 @@ There are a few errors that can occur while making API calls. the following are 
 <%= headers 503 %>
 <%= json :message => "Freckle is changing the internal data for your account so you can start using hashtags" %>
 
+### The `errors` array
+
+When validation errors occur, the `errors` array is populated with objects that explain why the request was invalid. Each object has the following fields:
+
+  * **resource**: The type of object the user was trying to affect.
+
+  * **field**: The field where the error occured.
+
+  * **Code**: Why the request was invalid. The standard error codes are:
+
+    * **missing**: the resource does not exist
+    * **missing_field**: a required field on the resource has not been set
+    * **already_exists**: another resource has the same value as this field.
+    * **Custom errors codes can be defined for resources, and will be documented in the resource's API page.**
+
 ## Uploading Files
 
 If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional multipart HTTP key/value pairs instead of as a JSON object.
