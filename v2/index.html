@@ -156,7 +156,31 @@ Please contact the library authors directly if you need help with these.
   <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Freckle is changing the internal data for your account so you can start using hashtags"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="uploading-files">Uploading Files</h2>
+<h3 id="the-errors-array">The <code>errors</code> array</h3>
+
+<p>When validation errors occur, the <code>errors</code> array is populated with objects that explain why the request was invalid. Each object has the following fields:</p>
+
+<ul>
+<li>
+    <p><strong>resource</strong>: The type of object the user was trying to affect.</p>
+  </li>
+  <li>
+    <p><strong>field</strong>: The field where the error occured.</p>
+  </li>
+  <li>
+    <p><strong>Code</strong>: Why the request was invalid. The standard error codes are:</p>
+
+    <ul>
+<li>
+<strong>missing</strong>: the resource does not exist</li>
+      <li>
+<strong>missing_field</strong>: a required field on the resource has not been set</li>
+      <li>
+<strong>already_exists</strong>: another resource has the same value as this field.</li>
+      <li><strong>Custom errors codes can be defined for resources, and will be documented in the resource’s API page.</strong></li>
+    </ul>
+</li>
+</ul><h2 id="uploading-files">Uploading Files</h2>
 
 <p>If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional multipart HTTP key/value pairs instead of as a JSON object.</p>
 
