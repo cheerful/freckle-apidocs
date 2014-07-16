@@ -41,13 +41,13 @@ If you plan to release a public client app for Freckle (such as a native mobile 
 The API is accessed through a single endpoint:
 
 ~~~
-<%=  API_V2_DOMAIN %>
+<%= API_V2_URL %>
 ~~~
 
 For example: if we wanted to access a user's timers, the URL would be:
 
 ~~~
-<%= API_V2_DOMAIN + "/timers" %>
+<%= API_V2_URL + "/timers" %>
 ~~~
 
 ## Schema
