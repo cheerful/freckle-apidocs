@@ -56,7 +56,7 @@
 
 <p>Get all the expenses, sorted by the most recent date.</p>
 
-<pre><code>GET /expenses/
+<pre><code>GET /v2/expenses
 </code></pre>
 
 <h3 id="parameters">Parameters</h3>
@@ -134,7 +134,7 @@ Link: &lt;https://api.letsfreckle.com/v2/expenses?page=2&gt;; rel="next",
 
 <h2 id="get-a-single-expense">Get a single Expense</h2>
 
-<pre><code>GET /expenses/:id
+<pre><code>GET /v2/expenses/:id
 </code></pre>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
@@ -176,7 +176,7 @@ Link: &lt;https://api.letsfreckle.com/v2/expenses?page=2&gt;; rel="next",
 
 <h2 id="create-an-expense">Create an Expense</h2>
 
-<pre><code>POST /expenses/
+<pre><code>POST /v2/expenses
 </code></pre>
 
 <h3 id="input">Input</h3>
@@ -251,7 +251,7 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
 
 <h2 id="edit-an-expense">Edit an Expense</h2>
 
-<pre><code>PATCH /expenses/:id
+<pre><code>PATCH /v2/expenses/:id
 </code></pre>
 
 <h3 id="input-1">Input</h3>
@@ -325,7 +325,7 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
 
 <h2 id="delete-an-expense">Delete an Expense</h2>
 
-<pre><code>DELETE /expenses/:id
+<pre><code>DELETE /v2/expenses/:id
 </code></pre>
 
 <h3 id="response-2">Response</h3>
@@ -391,7 +391,7 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
   <script>
   var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
   </script>
-  <script src="https://secure.charmhq.com/feedback.js"></script>
+  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 

@@ -58,7 +58,7 @@
 
 <p>Get all entries, sorted by the most recent entry date.</p>
 
-<pre><code>GET /entries/
+<pre><code>GET /v2/entries
 </code></pre>
 
 <h3 id="parameters">Parameters</h3>
@@ -210,7 +210,7 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
 
 <h2 id="get-a-single-entry">Get a single Entry</h2>
 
-<pre><code>GET /entries/:id
+<pre><code>GET /v2/entries/:id
 </code></pre>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
@@ -266,7 +266,7 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
 
 <h2 id="create-an-entry">Create an Entry</h2>
 
-<pre><code>POST /entries/
+<pre><code>POST /v2/entries
 </code></pre>
 
 <h3 id="input">Input</h3>
@@ -401,7 +401,7 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 <strong>user_cannot_access_project</strong>: the entry’s user does not have access to the referenced project.</li>
 </ul><h2 id="edit-an-entry">Edit an Entry</h2>
 
-<pre><code>PATCH /entry/:id
+<pre><code>PATCH /v2/entry/:id
 </code></pre>
 
 <h3 id="input-1">Input</h3>
@@ -539,7 +539,7 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 
 <p>If the entry has already been marked as invoiced outside of freckle, this action modifies the <code>invoiced_at</code> date for the entry.</p>
 
-<pre><code>PUT /entries/:id/invoiced_outside_of_freckle
+<pre><code>PUT /v2/entries/:id/invoiced_outside_of_freckle
 </code></pre>
 
 <h3 id="input-2">Input</h3>
@@ -567,7 +567,7 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 
 <p>If an entry has already been marked as invoiced outside of Freckle, this action modifies the <code>invoiced_at</code> date for that entry.</p>
 
-<pre><code>PUT /entries/invoiced_outside_of_freckle
+<pre><code>PUT /v2/entries/invoiced_outside_of_freckle
 </code></pre>
 
 <h3 id="input-3">Input</h3>
@@ -593,7 +593,7 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 
 <h2 id="delete-an-entry">Delete an Entry</h2>
 
-<pre><code>DELETE /entries/:id
+<pre><code>DELETE /v2/entries/:id
 </code></pre>
 
 <h3 id="response-4">Response</h3>
@@ -668,7 +668,7 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
   <script>
   var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
   </script>
-  <script src="https://secure.charmhq.com/feedback.js"></script>
+  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 

@@ -53,7 +53,7 @@
 
 <p>Get all the currently running or paused timers. The running timer will be shown first, then the paused timers</p>
 
-<pre><code>GET /timers/
+<pre><code>GET /v2/timers
 </code></pre>
 
 <h3 id="parameters">Parameters</h3>
@@ -123,7 +123,7 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
 
 <h2 id="get-a-projects-timer">Get a project’s timer</h2>
 
-<pre><code>GET /projects/:project_id/timer
+<pre><code>GET /v2/projects/:project_id/timer
 </code></pre>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
@@ -168,7 +168,7 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
 
 <p>Updates the details for a project’s timer. If the timer does not exist, it will automatically be created.</p>
 
-<pre><code>PUT /projects/:project_id/timer
+<pre><code>PUT /v2/projects/:project_id/timer
 </code></pre>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
@@ -213,7 +213,7 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
   <dd>The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.</dd>
 </dl><h2 id="start-a-projects-timer">Start a project’s timer</h2>
 
-<pre><code>PUT /projects/:project_id/timer/start
+<pre><code>PUT /v2/projects/:project_id/timer/start
 </code></pre>
 
 <pre class="headers"><code>Status: 201 Created</code></pre>
@@ -270,7 +270,7 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
 
 <p>The response does not change if the timer has already been paused or does not exist</p>
 
-<pre><code>PUT /projects/:project_id/timer/pause
+<pre><code>PUT /v2/projects/:project_id/timer/pause
 </code></pre>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
@@ -315,7 +315,7 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
 
 <p>When a timer is logged, a new entry is created for the user with the description provided.</p>
 
-<pre><code>PUT /projects/:project_id/timer/log
+<pre><code>PUT /v2/projects/:project_id/timer/log
 </code></pre>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
@@ -348,7 +348,7 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
 
 <p>When a project’s timer is discarded, the timer is deleted and no time entry is recorded.</p>
 
-<pre><code>DELETE /projects/:project_id/timer/
+<pre><code>DELETE /v2/projects/:project_id/timer
 </code></pre>
 
 <h3 id="response-1">Response</h3>
@@ -408,7 +408,7 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
   <script>
   var __CHARM = {"key":"g3gwo8hllujjbwaz14qlfeeqdefgt3k"};
   </script>
-  <script src="https://secure.charmhq.com/feedback.js"></script>
+  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
