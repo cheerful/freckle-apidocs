@@ -260,49 +260,49 @@ module Freckle
       "entries_imported" => 48
     }
 
-    PROJECT_GOAL = {
-      "id" => 445566,
-      "budgeted_minutes" => 500,
-      "total_logged_minutes" => 300,
-      "billable_logged_minutes" => 200,
-      "unbillable_logged_minutes" => 100,
-      "starts_on" => "2001-01-02",
-      "ends_on" => "2001-01-03",
-      "recurring_goal" =>{
-        "id" => 8899,
-        "renews" =>"yearly",
-        "budgeted_minutes" => 1000,
-        "starts_on" => "2001-01-02",
-        "ends_on" => "2001-01-03",
-        "url" => "#{API_V2_URL}/recurring_goals/8899"
-      },
-      "url" =>"#{API_V2_URL}/goals/445566"
-    }
+    # PROJECT_GOAL = {
+    #   "id" => 445566,
+    #   "budgeted_minutes" => 500,
+    #   "total_logged_minutes" => 300,
+    #   "billable_logged_minutes" => 200,
+    #   "unbillable_logged_minutes" => 100,
+    #   "starts_on" => "2001-01-02",
+    #   "ends_on" => "2001-01-03",
+    #   # "recurring_goal" =>{
+    #   #   "id" => 8899,
+    #   #   "renews" =>"yearly",
+    #   #   "budgeted_minutes" => 1000,
+    #   #   "starts_on" => "2001-01-02",
+    #   #   "ends_on" => "2001-01-03",
+    #   #   "url" => "#{API_V2_URL}/recurring_goals/8899"
+    #   # },
+    #   "url" =>"#{API_V2_URL}/goals/445566"
+    # }
 
-    PROJECT_GOAL_EDITABLE_FIELDS = {
-      "budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
-      "starts_on" => PROJECT_GOAL["starts_on"],
-      "ends_on" => PROJECT_GOAL["ends_on"],
-    }
+    # PROJECT_GOAL_EDITABLE_FIELDS = {
+    #   "budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
+    #   "starts_on" => PROJECT_GOAL["starts_on"],
+    #   "ends_on" => PROJECT_GOAL["ends_on"],
+    # }
 
-    PROJECT_RECURRING_GOAL = {
-      "id" => 8899,
-      "renews" =>"yearly",
-      "budgeted_minutes" => 1000,
-      "starts_on" => "2001-01-02",
-      "ends_on" => "2001-01-03",
+    # PROJECT_RECURRING_GOAL = {
+    #   "id" => 8899,
+    #   "renews" =>"yearly",
+    #   "budgeted_minutes" => 1000,
+    #   "starts_on" => "2001-01-02",
+    #   "ends_on" => "2001-01-03",
 
-      "goals" => [PROJECT_GOAL],
+    #   "goals" => [PROJECT_GOAL],
 
-      "url" => "#{API_V2_URL}/recurring_goals/8899"
-    }
+    #   "url" => "#{API_V2_URL}/recurring_goals/8899"
+    # }
 
-    PROJECT_GOAL_CREATE_FIELDS = {
-      "budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
-      "starts_on" => PROJECT_GOAL["starts_on"],
-      "ends_on" => PROJECT_GOAL["ends_on"],
-      "renews" => "yearly"
-    }
+    # PROJECT_GOAL_CREATE_FIELDS = {
+    #   "budgeted_minutes" => PROJECT_GOAL["budgeted_minutes"],
+    #   "starts_on" => PROJECT_GOAL["starts_on"],
+    #   "ends_on" => PROJECT_GOAL["ends_on"],
+    #   "renews" => "yearly"
+    # }
 
     SIMPLE_INVOICE = {
       "id" => 12345678,
@@ -324,8 +324,7 @@ module Freckle
       "import" => IMPORT,
       "invoices" => [SIMPLE_INVOICE],
       "participants" => [SIMPLE_USER],
-      "goals" => [PROJECT_GROUP],
-      "recurring_goals" => [PROJECT_RECURRING_GOAL],
+      # "recurring_goals" => [PROJECT_RECURRING_GOAL],
 
       "entries" => 0,
       "entries_url" =>"#{API_V2_URL}/projects/34580/entries",

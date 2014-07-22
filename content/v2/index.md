@@ -50,7 +50,7 @@ For example: if we wanted to access a user's timers, the URL would be:
 <%= API_V2_URL + "/timers" %>
 ~~~
 
-## Schema
+## General Schema
 
 The following rules define the general schema of the API:
 
@@ -113,6 +113,34 @@ When validation errors occur, the `errors` array is populated with objects that 
     * **already_exists**: another resource has the same value as this field.
     * **Custom errors codes can be defined for resources, and will be documented in the resource's API page.**
 
+## Deleting or Archiving Resources
+
+In certain cases, some resources can only be deleted if certain conditions are met. If these resources cannot be deleted, then they may be archived. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).
+
+For these resources, we have two separate actions for deleting and archiving. The Delete action is accessible through the `DELETE` HTTP verb, while the archive action is accessible via `PUT archive/`.
+
+### When a resource cannot be deleted
+
+The delete action will only succeed if the resource is able to deleted. If the resource is unable to be deleted, a `422` error will be returned, with an explanation for why the resource cannot be deleted.
+
+This explanation uses a new error code: **dependent**, and the **field** field will indicate which associated resources exist and are preventing this resource from being deleted.
+
+**Note that custom error codes can be defined for a resource's delete action, and will be documented in the resource's API page.**
+
+<%= headers 422 %>
+<%= json :delete_error_example %>
+
+### When a resource cannot be archived
+
+The archive action will only succeeed if the resource is able to archived. If the resource is able to be deleted, then it is unable to be archived. If a resource is unable to be archived, a `422` error will be returned, with an explanation for why cd ..the resource cannot be archived.
+
+This explanation uses a new error code: **deletable**, and the **field** field will point to the `id` field. This error code indicates that the delete action should be called on this resource.
+
+**Note that custom error codes can be defined for a resource's archive action, and will be documented in the resource's API page.**
+
+<%= headers 422 %>
+<%= json :archive_error_example %>
+
 ## Uploading Files
 
 If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional multipart HTTP key/value pairs instead of as a JSON object.
@@ -136,7 +164,7 @@ This and all future requests should be directed to the new URI
 
 Repeat the request verbatim to the URI specified in the `Location` header, but clients should still continue to use th original URI in future requests
 
-## Supported HTTP Verbs:
+## Supported HTTP Verbs
 
 **`HEAD`**
 : Can be issued against any `GET` request to return just the HTTP header info
@@ -150,12 +178,6 @@ Repeat the request verbatim to the URI specified in the `Location` header, but c
 
 **`DELETE`**
 
-## Authentication
-
-###Supported methods:
-
-* [Personal Access Tokens](authentication/#using-personal-access-tokens)
-
 ## Hypermedia
 
 All resources have one or more `*_url` properties linking to other resources or custom actions on this resource. They are meant to provide explicit URLs so clients don't have to generate them. Using these URLs will make API upgrades easier for developers. All URLs follow [RFC 6570 URI templates](http://tools.ietf.org/html/rfc6570).
@@ -163,3 +185,28 @@ All resources have one or more `*_url` properties linking to other resources or 
 ### Example (Timer Object):
 
 <%= json :timer %>
+
+## Pagination
+
+Responses including multiple items will be paginated to 30 items by default. The page can be changed by using the `page` query parameter. Note that the `page` paremter starts with 1.
+
+
+Some actions can use the `per_page` parameter, which will be documented in the resource's API page.
+
+### Link Header
+
+When pagination is used, the `Link` header includes the URLs used in Pagination. Clients should use these links instead of following their own, in case pagination rules change in the future.
+
+~~~
+Link: <https://apitest.letsfreckle.com/api/v2/users/?page=3&per_page=100>; rel="next",
+  <https://apitest.letsfreckle.com/api/v2/users/?page=2&per_page=100>; rel="prev",
+  <https://apitest.letsfreckle.com/api/v2/users/?page=1&per_page=100>; rel="first",
+  <https://apitest.letsfreckle.com/api/v2/users/?page=50&per_page=100>; rel="last"
+~~~
+
+the `rel` attribute indicates what the URL links to:
+
+* **next**: shows the URL of the immediate next page of results
+* **last**: shows the URL of the last page of results
+* **first**: shows the URL of the first page of results
+* **prev**: shows the URL of the immediate previous page of results
