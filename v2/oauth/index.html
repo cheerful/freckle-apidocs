@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Freckle API: OAuth</title>
+  <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="nav">
+      <div id="logo">
+        <a href="/v2">
+          <img id="logo" src="/assets/freckle.svg" alt="Freckle">
+        </a>
+      </div>
+      API Documentation
+      <h2>Topics</h2>
+      <ul id="resources">
+        <li><a href="/v2">API Basics</a></li>
+        <li><a class="coming-soon" href="/v2/oauth">OAuth</a></li>
+        <li><a href="/v2/authentication">Authentication</a></li>
+        <li><a href="/v2/invoice_locales">Invoice Locales</a></li>
+      </ul>
+      <h2>Resources</h2>
+      <ul id="resources">
+        <li><a href="/v2/timers">Timers</a></li>
+        <li><a class="coming-soon" href="/v2/entries">Entries</a></li>
+        <li><a class="coming-soon" href="/v2/expenses">Expenses</a></li>
+        <li><a class="coming-soon" href="/v2/tags">Tags</a></li>
+      </ul>
+
+      <h2>Projects &amp; Invoices</h2>
+      <ul id="resources">
+        <li><a class="coming-soon" href="/v2/projects">Projects</a></li>
+        <li><a class="coming-soon" href="/v2/project_groups">Project Groups</a></li>
+        <li><a class="coming-soon" href="/v2/invoices">Invoices</a></li>
+      </ul>
+
+      <h2>Account Management</h2>
+      <ul id="resources">
+        <li><a class="coming-soon" href="/v2/account">Account</a></li>
+        <li><a class="coming-soon" href="/v2/current_user">Current User</a></li>
+        <li><a class="coming-soon" href="/v2/users">Users</a></li>
+        <li><a class="coming-soon" href="/v2/imports">Imports</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <div class="note sticky">
+        <h2>Freckle API version 2 is in closed beta</h2>
+        <p>
+          While in beta, version 2 of the API is incomplete and subject to
+          unannounced changes, and sporadic downtime.
+        </p>
+      </div>
+      <h1>OAuth</h1>
+      <div class="note warning sticky">
+  <h2>Not implemented yet!</h2>
+  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+</div>
+
+<ul id="markdown-toc">
+<li><a href="#web-application-flow">Web Application Flow</a></li>
+  <li><a href="#non-web-application-flow">Non-Web Application Flow</a></li>
+  <li><a href="#list-all-the-subdomains-associated-with-this-user">List all the subdomains associated with this user</a></li>
+  <li><a href="#list-all-authorizations">List all authorizations</a></li>
+  <li><a href="#create-a-new-authorization-token">Create a new Authorization Token</a></li>
+  <li><a href="#get-or-create-an-authorization-for-a-specific-app">Get-or-create an authorization for a specific app</a></li>
+  <li><a href="#response-if-a-new-authorization-is-created">Response if a new authorization is created</a></li>
+  <li><a href="#update-an-existing-authorization">Update an existing Authorization</a></li>
+  <li><a href="#delete-an-authorization">Delete an Authorization</a></li>
+  <li><a href="#check-an-authorization">Check an Authorization</a></li>
+  <li><a href="#response-if-the-token-does-not-exist">Response if the token does not exist</a></li>
+  <li><a href="#response-6">Response:</a></li>
+  <li><a href="#revoke-all-authorizations-for-an-application">Revoke all Authorizations for an application</a></li>
+  <li><a href="#revoke-a-single-authorization-for-an-application">Revoke a single authorization for an application</a></li>
+</ul><p>OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Freckle account without requiring their password. Freckle only supports access to API resources using OAuth because tokens can be limited to specific types of data and can be revoked by users at any time.</p>
+
+<p>Before you can start developing with the Freckle API, you must first register your application. When you register, you will be given a unique Client ID and Secret. Your Client Secret should not be shared.</p>
+
+<p>There are two supported ways to generate an access token for a specific user from your application: One designed specifically for use by Web Applications, and another that allows other types of applications to list, create, and confirm their Authorization Token for a user.</p>
+
+<h2 id="web-application-flow">Web Application Flow</h2>
+
+<p>Below are the steps required to generate an access token for a Freckle user through a <code>GET</code> request to Freckle and a corresponding redirect back to your application.</p>
+
+<h3 id="redirect-users-to-request-freckle-access">1. Redirect users to request Freckle access</h3>
+
+<pre><code>GET /login/oauth/authorize
+</code></pre>
+
+<h4 id="parameters">Parameters:</h4>
+
+<dl>
+<dt>client_id</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The client ID you received from Freckle when you registered</dd>
+  <dd>Example: <code>client_id=abcdefghi1234</code>
+</dd>
+  <dt>scope</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a comma separated list of <a href="#scopes">scopes</a>
+</dd>
+  <dd>The type of access your application needs to the user’s Freckle data.</dd>
+  <dd>If no value is provided, then the permissions you chose when you setup your application will be used.</dd>
+  <dd>Example: <code>scope=current_user,project,entry</code>
+</dd>
+  <dt>state</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>An unguessable random string, which is used to protect against cross-site request forgery attacks.</dd>
+  <dt>redirect_uri</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data.
+
+    <h4 id="rules">Rules:</h4>
+
+    <p>If <code>redirect_uri</code> is not included in the request, Freckle will redirect users to the callback URL configured in the OAuth application settings.</p>
+
+    <p>If <code>redirect_uri</code> is included in the request, the redirect URL’s host and port must exactly match the configured callback URL and the redirect URL path must reference a subdirectory of the callback URL configured in the OAuth application settings.</p>
+
+    <h4 id="examples">Examples:</h4>
+
+    <pre><code>CONFIGURED CALLBACK URL: http://example.com/path
+
+GOOD: https://example.com/path
+GOOD: http://example.com/path/subdir/other
+
+BAD:  http://example.com/bar
+BAD:  http://example.com/
+BAD:  http://example.com:8080/path
+BAD:  http://oauth.example.com:8080/path
+BAD:  http://example.org
+</code></pre>
+  </dd>
+</dl><h3 id="freckle-redirects-back-to-your-site-with-two-parameters">2. Freckle redirects back to your site with two parameters:</h3>
+
+<p>When the user has authorized your application, Freckle will redirect back to your application (either to the URL configured in the OAuth application settings, or the url specified in <code>redirect_uri</code>). The redirection will include the following parameters in the URL:</p>
+
+<dl>
+<dt>code</dt>
+  <dd><strong>string</strong></dd>
+  <dd>A Temporary code that you will send back to Freckle to get the access token. This code confirms that the user authorized your application to use their Freckle data, and that you received the request.</dd>
+  <dt>state</dt>
+  <dd><strong>string</strong></dd>
+  <dd>If you provided a state in your <a href="#step-1">redirect to Freckle</a> then it will be returned back to you. If this parameter does not match what you previously sent, then reject the request.</dd>
+</dl><h3 id="post-to-freckle-to-get-the-access-token">3. POST to Freckle to get the access token.</h3>
+
+<p>After you have received the temporary code, you will need to <code>POST</code> to Freckle to exchange this temporary code for an access token:</p>
+
+<h4 id="parameters-1">Parameters:</h4>
+
+<dl>
+<dt>client_id</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The client ID you received from Freckle when you registered your application.</dd>
+  <dt>client_secret</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>the client secret you received from Freckle when you registered your application</dd>
+  <dt>code</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>the code you received as a response in <a href="#step-2">step 2</a>.</dd>
+</dl><h3 id="reponse">Reponse</h3>
+
+<p>The response will include the following values:</p>
+
+<ul>
+<li>
+    <dl>
+<dt><strong>access_token</strong></dt>
+      <dd>The token you will use to access the API on behalf of a user</dd>
+    </dl>
+</li>
+  <li>
+    <dl>
+<dt><strong>token_type</strong></dt>
+      <dd>The type of access that has been sent to your application. The default value is “Bearer”</dd>
+    </dl>
+</li>
+  <li>
+    <dl>
+<dt><strong>scope</strong></dt>
+      <dd>The permissions that have been provided to your application.</dd>
+    </dl>
+</li>
+</ul><p>By default, the response will have the following format:</p>
+
+<pre><code>access_token=abcedfghijk1234567890&amp;scope=current_user%2Centry&amp;token_type=bearer
+</code></pre>
+
+<p>However, by modifying your request’s <code>Accept</code> header, you can receive the response in different formats:</p>
+
+<pre><code>Accept: application/json
+{"access_token":"abcedfghijk1234567890", "scope":"current_user,entry", "token_type":"bearer"}
+
+Accept: application/xml
+&lt;OAuth&gt;
+  &lt;token_type&gt;bearer&lt;/token_type&gt;
+  &lt;scope&gt;current_user,entry&lt;/scope&gt;
+  &lt;access_token&gt;abcedfghijk1234567890&lt;/access_token&gt;
+&lt;/OAuth&gt;
+</code></pre>
+
+<h3 id="use-the-access-token-to-make-api-requests-on-behalf-of-the-user">4. Use the access token to make API requests on behalf of the user</h3>
+
+<p>Now that you have an access token for the user, you can use it to make API requests on their behalf. Please review the <a href="/basics#authorization">API basics section on how to include the access token in your requests</a>.</p>
+
+<h2 id="non-web-application-flow">Non-Web Application Flow</h2>
+
+<p>If your application is not a Web-app, you will need to use the OAuth Authorizations API to <a href="#oauth-authorizations-api">generate a new access token</a> for the user. Note that the OAuth Authorization API is only available via <a href="/authentication">Basic Authentication</a></p>
+
+<h1 id="oauth-authorizations-api">OAuth Authorizations API</h1>
+
+<p>This API allows users to manage their tokens, and is only accessible via <a href="authentication">Basic Authentication</a>.</p>
+
+<p>Access Tokens are not shared across accounts. When using the OAuth Authorizations API, you will need to specify which account you are accessing. This is done by including the desired account’s subdomain as part of the request URL.</p>
+
+<p>The process for selecting which account to access should be:</p>
+
+<ol>
+<li>Present the user with a list of all the subdomains (with the corresponding avatar) they are associated with.</li>
+  <li>User selects which account they want to access</li>
+  <li>Use the user-selected subdomain to access the OAuth Authorizations API</li>
+</ol><h2 id="list-all-the-subdomains-associated-with-this-user">List all the subdomains associated with this user</h2>
+
+<p>In order to use the OAuth Authorizations API, you will need to specify which subdomain the user wants to authenticate with. This method returns a list of all the subdomains associated with the user, along with URLs to their respective avatars.</p>
+
+<pre><code>GET /subdomains
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"subdomain"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"avatar"</span><span class="o">:</span> <span class="kc">null</span>
+  <span class="p">}</span>
+<span class="p">]</span></code></pre>
+
+<h2 id="list-all-authorizations">List all authorizations</h2>
+
+<pre><code>GET /authorizations/:subdomain
+</code></pre>
+
+<h3 id="response-1">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+    <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s2">"current_user"</span><span class="p">,</span>
+      <span class="s2">"project"</span>
+    <span class="p">],</span>
+    <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
+    <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+      <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+    <span class="p">},</span>
+    <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
+    <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+  <span class="p">}</span>
+<span class="p">]</span></code></pre>
+
+<h3 id="response-if-the-user-is-not-associated-with-the-subdomain-provided">Response if the user is not associated with the subdomain provided</h3>
+
+<pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
+
+<h3 id="get-a-single-authorization">Get a single Authorization</h3>
+
+<pre><code>GET /authorizations/:subdomain/:id
+</code></pre>
+
+<h3 id="response-2">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"current_user"</span><span class="p">,</span>
+    <span class="s2">"project"</span>
+  <span class="p">],</span>
+  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
+  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="p">},</span>
+  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
+  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="create-a-new-authorization-token">Create a new Authorization Token</h2>
+
+<p>When you are not building a Web Application, it might be easier to generate a token using a single POST request.</p>
+
+<pre><code>POST /authorizations/:subdomain
+</code></pre>
+
+<h3 id="inputs">Inputs</h3>
+
+<dl>
+<dt>client_id</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>the client key generated for your application.</dd>
+  <dt>client_secret</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>the client secret generated for your application.</dd>
+  <dt>scopes</dt>
+  <dd>
+<em>Optional</em> <strong>array of strings</strong>
+</dd>
+  <dd>The type of access your application needs to the user’s Freckle data.</dd>
+  <dd>If no value is provided, then the permissions you chose when you setup your application will be used.</dd>
+  <dt>note</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>a note to remind users why the OAuth token was generated</dd>
+  <dt>note_url</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>a URL to remind users what app the OAuth token was generated for.</dd>
+</dl><h3 id="response-3">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"current_user"</span><span class="p">,</span>
+    <span class="s2">"project"</span>
+  <span class="p">],</span>
+  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
+  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="p">},</span>
+  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
+  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-1">Response if the user is not associated with the subdomain provided</h3>
+
+<pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
+
+<h2 id="get-or-create-an-authorization-for-a-specific-app">Get-or-create an authorization for a specific app</h2>
+
+<p>This method checks for an authorization for the specified OAuth application. If the authorization does not exist for this user, it is automatically created.</p>
+
+<pre><code>PUT /authorizations/:subdomain/clients/:client_id
+</code></pre>
+
+<h3 id="inputs-1">Inputs</h3>
+
+<dl>
+<dt>client_secret</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>the client secret generated for your application.</dd>
+  <dt>scopes</dt>
+  <dd>
+<em>Optional</em> <strong>array of strings</strong>
+</dd>
+  <dd>The type of access your application needs to the user’s Freckle data.</dd>
+  <dd>If no value is provided, then the permissions you chose when you setup your application will be used.</dd>
+  <dt>note</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>a note to remind users why the OAuth token was generated</dd>
+  <dt>note_url</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>a URL to remind users what app the OAuth token was generated for.</dd>
+</dl><h2 id="response-if-a-new-authorization-is-created">Response if a new authorization is created</h2>
+<pre class="headers"><code>Status: 201 Created</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"current_user"</span><span class="p">,</span>
+    <span class="s2">"project"</span>
+  <span class="p">],</span>
+  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
+  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="p">},</span>
+  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
+  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-if-an-authorization-already-exists">Response if an authorization already exists</h3>
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"current_user"</span><span class="p">,</span>
+    <span class="s2">"project"</span>
+  <span class="p">],</span>
+  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
+  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="p">},</span>
+  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
+  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-2">Response if the user is not associated with the subdomain provided</h3>
+
+<pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
+
+<h2 id="update-an-existing-authorization">Update an existing Authorization</h2>
+
+<pre><code>PATCH /authroizations/:subdomain/:id
+</code></pre>
+
+<h3 id="parameters-2">Parameters:</h3>
+
+<dl>
+<dt>note</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>a note to remind users why the OAuth token was generated</dd>
+  <dt>note_url</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>a URL to remind users what app the OAuth token was generated for.</dd>
+  <dt>add_scopes</dt>
+  <dd>
+<em>Optional</em> <strong>array of strings</strong>
+</dd>
+  <dd>The list of scopes to add to this authorization. Adding new scopes allows your application to access additional information from the user’s Freckle account. Non-existent scopes, or scopes already applied for this authorization will be ignored.</dd>
+  <dt>remove_scopes</dt>
+  <dd>
+<em>Optional</em> <strong>array of strings</strong>
+</dd>
+  <dd>The list of scopes to remove from this authorization. Removing scopes prevents your application from accessing specific information from the user’s Freckle account. Scopes that are not currently applied for this authorization will be ignored.</dd>
+</dl><h3 id="response-4">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"current_user"</span><span class="p">,</span>
+    <span class="s2">"project"</span>
+  <span class="p">],</span>
+  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
+  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="p">},</span>
+  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
+  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-3">Response if the user is not associated with the subdomain provided</h3>
+
+<pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
+
+<h2 id="delete-an-authorization">Delete an Authorization</h2>
+
+<pre><code>DELETE /authorizations/:subdomain/:id
+</code></pre>
+
+<h3 id="response-5">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h1 id="oauth-application-api">OAuth Application API</h1>
+
+<p>These methods are provided to allow your application to confirm a token’s validity and revoke tokens as necessary. They are only accessible by using Basic Authentication as follows:</p>
+
+<dl>
+<dt>Username</dt>
+  <dd>Your application’s <code>client_id</code>
+</dd>
+  <dt>Password</dt>
+  <dd>Your application’s <code>client_secret</code>
+</dd>
+</dl><h2 id="check-an-authorization">Check an Authorization</h2>
+
+<p>This method allows you to confirm a token’s validity. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
+
+<pre><code>GET /applications/:client_id/tokens/:access_token
+</code></pre>
+
+<h2 id="response-if-the-token-does-not-exist">Response if the token does not exist</h2>
+<pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
+
+<h2 id="response-6">Response:</h2>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"current_user"</span><span class="p">,</span>
+    <span class="s2">"project"</span>
+  <span class="p">],</span>
+  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
+  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="p">},</span>
+  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
+  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="revoke-all-authorizations-for-an-application">Revoke all Authorizations for an application</h2>
+
+<p>The owner of an OAuth application can revoke every token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
+
+<pre><code>DELETE /applications/:client_id/tokens
+</code></pre>
+
+<h3 id="response-7">Response</h3>
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="revoke-a-single-authorization-for-an-application">Revoke a single authorization for an application</h2>
+
+<p>The owner of an OAuth application can also revoke a single token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
+
+<pre><code>DELETE /applications/:client_id/tokens/:access_token
+</code></pre>
+
+<h3 id="response-8">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div>
+
+    <div class="columns four">
+      <div class="column">
+        <h3>About Freckle</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
+          <li><a href="http://letsfreckle.com/plans/"> Freckle plans and pricing</a></li>
+          <li><a href="http://letsfreckle.com/terms/">Our user agreement</a></li>
+          <li><a href="http://letsfreckle.com/privacy/">Privacy policy</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Us &amp; our company</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/team/">Meet our team</a></li>
+          <li><a href="http://letsfreckle.com/blog/">Read our blog about Freckle</a></li>
+          <li><a href="http://letsfreckle.com/contact/">Write us</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Docs</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/">FAQs</a></li>
+          <li><a href="http://letsfreckle.com/quick-start">Quick Start Guide</a></li>
+          <li><a href="http://developer.letsfreckle.com">API Documentation</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>You &amp; your account</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/accounts/">How to sign in</a></li>
+          <li><a href="http://letsfreckle.com/help/">Get help &amp; contact support</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      &copy; 2008-2014 Slash7 LLC, all rights reserved.
+    </div>
+    </div>
+  </div>
+
+  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      function setTabs(to){
+        // change all tabs on page to value
+        var tabs = $('.tabs')
+        tabs.find('.selector DIV').removeClass('active')
+        tabs.find('.selector DIV.'+to).addClass('active')
+        tabs.find('.tab').removeClass('active')
+        tabs.find('.tab.'+to).addClass('active')
+
+        // change tabs that don't have an active tab to show first tab
+        tabs.find('.selector').each(function(){
+          if ($(this).find('DIV.active').length > 0) return
+
+          console.log(this)
+          $(this).find('DIV').first().addClass('active')
+          $(this).closest('.tabs').find('.tab').first().addClass('active')
+        })
+
+        // save for later
+        localStorage && (localStorage.dataFormat = to)
+      }
+
+      $('.tabs .selector div').on('click', function(){
+        setTabs($(this).attr('class'))
+      })
+
+      setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
+    })
+  </script>
+
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37896092-1']);
+    _gaq.push(['_setDomainName', 'letsfreckle.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</body>
+</html>

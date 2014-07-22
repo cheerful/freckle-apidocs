@@ -18,18 +18,31 @@
       <h2>Topics</h2>
       <ul id="resources">
         <li><a href="/v2">API Basics</a></li>
+        <li><a class="coming-soon" href="/v2/oauth">OAuth</a></li>
         <li><a href="/v2/authentication">Authentication</a></li>
+        <li><a href="/v2/invoice_locales">Invoice Locales</a></li>
       </ul>
       <h2>Resources</h2>
       <ul id="resources">
         <li><a href="/v2/timers">Timers</a></li>
+        <li><a class="coming-soon" href="/v2/entries">Entries</a></li>
+        <li><a class="coming-soon" href="/v2/expenses">Expenses</a></li>
+        <li><a class="coming-soon" href="/v2/tags">Tags</a></li>
       </ul>
 
+      <h2>Projects &amp; Invoices</h2>
       <ul id="resources">
-        <li><a href="/v2/entries">Entries</a></li>
+        <li><a class="coming-soon" href="/v2/projects">Projects</a></li>
+        <li><a class="coming-soon" href="/v2/project_groups">Project Groups</a></li>
+        <li><a class="coming-soon" href="/v2/invoices">Invoices</a></li>
       </ul>
+
+      <h2>Account Management</h2>
       <ul id="resources">
-        <li><a href="/v2/expenses">Expenses</a></li>
+        <li><a class="coming-soon" href="/v2/account">Account</a></li>
+        <li><a class="coming-soon" href="/v2/current_user">Current User</a></li>
+        <li><a class="coming-soon" href="/v2/users">Users</a></li>
+        <li><a class="coming-soon" href="/v2/imports">Imports</a></li>
       </ul>
     </div>
     <div id="content">
@@ -46,14 +59,15 @@
   <li><a href="#freckle-api-libraries">Freckle API Libraries</a></li>
   <li><a href="#naming-client-applications">Naming client applications</a></li>
   <li><a href="#api-url">API URL</a></li>
-  <li><a href="#schema">Schema</a></li>
+  <li><a href="#general-schema">General Schema</a></li>
   <li><a href="#a-user-agent-is-required">A User Agent is Required</a></li>
   <li><a href="#client-errors">Client Errors</a></li>
+  <li><a href="#deleting-or-archiving-resources">Deleting or Archiving Resources</a></li>
   <li><a href="#uploading-files">Uploading Files</a></li>
   <li><a href="#http-redirection">HTTP Redirection</a></li>
-  <li><a href="#supported-http-verbs">Supported HTTP Verbs:</a></li>
-  <li><a href="#authentication">Authentication</a></li>
+  <li><a href="#supported-http-verbs">Supported HTTP Verbs</a></li>
   <li><a href="#hypermedia">Hypermedia</a></li>
+  <li><a href="#pagination">Pagination</a></li>
 </ul><h2 id="introduction">Introduction</h2>
 
 <p>Many applications use the Freckle API every day, among them web applications like <a href="http://beanstalkapp.com">Beanstalk</a>, <a href="http://github.com">Github</a>, and <a href="http://planscope.io">Planscope</a>; native mobile and desktop applications like <a href="http://pigmentapp.com">Pigment</a> and <a href="http://punch.fousa.be">Punch</a>; as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a>, <a href="http://twitter.com/letsfreckle">tweet</a>, or <a href="https://www.facebook.com/FreckleTimeTracking">send us a message on Facebook</a>.</p>
@@ -100,7 +114,7 @@ Please contact the library authors directly if you need help with these.
 <pre><code>https://api.letsfreckle.com/v2/timers
 </code></pre>
 
-<h2 id="schema">Schema</h2>
+<h2 id="general-schema">General Schema</h2>
 
 <p>The following rules define the general schema of the API:</p>
 
@@ -180,7 +194,55 @@ Please contact the library authors directly if you need help with these.
       <li><strong>Custom errors codes can be defined for resources, and will be documented in the resource’s API page.</strong></li>
     </ul>
 </li>
-</ul><h2 id="uploading-files">Uploading Files</h2>
+</ul><h2 id="deleting-or-archiving-resources">Deleting or Archiving Resources</h2>
+
+<p>In certain cases, some resources can only be deleted if certain conditions are met. If these resources cannot be deleted, then they may be archived. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).</p>
+
+<p>For these resources, we have two separate actions for deleting and archiving. The Delete action is accessible through the <code>DELETE</code> HTTP verb, while the archive action is accessible via <code>PUT archive/</code>.</p>
+
+<h3 id="when-a-resource-cannot-be-deleted">When a resource cannot be deleted</h3>
+
+<p>The delete action will only succeed if the resource is able to deleted. If the resource is unable to be deleted, a <code>422</code> error will be returned, with an explanation for why the resource cannot be deleted.</p>
+
+<p>This explanation uses a new error code: <strong>dependent</strong>, and the <strong>field</strong> field will indicate which associated resources exist and are preventing this resource from being deleted.</p>
+
+<p><strong>Note that custom error codes can be defined for a resource’s delete action, and will be documented in the resource’s API page.</strong></p>
+
+<pre class="headers"><code>Status: 422 Unprocessable Entity</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Unable to be deleted"</span><span class="p">,</span>
+  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
+      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"entries"</span><span class="p">,</span>
+      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"dependent"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="when-a-resource-cannot-be-archived">When a resource cannot be archived</h3>
+
+<p>The archive action will only succeeed if the resource is able to archived. If the resource is able to be deleted, then it is unable to be archived. If a resource is unable to be archived, a <code>422</code> error will be returned, with an explanation for why cd ..the resource cannot be archived.</p>
+
+<p>This explanation uses a new error code: <strong>deletable</strong>, and the <strong>field</strong> field will point to the <code>id</code> field. This error code indicates that the delete action should be called on this resource.</p>
+
+<p><strong>Note that custom error codes can be defined for a resource’s archive action, and will be documented in the resource’s API page.</strong></p>
+
+<pre class="headers"><code>Status: 422 Unprocessable Entity</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Should be deleted"</span><span class="p">,</span>
+  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
+      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"id"</span><span class="p">,</span>
+      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"deletable"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="uploading-files">Uploading Files</h2>
 
 <p>If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional multipart HTTP key/value pairs instead of as a JSON object.</p>
 
@@ -207,7 +269,7 @@ Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
 
 <p>Repeat the request verbatim to the URI specified in the <code>Location</code> header, but clients should still continue to use th original URI in future requests</p>
 
-<h2 id="supported-http-verbs">Supported HTTP Verbs:</h2>
+<h2 id="supported-http-verbs">Supported HTTP Verbs</h2>
 
 <dl>
 <dt><strong><code>HEAD</code></strong></dt>
@@ -221,13 +283,7 @@ Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
   <dd>Used for replacing resources or collections and performing actions on a resource.</dd>
 </dl><p><strong><code>DELETE</code></strong></p>
 
-<h2 id="authentication">Authentication</h2>
-
-<h3 id="supported-methods">Supported methods:</h3>
-
-<ul>
-<li><a href="authentication/#using-personal-access-tokens">Personal Access Tokens</a></li>
-</ul><h2 id="hypermedia">Hypermedia</h2>
+<h2 id="hypermedia">Hypermedia</h2>
 
 <p>All resources have one or more <code>*_url</code> properties linking to other resources or custom actions on this resource. They are meant to provide explicit URLs so clients don’t have to generate them. Using these URLs will make API upgrades easier for developers. All URLs follow <a href="http://tools.ietf.org/html/rfc6570">RFC 6570 URI templates</a>.</p>
 
@@ -262,6 +318,35 @@ Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
   <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/pause"</span><span class="p">,</span>
   <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/log"</span>
 <span class="p">}</span></code></pre>
+
+<h2 id="pagination">Pagination</h2>
+
+<p>Responses including multiple items will be paginated to 30 items by default. The page can be changed by using the <code>page</code> query parameter. Note that the <code>page</code> paremter starts with 1.</p>
+
+<p>Some actions can use the <code>per_page</code> parameter, which will be documented in the resource’s API page.</p>
+
+<h3 id="link-header">Link Header</h3>
+
+<p>When pagination is used, the <code>Link</code> header includes the URLs used in Pagination. Clients should use these links instead of following their own, in case pagination rules change in the future.</p>
+
+<pre><code>Link: &lt;https://apitest.letsfreckle.com/api/v2/users/?page=3&amp;per_page=100&gt;; rel="next",
+  &lt;https://apitest.letsfreckle.com/api/v2/users/?page=2&amp;per_page=100&gt;; rel="prev",
+  &lt;https://apitest.letsfreckle.com/api/v2/users/?page=1&amp;per_page=100&gt;; rel="first",
+  &lt;https://apitest.letsfreckle.com/api/v2/users/?page=50&amp;per_page=100&gt;; rel="last"
+</code></pre>
+
+<p>the <code>rel</code> attribute indicates what the URL links to:</p>
+
+<ul>
+<li>
+<strong>next</strong>: shows the URL of the immediate next page of results</li>
+  <li>
+<strong>last</strong>: shows the URL of the last page of results</li>
+  <li>
+<strong>first</strong>: shows the URL of the first page of results</li>
+  <li>
+<strong>prev</strong>: shows the URL of the immediate previous page of results</li>
+</ul>
     </div>
   </div>
 

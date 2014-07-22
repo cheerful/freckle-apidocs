@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Freckle API: Tag</title>
+  <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="nav">
+      <div id="logo">
+        <a href="/v2">
+          <img id="logo" src="/assets/freckle.svg" alt="Freckle">
+        </a>
+      </div>
+      API Documentation
+      <h2>Topics</h2>
+      <ul id="resources">
+        <li><a href="/v2">API Basics</a></li>
+        <li><a class="coming-soon" href="/v2/oauth">OAuth</a></li>
+        <li><a href="/v2/authentication">Authentication</a></li>
+        <li><a href="/v2/invoice_locales">Invoice Locales</a></li>
+      </ul>
+      <h2>Resources</h2>
+      <ul id="resources">
+        <li><a href="/v2/timers">Timers</a></li>
+        <li><a class="coming-soon" href="/v2/entries">Entries</a></li>
+        <li><a class="coming-soon" href="/v2/expenses">Expenses</a></li>
+        <li><a class="coming-soon" href="/v2/tags">Tags</a></li>
+      </ul>
+
+      <h2>Projects &amp; Invoices</h2>
+      <ul id="resources">
+        <li><a class="coming-soon" href="/v2/projects">Projects</a></li>
+        <li><a class="coming-soon" href="/v2/project_groups">Project Groups</a></li>
+        <li><a class="coming-soon" href="/v2/invoices">Invoices</a></li>
+      </ul>
+
+      <h2>Account Management</h2>
+      <ul id="resources">
+        <li><a class="coming-soon" href="/v2/account">Account</a></li>
+        <li><a class="coming-soon" href="/v2/current_user">Current User</a></li>
+        <li><a class="coming-soon" href="/v2/users">Users</a></li>
+        <li><a class="coming-soon" href="/v2/imports">Imports</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <div class="note sticky">
+        <h2>Freckle API version 2 is in closed beta</h2>
+        <p>
+          While in beta, version 2 of the API is incomplete and subject to
+          unannounced changes, and sporadic downtime.
+        </p>
+      </div>
+      <h1>Tag</h1>
+      <div class="note warning sticky">
+  <h2>Not implemented yet!</h2>
+  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+</div>
+
+<ul id="markdown-toc">
+<li><a href="#list-all-tags">List all Tags</a></li>
+  <li><a href="#get-a-single-tag">Get a single tag</a></li>
+  <li><a href="#get-the-entries-for-a-tag">Get the entries for a tag</a></li>
+  <li><a href="#edit-a-tag">Edit a Tag</a></li>
+  <li><a href="#merge-tags-into-this-tag">Merge Tags into this tag</a></li>
+  <li><a href="#delete-a-tag">Delete a Tag</a></li>
+  <li><a href="#delete-multiple-tags-at-once">Delete Multiple Tags at once</a></li>
+</ul><h2 id="list-all-tags">List all Tags</h2>
+
+<pre><code>GET /tags/
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<dl>
+<dt>name</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>Only tags containing this string will be returned.</dd>
+  <dd>Example: <code>name=meeting</code>
+</dd>
+  <dt>billable</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>: return all billable tags.</dd>
+  <dd>
+<code>false</code>: returns all unbillable tags.</dd>
+</dl><h3 id="response">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK
+Link: &lt;https://api.letsfreckle.com/v2/tags?page=2&gt;; rel="next",
+ &lt;https://api.letsfreckle.com/v2/tags?page=5&gt;; rel="last"</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/249397"</span><span class="p">,</span>
+  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+  <span class="p">},</span>
+  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/55629/entries"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="get-a-single-tag">Get a single tag</h2>
+
+<pre><code>GET /tags/:id
+</code></pre>
+
+<h3 id="response-1">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/249397"</span><span class="p">,</span>
+  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+  <span class="p">},</span>
+  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/55629/entries"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="get-the-entries-for-a-tag">Get the entries for a tag</h2>
+
+<pre><code>GET /tags/:id/entries
+</code></pre>
+
+<h3 id="parameters-1">Parameters</h3>
+
+<p>You can use the parameters specified in the <a href="/entries/index.html#list">Entry API’s List Action</a> to further limit the results</p>
+
+<h3 id="response-2">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK
+Link: &lt;https://api.letsfreckle.com/v2/tags/:id/entries?page=2&gt;; rel="next",
+ &lt;https://api.letsfreckle.com/v2/tags/:id/entries?page=5&gt;; rel="last"</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
+  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+  <span class="p">},</span>
+  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+  <span class="p">},</span>
+  <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/249397"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
+  <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
+  <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
+    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
+    <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
+  <span class="p">},</span>
+  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+  <span class="p">},</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="edit-a-tag">Edit a Tag</h2>
+
+<pre><code>PATCH /tags/:id
+</code></pre>
+
+<h3 id="inputs">Inputs</h3>
+
+<dl>
+<dt>name</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>The name for the tag. Adding a “*” at the end of the string indicates that the tag is unbillable.</dd>
+</dl><h3 id="response-3">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/249397"</span><span class="p">,</span>
+  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+  <span class="p">},</span>
+  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/55629/entries"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="merge-tags-into-this-tag">Merge Tags into this tag</h2>
+
+<p>When one tag is merged into another, the entries associated with the tag are associated with the new tag, and any instances of the old tags are replaced with the new tags in the Entry Description. <strong>This action is permanent</strong>, so you cannot undo after you merge tags.</p>
+
+<pre><code>PUT /tags/:id/merge
+</code></pre>
+
+<h3 id="inputs-1">Inputs</h3>
+
+<dl>
+<dt>tags</dt>
+  <dd>
+<em>Required</em> <strong>array of integers</strong>
+</dd>
+  <dd>The IDs of the tags to merge into this tag.</dd>
+</dl><h3 id="response-4">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="delete-a-tag">Delete a Tag</h2>
+
+<p>When a tag is deleted, the entries associated with that tag <strong>are not</strong> deleted. Instead, their descriptions are updated so that the tag’s text becomes part of the description.</p>
+
+<pre><code>DELETE /tags/:id
+</code></pre>
+
+<h3 id="response-5">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="delete-multiple-tags-at-once">Delete Multiple Tags at once</h2>
+
+<p>When a tag is deleted, the entries associated with that tag <strong>are not</strong> deleted. Instead, their descriptions are updated so that the tag’s text becomes part of the description.</p>
+
+<pre><code>DELETE /tags/
+</code></pre>
+
+<h3 id="inputs-2">Inputs</h3>
+
+<dl>
+<dt>tags</dt>
+  <dd>
+<em>Required</em> <strong>array of integers</strong>
+</dd>
+  <dd>The IDs of the tags to delete. If no IDs are provided, then no tags are deleted.</dd>
+</dl><h3 id="response-6">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div>
+
+    <div class="columns four">
+      <div class="column">
+        <h3>About Freckle</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
+          <li><a href="http://letsfreckle.com/plans/"> Freckle plans and pricing</a></li>
+          <li><a href="http://letsfreckle.com/terms/">Our user agreement</a></li>
+          <li><a href="http://letsfreckle.com/privacy/">Privacy policy</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Us &amp; our company</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/team/">Meet our team</a></li>
+          <li><a href="http://letsfreckle.com/blog/">Read our blog about Freckle</a></li>
+          <li><a href="http://letsfreckle.com/contact/">Write us</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Docs</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/">FAQs</a></li>
+          <li><a href="http://letsfreckle.com/quick-start">Quick Start Guide</a></li>
+          <li><a href="http://developer.letsfreckle.com">API Documentation</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>You &amp; your account</h3>
+        <ul>
+          <li><a href="http://letsfreckle.com/help/accounts/">How to sign in</a></li>
+          <li><a href="http://letsfreckle.com/help/">Get help &amp; contact support</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      &copy; 2008-2014 Slash7 LLC, all rights reserved.
+    </div>
+    </div>
+  </div>
+
+  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      function setTabs(to){
+        // change all tabs on page to value
+        var tabs = $('.tabs')
+        tabs.find('.selector DIV').removeClass('active')
+        tabs.find('.selector DIV.'+to).addClass('active')
+        tabs.find('.tab').removeClass('active')
+        tabs.find('.tab.'+to).addClass('active')
+
+        // change tabs that don't have an active tab to show first tab
+        tabs.find('.selector').each(function(){
+          if ($(this).find('DIV.active').length > 0) return
+
+          console.log(this)
+          $(this).find('DIV').first().addClass('active')
+          $(this).closest('.tabs').find('.tab').first().addClass('active')
+        })
+
+        // save for later
+        localStorage && (localStorage.dataFormat = to)
+      }
+
+      $('.tabs .selector div').on('click', function(){
+        setTabs($(this).attr('class'))
+      })
+
+      setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
+    })
+  </script>
+
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37896092-1']);
+    _gaq.push(['_setDomainName', 'letsfreckle.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</body>
+</html>

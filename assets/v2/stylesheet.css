@@ -222,6 +222,12 @@ h2 {
   display: block;
 }
 
+.coming-soon:after{
+  content: "coming soon!";
+  color: #e64382;
+  margin-left: 5px;
+}
+
 /* "http block" example styling */
 
 .headers{
