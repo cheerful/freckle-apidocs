@@ -190,7 +190,7 @@ The following Custom Error codes can be returned for this action:
 This action re-sends the invitation email for a pending user. This email allows pending users to set their password and start using Freckle.
 
 ~~~
-PUTS /users/:id/resend_invitation_email
+PUT /users/:id/resend_invitation_email
 ~~~
 
 ### Response
@@ -208,7 +208,7 @@ The following Custom Error codes can be returned for this action:
 This action reactivates a previously deactivated user, which allows the user to start using Freckle again.
 
 ~~~
-PUTS /users/:id/activate
+PUT /users/:id/activate
 ~~~
 
 ### Response
@@ -226,7 +226,7 @@ The following Custom Error codes can be returned for this action:
 Giving a Freelancer Access to a project allows them to view and create entries and expenses for the project. Any projects the user already has access to are ignored.
 
 ~~~
-PUTS /users/:id/give_access_to_projects
+PUT /users/:id/give_access_to_projects
 ~~~
 
 ### Inputs
@@ -251,7 +251,7 @@ The following Custom Error codes can be returned for this action:
 Revoking a Freelancer's access to a project prevents them from viewing the entries and expenses for the project. Note that the freelancer's entries and expenses logged for the project **are not deleted**. Any projects that the user does not have access to are ignored.
 
 ~~~
-PUTS /users/:id/revoke_access_to_projects
+PUT /users/:id/revoke_access_to_projects
 ~~~
 
 ### Inputs
@@ -291,7 +291,7 @@ The error message for the delete action follows the pattern explained in the API
 ## Deactive a User
 
 ~~~
-PUTS /users/:id/deactivate
+PUT /users/:id/deactivate
 ~~~
 
 ### Response
