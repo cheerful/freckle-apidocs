@@ -13,9 +13,7 @@ title: Import
 
 ## List Imports
 
-~~~
-GET /imports/
-~~~
+<%= api_call :get, '/v2/imports/' %>
 
 ### Parameters
 

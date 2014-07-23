@@ -3,25 +3,21 @@ layout: v2
 title: Timers
 ---
 
-<div class="note warning sticky">
-  <h2>Not implemented yet!</h2>
-  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
-</div>
-
 * TOC
 {:toc}
 
 ## List all currently running or paused timers
 
-Get all the currently running or paused timers. The running timer will be shown first, then the paused timers
+Get all the currently running or paused timers. The running timer will be shown
+first, then the paused timers. Only timers for the current user are returned.
 
-~~~
-GET /v2/timers
-~~~
+<%= api_call :get, '/v2/timers' %>
 
 ### Parameters
 
-Each parameter passed will filter the results, and parameters are chained (meaning that if you search by `description` and `projects`, it will only return the timers with that description text for those projects).
+Each parameter passed will filter the results, and parameters are chained
+(meaning that if you search by `description` and `projects`, it will only
+return the timers with that description text for those projects).
 
 descripton
 : *Optional* **string**
@@ -45,9 +41,7 @@ billable
 
 ## Get a project's timer
 
-~~~
-GET /v2/projects/:project_id/timer
-~~~
+<%= api_call :get, '/v2/projects/:project_id/timer' %>
 
 <%= headers 200 %>
 <%= json :timer %>
@@ -62,9 +56,7 @@ If a project does not have a currently running or paused timer, then the respons
 
 Updates the details for a project's timer. If the timer does not exist, it will automatically be created.
 
-~~~
-PUT /v2/projects/:project_id/timer
-~~~
+<%= api_call :put, '/v2/projects/:project_id/timer' %>
 
 <%= headers 200 %>
 <%= json :timer %>
@@ -77,9 +69,7 @@ description
 
 ## Start a project's timer
 
-~~~
-PUT /v2/projects/:project_id/timer/start
-~~~
+<% api_call :put, '/v2/projects/:project_id/timer/start' %>
 
 <%= headers 201 %>
 <%= json :timer %>
@@ -103,9 +93,7 @@ description
 
 The response does not change if the timer has already been paused or does not exist
 
-~~~
-PUT /v2/projects/:project_id/timer/pause
-~~~
+<%= api_call :put, '/v2/projects/:project_id/timer/pause' %>
 
 <%= headers 200 %>
 <%= json :timer %>
@@ -120,10 +108,7 @@ If a project does not have a currently running or paused timer, then the respons
 
 When a timer is logged, a new entry is created for the user with the description provided.
 
-
-~~~
-PUT /v2/projects/:project_id/timer/log
-~~~
+<%= api_call :put, '/v2/projects/:project_id/timer/log' %>
 
 <%= headers 204 %>
 
@@ -152,9 +137,7 @@ If a project does not have a currently running or paused timer, then the respons
 
 When a project's timer is discarded, the timer is deleted and no time entry is recorded.
 
-~~~
-DELETE /v2/projects/:project_id/timer
-~~~
+<%= api_call :delete, '/v2/projects/:project_id/timer' %>
 
 ### Response
 

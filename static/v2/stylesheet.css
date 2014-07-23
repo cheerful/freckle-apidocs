@@ -9,7 +9,7 @@
   font-family: 'OpenSans';
   src: url('/assets/fonts/embed/OpenSans-Semibold-webfont.woff') format('woff');
   font-weight: 700;
-  font-style: normal;
+  font-style: bold;
 }
 
 @font-face {
@@ -43,6 +43,8 @@ h1 img {
 
 h2 {
   margin: 40px 0 20px 0;
+  font-size: 22px;
+  line-height: 28px;
 }
 
 #header{
@@ -86,7 +88,8 @@ h2 {
   color: #5e8b31;
   text-decoration: none;
   font-weight: normal;
-  font: 14px/19px "OpenSansRegular", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 19px;
 }
 
 #nav a.current{
@@ -156,24 +159,13 @@ h2 {
 }
 
 .note {
-  padding: 4px 10px;
+  padding: 10px 20px;
   background: #ffe;
   color: #3d3d13;
 }
 
-.note.sticky{
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
-  position: sticky;
-  top: 0px;
-  height: 80px;
-}
-
 .note.warning{
   background: #FFEAAD;
-  top: 80px;
 }
 
 .note a {
@@ -181,8 +173,14 @@ h2 {
   color: #000 !important;
 }
 
-.note h2{
-  margin-top: 0px;
+.note p {
+  margin: 0;
+}
+
+.note h2 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 5px;
 }
 
 .tabs .selector {
@@ -223,9 +221,14 @@ h2 {
 }
 
 .coming-soon:after{
-  content: "coming soon!";
+  content: "soon";
+  background: #fedbe9;
+  padding: 0 4px;
+  border-radius: 5px;
   color: #e64382;
   margin-left: 5px;
+  font-size: 10px;
+  line-height: 11px;
 }
 
 /* "http block" example styling */
@@ -250,7 +253,9 @@ h2 {
 
 /* default syntax highlighting */
 code {
+  font-family: Inconsolata, Consolas, monospace;
   white-space: pre;
+  background: #f0f0f0;
 }
 code.sh {
   white-space: normal;
