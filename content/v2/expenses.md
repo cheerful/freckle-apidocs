@@ -22,20 +22,20 @@ GET /v2/expenses
 
 ### Parameters
 
-Each parameter passed will filter the results, and parameters are chained (meaning that if you search by `users` and `projects`, it will only return expenses from those users for the specified projects).
+Each parameter passed will filter the results, and parameters are chained (meaning that if you search by `user_ids` and `project_ids`, it will only return expenses from those users for the specified projects).
 
-users
+user_ids
 : *Optional* **string**: a comma-separated list of user IDs to filter by.
 Example: `users=1,2,3`
 
-projects
+project_ids
 : *Optional* **string**: a comma-separated list of project IDs to filter by.
 Example: `projects=4,5,6`
 
-invoices
+invoice_ids
 : *Optional* **string**: a comma-separated list of invoices to filter by
 
-imports
+import_ids
 : *Optional* **string**: a comma-separated list of imports to filter by
 
 from
@@ -72,20 +72,20 @@ POST /v2/expenses
 date
 : *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the expense.
 
-user_id
-: *Optional* **integer**: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.
+project_id
+: *Required* **integer**: The ID of the project this expense is for.
 
 price
-: *Required* **decimal**: The numeric price of this expense. **Do not add the currency to this price**.
+: *Required* **decimal**: The numeric price of this expense. **Do not add the currency to this price**. Note that the price can be negative
+
+user_id
+: *Optional* **integer**: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.
 
 taxable
 : *Optional* **boolean**: `true` indicates that the expense is taxable. `false` indicates that the expense is tax-free. Defaults to `true`.
 
 description
 : *Optional* **string**: The description of the expense. Note that tags or hashtags will not be parsed.
-
-project_id
-: *Required* **integer**: The ID of the project this expense is for.
 
 <%= json :expense_editable_fields %>
 
@@ -105,11 +105,14 @@ PATCH /v2/expenses/:id
 date
 : *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the expense.
 
-user_id
-: *Optional* **integer**: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.
+project_id
+: *Required* **integer**: The ID of the project this expense is for.
 
 price
-: *Required* **decimal**: The numeric price of this expense. **Do not add the currency to this price**.
+: *Required* **decimal**: The numeric price of this expense. **Do not add the currency to this price**. Note that the price can be negative
+
+user_id
+: *Optional* **integer**: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.
 
 taxable
 : *Optional* **boolean**: `true` indicates that the expense is taxable. `false` indicates that the expense is tax-free. Defaults to `true`.
@@ -117,15 +120,16 @@ taxable
 description
 : *Optional* **string**: The description of the expense. Note that tags or hashtags will not be parsed.
 
-project_id
-: *Required* **integer**: The ID of the project this expense is for.
-
 <%= json :expense_editable_fields %>
 
 ### Response
 
 <%= headers 200 %>
 <%= json :expense %>
+
+### Notes
+
+* An expense cannot be updated if it has been invoiced. In this case, the response will include an error message with the code **invoiced**.
 
 ## Delete an Expense
 
