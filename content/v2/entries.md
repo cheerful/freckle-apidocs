@@ -150,7 +150,6 @@ source_url
 
 * **reached_project_limit**: The account has reached its project limit, so no more projects can be created until the account has been upgraded.
 * **cannot_create_projects**: The authenticated user is unable to create projects.
-* **user_cannot_access_project**: the entry's user does not have access to the referenced project.
 
 ## Edit an Entry
 
@@ -204,7 +203,6 @@ source_url
 
 * **reached_project_limit**: The account has reached its project limit, so no more projects can be created until the account has been upgraded.
 * **cannot_create_projects**: The authenticated user is unable to create projects.
-* **user_cannot_access_project**: the entry's user does not have access to the referenced project.
 
 ## Mark Entry as invoiced outside of Freckle
 
