@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Freckle API: Import</title>
+  <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
 
@@ -50,7 +51,8 @@
         <h2>Freckle API version 2 is in closed beta</h2>
         <p>
           While in beta, version 2 of the API is incomplete and subject to
-          unannounced changes, and sporadic downtime.
+          unannounced changes, and sporadic downtime. For any questions,
+          please contact <a href="mailto:cannon@slash7.com">cannon@slash7.com</a>.
         </p>
       </div>
       <h1>Import</h1>
@@ -71,8 +73,10 @@
   <li><a href="#deleting-an-import">Deleting an Import</a></li>
 </ul><h2 id="list-imports">List Imports</h2>
 
-<pre><code>GET /imports/
-</code></pre>
+<div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">GET /v2/imports/
+
+# cURL
+$ curl -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/imports/</code></pre></div></div>
 
 <h3 id="parameters">Parameters</h3>
 

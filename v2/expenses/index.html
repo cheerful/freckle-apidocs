@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Freckle API: Expenses</title>
+  <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
 
@@ -50,7 +51,8 @@
         <h2>Freckle API version 2 is in closed beta</h2>
         <p>
           While in beta, version 2 of the API is incomplete and subject to
-          unannounced changes, and sporadic downtime.
+          unannounced changes, and sporadic downtime. For any questions,
+          please contact <a href="mailto:cannon@slash7.com">cannon@slash7.com</a>.
         </p>
       </div>
       <h1>Expenses</h1>
@@ -74,23 +76,23 @@
 
 <h3 id="parameters">Parameters</h3>
 
-<p>Each parameter passed will filter the results, and parameters are chained (meaning that if you search by <code>users</code> and <code>projects</code>, it will only return expenses from those users for the specified projects).</p>
+<p>Each parameter passed will filter the results, and parameters are chained (meaning that if you search by <code>user_ids</code> and <code>project_ids</code>, it will only return expenses from those users for the specified projects).</p>
 
 <dl>
-<dt>users</dt>
+<dt>user_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>: a comma-separated list of user IDs to filter by.
 Example: <code>users=1,2,3</code>
 </dd>
-  <dt>projects</dt>
+  <dt>project_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>: a comma-separated list of project IDs to filter by.
 Example: <code>projects=4,5,6</code>
 </dd>
-  <dt>invoices</dt>
+  <dt>invoice_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>: a comma-separated list of invoices to filter by</dd>
-  <dt>imports</dt>
+  <dt>import_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>: a comma-separated list of imports to filter by</dd>
   <dt>from</dt>
@@ -198,21 +200,21 @@ Link: &lt;https://api.letsfreckle.com/v2/expenses?page=2&gt;; rel="next",
 <dt>date</dt>
   <dd>
 <em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYY-MM-DD</code>: the date of the expense.</dd>
+  <dt>project_id</dt>
+  <dd>
+<em>Required</em> <strong>integer</strong>: The ID of the project this expense is for.</dd>
+  <dt>price</dt>
+  <dd>
+<em>Required</em> <strong>decimal</strong>: The numeric price of this expense. <strong>Do not add the currency to this price</strong>. Note that the price can be negative</dd>
   <dt>user_id</dt>
   <dd>
 <em>Optional</em> <strong>integer</strong>: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.</dd>
-  <dt>price</dt>
-  <dd>
-<em>Required</em> <strong>decimal</strong>: The numeric price of this expense. <strong>Do not add the currency to this price</strong>.</dd>
   <dt>taxable</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>: <code>true</code> indicates that the expense is taxable. <code>false</code> indicates that the expense is tax-free. Defaults to <code>true</code>.</dd>
   <dt>description</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>: The description of the expense. Note that tags or hashtags will not be parsed.</dd>
-  <dt>project_id</dt>
-  <dd>
-<em>Required</em> <strong>integer</strong>: The ID of the project this expense is for.</dd>
 </dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
   <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
@@ -273,21 +275,21 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
 <dt>date</dt>
   <dd>
 <em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYY-MM-DD</code>: the date of the expense.</dd>
+  <dt>project_id</dt>
+  <dd>
+<em>Required</em> <strong>integer</strong>: The ID of the project this expense is for.</dd>
+  <dt>price</dt>
+  <dd>
+<em>Required</em> <strong>decimal</strong>: The numeric price of this expense. <strong>Do not add the currency to this price</strong>. Note that the price can be negative</dd>
   <dt>user_id</dt>
   <dd>
 <em>Optional</em> <strong>integer</strong>: The ID of the user who created this expense. If no value is provided, the authenticated user will be used.</dd>
-  <dt>price</dt>
-  <dd>
-<em>Required</em> <strong>decimal</strong>: The numeric price of this expense. <strong>Do not add the currency to this price</strong>.</dd>
   <dt>taxable</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>: <code>true</code> indicates that the expense is taxable. <code>false</code> indicates that the expense is tax-free. Defaults to <code>true</code>.</dd>
   <dt>description</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>: The description of the expense. Note that tags or hashtags will not be parsed.</dd>
-  <dt>project_id</dt>
-  <dd>
-<em>Required</em> <strong>integer</strong>: The ID of the project this expense is for.</dd>
 </dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
   <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
@@ -336,7 +338,11 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="delete-an-expense">Delete an Expense</h2>
+<h3 id="notes">Notes</h3>
+
+<ul>
+<li>An expense cannot be updated if it has been invoiced. In this case, the response will include an error message with the code <strong>invoiced</strong>.</li>
+</ul><h2 id="delete-an-expense">Delete an Expense</h2>
 
 <pre><code>DELETE /v2/expenses/:id
 </code></pre>
@@ -345,7 +351,7 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="notes">Notes</h3>
+<h3 id="notes-1">Notes</h3>
 
 <ul>
 <li>An expense cannot be deleted if it has been invoiced. In this case, the response will include an error message with the code <strong>invoiced</strong>.</li>
