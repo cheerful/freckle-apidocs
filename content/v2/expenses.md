@@ -35,9 +35,6 @@ Example: `projects=4,5,6`
 invoice_ids
 : *Optional* **string**: a comma-separated list of invoices to filter by
 
-import_ids
-: *Optional* **string**: a comma-separated list of imports to filter by
-
 from
 : *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`: Only expenses from or after this date will be returned.
 
