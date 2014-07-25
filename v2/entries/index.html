@@ -26,7 +26,7 @@
       <h2>Resources</h2>
       <ul id="resources">
         <li><a href="/v2/timers">Timers</a></li>
-        <li><a class="coming-soon" href="/v2/entries">Entries</a></li>
+        <li><a href="/v2/entries">Entries</a></li>
         <li><a class="coming-soon" href="/v2/expenses">Expenses</a></li>
         <li><a class="coming-soon" href="/v2/tags">Tags</a></li>
       </ul>
@@ -412,8 +412,6 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 <strong>reached_project_limit</strong>: The account has reached its project limit, so no more projects can be created until the account has been upgraded.</li>
   <li>
 <strong>cannot_create_projects</strong>: The authenticated user is unable to create projects.</li>
-  <li>
-<strong>user_cannot_access_project</strong>: the entry’s user does not have access to the referenced project.</li>
 </ul><h2 id="edit-an-entry">Edit an Entry</h2>
 
 <pre><code>PATCH /v2/entry/:id
@@ -546,8 +544,6 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 <strong>reached_project_limit</strong>: The account has reached its project limit, so no more projects can be created until the account has been upgraded.</li>
   <li>
 <strong>cannot_create_projects</strong>: The authenticated user is unable to create projects.</li>
-  <li>
-<strong>user_cannot_access_project</strong>: the entry’s user does not have access to the referenced project.</li>
 </ul><h2 id="mark-entry-as-invoiced-outside-of-freckle">Mark Entry as invoiced outside of Freckle</h2>
 
 <p>Update the Entry so that is recognized as being invoiced outside of Freckle by providing the date the Entry was invoiced.</p>
