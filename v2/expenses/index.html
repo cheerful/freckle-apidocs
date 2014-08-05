@@ -27,7 +27,7 @@
       <ul id="resources">
         <li><a href="/v2/timers">Timers</a></li>
         <li><a href="/v2/entries">Entries</a></li>
-        <li><a class="coming-soon" href="/v2/expenses">Expenses</a></li>
+        <li><a href="/v2/expenses">Expenses</a></li>
         <li><a class="coming-soon" href="/v2/tags">Tags</a></li>
       </ul>
 
@@ -56,12 +56,7 @@
         </p>
       </div>
       <h1>Expenses</h1>
-      <div class="note warning sticky">
-  <h2>Not implemented yet!</h2>
-  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
-</div>
-
-<ul id="markdown-toc">
+      <ul id="markdown-toc">
 <li><a href="#list-expenses">List Expenses</a></li>
   <li><a href="#get-a-single-expense">Get a single Expense</a></li>
   <li><a href="#create-an-expense">Create an Expense</a></li>
@@ -352,10 +347,15 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="notes">Notes</h3>
+<h3 id="custom-error-codes">Custom Error Codes</h3>
+
+<p>The following Custom Error codes can be returned for this action:</p>
 
 <ul>
-<li>An expense cannot be updated if it has been invoiced. In this case, the response will include an error message with the code <strong>invoiced</strong>.</li>
+<li>
+<strong>invoiced</strong>: the expense has been invoiced</li>
+  <li>
+<strong>archived_project</strong>: the expense is associated with an archived project</li>
 </ul><h2 id="delete-an-expense">Delete an Expense</h2>
 
 <pre><code>DELETE /v2/expenses/:id
@@ -365,10 +365,15 @@ Location: https://apitest.letsfreckle.com/api/v2/expenses/1</code></pre>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="notes-1">Notes</h3>
+<h3 id="custom-error-codes-1">Custom Error Codes</h3>
+
+<p>The following Custom Error codes can be returned for this action:</p>
 
 <ul>
-<li>An expense cannot be deleted if it has been invoiced. In this case, the response will include an error message with the code <strong>invoiced</strong>.</li>
+<li>
+<strong>invoiced</strong>: the expense has been invoiced</li>
+  <li>
+<strong>archived_project</strong>: the expense is associated with an archived project</li>
 </ul>
     </div>
   </div>
