@@ -26,7 +26,7 @@ Each parameter passed will filter the results, and parameters are chained (meani
 
 user_ids
 : *Optional* **string**: a comma-separated list of user IDs to filter by.
-Example: `users=1,2,3`
+: Example: `user_ids=1,2,3`
 
 descripton
 : *Optional* **string**
@@ -35,10 +35,11 @@ descripton
 
 project_ids
 : *Optional* **string**: a comma-separated list of project IDs to filter by.
-Example: `projects=4,5,6`
+: Example: `project_ids=4,5,6`
 
 invoice_ids
 : *Optional* **string**: a comma-separated list of invoices to filter by
+: Example: `invoice_ids=4,5,6`
 
 from
 : *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`: Only expenses from or after this date will be returned.
@@ -48,6 +49,11 @@ to
 
 taxable
 : *Optional* **boolean**: `true` only shows expenses where taxes are applied, `false` only shows expenses were taxes are not applied.
+
+invoiced
+: *Optional* **boolean**
+: `true`: only show invoiced expenses
+: `false`: only shows uninvoiced expenses
 
 ### Response
 

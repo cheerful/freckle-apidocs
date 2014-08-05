@@ -3,11 +3,6 @@ layout: v2
 title: Entries
 ---
 
-<div class="note warning sticky">
-  <h2>Not implemented yet!</h2>
-  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
-</div>
-
 * TOC
 {:toc}
 
@@ -26,7 +21,7 @@ Each parameter passed will filter the results, and parameters are chained (meani
 user_ids
 : *Optional* **string**
 : A comma-separated list of user IDs to filter by.
-: Example: `users=1,2,3`
+: Example: `user_ids=1,2,3`
 
 descripton
 : *Optional* **string**
@@ -36,12 +31,12 @@ descripton
 project_ids
 : *Optional* **string**
 : A comma-separated list of project IDs to filter by.
-: Example: `projects=4,5,6`
+: Example: `project_ids=4,5,6`
 
 tag_ids
 : *Optional* **string**
 : A comma-separated list of tag IDs to filter by.
-: Example: `tags=7,8,9`
+: Example: `tag_ids=7,8,9`
 
 tag_filter_type
 : *Optional* **string**
@@ -51,12 +46,12 @@ tag_filter_type
 invoice_ids
 : *Optional* **string**
 : A comma-separated list of invoice IDs to filter by.
-: Example: `invoices=1,2,3`
+: Example: `invoice_ids=1,2,3`
 
 import_ids
 : *Optional* **string**
 : A comma-separated list of import IDs to filter by.
-: Example: `imports=4,5,6`
+: Example: `import_ids=4,5,6`
 
 from
 : *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
