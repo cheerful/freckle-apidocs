@@ -3,12 +3,6 @@ layout: v2
 title: Expenses
 ---
 
-
-<div class="note warning sticky">
-  <h2>Not implemented yet!</h2>
-  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
-</div>
-
 * TOC
 {:toc}
 
@@ -135,9 +129,12 @@ description
 <%= headers 200 %>
 <%= json :expense %>
 
-### Notes
+### Custom Error Codes
 
-* An expense cannot be updated if it has been invoiced. In this case, the response will include an error message with the code **invoiced**.
+The following Custom Error codes can be returned for this action:
+
+* **invoiced**: the expense has been invoiced
+* **archived_project**: the expense is associated with an archived project
 
 ## Delete an Expense
 
@@ -149,6 +146,9 @@ DELETE /v2/expenses/:id
 
 <%= headers 204 %>
 
-### Notes
+### Custom Error Codes
 
-* An expense cannot be deleted if it has been invoiced. In this case, the response will include an error message with the code **invoiced**.
+The following Custom Error codes can be returned for this action:
+
+* **invoiced**: the expense has been invoiced
+* **archived_project**: the expense is associated with an archived project
