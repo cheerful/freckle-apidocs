@@ -312,6 +312,13 @@ module Freckle
       "url" => "#{API_V2_URL}/invoices/12345678",
     }
 
+    PROJECT_CREATE_FIELDS = {
+      "name" => SIMPLE_PROJECT["name"],
+      "project_group_id" => SIMPLE_PROJECT_GROUP["id"],
+      "billing_increment" => SIMPLE_PROJECT["billing_increment"],
+      "color" => SIMPLE_PROJECT["color"]
+    }
+
     PROJECT = SIMPLE_PROJECT.merge({
       "group" => SIMPLE_PROJECT_GROUP,
       "minutes" => 180,
@@ -321,7 +328,7 @@ module Freckle
       "remaining_minutes" => 630,
       "budget_minutes" => 750,
 
-      "import" => IMPORT,
+      "import" => SIMPLE_IMPORT,
       "invoices" => [SIMPLE_INVOICE],
       "participants" => [SIMPLE_USER],
       # "recurring_goals" => [PROJECT_RECURRING_GOAL],

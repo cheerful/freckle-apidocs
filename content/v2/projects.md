@@ -23,27 +23,32 @@ GET /projects/
 
 name
 : *Optional* **string**
+: Only projects containing this text in their name are returned.
 : Example: `name=Gear`
 
-stepping
+project_group_ids
+: *Optional* **string**: a comma-separated list of Project Group IDs to filter by.
+: Example: `project_group_ids=1,2,3`
+
+billing_increment
 : *Optional* **integer**
-: projects with a specific rounding value.
+: Only projects with this specific billing increment are returned
 : Example: `stepping=15`
 
 enabled
 : *Optional* **boolean**
 : `true`: return all enabled projects
-: `false` returns all disabled projects
+: `false` returns all archived projects
 
 billable
 : *Optional* **boolean**
-: `true`: return all billable tags
-: `false` return all unbillable tags.
+: `true`: return all billable projects
+: `false` return all unbillable projects.
 
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "projects" %>
-<%= json :project %>
+<%= json_array :project %>
 
 ## Get a single project
 
@@ -68,18 +73,20 @@ name
 : *Required* **string**
 : The name of the project
 
-project_group
+project_group_id
 : *Optional* **integer**
 : The ID of the Project Group the project will be associated with.
 
-stepping
+billing_increment
 : *Optional* **integer**
-: The billing increment used by this project. Defaults to 15
+: The billing increment used by this project.
+: Accepted values: `1`, `5`, `6`, `10`, `15` (**Default**), `20`, `30`, `60`
 
 color_hex
 : *Optional* **string**
-: a hexadecimal color code for the project.
+: The hexadecimal color code that will be used as the project's color.
 
+<%= json :project_create_fields %>
 
 ### Response
 
@@ -99,7 +106,7 @@ You can use the parameters specified in the [Entry API's List Action](/entries/i
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "projects/:id/entries" %>
-<%= json :entry %>
+<%= json_array :entry %>
 
 ## Get the Invoices for a project
 
@@ -114,7 +121,7 @@ You can use the parameters specified in the [Invoice API's List Action](/invoice
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "projects/:id/invoices" %>
-<%= json :invoice %>
+<%= json_array :invoice %>
 
 ## Get The participants in a Project
 
@@ -129,7 +136,7 @@ You can use the parameters specified in the [User API's List Action](/users/inde
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "projects/:id/participants" %>
-<%= json :user %>
+<%= json_array :user %>
 
 
 ## Edit a Project
@@ -141,10 +148,10 @@ PATCH /projects/:id
 ### Inputs
 
 name
-: *Required* **string**
+: *Optional* **string**
 : The name of the project
 
-project_group
+project_group_id
 : *Optional* **integer**
 : The ID of the Project Group the project will be associated with.
 
@@ -161,6 +168,8 @@ color_hex
 <%= headers 200 %>
 <%= json :project %>
 
+<%= json :project_create_fields %>
+
 ## Merge a Project into this project
 
 When a project is merged, all of its entries, expenses, and invoices are moved into this project. The original projects will be deleted. Note that projects cannot be merged into this project if this project is archived.  **This action is permanent**, so you cannot undo after you merge projects.
@@ -171,13 +180,19 @@ PUT /projects/:id/merge
 
 ### Inputs
 
-project
+project_id
 : *Required* **integer**
 : the ID of the Project to merge into this project.
 
 ### Response
 
 <%= headers 204 %>
+
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **archived_project**: the project has been archived
 
 ## Delete a Project
 
@@ -188,6 +203,12 @@ DELETE /projects/:id
 ### Response
 
 <%= headers 204 %>
+
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **archived_project**: the project has been archived
 
 ### A note about project deletion
 
@@ -221,7 +242,7 @@ PUT /projects/archive
 
 ### Inputs
 
-projects
+project_ids
 : *Required* **array of integers**: the IDs of the projects to be archived
 
 ### Response
@@ -240,7 +261,7 @@ DELETE /projects
 
 ### Inputs
 
-projects
+project_ids
 : *Required* **array of integers**: the IDs of the projects to be deleted
 
 ### Response
