@@ -47,14 +47,6 @@
       </ul>
     </div>
     <div id="content">
-      <div class="note sticky">
-        <h2>Freckle API version 2 is in closed beta</h2>
-        <p>
-          While in beta, version 2 of the API is incomplete and subject to
-          unannounced changes, and sporadic downtime. For any questions,
-          please contact <a href="mailto:cannon@slash7.com">cannon@slash7.com</a>.
-        </p>
-      </div>
       <h1>Project</h1>
       <div class="note warning sticky">
   <h2>Not implemented yet!</h2>
@@ -249,6 +241,12 @@ Link: &lt;https://api.letsfreckle.com/v2/projects?page=2&gt;; rel="next",
 <em>Required</em> <strong>string</strong>
 </dd>
   <dd>The name of the project</dd>
+  <dt>billable</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>Whether the project is billable or unbillable. Defaults to <code>true</code>
+</dd>
   <dt>project_group_id</dt>
   <dd>
 <em>Optional</em> <strong>integer</strong>
@@ -734,7 +732,7 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 
 <h2 id="delete-multiple-projects-at-once">Delete multiple Projects at once</h2>
 
-<pre><code>DELETE /projects
+<pre><code>PUT /projects/delete
 </code></pre>
 
 <h3 id="inputs-4">Inputs</h3>
