@@ -73,6 +73,10 @@ name
 : *Required* **string**
 : The name of the project
 
+billable
+: *Optional* **boolean**
+: Whether the project is billable or unbillable. Defaults to `true`
+
 project_group_id
 : *Optional* **integer**
 : The ID of the Project Group the project will be associated with.
@@ -256,7 +260,7 @@ Any projects are included in this request that cannot be archived will be ignore
 ## Delete multiple Projects at once
 
 ~~~
-DELETE /projects
+PUT /projects/delete
 ~~~
 
 ### Inputs
