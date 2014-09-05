@@ -392,9 +392,9 @@ Only administrators and the account owner can use this API method.
 
     DELETE /api/users/<id>
 
-Deactivates a user.
+Deactivates a user, or deletes the user if they have no entries.
 
-Users are never actually deleted, just deactivated.
+Users that have logged time in Freckle are never actually deleted, just deactivated.
 Currently, reactivation of a user is only available
 on the team page in the Freckle interface.
 
