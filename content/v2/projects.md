@@ -4,8 +4,12 @@ title: Project
 ---
 
 <div class="note warning sticky">
-  <h2>Not implemented yet!</h2>
-  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+  <h2>Almost finished!</h2>
+  <p>This resource is almost finished, but the following actions will return a 404 error:</p>
+  <ul>
+    <li><a href="#get-the-invoices-for-a-project">Get the Invoices for a project</a></li>
+    <li><a href="#get-the-participants-in-a-project">Get The participants in a Project</a></li>
+  </ul>
 </div>
 
 * TOC
