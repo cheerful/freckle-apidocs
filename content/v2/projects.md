@@ -38,6 +38,7 @@ billing_increment
 : *Optional* **integer**
 : Only projects with this specific billing increment are returned
 : Example: `stepping=15`
+: Accepted values: `1`, `5`, `6`, `10`, `15` (**Default**), `20`, `30`, `60`
 
 enabled
 : *Optional* **boolean**
@@ -100,6 +101,10 @@ color_hex
 
 <%= headers 200 %>
 <%= json :project %>
+
+### Custom Error Codes
+
+* **reached_project_limit**: The account has reached its project limit, so no more projects can be created until the account has been upgraded.
 
 ## Get the entries for a project
 
@@ -178,9 +183,13 @@ color_hex
 
 <%= json :project_create_fields %>
 
+### Custom Error Codes
+
+* **archived_project**: the project has been archived
+
 ## Merge a Project into this project
 
-When a project is merged, all of its entries, expenses, and invoices are moved into this project. The original projects will be deleted. Note that projects cannot be merged into this project if this project is archived.  **This action is permanent**, so you cannot undo after you merge projects.
+Merge the project specified in the request body into this project. This will move all the project's entries, expenses, and invoices into this project. The project will be deleted after the merge has completed. Note that projects cannot be merged if either project is archived.  **This action is permanent**, so you cannot undo after you merge projects.
 
 ~~~
 PUT /projects/:id/merge
@@ -198,8 +207,6 @@ project_id
 
 ### Custom Error Codes
 
-The following Custom Error codes can be returned for this action:
-
 * **archived_project**: the project has been archived
 
 ## Delete a Project
@@ -214,9 +221,8 @@ DELETE /projects/:id
 
 ### Custom Error Codes
 
-The following Custom Error codes can be returned for this action:
-
 * **archived_project**: the project has been archived
+* **not_deletable**: the project cannot be deleted because it has entries, expenses, or invoices
 
 ### A note about project deletion
 
@@ -236,11 +242,25 @@ PUT /projects/:id/archive
 
 <%= headers 204 %>
 
+### Custom Error Codes
+
+* **deletable**: the project should be deleted because it does not have any entries, expenses, or invoices
+
 ### A note about project archiving
 
 A project cannot be archived if there are no entries, invoices, or expenses associated with this project. Instead, you can only delete the project.
 
 For more information about how deleting and archiving a project works, please the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources)
+
+## Unarchive a Project
+
+~~~
+PUT /projects/:id/unarchive
+~~~
+
+### Response
+
+<%= headers 204 %>
 
 ## Archive multiple Projects at once
 
@@ -260,6 +280,21 @@ project_ids
 ### A note about projects that cannot be archived
 
 Any projects are included in this request that cannot be archived will be ignored and will not affect the Response.
+
+## Unarchive multiple Projects at once
+
+~~~
+PUT /projects/unarchive
+~~~
+
+### Inputs
+
+project_ids
+: *Required* **array of integers**: the IDs of the projects to be unarchived
+
+### Response
+
+<%= headers 204 %>
 
 ## Delete multiple Projects at once
 
