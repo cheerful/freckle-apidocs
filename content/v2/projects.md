@@ -201,6 +201,8 @@ project_id
 : *Required* **integer**
 : the ID of the Project to merge into this project.
 
+![A diagram explaining the project merge action.](/assets/v2/project-merging-diagram.png)
+
 ### Response
 
 <%= headers 204 %>
