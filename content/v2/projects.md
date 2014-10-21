@@ -8,7 +8,7 @@ title: Project
   <p>This resource is almost finished, but the following actions will return a 404 error:</p>
   <ul>
     <li><a href="#get-the-invoices-for-a-project">Get the Invoices for a project</a></li>
-    <li><a href="#get-the-participants-in-a-project">Get The participants in a Project</a></li>
+    <li><a href="#get-the-participants-in-a-project">Get the participants in a Project</a></li>
   </ul>
 </div>
 
@@ -136,7 +136,7 @@ You can use the parameters specified in the [Invoice API's List Action](/invoice
 <%= headers 200, :pagination => true, :pagination_resource => "projects/:id/invoices" %>
 <%= json_array :invoice %>
 
-## Get The participants in a Project
+## Get the participants in a Project
 
 ~~~
 GET /projects/:id/participants
@@ -176,12 +176,12 @@ color_hex
 : *Optional* **string**
 : a hexadecimal color code for the project.
 
+<%= json :project_create_fields %>
+
 ### Response
 
 <%= headers 200 %>
 <%= json :project %>
-
-<%= json :project_create_fields %>
 
 ### Custom Error Codes
 
