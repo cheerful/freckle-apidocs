@@ -276,7 +276,7 @@ note_url
 ## Update an existing Authorization
 
 ~~~
-PATCH /authroizations/:subdomain/:id
+PUT /authroizations/:subdomain/:id
 ~~~
 
 ### Parameters:

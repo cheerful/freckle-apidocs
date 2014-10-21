@@ -63,7 +63,7 @@ You can use the parameters specified in the [Entry API's List Action](/entries/i
 ## Edit a Tag
 
 ~~~
-PATCH /tags/:id
+PUT /tags/:id
 ~~~
 
 ### Inputs

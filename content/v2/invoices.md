@@ -340,7 +340,7 @@ customization
 ## Edit an Invoice
 
 ~~~
-PATCH /invoices/:id
+PUT /invoices/:id
 ~~~
 
 ### Inputs

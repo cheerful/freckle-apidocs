@@ -149,7 +149,7 @@ The following Custom Error codes can be returned for this action:
 ## Edit a User
 
 ~~~
-PATCH /users/:id
+PUT /users/:id
 ~~~
 
 ### Inputs

@@ -149,7 +149,7 @@ source_url
 ## Edit an Entry
 
 ~~~
-PATCH /v2/entry/:id
+PUT /v2/entry/:id
 ~~~
 
 ### Input

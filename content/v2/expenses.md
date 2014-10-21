@@ -99,7 +99,7 @@ description
 ## Edit an Expense
 
 ~~~
-PATCH /v2/expenses/:id
+PUT /v2/expenses/:id
 ~~~
 
 ### Input

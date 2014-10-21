@@ -70,7 +70,7 @@ You can use the parameters specified in the [Project API's List Action](/project
 ## Edit the Current User
 
 ~~~
-PATCH /current_user
+PUT /current_user
 ~~~
 
 ### Inputs

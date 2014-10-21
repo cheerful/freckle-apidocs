@@ -155,7 +155,7 @@ You can use the parameters specified in the [User API's List Action](/users/inde
 ## Edit a Project
 
 ~~~
-PATCH /projects/:id
+PUT /projects/:id
 ~~~
 
 ### Inputs
