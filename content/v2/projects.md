@@ -114,7 +114,7 @@ GET /projects/:id/entries
 
 ### Parameters
 
-You can use the parameters specified in the [Entry API's List Action](/entries/index.html#list) to further limit the results
+You can use the parameters specified in the [Entry API's List Action](/v2/entries/index.html#list) to further limit the results
 
 ### Response
 
@@ -129,7 +129,7 @@ GET /projects/:id/invoices
 
 ### Parameters
 
-You can use the parameters specified in the [Invoice API's List Action](/invoices/index.html#list) to further limit the results
+You can use the parameters specified in the [Invoice API's List Action](/v2/invoices/index.html#list) to further limit the results
 
 ### Response
 
@@ -144,7 +144,7 @@ GET /projects/:id/participants
 
 ### Parameters
 
-You can use the parameters specified in the [User API's List Action](/users/index.html#list) to further limit the results
+You can use the parameters specified in the [User API's List Action](/v2/users/index.html#list) to further limit the results
 
 ### Response
 
