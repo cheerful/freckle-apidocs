@@ -88,8 +88,8 @@ project_group_id
 
 billing_increment
 : *Optional* **integer**
-: The billing increment used by this project.
-: Accepted values: `1`, `5`, `6`, `10`, `15` (**Default**), `20`, `30`, `60`
+: The billing increment used by this project. The default value is the account's default billing increment (which is `15` by default).
+: Accepted values: `1`, `5`, `6`, `10`, `15`, `20`, `30`, `60`
 
 color
 : *Optional* **string**
@@ -170,7 +170,8 @@ project_group_id
 
 billing_increment
 : *Optional* **integer**
-: The billing increment used by this project. Defaults to the account's default billing increment (which is `15` by default)
+: The billing increment used by this project. Defaults to the account's default billing increment (which is `15` by default).
+: Accepted values: `1`, `5`, `6`, `10`, `15`, `20`, `30`, `60`
 
 color
 : *Optional* **string**
