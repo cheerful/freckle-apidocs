@@ -3,6 +3,11 @@ layout: v2
 title: Basics
 ---
 
+<div class="note warning sticky">
+  <h2>API V2 is still in beta!</h2>
+  <p>Version 2 of the Freckle API is still in beta and subject to change. Have a question, feature request, or suggestion? <strong style="cursor:pointer" onclick="showMessageBox()">Send us a message!</strong></p>
+</div>
+
 * TOC
 {:toc}
 
@@ -211,3 +216,12 @@ the `rel` attribute indicates what the URL links to:
 * **last**: shows the URL of the last page of results
 * **first**: shows the URL of the first page of results
 * **prev**: shows the URL of the immediate previous page of results
+
+
+
+<script>
+  window.showMessageBox = function(){
+    document.getElementById('help_tab').click();
+    document.getElementById('help_message_button').click();
+  }
+</script>
