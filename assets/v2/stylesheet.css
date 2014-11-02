@@ -109,6 +109,10 @@ h2 {
   padding-left: 240px;
 }
 
+#content img{
+  max-width: 100%;
+}
+
 #markdown-toc{
   padding-left: 30px;
 }

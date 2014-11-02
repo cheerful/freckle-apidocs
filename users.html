@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 <body>
-  <div id="nav">
+  <div id="nav" class="banner">
     <div>
     <a href="http://letsfreckle.com" class="back">&larr; Freckle</a>
     <a href="index.html">API Basics</a>
@@ -26,6 +26,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="projects.html">Projects</a>
     <a href="tags.html">Tags</a>
     <a href="users.html">Users</a>
+    </div>
+  </div>
+  <div id="apiv2-banner" class="banner">
+    <div>
+      <a href="/v2">
+        <strong>Check out API V2 (in beta)</strong>
+        <em id="apiv2-features">More control, easier to debug, bulk actions, expenses, invoices, and more!</em>
+      </a>
     </div>
   </div>
 
@@ -432,9 +440,9 @@ data was invalid (for example, email address is a invalid format).</p>
 <pre><code>DELETE /api/users/&lt;id&gt;
 </code></pre>
 
-<p>Deactivates a user.</p>
+<p>Deactivates a user, or deletes the user if they have no entries.</p>
 
-<p>Users are never actually deleted, just deactivated.
+<p>Users that have logged time in Freckle are never actually deleted, just deactivated.
 Currently, reactivation of a user is only available
 on the team page in the Freckle interface.</p>
 

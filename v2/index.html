@@ -48,7 +48,12 @@
     </div>
     <div id="content">
       <h1>Basics</h1>
-      <ul id="markdown-toc">
+      <div class="note warning sticky">
+  <h2>API V2 is still in beta!</h2>
+  <p>Version 2 of the Freckle API is still in beta and subject to change. Have a question, feature request, or suggestion? <strong style="cursor:pointer" onclick="showMessageBox()">Send us a message!</strong></p>
+</div>
+
+<ul id="markdown-toc">
 <li><a href="#introduction">Introduction</a></li>
   <li><a href="#freckle-api-libraries">Freckle API Libraries</a></li>
   <li><a href="#naming-client-applications">Naming client applications</a></li>
@@ -342,7 +347,12 @@ Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
 <strong>first</strong>: shows the URL of the first page of results</li>
   <li>
 <strong>prev</strong>: shows the URL of the immediate previous page of results</li>
-</ul>
+</ul><script>
+  window.showMessageBox = function(){
+    document.getElementById('help_tab').click();
+    document.getElementById('help_message_button').click();
+  }
+</script>
     </div>
   </div>
 

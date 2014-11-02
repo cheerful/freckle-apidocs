@@ -49,24 +49,30 @@
     <div id="content">
       <h1>Project</h1>
       <div class="note warning sticky">
-  <h2>Not implemented yet!</h2>
-  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+  <h2>Almost finished!</h2>
+  <p>This resource is almost finished, but the following actions will return a 404 error:</p>
+  <ul>
+<li><a href="#get-the-invoices-for-a-project">Get the invoices for a project</a></li>
+    <li><a href="#get-the-participants-in-a-project">Get the participants in a project</a></li>
+  </ul>
 </div>
 
 <ul id="markdown-toc">
-<li><a href="#list-projects">List Projects</a></li>
+<li><a href="#list-projects">List projects</a></li>
   <li><a href="#get-a-single-project">Get a single project</a></li>
-  <li><a href="#create-a-project">Create a Project</a></li>
+  <li><a href="#create-a-project">Create a project</a></li>
   <li><a href="#get-the-entries-for-a-project">Get the entries for a project</a></li>
-  <li><a href="#get-the-invoices-for-a-project">Get the Invoices for a project</a></li>
-  <li><a href="#get-the-participants-in-a-project">Get The participants in a Project</a></li>
-  <li><a href="#edit-a-project">Edit a Project</a></li>
-  <li><a href="#merge-a-project-into-this-project">Merge a Project into this project</a></li>
-  <li><a href="#delete-a-project">Delete a Project</a></li>
-  <li><a href="#archive-a-project">Archive a Project</a></li>
-  <li><a href="#archive-multiple-projects-at-once">Archive multiple Projects at once</a></li>
-  <li><a href="#delete-multiple-projects-at-once">Delete multiple Projects at once</a></li>
-</ul><h2 id="list-projects">List Projects</h2>
+  <li><a href="#get-the-invoices-for-a-project">Get the invoices for a project</a></li>
+  <li><a href="#get-the-participants-in-a-project">Get the participants in a project</a></li>
+  <li><a href="#edit-a-project">Edit a project</a></li>
+  <li><a href="#merge-a-project-into-this-project">Merge a project into this project</a></li>
+  <li><a href="#delete-a-project">Delete a project</a></li>
+  <li><a href="#archive-a-project">Archive a project</a></li>
+  <li><a href="#unarchive-a-project">Unarchive a project</a></li>
+  <li><a href="#archive-multiple-projects-at-once">Archive multiple projects at once</a></li>
+  <li><a href="#unarchive-multiple-projects-at-once">Unarchive multiple projects at once</a></li>
+  <li><a href="#delete-multiple-projects-at-once">Delete multiple projects at once</a></li>
+</ul><h2 id="list-projects">List projects</h2>
 
 <p>List all projects the authenticated user has access to</p>
 
@@ -94,6 +100,8 @@
 </dd>
   <dd>Only projects with this specific billing increment are returned</dd>
   <dd>Example: <code>stepping=15</code>
+</dd>
+  <dd>Accepted values: <code>1</code>, <code>5</code>, <code>6</code>, <code>10</code>, <code>15</code> (<strong>Default</strong>), <code>20</code>, <code>30</code>, <code>60</code>
 </dd>
   <dt>enabled</dt>
   <dd>
@@ -228,7 +236,7 @@ Link: &lt;https://api.letsfreckle.com/v2/projects?page=2&gt;; rel="next",
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="create-a-project">Create a Project</h2>
+<h2 id="create-a-project">Create a project</h2>
 
 <pre><code>POST /projects/
 </code></pre>
@@ -259,7 +267,7 @@ Link: &lt;https://api.letsfreckle.com/v2/projects?page=2&gt;; rel="next",
   <dd>The billing increment used by this project.</dd>
   <dd>Accepted values: <code>1</code>, <code>5</code>, <code>6</code>, <code>10</code>, <code>15</code> (<strong>Default</strong>), <code>20</code>, <code>30</code>, <code>60</code>
 </dd>
-  <dt>color_hex</dt>
+  <dt>color</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -325,14 +333,19 @@ Link: &lt;https://api.letsfreckle.com/v2/projects?page=2&gt;; rel="next",
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="get-the-entries-for-a-project">Get the entries for a project</h2>
+<h3 id="custom-error-codes">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>reached_project_limit</strong>: The account has reached its project limit, so no more projects can be created until the account has been upgraded.</li>
+</ul><h2 id="get-the-entries-for-a-project">Get the entries for a project</h2>
 
 <pre><code>GET /projects/:id/entries
 </code></pre>
 
 <h3 id="parameters-1">Parameters</h3>
 
-<p>You can use the parameters specified in the <a href="/entries/index.html#list">Entry API’s List Action</a> to further limit the results</p>
+<p>You can use the parameters specified in the <a href="/v2/entries/index.html#list">Entry API’s List Action</a> to further limit the results</p>
 
 <h3 id="response-3">Response</h3>
 
@@ -391,14 +404,14 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/entries?page=2&gt;; rel="n
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="get-the-invoices-for-a-project">Get the Invoices for a project</h2>
+<h2 id="get-the-invoices-for-a-project">Get the invoices for a project</h2>
 
 <pre><code>GET /projects/:id/invoices
 </code></pre>
 
 <h3 id="parameters-2">Parameters</h3>
 
-<p>You can use the parameters specified in the <a href="/invoices/index.html#list">Invoice API’s List Action</a> to further limit the results</p>
+<p>You can use the parameters specified in the <a href="/v2/invoices/index.html#list">Invoice API’s List Action</a> to further limit the results</p>
 
 <h3 id="response-4">Response</h3>
 
@@ -517,14 +530,14 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/invoices?page=2&gt;; rel="
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="get-the-participants-in-a-project">Get The participants in a Project</h2>
+<h2 id="get-the-participants-in-a-project">Get the participants in a project</h2>
 
 <pre><code>GET /projects/:id/participants
 </code></pre>
 
 <h3 id="parameters-3">Parameters</h3>
 
-<p>You can use the parameters specified in the <a href="/users/index.html#list">User API’s List Action</a> to further limit the results</p>
+<p>You can use the parameters specified in the <a href="/v2/users/index.html#list">User API’s List Action</a> to further limit the results</p>
 
 <h3 id="response-5">Response</h3>
 
@@ -557,9 +570,9 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="edit-a-project">Edit a Project</h2>
+<h2 id="edit-a-project">Edit a project</h2>
 
-<pre><code>PATCH /projects/:id
+<pre><code>PUT /projects/:id
 </code></pre>
 
 <h3 id="inputs-1">Inputs</h3>
@@ -580,12 +593,19 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 <em>Optional</em> <strong>integer</strong>
 </dd>
   <dd>The billing increment used by this project. Defaults to 15</dd>
-  <dt>color_hex</dt>
+  <dt>color</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>a hexadecimal color code for the project.</dd>
-</dl><h3 id="response-6">Response</h3>
+</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+  <span class="s2">"project_group_id"</span><span class="o">:</span> <span class="mi">3768</span><span class="p">,</span>
+  <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-6">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -639,16 +659,14 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
 <span class="p">}</span></code></pre>
 
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-  <span class="s2">"project_group_id"</span><span class="o">:</span> <span class="mi">3768</span><span class="p">,</span>
-  <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-  <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span>
-<span class="p">}</span></code></pre>
+<h3 id="custom-error-codes-1">Custom Error Codes</h3>
 
-<h2 id="merge-a-project-into-this-project">Merge a Project into this project</h2>
+<ul>
+<li>
+<strong>archived_project</strong>: the project has been archived</li>
+</ul><h2 id="merge-a-project-into-this-project">Merge a project into this project</h2>
 
-<p>When a project is merged, all of its entries, expenses, and invoices are moved into this project. The original projects will be deleted. Note that projects cannot be merged into this project if this project is archived.  <strong>This action is permanent</strong>, so you cannot undo after you merge projects.</p>
+<p>Merge the project specified in the request body into this project. This will move all the project’s entries, expenses, and invoices into this project. The project will be deleted after the merge has completed. Note that projects cannot be merged if either project is archived.  <strong>This action is permanent</strong>, so you cannot undo after you merge projects.</p>
 
 <pre><code>PUT /projects/:id/merge
 </code></pre>
@@ -661,18 +679,18 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 <em>Required</em> <strong>integer</strong>
 </dd>
   <dd>the ID of the Project to merge into this project.</dd>
-</dl><h3 id="response-7">Response</h3>
+</dl><p><img src="/assets/v2/project-merging-diagram.png" alt="A diagram explaining the project merge action."></p>
+
+<h3 id="response-7">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="custom-error-codes">Custom Error Codes</h3>
-
-<p>The following Custom Error codes can be returned for this action:</p>
+<h3 id="custom-error-codes-2">Custom Error Codes</h3>
 
 <ul>
 <li>
 <strong>archived_project</strong>: the project has been archived</li>
-</ul><h2 id="delete-a-project">Delete a Project</h2>
+</ul><h2 id="delete-a-project">Delete a project</h2>
 
 <pre><code>DELETE /projects/:id
 </code></pre>
@@ -681,13 +699,13 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="custom-error-codes-1">Custom Error Codes</h3>
-
-<p>The following Custom Error codes can be returned for this action:</p>
+<h3 id="custom-error-codes-3">Custom Error Codes</h3>
 
 <ul>
 <li>
 <strong>archived_project</strong>: the project has been archived</li>
+  <li>
+<strong>not_deletable</strong>: the project cannot be deleted because it has entries, expenses, or invoices</li>
 </ul><h3 id="a-note-about-project-deletion">A note about project deletion</h3>
 
 <p>A project cannot be deleted if there are any entries, invoices, or expenses associated with this project.</p>
@@ -696,7 +714,7 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 
 <p>For more information about how deleting and archiving a project works, please the API basics section on <a href="/#deleting-or-archiving-resources">Deleting or Archiving Resources</a></p>
 
-<h2 id="archive-a-project">Archive a Project</h2>
+<h2 id="archive-a-project">Archive a project</h2>
 
 <pre><code>PUT /projects/:id/archive
 </code></pre>
@@ -705,13 +723,27 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="a-note-about-project-archiving">A note about project archiving</h3>
+<h3 id="custom-error-codes-4">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>deletable</strong>: the project should be deleted because it does not have any entries, expenses, or invoices</li>
+</ul><h3 id="a-note-about-project-archiving">A note about project archiving</h3>
 
 <p>A project cannot be archived if there are no entries, invoices, or expenses associated with this project. Instead, you can only delete the project.</p>
 
 <p>For more information about how deleting and archiving a project works, please the API basics section on <a href="/#deleting-or-archiving-resources">Deleting or Archiving Resources</a></p>
 
-<h2 id="archive-multiple-projects-at-once">Archive multiple Projects at once</h2>
+<h2 id="unarchive-a-project">Unarchive a project</h2>
+
+<pre><code>PUT /projects/:id/unarchive
+</code></pre>
+
+<h3 id="response-10">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="archive-multiple-projects-at-once">Archive multiple projects at once</h2>
 
 <pre><code>PUT /projects/archive
 </code></pre>
@@ -722,7 +754,7 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 <dt>project_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>: the IDs of the projects to be archived</dd>
-</dl><h3 id="response-10">Response</h3>
+</dl><h3 id="response-11">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -730,9 +762,9 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 
 <p>Any projects are included in this request that cannot be archived will be ignored and will not affect the Response.</p>
 
-<h2 id="delete-multiple-projects-at-once">Delete multiple Projects at once</h2>
+<h2 id="unarchive-multiple-projects-at-once">Unarchive multiple projects at once</h2>
 
-<pre><code>PUT /projects/delete
+<pre><code>PUT /projects/unarchive
 </code></pre>
 
 <h3 id="inputs-4">Inputs</h3>
@@ -740,8 +772,23 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 <dl>
 <dt>project_ids</dt>
   <dd>
+<em>Required</em> <strong>array of integers</strong>: the IDs of the projects to be unarchived</dd>
+</dl><h3 id="response-12">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="delete-multiple-projects-at-once">Delete multiple projects at once</h2>
+
+<pre><code>PUT /projects/delete
+</code></pre>
+
+<h3 id="inputs-5">Inputs</h3>
+
+<dl>
+<dt>project_ids</dt>
+  <dd>
 <em>Required</em> <strong>array of integers</strong>: the IDs of the projects to be deleted</dd>
-</dl><h3 id="response-11">Response</h3>
+</dl><h3 id="response-13">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
