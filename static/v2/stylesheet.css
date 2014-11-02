@@ -110,6 +110,7 @@ h2 {
 }
 
 #content img{
+  width: 550px;
   max-width: 100%;
 }
 
