@@ -120,7 +120,7 @@ entry_date
 
 minutes
 : *Optional* **integer**
-: The number of minutes logged in the time entry. This number will automatically be rounded up based on the project's "stepping" settings. If no value is provided, then the timer's elapsed minutes will be used.
+: The number of minutes logged in the time entry. This number will automatically be rounded up based on the project's "billing_increment" settings. If no value is provided, then the timer's elapsed minutes will be used.
 
 description.
 : *Optional* **string**

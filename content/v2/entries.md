@@ -110,7 +110,7 @@ user_id
 
 minutes
 : *Required* **integer**
-: The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's "stepping" settings.
+: The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's "billing_increment" settings.
 
 description
 : *Optional* **string**
@@ -164,7 +164,7 @@ user_id
 
 minutes
 : *Optional* **integer**
-: The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's "stepping" settings. If no value is provided, then the entry will have `0` minutes.
+: The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's "billing_increment" settings. If no value is provided, then the entry will have `0` minutes.
 
 description
 : *Optional* **string**

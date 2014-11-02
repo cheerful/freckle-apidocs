@@ -37,7 +37,7 @@ project_group_ids
 billing_increment
 : *Optional* **integer**
 : Only projects with this specific billing increment are returned
-: Example: `stepping=15`
+: Example: `billing_increment=15`
 : Accepted values: `1`, `5`, `6`, `10`, `15` (**Default**), `20`, `30`, `60`
 
 enabled
@@ -168,9 +168,9 @@ project_group_id
 : *Optional* **integer**
 : The ID of the Project Group the project will be associated with.
 
-stepping
+billing_increment
 : *Optional* **integer**
-: The billing increment used by this project. Defaults to 15
+: The billing increment used by this project. Defaults to the account's default billing increment (which is `15` by default)
 
 color
 : *Optional* **string**
