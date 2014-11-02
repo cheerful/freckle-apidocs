@@ -58,7 +58,7 @@ h2 {
   color: #fff;
 }
 
-#nav > div {
+.banner > div {
   width: 700px;
   margin: 0 auto;
   padding: 10px 0;
@@ -80,6 +80,21 @@ h2 {
   background: #5e8b31;
   color: #fff;
 }
+
+#apiv2-banner{
+  background: #ec497c;
+}
+
+#apiv2-banner a{
+  color: white;
+  text-decoration: none;
+}
+
+#apiv2-features{
+  text-decoration: underline;
+}
+
+
 
 #footer {
   margin: 40px 0 0 0;
