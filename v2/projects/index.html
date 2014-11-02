@@ -264,8 +264,8 @@ Link: &lt;https://api.letsfreckle.com/v2/projects?page=2&gt;; rel="next",
   <dd>
 <em>Optional</em> <strong>integer</strong>
 </dd>
-  <dd>The billing increment used by this project.</dd>
-  <dd>Accepted values: <code>1</code>, <code>5</code>, <code>6</code>, <code>10</code>, <code>15</code> (<strong>Default</strong>), <code>20</code>, <code>30</code>, <code>60</code>
+  <dd>The billing increment used by this project. The default value is the account’s default billing increment (which is <code>15</code> by default).</dd>
+  <dd>Accepted values: <code>1</code>, <code>5</code>, <code>6</code>, <code>10</code>, <code>15</code>, <code>20</code>, <code>30</code>, <code>60</code>
 </dd>
   <dt>color</dt>
   <dd>
@@ -592,7 +592,9 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
   <dd>
 <em>Optional</em> <strong>integer</strong>
 </dd>
-  <dd>The billing increment used by this project. Defaults to the account’s default billing increment (which is <code>15</code> by default)</dd>
+  <dd>The billing increment used by this project. Defaults to the account’s default billing increment (which is <code>15</code> by default).</dd>
+  <dd>Accepted values: <code>1</code>, <code>5</code>, <code>6</code>, <code>10</code>, <code>15</code>, <code>20</code>, <code>30</code>, <code>60</code>
+</dd>
   <dt>color</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
