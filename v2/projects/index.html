@@ -99,7 +99,7 @@
 <em>Optional</em> <strong>integer</strong>
 </dd>
   <dd>Only projects with this specific billing increment are returned</dd>
-  <dd>Example: <code>stepping=15</code>
+  <dd>Example: <code>billing_increment=15</code>
 </dd>
   <dd>Accepted values: <code>1</code>, <code>5</code>, <code>6</code>, <code>10</code>, <code>15</code> (<strong>Default</strong>), <code>20</code>, <code>30</code>, <code>60</code>
 </dd>
@@ -588,11 +588,11 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
 <em>Optional</em> <strong>integer</strong>
 </dd>
   <dd>The ID of the Project Group the project will be associated with.</dd>
-  <dt>stepping</dt>
+  <dt>billing_increment</dt>
   <dd>
 <em>Optional</em> <strong>integer</strong>
 </dd>
-  <dd>The billing increment used by this project. Defaults to 15</dd>
+  <dd>The billing increment used by this project. Defaults to the account’s default billing increment (which is <code>15</code> by default)</dd>
   <dt>color</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
