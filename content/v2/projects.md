@@ -7,15 +7,15 @@ title: Project
   <h2>Almost finished!</h2>
   <p>This resource is almost finished, but the following actions will return a 404 error:</p>
   <ul>
-    <li><a href="#get-the-invoices-for-a-project">Get the Invoices for a project</a></li>
-    <li><a href="#get-the-participants-in-a-project">Get the participants in a Project</a></li>
+    <li><a href="#get-the-invoices-for-a-project">Get the invoices for a project</a></li>
+    <li><a href="#get-the-participants-in-a-project">Get the participants in a project</a></li>
   </ul>
 </div>
 
 * TOC
 {:toc}
 
-## List Projects
+## List projects
 
 List all projects the authenticated user has access to
 
@@ -66,7 +66,7 @@ GET /projects/:id
 <%= headers 200 %>
 <%= json :project %>
 
-## Create a Project
+## Create a project
 
 ~~~
 POST /projects/
@@ -91,7 +91,7 @@ billing_increment
 : The billing increment used by this project.
 : Accepted values: `1`, `5`, `6`, `10`, `15` (**Default**), `20`, `30`, `60`
 
-color_hex
+color
 : *Optional* **string**
 : The hexadecimal color code that will be used as the project's color.
 
@@ -121,7 +121,7 @@ You can use the parameters specified in the [Entry API's List Action](/v2/entrie
 <%= headers 200, :pagination => true, :pagination_resource => "projects/:id/entries" %>
 <%= json_array :entry %>
 
-## Get the Invoices for a project
+## Get the invoices for a project
 
 ~~~
 GET /projects/:id/invoices
@@ -136,7 +136,7 @@ You can use the parameters specified in the [Invoice API's List Action](/v2/invo
 <%= headers 200, :pagination => true, :pagination_resource => "projects/:id/invoices" %>
 <%= json_array :invoice %>
 
-## Get the participants in a Project
+## Get the participants in a project
 
 ~~~
 GET /projects/:id/participants
@@ -152,7 +152,7 @@ You can use the parameters specified in the [User API's List Action](/v2/users/i
 <%= json_array :user %>
 
 
-## Edit a Project
+## Edit a project
 
 ~~~
 PUT /projects/:id
@@ -172,7 +172,7 @@ stepping
 : *Optional* **integer**
 : The billing increment used by this project. Defaults to 15
 
-color_hex
+color
 : *Optional* **string**
 : a hexadecimal color code for the project.
 
@@ -187,7 +187,7 @@ color_hex
 
 * **archived_project**: the project has been archived
 
-## Merge a Project into this project
+## Merge a project into this project
 
 Merge the project specified in the request body into this project. This will move all the project's entries, expenses, and invoices into this project. The project will be deleted after the merge has completed. Note that projects cannot be merged if either project is archived.  **This action is permanent**, so you cannot undo after you merge projects.
 
@@ -211,7 +211,7 @@ project_id
 
 * **archived_project**: the project has been archived
 
-## Delete a Project
+## Delete a project
 
 ~~~
 DELETE /projects/:id
@@ -234,7 +234,7 @@ You can archive the project, which will flag the project as "archived" while kee
 
 For more information about how deleting and archiving a project works, please the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources)
 
-## Archive a Project
+## Archive a project
 
 ~~~
 PUT /projects/:id/archive
@@ -254,7 +254,7 @@ A project cannot be archived if there are no entries, invoices, or expenses asso
 
 For more information about how deleting and archiving a project works, please the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources)
 
-## Unarchive a Project
+## Unarchive a project
 
 ~~~
 PUT /projects/:id/unarchive
@@ -264,7 +264,7 @@ PUT /projects/:id/unarchive
 
 <%= headers 204 %>
 
-## Archive multiple Projects at once
+## Archive multiple projects at once
 
 ~~~
 PUT /projects/archive
@@ -283,7 +283,7 @@ project_ids
 
 Any projects are included in this request that cannot be archived will be ignored and will not affect the Response.
 
-## Unarchive multiple Projects at once
+## Unarchive multiple projects at once
 
 ~~~
 PUT /projects/unarchive
@@ -298,7 +298,7 @@ project_ids
 
 <%= headers 204 %>
 
-## Delete multiple Projects at once
+## Delete multiple projects at once
 
 ~~~
 PUT /projects/delete
