@@ -316,7 +316,8 @@ Anyone can retrieve their authentication token using this resource.
 
     POST /api/users
 
-You can create new users, as long as your account limits are not reached.
+*You can create new users, as long as your account limits are not reached. For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+
 This method, as well as the update and delete methods, are intended to make
 it easier to synchronize users with your own systems. Note that you can't set
 or change passwords.
@@ -391,6 +392,8 @@ Only administrators and the account owner can use this API method.
 ## Delete user
 
     DELETE /api/users/<id>
+
+*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
 
 Deactivates a user, or deletes the user if they have no entries.
 

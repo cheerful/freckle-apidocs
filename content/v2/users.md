@@ -109,6 +109,8 @@ You can use the parameters specified in the [Project API's List Action](/project
 
 ## Create a User
 
+*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+
 ~~~
 POST /users/
 ~~~
@@ -147,6 +149,8 @@ The following Custom Error codes can be returned for this action:
 * **reached_user_limit**: the account has reached the maximum number of active users available for the current plan. The account owner will have to [upgrade their account](http://help.letsfreckle.com/accounts-billing/upgrading-downgrading).
 
 ## Edit a User
+
+*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
 
 ~~~
 PUT /users/:id
@@ -206,6 +210,8 @@ The following Custom Error codes can be returned for this action:
 ## Reactivate a Deactivated User
 
 This action reactivates a previously deactivated user, which allows the user to start using Freckle again.
+
+*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
 
 ~~~
 PUT /users/:id/activate
@@ -272,6 +278,8 @@ The following Custom Error codes can be returned for this action:
 
 ## Delete a User
 
+*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+
 ~~~
 DELETE /users/:id
 ~~~
@@ -288,7 +296,9 @@ You can deactivate the user, which will remove this user from the list of active
 
 The error message for the delete action follows the pattern explained in the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources), but instead of using an "Archive" action, the [Disable](#disable) action is used.
 
-## Deactive a User
+## Deactivate a User
+
+*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
 
 ~~~
 PUT /users/:id/deactivate
