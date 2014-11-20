@@ -66,7 +66,7 @@
   <li><a href="#give-a-freelancer-access-to-projects">Give a Freelancer Access to Projects</a></li>
   <li><a href="#revoke-a-freelancers-access-to-projects">Revoke a Freelancer’s Access to Projects</a></li>
   <li><a href="#delete-a-user">Delete a User</a></li>
-  <li><a href="#deactive-a-user">Deactive a User</a></li>
+  <li><a href="#deactivate-a-user">Deactivate a User</a></li>
 </ul><h2 id="list-users">List Users</h2>
 
 <pre><code>GET /users/
@@ -356,6 +356,8 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 
 <h2 id="create-a-user">Create a User</h2>
 
+<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
+
 <pre><code>POST /users/
 </code></pre>
 
@@ -424,6 +426,8 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 <li>
 <strong>reached_user_limit</strong>: the account has reached the maximum number of active users available for the current plan. The account owner will have to <a href="http://help.letsfreckle.com/accounts-billing/upgrading-downgrading">upgrade their account</a>.</li>
 </ul><h2 id="edit-a-user">Edit a User</h2>
+
+<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
 
 <pre><code>PUT /users/:id
 </code></pre>
@@ -514,6 +518,8 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 
 <p>This action reactivates a previously deactivated user, which allows the user to start using Freckle again.</p>
 
+<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
+
 <pre><code>PUT /users/:id/activate
 </code></pre>
 
@@ -584,6 +590,8 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 <strong>deactivated</strong>: The user is deactivated, and therefore cannot be modified.</li>
 </ul><h2 id="delete-a-user">Delete a User</h2>
 
+<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
+
 <pre><code>DELETE /users/:id
 </code></pre>
 
@@ -599,7 +607,9 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 
 <p>The error message for the delete action follows the pattern explained in the API basics section on <a href="/#deleting-or-archiving-resources">Deleting or Archiving Resources</a>, but instead of using an “Archive” action, the <a href="#disable">Disable</a> action is used.</p>
 
-<h2 id="deactive-a-user">Deactive a User</h2>
+<h2 id="deactivate-a-user">Deactivate a User</h2>
+
+<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
 
 <pre><code>PUT /users/:id/deactivate
 </code></pre>

@@ -360,8 +360,9 @@ email and password.</p>
 <pre><code>POST /api/users
 </code></pre>
 
-<p>You can create new users, as long as your account limits are not reached.
-This method, as well as the update and delete methods, are intended to make
+<p><em>You can create new users, as long as your account limits are not reached. For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
+
+<p>This method, as well as the update and delete methods, are intended to make
 it easier to synchronize users with your own systems. Note that you can’t set
 or change passwords.</p>
 
@@ -439,6 +440,8 @@ data was invalid (for example, email address is a invalid format).</p>
 
 <pre><code>DELETE /api/users/&lt;id&gt;
 </code></pre>
+
+<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
 
 <p>Deactivates a user, or deletes the user if they have no entries.</p>
 
