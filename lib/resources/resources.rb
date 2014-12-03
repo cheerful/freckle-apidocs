@@ -151,7 +151,6 @@ module Freckle
       "id" => 3768,
       "name" => "Sprockets, Inc.",
       "projects" => [SIMPLE_PROJECT],
-      "participants" => [SIMPLE_USER],
       "url" => "#{API_V2_URL}/project_groups/3768",
       "entries_url" => "#{API_V2_URL}/project_groups/3768/entries/",
       "invoices_url" => "#{API_V2_URL}/project_groups/3768/invoices/",
