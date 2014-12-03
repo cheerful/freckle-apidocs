@@ -144,7 +144,7 @@ module Freckle
     SIMPLE_PROJECT_GROUP = {
       "id" => 3768,
       "name" => "Sprockets, Inc.",
-      "url" => "#{API_V2_URL}/groups/3768"
+      "url" => "#{API_V2_URL}/project_groups/3768"
     }
 
     PROJECT_GROUP = {
@@ -152,10 +152,10 @@ module Freckle
       "name" => "Sprockets, Inc.",
       "projects" => [SIMPLE_PROJECT],
       "participants" => [SIMPLE_USER],
-      "url" => "#{API_V2_URL}/groups/3768",
-      "entries_url" => "#{API_V2_URL}/groups/3768/entries/",
-      "invoices_url" => "#{API_V2_URL}/groups/3768/invoices/",
-      "projects_url" => "#{API_V2_URL}/groups/3768/projects/",
+      "url" => "#{API_V2_URL}/project_groups/3768",
+      "entries_url" => "#{API_V2_URL}/project_groups/3768/entries/",
+      "invoices_url" => "#{API_V2_URL}/project_groups/3768/invoices/",
+      "projects_url" => "#{API_V2_URL}/project_groups/3768/projects/",
       "created_at" => "2012-01-09T08:33:29Z",
       "updated_at" => "2012-01-09T08:33:29Z",
     }
@@ -168,17 +168,6 @@ module Freckle
 
     PROJECT_GROUP_EDIT_FIELDS = {
       "name" => PROJECT_GROUP["name"]
-    }
-
-    VALIDATION_ERROR_PROJECT_ALREADY_ASSOCIATED_WITH_A_GROUP = {
-      "message" => "Validation Failed",
-      "errors" => [
-        {
-          "resource" => "Project Group",
-          "field" => "projects",
-          "code" => "already_exists"
-        }
-      ]
     }
 
     SIMPLE_IMPORT = {
