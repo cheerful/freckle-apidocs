@@ -29,11 +29,6 @@ projects
 : A comma-separated list of project IDs to filter by.
 : Example: `projects=1,2,3`
 
-participants
-: *Optional* **string**
-: A comma-separated list of user IDs to filter by.
-: Example: `participants=4,5,6`
-
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "project_groups" %>
