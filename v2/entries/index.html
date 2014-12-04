@@ -34,7 +34,7 @@
       <h2>Projects &amp; Invoices</h2>
       <ul id="resources">
         <li><a href="/v2/projects">Projects</a></li>
-        <li><a class="coming-soon" href="/v2/project_groups">Project Groups</a></li>
+        <li><a href="/v2/project_groups">Project Groups</a></li>
         <li><a class="coming-soon" href="/v2/invoices">Invoices</a></li>
       </ul>
 
@@ -144,6 +144,20 @@
 </dd>
   <dd>Only entries invoiced on or before this date will be returned.</dd>
   <dd>Example: <code>invoiced_at_to=2013-09-27</code>
+</dd>
+  <dt>updated_from</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a timestamp in ISO 8061 format <code>YYYY-MM-DDTHH:MM:SSZ</code>
+</dd>
+  <dd>Only entries updated from or after this timestamp will be returned.</dd>
+  <dd>Example: <code>updated_from=2012-01-09T08:33:29Z</code>
+</dd>
+  <dt>updated_to</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a timestamp in ISO 8061 format <code>YYYY-MM-DDTHH:MM:SSZ</code>
+</dd>
+  <dd>Only entries updated on or before this timestamp will be returned.</dd>
+  <dd>Example: <code>updated_to=2012-01-09T08:33:29Z</code>
 </dd>
   <dt>billable</dt>
   <dd>
