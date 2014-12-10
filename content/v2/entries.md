@@ -159,7 +159,7 @@ source_url
 ## Edit an Entry
 
 ~~~
-PUT /v2/entry/:id
+PUT /v2/entries/:id
 ~~~
 
 ### Input
