@@ -70,7 +70,7 @@ show_summaries
 
 hours_calculation
 : *Optional* **string**
-: How the total dollar amount for hours worked is calculated. The Accepted values are:
+: How the total amount for hours worked is calculated. The Accepted values are:
 
     * `custom_hourly_rates`
     * `simple_hourly_rate`
@@ -145,11 +145,11 @@ show_summaries
 
 hours_calculation
 : *Optional* **object**
-: The details of how to calculate the total dollar amount for hours worked. The fields are:
+: The details of how to calculate the total amount for hours worked. The fields are:
 
     calculation_method
     : *Optional* **string**
-    : indicates what method will be used to calculate the total dollar amount for hours worked. Accepted values are:
+    : indicates what method will be used to calculate the total amount for hours worked. Accepted values are:
 
         * `simple_hourly_rate`: a single hourly rate is used for across the entire invoice.
         * `custom_hourly_rates`: custom hourly rates can be defined for individual users via the `custom_hourly_rates` array. If no `custom_hourly_rate` is defined for an individual user, then the `simple_hourly_rate` is used for that user.
@@ -161,7 +161,7 @@ hours_calculation
 
     custom_hourly_rates
     : *Required if `calculation_method` equals `custom_hourly_rate`* **array of objects**
-    : the custom hourly rates for users, which are used to calculate the total dollar amount for the hours they worked in this invoice. The fields are:
+    : the custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
         user
         : *Required* **integer**
@@ -173,7 +173,7 @@ hours_calculation
 
     flat_rate
     : *Required if payment_type equals `flat_rate`* **decimal**
-    : The flat rate used as the total dollar amount for hours worked.
+    : The flat rate used as the total amount for hours worked.
 
 
 entries_and_expenses_selection
@@ -247,7 +247,7 @@ customization
 
     total_due
     : *Optional* **string**
-    : The label for the total dollar amount due for the Invoice. Defaults to "Total amount due".
+    : The label for the total amount due for the Invoice. Defaults to "Total amount due".
 
     summary
     : *Optional* **string**
@@ -259,7 +259,7 @@ customization
 
     no_tax
     : *Optional* **string**
-    : The label for the section of the summary that outlines the dollar amounts in the invoice which do not have tax applied. Defaults to "no tax".
+    : The label for the section of the summary that outlines the amounts in the invoice which do not have tax applied. Defaults to "no tax".
 
     tax
     : *Optional* **string**
@@ -267,11 +267,11 @@ customization
 
     subtotal
     : *Optional* **string**
-    : The label for the subtotal dollar amount for the invoice. Defaults to "subtotal".
+    : The label for the subtotal amount for the invoice. Defaults to "subtotal".
 
     total
     : *Optional* **string**
-    : The label for the total dollar amount for the invoice. Defaults to "TOTAL".
+    : The label for the total amount for the invoice. Defaults to "TOTAL".
 
     report
     : *Optional* **string**
@@ -291,15 +291,15 @@ customization
 
     taxable_total
     : *Optional* **string**
-    : The label for the total taxable dollar amount in the invoice. Defaults to "Total taxable".
+    : The label for the total taxable amount in the invoice. Defaults to "Total taxable".
 
     tax_total
     : *Optional* **string**
-    : The label for the total dollar amount of taxes applied to the invoice. Defaults to "Total tax".
+    : The label for the total amount of taxes applied to the invoice. Defaults to "Total tax".
 
     taxfree_total
     : *Optional* **string**
-    : The label for the total dollar amount of the invoice which is tax-free. Defaults to "Total taxfree".
+    : The label for the total amount of the invoice which is tax-free. Defaults to "Total taxfree".
 
     total_report
     : *Optional* **string**
@@ -410,7 +410,7 @@ customization
 
     total_due
     : *Optional* **string**
-    : The label for the total dollar amount due for the Invoice. Defaults to "Total amount due".
+    : The label for the total amount due for the Invoice. Defaults to "Total amount due".
 
     summary
     : *Optional* **string**
@@ -422,7 +422,7 @@ customization
 
     no_tax
     : *Optional* **string**
-    : The label for the section of the summary that outlines the dollar amounts in the invoice which do not have tax applied. Defaults to "no tax".
+    : The label for the section of the summary that outlines the amounts in the invoice which do not have tax applied. Defaults to "no tax".
 
     tax
     : *Optional* **string**
@@ -430,11 +430,11 @@ customization
 
     subtotal
     : *Optional* **string**
-    : The label for the subtotal dollar amount for the invoice. Defaults to "subtotal".
+    : The label for the subtotal amount for the invoice. Defaults to "subtotal".
 
     total
     : *Optional* **string**
-    : The label for the total dollar amount for the invoice. Defaults to "TOTAL".
+    : The label for the total amount for the invoice. Defaults to "TOTAL".
 
     report
     : *Optional* **string**
@@ -454,15 +454,15 @@ customization
 
     taxable_total
     : *Optional* **string**
-    : The label for the total taxable dollar amount in the invoice. Defaults to "Total taxable".
+    : The label for the total taxable amount in the invoice. Defaults to "Total taxable".
 
     tax_total
     : *Optional* **string**
-    : The label for the total dollar amount of taxes applied to the invoice. Defaults to "Total tax".
+    : The label for the total amount of taxes applied to the invoice. Defaults to "Total tax".
 
     taxfree_total
     : *Optional* **string**
-    : The label for the total dollar amount of the invoice which is tax-free. Defaults to "Total taxfree".
+    : The label for the total amount of the invoice which is tax-free. Defaults to "Total taxfree".
 
     total_report
     : *Optional* **string**
@@ -715,9 +715,9 @@ DELETE /imports/:id/projects/
 
 <%= headers 204 %>
 
-## Recalculate the total dollar amount for the time worked in this invoice
+## Recalculate the total amount for the time worked in this invoice
 
-Updates how the invoice calculates the total dollar amount corresponding to the entries included this invoice.
+Updates how the invoice calculates the total amount corresponding to the entries included this invoice.
 
 ~~~
 PUT /invoices/:id/hours_calculation
@@ -727,7 +727,7 @@ PUT /invoices/:id/hours_calculation
 
 calculation_method
 : *Required* **string**
-: indicates what method will be used to calculate the total dollar amount for hours worked. Accepted values are:
+: indicates what method will be used to calculate the total amount for hours worked. Accepted values are:
 
     * `simple_hourly_rate`: a single hourly rate is used for across the entire invoice.
     * `custom_hourly_rates`: custom hourly rates can be defined for individual users via the `custom_hourly_rates` array. If no `custom_hourly_rate` is defined for an individual user, then the `simple_hourly_rate` is used for that user.
@@ -739,7 +739,7 @@ simple_hourly_rate
 
 custom_hourly_rates
 : *Required if `calculation_method` equals `custom_hourly_rate`* **array of objects**
-: the custom hourly rates for users, which are used to calculate the total dollar amount for the hours they worked in this invoice. The fields are:
+: the custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
     user
     : *Required* **integer**
@@ -751,7 +751,7 @@ custom_hourly_rates
 
 flat_rate
 : *Required if payment_type equals `flat_rate`* **decimal**
-: The flat rate used as the total dollar amount for hours worked.
+: The flat rate used as the total amount for hours worked.
 
 ### Response
 
@@ -759,7 +759,7 @@ flat_rate
 
 ## Add Custom Hourly Rates
 
-Add custom hourly rates for specific users. This custom hourly rate will be used to calculate the total dollar amount for a user's entries. If a custom hourly rate is already defined for a user, then it is overwritten with the new hourly rate. Note that when a custom hourly rate is added, it changes the method used to calculate the total dollar amount for time worked to `custom_hourly_rates`
+Add custom hourly rates for specific users. This custom hourly rate will be used to calculate the total amount for a user's entries. If a custom hourly rate is already defined for a user, then it is overwritten with the new hourly rate. Note that when a custom hourly rate is added, it changes the method used to calculate the total amount for time worked to `custom_hourly_rates`
 
 ~~~
 POST /imports/:id/custom_hourly_rates
@@ -769,7 +769,7 @@ POST /imports/:id/custom_hourly_rates
 
 custom_hourly_rates
     : *Required* **array of objects**
-    : the custom hourly rates for users, which are used to calculate the total dollar amount for the hours they worked in this invoice. The fields are:
+    : the custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
         user
         : *Required* **integer**
@@ -789,7 +789,7 @@ simple_hourly_rate
 
 ## Remove Custom Hourly Rates
 
-Removes custom hourly rates for specific users. When a custom hourly rate is removed for a user, the total dollar amount for the hours they worked for this invoice is calculated using the `simple_hourly_rate`. Users who do not have a custom hourly rate will be ignored. Note that if there are no more remaining custom hourly rates, then the invoice will revert to using the `simple_hourly_rate` method of calculating the total dollar amount for time worked.
+Removes custom hourly rates for specific users. When a custom hourly rate is removed for a user, the total amount for the hours they worked for this invoice is calculated using the `simple_hourly_rate`. Users who do not have a custom hourly rate will be ignored. Note that if there are no more remaining custom hourly rates, then the invoice will revert to using the `simple_hourly_rate` method of calculating the total amount for time worked.
 
 ~~~
 PUT /imports/:id/custom_hourly_rates
@@ -807,7 +807,7 @@ custom_hourly_rates
 
 ## Remove all Custom Hourly Rates
 
-Remove all custom hourly rates from an invoice. Note that the Invoice will revert to using the `simple_hourly_rate` method of calculating the total dollar amount for time worked.
+Remove all custom hourly rates from an invoice. Note that the Invoice will revert to using the `simple_hourly_rate` method of calculating the total amount for time worked.
 
 ~~~
 DELETE /imports/:id/custom_hourly_rates
