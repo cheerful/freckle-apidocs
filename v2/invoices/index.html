@@ -70,7 +70,7 @@
   <li><a href="#add-projects-to-an-invoice">Add Projects to an Invoice</a></li>
   <li><a href="#remove-projects-from-an-invoice">Remove Projects from an Invoice</a></li>
   <li><a href="#remove-all-projects-from-an-invoice">Remove all Projects from an Invoice</a></li>
-  <li><a href="#recalculate-the-total-dollar-amount-for-the-time-worked-in-this-invoice">Recalculate the total dollar amount for the time worked in this invoice</a></li>
+  <li><a href="#recalculate-the-total-amount-for-the-time-worked-in-this-invoice">Recalculate the total amount for the time worked in this invoice</a></li>
   <li><a href="#add-custom-hourly-rates">Add Custom Hourly Rates</a></li>
   <li><a href="#remove-custom-hourly-rates">Remove Custom Hourly Rates</a></li>
   <li><a href="#remove-all-custom-hourly-rates">Remove all Custom Hourly Rates</a></li>
@@ -162,7 +162,7 @@
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>How the total dollar amount for hours worked is calculated. The Accepted values are:
+  <dd>How the total amount for hours worked is calculated. The Accepted values are:
 
     <ul>
 <li><code>custom_hourly_rates</code></li>
@@ -474,14 +474,14 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <dd>
 <em>Optional</em> <strong>object</strong>
 </dd>
-  <dd>The details of how to calculate the total dollar amount for hours worked. The fields are:
+  <dd>The details of how to calculate the total amount for hours worked. The fields are:
 
     <dl>
 <dt>calculation_method</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>indicates what method will be used to calculate the total dollar amount for hours worked. Accepted values are:
+      <dd>indicates what method will be used to calculate the total amount for hours worked. Accepted values are:
 
         <ul>
 <li>
@@ -501,7 +501,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Required if <code>calculation_method</code> equals <code>custom_hourly_rate</code></em> <strong>array of objects</strong>
 </dd>
-      <dd>the custom hourly rates for users, which are used to calculate the total dollar amount for the hours they worked in this invoice. The fields are:
+      <dd>the custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
         <dl>
 <dt>user</dt>
@@ -520,7 +520,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Required if payment_type equals <code>flat_rate</code></em> <strong>decimal</strong>
 </dd>
-      <dd>The flat rate used as the total dollar amount for hours worked.</dd>
+      <dd>The flat rate used as the total amount for hours worked.</dd>
     </dl>
 </dd>
   <dt>entries_and_expenses_selection</dt>
@@ -629,7 +629,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total dollar amount due for the Invoice. Defaults to “Total amount due”.</dd>
+      <dd>The label for the total amount due for the Invoice. Defaults to “Total amount due”.</dd>
       <dt>summary</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -644,7 +644,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the summary that outlines the dollar amounts in the invoice which do not have tax applied. Defaults to “no tax”.</dd>
+      <dd>The label for the section of the summary that outlines the amounts in the invoice which do not have tax applied. Defaults to “no tax”.</dd>
       <dt>tax</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -654,12 +654,12 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the subtotal dollar amount for the invoice. Defaults to “subtotal”.</dd>
+      <dd>The label for the subtotal amount for the invoice. Defaults to “subtotal”.</dd>
       <dt>total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total dollar amount for the invoice. Defaults to “TOTAL”.</dd>
+      <dd>The label for the total amount for the invoice. Defaults to “TOTAL”.</dd>
       <dt>report</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -682,17 +682,17 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total taxable dollar amount in the invoice. Defaults to “Total taxable”.</dd>
+      <dd>The label for the total taxable amount in the invoice. Defaults to “Total taxable”.</dd>
       <dt>tax_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total dollar amount of taxes applied to the invoice. Defaults to “Total tax”.</dd>
+      <dd>The label for the total amount of taxes applied to the invoice. Defaults to “Total tax”.</dd>
       <dt>taxfree_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total dollar amount of the invoice which is tax-free. Defaults to “Total taxfree”.</dd>
+      <dd>The label for the total amount of the invoice which is tax-free. Defaults to “Total taxfree”.</dd>
       <dt>total_report</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -1016,7 +1016,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total dollar amount due for the Invoice. Defaults to “Total amount due”.</dd>
+      <dd>The label for the total amount due for the Invoice. Defaults to “Total amount due”.</dd>
       <dt>summary</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -1031,7 +1031,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the summary that outlines the dollar amounts in the invoice which do not have tax applied. Defaults to “no tax”.</dd>
+      <dd>The label for the section of the summary that outlines the amounts in the invoice which do not have tax applied. Defaults to “no tax”.</dd>
       <dt>tax</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -1041,12 +1041,12 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the subtotal dollar amount for the invoice. Defaults to “subtotal”.</dd>
+      <dd>The label for the subtotal amount for the invoice. Defaults to “subtotal”.</dd>
       <dt>total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total dollar amount for the invoice. Defaults to “TOTAL”.</dd>
+      <dd>The label for the total amount for the invoice. Defaults to “TOTAL”.</dd>
       <dt>report</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -1069,17 +1069,17 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total taxable dollar amount in the invoice. Defaults to “Total taxable”.</dd>
+      <dd>The label for the total taxable amount in the invoice. Defaults to “Total taxable”.</dd>
       <dt>tax_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total dollar amount of taxes applied to the invoice. Defaults to “Total tax”.</dd>
+      <dd>The label for the total amount of taxes applied to the invoice. Defaults to “Total tax”.</dd>
       <dt>taxfree_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total dollar amount of the invoice which is tax-free. Defaults to “Total taxfree”.</dd>
+      <dd>The label for the total amount of the invoice which is tax-free. Defaults to “Total taxfree”.</dd>
       <dt>total_report</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -1727,9 +1727,9 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=2&gt;; rel="
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h2 id="recalculate-the-total-dollar-amount-for-the-time-worked-in-this-invoice">Recalculate the total dollar amount for the time worked in this invoice</h2>
+<h2 id="recalculate-the-total-amount-for-the-time-worked-in-this-invoice">Recalculate the total amount for the time worked in this invoice</h2>
 
-<p>Updates how the invoice calculates the total dollar amount corresponding to the entries included this invoice.</p>
+<p>Updates how the invoice calculates the total amount corresponding to the entries included this invoice.</p>
 
 <pre><code>PUT /invoices/:id/hours_calculation
 </code></pre>
@@ -1741,7 +1741,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=2&gt;; rel="
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
-  <dd>indicates what method will be used to calculate the total dollar amount for hours worked. Accepted values are:
+  <dd>indicates what method will be used to calculate the total amount for hours worked. Accepted values are:
 
     <ul>
 <li>
@@ -1761,7 +1761,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=2&gt;; rel="
   <dd>
 <em>Required if <code>calculation_method</code> equals <code>custom_hourly_rate</code></em> <strong>array of objects</strong>
 </dd>
-  <dd>the custom hourly rates for users, which are used to calculate the total dollar amount for the hours they worked in this invoice. The fields are:
+  <dd>the custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
     <dl>
 <dt>user</dt>
@@ -1780,14 +1780,14 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=2&gt;; rel="
   <dd>
 <em>Required if payment_type equals <code>flat_rate</code></em> <strong>decimal</strong>
 </dd>
-  <dd>The flat rate used as the total dollar amount for hours worked.</dd>
+  <dd>The flat rate used as the total amount for hours worked.</dd>
 </dl><h3 id="response-15">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
 <h2 id="add-custom-hourly-rates">Add Custom Hourly Rates</h2>
 
-<p>Add custom hourly rates for specific users. This custom hourly rate will be used to calculate the total dollar amount for a user’s entries. If a custom hourly rate is already defined for a user, then it is overwritten with the new hourly rate. Note that when a custom hourly rate is added, it changes the method used to calculate the total dollar amount for time worked to <code>custom_hourly_rates</code></p>
+<p>Add custom hourly rates for specific users. This custom hourly rate will be used to calculate the total amount for a user’s entries. If a custom hourly rate is already defined for a user, then it is overwritten with the new hourly rate. Note that when a custom hourly rate is added, it changes the method used to calculate the total amount for time worked to <code>custom_hourly_rates</code></p>
 
 <pre><code>POST /imports/:id/custom_hourly_rates
 </code></pre>
@@ -1796,7 +1796,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=2&gt;; rel="
 
 <p>custom_hourly_rates
     : <em>Required</em> <strong>array of objects</strong>
-    : the custom hourly rates for users, which are used to calculate the total dollar amount for the hours they worked in this invoice. The fields are:</p>
+    : the custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:</p>
 
 <pre><code>    user
     : *Required* **integer**
@@ -1817,7 +1817,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=2&gt;; rel="
 
 <h2 id="remove-custom-hourly-rates">Remove Custom Hourly Rates</h2>
 
-<p>Removes custom hourly rates for specific users. When a custom hourly rate is removed for a user, the total dollar amount for the hours they worked for this invoice is calculated using the <code>simple_hourly_rate</code>. Users who do not have a custom hourly rate will be ignored. Note that if there are no more remaining custom hourly rates, then the invoice will revert to using the <code>simple_hourly_rate</code> method of calculating the total dollar amount for time worked.</p>
+<p>Removes custom hourly rates for specific users. When a custom hourly rate is removed for a user, the total amount for the hours they worked for this invoice is calculated using the <code>simple_hourly_rate</code>. Users who do not have a custom hourly rate will be ignored. Note that if there are no more remaining custom hourly rates, then the invoice will revert to using the <code>simple_hourly_rate</code> method of calculating the total amount for time worked.</p>
 
 <pre><code>PUT /imports/:id/custom_hourly_rates
 </code></pre>
@@ -1836,7 +1836,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=2&gt;; rel="
 
 <h2 id="remove-all-custom-hourly-rates">Remove all Custom Hourly Rates</h2>
 
-<p>Remove all custom hourly rates from an invoice. Note that the Invoice will revert to using the <code>simple_hourly_rate</code> method of calculating the total dollar amount for time worked.</p>
+<p>Remove all custom hourly rates from an invoice. Note that the Invoice will revert to using the <code>simple_hourly_rate</code> method of calculating the total amount for time worked.</p>
 
 <pre><code>DELETE /imports/:id/custom_hourly_rates
 </code></pre>
