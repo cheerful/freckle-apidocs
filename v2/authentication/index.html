@@ -67,12 +67,14 @@
 </dl><h2 id="which-authentication-method-do-i-choose">Which authentication method do I choose?</h2>
 
 <dl>
-<dt><a href="#using-personal-access-tokens">Sending HTTP Header or <code>access_token</code> parameter for Personal Access Token</a></dt>
+<dt><a href="#using-personal-access-tokens">Sending HTTP Header or <code>freckle_token</code> parameter for Personal Access Token</a></dt>
   <dd>My application uses Personal Access Tokens for authentication</dd>
   <dt><a href="#using-oauth-access-tokens">Sending HTTP Header or <code>access_token</code> parameter for OAuth access token</a></dt>
   <dd>My application uses OAuth access tokens for authentication</dd>
-  <dt><a href="#via-oauth-tokens">Basic Authentication using OAuth access tokens or Personal Access Tokens</a></dt>
-  <dd>My tools only allow me to use Basic Authentication</dd>
+  <dt><a href="#api-access-via-oauth-tokens">Basic Authentication using OAuth access tokens</a></dt>
+  <dd>My tools only allow me to use Basic Authentication but I want to take advantage of OAuth’s security benefits.</dd>
+  <dt><a href="#api-access-via-personal-access-tokens">Basic Authentication using Personal Access Tokens</a></dt>
+  <dd>My tools only allow me to use Basic Authentication and I am using Personal Access Tokens for authentication.</dd>
   <dt><a href="#via-username-and-password">Basic Authentication to interact with the OAuth Authorizations API</a></dt>
   <dd>I am writing a non-web application that will be using OAuth, and I need to generate an OAuth access token to allow my application to access the API.</dd>
 </dl><h2 id="using-personal-access-tokens">Using Personal Access Tokens</h2>
@@ -83,10 +85,10 @@
 
 <p>There are two ways to send the token—examples are given using the cURL command line tool:</p>
 
-<p>As <em>query parameter</em> named <code>access_token</code>:</p>
+<p>As <em>query parameter</em> named <code>freckle_token</code>:</p>
 
 <pre class="terminal">
-curl -v https://api.letsfreckle.com/v2/timers?access_token=scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d
+curl -v https://api.letsfreckle.com/v2/timers?freckle_token=scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d
 </pre>
 
 <p>As <em>HTTP header</em> <code>X-FreckleToken</code>:</p>
@@ -123,14 +125,24 @@ curl -v https://api.letsfreckle.com/v2/timers?access_token=scbp72wdc528hm8n52fow
 <li>to allow API access with an OAuth access token or Personal Access Token</li>
   <li>to interact with the <a href="/v2/oauth#oauth-authorizations-api">OAuth Authorizations API</a>
 </li>
-</ul><h3 id="via-oauth-access-tokens-or-personal-access-tokens">Via OAuth access tokens or Personal Access Tokens</h3>
+</ul><h3 id="api-access-via-oauth-access-tokens">API access via OAuth access tokens</h3>
 
-<p>You can authenticate using <a href="http://help.letsfreckle.com/import-export-api/api">Personal Access Tokens</a> or <a href="/v2/oauth">OAuth access tokens</a>. This approach is useful if your tools only support Basic Authentication but you want to take advantage of the security benefits provided by OAuth and Personal Access Tokens.</p>
+<p>You can authenticate using <a href="/v2/oauth">OAuth access tokens</a>. This approach is useful if your tools only support Basic Authentication but you want to take advantage of the security benefits provided by OAuth Access Tokens.</p>
 
-<p>To do so, provide the token as the username and provide a blank password or a password of <code>x-oauth-basic</code>. For example:</p>
+<p>To do so, provide the access token as the username and provide a blank password or a password of <code>x-oauth-basic</code>. For example:</p>
 
 <pre class="terminal">
 curl -u abcdefghijklmnop1234567890:x-oauth-basic https://api.letsfreckle.com/v2/entries
+</pre>
+
+<h3 id="api-access-via-personal-access-tokens">API access via Personal Access Tokens</h3>
+
+<p>You can authenticate using <a href="http://help.letsfreckle.com/import-export-api/api">Personal Access Tokens</a>. This approach is useful if your tools only support Basic Authentication and you are using Personal Access Tokens for authentication.</p>
+
+<p>To do so, provide the Personal Access Token as the username and provide a blank password or a password of <code>x-freckle-token</code>. For example:</p>
+
+<pre class="terminal">
+curl -u scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d:x-freckle-token https://api.letsfreckle.com/v2/entries
 </pre>
 
 <h3 id="to-interact-with-the-oauth-authorizations-api">To interact with the OAuth Authorizations API</h3>
