@@ -18,14 +18,17 @@ The Freckle API provides multiple different ways to handle authentication in you
 
 ## Which authentication method do I choose?
 
-[Sending HTTP Header or `access_token` parameter for Personal Access Token](#using-personal-access-tokens)
+[Sending HTTP Header or `freckle_token` parameter for Personal Access Token](#using-personal-access-tokens)
 : My application uses Personal Access Tokens for authentication
 
 [Sending HTTP Header or `access_token` parameter for OAuth access token](#using-oauth-access-tokens)
 : My application uses OAuth access tokens for authentication
 
-[Basic Authentication using OAuth access tokens or Personal Access Tokens](#via-oauth-tokens)
-: My tools only allow me to use Basic Authentication
+[Basic Authentication using OAuth access tokens](#api-access-via-oauth-tokens)
+: My tools only allow me to use Basic Authentication but I want to take advantage of OAuth's security benefits.
+
+[Basic Authentication using Personal Access Tokens](#api-access-via-personal-access-tokens)
+: My tools only allow me to use Basic Authentication and I am using Personal Access Tokens for authentication.
 
 [Basic Authentication to interact with the OAuth Authorizations API](#via-username-and-password)
 : I am writing a non-web application that will be using OAuth, and I need to generate an OAuth access token to allow my application to access the API.
@@ -38,10 +41,10 @@ The token has to be sent for each request your application makes to the Freckle 
 
 There are two ways to send the token—examples are given using the cURL command line tool:
 
-As *query parameter* named `access_token`:
+As *query parameter* named `freckle_token`:
 
 <pre class="terminal">
-curl -v <%= API_V2_URL %>/timers?access_token=<%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>
+curl -v <%= API_V2_URL %>/timers?freckle_token=<%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>
 </pre>
 
 As *HTTP header* `X-FreckleToken`:
@@ -77,14 +80,24 @@ The API supports Basic Authentication as defined in [RFC2617](http://www.ietf.or
 * to allow API access with an OAuth access token or Personal Access Token
 * to interact with the [OAuth Authorizations API](/v2/oauth#oauth-authorizations-api)
 
-### Via OAuth access tokens or Personal Access Tokens
+### API access via OAuth access tokens
 
-You can authenticate using [Personal Access Tokens](http://help.letsfreckle.com/import-export-api/api) or [OAuth access tokens](/v2/oauth). This approach is useful if your tools only support Basic Authentication but you want to take advantage of the security benefits provided by OAuth and Personal Access Tokens.
+You can authenticate using [OAuth access tokens](/v2/oauth). This approach is useful if your tools only support Basic Authentication but you want to take advantage of the security benefits provided by OAuth Access Tokens.
 
-To do so, provide the token as the username and provide a blank password or a password of `x-oauth-basic`. For example:
+To do so, provide the access token as the username and provide a blank password or a password of `x-oauth-basic`. For example:
 
 <pre class='terminal'>
 curl -u abcdefghijklmnop1234567890:x-oauth-basic <%= API_V2_URL %>/entries
+</pre>
+
+### API access via Personal Access Tokens
+
+You can authenticate using [Personal Access Tokens](http://help.letsfreckle.com/import-export-api/api). This approach is useful if your tools only support Basic Authentication and you are using Personal Access Tokens for authentication.
+
+To do so, provide the Personal Access Token as the username and provide a blank password or a password of `x-freckle-token`. For example:
+
+<pre class='terminal'>
+curl -u <%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>:x-freckle-token <%= API_V2_URL %>/entries
 </pre>
 
 ### To interact with the OAuth Authorizations API
