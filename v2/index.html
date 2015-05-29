@@ -60,6 +60,7 @@
   <li><a href="#api-url">API URL</a></li>
   <li><a href="#general-schema">General Schema</a></li>
   <li><a href="#a-user-agent-is-required">A User Agent is Required</a></li>
+  <li><a href="#rate-limiting">Rate Limiting</a></li>
   <li><a href="#client-errors">Client Errors</a></li>
   <li><a href="#deleting-or-archiving-resources">Deleting or Archiving Resources</a></li>
   <li><a href="#uploading-files">Uploading Files</a></li>
@@ -132,6 +133,12 @@ Please contact the library authors directly if you need help with these.
 </ul><h3 id="example">Example:</h3>
 <pre><code>User-Agent: My-Freckle-App
 </code></pre>
+
+<h2 id="rate-limiting">Rate Limiting</h2>
+
+<p>You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will return a <code>429 Too Many Requests</code> response. If you receive a <code>429</code> response, make sure to wait a little longer between requests.</p>
+
+<pre class="headers"><code>Status: 429 Too Many Requests</code></pre>
 
 <h2 id="client-errors">Client Errors</h2>
 
