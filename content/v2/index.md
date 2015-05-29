@@ -76,6 +76,12 @@ All API Requests must include a valid `User-Agent` header. Requests with no `Use
 User-Agent: My-Freckle-App
 ~~~
 
+## Rate Limiting
+
+You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will return a `429 Too Many Requests` response. If you receive a `429` response, make sure to wait a little longer between requests.
+
+<%= headers 429 %>
+
 ## Client Errors
 
 There are a few errors that can occur while making API calls. the following are the kinds of errors you may encounter when using the API.

@@ -156,6 +156,10 @@ A call to the API can result in one of five different outcomes:
 * There's a timeout or a network issue and the connection is dropped without response.
   This is rare but it does happen. Try the call again.
 
+## Rate Limiting
+
+You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will return a `429 Too Many Requests` response. If you receive a `429` response, make sure to wait a little longer between requests.
+
 ## Roles
 
 There are currently four user roles in Freckle: **`administrator`**, **`owner`**, **`member`**, and **`freelancer`**. 

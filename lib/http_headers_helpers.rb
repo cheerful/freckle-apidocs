@@ -18,6 +18,7 @@ module Freckle
         405 => '405 Method not allowed',
         409 => '409 Conflict',
         422 => '422 Unprocessable Entity',
+        429 => '429 Too Many Requests',
         500 => '500 Server Error',
         503 => '503 Service Unavailable'
       }
