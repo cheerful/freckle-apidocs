@@ -618,6 +618,19 @@ module Freckle
       :subdomain => ACCOUNT["subdomain"],
       :avatar => USER["avatar"]
     }
+
+    OAUTH_ACCESS_TOKEN = {
+      :access_token => "abcedfghijk1234567890",
+      :refresh_token => "poiuytrew098765",
+      :expires_in=>12345678,
+      :scope => "",
+      :token_type => "bearer"
+    }
+
+    OAUTH_ACCESS_TOKEN_ERROR_EXAMPLE = {
+      :error => "invalid_grant",
+      :error_description => "The provided access grant is invalid, expired, or revoked (e.g. invalid assertion, expired authorization token, bad end-user password credentials, or mismatching authorization code and redirection URI)."
+    }
   end
 end
 
