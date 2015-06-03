@@ -77,7 +77,7 @@ code
 
 state
 : **string**
-: If you provided a state in your [initial request](#step-1) it will be returned back to you. Reject the redirect if this parameter does not match what you previously sent.
+: If you provided a state in your [initial request](#redirect-users-to-request-freckle-access) it will be returned back to you. Reject the redirect if this parameter does not match what you previously sent.
 
 #### Errors:
 
@@ -116,15 +116,15 @@ client_secret
 
 code
 : *Required* **string**
-: the code you received as a response in [step 2](#step-2).
+: the code you received as a response in [step 2](#freckle-redirects-back-to-your-site-with-two-parameters).
 
 grant_type
 : *Required* **string**
 : Must be set to `authorization_code`. This is usually handled by an OAuth2 client library.
 
 redirect_uri
-: *Required if provided in [step 1](#step-1)* **string**
-: The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data. This must exactly match the value given in [step 1](#step-1).
+: *Required if provided in [step 1](#redirect-users-to-request-freckle-access)* **string**
+: The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data. This must exactly match the value given in [step 1](#redirect-users-to-request-freckle-access).
 
 #### Reponse
 
@@ -176,7 +176,7 @@ The possible errors are:
 
 ### 4. Use the access token to make API requests on behalf of the user
 
-Now that you have an access token for the user, you can use it to make API requests on their behalf. Please review the [API basics section on how to include the access token in your requests](/basics#authorization).
+Now that you have an access token for the user, you can use it to make API requests on their behalf. Please review the [API basics section on how to include the access token in your requests](/v2/authentication).
 
 ### 5. Refresh the expired access token
 
@@ -243,12 +243,12 @@ Accept: application/json
 
 ## Non-Web Application Flow
 
-If your application is not a Web-app, you will need to use the OAuth Authorizations API to [generate a new access token](#oauth-authorizations-api) for the user. Note that the OAuth Authorization API is only available via [Basic Authentication](/authentication)
+If your application is not a Web-app, you will need to use the OAuth Authorizations API to [generate a new access token](#oauth-authorizations-api) for the user. Note that the OAuth Authorization API is only available via [Basic Authentication](/v2/authentication)
 
 
 ### OAuth Authorizations API
 
-This API allows users to manage their tokens, and is only accessible via [Basic Authentication](authentication).
+This API allows users to manage their tokens, and is only accessible via [Basic Authentication](/v2/authentication).
 
 Access Tokens are not shared across accounts. When using the OAuth Authorizations API, you will need to specify which account you are accessing. This is done by including the desired account's subdomain as part of the request URL.
 

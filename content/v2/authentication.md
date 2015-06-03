@@ -13,7 +13,7 @@ The Freckle API provides multiple different ways to handle authentication in you
 [OAuth](/v2/oauth) (**Strongly recommended**)
 : My application will be running in a production environment, is not a script, or I am concerned about security.
 
-[Personal Access Token](#using-personal-access-token)
+[Personal Access Token](#using-personal-access-tokens)
 : My application is a script or for internal use only.
 
 ## Which authentication method do I choose?
@@ -24,13 +24,13 @@ The Freckle API provides multiple different ways to handle authentication in you
 [Sending HTTP Header or `access_token` parameter for OAuth access token](#using-oauth-access-tokens)
 : My application uses OAuth access tokens for authentication
 
-[Basic Authentication using OAuth access tokens](#api-access-via-oauth-tokens)
+[Basic Authentication using OAuth access tokens](#api-access-via-oauth-access-tokens)
 : My tools only allow me to use Basic Authentication but I want to take advantage of OAuth's security benefits.
 
 [Basic Authentication using Personal Access Tokens](#api-access-via-personal-access-tokens)
 : My tools only allow me to use Basic Authentication and I am using Personal Access Tokens for authentication.
 
-[Basic Authentication to interact with the OAuth Authorizations API](#via-username-and-password)
+[Basic Authentication to interact with the OAuth Authorizations API](#to-interact-with-the-oauth-authorizations-api)
 : I am writing a non-web application that will be using OAuth, and I need to generate an OAuth access token to allow my application to access the API.
 
 ## Using Personal Access Tokens
