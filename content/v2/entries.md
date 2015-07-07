@@ -88,6 +88,17 @@ billable
 : `true`: only show billable entries
 : `false`: only shows unbillable entries
 
+approved
+: *Optional* **boolean**
+: `true`: only show approved entries
+: `false`: only show unapproved entries
+
+approved_by_ids
+: *Optional* **string**
+: A comma-separated list of user IDs to filter by.
+: Only entries that have been approved by these users will be returned.
+: Example: `approved_by_ids=1,2,3`
+
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "entries" %>
@@ -206,6 +217,7 @@ source_url
 
 ### Custom Error Codes
 
+* **approved_and_locked**: This entry has been approved and locked, and cannot be modified
 * **reached_project_limit**: The account has reached its project limit, so no more projects can be created until the account has been upgraded.
 * **cannot_create_projects**: The authenticated user is unable to create projects.
 
@@ -275,11 +287,12 @@ DELETE /v2/entries/:id
 
 ### A note about entry deletion
 
-An entry cannot be deleted if it has been invoiced or is associated with an archived project. In this case, response will include detailed information about why the entry couldn't be deleted.
+An entry cannot be deleted if it has been invoiced, is associated with an archived project, or is approved and locked. In this case, response will include detailed information about why the entry couldn't be deleted.
 
 ### Custom Error Codes
 
 The following Custom Error codes can be returned for this action:
 
+* **approved_and_locked**: This entry has been approved and locked, and cannot be deleted
 * **invoiced**: the Entry has been invoiced
 * **archived_project**: the Entry is associated with an archived Project
