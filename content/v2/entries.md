@@ -88,10 +88,15 @@ billable
 : `true`: only show billable entries
 : `false`: only shows unbillable entries
 
-approved
-: *Optional* **boolean**
-: `true`: only show approved entries
-: `false`: only show unapproved entries
+approved_at_from
+: *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
+: Only entries approved from or after this date will be returned.
+: Example: `approved_at_from=2013-09-27`
+
+approved_at_to
+: *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
+: Only entries approved on or before this date will be returned.
+: Example: `approved_at_to=2013-09-27`
 
 approved_by_ids
 : *Optional* **string**

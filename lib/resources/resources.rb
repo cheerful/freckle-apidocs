@@ -362,7 +362,7 @@ module Freckle
       "invoiced_at" => "2012-01-10T08:33:29Z",
       "invoice" => SIMPLE_INVOICE,
       "import" => SIMPLE_IMPORT,
-      "approved" => true,
+      "approved_at" => "2012-01-10T08:33:29Z",
       "approved_by" => SIMPLE_USER,
       "url" => "#{API_V2_URL}/entries/1711626",
       "created_at" => "2012-01-09T08:33:29Z",
