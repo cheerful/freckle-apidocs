@@ -56,31 +56,22 @@
 <ul id="markdown-toc">
 <li><a href="#web-application-flow">Web Application Flow</a></li>
   <li><a href="#non-web-application-flow">Non-Web Application Flow</a></li>
-  <li><a href="#list-all-the-subdomains-associated-with-this-user">List all the subdomains associated with this user</a></li>
-  <li><a href="#list-all-authorizations">List all authorizations</a></li>
-  <li><a href="#create-a-new-authorization-token">Create a new Authorization Token</a></li>
-  <li><a href="#get-or-create-an-authorization-for-a-specific-app">Get-or-create an authorization for a specific app</a></li>
-  <li><a href="#response-if-a-new-authorization-is-created">Response if a new authorization is created</a></li>
-  <li><a href="#update-an-existing-authorization">Update an existing Authorization</a></li>
-  <li><a href="#delete-an-authorization">Delete an Authorization</a></li>
-  <li><a href="#check-an-authorization">Check an Authorization</a></li>
-  <li><a href="#response-if-the-token-does-not-exist">Response if the token does not exist</a></li>
-  <li><a href="#response-6">Response:</a></li>
-  <li><a href="#revoke-all-authorizations-for-an-application">Revoke all Authorizations for an application</a></li>
-  <li><a href="#revoke-a-single-authorization-for-an-application">Revoke a single authorization for an application</a></li>
-</ul><p>OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Freckle account without requiring their password. Freckle only supports access to API resources using OAuth because tokens can be limited to specific types of data and can be revoked by users at any time.</p>
+  <li><a href="#oauth-application-api">OAuth Application API</a></li>
+</ul><p>OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Freckle account without requiring their password. Freckle supports access to API resources using OAuth because tokens can be easily generated as part of a 3rd party integration and revoked by users at any time.</p>
 
 <p>Before you can start developing with the Freckle API, you must first register your application. When you register, you will be given a unique Client ID and Secret. Your Client Secret should not be shared.</p>
 
 <p>There are two supported ways to generate an access token for a specific user from your application: One designed specifically for use by Web Applications, and another that allows other types of applications to list, create, and confirm their Authorization Token for a user.</p>
 
+<p>Since OAuth2 is a complicated authentication protocol, you may want to use an <a href="http://oauth.net/2/">existing library</a> to generate and refresh access tokens.</p>
+
 <h2 id="web-application-flow">Web Application Flow</h2>
 
-<p>Below are the steps required to generate an access token for a Freckle user through a <code>GET</code> request to Freckle and a corresponding redirect back to your application.</p>
+<p>Below are the steps required to generate an access token for a Freckle user through an initial <code>GET</code> request to Freckle and a corresponding redirect back to your application.</p>
 
 <h3 id="redirect-users-to-request-freckle-access">1. Redirect users to request Freckle access</h3>
 
-<pre><code>GET /login/oauth/authorize
+<pre><code>GET /oauth/2/authorize
 </code></pre>
 
 <h4 id="parameters">Parameters:</h4>
@@ -93,14 +84,11 @@
   <dd>The client ID you received from Freckle when you registered</dd>
   <dd>Example: <code>client_id=abcdefghi1234</code>
 </dd>
-  <dt>scope</dt>
+  <dt>response_type</dt>
   <dd>
-<em>Optional</em> <strong>string</strong> of a comma separated list of <a href="#scopes">scopes</a>
+<em>Required</em> <strong>string</strong>
 </dd>
-  <dd>The type of access your application needs to the user’s Freckle data.</dd>
-  <dd>If no value is provided, then the permissions you chose when you setup your application will be used.</dd>
-  <dd>Example: <code>scope=current_user,project,entry</code>
-</dd>
+  <dd>Must be set to <code>code</code>. This is usually handled by an OAuth2 client library</dd>
   <dt>state</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
@@ -110,13 +98,11 @@
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data.
+  <dd>The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data. If no <code>redirect_uri</code> is included in the request, Freckle will redirect users to the callback URL configured in the OAuth2 application settings.
 
     <h4 id="rules">Rules:</h4>
 
-    <p>If <code>redirect_uri</code> is not included in the request, Freckle will redirect users to the callback URL configured in the OAuth application settings.</p>
-
-    <p>If <code>redirect_uri</code> is included in the request, the redirect URL’s host and port must exactly match the configured callback URL and the redirect URL path must reference a subdirectory of the callback URL configured in the OAuth application settings.</p>
+    <p>If a <code>redirect_uri</code> is included in the request, the redirect URL’s host and port must exactly match the configured callback URL and the redirect URL path must reference a subdirectory of the callback URL configured in the OAuth2 application settings.</p>
 
     <h4 id="examples">Examples:</h4>
 
@@ -134,18 +120,43 @@ BAD:  http://example.org
   </dd>
 </dl><h3 id="freckle-redirects-back-to-your-site-with-two-parameters">2. Freckle redirects back to your site with two parameters:</h3>
 
-<p>When the user has authorized your application, Freckle will redirect back to your application (either to the URL configured in the OAuth application settings, or the url specified in <code>redirect_uri</code>). The redirection will include the following parameters in the URL:</p>
+<p>When the user has authorized your application, Freckle will redirect back to your application (either to the URL configured in the OAuth2 application settings, or the url specified in <code>redirect_uri</code>). The redirection will include the following query parameters:</p>
 
 <dl>
 <dt>code</dt>
   <dd><strong>string</strong></dd>
-  <dd>A Temporary code that you will send back to Freckle to get the access token. This code confirms that the user authorized your application to use their Freckle data, and that you received the request.</dd>
+  <dd>A temporary code that you will send back to Freckle to get the access token. This code confirms that the user authorized your application to use their Freckle data, and that you received the request. This temporary code expires shortly after it’s issued, so be sure to use it quickly!</dd>
   <dt>state</dt>
   <dd><strong>string</strong></dd>
-  <dd>If you provided a state in your <a href="#step-1">redirect to Freckle</a> then it will be returned back to you. If this parameter does not match what you previously sent, then reject the request.</dd>
+  <dd>If you provided a state in your <a href="#redirect-users-to-request-freckle-access">initial request</a> it will be returned back to you. Reject the redirect if this parameter does not match what you previously sent.</dd>
+</dl><h4 id="errors">Errors:</h4>
+
+<p>If the user denied access or there was a problem with the API request, the redirect will include the following query parameters:</p>
+
+<dl>
+<dt>error</dt>
+  <dd><strong>string</strong></dd>
+  <dd>
+<code>invalid_request</code>: The request was not properly formed.</dd>
+  <dd>
+<code>unauthorized_client</code>: This client is not authorized to request access tokens using this method.</dd>
+  <dd>
+<code>access_denied</code>: The user denied the request to allow this client to access their data.</dd>
+  <dd>
+<code>unsupported_response_type</code>: The server does not support this method of obtaining an authorization code.</dd>
+  <dd>
+<code>server_error</code>: The server encountered an unexpected error and was unable to fulfill the request.</dd>
+  <dd>
+<code>temporarily_unavailable</code>: The server is currently unable to handle the request.</dd>
+  <dt>error_description</dt>
+  <dd><strong>string</strong></dd>
+  <dd>A short explanation of the error</dd>
 </dl><h3 id="post-to-freckle-to-get-the-access-token">3. POST to Freckle to get the access token.</h3>
 
-<p>After you have received the temporary code, you will need to <code>POST</code> to Freckle to exchange this temporary code for an access token:</p>
+<p>After you have received the temporary code, you will need to <code>POST</code> to Freckle to exchange this temporary code for an access token</p>
+
+<pre><code>POST /oauth/2/access_token
+</code></pre>
 
 <h4 id="parameters-1">Parameters:</h4>
 
@@ -159,64 +170,159 @@ BAD:  http://example.org
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
-  <dd>the client secret you received from Freckle when you registered your application</dd>
+  <dd>the client secret you received from Freckle when you registered your application.</dd>
   <dt>code</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
-  <dd>the code you received as a response in <a href="#step-2">step 2</a>.</dd>
-</dl><h3 id="reponse">Reponse</h3>
+  <dd>the code you received as a response in <a href="#freckle-redirects-back-to-your-site-with-two-parameters">step 2</a>.</dd>
+  <dt>grant_type</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>Must be set to <code>authorization_code</code>. This is usually handled by an OAuth2 client library.</dd>
+  <dt>redirect_uri</dt>
+  <dd>
+<em>Required if provided in <a href="#redirect-users-to-request-freckle-access">step 1</a></em> <strong>string</strong>
+</dd>
+  <dd>The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data. This must exactly match the value given in <a href="#redirect-users-to-request-freckle-access">step 1</a>.</dd>
+</dl><h4 id="reponse">Reponse</h4>
 
 <p>The response will include the following values:</p>
 
-<ul>
-<li>
-    <dl>
-<dt><strong>access_token</strong></dt>
-      <dd>The token you will use to access the API on behalf of a user</dd>
-    </dl>
-</li>
-  <li>
-    <dl>
-<dt><strong>token_type</strong></dt>
-      <dd>The type of access that has been sent to your application. The default value is “Bearer”</dd>
-    </dl>
-</li>
-  <li>
-    <dl>
-<dt><strong>scope</strong></dt>
-      <dd>The permissions that have been provided to your application.</dd>
-    </dl>
-</li>
-</ul><p>By default, the response will have the following format:</p>
+<dl>
+<dt>access_token</dt>
+  <dd><strong>string</strong></dd>
+  <dd>The token you will use to access the API on behalf of a user.</dd>
+  <dt>refresh_token</dt>
+  <dd><strong>string</strong></dd>
+  <dd>The token you will use to refresh the API access token when it expired.</dd>
+  <dt>expires_in</dt>
+  <dd><strong>integer</strong></dd>
+  <dd>The number of seconds until the current <code>access_token</code> expires.</dd>
+  <dt>token_type</dt>
+  <dd><strong>string</strong></dd>
+  <dd>The type of access that has been sent to your application. The default value is <code>bearer</code>.</dd>
+</dl><p>By default, the response will have the following format:</p>
 
-<pre><code>access_token=abcedfghijk1234567890&amp;scope=current_user%2Centry&amp;token_type=bearer
+<pre><code>access_token=abcedfghijk1234567890&amp;expires_in=12345678&amp;refresh_token=poiuytrew098765&amp;scope=&amp;token_type=bearer
 </code></pre>
 
 <p>However, by modifying your request’s <code>Accept</code> header, you can receive the response in different formats:</p>
 
 <pre><code>Accept: application/json
-{"access_token":"abcedfghijk1234567890", "scope":"current_user,entry", "token_type":"bearer"}
+</code></pre>
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"access_token"</span><span class="o">:</span> <span class="s2">"abcedfghijk1234567890"</span><span class="p">,</span>
+  <span class="s2">"refresh_token"</span><span class="o">:</span> <span class="s2">"poiuytrew098765"</span><span class="p">,</span>
+  <span class="s2">"expires_in"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
+  <span class="s2">"scope"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="s2">"token_type"</span><span class="o">:</span> <span class="s2">"bearer"</span>
+<span class="p">}</span></code></pre>
 
-Accept: application/xml
-&lt;OAuth&gt;
-  &lt;token_type&gt;bearer&lt;/token_type&gt;
-  &lt;scope&gt;current_user,entry&lt;/scope&gt;
-  &lt;access_token&gt;abcedfghijk1234567890&lt;/access_token&gt;
-&lt;/OAuth&gt;
+<h4 id="errors-1">Errors</h4>
+
+<p>If there was an error getting the access token, the response will be a JSON hash that explains the error:</p>
+
+<pre class="headers"><code>Status: 400 Bad Request</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"error"</span><span class="o">:</span> <span class="s2">"invalid_grant"</span><span class="p">,</span>
+  <span class="s2">"error_description"</span><span class="o">:</span> <span class="s2">"The provided access grant is invalid, expired, or revoked (e.g. invalid assertion, expired authorization token, bad end-user password credentials, or mismatching authorization code and redirection URI)."</span>
+<span class="p">}</span></code></pre>
+
+<p>The possible errors are:</p>
+
+<ul>
+<li>
+<code>invalid_request</code>: The request was not properly formed.</li>
+  <li>
+<code>invalid_client</code>: The client provided is invalid.</li>
+  <li>
+<code>invalid_grant</code>: The provided authorization grant or refresh token is invalid.</li>
+  <li>
+<code>unauthorized_client</code>: The client cannot use this grant type.</li>
+  <li>
+<code>unsupported_grant_type</code>: This grant type is not supported by the authorization server.</li>
+</ul><h3 id="use-the-access-token-to-make-api-requests-on-behalf-of-the-user">4. Use the access token to make API requests on behalf of the user</h3>
+
+<p>Now that you have an access token for the user, you can use it to make API requests on their behalf. Please review the <a href="/v2/authentication">API basics section on how to include the access token in your requests</a>.</p>
+
+<h3 id="refresh-the-expired-access-token">5. Refresh the expired access token</h3>
+
+<p>When the access token expires, a <code>401</code> error is returned for any associated API requests:</p>
+
+<pre class="headers"><code>Status: 401 Unauthorized</code></pre>
+
+<p>Once an access token has expired, you will need to use the <code>refresh_token</code> to request a new <code>access_token</code>.</p>
+
+<pre><code>POST /oauth/2/access_token
 </code></pre>
 
-<h3 id="use-the-access-token-to-make-api-requests-on-behalf-of-the-user">4. Use the access token to make API requests on behalf of the user</h3>
+<h4 id="parameters-2">Parameters</h4>
 
-<p>Now that you have an access token for the user, you can use it to make API requests on their behalf. Please review the <a href="/basics#authorization">API basics section on how to include the access token in your requests</a>.</p>
+<dl>
+<dt>client_id</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The client ID you received from Freckle when you registered your application.</dd>
+  <dt>client_secret</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>the client secret you received from Freckle when you registered your application.</dd>
+  <dt>refresh_token</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The refresh token you were given to refresh the API access token when it expired.</dd>
+  <dt>grant_type</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The value must be set to <code>refresh_token</code>. This is usually handled by an OAuth2 client library.</dd>
+</dl><h4 id="response">Response</h4>
+
+<p>The response will include the following values:</p>
+
+<dl>
+<dt>access_token</dt>
+  <dd><strong>string</strong></dd>
+  <dd>The new token you will use to access the API on behalf of a user.</dd>
+  <dt>refresh_token</dt>
+  <dd><strong>string</strong></dd>
+  <dd>The token you will use to refresh the API access token when it expired.</dd>
+  <dt>expires_in</dt>
+  <dd><strong>integer</strong></dd>
+  <dd>The number of seconds until the new <code>access_token</code> expires.</dd>
+  <dt>token_type</dt>
+  <dd><strong>string</strong></dd>
+  <dd>The type of access that has been sent to your application. The default value is <code>bearer</code>.</dd>
+</dl><p>By default, the response will have the following format:</p>
+
+<pre><code>access_token=abcedfghijk1234567890&amp;expires_in=12345678&amp;refresh_token=poiuytrew098765&amp;scope=&amp;token_type=bearer
+</code></pre>
+
+<p>However, by modifying your request’s <code>Accept</code> header, you can receive the response in different formats:</p>
+
+<pre><code>Accept: application/json
+</code></pre>
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"access_token"</span><span class="o">:</span> <span class="s2">"abcedfghijk1234567890"</span><span class="p">,</span>
+  <span class="s2">"refresh_token"</span><span class="o">:</span> <span class="s2">"poiuytrew098765"</span><span class="p">,</span>
+  <span class="s2">"expires_in"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
+  <span class="s2">"scope"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="s2">"token_type"</span><span class="o">:</span> <span class="s2">"bearer"</span>
+<span class="p">}</span></code></pre>
 
 <h2 id="non-web-application-flow">Non-Web Application Flow</h2>
 
-<p>If your application is not a Web-app, you will need to use the OAuth Authorizations API to <a href="#oauth-authorizations-api">generate a new access token</a> for the user. Note that the OAuth Authorization API is only available via <a href="/authentication">Basic Authentication</a></p>
+<p>If your application is not a Web-app, you will need to use the OAuth Authorizations API to <a href="#oauth-authorizations-api">generate a new access token</a> for the user. Note that the OAuth Authorization API is only available via <a href="/v2/authentication">Basic Authentication</a></p>
 
-<h1 id="oauth-authorizations-api">OAuth Authorizations API</h1>
+<h3 id="oauth-authorizations-api">OAuth Authorizations API</h3>
 
-<p>This API allows users to manage their tokens, and is only accessible via <a href="authentication">Basic Authentication</a>.</p>
+<p>This API allows users to manage their tokens, and is only accessible via <a href="/v2/authentication">Basic Authentication</a>.</p>
 
 <p>Access Tokens are not shared across accounts. When using the OAuth Authorizations API, you will need to specify which account you are accessing. This is done by including the desired account’s subdomain as part of the request URL.</p>
 
@@ -226,14 +332,14 @@ Accept: application/xml
 <li>Present the user with a list of all the subdomains (with the corresponding avatar) they are associated with.</li>
   <li>User selects which account they want to access</li>
   <li>Use the user-selected subdomain to access the OAuth Authorizations API</li>
-</ol><h2 id="list-all-the-subdomains-associated-with-this-user">List all the subdomains associated with this user</h2>
+</ol><h3 id="list-all-the-subdomains-associated-with-this-user">List all the subdomains associated with this user</h3>
 
 <p>In order to use the OAuth Authorizations API, you will need to specify which subdomain the user wants to authenticate with. This method returns a list of all the subdomains associated with the user, along with URLs to their respective avatars.</p>
 
 <pre><code>GET /subdomains
 </code></pre>
 
-<h3 id="response">Response</h3>
+<h4 id="response-1">Response</h4>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -244,12 +350,12 @@ Accept: application/xml
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="list-all-authorizations">List all authorizations</h2>
+<h3 id="list-all-authorizations">List all authorizations</h3>
 
 <pre><code>GET /authorizations/:subdomain
 </code></pre>
 
-<h3 id="response-1">Response</h3>
+<h4 id="response-2">Response</h4>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -274,7 +380,7 @@ Accept: application/xml
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h3 id="response-if-the-user-is-not-associated-with-the-subdomain-provided">Response if the user is not associated with the subdomain provided</h3>
+<h4 id="response-if-the-user-is-not-associated-with-the-subdomain-provided">Response if the user is not associated with the subdomain provided</h4>
 
 <pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
 
@@ -283,7 +389,7 @@ Accept: application/xml
 <pre><code>GET /authorizations/:subdomain/:id
 </code></pre>
 
-<h3 id="response-2">Response</h3>
+<h4 id="response-3">Response</h4>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -306,14 +412,14 @@ Accept: application/xml
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="create-a-new-authorization-token">Create a new Authorization Token</h2>
+<h3 id="create-a-new-authorization-token">Create a new Authorization Token</h3>
 
 <p>When you are not building a Web Application, it might be easier to generate a token using a single POST request.</p>
 
 <pre><code>POST /authorizations/:subdomain
 </code></pre>
 
-<h3 id="inputs">Inputs</h3>
+<h4 id="inputs">Inputs</h4>
 
 <dl>
 <dt>client_id</dt>
@@ -342,7 +448,7 @@ Accept: application/xml
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>a URL to remind users what app the OAuth token was generated for.</dd>
-</dl><h3 id="response-3">Response</h3>
+</dl><h4 id="response-4">Response</h4>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -365,18 +471,18 @@ Accept: application/xml
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-1">Response if the user is not associated with the subdomain provided</h3>
+<h4 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-1">Response if the user is not associated with the subdomain provided</h4>
 
 <pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
 
-<h2 id="get-or-create-an-authorization-for-a-specific-app">Get-or-create an authorization for a specific app</h2>
+<h3 id="get-or-create-an-authorization-for-a-specific-app">Get-or-create an authorization for a specific app</h3>
 
 <p>This method checks for an authorization for the specified OAuth application. If the authorization does not exist for this user, it is automatically created.</p>
 
 <pre><code>PUT /authorizations/:subdomain/clients/:client_id
 </code></pre>
 
-<h3 id="inputs-1">Inputs</h3>
+<h4 id="inputs-1">Inputs</h4>
 
 <dl>
 <dt>client_secret</dt>
@@ -400,7 +506,7 @@ Accept: application/xml
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>a URL to remind users what app the OAuth token was generated for.</dd>
-</dl><h2 id="response-if-a-new-authorization-is-created">Response if a new authorization is created</h2>
+</dl><h3 id="response-if-a-new-authorization-is-created">Response if a new authorization is created</h3>
 <pre class="headers"><code>Status: 201 Created</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
@@ -448,12 +554,12 @@ Accept: application/xml
 
 <pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
 
-<h2 id="update-an-existing-authorization">Update an existing Authorization</h2>
+<h3 id="update-an-existing-authorization">Update an existing Authorization</h3>
 
 <pre><code>PUT /authroizations/:subdomain/:id
 </code></pre>
 
-<h3 id="parameters-2">Parameters:</h3>
+<h4 id="parameters-3">Parameters:</h4>
 
 <dl>
 <dt>note</dt>
@@ -476,7 +582,7 @@ Accept: application/xml
 <em>Optional</em> <strong>array of strings</strong>
 </dd>
   <dd>The list of scopes to remove from this authorization. Removing scopes prevents your application from accessing specific information from the user’s Freckle account. Scopes that are not currently applied for this authorization will be ignored.</dd>
-</dl><h3 id="response-4">Response</h3>
+</dl><h4 id="response-5">Response</h4>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -499,20 +605,20 @@ Accept: application/xml
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-3">Response if the user is not associated with the subdomain provided</h3>
+<h4 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-3">Response if the user is not associated with the subdomain provided</h4>
 
 <pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
 
-<h2 id="delete-an-authorization">Delete an Authorization</h2>
+<h3 id="delete-an-authorization">Delete an Authorization</h3>
 
 <pre><code>DELETE /authorizations/:subdomain/:id
 </code></pre>
 
-<h3 id="response-5">Response</h3>
+<h4 id="response-6">Response</h4>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h1 id="oauth-application-api">OAuth Application API</h1>
+<h2 id="oauth-application-api">OAuth Application API</h2>
 
 <p>These methods are provided to allow your application to confirm a token’s validity and revoke tokens as necessary. They are only accessible by using Basic Authentication as follows:</p>
 
@@ -523,17 +629,17 @@ Accept: application/xml
   <dt>Password</dt>
   <dd>Your application’s <code>client_secret</code>
 </dd>
-</dl><h2 id="check-an-authorization">Check an Authorization</h2>
+</dl><h3 id="check-an-authorization">Check an Authorization</h3>
 
 <p>This method allows you to confirm a token’s validity. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
 <pre><code>GET /applications/:client_id/tokens/:access_token
 </code></pre>
 
-<h2 id="response-if-the-token-does-not-exist">Response if the token does not exist</h2>
+<h4 id="response-if-the-token-does-not-exist">Response if the token does not exist</h4>
 <pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
 
-<h2 id="response-6">Response:</h2>
+<h4 id="response-7">Response:</h4>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -556,24 +662,24 @@ Accept: application/xml
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="revoke-all-authorizations-for-an-application">Revoke all Authorizations for an application</h2>
+<h3 id="revoke-all-authorizations-for-an-application">Revoke all Authorizations for an application</h3>
 
 <p>The owner of an OAuth application can revoke every token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
 <pre><code>DELETE /applications/:client_id/tokens
 </code></pre>
 
-<h3 id="response-7">Response</h3>
+<h4 id="response-8">Response</h4>
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h2 id="revoke-a-single-authorization-for-an-application">Revoke a single authorization for an application</h2>
+<h3 id="revoke-a-single-authorization-for-an-application">Revoke a single authorization for an application</h3>
 
 <p>The owner of an OAuth application can also revoke a single token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
 <pre><code>DELETE /applications/:client_id/tokens/:access_token
 </code></pre>
 
-<h3 id="response-8">Response</h3>
+<h4 id="response-9">Response</h4>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
     </div>

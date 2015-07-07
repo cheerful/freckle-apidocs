@@ -82,14 +82,25 @@ in the API documentation, you can help fix it quickly by <a href="https://github
 <p>There are several 3rd-party open source libraries for popular languages
 available:</p>
 
+<h3 id="api-v1-libraries">API v1 Libraries:</h3>
+
+<p><em>These libraries only support <a href="/">API v1</a>, meaning that some of the actions and options from API v2 will not be available in these libraries.</em></p>
+
 <ul>
 <li>Ruby: <a href="https://github.com/ryanlecompte/letsfreckle-client">letsfreckle-client</a>
 </li>
   <li>Python: <a href="https://github.com/ipmb/freckle">ipmb/freckle</a>
 </li>
+  <li>Python: <a href="https://github.com/bitmazk/python-freckle-client">bitmazk/python-freckle-client</a>
+</li>
   <li>Node.js: <a href="https://github.com/tbranyen/nodefreckle">nodefreckle</a>
 </li>
   <li>Clojure: <a href="https://github.com/mlehman/clj-freckle">clj-freckle</a>
+</li>
+</ul><h3 id="api-v2-libraries">API v2 Libraries:</h3>
+
+<ul>
+<li>Python: <a href="https://github.com/bitmazk/python-freckle-client">bitmazk/python-freckle-client</a>
 </li>
 </ul><p>Additionally, the command-line tool <a href="https://github.com/sirkitree/pippi">Pippi</a> can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script.</p>
 
@@ -113,6 +124,10 @@ Please contact the library authors directly if you need help with these.
 
 <pre><code>https://api.letsfreckle.com/v2/timers
 </code></pre>
+
+<p class="note">
+This is different than API v1, where the API was accessed through an account-specific endpoint. If you are migrating from API v1, make sure to change the endpoint URL!
+</p>
 
 <h2 id="general-schema">General Schema</h2>
 

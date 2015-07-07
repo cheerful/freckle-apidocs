@@ -63,8 +63,8 @@
   <li><a href="#edit-a-user">Edit a User</a></li>
   <li><a href="#resend-a-pending-users-invitation-email">Resend a pending user’s invitation email</a></li>
   <li><a href="#reactivate-a-deactivated-user">Reactivate a Deactivated User</a></li>
-  <li><a href="#give-a-freelancer-access-to-projects">Give a Freelancer Access to Projects</a></li>
-  <li><a href="#revoke-a-freelancers-access-to-projects">Revoke a Freelancer’s Access to Projects</a></li>
+  <li><a href="#give-a-user-access-to-projects">Give a User Access to Projects</a></li>
+  <li><a href="#revoke-a-users-access-to-projects">Revoke a User’s Access to Projects</a></li>
   <li><a href="#delete-a-user">Delete a User</a></li>
   <li><a href="#deactivate-a-user">Deactivate a User</a></li>
 </ul><h2 id="list-users">List Users</h2>
@@ -534,9 +534,11 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 <ul>
 <li>
 <strong>not_deactivated</strong>: The user is not deactivated, and therefore cannot be reactivated.</li>
-</ul><h2 id="give-a-freelancer-access-to-projects">Give a Freelancer Access to Projects</h2>
+</ul><h2 id="give-a-user-access-to-projects">Give a User Access to Projects</h2>
 
-<p>Giving a Freelancer Access to a project allows them to view and create entries and expenses for the project. Any projects the user already has access to are ignored.</p>
+<div class="note warning">Currently, only freelancers are affected by project access rules.</div>
+
+<p>Giving a User Access to a project allows them to view and create entries and expenses for the project. Any projects the user already has access to are ignored.</p>
 
 <pre><code>PUT /users/:id/give_access_to_projects
 </code></pre>
@@ -546,7 +548,7 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 <dl>
 <dt>projects</dt>
   <dd>
-<em>Required</em> <strong>array of integers</strong>: the IDs of the projects to give a Freelancer access to.</dd>
+<em>Required</em> <strong>array of integers</strong>: the IDs of the projects to give a User access to.</dd>
 </dl><h3 id="response-9">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
@@ -557,14 +559,14 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 
 <ul>
 <li>
-<strong>not_a_freelancer</strong>: The user is not a freelancer</li>
-  <li>
 <strong>already_has_access</strong>: The user already has access to this project</li>
   <li>
 <strong>deactivated</strong>: The user is deactivated, and therefore cannot be given access to any projects.</li>
-</ul><h2 id="revoke-a-freelancers-access-to-projects">Revoke a Freelancer’s Access to Projects</h2>
+</ul><h2 id="revoke-a-users-access-to-projects">Revoke a User’s Access to Projects</h2>
 
-<p>Revoking a Freelancer’s access to a project prevents them from viewing the entries and expenses for the project. Note that the freelancer’s entries and expenses logged for the project <strong>are not deleted</strong>. Any projects that the user does not have access to are ignored.</p>
+<div class="note warning">Currently, only freelancers are affected by project access rules.</div>
+
+<p>Revoking a User’s access to a project prevents them from viewing the entries and expenses for the project. Note that the user’s entries and expenses logged for the project <strong>are not deleted</strong>. Any projects that the user does not have access to are ignored.</p>
 
 <pre><code>PUT /users/:id/revoke_access_to_projects
 </code></pre>
@@ -574,7 +576,7 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 <dl>
 <dt>projects</dt>
   <dd>
-<em>Required</em> <strong>array of integers</strong>: the IDs of the projects to revoke a Freelancer’s access to.</dd>
+<em>Required</em> <strong>array of integers</strong>: the IDs of the projects to revoke a User’s access to.</dd>
 </dl><h3 id="response-10">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
@@ -585,7 +587,7 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
 
 <ul>
 <li>
-<strong>not_a_freelancer</strong>: The user is not a freelancer</li>
+<strong>can_access_all_projects</strong>: The user is has access all the projects in this account, and cannot be prevented from accessing specific projects.</li>
   <li>
 <strong>deactivated</strong>: The user is deactivated, and therefore cannot be modified.</li>
 </ul><h2 id="delete-a-user">Delete a User</h2>

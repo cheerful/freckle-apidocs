@@ -180,7 +180,7 @@ that are not currently paginated.</p>
 
 <h2 id="response-codes-and-error-handling">Response codes and error handling</h2>
 
-<p>A call to the API can result in one of five different outcomes:</p>
+<p>A call to the API can result in one of six different outcomes:</p>
 
 <ul>
 <li>
@@ -208,6 +208,9 @@ is to try the same call later.</p>
   <li>
     <p>There’s a timeout or a network issue and the connection is dropped without response.
 This is rare but it does happen. Try the call again.</p>
+  </li>
+  <li>
+    <p>If too many requests are performed and the <a href="#rate-limiting">rate limits</a> are exceeded: <strong><code>429 Too Many Requests</code></strong>.</p>
   </li>
 </ul><h2 id="rate-limiting">Rate Limiting</h2>
 
