@@ -227,9 +227,11 @@ The following Custom Error codes can be returned for this action:
 
 * **not_deactivated**: The user is not deactivated, and therefore cannot be reactivated.
 
-## Give a Freelancer Access to Projects
+## Give a User Access to Projects
 
-Giving a Freelancer Access to a project allows them to view and create entries and expenses for the project. Any projects the user already has access to are ignored.
+<div class="note warning">Currently, only freelancers are affected by project access rules.</div>
+
+Giving a User Access to a project allows them to view and create entries and expenses for the project. Any projects the user already has access to are ignored.
 
 ~~~
 PUT /users/:id/give_access_to_projects
@@ -238,7 +240,7 @@ PUT /users/:id/give_access_to_projects
 ### Inputs
 
 projects
-: *Required* **array of integers**: the IDs of the projects to give a Freelancer access to.
+: *Required* **array of integers**: the IDs of the projects to give a User access to.
 
 ### Response
 
@@ -248,13 +250,14 @@ projects
 
 The following Custom Error codes can be returned for this action:
 
-* **not_a_freelancer**: The user is not a freelancer
 * **already_has_access**: The user already has access to this project
 * **deactivated**: The user is deactivated, and therefore cannot be given access to any projects.
 
-## Revoke a Freelancer's Access to Projects
+## Revoke a User's Access to Projects
 
-Revoking a Freelancer's access to a project prevents them from viewing the entries and expenses for the project. Note that the freelancer's entries and expenses logged for the project **are not deleted**. Any projects that the user does not have access to are ignored.
+<div class="note warning">Currently, only freelancers are affected by project access rules.</div>
+
+Revoking a User's access to a project prevents them from viewing the entries and expenses for the project. Note that the user's entries and expenses logged for the project **are not deleted**. Any projects that the user does not have access to are ignored.
 
 ~~~
 PUT /users/:id/revoke_access_to_projects
@@ -263,7 +266,7 @@ PUT /users/:id/revoke_access_to_projects
 ### Inputs
 
 projects
-: *Required* **array of integers**: the IDs of the projects to revoke a Freelancer's access to.
+: *Required* **array of integers**: the IDs of the projects to revoke a User's access to.
 
 ### Response
 
@@ -273,7 +276,7 @@ projects
 
 The following Custom Error codes can be returned for this action:
 
-* **not_a_freelancer**: The user is not a freelancer
+* **can_access_all_projects**: The user is has access all the projects in this account, and cannot be prevented from accessing specific projects.
 * **deactivated**: The user is deactivated, and therefore cannot be modified.
 
 ## Delete a User
