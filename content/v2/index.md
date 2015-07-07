@@ -27,7 +27,7 @@ available:
 
 ### API v1 Libraries:
 
-*These libraries only support [API v1](/), meaning that some of the actions and options from API v2 may not be available in these libraries.*
+*These libraries only support [API v1](/), meaning that some of the actions and options from API v2 will not be available in these libraries.*
 
 * Ruby: [letsfreckle-client](https://github.com/ryanlecompte/letsfreckle-client)
 * Python: [ipmb/freckle](https://github.com/ipmb/freckle)
@@ -63,6 +63,10 @@ For example: if we wanted to access a user's timers, the URL would be:
 ~~~
 <%= API_V2_URL + "/timers" %>
 ~~~
+
+<p class="note">
+This is different than API v1, where the API was accessed through an account-specific endpoint. If you are migrating from API v1, make sure to change the endpoint URL!
+</p>
 
 ## General Schema
 
