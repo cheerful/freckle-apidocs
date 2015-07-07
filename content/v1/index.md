@@ -133,7 +133,7 @@ that are not currently paginated.
 
 ## Response codes and error handling
 
-A call to the API can result in one of five different outcomes:
+A call to the API can result in one of six different outcomes:
 
 * Everything works fine—a HTTP status code in the 200 range is returned;
   for reads and updates **`200 OK`** and for newly created resources **`201 Created`**
@@ -155,6 +155,8 @@ A call to the API can result in one of five different outcomes:
 
 * There's a timeout or a network issue and the connection is dropped without response.
   This is rare but it does happen. Try the call again.
+
+* If too many requests are performed and the [rate limits](#rate-limiting) are exceeded: **`429 Too Many Requests`**.
 
 ## Rate Limiting
 
