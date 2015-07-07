@@ -229,7 +229,7 @@ The following Custom Error codes can be returned for this action:
 
 ## Give a User Access to Projects
 
-<div class="note warning">Currently, only freelancers are affected by project access rules.</div>
+<div class="note">Currently, only freelancers are affected by project access rules.</div>
 
 Giving a User Access to a project allows them to view and create entries and expenses for the project. Any projects the user already has access to are ignored.
 
@@ -255,7 +255,7 @@ The following Custom Error codes can be returned for this action:
 
 ## Revoke a User's Access to Projects
 
-<div class="note warning">Currently, only freelancers are affected by project access rules.</div>
+<div class="note">Currently, only freelancers are affected by project access rules.</div>
 
 Revoking a User's access to a project prevents them from viewing the entries and expenses for the project. Note that the user's entries and expenses logged for the project **are not deleted**. Any projects that the user does not have access to are ignored.
 
@@ -281,7 +281,7 @@ The following Custom Error codes can be returned for this action:
 
 ## Delete a User
 
-*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
 
 ~~~
 DELETE /users/:id
@@ -301,7 +301,7 @@ The error message for the delete action follows the pattern explained in the API
 
 ## Deactivate a User
 
-*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
 
 ~~~
 PUT /users/:id/deactivate
