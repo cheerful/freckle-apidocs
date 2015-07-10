@@ -19,7 +19,7 @@ Each parameter passed will filter the results, and parameters are chained
 (meaning that if you search by `description` and `projects`, it will only
 return the timers with that description text for those projects).
 
-descripton
+description
 : *Optional* **string**
 : Only timers containing this text in their description are returned.
 : Example: `description=meeting`

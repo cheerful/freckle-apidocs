@@ -22,7 +22,7 @@ user_ids
 : *Optional* **string**: a comma-separated list of user IDs to filter by.
 : Example: `user_ids=1,2,3`
 
-descripton
+description
 : *Optional* **string**
 : Only expenses containing this text in their description are returned.
 : Example: `description=license`

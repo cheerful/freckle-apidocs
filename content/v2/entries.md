@@ -23,7 +23,7 @@ user_ids
 : A comma-separated list of user IDs to filter by.
 : Example: `user_ids=1,2,3`
 
-descripton
+description
 : *Optional* **string**
 : Only entries containing this text in their description are returned.
 : Example: `description=meeting`
