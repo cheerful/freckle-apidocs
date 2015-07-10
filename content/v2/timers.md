@@ -69,7 +69,7 @@ description
 
 ## Start a project's timer
 
-<% api_call :put, '/v2/projects/:project_id/timer/start' %>
+<%= api_call :put, '/v2/projects/:project_id/timer/start' %>
 
 <%= headers 201 %>
 <%= json :timer %>
