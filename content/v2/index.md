@@ -27,13 +27,20 @@ available:
 
 ### API v1 Libraries:
 
-*These libraries only support [API v1](/), meaning that some of the actions and options from API v2 will not be available in these libraries.*
+<p class="note">
+These libraries only support <a href="/">API v1</a>, meaning that some of the actions and options from API v2 will not be available in these libraries.
+</p>
 
 * Ruby: [letsfreckle-client](https://github.com/ryanlecompte/letsfreckle-client)
 * Python: [ipmb/freckle](https://github.com/ipmb/freckle)
 * Python: [bitmazk/python-freckle-client](https://github.com/bitmazk/python-freckle-client)
 * Node.js: [nodefreckle](https://github.com/tbranyen/nodefreckle)
 * Clojure: [clj-freckle](https://github.com/mlehman/clj-freckle)
+
+Additionally, there are command line tools that can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script:
+
+* [Pippi](https://github.com/sirkitree/pippi)
+* [freck](https://github.com/robinhouston/freckle-command)
 
 ### API v2 Libraries:
 

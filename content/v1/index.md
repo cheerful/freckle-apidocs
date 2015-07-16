@@ -44,14 +44,16 @@ use "Freckle" or the Freckle logo as name or icon of your app!
 There are several 3rd-party open source libraries for popular languages
 available:
 
-* [Ruby](https://github.com/ryanlecompte/letsfreckle-client)
-* [Python](https://github.com/ipmb/freckle)
-* [Node.js](https://github.com/tbranyen/nodefreckle)
-* [Clojure](https://github.com/mlehman/clj-freckle)
+* Ruby: [letsfreckle-client](https://github.com/ryanlecompte/letsfreckle-client)
+* Python: [ipmb/freckle](https://github.com/ipmb/freckle)
+* Python: [bitmazk/python-freckle-client](https://github.com/bitmazk/python-freckle-client)
+* Node.js: [nodefreckle](https://github.com/tbranyen/nodefreckle)
+* Clojure: [clj-freckle](https://github.com/mlehman/clj-freckle)
 
-Additionally, the command-line tool [Pippi](https://npmjs.org/package/pippi) can log time and access
-other API functionality, which is great if you want to use the Freckle API
-from a shell script.
+Additionally, there are command line tools that can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script:
+
+* [Pippi](https://github.com/sirkitree/pippi)
+* [freck](https://github.com/robinhouston/freckle-command)
 
 <p class="note">
 These are 3rd-party libraries and Freckle can't provide support for them.
