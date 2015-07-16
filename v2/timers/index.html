@@ -73,7 +73,7 @@ $ curl -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48a
 return the timers with that description text for those projects).</p>
 
 <dl>
-<dt>descripton</dt>
+<dt>description</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -228,6 +228,11 @@ $ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75
 </dd>
   <dd>The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.</dd>
 </dl><h2 id="start-a-projects-timer">Start a project’s timer</h2>
+
+<div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">PUT /v2/projects/:project_id/timer/start
+
+# cURL
+$ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/projects/:project_id/timer/start</code></pre></div></div>
 
 <pre class="headers"><code>Status: 201 Created</code></pre>
 

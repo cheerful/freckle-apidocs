@@ -75,7 +75,7 @@
   <dd>A comma-separated list of user IDs to filter by.</dd>
   <dd>Example: <code>user_ids=1,2,3</code>
 </dd>
-  <dt>descripton</dt>
+  <dt>description</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -167,6 +167,28 @@
 <code>true</code>: only show billable entries</dd>
   <dd>
 <code>false</code>: only shows unbillable entries</dd>
+  <dt>approved_at_from</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>Only entries approved from or after this date will be returned.</dd>
+  <dd>Example: <code>approved_at_from=2013-09-27</code>
+</dd>
+  <dt>approved_at_to</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>Only entries approved on or before this date will be returned.</dd>
+  <dd>Example: <code>approved_at_to=2013-09-27</code>
+</dd>
+  <dt>approved_by_ids</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>A comma-separated list of user IDs to filter by.</dd>
+  <dd>Only entries that have been approved by these users will be returned.</dd>
+  <dd>Example: <code>approved_by_ids=1,2,3</code>
+</dd>
 </dl><h3 id="response">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
@@ -217,6 +239,15 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
     <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
       <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+    <span class="p">},</span>
+    <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
+    <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
     <span class="p">},</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
@@ -274,6 +305,15 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
   <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+  <span class="p">},</span>
+  <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
+  <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
@@ -400,6 +440,15 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
   <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+  <span class="p">},</span>
+  <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
+  <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
@@ -533,6 +582,15 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
   <span class="p">},</span>
+  <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
+  <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+  <span class="p">},</span>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
@@ -542,6 +600,8 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 
 <ul>
 <li>
+<strong>approved_and_locked</strong>: This entry has been approved and locked, and cannot be modified</li>
+  <li>
 <strong>reached_project_limit</strong>: The account has reached its project limit, so no more projects can be created until the account has been upgraded.</li>
   <li>
 <strong>cannot_create_projects</strong>: The authenticated user is unable to create projects.</li>
@@ -614,7 +674,7 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 
 <h3 id="a-note-about-entry-deletion">A note about entry deletion</h3>
 
-<p>An entry cannot be deleted if it has been invoiced or is associated with an archived project. In this case, response will include detailed information about why the entry couldn’t be deleted.</p>
+<p>An entry cannot be deleted if it has been invoiced, is associated with an archived project, or is approved and locked. In this case, response will include detailed information about why the entry couldn’t be deleted.</p>
 
 <h3 id="custom-error-codes-3">Custom Error Codes</h3>
 
@@ -622,6 +682,8 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 
 <ul>
 <li>
+<strong>approved_and_locked</strong>: This entry has been approved and locked, and cannot be deleted</li>
+  <li>
 <strong>invoiced</strong>: the Entry has been invoiced</li>
   <li>
 <strong>archived_project</strong>: the Entry is associated with an archived Project</li>
