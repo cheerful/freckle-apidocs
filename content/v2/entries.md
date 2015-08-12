@@ -171,6 +171,7 @@ source_url
 
 * **reached_project_limit**: The account has reached its project limit, so no more projects can be created until the account has been upgraded.
 * **cannot_create_projects**: The authenticated user is unable to create projects.
+* **cannot_create_tags**: The authenticated user is unable to create new tags.
 
 ## Edit an Entry
 
@@ -225,6 +226,7 @@ source_url
 * **approved_and_locked**: This entry has been approved and locked, and cannot be modified
 * **reached_project_limit**: The account has reached its project limit, so no more projects can be created until the account has been upgraded.
 * **cannot_create_projects**: The authenticated user is unable to create projects.
+* **cannot_create_tags**: The authenticated user is unable to create new tags.
 
 ## Mark Entry as invoiced outside of Freckle
 

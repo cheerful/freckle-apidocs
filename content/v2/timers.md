@@ -132,6 +132,10 @@ If a project does not have a currently running or paused timer, then the respons
 
 <%= headers 404 %>
 
+### Custom Error Codes
+
+* **cannot_create_tags**: The authenticated user is unable to create new tags
+
 
 ## Discard a project's timer
 
