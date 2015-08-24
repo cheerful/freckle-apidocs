@@ -19,7 +19,7 @@
       <h2>Topics</h2>
       <ul id="resources">
         <li><a href="/v2">API Basics</a></li>
-        <li><a class="coming-soon" href="/v2/oauth">OAuth</a></li>
+        <li><a href="/v2/oauth">OAuth</a></li>
         <li><a href="/v2/authentication">Authentication</a></li>
         <li><a href="/v2/invoice_locales">Invoice Locales</a></li>
       </ul>
@@ -57,7 +57,7 @@
 <li><a href="#introduction">Introduction</a></li>
   <li><a href="#freckle-api-libraries">Freckle API Libraries</a></li>
   <li><a href="#naming-client-applications">Naming client applications</a></li>
-  <li><a href="#api-url">API URL</a></li>
+  <li><a href="#api-urls">API URLs</a></li>
   <li><a href="#general-schema">General Schema</a></li>
   <li><a href="#a-user-agent-is-required">A User Agent is Required</a></li>
   <li><a href="#rate-limiting">Rate Limiting</a></li>
@@ -120,9 +120,11 @@ Please contact the library authors directly if you need help with these.
 
 <p>If you plan to release a public client app for Freckle (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so. Do not name apps “Freckle” or “Freckle for <platform>”. Please contact us first with more details about your app if you want to use “Freckle” or the Freckle logo as name or icon of your app!</platform></p>
 
-<h2 id="api-url">API URL</h2>
+<h2 id="api-urls">API URLs</h2>
 
-<p>The API is accessed through a single endpoint:</p>
+<h3 id="api-resources">API Resources</h3>
+
+<p>API Resources are accessed through a single endpoint:</p>
 
 <pre><code>https://api.letsfreckle.com/v2
 </code></pre>
@@ -135,6 +137,18 @@ Please contact the library authors directly if you need help with these.
 <p class="note">
 This is different than API v1, where the API was accessed through an account-specific endpoint. If you are migrating from API v1, make sure to change the endpoint URL!
 </p>
+
+<h3 id="oauth">OAuth</h3>
+
+<p>Authenticating through <a href="/v2/oauth/">OAuth</a> is handled through a different endpoint than accessing API Resources:</p>
+
+<pre><code>https://secure.letsfreckle.com
+</code></pre>
+
+<p>For example: if we wanted to redirect to users to Freckle to request access to their Freckle account:</p>
+
+<pre><code>GET https://secure.letsfreckle.com/oauth/2/authorize
+</code></pre>
 
 <h2 id="general-schema">General Schema</h2>
 

@@ -19,7 +19,7 @@
       <h2>Topics</h2>
       <ul id="resources">
         <li><a href="/v2">API Basics</a></li>
-        <li><a class="coming-soon" href="/v2/oauth">OAuth</a></li>
+        <li><a href="/v2/oauth">OAuth</a></li>
         <li><a href="/v2/authentication">Authentication</a></li>
         <li><a href="/v2/invoice_locales">Invoice Locales</a></li>
       </ul>
@@ -49,8 +49,12 @@
     <div id="content">
       <h1>OAuth</h1>
       <div class="note warning sticky">
-  <h2>Not implemented yet!</h2>
-  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+  <h2>Almost finished!</h2>
+  <p>This authentication method is almost finished, but the following sections will return a 404 error:</p>
+  <ul>
+<li><a href="#non-web-application-flow">Non-Web Application Flow</a></li>
+    <li><a href="#oauth-application-api">OAuth Application API</a></li>
+  </ul>
 </div>
 
 <ul id="markdown-toc">
@@ -65,13 +69,18 @@
 
 <p>Since OAuth2 is a complicated authentication protocol, you may want to use an <a href="http://oauth.net/2/">existing library</a> to generate and refresh access tokens.</p>
 
+<p>All OAuth2 authorization requests are made through a single endpoint</p>
+
+<pre><code>https://secure.letsfreckle.com
+</code></pre>
+
 <h2 id="web-application-flow">Web Application Flow</h2>
 
 <p>Below are the steps required to generate an access token for a Freckle user through an initial <code>GET</code> request to Freckle and a corresponding redirect back to your application.</p>
 
 <h3 id="redirect-users-to-request-freckle-access">1. Redirect users to request Freckle access</h3>
 
-<pre><code>GET /oauth/2/authorize
+<pre><code>GET https://secure.letsfreckle.com/oauth/2/authorize
 </code></pre>
 
 <h4 id="parameters">Parameters:</h4>
@@ -155,7 +164,7 @@ BAD:  http://example.org
 
 <p>After you have received the temporary code, you will need to <code>POST</code> to Freckle to exchange this temporary code for an access token</p>
 
-<pre><code>POST /oauth/2/access_token
+<pre><code>POST https://secure.letsfreckle.com/oauth/2/access_token
 </code></pre>
 
 <h4 id="parameters-1">Parameters:</h4>
@@ -256,7 +265,7 @@ BAD:  http://example.org
 
 <p>Once an access token has expired, you will need to use the <code>refresh_token</code> to request a new <code>access_token</code>.</p>
 
-<pre><code>POST /oauth/2/access_token
+<pre><code>POST https://secure.letsfreckle.com/oauth/2/access_token
 </code></pre>
 
 <h4 id="parameters-2">Parameters</h4>
@@ -336,7 +345,7 @@ BAD:  http://example.org
 
 <p>In order to use the OAuth Authorizations API, you will need to specify which subdomain the user wants to authenticate with. This method returns a list of all the subdomains associated with the user, along with URLs to their respective avatars.</p>
 
-<pre><code>GET /subdomains
+<pre><code>GET https://secure.letsfreckle.com/subdomains
 </code></pre>
 
 <h4 id="response-1">Response</h4>
@@ -352,7 +361,7 @@ BAD:  http://example.org
 
 <h3 id="list-all-authorizations">List all authorizations</h3>
 
-<pre><code>GET /authorizations/:subdomain
+<pre><code>GET https://secure.letsfreckle.com/authorizations/:subdomain
 </code></pre>
 
 <h4 id="response-2">Response</h4>
@@ -386,7 +395,7 @@ BAD:  http://example.org
 
 <h3 id="get-a-single-authorization">Get a single Authorization</h3>
 
-<pre><code>GET /authorizations/:subdomain/:id
+<pre><code>GET https://secure.letsfreckle.com/authorizations/:subdomain/:id
 </code></pre>
 
 <h4 id="response-3">Response</h4>
@@ -416,7 +425,7 @@ BAD:  http://example.org
 
 <p>When you are not building a Web Application, it might be easier to generate a token using a single POST request.</p>
 
-<pre><code>POST /authorizations/:subdomain
+<pre><code>POST https://secure.letsfreckle.com/authorizations/:subdomain
 </code></pre>
 
 <h4 id="inputs">Inputs</h4>
@@ -479,7 +488,7 @@ BAD:  http://example.org
 
 <p>This method checks for an authorization for the specified OAuth application. If the authorization does not exist for this user, it is automatically created.</p>
 
-<pre><code>PUT /authorizations/:subdomain/clients/:client_id
+<pre><code>PUT https://secure.letsfreckle.com/authorizations/:subdomain/clients/:client_id
 </code></pre>
 
 <h4 id="inputs-1">Inputs</h4>
@@ -556,7 +565,7 @@ BAD:  http://example.org
 
 <h3 id="update-an-existing-authorization">Update an existing Authorization</h3>
 
-<pre><code>PUT /authroizations/:subdomain/:id
+<pre><code>PUT https://secure.letsfreckle.com/authroizations/:subdomain/:id
 </code></pre>
 
 <h4 id="parameters-3">Parameters:</h4>
@@ -611,7 +620,7 @@ BAD:  http://example.org
 
 <h3 id="delete-an-authorization">Delete an Authorization</h3>
 
-<pre><code>DELETE /authorizations/:subdomain/:id
+<pre><code>DELETE https://secure.letsfreckle.com/authorizations/:subdomain/:id
 </code></pre>
 
 <h4 id="response-6">Response</h4>
@@ -633,7 +642,7 @@ BAD:  http://example.org
 
 <p>This method allows you to confirm a token’s validity. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
-<pre><code>GET /applications/:client_id/tokens/:access_token
+<pre><code>GET https://secure.letsfreckle.com/applications/:client_id/tokens/:access_token
 </code></pre>
 
 <h4 id="response-if-the-token-does-not-exist">Response if the token does not exist</h4>
@@ -666,7 +675,7 @@ BAD:  http://example.org
 
 <p>The owner of an OAuth application can revoke every token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
-<pre><code>DELETE /applications/:client_id/tokens
+<pre><code>DELETE https://secure.letsfreckle.com/applications/:client_id/tokens
 </code></pre>
 
 <h4 id="response-8">Response</h4>
@@ -676,7 +685,7 @@ BAD:  http://example.org
 
 <p>The owner of an OAuth application can also revoke a single token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
-<pre><code>DELETE /applications/:client_id/tokens/:access_token
+<pre><code>DELETE https://secure.letsfreckle.com/applications/:client_id/tokens/:access_token
 </code></pre>
 
 <h4 id="response-9">Response</h4>
