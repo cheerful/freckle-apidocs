@@ -367,7 +367,7 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
   <dd>A URL that corresponds to the work completed in this time entry. Some Examples Include:</dd>
   <dd>
     <ul>
-<li>the URL to a commit in a version control platform like <a href="http://help.letsfreckle.com/import-export-api/log-time-from-commit-messages">Github or Beanstalk</a>
+<li>the URL to a commit in a version control platform like <a href="http://help.letsfreckle.com/article/74-log-time-from-github">Github or Beanstalk</a>
 </li>
     </ul>
 </dd>
@@ -462,6 +462,8 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 <strong>reached_project_limit</strong>: The account has reached its project limit, so no more projects can be created until the account has been upgraded.</li>
   <li>
 <strong>cannot_create_projects</strong>: The authenticated user is unable to create projects.</li>
+  <li>
+<strong>cannot_create_tags</strong>: The authenticated user is unable to create new tags.</li>
 </ul><h2 id="edit-an-entry">Edit an Entry</h2>
 
 <pre><code>PUT /v2/entries/:id
@@ -509,7 +511,7 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
   <dd>A URL that corresponds to the work completed in this time entry. Some Examples Include:</dd>
   <dd>
     <ul>
-<li>the URL to a commit in a version control platform like <a href="http://help.letsfreckle.com/import-export-api/log-time-from-commit-messages">Github or Beanstalk</a>
+<li>the URL to a commit in a version control platform like <a href="http://help.letsfreckle.com/article/74-log-time-from-github">Github or Beanstalk</a>
 </li>
     </ul>
 </dd>
@@ -605,6 +607,8 @@ Location: https://apitest.letsfreckle.com/api/v2/entries/1</code></pre>
 <strong>reached_project_limit</strong>: The account has reached its project limit, so no more projects can be created until the account has been upgraded.</li>
   <li>
 <strong>cannot_create_projects</strong>: The authenticated user is unable to create projects.</li>
+  <li>
+<strong>cannot_create_tags</strong>: The authenticated user is unable to create new tags.</li>
 </ul><h2 id="mark-entry-as-invoiced-outside-of-freckle">Mark Entry as invoiced outside of Freckle</h2>
 
 <p>Update the Entry so that is recognized as being invoiced outside of Freckle by providing the date the Entry was invoiced.</p>

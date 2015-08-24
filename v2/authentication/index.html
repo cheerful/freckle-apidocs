@@ -79,7 +79,7 @@
   <dd>I am writing a non-web application that will be using OAuth, and I need to generate an OAuth access token to allow my application to access the API.</dd>
 </dl><h2 id="using-personal-access-tokens">Using Personal Access Tokens</h2>
 
-<p><a href="http://help.letsfreckle.com/import-export-api/api">Personal Access Tokens</a> allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!</p>
+<p><a href="http://help.letsfreckle.com/article/103-connecting-to-the-freckle-api">Personal Access Tokens</a> allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!</p>
 
 <p>The token has to be sent for each request your application makes to the Freckle API.</p>
 
@@ -137,7 +137,7 @@ curl -u abcdefghijklmnop1234567890:x-oauth-basic https://api.letsfreckle.com/v2/
 
 <h3 id="api-access-via-personal-access-tokens">API access via Personal Access Tokens</h3>
 
-<p>You can authenticate using <a href="http://help.letsfreckle.com/import-export-api/api">Personal Access Tokens</a>. This approach is useful if your tools only support Basic Authentication and you are using Personal Access Tokens for authentication.</p>
+<p>You can authenticate using <a href="http://help.letsfreckle.com/article/103-connecting-to-the-freckle-api">Personal Access Tokens</a>. This approach is useful if your tools only support Basic Authentication and you are using Personal Access Tokens for authentication.</p>
 
 <p>To do so, provide the Personal Access Token as the username and provide a blank password or a password of <code>x-freckle-token</code>. For example:</p>
 
