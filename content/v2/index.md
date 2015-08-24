@@ -57,9 +57,11 @@ Please contact the library authors directly if you need help with these.
 
 If you plan to release a public client app for Freckle (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so. Do not name apps “Freckle” or “Freckle for <platform>”. Please contact us first with more details about your app if you want to use “Freckle” or the Freckle logo as name or icon of your app!
 
-## API URL
+## API URLs
 
-The API is accessed through a single endpoint:
+### API Resources
+
+API Resources are accessed through a single endpoint:
 
 ~~~
 <%= API_V2_URL %>
@@ -74,6 +76,21 @@ For example: if we wanted to access a user's timers, the URL would be:
 <p class="note">
 This is different than API v1, where the API was accessed through an account-specific endpoint. If you are migrating from API v1, make sure to change the endpoint URL!
 </p>
+
+
+### OAuth
+
+Authenticating through [OAuth](/v2/oauth/) is handled through a different endpoint than accessing API Resources:
+
+~~~
+<%= OAUTH2_URL %>
+~~~
+
+For example: if we wanted to redirect to users to Freckle to request access to their Freckle account:
+
+~~~~
+GET <%= OAUTH2_URL %>/oauth/2/authorize
+~~~~
 
 ## General Schema
 

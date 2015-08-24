@@ -1,5 +1,6 @@
 module Freckle
   module Resources
+    OAUTH2_URL = "https://secure.letsfreckle.com"
     BASE_DOMAIN = "api.letsfreckle.com"
     API_V2_DOMAIN = BASE_DOMAIN + "/v2"
     BASE_URL   = "https://" + BASE_DOMAIN

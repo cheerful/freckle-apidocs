@@ -4,8 +4,12 @@ title: OAuth
 ---
 
 <div class="note warning sticky">
-  <h2>Not implemented yet!</h2>
-  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+  <h2>Almost finished!</h2>
+  <p>This authentication method is almost finished, but the following sections will return a 404 error:</p>
+  <ul>
+    <li><a href="#non-web-application-flow">Non-Web Application Flow</a></li>
+    <li><a href="#oauth-application-api">OAuth Application API</a></li>
+  </ul>
 </div>
 
 * TOC
@@ -19,6 +23,12 @@ There are two supported ways to generate an access token for a specific user fro
 
 Since OAuth2 is a complicated authentication protocol, you may want to use an [existing library](http://oauth.net/2/) to generate and refresh access tokens.
 
+All OAuth2 authorization requests are made through a single endpoint
+
+~~~
+<%= OAUTH2_URL %>
+~~~
+
 ## Web Application Flow
 
 Below are the steps required to generate an access token for a Freckle user through an initial `GET` request to Freckle and a corresponding redirect back to your application.
@@ -26,7 +36,7 @@ Below are the steps required to generate an access token for a Freckle user thro
 ### 1. Redirect users to request Freckle access
 
 ~~~~
-GET /oauth/2/authorize
+GET <%= OAUTH2_URL %>/oauth/2/authorize
 ~~~~
 
 #### Parameters:
@@ -101,7 +111,7 @@ error_description
 After you have received the temporary code, you will need to `POST` to Freckle to exchange this temporary code for an access token
 
 ~~~
-POST /oauth/2/access_token
+POST <%= OAUTH2_URL %>/oauth/2/access_token
 ~~~
 
 #### Parameters:
@@ -187,7 +197,7 @@ When the access token expires, a `401` error is returned for any associated API 
 Once an access token has expired, you will need to use the `refresh_token` to request a new `access_token`.
 
 ~~~
-POST /oauth/2/access_token
+POST <%= OAUTH2_URL %>/oauth/2/access_token
 ~~~
 
 #### Parameters
@@ -263,7 +273,7 @@ The process for selecting which account to access should be:
 In order to use the OAuth Authorizations API, you will need to specify which subdomain the user wants to authenticate with. This method returns a list of all the subdomains associated with the user, along with URLs to their respective avatars.
 
 ~~~
-GET /subdomains
+GET <%= OAUTH2_URL %>/subdomains
 ~~~
 
 #### Response
@@ -274,7 +284,7 @@ GET /subdomains
 ### List all authorizations
 
 ~~~
-GET /authorizations/:subdomain
+GET <%= OAUTH2_URL %>/authorizations/:subdomain
 ~~~
 
 #### Response
@@ -289,7 +299,7 @@ GET /authorizations/:subdomain
 ### Get a single Authorization
 
 ~~~
-GET /authorizations/:subdomain/:id
+GET <%= OAUTH2_URL %>/authorizations/:subdomain/:id
 ~~~
 
 #### Response
@@ -302,7 +312,7 @@ GET /authorizations/:subdomain/:id
 When you are not building a Web Application, it might be easier to generate a token using a single POST request.
 
 ~~~~
-POST /authorizations/:subdomain
+POST <%= OAUTH2_URL %>/authorizations/:subdomain
 ~~~~
 
 
@@ -344,7 +354,7 @@ This method checks for an authorization for the specified OAuth application. If 
 
 
 ~~~
-PUT /authorizations/:subdomain/clients/:client_id
+PUT <%= OAUTH2_URL %>/authorizations/:subdomain/clients/:client_id
 ~~~
 
 #### Inputs
@@ -383,7 +393,7 @@ note_url
 ### Update an existing Authorization
 
 ~~~
-PUT /authroizations/:subdomain/:id
+PUT <%= OAUTH2_URL %>/authroizations/:subdomain/:id
 ~~~
 
 #### Parameters:
@@ -416,7 +426,7 @@ remove_scopes
 ###Delete an Authorization
 
 ~~~
-DELETE /authorizations/:subdomain/:id
+DELETE <%= OAUTH2_URL %>/authorizations/:subdomain/:id
 ~~~
 
 #### Response
@@ -438,7 +448,7 @@ Password
 This method allows you to confirm a token's validity. The owner must use Basic Authentication when calling this method, where the username is the `client_id` of the application and the password is its `client_secret`
 
 ~~~
-GET /applications/:client_id/tokens/:access_token
+GET <%= OAUTH2_URL %>/applications/:client_id/tokens/:access_token
 ~~~
 
 #### Response if the token does not exist
@@ -454,7 +464,7 @@ GET /applications/:client_id/tokens/:access_token
 The owner of an OAuth application can revoke every token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the `client_id` of the application and the password is its `client_secret`
 
 ~~~
-DELETE /applications/:client_id/tokens
+DELETE <%= OAUTH2_URL %>/applications/:client_id/tokens
 ~~~
 
 ####Response
@@ -465,7 +475,7 @@ DELETE /applications/:client_id/tokens
 The owner of an OAuth application can also revoke a single token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the `client_id` of the application and the password is its `client_secret`
 
 ~~~
-DELETE /applications/:client_id/tokens/:access_token
+DELETE <%= OAUTH2_URL %>/applications/:client_id/tokens/:access_token
 ~~~
 
 
