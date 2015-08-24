@@ -146,7 +146,7 @@ role
 
 The following Custom Error codes can be returned for this action:
 
-* **reached_user_limit**: the account has reached the maximum number of active users available for the current plan. The account owner will have to [upgrade their account](http://help.letsfreckle.com/accounts-billing/upgrading-downgrading).
+* **reached_user_limit**: the account has reached the maximum number of active users available for the current plan. The account owner will have to [upgrade their account](http://help.letsfreckle.com/article/69-upgrading-and-downgrading-your-account).
 
 ## Edit a User
 

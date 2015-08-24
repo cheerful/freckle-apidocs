@@ -121,11 +121,11 @@ recipient
 : the mailing address and other information invoice's recipient.
 
 description
-: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/invoicing/customizable-invoices)
+: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting)
 : a description of the invoice.
 
 footer
-: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/invoicing/customizable-invoices)
+: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting)
 : the footer for each page of the invoice.
 
 show_hours
@@ -366,11 +366,11 @@ recipient
 : the mailing address and other information invoice's recipient.
 
 description
-: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/invoicing/customizable-invoices))
+: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting)
 : a description of the invoice.
 
 footer
-: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/invoicing/customizable-invoices)
+: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting)
 : the footer for each page of the invoice.
 
 show_hours

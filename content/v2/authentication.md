@@ -35,7 +35,7 @@ The Freckle API provides multiple different ways to handle authentication in you
 
 ## Using Personal Access Tokens
 
-[Personal Access Tokens](http://help.letsfreckle.com/import-export-api/api) allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!
+[Personal Access Tokens](http://help.letsfreckle.com/article/103-connecting-to-the-freckle-api) allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!
 
 The token has to be sent for each request your application makes to the Freckle API.
 
@@ -92,7 +92,7 @@ curl -u abcdefghijklmnop1234567890:x-oauth-basic <%= API_V2_URL %>/entries
 
 ### API access via Personal Access Tokens
 
-You can authenticate using [Personal Access Tokens](http://help.letsfreckle.com/import-export-api/api). This approach is useful if your tools only support Basic Authentication and you are using Personal Access Tokens for authentication.
+You can authenticate using [Personal Access Tokens](http://help.letsfreckle.com/article/103-connecting-to-the-freckle-api). This approach is useful if your tools only support Basic Authentication and you are using Personal Access Tokens for authentication.
 
 To do so, provide the Personal Access Token as the username and provide a blank password or a password of `x-freckle-token`. For example:
 
