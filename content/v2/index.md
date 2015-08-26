@@ -141,6 +141,11 @@ There are a few errors that can occur while making API calls. the following are 
 
 <%= headers 403 %>
 
+### Account does not include this feature
+
+<%= headers 403 %>
+<%= json :message => "Account does not include this feature"
+
 ### Account is currently locked for migration
 
 <%= headers 503 %>
@@ -159,7 +164,7 @@ When validation errors occur, the `errors` array is populated with objects that 
     * **missing**: the resource does not exist
     * **missing_field**: a required field on the resource has not been set
     * **already_exists**: another resource has the same value as this field.
-    * **insufficent_permissions** the user does not have the necessary permissions to use this field.
+    * **insufficent_permissions**: the user does not have the necessary permissions to use this field.
     * **Custom errors codes can be defined for resources, and will be documented in the resource's API page.**
 
 ## Deleting or Archiving Resources
