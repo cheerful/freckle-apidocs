@@ -34,6 +34,27 @@ billable
 <%= headers 200, :pagination => true, :pagination_resource => "tags" %>
 <%= json :tag %>
 
+## Create multiple Tags at once
+
+~~~
+POST /tags/
+~~~
+
+### Inputs
+
+names
+: *Required* **array of string**
+: The names of the tags to create. Adding a "*" at the end of a string indicates that the tag is unbillable.
+
+### Response
+
+<%= headers 201 %>
+<%= json_array :tag %>
+
+### A note about tag creation
+
+Any tag that cannot be created or already exists will be ignored and not affect the response
+
 ## Get a single tag
 
 ~~~
