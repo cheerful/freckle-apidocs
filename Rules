@@ -28,6 +28,19 @@ compile '/v2/*' do
   end
 end
 
+# Re-run the V2 compiler for the default version representation
+compile '/v2/*', :rep => :default_version do
+  if item.binary?
+    # don’t filter binary items
+  else
+    filter :erb
+    filter :kramdown, :toc_levels => [2]
+    filter :colorize_syntax,
+    :colorizers => {:javascript => :pygmentsrb, :bash => :pygmentsrb}
+    layout 'v2'
+  end
+end
+
 # Use a specific compiler for anything in the `/v1` directory, since it needs to use the v1 layout
 compile '/v1/*' do
   if item.binary?
@@ -54,16 +67,17 @@ compile '*' do
   end
 end
 
-route 'v1/*' do
+# Build the route for the default API version (the default for api.letsfreckle.com)
+route 'v2/*', :rep => :default_version do
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext
     item.identifier.chop + '.' + item[:extension]
   else
     # Write item with identifier /foo/ to /foo/index.html
-    if item.identifier == '/v1/'
+    if item.identifier == '/v2/'
       "/index.html"
     else
-      item.identifier.gsub("v1/","").chop + ".html"
+      item.identifier.gsub("v2/","") + "index.html"
     end
   end
 end
