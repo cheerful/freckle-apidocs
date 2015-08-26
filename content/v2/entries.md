@@ -282,6 +282,101 @@ date
 
 Any entries that are included in this request that cannot be marked as invoiced outside of Freckle will be ignored and will not affect the Response.
 
+## Mark Entry as approved
+
+Mark the Entry as "approved" in Freckle. Approved entries cannot be edited or deleted.
+
+~~~
+PUT /v2/entries/:id/approved
+~~~
+
+### Input
+
+approved_at
+: *Optional* **string** of a timestamp in ISO 8061 format `YYYY-MM-DDTHH:MM:SSZ`
+: The timestamp for when the entry was approved
+
+### Response
+
+<%= headers 204 %>
+
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **already_approved**: the Entry has already been approved.
+* **archived_project**: the Entry is associated with an archived Project
+
+## Mark multiple Entries as approved
+
+Mark the Entries provided as "approved" in Freckle. Approved entries cannot be edited or deleted.
+
+~~~
+PUT /v2/entries/approved
+~~~
+
+### Input
+
+entry_ids
+: *Required* **array of integers**
+: The IDs of the entries that will be marked as approved.
+
+approved_at
+: *Optional* **string** of a timestamp in ISO 8061 format `YYYY-MM-DDTHH:MM:SSZ`
+: The timestamp for when the entry was approved
+
+### Response
+
+<%= headers 204 %>
+
+### A note about Entries that cannot be marked as approved
+
+Any entries that are included in this request that cannot be marked as approved will be ignored and will not affect the Response.
+
+## Mark Entry as unapproved
+
+Mark the Entry as "unapproved" in Freckle. Unapproved entries can be edited or deleted.
+
+<p class="note">
+Only account owners can unapprove entries
+</p>
+
+~~~
+PUT /v2/entries/:id/unapproved
+~~~
+
+### Response
+
+<%= headers 204 %>
+
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **archived_project**: the Entry is associated with an archived Project
+
+## Mark multiple Entries as unapproved
+
+Mark the Entries provided as "unapproved" in Freckle. Unapproved entries can be edited or deleted.
+
+~~~
+PUT /v2/entries/unapproved
+~~~
+
+### Input
+
+entry_ids
+: *Required* **array of integers**
+: The IDs of the entries that will be marked as approved.
+
+### Response
+
+<%= headers 204 %>
+
+### A note about Entries that cannot be marked as unapproved
+
+Any entries that are included in this request that cannot be marked as unapproved will be ignored and will not affect the Response.
+
 ## Delete an Entry
 
 ~~~
