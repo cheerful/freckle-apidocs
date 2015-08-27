@@ -98,7 +98,11 @@ name
 <%= headers 200 %>
 <%= json :tag %>
 
-## Merge Tags into this tag
+### Custom Error Codes
+
+* **locked**: The tag is currently locked for merging and cannot be modified.
+
+## Merge a Tag into this Tag
 
 When one tag is merged into another, the entries associated with the tag are associated with the new tag, and any instances of the old tags are replaced with the new tags in the Entry Description. **This action is permanent**, so you cannot undo after you merge tags.
 
@@ -108,13 +112,17 @@ PUT /tags/:id/merge
 
 ### Inputs
 
-tag_ids
-: *Required* **array of integers**
-: The IDs of the tags to merge into this tag.
+tag_id
+: *Required* **integer**
+: The ID of the tag to merge into this tag.
 
 ### Response
 
 <%= headers 204 %>
+
+### Custom Error Codes
+
+* **locked**: The tag is currently locked for merging and cannot be modified.
 
 ## Delete a Tag
 
@@ -127,6 +135,10 @@ DELETE /tags/:id
 ### Response
 
 <%= headers 204 %>
+
+### Custom Error Codes
+
+* **locked**: The tag is currently locked for merging and cannot be modified.
 
 ## Delete Multiple Tags at once
 
@@ -145,3 +157,8 @@ tag_ids
 ### Response
 
 <%= headers 204 %>
+
+
+### A note about Tags that cannot be deleted
+
+Any entries that are included in this request that cannot be deleted will be ignored and will not affect the Response.
