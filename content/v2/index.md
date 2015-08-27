@@ -144,7 +144,7 @@ There are a few errors that can occur while making API calls. the following are 
 ### Account does not include this feature
 
 <%= headers 403 %>
-<%= json :message => "Account does not include this feature"
+<%= json :message => "Account does not include this feature" %>
 
 ### Account is currently locked for migration
 
