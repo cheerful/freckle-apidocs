@@ -108,7 +108,7 @@ PUT /tags/:id/merge
 
 ### Inputs
 
-tags
+tag_ids
 : *Required* **array of integers**
 : The IDs of the tags to merge into this tag.
 
@@ -138,7 +138,7 @@ DELETE /tags/
 
 ### Inputs
 
-tags
+tag_ids
 : *Required* **array of integers**
 : The IDs of the tags to delete. If no IDs are provided, then no tags are deleted.
 
