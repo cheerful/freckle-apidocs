@@ -67,6 +67,7 @@
   <li><a href="#rate-limiting">Rate Limiting</a></li>
   <li><a href="#client-errors">Client Errors</a></li>
   <li><a href="#deleting-or-archiving-resources">Deleting or Archiving Resources</a></li>
+  <li><a href="#background-processing">Background Processing</a></li>
   <li><a href="#uploading-files">Uploading Files</a></li>
   <li><a href="#http-redirection">HTTP Redirection</a></li>
   <li><a href="#supported-http-verbs">Supported HTTP Verbs</a></li>
@@ -296,6 +297,18 @@ This is different than API v1, where the API was accessed through an account-spe
       <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"deletable"</span>
     <span class="p">}</span>
   <span class="p">]</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="background-processing">Background Processing</h2>
+
+<p>In some cases, an API action may need to be processed in the background. In these cases, a <code>202</code> response will be returned with a message that the user will be notified via email when the action has completed.</p>
+
+<p>For example, a large tag merge may return the following response:</p>
+
+<pre class="headers"><code>Status: 202 Accepted</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"The user will be sent an email once this tag merge is complete."</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="uploading-files">Uploading Files</h2>
