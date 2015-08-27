@@ -337,10 +337,6 @@ Any entries that are included in this request that cannot be marked as approved 
 
 Mark the Entry as "unapproved" in Freckle. Unapproved entries can be edited or deleted.
 
-<p class="note">
-Only account owners can unapprove entries
-</p>
-
 ~~~
 PUT /v2/entries/:id/unapproved
 ~~~
