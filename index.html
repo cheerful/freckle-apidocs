@@ -3,90 +3,90 @@
 <head>
   <meta charset="utf-8">
   <title>Freckle API: Basics</title>
-  <link rel="stylesheet" href="/assets/v1/stylesheet.css" type="text/css">
-  <meta name="description" content="Connect your application to Freckle's RESTful API and track time, access projects and more.">
+  <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
 
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W7NHRF"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WKPP62');</script>
-<!-- End Google Tag Manager -->
-
 <body>
-  <div id="nav" class="banner">
-    <div>
-    <a href="http://letsfreckle.com" class="back">&larr; Freckle</a>
-    <a href="index.html">API Basics</a>
-    <a href="entries.html">Entries</a>
-    <a href="projects.html">Projects</a>
-    <a href="tags.html">Tags</a>
-    <a href="users.html">Users</a>
-    </div>
-  </div>
-  <div id="apiv2-banner" class="banner">
-    <div>
-      <a href="/v2">
-        <strong>Check out API V2 (in beta)</strong>
-        <em id="apiv2-features">More control, easier to debug, bulk actions, expenses, invoices, and more!</em>
-      </a>
-    </div>
-  </div>
+  <div id="container">
+    <div id="nav">
+      <div id="logo">
+        <a href="/">
+          <img id="logo" src="/assets/freckle.svg" alt="Freckle">
+        </a>
+      </div>
+      API Documentation
+      <h2>Topics</h2>
+      <ul id="resources">
+        <li><a href="/v2">API Basics</a></li>
+        <li><a href="/v2/oauth">OAuth</a></li>
+        <li><a href="/v2/authentication">Authentication</a></li>
+        <li><a href="/v2/invoice_locales">Invoice Locales</a></li>
+      </ul>
+      <h2>Resources</h2>
+      <ul id="resources">
+        <li><a href="/v2/timers">Timers</a></li>
+        <li><a href="/v2/entries">Entries</a></li>
+        <li><a href="/v2/expenses">Expenses</a></li>
+        <li><a class="coming-soon" href="/v2/tags">Tags</a></li>
+      </ul>
 
-  <div id="content">
-    <h1><img id="logo" src="/assets/freckle.svg" alt="Freckle"> API: Basics</h1>
+      <h2>Projects &amp; Invoices</h2>
+      <ul id="resources">
+        <li><a href="/v2/projects">Projects</a></li>
+        <li><a href="/v2/project_groups">Project Groups</a></li>
+        <li><a class="coming-soon" href="/v2/invoices">Invoices</a></li>
+      </ul>
 
-    <p>Freckle’s RESTful API enables your application or script to 
-access <strong>entries</strong> (list/search, create, update, delete, mass import),
-<strong>projects</strong> (list, read, create, update, delete, archive, activate),
-<strong>tags</strong> (list) and <strong>users</strong> (list, read, create, update, deactivate, get avatar).</p>
+      <h2>Account Management</h2>
+      <ul id="resources">
+        <li><a class="coming-soon" href="/v2/account">Account</a></li>
+        <li><a class="coming-soon" href="/v2/current_user">Current User</a></li>
+        <li><a class="coming-soon" href="/v2/users">Users</a></li>
+        <li><a class="coming-soon" href="/v2/imports">Imports</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <h1>Basics</h1>
+      <div class="note warning sticky">
+  <h2>API V2 is still in beta!</h2>
+  <p>Version 2 of the Freckle API is still in beta and subject to change. Have a question, feature request, or suggestion? <strong style="cursor:pointer" onclick="showMessageBox()">Send us a message!</strong></p>
+</div>
 
 <ul id="markdown-toc">
-<li><a href="#freckle-api-libraries">Freckle API Libraries</a></li>
-  <li><a href="#urls">URLs</a></li>
-  <li><a href="#authentication">Authentication</a></li>
-  <li><a href="#pagination">Pagination</a></li>
-  <li><a href="#response-codes-and-error-handling">Response codes and error handling</a></li>
+<li><a href="#introduction">Introduction</a></li>
+  <li><a href="#freckle-api-libraries">Freckle API Libraries</a></li>
+  <li><a href="#naming-client-applications">Naming client applications</a></li>
+  <li><a href="#api-urls">API URLs</a></li>
+  <li><a href="#general-schema">General Schema</a></li>
+  <li><a href="#a-user-agent-is-required">A User Agent is Required</a></li>
   <li><a href="#rate-limiting">Rate Limiting</a></li>
-  <li><a href="#roles">Roles</a></li>
-  <li><a href="#data-formats">Data Formats</a></li>
-  <li><a href="#field-formats">Field formats</a></li>
-  <li><a href="#api-test-account">API Test Account</a></li>
-</ul><p>Many applications use the Freckle API every day, among them web applications like <a href="http://beanstalkapp.com">Beanstalk</a>, <a href="http://github.com">Github</a>, and <a href="http://planscope.io">Planscope</a>; native mobile and desktop applications like <a href="http://pigmentapp.com">Pigment</a> and <a href="http://punch.fousa.be">Punch</a>; as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a>, <a href="http://twitter.com/letsfreckle">tweet</a>, or <a href="https://www.facebook.com/FreckleTimeTracking">send us a message on Facebook</a>.</p>
+  <li><a href="#client-errors">Client Errors</a></li>
+  <li><a href="#deleting-or-archiving-resources">Deleting or Archiving Resources</a></li>
+  <li><a href="#uploading-files">Uploading Files</a></li>
+  <li><a href="#http-redirection">HTTP Redirection</a></li>
+  <li><a href="#supported-http-verbs">Supported HTTP Verbs</a></li>
+  <li><a href="#hypermedia">Hypermedia</a></li>
+  <li><a href="#pagination">Pagination</a></li>
+</ul><h2 id="introduction">Introduction</h2>
+
+<p>Many applications use the Freckle API every day, among them web applications like <a href="http://beanstalkapp.com">Beanstalk</a>, <a href="http://github.com">Github</a>, and <a href="http://planscope.io">Planscope</a>; native mobile and desktop applications like <a href="http://pigmentapp.com">Pigment</a> and <a href="http://punch.fousa.be">Punch</a>; as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a>, <a href="http://twitter.com/letsfreckle">tweet</a>, or <a href="https://www.facebook.com/FreckleTimeTracking">send us a message on Facebook</a>.</p>
 
 <p>Freckle is also one of the many services listed on <a href="https://zapier.com/zapbook/freckle/">Zapier</a> which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Campfire chat room!).</p>
 
 <p>Freckle’s API docs are on Github: if you find an error or omission
 in the API documentation, you can help fix it quickly by <a href="https://github.com/cheerful/freckle-apidocs">forking the Freckle API docs</a> and submitting a pull request!</p>
 
-<h3 id="api-limitations">API limitations</h3>
-
-<p>We plan to extend and adapt the API to allow access to more resources
-in the future. If you have any questions or feedback, please don’t hesitate
-to use the big blue feedback button on the left. Currently, there are no APIs
-for timers, expense tracking, invoices or assigning freelancers to projects.
-If you have specialized needs for an API, let us know!</p>
-
-<p>There are no API call limits in place, but we reserve the right to lock
-out abusive clients that call the API too often. Use common sense, caching,
-and don’t do expensive API calls (mostly listing a lot of entries) too often.</p>
-
-<h3 id="naming-client-applications">Naming client applications</h3>
-
-<p>If you plan to release a public client app for Freckle (such as a native 
-mobile app, regardless if it’s paid-for or free) you’re welcome to do so. 
-<i>Do not name apps “Freckle” or “Freckle for &lt;platform&gt;”.</i>
-Please contact us first with more details about your app if you want to 
-use “Freckle” or the Freckle logo as name or icon of your app!</p>
-
 <h2 id="freckle-api-libraries">Freckle API Libraries</h2>
 
 <p>There are several 3rd-party open source libraries for popular languages
 available:</p>
+
+<h3 id="api-v1-libraries">API v1 Libraries:</h3>
+
+<p class="note">
+These libraries only support <a href="/">API v1</a>, meaning that some of the actions and options from API v2 will not be available in these libraries.
+</p>
 
 <ul>
 <li>Ruby: <a href="https://github.com/ryanlecompte/letsfreckle-client">letsfreckle-client</a>
@@ -104,268 +104,307 @@ available:</p>
 <ul>
 <li><a href="https://github.com/sirkitree/pippi">Pippi</a></li>
   <li><a href="https://github.com/robinhouston/freckle-command">freck</a></li>
-</ul><p class="note">
+</ul><h3 id="api-v2-libraries">API v2 Libraries:</h3>
+
+<ul>
+<li>Python: <a href="https://github.com/bitmazk/python-freckle-client">bitmazk/python-freckle-client</a>
+</li>
+</ul><p>Additionally, the command-line tool <a href="https://github.com/sirkitree/pippi">Pippi</a> can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script.</p>
+
+<p class="note">
 These are 3rd-party libraries and Freckle can't provide support for them.
 Please contact the library authors directly if you need help with these.
 </p>
 
-<h2 id="urls">URLs</h2>
+<h2 id="naming-client-applications">Naming client applications</h2>
 
-<p>Accessing the Freckle API uses the following URL schema:</p>
+<p>If you plan to release a public client app for Freckle (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so. Do not name apps “Freckle” or “Freckle for <platform>”. Please contact us first with more details about your app if you want to use “Freckle” or the Freckle logo as name or icon of your app!</platform></p>
 
-<pre><code>https://&lt;subdomain&gt;.letsfreckle.com/api/&lt;resource&gt;
+<h2 id="api-urls">API URLs</h2>
+
+<h3 id="api-resources">API Resources</h3>
+
+<p>API Resources are accessed through a single endpoint:</p>
+
+<pre><code>https://api.letsfreckle.com/v2
 </code></pre>
 
-<p>Where <strong>subdomain</strong> is the subdomain of the account you want to access and 
-<strong>resource</strong> is the resource (e.g. entries, projects, tags, users and so on).</p>
+<p>For example: if we wanted to access a user’s timers, the URL would be:</p>
 
-<p>For example, getting a list of projects from the “apitest” account via JSON would 
-result in the URL:</p>
-
-<pre><code>https://apitest.letsfreckle.com/api/projects.json
+<pre><code>https://api.letsfreckle.com/v2/timers
 </code></pre>
 
-<p>Resources are normally accessed via SSL only. Some resources can also be 
-accessed through a regular HTTP request.</p>
+<p class="note">
+This is different than API v1, where the API was accessed through an account-specific endpoint. If you are migrating from API v1, make sure to change the endpoint URL!
+</p>
 
-<h2 id="authentication">Authentication</h2>
+<h3 id="oauth">OAuth</h3>
 
-<p>An <em>authentication token</em> is needed for accessing the API. This token authenticates
-a specific user of the account and can be found in 
-<a href="http://letsfreckle.com/help/#faq_40">“settings &amp; tools &gt; API”</a> 
-in the Freckle user interface. Treat authentications tokens like passwords!</p>
+<p>Authenticating through <a href="/v2/oauth/">OAuth</a> is handled through a different endpoint than accessing API Resources:</p>
 
-<p>A user can reset the API token at any time—be sure to handle authentication errors
-in your application.</p>
-
-<p>The token has to be sent for each request your application makes to the Freckle API.</p>
-
-<p>There are two ways to send the token—examples are given using the <a href="http://curl.haxx.se">cURL</a> command line tool:</p>
-
-<p>As <em>query parameter</em> named <code>token</code>:</p>
-
-<pre class="highlight"><code class="sh">
-curl -v https://apitest.letsfreckle.com/api/projects.json?token=lx3gi6pxdjtjn57afp8c2bv1me7g89j
+<pre><code>https://secure.letsfreckle.com
 </code></pre>
 
-<p>As <em>HTTP header</em> <code>X-FreckleToken</code>:</p>
+<p>For example: if we wanted to redirect to users to Freckle to request access to their Freckle account:</p>
 
-<pre class="highlight"><code class="sh">
-curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
+<pre><code>GET https://secure.letsfreckle.com/oauth/2/authorize
 </code></pre>
 
-<p>For better readability of URLs, in this documentation the HTTP header method will be used for
-the cURL examples. It’s generally also a good idea to use the HTTP header method if you wrap
-Freckle API calls in a library or module in your code.</p>
+<h2 id="general-schema">General Schema</h2>
 
-<p>&lt;p class=note&gt;
-In order to make it easier for users to authenticate in interactive client applications
-such as on mobile devices, the token can be retrieved via the 
-<code>/api/user/api_auth_token</code> API method by using HTTP Basic Auth with the
-user’s email and password. See the Users section for more information.
-&lt;/p&gt;</p>
-
-<h2 id="pagination">Pagination</h2>
-
-<p>Most API resources are non-paginated, meaning they return the full result set.
-However <a href="/entries.html#list--search">Entries</a> list is paginated, and more resources
-could become paginated in the future.</p>
-
-<p>When there are more results available for a request, a “next” URL will be
-present in the <code>Link</code> response header</p>
-
-<pre><code>GET https://apitest.letsfreckle.com/api/entries.json
-Link: &lt;https://apitest.letsfreckle.com/api/entries.json?page=2&amp;per_page=100&gt;; rel="next"
-</code></pre>
-
-<p>To get more results, simply repeat the request with the new URL until there are
-enough results in total, or there is no more “next” link (if it’s necessary to
-fetch all data).</p>
-
-<p>It’s safe to apply this logic to all API requests, even when fetching resources
-that are not currently paginated.</p>
-
-<h2 id="response-codes-and-error-handling">Response codes and error handling</h2>
-
-<p>A call to the API can result in one of six different outcomes:</p>
+<p>The following rules define the general schema of the API:</p>
 
 <ul>
-<li>
-    <p>Everything works fine—a HTTP status code in the 200 range is returned;
-for reads and updates <strong><code>200 OK</code></strong> and for newly created resources <strong><code>201 Created</code></strong>
-(which also return a <code>Location</code> header pointing to the newly created resource).</p>
-  </li>
-  <li>
-    <p>Authentication fails or the user’s role doesn’t permit an action: <strong><code>401 Unauthorized</code></strong>.
-If your application is an interactive, you likely want to ask the user for
-new security credentials and not use the API again until a new API token is provided.
-Ideally, your interactive app doesn’t ever run into the case that a users’ role doesn’t permit
-an action, but it can happen especially if you cache data and it gets out of sync
-(for example the projects a “freelancer” user has access to). If you run into this
-issue, it’s a good idea to invalidate your caches and fetch the data from the API again.</p>
-  </li>
-  <li>
-    <p>On creating or updating, if required fields are missing, <strong><code>422 Unprocessable Entity</code></strong> is returned.</p>
-  </li>
-  <li>
-    <p>There was an unhandled exception on the server side: <strong><code>500 Internal Server Error</code></strong>:
-This is rare, but can happen in exceptional circumstances. The best thing to do
-is to try the same call later.</p>
-  </li>
-  <li>
-    <p>There’s a timeout or a network issue and the connection is dropped without response.
-This is rare but it does happen. Try the call again.</p>
-  </li>
-  <li>
-    <p>If too many requests are performed and the <a href="#rate-limiting">rate limits</a> are exceeded: <strong><code>429 Too Many Requests</code></strong>.</p>
-  </li>
-</ul><h2 id="rate-limiting">Rate Limiting</h2>
+<li>Only HTTPS traffic is allowed when accessing the API.</li>
+  <li>All data is sent and received as JSON, with the exception of <a href="#uploading-files">File Uploads</a>.</li>
+  <li>Blank fields are included as <code>null</code> in responses.</li>
+  <li>The ISO 8061 Date and Timestamp formats are used across the application (<code>YYYY-MM-DD</code> and <code>YYYY-MM-DDTHH:MM:SSZ</code> respectively).</li>
+</ul><h2 id="a-user-agent-is-required">A User Agent is Required</h2>
+
+<p>All API Requests must include a valid <code>User-Agent</code> header. Requests with no <code>User-Agent</code> header will be rejected. We recommend two options:</p>
+
+<ul>
+<li>Your Freckle account subdomain</li>
+  <li>The name of the application</li>
+</ul><h3 id="example">Example:</h3>
+<pre><code>User-Agent: My-Freckle-App
+</code></pre>
+
+<h2 id="rate-limiting">Rate Limiting</h2>
 
 <p>You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will return a <code>429 Too Many Requests</code> response. If you receive a <code>429</code> response, make sure to wait a little longer between requests.</p>
 
-<h2 id="roles">Roles</h2>
+<pre class="headers"><code>Status: 429 Too Many Requests</code></pre>
 
-<p>There are currently four user roles in Freckle: <strong><code>administrator</code></strong>, <strong><code>owner</code></strong>, <strong><code>member</code></strong>, and <strong><code>freelancer</code></strong>. </p>
+<h2 id="client-errors">Client Errors</h2>
 
-<p>Each Freckle user is assigned to one of these roles. Depending on the role, certain parts of the API
-may not be available. For each resource, this documentation explains which roles have access and 
-if there are any per-role restrictions (for example, a user with the “freelancer” role doesn’t 
-have access to all projects).</p>
+<p>There are a few errors that can occur while making API calls. the following are the kinds of errors you may encounter when using the API.</p>
 
-<h2 id="data-formats">Data Formats</h2>
+<h3 id="invalid-json">Invalid JSON</h3>
 
-<p>The Freckle API can accept and return data in JSON or XML. </p>
+<pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
-<p>Because it’s awesome, we’ll mostly use examples in JSON in this documentation,
-however, XML works just as well.</p>
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"JSON Parsing Error"</span>
+<span class="p">}</span></code></pre>
 
-<p>There’s no default format—to choose the data format you need to either add
-a <code>.xml</code> or <code>.json</code> extension to URL you are calling, or set the
-<code>Accept</code> HTTP header to <code>text/xml</code> or <code>application/json</code>.</p>
+<h3 id="wrong-type-of-json-sent">Wrong type of JSON sent</h3>
 
-<h2 id="field-formats">Field formats</h2>
+<pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
-<p>Freckle uses the following field formats:</p>
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Body should be JSON Hash"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="fields-were-not-in-the-correct-format">Fields were not in the correct format</h3>
+
+<pre class="headers"><code>Status: 400 Bad Request</code></pre>
+
+<h3 id="the-user-does-not-have-the-necessary-permissions-to-perform-an-action">The user does not have the necessary permissions to perform an action</h3>
+
+<pre class="headers"><code>Status: 403 Forbidden</code></pre>
+
+<h3 id="account-does-not-include-this-feature">Account does not include this feature</h3>
+
+<pre class="headers"><code>Status: 403 Forbidden</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Account does not include this feature"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="account-is-currently-locked-for-migration">Account is currently locked for migration</h3>
+
+<pre class="headers"><code>Status: 503 Service Unavailable</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Freckle is changing the internal data for your account so you can start using hashtags"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="the-errors-array">The <code>errors</code> array</h3>
+
+<p>When validation errors occur, the <code>errors</code> array is populated with objects that explain why the request was invalid. Each object has the following fields:</p>
 
 <ul>
 <li>
-<strong>IDs</strong> are stored as 4-byte integers (range 1 to 2147483647)</li>
+    <p><strong>resource</strong>: The type of object the user was trying to affect.</p>
+  </li>
   <li>
-<strong>Timestamps</strong> are given UTC-based, e.g. <code>2012-01-09T08:33:29Z</code>
-</li>
+    <p><strong>field</strong>: The field where the error occured.</p>
+  </li>
   <li>
-<strong>Dates</strong> are given YYYY-MM-DD, e.g. <code>2011-07-26</code>
+    <p><strong>Code</strong>: Why the request was invalid. The standard error codes are:</p>
+
+    <ul>
+<li>
+<strong>missing</strong>: the resource does not exist</li>
+      <li>
+<strong>missing_field</strong>: a required field on the resource has not been set</li>
+      <li>
+<strong>already_exists</strong>: another resource has the same value as this field.</li>
+      <li>
+<strong>insufficent_permissions</strong>: the user does not have the necessary permissions to use this field.</li>
+      <li><strong>Custom errors codes can be defined for resources, and will be documented in the resource’s API page.</strong></li>
+    </ul>
 </li>
-</ul><p>There’s limits on the text length of some fields, but, with the exception
-of tags which are limited to 30 characters, it’s highly unlikely
-that you’ll hit those.</p>
+</ul><h2 id="deleting-or-archiving-resources">Deleting or Archiving Resources</h2>
 
-<h2 id="api-test-account">API Test Account</h2>
+<p>In certain cases, some resources can only be deleted if certain conditions are met. If these resources cannot be deleted, then they may be archived. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).</p>
 
-<p>You can use our API test account for testing your code. The data from this test account 
-will be regularly wiped—don’t rely on your test data being there the next day. Also note that you 
-might not be the only person using this token at a certain time.</p>
+<p>For these resources, we have two separate actions for deleting and archiving. The Delete action is accessible through the <code>DELETE</code> HTTP verb, while the archive action is accessible via <code>PUT archive/</code>.</p>
 
-<p>Domain: <code>apitest.letsfreckle.com</code><br>
-Token: <code>lx3gi6pxdjtjn57afp8c2bv1me7g89j</code></p>
+<h3 id="when-a-resource-cannot-be-deleted">When a resource cannot be deleted</h3>
 
-<p>If you do any kind of non-trivial client application or have special needs for API testing,
-we recommend that you create a Freckle account specifically just for testing your application,
-so you can be sure your data stays intact while you develop!</p>
+<p>The delete action will only succeed if the resource is able to deleted. If the resource is unable to be deleted, a <code>422</code> error will be returned, with an explanation for why the resource cannot be deleted.</p>
 
-<p>Try it now!</p>
+<p>This explanation uses a new error code: <strong>dependent</strong>, and the <strong>field</strong> field will indicate which associated resources exist and are preventing this resource from being deleted.</p>
 
-<div class="tabs">
-  <div class="selector">
-    <div class="json active">JSON</div>
-    <div class="xml">XML</div>
-  </div>
-  <div class="tab json active">
-    <pre class="highlight"><code class="sh">
-    $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
-    </code></pre>
+<p><strong>Note that custom error codes can be defined for a resource’s delete action, and will be documented in the resource’s API page.</strong></p>
 
-    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/21d1e53251a9bf5941d0bd25aeb7557a3ca52a26"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+<pre class="headers"><code>Status: 422 Unprocessable Entity</code></pre>
 
-    You should see something like:
-
-
-<pre class="highlight"><code class="language-javascript"><span class="p">[</span> 
-  <span class="p">{</span> 
-    <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"group_name"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"remaining_minutes"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"From iPhone 5"</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-02-04T06:12:31Z"</span><span class="p">,</span>
-      <span class="s2">"cached_tags"</span><span class="o">:</span> <span class="p">[</span> <span class="cm">/* ... */</span> <span class="p">],</span>
-      <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
-      <span class="s2">"import_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-10-19T15:59:56Z"</span><span class="p">,</span>
-      <span class="s2">"account_id"</span><span class="o">:</span> <span class="mi">5039</span><span class="p">,</span>
-      <span class="s2">"billable_minutes"</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">40413</span><span class="p">,</span>
-      <span class="s2">"project_group_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"user_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"unbillable_minutes"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"budget"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"55c9ef"</span><span class="p">,</span>
-      <span class="s2">"budget_minutes"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"invoice_recipient_details"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">15</span>
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Unable to be deleted"</span><span class="p">,</span>
+  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
+      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"entries"</span><span class="p">,</span>
+      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"dependent"</span>
     <span class="p">}</span>
-    <span class="cm">/* ... */</span>
-  <span class="p">}</span>
-<span class="p">]</span></code></pre>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre>
 
-  </div>
-  <div class="tab xml">
-    <pre class="highlight"><code class="sh">
-    $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
-    </code></pre>
+<h3 id="when-a-resource-cannot-be-archived">When a resource cannot be archived</h3>
 
-    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/d35c949a5d7d4fe2d8f94fd095f324825a70696a/ff572a02badd43a6e6e62d3a9f963c56c53e7fdc"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+<p>The archive action will only succeeed if the resource is able to archived. If the resource is able to be deleted, then it is unable to be archived. If a resource is unable to be archived, a <code>422</code> error will be returned, with an explanation for why cd ..the resource cannot be archived.</p>
 
-    You should see something like:
+<p>This explanation uses a new error code: <strong>deletable</strong>, and the <strong>field</strong> field will point to the <code>id</code> field. This error code indicates that the delete action should be called on this resource.</p>
 
+<p><strong>Note that custom error codes can be defined for a resource’s archive action, and will be documented in the resource’s API page.</strong></p>
 
-<div class="highlight">
-<pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;projects</span> <span class="na">type=</span><span class="s">"array"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;project&gt;</span>
-    <span class="nt">&lt;account-id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>5039<span class="nt">&lt;/account-id&gt;</span>
-    <span class="nt">&lt;billable</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/billable&gt;</span>
-    <span class="nt">&lt;billable-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>7440<span class="nt">&lt;/billable-minutes&gt;</span>
-    <span class="nt">&lt;budget</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/budget&gt;</span>
-    <span class="nt">&lt;cached-tags</span> <span class="na">type=</span><span class="s">"yaml"</span><span class="nt">&gt;</span><span class="c">&lt;!-- YAML of cached tags --&gt;</span><span class="nt">&lt;/cached-tags&gt;</span>
-    <span class="nt">&lt;color-hex&gt;</span>13a480<span class="nt">&lt;/color-hex&gt;</span>
-    <span class="nt">&lt;created-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2009-10-16T09:04:50Z<span class="nt">&lt;/created-at&gt;</span>
-    <span class="nt">&lt;enabled</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-    <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>8475<span class="nt">&lt;/id&gt;</span>
-    <span class="nt">&lt;import-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/import-id&gt;</span>
-    <span class="nt">&lt;invoice-recipient-details</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/invoice-recipient-details&gt;</span>
-    <span class="nt">&lt;minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>7560<span class="nt">&lt;/minutes&gt;</span>
-    <span class="nt">&lt;name&gt;</span>Fixture Company<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;project-group-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/project-group-id&gt;</span>
-    <span class="nt">&lt;stepping</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>5<span class="nt">&lt;/stepping&gt;</span>
-    <span class="nt">&lt;unbillable-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>120<span class="nt">&lt;/unbillable-minutes&gt;</span>
-    <span class="nt">&lt;updated-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2011-10-19T15:59:56Z<span class="nt">&lt;/updated-at&gt;</span>
-    <span class="nt">&lt;user-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/user-id&gt;</span>
-    <span class="nt">&lt;minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>7560<span class="nt">&lt;/minutes&gt;</span>
-    <span class="nt">&lt;budget-minutes</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/budget-minutes&gt;</span>
-    <span class="nt">&lt;remaining-minutes</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/remaining-minutes&gt;</span>
-    <span class="nt">&lt;unbillable-minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>120<span class="nt">&lt;/unbillable-minutes&gt;</span>
-    <span class="nt">&lt;group-name</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/group-name&gt;</span>
-  <span class="nt">&lt;/project&gt;</span>
-  <span class="c">&lt;!-- ...more projects --&gt;</span>
-<span class="nt">&lt;/projects&gt;</span>
+<pre class="headers"><code>Status: 422 Unprocessable Entity</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Should be deleted"</span><span class="p">,</span>
+  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
+      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"id"</span><span class="p">,</span>
+      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"deletable"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="uploading-files">Uploading Files</h2>
+
+<p>If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional multipart HTTP key/value pairs instead of as a JSON object.</p>
+
+<p>Additionally, the <code>Content-Type</code> header of the request <strong>must</strong> be set to: <code>multipart/form-data</code>, otherwise the request will not be processed and a <code>400 Bad Request</code> error will be returned.</p>
+
+<h2 id="http-redirection">HTTP Redirection</h2>
+
+<p>HTTP Redirection will be used when appropriate, meaning that clients should assume any request may result in a redirection.</p>
+
+<p>Redirect responses will have a <code>Location</code> header field which contains the URI of the resource to which the client should repeat the requests.</p>
+
+<h3 id="permanent-redirection">Permanent Redirection</h3>
+<pre class="headers"><code>Status: 301 Moved Permanently
+Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
+
+<p>This and all future requests should be directed to the new URI</p>
+
+<h3 id="temporary-redirection">Temporary Redirection</h3>
+<pre class="headers"><code>Status: 302 Found
+Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
+
+<pre class="headers"><code>Status: 307 Temporary Redirect
+Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
+
+<p>Repeat the request verbatim to the URI specified in the <code>Location</code> header, but clients should still continue to use th original URI in future requests</p>
+
+<h2 id="supported-http-verbs">Supported HTTP Verbs</h2>
+
+<dl>
+<dt><strong><code>HEAD</code></strong></dt>
+  <dd>Can be issued against any <code>GET</code> request to return just the HTTP header info</dd>
+</dl><p><strong><code>GET</code></strong></p>
+
+<p><strong><code>POST</code></strong></p>
+
+<dl>
+<dt><strong><code>PUT</code></strong></dt>
+  <dd>Used for replacing resources or collections and performing actions on a resource.</dd>
+</dl><p><strong><code>DELETE</code></strong></p>
+
+<h2 id="hypermedia">Hypermedia</h2>
+
+<p>All resources have one or more <code>*_url</code> properties linking to other resources or custom actions on this resource. They are meant to provide explicit URLs so clients don’t have to generate them. Using these URLs will make API upgrades easier for developers. All URLs follow <a href="http://tools.ietf.org/html/rfc6570">RFC 6570 URI templates</a>.</p>
+
+<h3 id="example-timer-object">Example (Timer Object):</h3>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"running"</span><span class="p">,</span>
+  <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+  <span class="s2">"formatted_time"</span><span class="o">:</span> <span class="s2">"00:03:00"</span><span class="p">,</span>
+  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+  <span class="p">},</span>
+  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+  <span class="p">},</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/timer/log"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="pagination">Pagination</h2>
+
+<p>Responses including multiple items will be paginated to 30 items by default. The page can be changed by using the <code>page</code> query parameter. Note that the <code>page</code> paremter starts with 1.</p>
+
+<p>Some actions can use the <code>per_page</code> parameter, which will be documented in the resource’s API page.</p>
+
+<h3 id="link-header">Link Header</h3>
+
+<p>When pagination is used, the <code>Link</code> header includes the URLs used in Pagination. Clients should use these links instead of following their own, in case pagination rules change in the future.</p>
+
+<pre><code>Link: &lt;https://apitest.letsfreckle.com/api/v2/users/?page=3&amp;per_page=100&gt;; rel="next",
+  &lt;https://apitest.letsfreckle.com/api/v2/users/?page=2&amp;per_page=100&gt;; rel="prev",
+  &lt;https://apitest.letsfreckle.com/api/v2/users/?page=1&amp;per_page=100&gt;; rel="first",
+  &lt;https://apitest.letsfreckle.com/api/v2/users/?page=50&amp;per_page=100&gt;; rel="last"
 </code></pre>
 
+<p>the <code>rel</code> attribute indicates what the URL links to:</p>
 
-</div>
-</div>
-</div>
+<ul>
+<li>
+<strong>next</strong>: shows the URL of the immediate next page of results</li>
+  <li>
+<strong>last</strong>: shows the URL of the last page of results</li>
+  <li>
+<strong>first</strong>: shows the URL of the first page of results</li>
+  <li>
+<strong>prev</strong>: shows the URL of the immediate previous page of results</li>
+</ul><script>
+  window.showMessageBox = function(){
+    document.getElementById('help_tab').click();
+    document.getElementById('help_message_button').click();
+  }
+</script>
+    </div>
   </div>
 
   <div id="footer">
@@ -416,6 +455,8 @@ so you can be sure your data stays intact while you develop!</p>
     </div>
   </div>
 
+  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
   <script>
@@ -449,14 +490,19 @@ so you can be sure your data stays intact while you develop!</p>
     })
   </script>
 
-  <script>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37896092-1']);
+    _gaq.push(['_setDomainName', 'letsfreckle.com']);
+    _gaq.push(['_trackPageview']);
+
     (function() {
-      window._pa = window._pa || {};
-      var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
-      pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/  serve/51fbcda0dc91ad725f0000eb.js";
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+
   </script>
-  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
 </body>
 </html>

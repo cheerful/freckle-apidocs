@@ -11,7 +11,7 @@
   <div id="container">
     <div id="nav">
       <div id="logo">
-        <a href="/v2">
+        <a href="/">
           <img id="logo" src="/assets/freckle.svg" alt="Freckle">
         </a>
       </div>
@@ -204,6 +204,14 @@ This is different than API v1, where the API was accessed through an account-spe
 
 <pre class="headers"><code>Status: 403 Forbidden</code></pre>
 
+<h3 id="account-does-not-include-this-feature">Account does not include this feature</h3>
+
+<pre class="headers"><code>Status: 403 Forbidden</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Account does not include this feature"</span>
+<span class="p">}</span></code></pre>
+
 <h3 id="account-is-currently-locked-for-migration">Account is currently locked for migration</h3>
 
 <pre class="headers"><code>Status: 503 Service Unavailable</code></pre>
@@ -234,7 +242,7 @@ This is different than API v1, where the API was accessed through an account-spe
       <li>
 <strong>already_exists</strong>: another resource has the same value as this field.</li>
       <li>
-<strong>insufficent_permissions</strong> the user does not have the necessary permissions to use this field.</li>
+<strong>insufficent_permissions</strong>: the user does not have the necessary permissions to use this field.</li>
       <li><strong>Custom errors codes can be defined for resources, and will be documented in the resource’s API page.</strong></li>
     </ul>
 </li>
