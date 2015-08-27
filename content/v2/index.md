@@ -195,6 +195,15 @@ This explanation uses a new error code: **deletable**, and the **field** field w
 <%= headers 422 %>
 <%= json :archive_error_example %>
 
+## Background Processing
+
+In some cases, an API action may need to be processed in the background. In these cases, a `202` response will be returned with a message that the user will be notified via email when the action has completed.
+
+For example, a large tag merge may return the following response:
+
+<%= headers 202 %>
+<%= json :message => "The user will be sent an email once this tag merge is complete." %>
+
 ## Uploading Files
 
 If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional multipart HTTP key/value pairs instead of as a JSON object.
