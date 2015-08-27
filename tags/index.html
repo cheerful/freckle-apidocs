@@ -63,7 +63,7 @@
   <li><a href="#get-a-single-tag">Get a single tag</a></li>
   <li><a href="#get-the-entries-for-a-tag">Get the entries for a tag</a></li>
   <li><a href="#edit-a-tag">Edit a Tag</a></li>
-  <li><a href="#merge-tags-into-this-tag">Merge Tags into this tag</a></li>
+  <li><a href="#merge-a-tag-into-this-tag">Merge a Tag into this Tag</a></li>
   <li><a href="#delete-a-tag">Delete a Tag</a></li>
   <li><a href="#delete-multiple-tags-at-once">Delete Multiple Tags at once</a></li>
 </ul><h2 id="list-all-tags">List all Tags</h2>
@@ -282,7 +282,12 @@ Link: &lt;https://api.letsfreckle.com/v2/tags/:id/entries?page=2&gt;; rel="next"
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="merge-tags-into-this-tag">Merge Tags into this tag</h2>
+<h3 id="custom-error-codes">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>locked</strong>: The tag is currently locked for merging and cannot be modified.</li>
+</ul><h2 id="merge-a-tag-into-this-tag">Merge a Tag into this Tag</h2>
 
 <p>When one tag is merged into another, the entries associated with the tag are associated with the new tag, and any instances of the old tags are replaced with the new tags in the Entry Description. <strong>This action is permanent</strong>, so you cannot undo after you merge tags.</p>
 
@@ -292,16 +297,21 @@ Link: &lt;https://api.letsfreckle.com/v2/tags/:id/entries?page=2&gt;; rel="next"
 <h3 id="inputs-2">Inputs</h3>
 
 <dl>
-<dt>tag_ids</dt>
+<dt>tag_id</dt>
   <dd>
-<em>Required</em> <strong>array of integers</strong>
+<em>Required</em> <strong>integer</strong>
 </dd>
-  <dd>The IDs of the tags to merge into this tag.</dd>
+  <dd>The ID of the tag to merge into this tag.</dd>
 </dl><h3 id="response-5">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h2 id="delete-a-tag">Delete a Tag</h2>
+<h3 id="custom-error-codes-1">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>locked</strong>: The tag is currently locked for merging and cannot be modified.</li>
+</ul><h2 id="delete-a-tag">Delete a Tag</h2>
 
 <p>When a tag is deleted, the entries associated with that tag <strong>are not</strong> deleted. Instead, their descriptions are updated so that the tag’s text becomes part of the description.</p>
 
@@ -312,7 +322,12 @@ Link: &lt;https://api.letsfreckle.com/v2/tags/:id/entries?page=2&gt;; rel="next"
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h2 id="delete-multiple-tags-at-once">Delete Multiple Tags at once</h2>
+<h3 id="custom-error-codes-2">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>locked</strong>: The tag is currently locked for merging and cannot be modified.</li>
+</ul><h2 id="delete-multiple-tags-at-once">Delete Multiple Tags at once</h2>
 
 <p>When a tag is deleted, the entries associated with that tag <strong>are not</strong> deleted. Instead, their descriptions are updated so that the tag’s text becomes part of the description.</p>
 
@@ -330,6 +345,10 @@ Link: &lt;https://api.letsfreckle.com/v2/tags/:id/entries?page=2&gt;; rel="next"
 </dl><h3 id="response-7">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="a-note-about-tags-that-cannot-be-deleted">A note about Tags that cannot be deleted</h3>
+
+<p>Any entries that are included in this request that cannot be deleted will be ignored and will not affect the Response.</p>
     </div>
   </div>
 
