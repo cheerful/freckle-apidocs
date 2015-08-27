@@ -78,6 +78,23 @@ h2 {
   margin: 0;
 }
 
+#version_switch li {
+  display: inline;
+  list-style-type: none;
+}
+
+#version_switch li a{
+  display: inline;
+}
+
+#version_switch li:after{
+  content: "|";
+}
+
+#version_switch li:last-child:after{
+  content: "";
+}
+
 #nav ul li {
   font-size: 16px;
   line-height: 24px;
