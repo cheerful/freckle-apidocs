@@ -335,7 +335,7 @@ module Freckle
       "id" => 249397,
       "name" => "freckle",
       "billable" => true,
-      "formatted_name" => "#freckle"
+      "formatted_name" => "#freckle",
       "url" => "#{API_V2_URL}/tags/249397"
     }
 
