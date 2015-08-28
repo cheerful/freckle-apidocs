@@ -145,7 +145,7 @@ DELETE /tags/:id
 When a tag is deleted, the entries associated with that tag **are not** deleted. Instead, their descriptions are updated so that the tag's text becomes part of the description.
 
 ~~~
-DELETE /tags/
+PUT /tags/delete
 ~~~
 
 ### Inputs
