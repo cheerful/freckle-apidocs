@@ -28,20 +28,10 @@ state
     * `in_progress`
     * `paid`
 
-name
+reference
 : *Optional* **string**
-: Only invoices containing this text in their `name` field are returned.
-: Example: `name=Invoice`
-
-company_name
-: *Optional* **string**
-: Only invoices containing this text in their `company_name` field are returned.
-: Example: `company_name=Gear`
-
-company_details
-: *Optional* **string**
-: Only invoices containing this text in their `company_details` field are returned.
-: Example: `company_details=Main`
+: Only invoices containing this text in their `reference` field are returned.
+: Example: `reference=AA001`
 
 from
 : *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
@@ -53,10 +43,58 @@ to
 : Only invoices with an `invoice_date` on or before this date will be returned.
 : Example: `to=2013-09-27`
 
+name
+: *Optional* **string**
+: Only invoices containing this text in their `name` field are returned.
+: Example: `name=Invoice`
+
+total_amount_from
+: *Optional* **decimal**
+: Only invoices with a total amount due greater than or equal to this will be returned
+
+total_amount_to
+: *Optional* **decimal**
+: Only invoices with a total amount due less than or equal to this will be returned
+
+recipient_details
+: *Optional* **string**
+: Only invoices containing this text in their `recipient_details` field are returned.
+: Example: `recipient_details=Furniture`
+
 project_ids
 : *Optional* **string**
 : A comma-separated list of project IDs to filter by.
 : Example: `project_ids=4,5,6`
+
+company_name
+: *Optional* **string**
+: Only invoices containing this text in their `company_name` field are returned.
+: Example: `company_name=Gear`
+
+company_details
+: *Optional* **string**
+: Only invoices containing this text in their `company_details` field are returned.
+: Example: `company_details=Main`
+
+description
+: *Optional* **string**
+: Only invoices containing this text in their `description` field are returned
+: Example: `description=Services`
+
+footer
+: *Optional* **string**
+: Only invoices containing this text in their `footer` field are returned
+: Example: `footer=Payment`
+
+has_online_payment_details
+: *Optional* **boolean**
+: `true`:  Only return invoices that have online payment details.
+: `false`: Only return invoices that do not have online payment details.
+
+has_custom_html
+: *Optional* **boolean**
+: `true`:  Only return invoices that include custom HTML.
+: `false`: Only return invoices that do not include custom HTML.
 
 show_hours
 : *Optional* **boolean**
@@ -68,14 +106,36 @@ show_details
 : `true`:  Only return invoices that show the details for the invoice.
 : `false`: Only return invoices that do not show the details for the invoice.
 
-show_summaries
+show_user_summaries
 : *Optional* **boolean**
-: `true`  Only return invoices that show the summary of hours worked for each time member.
-: `false` Only return invoices that do not show the summary of hours worked for each time member.
+: `true`:  Only return invoices that show the summary of hours worked for each team member.
+: `false`: Only return invoices that do not show the summary of hours worked for each team member.
 
-hours_calculation
+show_project_summary
+: *Optional* **boolean**
+: `true`: Only return invoices that show the summary of hours worked for each project.
+: `false`: Only return invoices that do not show the summary of hours worked for each project.
+
+locale
 : *Optional* **string**
-: How the total amount for hours worked is calculated. The Accepted values are:
+: Only invoices using this locale are returned.
+: Accepted values: ([Any of the supported locale codes](/locales_and_currencies/#locales))
+: Example: `locale=en-GB`
+
+currency_name
+: *Optional* **name**
+: Only invoices using this currency are returned
+: Accepted values: ([Any of the supported currency names](/locales_and_currencies/#currencies))
+: Example: `currency_name=Euro`
+
+currency_symbol
+: *Optional* **string**
+: Only invoices with this text as part of their `currency_symbol` are returned
+: Example: `currency_symbol=£`
+
+rate_calculation
+: *Optional* **string**
+: How the rate for the hours worked is calculated. The Accepted values are:
 
     * `custom_hourly_rates`
     * `simple_hourly_rate`
@@ -84,7 +144,7 @@ hours_calculation
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "invoices" %>
-<%= json :invoice %>
+<%= json_array :invoice %>
 
 ## Get a single Invoice
 
