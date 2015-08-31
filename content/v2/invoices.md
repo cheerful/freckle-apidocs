@@ -53,6 +53,11 @@ to
 : Only invoices with an `invoice_date` on or before this date will be returned.
 : Example: `to=2013-09-27`
 
+project_ids
+: *Optional* **string**
+: A comma-separated list of project IDs to filter by.
+: Example: `project_ids=4,5,6`
+
 show_hours
 : *Optional* **boolean**
 : `true`:  Only return invoices that show the hours worked for this invoice.
