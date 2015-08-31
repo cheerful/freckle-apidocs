@@ -294,7 +294,7 @@ PUT /v2/entries/:id/approved
 
 approved_at
 : *Optional* **string** of a timestamp in ISO 8061 format `YYYY-MM-DDTHH:MM:SSZ`
-: The timestamp for when the entry was approved
+: The timestamp for when the entry was approved. If no value is provided, the current time will be used.
 
 ### Response
 
@@ -323,7 +323,7 @@ entry_ids
 
 approved_at
 : *Optional* **string** of a timestamp in ISO 8061 format `YYYY-MM-DDTHH:MM:SSZ`
-: The timestamp for when the entry was approved
+: The timestamp for when the entry was approved. If no value is provided, the current time will be used.
 
 ### Response
 
