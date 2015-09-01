@@ -62,25 +62,17 @@
   <li><a href="#get-a-single-invoice">Get a single Invoice</a></li>
   <li><a href="#create-an-invoice">Create an Invoice</a></li>
   <li><a href="#edit-an-invoice">Edit an Invoice</a></li>
-  <li><a href="#get-the-entries-included-in-an-invoice">Get the entries included in an invoice</a></li>
+  <li><a href="#get-the-invoices-entries">Get the invoice’s entries</a></li>
+  <li><a href="#get-the-invoices-expenses">Get the invoice’s expenses</a></li>
   <li><a href="#add-entries-to-an-invoice">Add Entries to an Invoice</a></li>
   <li><a href="#remove-entries-from-an-invoice">Remove Entries from an Invoice</a></li>
   <li><a href="#remove-all-entries-from-an-invoice">Remove all Entries from an Invoice</a></li>
-  <li><a href="#get-the-expenses-included-in-an-invoice">Get the expenses included in an invoice</a></li>
   <li><a href="#add-expenses-to-an-invoice">Add Expenses to an Invoice</a></li>
   <li><a href="#remove-expenses-from-an-invoice">Remove Expenses from an Invoice</a></li>
   <li><a href="#remove-all-expenses-from-an-invoice">Remove all Expenses from an Invoice</a></li>
-  <li><a href="#get-the-projects-included-in-an-invoice">Get the projects included in an invoice</a></li>
-  <li><a href="#add-projects-to-an-invoice">Add Projects to an Invoice</a></li>
-  <li><a href="#remove-projects-from-an-invoice">Remove Projects from an Invoice</a></li>
-  <li><a href="#remove-all-projects-from-an-invoice">Remove all Projects from an Invoice</a></li>
-  <li><a href="#recalculate-the-total-amount-for-the-time-worked-in-this-invoice">Recalculate the total amount for the time worked in this invoice</a></li>
-  <li><a href="#add-custom-hourly-rates">Add Custom Hourly Rates</a></li>
-  <li><a href="#remove-custom-hourly-rates">Remove Custom Hourly Rates</a></li>
-  <li><a href="#remove-all-custom-hourly-rates">Remove all Custom Hourly Rates</a></li>
   <li><a href="#add-taxes-to-an-invoice">Add Taxes to an Invoice</a></li>
   <li><a href="#remove-taxes-from-an-invoice">Remove Taxes from an Invoice</a></li>
-  <li><a href="#remove-all-taxes-in-invoice">Remove all Taxes in Invoice</a></li>
+  <li><a href="#remove-all-taxes-from-an-invoice">Remove all Taxes from an Invoice</a></li>
   <li><a href="#delete-an-invoice">Delete an Invoice</a></li>
 </ul><h2 id="list-invoices">List Invoices</h2>
 
@@ -103,12 +95,57 @@
       <li><code>paid</code></li>
     </ul>
 </dd>
-  <dt>name</dt>
+  <dt>reference</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>Only invoices containing this text in their <code>name</code> field are returned.</dd>
-  <dd>Example: <code>name=Invoice</code>
+  <dd>Only invoices containing this text in their invoice reference are returned.</dd>
+  <dd>Example: <code>reference=AA001</code>
+</dd>
+  <dt>invoice_date_from</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>Only invoices with an <code>invoice_date</code> from this date forward will be returned.</dd>
+  <dd>Example: <code>from=2013-09-27</code>
+</dd>
+  <dt>invoice_date_to</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>Only invoices with an <code>invoice_date</code> on or before this date will be returned.</dd>
+  <dd>Example: <code>to=2013-09-27</code>
+</dd>
+  <dt>project_name</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>Only invoices containing this text in their <code>project_name</code> field are returned.</dd>
+  <dd>Example: <code>project_name=Invoice</code>
+</dd>
+  <dt>total_amount_from</dt>
+  <dd>
+<em>Optional</em> <strong>decimal</strong>
+</dd>
+  <dd>Only invoices with a total amount due greater than or equal to this will be returned</dd>
+  <dt>total_amount_to</dt>
+  <dd>
+<em>Optional</em> <strong>decimal</strong>
+</dd>
+  <dd>Only invoices with a total amount due less than or equal to this will be returned</dd>
+  <dt>recipient_details</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>Only invoices containing this text in their <code>recipient_details</code> field are returned.</dd>
+  <dd>Example: <code>recipient_details=Furniture</code>
+</dd>
+  <dt>project_ids</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>A comma-separated list of project IDs to filter by.</dd>
+  <dd>Example: <code>project_ids=4,5,6</code>
 </dd>
   <dt>company_name</dt>
   <dd>
@@ -124,21 +161,37 @@
   <dd>Only invoices containing this text in their <code>company_details</code> field are returned.</dd>
   <dd>Example: <code>company_details=Main</code>
 </dd>
-  <dt>from</dt>
+  <dt>description</dt>
   <dd>
-<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+<em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>Only invoices with an <code>invoice_date</code> from this date forward will be returned.</dd>
-  <dd>Example: <code>from=2013-09-27</code>
+  <dd>Only invoices containing this text in their <code>description</code> field are returned</dd>
+  <dd>Example: <code>description=Services</code>
 </dd>
-  <dt>to</dt>
+  <dt>footer</dt>
   <dd>
-<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+<em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>Only invoices with an <code>invoice_date</code> on or before this date will be returned.</dd>
-  <dd>Example: <code>to=2013-09-27</code>
+  <dd>Only invoices containing this text in their <code>footer</code> field are returned</dd>
+  <dd>Example: <code>footer=Payment</code>
 </dd>
-  <dt>show_hours</dt>
+  <dt>has_online_payment_details</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>:  Only return invoices that have online payment details.</dd>
+  <dd>
+<code>false</code>: Only return invoices that do not have online payment details.</dd>
+  <dt>has_custom_html</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>:  Only return invoices that include custom HTML.</dd>
+  <dd>
+<code>false</code>: Only return invoices that do not include custom HTML.</dd>
+  <dt>show_hours_worked</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
@@ -146,31 +199,62 @@
 <code>true</code>:  Only return invoices that show the hours worked for this invoice.</dd>
   <dd>
 <code>false</code>: Only return invoices that do not show the hours worked for this invoice.</dd>
-  <dt>show_details</dt>
+  <dt>show_full_report</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
   <dd>
-<code>true</code>:  Only return invoices that show the details for the invoice.</dd>
+<code>true</code>:  Only return invoices that show the full report for the invoice.</dd>
   <dd>
-<code>false</code>: Only return invoices that do not show the details for the invoice.</dd>
-  <dt>show_summaries</dt>
+<code>false</code>: Only return invoices that do not show the full report for the invoice.</dd>
+  <dt>show_user_summaries</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
   <dd>
-<code>true</code>  Only return invoices that show the summary of hours worked for each time member.</dd>
+<code>true</code>:  Only return invoices that show the summary of hours worked for each team member.</dd>
   <dd>
-<code>false</code> Only return invoices that do not show the summary of hours worked for each time member.</dd>
-  <dt>hours_calculation</dt>
+<code>false</code>: Only return invoices that do not show the summary of hours worked for each team member.</dd>
+  <dt>show_project_summaries</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>: Only return invoices that show the summary of hours worked for each project.</dd>
+  <dd>
+<code>false</code>: Only return invoices that do not show the summary of hours worked for each project.</dd>
+  <dt>locale</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>How the total amount for hours worked is calculated. The Accepted values are:
+  <dd>Only invoices using this locale are returned.</dd>
+  <dd>Accepted values: (<a href="/locales_and_currencies/#locales">Any of the supported locale codes</a>)</dd>
+  <dd>Example: <code>locale=en-GB</code>
+</dd>
+  <dt>currency_name</dt>
+  <dd>
+<em>Optional</em> <strong>name</strong>
+</dd>
+  <dd>Only invoices using this currency are returned</dd>
+  <dd>Accepted values: (<a href="/locales_and_currencies/#currencies">Any of the supported currency names</a>)</dd>
+  <dd>Example: <code>currency_name=Euro</code>
+</dd>
+  <dt>currency_symbol</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>Only invoices with this text as part of their <code>currency_symbol</code> are returned</dd>
+  <dd>Example: <code>currency_symbol=£</code>
+</dd>
+  <dt>rate_calculation</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>How the rate for the hours worked is calculated. The Accepted values are:
 
     <ul>
 <li><code>custom_hourly_rates</code></li>
-      <li><code>simple_hourly_rate</code></li>
+      <li><code>standard_hourly_rate</code></li>
       <li><code>flat_rate</code></li>
     </ul>
 </dd>
@@ -180,114 +264,119 @@
 Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
  &lt;https://api.letsfreckle.com/v2/invoices?page=5&gt;; rel="last"</code></pre>
 
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"awaiting_payment"</span><span class="p">,</span>
-  <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
-  <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
-  <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\\r\\nMainsville, MA 11122"</span><span class="p">,</span>
-  <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_details"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Projects"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
-    <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
-    <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
-    <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
-    <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-    <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"tax"</span><span class="p">,</span>
-    <span class="s2">"subtotal"</span><span class="o">:</span> <span class="s2">"subtotal"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
-    <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
-    <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
-    <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
-    <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
-    <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"custom_css"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"paypal_address"</span><span class="o">:</span> <span class="s2">"payment@test.com"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
-  <span class="p">},</span>
-  <span class="s2">"hours_calculation"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
-    <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
+<pre class="highlight"><code class="language-javascript"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
+    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
+    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
+    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+    <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
+    <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
+    <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
+    <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
+      <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
+      <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
+      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
+      <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
+      <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
+      <span class="s2">"project_summary"</span><span class="o">:</span> <span class="s2">"Project summary"</span><span class="p">,</span>
+      <span class="s2">"user_summary"</span><span class="o">:</span> <span class="s2">"People summary"</span><span class="p">,</span>
+      <span class="s2">"no_project_name"</span><span class="o">:</span> <span class="s2">"No project"</span><span class="p">,</span>
+      <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
+      <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
+      <span class="s2">"work_total"</span><span class="o">:</span> <span class="s2">"Total worked"</span><span class="p">,</span>
+      <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
+      <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
+      <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
+      <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">"United States dollar"</span><span class="p">,</span>
+      <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
+      <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
+      <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
+      <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
+      <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
+      <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">"My Custom Invoice"</span><span class="p">,</span>
+      <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+      <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
+      <span class="s2">"paypal_address"</span><span class="o">:</span> <span class="s2">"payment@test.com"</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
+    <span class="p">},</span>
+    <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
+      <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+            <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+            <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+            <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+            <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+            <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+          <span class="p">},</span>
+          <span class="s2">"rate"</span><span class="o">:</span> <span class="mf">30.5</span><span class="p">,</span>
+          <span class="s2">"hourly_rate_with_currency"</span><span class="o">:</span> <span class="s2">"$30.50"</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-          <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-          <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-          <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-          <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-          <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-        <span class="p">},</span>
-        <span class="s2">"rate"</span><span class="o">:</span> <span class="mf">30.5</span><span class="p">,</span>
-        <span class="s2">"hourly_rate_with_currency"</span><span class="o">:</span> <span class="s2">"$30.50"</span>
+        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">88292</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sales Tax"</span><span class="p">,</span>
+        <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
       <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">88292</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sales Tax"</span><span class="p">,</span>
-      <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"amount_taxable"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s2">"amount_taxfree"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"amount_tax_total"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"amount_total"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"amount_total_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
-  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
-  <span class="s2">"payment"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Notified that payment has been completed"</span><span class="p">,</span>
-      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
-      <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-      <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-  <span class="s2">"from_address"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"to_address"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"tax_in_percent"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"tax"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"total"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"subtotal"</span><span class="o">:</span> <span class="kc">null</span>
-<span class="p">}</span></code></pre>
+    <span class="p">],</span>
+    <span class="s2">"taxable_amount"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"taxfree_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"tax_total_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"taxable_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$100.00"</span><span class="p">,</span>
+    <span class="s2">"taxfree_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
+    <span class="s2">"tax_total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
+    <span class="s2">"total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
+    <span class="s2">"payment"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"paid_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
+      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAABBBDDDEEEE22222"</span><span class="p">,</span>
+      <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span>
+    <span class="p">},</span>
+    <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Sent to Paypal"</span><span class="p">,</span>
+        <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
+        <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
+        <span class="s2">"invoice_state"</span><span class="o">:</span> <span class="s2">"in_progress"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+        <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
+        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/entries"</span><span class="p">,</span>
+    <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">324</span><span class="p">,</span>
+    <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
+    <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642"</span>
+  <span class="p">}</span>
+<span class="p">]</span></code></pre>
 
 <h2 id="get-a-single-invoice">Get a single Invoice</h2>
 
@@ -300,40 +389,42 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"awaiting_payment"</span><span class="p">,</span>
-  <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
+  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
   <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
+  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
   <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\\r\\nMainsville, MA 11122"</span><span class="p">,</span>
+  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
   <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_details"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Projects"</span><span class="p">,</span>
+    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
     <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
     <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
     <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
+    <span class="s2">"project_summary"</span><span class="o">:</span> <span class="s2">"Project summary"</span><span class="p">,</span>
+    <span class="s2">"user_summary"</span><span class="o">:</span> <span class="s2">"People summary"</span><span class="p">,</span>
+    <span class="s2">"no_project_name"</span><span class="o">:</span> <span class="s2">"No project"</span><span class="p">,</span>
     <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
     <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-    <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"tax"</span><span class="p">,</span>
-    <span class="s2">"subtotal"</span><span class="o">:</span> <span class="s2">"subtotal"</span><span class="p">,</span>
+    <span class="s2">"work_total"</span><span class="o">:</span> <span class="s2">"Total worked"</span><span class="p">,</span>
     <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
     <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
     <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">"United States dollar"</span><span class="p">,</span>
     <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
     <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
     <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
     <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
     <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"custom_css"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">"My Custom Invoice"</span><span class="p">,</span>
     <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
     <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
@@ -341,7 +432,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
   <span class="p">},</span>
-  <span class="s2">"hours_calculation"</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
     <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
@@ -365,21 +456,26 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"amount_taxable"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s2">"amount_taxfree"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"amount_tax_total"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"amount_total"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"amount_total_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
-  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
-  <span class="s2">"payment"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"taxable_amount"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="s2">"taxfree_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"tax_total_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"taxable_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$100.00"</span><span class="p">,</span>
+  <span class="s2">"taxfree_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
+  <span class="s2">"tax_total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
+  <span class="s2">"total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
+  <span class="s2">"payment"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"paid_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
+    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAABBBDDDEEEE22222"</span><span class="p">,</span>
+    <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span>
+  <span class="p">},</span>
   <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Notified that payment has been completed"</span><span class="p">,</span>
-      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Sent to Paypal"</span><span class="p">,</span>
       <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
       <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span>
+      <span class="s2">"invoice_state"</span><span class="o">:</span> <span class="s2">"in_progress"</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
@@ -393,18 +489,14 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
   <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">324</span><span class="p">,</span>
   <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
+  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-  <span class="s2">"from_address"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"to_address"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"tax_in_percent"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"tax"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"total"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"subtotal"</span><span class="o">:</span> <span class="kc">null</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="create-an-invoice">Create an Invoice</h2>
@@ -419,38 +511,43 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <dd>
 <em>Required</em> <strong>string</strong> in  ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
-  <dd>the date the invoice was issued.</dd>
-  <dt>invoice_number</dt>
+  <dd>The date the invoice was issued.</dd>
+  <dt>reference</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>Your identifier for the invoice. If no value is provided, then a value will be generated based on previous invoices</dd>
+  <dd>The invoice’s reference identifier. If no value is provided, a value will be generated based on previous invoices.</dd>
+  <dt>project_name</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>The name of the projects involved in this invoice.</dd>
   <dt>company_name</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>the name of the company issuing the invoice.</dd>
+  <dd>The name of the company issuing the invoice.</dd>
   <dt>company_details</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>the mailing address and other information of the company issuing the invoice.</dd>
-  <dt>recipient</dt>
+  <dd>The mailing address and other information for the company issuing the invoice.</dd>
+  <dt>recipient_details</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>the mailing address and other information invoice’s recipient.</dd>
+  <dd>The mailing address and other information for the invoice’s recipient.</dd>
   <dt>description</dt>
   <dd>
 <em>Optional</em> <strong>string</strong> that supports a <a href="http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting">limited version of Markdown</a>
 </dd>
-  <dd>a description of the invoice.</dd>
+  <dd>A description of the invoice.</dd>
   <dt>footer</dt>
   <dd>
 <em>Optional</em> <strong>string</strong> that supports a <a href="http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting">limited version of Markdown</a>
 </dd>
-  <dd>the footer for each page of the invoice.</dd>
-  <dt>show_hours</dt>
+  <dd>The footer for each page of the invoice.</dd>
+  <dt>show_hours_worked</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
@@ -458,54 +555,67 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 <code>true</code> (<strong>Default</strong>): The hours worked will be shown when viewing the invoice</dd>
   <dd>
 <code>false</code>: The hours worked will not be shown when viewing the invoice.</dd>
-  <dt>show_details</dt>
+  <dt>show_full_report</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
   <dd>
-<code>true</code>: The details for this invoice will be shown when viewing the invoice.</dd>
+<code>true</code>: The full report will be shown when viewing the invoice.</dd>
   <dd>
-<code>false</code> (<strong>Default</strong>): The details for this invoice will not be shown when viewing the invoice.</dd>
-  <dt>show_summaries</dt>
+<code>false</code> (<strong>Default</strong>): The full report will not be shown when viewing the invoice.</dd>
+  <dt>show_user_summaries</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
   <dd>
-<code>true</code>: a summary of how many minutes each team member worked will be shown when viewing the invoice.</dd>
+<code>true</code>: A summary of how many minutes each team member worked will be shown when viewing the invoice.</dd>
   <dd>
-<code>false</code> (<strong>Default</strong>): a summary of how many minutes each team member worked will not be shown when viewing the invoice.</dd>
-  <dt>hours_calculation</dt>
+<code>false</code> (<strong>Default</strong>): A summary of how many minutes each team member worked will not be shown when viewing the invoice.</dd>
+  <dt>show_project_summaries</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>: A summary of how many minutes were worked for each project will be shown when viewing the invoice.</dd>
+  <dd>
+<code>false</code> (<strong>Default</strong>): A summary of how many minutes were worked for each project will not be shown when viewing the invoice.</dd>
+  <dt>rate_calculation</dt>
   <dd>
 <em>Optional</em> <strong>object</strong>
 </dd>
-  <dd>The details of how to calculate the total amount for hours worked. The fields are:
+  <dd>How to calculate the total amount for hours worked. The fields are:
 
     <dl>
 <dt>calculation_method</dt>
       <dd>
-<em>Optional</em> <strong>string</strong>
+<em>Required</em> <strong>string</strong>
 </dd>
-      <dd>indicates what method will be used to calculate the total amount for hours worked. Accepted values are:
+      <dd>What method will be used to calculate the total amount for hours worked. Accepted values are:
 
         <ul>
 <li>
-<code>simple_hourly_rate</code>: a single hourly rate is used for across the entire invoice.</li>
+<code>standard_hourly_rate</code>: a single hourly rate is used across the entire invoice.</li>
           <li>
-<code>custom_hourly_rates</code>: custom hourly rates can be defined for individual users via the <code>custom_hourly_rates</code> array. If no <code>custom_hourly_rate</code> is defined for an individual user, then the <code>simple_hourly_rate</code> is used for that user.</li>
+<code>custom_hourly_rates</code>: custom hourly rates can be defined for individual users in the <code>custom_hourly_rates</code> array. If no <code>custom_hourly_rate</code> is defined for an individual user, the <code>standard_hourly_rate</code> is used for that user.</li>
           <li>
 <code>flat_rate</code>: a flat rate is used for the the total cost of the hours in the invoice.</li>
         </ul>
 </dd>
-      <dt>simple_hourly_rate</dt>
+      <dt>flat_rate</dt>
       <dd>
-<em>Required if <code>calculation_method</code> equals <code>simple_hourly_rate</code> or <code>custom_hourly_rate</code></em> <strong>decimal</strong>
+<em>Required if payment_type equals <code>flat_rate</code></em> <strong>decimal</strong>
 </dd>
-      <dd>the hourly rate used in this invoice.</dd>
+      <dd>The flat rate used as the total amount for hours worked.</dd>
+      <dt>standard_hourly_rate</dt>
+      <dd>
+<em>Required if <code>calculation_method</code> equals <code>standard_hourly_rate</code> or <code>custom_hourly_rate</code></em> <strong>decimal</strong>
+</dd>
+      <dd>The standard hourly rate used to calculate the total amount for hours worked.</dd>
       <dt>custom_hourly_rates</dt>
       <dd>
 <em>Required if <code>calculation_method</code> equals <code>custom_hourly_rate</code></em> <strong>array of objects</strong>
 </dd>
-      <dd>the custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
+      <dd>The custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
         <dl>
 <dt>user</dt>
@@ -520,75 +630,23 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
           <dd>the hourly rate for this specific user.</dd>
         </dl>
 </dd>
-      <dt>flat_rate</dt>
-      <dd>
-<em>Required if payment_type equals <code>flat_rate</code></em> <strong>decimal</strong>
-</dd>
-      <dd>The flat rate used as the total amount for hours worked.</dd>
     </dl>
 </dd>
-  <dt>entries_and_expenses_selection</dt>
-  <dd>
-<em>Optional</em> <strong>object</strong>
-</dd>
-  <dd>The details of how to automatically select entries and expenses from the projects included in this invoice. The fields are:
-
-    <dl>
-<dt>selection_rules</dt>
-      <dd>
-<em>Optional</em> <strong>string</strong>
-</dd>
-      <dd>the selection pattern used. Accepted values are:
-
-        <ul>
-<li>
-<code>all_uninvoiced</code> (<strong>Default</strong>): All uninvoiced entries and expenses will be included.</li>
-          <li>
-<code>date_range</code>: Only entries and expenses in this specific date range will be returned.</li>
-          <li>
-<code>none</code>: Do not search for any uninvoiced entries and expenses.</li>
-        </ul>
-</dd>
-      <dt>from</dt>
-      <dd>
-<em>Required if entries_and_expenses_selection equals <code>date_range</code></em> <strong>string</strong> in the ISO 8061 date format <code>YYYY-MM-DD</code>
-</dd>
-      <dd>Entries and Expenses from this date forward will be included in this invoice.</dd>
-      <dt>to</dt>
-      <dd>
-<em>Required if entries_and_expenses_selection equals <code>date_range</code></em> <strong>string</strong> in the ISO 8061 date format <code>YYYY-MM-DD</code>
-</dd>
-      <dd>Entries and Expenses on or before this date will be included in this invoice.</dd>
-      <dt>include expenses</dt>
-      <dd>
-<em>Optional</em> <strong>boolean</strong>
-</dd>
-      <dd>
-<code>true</code> (<em>Default</em>): Uninvoiced expenses found using this selection rule are included in the invoice.</dd>
-      <dd>
-<code>false</code>: Uninvoiced expenses found using this selection rule are not included in the invoice.</dd>
-    </dl>
-</dd>
-  <dt>projects</dt>
+  <dt>entry_ids</dt>
   <dd>
 <em>Optional</em> <strong>array of integers</strong>
 </dd>
-  <dd>The IDs of the projects to be included in this invoice. The projects’ entries will be automatically included based on the details of the <code>entries_and_expenses_selection</code> object. If <code>entries_and_expenses_selection</code> is not defined, then all uninvoiced entries and expenses from these projects will be automatically included.</dd>
-  <dt>entries</dt>
+  <dd>The IDs of the entries to be included in this invoice.</dd>
+  <dt>expense_ids</dt>
   <dd>
 <em>Optional</em> <strong>array of integers</strong>
 </dd>
-  <dd>The IDs of specific entries to be included in this invoice. You can include specific entries along with using the <code>entries_and_expense_selection</code> object to get additional entries. Note that if the entry’s project is not included in the <code>projects</code> array, it will automatically added when creating the invoice and additional entries and expenses will be found using the <code>entries_and_expenses_selection</code> object.</dd>
-  <dt>expenses</dt>
-  <dd>
-<em>Optional</em> <strong>array of integers</strong>
-</dd>
-  <dd>The IDs of specific expenses to be included in this invoice. You can include specific expenses along with using the <code>entries_and_expense_selection</code> object to get additional expenses. Note that if the expense’s project is not included in the <code>projects</code> array, it will automatically added when creating the invoice and additional entries and expenses will be found using the <code>entries_and_expenses_selection</code> object.</dd>
+  <dd>The IDs of the expenses to be included in this invoice.</dd>
   <dt>taxes</dt>
   <dd>
 <em>Optional</em> <strong>array of objects</strong>
 </dd>
-  <dd>Each object represents a tax that will be applied to this invoice. The fields are:
+  <dd>The taxes to apply to this invoice. The fields are:
 
     <dl>
 <dt>percentage</dt>
@@ -606,112 +664,142 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <dd>
 <em>Optional</em> <strong>object</strong>
 </dd>
-  <dd>The values in these fields are used a labels when viewing an invoice, modify how the invoice’s values are displayed due to localization, or specify how the invoice is payable via Paypal. The fields are:
+  <dd>These fields define the labels and localization settings used when viewing an invoice, and the details for making an invoice payable via Paypal. The fields are:
 
     <dl>
 <dt>title</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The title of the Invoice. Defaults to “Invoice”.</dd>
+      <dd>The title of the Invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Invoice” if none is found.</dd>
       <dt>date</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the Invoice Date. Defaults to “Date”.</dd>
+      <dd>The label for the Invoice Date.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Date” if none is found.</dd>
       <dt>project</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the list of projects associated with this invoice. Defaults to “Projects”.</dd>
+      <dd>The label for the name of the projects involved in this invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Projects” if none is found.</dd>
       <dt>reference</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the Invoice Reference (Invoice Number). Defaults to “Invoice reference”.</dd>
+      <dd>The label for the invoice’s reference identifier (Invoice Number).</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Invoice reference” if none is found.</dd>
       <dt>total_due</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total amount due for the Invoice. Defaults to “Total amount due”.</dd>
+      <dd>The label for the total amount due for the Invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total amount due” if none is found.</dd>
       <dt>summary</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the invoice summarizing the time worked by each employee, subtotals, expenses, and tax calculations for the invoice. Defaults to “Summary”.</dd>
+      <dd>The label for the section of the invoice summarizing the time worked by each employee, subtotals, expenses, and tax calculations for the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Summary” if none is found.</dd>
+      <dt>project_summary</dt>
+      <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+      <dd>The label for the project summary section of the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Project summary” if none is found.</dd>
+      <dt>user_summary</dt>
+      <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+      <dd>The label for the user summary section of the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “People summary” if none is found.</dd>
+      <dt>no_project_name</dt>
+      <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+      <dd>the label used to summarize entries without any project in the project summary section.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “No project” if none is found.</dd>
       <dt>work_time</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the summary that details the time worked by each employee. Defaults to “work time”.</dd>
+      <dd>The label for the section of the summary that details the time worked by each employee.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “work time” if none is found.</dd>
       <dt>no_tax</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the summary that outlines the amounts in the invoice which do not have tax applied. Defaults to “no tax”.</dd>
-      <dt>tax</dt>
+      <dd>The label for the section of the summary that outlines the amounts in the invoice which do not have tax applied.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “no tax” if none is found.</dd>
+      <dt>work_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the summary that details the taxes in the invoice. Defaults to “tax”.</dd>
-      <dt>subtotal</dt>
-      <dd>
-<em>Optional</em> <strong>string</strong>
-</dd>
-      <dd>The label for the subtotal amount for the invoice. Defaults to “subtotal”.</dd>
+      <dd>The label used for the summary of the total amount of time worked in the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total worked” if none is found.</dd>
       <dt>total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total amount for the invoice. Defaults to “TOTAL”.</dd>
+      <dd>The label for the total amount for the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “TOTAL” if none is found.</dd>
       <dt>report</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the report of total time worked for this invoice. Defaults to “Report”.</dd>
+      <dd>The label for the report of total time worked for this invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Report” if none is found.</dd>
       <dt>locale</dt>
       <dd>
 <em>Optional</em> <strong>string</strong> of a locale code (<a href="/locales_and_currencies/#locales">Supported locale codes</a>)</dd>
-      <dd>The locale of the invoice, which is used to localize dates and other non-currency values. Defaults to “en-US”.</dd>
+      <dd>The locale of the invoice, which is used to localize dates and other non-currency values.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “en-US” if none is found.</dd>
       <dt>currency_name</dt>
       <dd>
 <em>Optional</em> <strong>string</strong> of a currency name (<a href="/locales_and_currencies/#currency_names">Supported Currency Names</a>)</dd>
-      <dd>The name of the currency used in this invoice, which is used to correctly represent the currency value in the correct format. If no value is provided, then the currency will be automatically selected based on the <code>locale</code>.</dd>
+      <dd>The name of the currency used in this invoice, which is used to correctly represent the currency value in the correct format.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects.</dd>
+      <dd>If no previous invoice is found, the currency name will be automatically selected based on the <code>locale</code>.</dd>
       <dt>currency_symbol</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The custom currency symbol used in this invoice. If no value is provided, then the currency symbol will automatically be selected based on the <code>currency_name</code>.</dd>
+      <dd>The custom currency symbol used in this invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects.</dd>
+      <dd>If no previous invoice is found, the currency symbol will automatically be selected based on the <code>currency_name</code>.</dd>
       <dt>taxable_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total taxable amount in the invoice. Defaults to “Total taxable”.</dd>
+      <dd>The label for the total taxable amount in the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total taxable” if none is found.</dd>
       <dt>tax_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total amount of taxes applied to the invoice. Defaults to “Total tax”.</dd>
+      <dd>The label for the total amount of taxes applied to the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total tax” if none is found.</dd>
       <dt>taxfree_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total amount of the invoice which is tax-free. Defaults to “Total taxfree”.</dd>
+      <dd>The label for the total amount of the invoice which is tax-free.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total taxfree” if none is found.</dd>
       <dt>total_report</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total number of minutes worked, which is shown in the full report for this invoice. Defaults to “TOTAL”.</dd>
-      <dt>custom_css</dt>
-      <dd>
-<em>Optional</em> <strong>string</strong>
-</dd>
-      <dd>Any custom CSS used in the invoice.</dd>
+      <dd>The label for the total number of minutes worked, which is shown in the full report for this invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “TOTAL” if none is found.</dd>
       <dt>custom_html</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
       <dd>Any custom HTML used in the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects.</dd>
+      <dd>If no previous invoice is found, the field will be blank.</dd>
       <dt>paypal_invoice</dt>
       <dd>
 <em>Optional</em> <strong>object</strong>
@@ -724,6 +812,8 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 <em>Required</em> <strong>string</strong>
 </dd>
           <dd>The email address that will be receive the money for this invoice. <strong>This should be <em>your</em> Paypal email address</strong>.</dd>
+          <dd>Defaults to the value used in a previous invoice for these projects.</dd>
+          <dd>If no previous invoice is found, the field will be blank.</dd>
           <dt>paypal_invoice_title</dt>
           <dd>
 <em>Optional</em> <strong>string</strong>
@@ -733,123 +823,92 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
           <dd>
 <em>Optional</em> <strong>string</strong> of a <a href="https://cms.paypal.com/mx/cgi-bin/?cmd=_render-content&amp;content_ID=developer/e_howto_api_nvp_currency_codes">Paypal currency code</a>
 </dd>
-          <dd>The paypal currency code used for this invoice. Defaults to “USD”.</dd>
+          <dd>The paypal currency code used for this invoice.</dd>
+          <dd>Defaults to the value used in a previous invoice for these projects, or “USD” if none is found.</dd>
         </dl>
 </dd>
     </dl>
 </dd>
 </dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
+  <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
+  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
   <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\\r\\nMainsville, MA 11122"</span><span class="p">,</span>
-  <span class="s2">"recipient"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
+  <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_details"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"hours_calculation"</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
+    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
     <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
         <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"include_expenses"</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
   <span class="p">},</span>
-  <span class="s2">"entries_and_expenses_selection"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"selection_rules"</span><span class="o">:</span> <span class="s2">"all_uninvoiced"</span><span class="p">,</span>
-    <span class="s2">"from"</span><span class="o">:</span> <span class="s2">"2013-01-01"</span><span class="p">,</span>
-    <span class="s2">"to"</span><span class="o">:</span> <span class="s2">"2013-01-01"</span>
-  <span class="p">},</span>
-  <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="mi">37396</span>
-  <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="s2">"entry_ids"</span><span class="o">:</span> <span class="p">[</span>
     <span class="mi">1</span>
   <span class="p">],</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="s2">"expense_ids"</span><span class="o">:</span> <span class="p">[</span>
     <span class="mi">2233</span>
   <span class="p">],</span>
-  <span class="s2">"include_expenses"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
   <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sales Tax"</span><span class="p">,</span>
       <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
     <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Projects"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
-    <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
-    <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
-    <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
-    <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-    <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"tax"</span><span class="p">,</span>
-    <span class="s2">"subtotal"</span><span class="o">:</span> <span class="s2">"subtotal"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
-    <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
-    <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
-    <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
-    <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
-    <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"custom_css"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"paypal_address"</span><span class="o">:</span> <span class="s2">"payment@test.com"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
-  <span class="p">}</span>
+  <span class="p">]</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="response-2">Response</h3>
 
-<pre class="headers"><code>Status: 200 OK</code></pre>
+<pre class="headers"><code>Status: 201 Created</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"awaiting_payment"</span><span class="p">,</span>
-  <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
+  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
   <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
+  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
   <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\\r\\nMainsville, MA 11122"</span><span class="p">,</span>
+  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
   <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_details"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Projects"</span><span class="p">,</span>
+    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
     <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
     <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
     <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
+    <span class="s2">"project_summary"</span><span class="o">:</span> <span class="s2">"Project summary"</span><span class="p">,</span>
+    <span class="s2">"user_summary"</span><span class="o">:</span> <span class="s2">"People summary"</span><span class="p">,</span>
+    <span class="s2">"no_project_name"</span><span class="o">:</span> <span class="s2">"No project"</span><span class="p">,</span>
     <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
     <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-    <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"tax"</span><span class="p">,</span>
-    <span class="s2">"subtotal"</span><span class="o">:</span> <span class="s2">"subtotal"</span><span class="p">,</span>
+    <span class="s2">"work_total"</span><span class="o">:</span> <span class="s2">"Total worked"</span><span class="p">,</span>
     <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
     <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
     <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">"United States dollar"</span><span class="p">,</span>
     <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
     <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
     <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
     <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
     <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"custom_css"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">"My Custom Invoice"</span><span class="p">,</span>
     <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
     <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
@@ -857,7 +916,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
   <span class="p">},</span>
-  <span class="s2">"hours_calculation"</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
     <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
@@ -881,21 +940,26 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"amount_taxable"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s2">"amount_taxfree"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"amount_tax_total"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"amount_total"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"amount_total_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
-  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
-  <span class="s2">"payment"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"taxable_amount"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="s2">"taxfree_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"tax_total_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"taxable_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$100.00"</span><span class="p">,</span>
+  <span class="s2">"taxfree_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
+  <span class="s2">"tax_total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
+  <span class="s2">"total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
+  <span class="s2">"payment"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"paid_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
+    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAABBBDDDEEEE22222"</span><span class="p">,</span>
+    <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span>
+  <span class="p">},</span>
   <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Notified that payment has been completed"</span><span class="p">,</span>
-      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Sent to Paypal"</span><span class="p">,</span>
       <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
       <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span>
+      <span class="s2">"invoice_state"</span><span class="o">:</span> <span class="s2">"in_progress"</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
@@ -909,18 +973,36 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
   <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">324</span><span class="p">,</span>
   <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
+  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-  <span class="s2">"from_address"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"to_address"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"tax_in_percent"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"tax"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"total"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"subtotal"</span><span class="o">:</span> <span class="kc">null</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="a-note-about-entries-or-expenses-that-cannot-be-added">A note about entries or expenses that cannot be added</h3>
+
+<p>If entries or expenses cannot be added to an invoice, the invoice will not be created and an itemized errors array will be returned.</p>
+
+<pre class="headers"><code>Status: 400 Bad Request</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Entries or Expenses could not be added"</span><span class="p">,</span>
+  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Entry"</span><span class="p">,</span>
+      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"entry_ids[1]"</span><span class="p">,</span>
+      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"archived_project"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Expense"</span><span class="p">,</span>
+      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"expense_ids[4]"</span><span class="p">,</span>
+      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"missing"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="edit-an-invoice">Edit an Invoice</h2>
@@ -933,40 +1015,45 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 <dl>
 <dt>invoice_date</dt>
   <dd>
-<em>Optional</em> <strong>string</strong> in  ISO 8061 format <code>YYYY-MM-DD</code>
+<em>Required</em> <strong>string</strong> in  ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
-  <dd>the date the invoice was issued.</dd>
-  <dt>invoice_number</dt>
+  <dd>The date the invoice was issued.</dd>
+  <dt>reference</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>Your identifier for the invoice. If no value is provided, then a value will be generated based on previous invoices</dd>
+  <dd>The invoice’s reference identifier. If no value is provided, a value will be generated based on previous invoices.</dd>
+  <dt>project_name</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>The name of the projects involved in this invoice.</dd>
   <dt>company_name</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>the name of the company issuing the invoice.</dd>
+  <dd>The name of the company issuing the invoice.</dd>
   <dt>company_details</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>the mailing address and other information of the company issuing the invoice.</dd>
-  <dt>recipient</dt>
+  <dd>The mailing address and other information for the company issuing the invoice.</dd>
+  <dt>recipient_details</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>the mailing address and other information invoice’s recipient.</dd>
+  <dd>The mailing address and other information for the invoice’s recipient.</dd>
   <dt>description</dt>
   <dd>
 <em>Optional</em> <strong>string</strong> that supports a <a href="http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting">limited version of Markdown</a>
 </dd>
-  <dd>a description of the invoice.</dd>
+  <dd>A description of the invoice.</dd>
   <dt>footer</dt>
   <dd>
 <em>Optional</em> <strong>string</strong> that supports a <a href="http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting">limited version of Markdown</a>
 </dd>
-  <dd>the footer for each page of the invoice.</dd>
-  <dt>show_hours</dt>
+  <dd>The footer for each page of the invoice.</dd>
+  <dt>show_hours_worked</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
@@ -974,132 +1061,223 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 <code>true</code> (<strong>Default</strong>): The hours worked will be shown when viewing the invoice</dd>
   <dd>
 <code>false</code>: The hours worked will not be shown when viewing the invoice.</dd>
-  <dt>show_details</dt>
+  <dt>show_full_report</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
   <dd>
-<code>true</code>: The details for this invoice will be shown when viewing the invoice.</dd>
+<code>true</code>: The full report will be shown when viewing the invoice.</dd>
   <dd>
-<code>false</code> (<strong>Default</strong>): The details for this invoice will not be shown when viewing the invoice.</dd>
-  <dt>show_summaries</dt>
+<code>false</code> (<strong>Default</strong>): The full report will not be shown when viewing the invoice.</dd>
+  <dt>show_user_summaries</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
   <dd>
-<code>true</code>: a summary of how many minutes each team member worked will be shown when viewing the invoice.</dd>
+<code>true</code>: A summary of how many minutes each team member worked will be shown when viewing the invoice.</dd>
   <dd>
-<code>false</code> (<strong>Default</strong>): a summary of how many minutes each team member worked will not be shown when viewing the invoice.</dd>
+<code>false</code> (<strong>Default</strong>): A summary of how many minutes each team member worked will not be shown when viewing the invoice.</dd>
+  <dt>show_project_summaries</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>: A summary of how many minutes were worked for each project will be shown when viewing the invoice.</dd>
+  <dd>
+<code>false</code> (<strong>Default</strong>): A summary of how many minutes were worked for each project will not be shown when viewing the invoice.</dd>
+  <dt>rate_calculation</dt>
+  <dd>
+<em>Optional</em> <strong>object</strong>
+</dd>
+  <dd>How to calculate the total amount for hours worked. The fields are:
+
+    <dl>
+<dt>calculation_method</dt>
+      <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+      <dd>What method will be used to calculate the total amount for hours worked. Accepted values are:
+
+        <ul>
+<li>
+<code>standard_hourly_rate</code>: a single hourly rate is used across the entire invoice.</li>
+          <li>
+<code>custom_hourly_rates</code>: custom hourly rates can be defined for individual users in the <code>custom_hourly_rates</code> array. If no <code>custom_hourly_rate</code> is defined for an individual user, the <code>standard_hourly_rate</code> is used for that user.</li>
+          <li>
+<code>flat_rate</code>: a flat rate is used for the the total cost of the hours in the invoice.</li>
+        </ul>
+</dd>
+      <dt>flat_rate</dt>
+      <dd>
+<em>Required if payment_type equals <code>flat_rate</code></em> <strong>decimal</strong>
+</dd>
+      <dd>The flat rate used as the total amount for hours worked.</dd>
+      <dt>standard_hourly_rate</dt>
+      <dd>
+<em>Required if <code>calculation_method</code> equals <code>standard_hourly_rate</code> or <code>custom_hourly_rate</code></em> <strong>decimal</strong>
+</dd>
+      <dd>The standard hourly rate used to calculate the total amount for hours worked.</dd>
+      <dt>custom_hourly_rates</dt>
+      <dd>
+<em>Required if <code>calculation_method</code> equals <code>custom_hourly_rate</code></em> <strong>array of objects</strong>
+</dd>
+      <dd>The custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
+
+        <dl>
+<dt>user</dt>
+          <dd>
+<em>Required</em> <strong>integer</strong>
+</dd>
+          <dd>the ID of the user</dd>
+          <dt>hourly_rate</dt>
+          <dd>
+<em>Required</em> <strong>decimal</strong>
+</dd>
+          <dd>the hourly rate for this specific user.</dd>
+        </dl>
+</dd>
+    </dl>
+</dd>
   <dt>customization</dt>
   <dd>
 <em>Optional</em> <strong>object</strong>
 </dd>
-  <dd>The values in these fields are used a labels when viewing an invoice, modify how the invoice’s values are displayed due to localization, or specify how the invoice is payable via Paypal. The fields are:
+  <dd>These fields define the labels and localization settings used when viewing an invoice, and the details for making an invoice payable via Paypal. The fields are:
 
     <dl>
 <dt>title</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The title of the Invoice. Defaults to “Invoice”.</dd>
+      <dd>The title of the Invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Invoice” if none is found.</dd>
       <dt>date</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the Invoice Date. Defaults to “Date”.</dd>
+      <dd>The label for the Invoice Date.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Date” if none is found.</dd>
       <dt>project</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the list of projects associated with this invoice. Defaults to “Projects”.</dd>
+      <dd>The label for the name of the projects involved in this invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Projects” if none is found.</dd>
       <dt>reference</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the Invoice Reference (Invoice Number). Defaults to “Invoice reference”.</dd>
+      <dd>The label for the invoice’s reference identifier (Invoice Number).</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Invoice reference” if none is found.</dd>
       <dt>total_due</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total amount due for the Invoice. Defaults to “Total amount due”.</dd>
+      <dd>The label for the total amount due for the Invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total amount due” if none is found.</dd>
       <dt>summary</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the invoice summarizing the time worked by each employee, subtotals, expenses, and tax calculations for the invoice. Defaults to “Summary”.</dd>
+      <dd>The label for the section of the invoice summarizing the time worked by each employee, subtotals, expenses, and tax calculations for the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Summary” if none is found.</dd>
+      <dt>project_summary</dt>
+      <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+      <dd>The label for the project summary section of the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Project summary” if none is found.</dd>
+      <dt>user_summary</dt>
+      <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+      <dd>The label for the user summary section of the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “People summary” if none is found.</dd>
+      <dt>no_project_name</dt>
+      <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+      <dd>the label used to summarize entries without any project in the project summary section.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “No project” if none is found.</dd>
       <dt>work_time</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the summary that details the time worked by each employee. Defaults to “work time”.</dd>
+      <dd>The label for the section of the summary that details the time worked by each employee.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “work time” if none is found.</dd>
       <dt>no_tax</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the summary that outlines the amounts in the invoice which do not have tax applied. Defaults to “no tax”.</dd>
-      <dt>tax</dt>
+      <dd>The label for the section of the summary that outlines the amounts in the invoice which do not have tax applied.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “no tax” if none is found.</dd>
+      <dt>work_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the section of the summary that details the taxes in the invoice. Defaults to “tax”.</dd>
-      <dt>subtotal</dt>
-      <dd>
-<em>Optional</em> <strong>string</strong>
-</dd>
-      <dd>The label for the subtotal amount for the invoice. Defaults to “subtotal”.</dd>
+      <dd>The label used for the summary of the total amount of time worked in the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total worked” if none is found.</dd>
       <dt>total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total amount for the invoice. Defaults to “TOTAL”.</dd>
+      <dd>The label for the total amount for the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “TOTAL” if none is found.</dd>
       <dt>report</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the report of total time worked for this invoice. Defaults to “Report”.</dd>
+      <dd>The label for the report of total time worked for this invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Report” if none is found.</dd>
       <dt>locale</dt>
       <dd>
 <em>Optional</em> <strong>string</strong> of a locale code (<a href="/locales_and_currencies/#locales">Supported locale codes</a>)</dd>
-      <dd>The locale of the invoice, which is used to localize dates and other non-currency values. Defaults to “en-US”.</dd>
+      <dd>The locale of the invoice, which is used to localize dates and other non-currency values.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “en-US” if none is found.</dd>
       <dt>currency_name</dt>
       <dd>
 <em>Optional</em> <strong>string</strong> of a currency name (<a href="/locales_and_currencies/#currency_names">Supported Currency Names</a>)</dd>
-      <dd>The name of the currency used in this invoice, which is used to correctly represent the currency value in the correct format. If no value is provided, then the currency will be automatically selected based on the <code>locale</code>.</dd>
+      <dd>The name of the currency used in this invoice, which is used to correctly represent the currency value in the correct format.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects.</dd>
+      <dd>If no previous invoice is found, the currency name will be automatically selected based on the <code>locale</code>.</dd>
       <dt>currency_symbol</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The custom currency symbol used in this invoice. If no value is provided, then the currency symbol will automatically be selected based on the <code>currency_name</code>.</dd>
+      <dd>The custom currency symbol used in this invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects.</dd>
+      <dd>If no previous invoice is found, the currency symbol will automatically be selected based on the <code>currency_name</code>.</dd>
       <dt>taxable_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total taxable amount in the invoice. Defaults to “Total taxable”.</dd>
+      <dd>The label for the total taxable amount in the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total taxable” if none is found.</dd>
       <dt>tax_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total amount of taxes applied to the invoice. Defaults to “Total tax”.</dd>
+      <dd>The label for the total amount of taxes applied to the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total tax” if none is found.</dd>
       <dt>taxfree_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total amount of the invoice which is tax-free. Defaults to “Total taxfree”.</dd>
+      <dd>The label for the total amount of the invoice which is tax-free.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “Total taxfree” if none is found.</dd>
       <dt>total_report</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-      <dd>The label for the total number of minutes worked, which is shown in the full report for this invoice. Defaults to “TOTAL”.</dd>
-      <dt>custom_css</dt>
-      <dd>
-<em>Optional</em> <strong>string</strong>
-</dd>
-      <dd>Any custom CSS used in the invoice.</dd>
+      <dd>The label for the total number of minutes worked, which is shown in the full report for this invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects, or “TOTAL” if none is found.</dd>
       <dt>custom_html</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
       <dd>Any custom HTML used in the invoice.</dd>
+      <dd>Defaults to the value used in a previous invoice for these projects.</dd>
+      <dd>If no previous invoice is found, the field will be blank.</dd>
       <dt>paypal_invoice</dt>
       <dd>
 <em>Optional</em> <strong>object</strong>
@@ -1112,6 +1290,8 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 <em>Required</em> <strong>string</strong>
 </dd>
           <dd>The email address that will be receive the money for this invoice. <strong>This should be <em>your</em> Paypal email address</strong>.</dd>
+          <dd>Defaults to the value used in a previous invoice for these projects.</dd>
+          <dd>If no previous invoice is found, the field will be blank.</dd>
           <dt>paypal_invoice_title</dt>
           <dd>
 <em>Optional</em> <strong>string</strong>
@@ -1121,49 +1301,35 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
           <dd>
 <em>Optional</em> <strong>string</strong> of a <a href="https://cms.paypal.com/mx/cgi-bin/?cmd=_render-content&amp;content_ID=developer/e_howto_api_nvp_currency_codes">Paypal currency code</a>
 </dd>
-          <dd>The paypal currency code used for this invoice. Defaults to “USD”.</dd>
+          <dd>The paypal currency code used for this invoice.</dd>
+          <dd>Defaults to the value used in a previous invoice for these projects, or “USD” if none is found.</dd>
         </dl>
 </dd>
     </dl>
 </dd>
 </dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
+  <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
+  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
   <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\\r\\nMainsville, MA 11122"</span><span class="p">,</span>
-  <span class="s2">"recipient"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
+  <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_details"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Projects"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
-    <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
-    <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
-    <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
-    <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-    <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"tax"</span><span class="p">,</span>
-    <span class="s2">"subtotal"</span><span class="o">:</span> <span class="s2">"subtotal"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
-    <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
-    <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
-    <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
-    <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
-    <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"custom_css"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"paypal_address"</span><span class="o">:</span> <span class="s2">"payment@test.com"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
+  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
+    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
+    <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+        <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
@@ -1173,40 +1339,42 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"awaiting_payment"</span><span class="p">,</span>
-  <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
+  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
   <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
+  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
   <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\\r\\nMainsville, MA 11122"</span><span class="p">,</span>
+  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
   <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
   <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_details"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Projects"</span><span class="p">,</span>
+    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
     <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
     <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
     <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
+    <span class="s2">"project_summary"</span><span class="o">:</span> <span class="s2">"Project summary"</span><span class="p">,</span>
+    <span class="s2">"user_summary"</span><span class="o">:</span> <span class="s2">"People summary"</span><span class="p">,</span>
+    <span class="s2">"no_project_name"</span><span class="o">:</span> <span class="s2">"No project"</span><span class="p">,</span>
     <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
     <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-    <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"tax"</span><span class="p">,</span>
-    <span class="s2">"subtotal"</span><span class="o">:</span> <span class="s2">"subtotal"</span><span class="p">,</span>
+    <span class="s2">"work_total"</span><span class="o">:</span> <span class="s2">"Total worked"</span><span class="p">,</span>
     <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
     <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
     <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">"United States dollar"</span><span class="p">,</span>
     <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
     <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
     <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
     <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
     <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"custom_css"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">"My Custom Invoice"</span><span class="p">,</span>
     <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
     <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
@@ -1214,7 +1382,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
   <span class="p">},</span>
-  <span class="s2">"hours_calculation"</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
     <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
@@ -1238,21 +1406,26 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"amount_taxable"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s2">"amount_taxfree"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"amount_tax_total"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"amount_total"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"amount_total_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
-  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
-  <span class="s2">"payment"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"taxable_amount"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="s2">"taxfree_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"tax_total_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"taxable_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$100.00"</span><span class="p">,</span>
+  <span class="s2">"taxfree_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
+  <span class="s2">"tax_total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
+  <span class="s2">"total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
+  <span class="s2">"payment"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"paid_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
+    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAABBBDDDEEEE22222"</span><span class="p">,</span>
+    <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span>
+  <span class="p">},</span>
   <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Notified that payment has been completed"</span><span class="p">,</span>
-      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Sent to Paypal"</span><span class="p">,</span>
       <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
       <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span>
+      <span class="s2">"invoice_state"</span><span class="o">:</span> <span class="s2">"in_progress"</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
@@ -1266,23 +1439,26 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
   <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">324</span><span class="p">,</span>
   <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
+  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-  <span class="s2">"from_address"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"to_address"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"tax_in_percent"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"tax"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"total"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"subtotal"</span><span class="o">:</span> <span class="kc">null</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="get-the-entries-included-in-an-invoice">Get the entries included in an invoice</h2>
+<h3 id="custom-error-codes">Custom Error Codes</h3>
 
-<pre><code>GET /imports/:id/entries
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="get-the-invoices-entries">Get the invoice’s entries</h2>
+
+<pre><code>GET /invoices/:id/entries
 </code></pre>
 
 <h3 id="parameters-1">Parameters</h3>
@@ -1331,9 +1507,10 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/entries?page=2&gt;; rel="n
   <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
   <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
     <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
+    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
   <span class="p">},</span>
   <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
@@ -1354,124 +1531,16 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/entries?page=2&gt;; rel="n
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="add-entries-to-an-invoice">Add Entries to an Invoice</h2>
+<h2 id="get-the-invoices-expenses">Get the invoice’s expenses</h2>
 
-<p>Add specific entries to the invoice, which will be included with the entries already added to this invoice. Note that if the entry’s project is not currently one of the project’s included in this Invoice, it will be automatically added.</p>
-
-<pre><code>POST /imports/:id/entries/
-</code></pre>
-
-<h3 id="inputs-1">Inputs</h3>
-
-<dl>
-<dt>entries</dt>
-  <dd>
-<em>Required</em> <strong>array of integers</strong>
-</dd>
-  <dd>the IDs of the entries to be added to this invoice.</dd>
-</dl><h3 id="response-5">Response</h3>
-
-<pre class="headers"><code>Status: 200 OK</code></pre>
-
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-  <span class="p">},</span>
-  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
-  <span class="p">},</span>
-  <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#freckle"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/249397"</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
-  <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
-  <span class="p">},</span>
-  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
-  <span class="p">},</span>
-  <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-  <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
-<span class="p">}</span></code></pre>
-
-<h2 id="remove-entries-from-an-invoice">Remove Entries from an Invoice</h2>
-
-<p>Remove specific entries from this invoice. Any entries that are not included in this invoice will be ignored. Note that if the invoice does not contain any other entries or expenses associated with an entry’s project, the project will automatically be removed from the Invoice.</p>
-
-<pre><code>PUT /imports/:id/entries/
-</code></pre>
-
-<h3 id="inputs-2">Inputs</h3>
-
-<dl>
-<dt>entries</dt>
-  <dd>
-<em>Required</em> <strong>array of integers</strong>
-</dd>
-  <dd>the IDs of the entries to be removed from this invoice.</dd>
-</dl><h3 id="response-6">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h2 id="remove-all-entries-from-an-invoice">Remove all Entries from an Invoice</h2>
-
-<p>Removes all entries from this invoice. Note that if the invoice does not contain any other entries or expenses associated with an entry’s project, the project will automatically be removed from the Invoice.</p>
-
-<pre><code>DELETE /imports/:id/entries/
-</code></pre>
-
-<h3 id="response-7">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h2 id="get-the-expenses-included-in-an-invoice">Get the expenses included in an invoice</h2>
-
-<pre><code>GET /imports/:id/expenses
+<pre><code>GET /invoices/:id/expenses
 </code></pre>
 
 <h3 id="parameters-2">Parameters</h3>
 
 <p>You can use the parameters specified in the <a href="/expenses/index.html#list">Expense API’s List Action</a> to further limit the results.</p>
 
-<h3 id="response-8">Response</h3>
+<h3 id="response-5">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
 Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="next",
@@ -1494,9 +1563,10 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
   <span class="p">},</span>
   <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
     <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
+    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
   <span class="p">},</span>
   <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
@@ -1512,65 +1582,131 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="add-expenses-to-an-invoice">Add Expenses to an Invoice</h2>
+<h2 id="add-entries-to-an-invoice">Add Entries to an Invoice</h2>
 
-<p>Add specific expenses to the invoice, which will be included with the expenses already added to this invoice. Note that if the expense’s project is not currently one of the project’s included in this Invoice, it will be automatically added.</p>
+<pre><code>PUT /invoices/:id/add_entries
+</code></pre>
 
-<pre><code>POST /imports/:id/expenses/
+<h3 id="inputs-1">Inputs</h3>
+
+<dl>
+<dt>entry_ids</dt>
+  <dd>
+<em>Required</em> <strong>array of integers</strong>
+</dd>
+  <dd>the IDs of the entries to add to this invoice.</dd>
+</dl><h3 id="response-6">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="a-note-about-entries-that-cannot-be-added">A note about entries that cannot be added</h3>
+
+<p>If entries cannot be added to an invoice, the invoice will not be created and an itemized errors array will be returned.</p>
+
+<pre class="headers"><code>Status: 400 Bad Request</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Entries could not be added"</span><span class="p">,</span>
+  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Entry"</span><span class="p">,</span>
+      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"entry_ids[1]"</span><span class="p">,</span>
+      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"archived_project"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="custom-error-codes-1">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="remove-entries-from-an-invoice">Remove Entries from an Invoice</h2>
+
+<pre><code>PUT /invoices/:id/remove_entries
+</code></pre>
+
+<h3 id="inputs-2">Inputs</h3>
+
+<dl>
+<dt>entries</dt>
+  <dd>
+<em>Required</em> <strong>array of integers</strong>
+</dd>
+  <dd>the IDs of the entries to remove from this invoice. Any entries that are not associated with the invoice will be ignored and will not affect the Response.</dd>
+</dl><h3 id="response-7">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="custom-error-codes-2">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="remove-all-entries-from-an-invoice">Remove all Entries from an Invoice</h2>
+
+<pre><code>PUT /invoices/:id/remove_all_entries
+</code></pre>
+
+<h3 id="response-8">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="custom-error-codes-3">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="add-expenses-to-an-invoice">Add Expenses to an Invoice</h2>
+
+<pre><code>PUT /invoices/:id/add_expenses
 </code></pre>
 
 <h3 id="inputs-3">Inputs</h3>
 
 <dl>
-<dt>expenses</dt>
+<dt>expense_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
-  <dd>the IDs of the expenses to be added to this invoice.</dd>
+  <dd>the IDs of the expenses to add to this invoice.</dd>
 </dl><h3 id="response-9">Response</h3>
 
-<pre class="headers"><code>Status: 200 OK</code></pre>
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="a-note-about-entries-that-cannot-be-added-1">A note about entries that cannot be added</h3>
+
+<p>If entries cannot be added to an invoice, the invoice will not be created and an itemized errors array will be returned.</p>
+
+<pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2233</span><span class="p">,</span>
-  <span class="s2">"price"</span><span class="o">:</span> <span class="mf">14.55</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"new software"</span><span class="p">,</span>
-  <span class="s2">"taxable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
-  <span class="p">},</span>
-  <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
-  <span class="p">},</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-  <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/expense/2233"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Entries could not be added"</span><span class="p">,</span>
+  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Entry"</span><span class="p">,</span>
+      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"entry_ids[1]"</span><span class="p">,</span>
+      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"archived_project"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="remove-expenses-from-an-invoice">Remove Expenses from an Invoice</h2>
+<h3 id="custom-error-codes-4">Custom Error Codes</h3>
 
-<p>Remove specific expenses from this invoice. Any expenses that are not included in this invoice will be ignored. Note that if the invoice does not contain any other entries or expenses associated with an entry’s project, the project will automatically be removed from the Invoice.</p>
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="remove-expenses-from-an-invoice">Remove Expenses from an Invoice</h2>
 
-<pre><code>PUT /imports/:id/expenses/
+<pre><code>PUT /invoices/:id/remove_expenses
 </code></pre>
 
 <h3 id="inputs-4">Inputs</h3>
@@ -1580,311 +1716,47 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
-  <dd>the IDs of the expenses to be removed from this invoice.</dd>
+  <dd>the IDs of the expenses to remove from this invoice. Any expenses that are not associated with this invoice will be ignored and will not affect the Response.</dd>
 </dl><h3 id="response-10">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h2 id="remove-all-expenses-from-an-invoice">Remove all Expenses from an Invoice</h2>
+<h3 id="custom-error-codes-5">Custom Error Codes</h3>
 
-<p>Removes all expenses from this invoice. Note that if the invoice does not contain any other entries or expenses associated with an entry’s project, the project will automatically be removed from the Invoice.</p>
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="remove-all-expenses-from-an-invoice">Remove all Expenses from an Invoice</h2>
 
-<pre><code>DELETE /imports/:id/expenses/
+<pre><code>PUT /invoices/:id/remove_all_expenses
 </code></pre>
 
 <h3 id="response-11">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h2 id="get-the-projects-included-in-an-invoice">Get the projects included in an invoice</h2>
+<h3 id="custom-error-codes-6">Custom Error Codes</h3>
 
-<pre><code>GET /imports/:id/projects
-</code></pre>
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="add-taxes-to-an-invoice">Add Taxes to an Invoice</h2>
 
-<h3 id="parameters-3">Parameters</h3>
-
-<p>You can use the parameters specified in the <a href="/projects/index.html#list">Project API’s List Action</a> to further limit the results</p>
-
-<h3 id="response-12">Response</h3>
-
-<pre class="headers"><code>Status: 200 OK
-Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=2&gt;; rel="next",
- &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=5&gt;; rel="last"</code></pre>
-
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-  <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-  <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580"</span><span class="p">,</span>
-  <span class="s2">"group"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">3768</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sprockets, Inc."</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/project_groups/3768"</span>
-  <span class="p">},</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
-  <span class="s2">"billable_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
-  <span class="s2">"unbillable_minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"invoiced_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
-  <span class="s2">"remaining_minutes"</span><span class="o">:</span> <span class="mi">630</span><span class="p">,</span>
-  <span class="s2">"budget_minutes"</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
-  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
-  <span class="p">},</span>
-  <span class="s2">"invoices"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-      <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-      <span class="s2">"total"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"participants"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/34580/expenses"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
-<span class="p">}</span></code></pre>
-
-<h2 id="add-projects-to-an-invoice">Add Projects to an Invoice</h2>
-
-<p>When you add a project to the invoice, the project’s entries and expenses will be automatically included based on the details of the <code>entries_and_expenses_selection</code> object. If <code>entries_and_expenses_selection</code> is not defined, then all uninvoiced entries and expenses from the projects will be automatically included.</p>
-
-<pre><code>POST /imports/:id/projects/
+<pre><code>PUT /invoices/:id/add_taxes
 </code></pre>
 
 <h3 id="inputs-5">Inputs</h3>
-
-<dl>
-<dt>projects</dt>
-  <dd>
-<em>Required</em> <strong>array of integers</strong>
-</dd>
-  <dd>the IDs of projects to be added in this invoice.</dd>
-  <dt>entries_and_expenses_selection</dt>
-  <dd>
-<em>Optional</em> <strong>object</strong>
-</dd>
-  <dd>The details of how to automatically select entries and expenses from the projects included in this invoice. The fields are:
-
-    <dl>
-<dt>selection_rules</dt>
-      <dd>
-<em>Optional</em> <strong>string</strong>
-</dd>
-      <dd>the selection pattern used. Accepted values are:
-
-        <ul>
-<li>
-<code>all_uninvoiced</code> (<strong>Default</strong>): All uninvoiced entries and expenses will be included.</li>
-          <li>
-<code>date_range</code>: Only entries and expenses in this specific date range will be returned.</li>
-          <li>
-<code>none</code>: Do not search for any uninvoiced entries and expenses.</li>
-        </ul>
-</dd>
-      <dt>from</dt>
-      <dd>
-<em>Required if entries_and_expenses_selection equals <code>date_range</code></em> <strong>string</strong> in the ISO 8061 date format <code>YYYY-MM-DD</code>
-</dd>
-      <dd>Entries and Expenses from this date forward will be included in this invoice.</dd>
-      <dt>to</dt>
-      <dd>
-<em>Required if entries_and_expenses_selection equals <code>date_range</code></em> <strong>string</strong> in the ISO 8061 date format <code>YYYY-MM-DD</code>
-</dd>
-      <dd>Entries and Expenses on or before this date will be included in this invoice.</dd>
-      <dt>include expenses</dt>
-      <dd>
-<em>Optional</em> <strong>boolean</strong>
-</dd>
-      <dd>
-<code>true</code> (<em>Default</em>): Uninvoiced expenses found using this selection rule are included in the invoice.</dd>
-      <dd>
-<code>false</code>: Uninvoiced expenses found using this selection rule are not included in the invoice.</dd>
-    </dl>
-</dd>
-</dl><h2 id="remove-projects-from-an-invoice">Remove Projects from an Invoice</h2>
-
-<p>Remove the projects</p>
-
-<p>Remove specific projects from this Invoice. Any projects that are not included in this invoice will be ignored. Note that the entries or expenses associated with a project will automatically be removed from the Invoice.</p>
-
-<p>When you remove a project from the invoice, it removes the project’s entries and expenses from this invoice.</p>
-
-<pre><code>PUT /imports/:id/projects/
-</code></pre>
-
-<h3 id="inputs-6">Inputs</h3>
-
-<dl>
-<dt>projects</dt>
-  <dd>
-<em>Required</em> <strong>array of integers</strong>
-</dd>
-  <dd>the IDs of projects to be aaded in this invoice.</dd>
-</dl><h3 id="response-13">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h2 id="remove-all-projects-from-an-invoice">Remove all Projects from an Invoice</h2>
-
-<p>Remove all projects from this Invoice. Note that the entries or expenses associated with this Invoice will automatically be removed from the Invoice.</p>
-
-<pre><code>DELETE /imports/:id/projects/
-</code></pre>
-
-<h3 id="response-14">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h2 id="recalculate-the-total-amount-for-the-time-worked-in-this-invoice">Recalculate the total amount for the time worked in this invoice</h2>
-
-<p>Updates how the invoice calculates the total amount corresponding to the entries included this invoice.</p>
-
-<pre><code>PUT /invoices/:id/hours_calculation
-</code></pre>
-
-<h3 id="input-1">Input</h3>
-
-<dl>
-<dt>calculation_method</dt>
-  <dd>
-<em>Required</em> <strong>string</strong>
-</dd>
-  <dd>indicates what method will be used to calculate the total amount for hours worked. Accepted values are:
-
-    <ul>
-<li>
-<code>simple_hourly_rate</code>: a single hourly rate is used for across the entire invoice.</li>
-      <li>
-<code>custom_hourly_rates</code>: custom hourly rates can be defined for individual users via the <code>custom_hourly_rates</code> array. If no <code>custom_hourly_rate</code> is defined for an individual user, then the <code>simple_hourly_rate</code> is used for that user.</li>
-      <li>
-<code>flat_rate</code>: a flat rate is used for the the total cost of the hours in the invoice.</li>
-    </ul>
-</dd>
-  <dt>simple_hourly_rate</dt>
-  <dd>
-<em>Required if <code>calculation_method</code> equals <code>simple_hourly_rate</code> or <code>custom_hourly_rate</code></em> <strong>decimal</strong>
-</dd>
-  <dd>the hourly rate used in this invoice.</dd>
-  <dt>custom_hourly_rates</dt>
-  <dd>
-<em>Required if <code>calculation_method</code> equals <code>custom_hourly_rate</code></em> <strong>array of objects</strong>
-</dd>
-  <dd>the custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
-
-    <dl>
-<dt>user</dt>
-      <dd>
-<em>Required</em> <strong>integer</strong>
-</dd>
-      <dd>the ID of the user</dd>
-      <dt>hourly_rate</dt>
-      <dd>
-<em>Required</em> <strong>decimal</strong>
-</dd>
-      <dd>the hourly rate for this specific user.</dd>
-    </dl>
-</dd>
-  <dt>flat_rate</dt>
-  <dd>
-<em>Required if payment_type equals <code>flat_rate</code></em> <strong>decimal</strong>
-</dd>
-  <dd>The flat rate used as the total amount for hours worked.</dd>
-</dl><h3 id="response-15">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h2 id="add-custom-hourly-rates">Add Custom Hourly Rates</h2>
-
-<p>Add custom hourly rates for specific users. This custom hourly rate will be used to calculate the total amount for a user’s entries. If a custom hourly rate is already defined for a user, then it is overwritten with the new hourly rate. Note that when a custom hourly rate is added, it changes the method used to calculate the total amount for time worked to <code>custom_hourly_rates</code></p>
-
-<pre><code>POST /imports/:id/custom_hourly_rates
-</code></pre>
-
-<h3 id="inputs-7">Inputs</h3>
-
-<p>custom_hourly_rates
-    : <em>Required</em> <strong>array of objects</strong>
-    : the custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:</p>
-
-<pre><code>    user
-    : *Required* **integer**
-    : the ID of the user
-
-    hourly_rate
-    : *Required* **decimal**
-    : the hourly rate for this specific user.
-</code></pre>
-
-<p>simple_hourly_rate
-    : <em>Required</em> <strong>decimal</strong>
-    : the numerical value of the hourly rate used if a user does not have a custom hourly rate.</p>
-
-<h3 id="response-16">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h2 id="remove-custom-hourly-rates">Remove Custom Hourly Rates</h2>
-
-<p>Removes custom hourly rates for specific users. When a custom hourly rate is removed for a user, the total amount for the hours they worked for this invoice is calculated using the <code>simple_hourly_rate</code>. Users who do not have a custom hourly rate will be ignored. Note that if there are no more remaining custom hourly rates, then the invoice will revert to using the <code>simple_hourly_rate</code> method of calculating the total amount for time worked.</p>
-
-<pre><code>PUT /imports/:id/custom_hourly_rates
-</code></pre>
-
-<h3 id="inputs-8">Inputs</h3>
-
-<dl>
-<dt>custom_hourly_rates</dt>
-  <dd>
-<em>Required</em> <strong>array of integers</strong>
-</dd>
-  <dd>the IDs of each user who’s custom hourly rate will be removed.</dd>
-</dl><h3 id="response-17">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h2 id="remove-all-custom-hourly-rates">Remove all Custom Hourly Rates</h2>
-
-<p>Remove all custom hourly rates from an invoice. Note that the Invoice will revert to using the <code>simple_hourly_rate</code> method of calculating the total amount for time worked.</p>
-
-<pre><code>DELETE /imports/:id/custom_hourly_rates
-</code></pre>
-
-<h3 id="response-18">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h2 id="add-taxes-to-an-invoice">Add Taxes to an Invoice</h2>
-
-<p>Add additional taxes to the invoice.</p>
-
-<pre><code>POST /imports/:id/taxes/
-</code></pre>
-
-<h3 id="inputs-9">Inputs</h3>
 
 <dl>
 <dt>taxes</dt>
   <dd>
 <em>Required</em> <strong>array of objects</strong>
 </dd>
-  <dd>the taxes to be added to this invoice. The fields are:
+  <dd>the taxes to add to this invoice. The fields are:
 
     <dl>
 <dt>percentage</dt>
@@ -1898,52 +1770,71 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/projects?page=2&gt;; rel="
       <dd>the name of the tax</dd>
     </dl>
 </dd>
-</dl><h2 id="remove-taxes-from-an-invoice">Remove Taxes from an Invoice</h2>
+</dl><h3 id="response-12">Response</h3>
 
-<p>Remove the specified taxes from an invoice. Any taxes that are not a part of this invoice will be ignored.</p>
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<pre><code>PUT /imports/:id/taxes/
+<h3 id="custom-error-codes-7">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="remove-taxes-from-an-invoice">Remove Taxes from an Invoice</h2>
+
+<pre><code>PUT /invoices/:id/remove_taxes
 </code></pre>
 
-<h3 id="inputs-10">Inputs</h3>
+<h3 id="inputs-6">Inputs</h3>
 
 <dl>
-<dt>taxes</dt>
+<dt>tax_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
-  <dd>the IDs of taxes to be removed from this invoice.</dd>
-</dl><h3 id="response-19">Response</h3>
+  <dd>the IDs of taxes to remove from this invoice. Any taxes that are not associated with this invoice will be ignored.</dd>
+</dl><h3 id="response-13">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h2 id="remove-all-taxes-in-invoice">Remove all Taxes in Invoice</h2>
+<h3 id="custom-error-codes-8">Custom Error Codes</h3>
 
-<p>Removes all taxes from an invoice.</p>
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="remove-all-taxes-from-an-invoice">Remove all Taxes from an Invoice</h2>
 
-<pre><code>DELETE /imports/:id/taxes/
+<pre><code>PUT /invoices/:id/remove_all_taxes
 </code></pre>
 
-<h3 id="response-20">Response</h3>
+<h3 id="response-14">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h2 id="delete-an-invoice">Delete an Invoice</h2>
+<h3 id="custom-error-codes-9">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+</ul><h2 id="delete-an-invoice">Delete an Invoice</h2>
 
 <pre><code>DELETE /invoices/:id
 </code></pre>
 
-<h3 id="response-21">Response</h3>
+<h3 id="response-15">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="a-note-about-invoice-deletion">a note about invoice deletion</h3>
+<h3 id="a-note-about-invoice-deletion">A note about invoice deletion</h3>
 
-<p>When an invoice is deleted, all of the entries and expenses associated with it are marked as uninvoiced. An invoice cannot be deleted if it has been paid or one of the invoice’s project has been archived. In this case, the response will include detailed information about why the entry couldn’t be deleted.</p>
+<p>When an invoice is deleted, the entries and expenses associated with that tag are marked as uninvoiced. An invoice cannot be deleted if it has been paid or one of the invoice’s projects has been archived.</p>
 
-<h3 id="custom-error-codes">Custom Error Codes</h3>
-
-<p>The following Custom Error codes can be returned for this action:</p>
+<h3 id="custom-error-codes-10">Custom Error Codes</h3>
 
 <ul>
 <li>
