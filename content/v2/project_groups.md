@@ -150,7 +150,7 @@ POST /project_groups/:id/add_projects
 
 ### Input
 
-projects
+project_ids
 : *Required* **array of integers**
 : The IDs of the projects to add to the project group. Any projects that are already associated with another project group will be ignored and will not affect the Response.
 
@@ -167,7 +167,7 @@ PUT /project_groups/:id/remove_projects
 
 ### Input
 
-projects
+project_ids
 : *Required* **array of integers**
 : The IDs of the projects to remove from the project group. Any projects that are not associated with the project group will be ignored and will not affect the Response.
 

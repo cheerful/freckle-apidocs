@@ -40,6 +40,44 @@ module Freckle
       ]
     }
 
+    INVOICE_ENTRIES_AND_EXPENSES_ERROR_EXAMPLE = {
+      "message" => "Entries or Expenses could not be added",
+      "errors" => [
+        {
+          :resource => "Entry",
+          :field => "entry_ids[1]",
+          :code => "archived_project"
+        },
+        {
+          :resource => "Expense",
+          :field => "expense_ids[4]",
+          :code => "missing"
+        },
+      ]
+    }
+
+    INVOICE_ENTRIES_ERROR_EXAMPLE = {
+      "message" => "Entries could not be added",
+      "errors" => [
+        {
+          :resource => "Entry",
+          :field => "entry_ids[1]",
+          :code => "archived_project"
+        }
+      ]
+    }
+
+    INVOICE_EXPENSES_ERROR_EXAMPLE = {
+      "message" => "Expenses could not be added",
+      "errors" => [
+        {
+          :resource => "Expense",
+          :field => "expense_ids[4]",
+          :code => "missing"
+        }
+      ]
+    }
+
     OAUTH_AUTHORIZATION_TOKEN = {
       "id" => 1,
       "url" => "#{API_V2_URL}/authorizations/1",
@@ -295,9 +333,10 @@ module Freckle
 
     SIMPLE_INVOICE = {
       "id" => 12345678,
-      "number" => "AA001",
+      "reference" => "AA001",
+      "invoice_date" => "2013-07-09",
       "state" => "unpaid",
-      "total" => 189.33,
+      "total_amount" => 189.33,
       "url" => "#{API_V2_URL}/invoices/12345678",
     }
 
@@ -406,36 +445,39 @@ module Freckle
       "project_id" => SIMPLE_PROJECT["id"]
     }
 
-    INVOICE_CUSTOMIZATION = {
+    INVOICE_CUSTOMIZATION_EDITABLE_FIELDS = {
       "title" => "Invoice",
       "date" => "Date",
-      "project" => "Projects",
+      "project" => "Project",
       "reference" => "Invoice reference",
       "total_due" => "Total amount due",
       "summary" => "Summary",
+      "project_summary" => "Project summary",
+      "user_summary" => "People summary",
+      "no_project_name" => "No project",
       "work_time" => "work time",
       "no_tax" => "no tax",
-      "tax" => "tax",
-      "subtotal" => "subtotal",
+      "work_total" => "Total worked",
       "total" => "TOTAL",
       "report" => "Report",
       "locale" => "en-US",
-      "currency_name" => "",
+      "currency_name" => "United States dollar",
       "currency_symbol" => "$",
       "taxable_total" => "Total taxable",
       "tax_total" => "Total tax",
       "taxfree_total" => "Total taxfree",
       "total_report" => "TOTAL",
-      "custom_css" => nil,
-      "custom_html" => "",
+      "custom_html" => "<h1>My Custom Invoice</h1>",
       "allow_paypal_invoice" => true,
       "paypal_invoice_title" => "",
       "paypal_currency_code" => "USD",
       "paypal_address" => "payment@test.com",
+    }
 
+    INVOICE_CUSTOMIZATION = INVOICE_CUSTOMIZATION_EDITABLE_FIELDS.merge({
       "created_at" => "2013-04-24T17:39:51Z",
       "updated_at" => "2013-04-24T17:39:51Z",
-    }
+    })
 
     INVOICE_CUSTOM_HOURLY_RATE = {
       "user" => SIMPLE_USER,
@@ -443,30 +485,21 @@ module Freckle
       "hourly_rate_with_currency" => "$30.50"
     }
 
-    HOURS_CALCULATION = {
+    RATE_CALCULATION = {
       "calculation_method" => "custom_hourly_rates",
       "custom_hourly_rates" => [INVOICE_CUSTOM_HOURLY_RATE]
     }
 
-    INVOICE_HOURS_CALCULATION_FIELDS = {
-      #accepted values: default, simple_hourly_rate, custom_hourly_rates, flat_rate
+    INVOICE_RATE_CALCULATION_FIELDS = {
       "calculation_method" => "custom_hourly_rates",
-      # if simple_hourly_rate or custom_hourly_rate are selected: "simple_hourly_rate" => 30.75,
+      "standard_hourly_rate" => 30.75,
       "custom_hourly_rates" => [
         {
           "user" => SIMPLE_USER["id"],
           "hourly_rate" => 15.25,
         },
       ],
-      # if flat_rate is selected: "flat_rate" => 11000.72,
-      #a boolean used to determine if unpaid expenses are included in the invoice
-      "include_expenses" => true,
-    }
-
-    INVOICE_ENTRY_AND_EXPENSES_SELECTION_FIELDS = {
-      "selection_rules" => "all_uninvoiced",
-      "from" => "2013-01-01",
-      "to" => "2013-01-01"
+      :flat_rate => 11000.72
     }
 
     INVOICE_TAX = {
@@ -484,27 +517,44 @@ module Freckle
       "percentage" => 15.00,
     }
 
+    PAYMENT_TRANSACTION = {
+      :created_at => "2013-07-09T23:04:06Z",
+      :description => "Sent to Paypal",
+      :payment_method => "paypal",
+      :reference => "AP-AAAAABBBCCCCDDD111",
+      :invoice_state => "in_progress"
+    }
+
+    INVOICE_PAYMENET_DETAILS = {
+      :paid_at => "2013-07-09T23:04:06Z",
+      :reference => "AP-AAABBBDDDEEEE22222",
+      :payment_method => "paypal"
+    }
+
     INVOICE = {
       #basic invoice information
       "id" => 26642,
       #the current state of the invoice
-      "state" => "awaiting_payment",
+      "state" => "paid",
       #the displayed number for the invoice
-      "number" => "AB 0001",
-      #the date the invoice was posted on
+      "reference" => "AB 0001",
+      #the date of the invoice
       "invoice_date" => "2013-07-09",
       #the generated name for the invoice
-      "name" => "Knockd, Freckle Support",
+      "project_name" => "Knockd, Freckle Support",
 
       #invoice display information
       "company_name" => "John Test",
-      "company_details" => "1 Main Street\\r\\nMainsville, MA 11122",
+      "company_details" => "1 Main Street\nMainsville, MA 11122",
       "recipient_details" => "",
       "description" => "",
       "footer" => "",
-      "show_hours" => true,
-      "show_details" => false,
-      "show_summaries" => false,
+
+      # Which parts of the invoice to show
+      "show_hours_worked" => true,
+      "show_full_report" => false,
+      "show_user_summaries" => false,
+      "show_project_summaries" => false,
 
        #the customizations for the invoice
       "customization" => INVOICE_CUSTOMIZATION,
@@ -512,96 +562,78 @@ module Freckle
       #calculation fields
 
       #indicates the payment type for the invoice (whether hourly or flat-rate)
-      "hours_calculation" => HOURS_CALCULATION,
+      "rate_calculation" => RATE_CALCULATION,
 
       "taxes" => [INVOICE_TAX],
-      #the amount of the invoice which is taxable
-      "amount_taxable" => 100,
-      #the amount of the invoice which is tax-free
-      "amount_taxfree" => 0,
-      #the total amount of tax owed
-      "amount_tax_total" => 0,
 
+      # The numerical totals for the invoice
+
+      #the amount of the invoice which is taxable
+      "taxable_amount" => 100,
+      #the amount of the invoice which is tax-free
+      "taxfree_amount" => 0,
+      #the total amount of tax owed
+      "tax_total_amount" => 0,
       #the numerical invoice total
-      "amount_total" => 1,
-      #the invoice total prepended formatted in the invoice's currency
-      "amount_total_with_currency" => "$1.00",
+      "total_amount" => 1,
+
+      # The totals for the invoice, formatted in the invoice's currency
+      "taxable_amount_with_currency" => "$100.00",
+      "taxfree_amount_with_currency" => "$0.00",
+      "tax_total_amount_with_currency" => "$0.00",
+      "total_amount_with_currency" => "$1.00",
 
       # payment information
 
-      "share_url" => "https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z",
-
       #the paypal payment details for this invoice
-      "payment" => nil,
+      "payment" => INVOICE_PAYMENET_DETAILS,
 
       #a read-only breakdown of payment activity for this invoice
-      "payment_transactions" =>[
-          {
-              "description" => "Notified that payment has been completed",
-              "state" => "paid",
-              "payment_method" => "paypal",
-              "reference" => "AP-AAAAABBBCCCCDDD111",
-              "created_at" => "2013-07-09T23:04:05Z",
-              "updated_at" => "2013-07-09T23:04:06Z",
-          }
-      ],
+      "payment_transactions" =>[PAYMENT_TRANSACTION],
 
       "projects" => [SIMPLE_PROJECT],
 
       #a count of all the entries in the invoice
-      "entries" =>0,
+      "entries" => 123,
       #the url to view all of the entries for this invoice
       "entries_url" => "#{API_V2_URL}/invoices/26642/entries",
 
       #a count of all the expenses in the invoice
-      "expenses" => 0,
+      "expenses" => 324,
       #the url to view all of the expenses for this invoice
       "expenses_url" => "#{API_V2_URL}/invoices/26642/expenses",
 
+      # the public share URL
+      "share_url" => "https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z",
+
       "created_at" => "2013-07-09T23:04:05Z",
       "updated_at" => "2013-07-09T23:04:06Z",
-
-      #deprecated fields?
-      "from_address" => nil,
-      "to_address" => nil,
-      "tax_in_percent" => nil,
-      "tax" => nil,
-      "total" => nil,
-      "subtotal" => nil,
+      "url" => "#{API_V2_URL}/invoices/26642"
     }
 
-    INVOICE_CREATE_FIELDS = {
-      "date" => INVOICE["date"],
-      "number" => INVOICE["number"],
+    INVOICE_EDITABLE_FIELDS = {
+      "invoice_date" => INVOICE["invoice_date"],
+      "reference" => INVOICE["reference"],
+      "project_name" => INVOICE["project_name"],
       "company_name" => INVOICE["company_name"],
       "company_details" => INVOICE["company_details"],
-      "recipient" => INVOICE["recipient"],
+      "recipient_details" => INVOICE["recipient_details"],
       "description" => INVOICE["description"],
       "footer" => INVOICE["footer"],
-      "show_hours" => INVOICE["show_hours"],
-      "show_details" => INVOICE["show_details"],
-      "hours_calculation" => INVOICE_HOURS_CALCULATION_FIELDS,
-      "entries_and_expenses_selection" => INVOICE_ENTRY_AND_EXPENSES_SELECTION_FIELDS,
-      "projects" => [PROJECT["id"]],
-      "entries" => [ENTRY["id"]],
-      "expenses" => [EXPENSE["id"]],
-      "include_expenses" => INVOICE["include_expenses"],
+      "show_hours_worked" => INVOICE["show_hours_worked"],
+      "show_full_report" => INVOICE["show_full_report"],
+      "show_user_summaries" => INVOICE["show_user_summaries"],
+      "show_project_summaries" => INVOICE["show_project_summaries"],
+      "rate_calculation" => INVOICE_RATE_CALCULATION_FIELDS,
+    }
+
+    INVOICE_CREATE_FIELDS = INVOICE_EDITABLE_FIELDS.merge({
+      "entry_ids" => [ENTRY["id"]],
+      "expense_ids" => [EXPENSE["id"]],
       "taxes" => [INVOICE_TAX_FIELDS],
-      "customization" => INVOICE_CUSTOMIZATION
-    }
+    })
 
-    INVOICE_EDIT_FIELDS = {
-      "date" => INVOICE["date"],
-      "number" => INVOICE["number"],
-      "company_name" => INVOICE["company_name"],
-      "company_details" => INVOICE["company_details"],
-      "recipient" => INVOICE["recipient"],
-      "description" => INVOICE["description"],
-      "footer" => INVOICE["footer"],
-      "show_hours" => INVOICE["show_hours"],
-      "show_details" => INVOICE["show_details"],
-      "customization" => INVOICE_CUSTOMIZATION
-    }
+    INVOICE_EDIT_FIELDS = INVOICE_EDITABLE_FIELDS
 
     TIMER = {
       "id" => 123456,
