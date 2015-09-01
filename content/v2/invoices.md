@@ -225,6 +225,11 @@ PUT /invoices/:id
 <%= headers 200 %>
 <%= json :invoice %>
 
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
+
 ## Get the invoice's entries
 
 ~~~
@@ -278,6 +283,11 @@ If entries cannot be added to an invoice, the invoice will not be created and an
 <%= headers 400 %>
 <%= json :invoice_entries_error_example %>
 
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
+
 ## Remove Entries from an Invoice
 
 ~~~
@@ -294,6 +304,11 @@ entries
 
 <%= headers 204 %>
 
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
+
 ## Remove all Entries from an Invoice
 
 ~~~
@@ -303,6 +318,11 @@ PUT /invoices/:id/remove_all_entries
 ### Response
 
 <%= headers 204 %>
+
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
 
 ## Add Expenses to an Invoice
 
@@ -327,6 +347,11 @@ If entries cannot be added to an invoice, the invoice will not be created and an
 <%= headers 400 %>
 <%= json :invoice_entries_error_example %>
 
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
+
 ## Remove Expenses from an Invoice
 
 ~~~
@@ -343,6 +368,11 @@ expenses
 
 <%= headers 204 %>
 
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
+
 ## Remove all Expenses from an Invoice
 
 ~~~
@@ -352,6 +382,11 @@ PUT /invoices/:id/remove_all_expenses
 ### Response
 
 <%= headers 204 %>
+
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
 
 ## Add Taxes to an Invoice
 
@@ -374,6 +409,15 @@ taxes
     : the name of the tax
 
 
+### Response
+
+<%= headers 204 %>
+
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
+
 ## Remove Taxes from an Invoice
 
 ~~~
@@ -390,6 +434,11 @@ tax_ids
 
 <%= headers 204 %>
 
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
+
 ## Remove all Taxes from an Invoice
 
 ~~~
@@ -399,6 +448,11 @@ PUT /invoices/:id/remove_all_taxes
 ### Response
 
 <%= headers 204 %>
+
+### Custom Error Codes
+
+* **paid**: the Invoice has been paid
+* **archived_project**: the Invoice includes an archived Project
 
 ## Delete an Invoice
 
