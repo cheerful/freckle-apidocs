@@ -20,10 +20,10 @@ rate_calculation
     : The standard hourly rate used to calculate the total amount for hours worked.
 
     custom_hourly_rates
-    : *Required if `calculation_method` equals `custom_hourly_rate`* **array of objects**
+    : *Required if `calculation_method` equals `custom_hourly_rate` (ignored otherwise)* **array of objects**
     : The custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
-        user
+        user_id
         : *Required* **integer**
         : the ID of the user
 

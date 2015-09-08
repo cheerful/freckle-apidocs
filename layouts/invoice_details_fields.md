@@ -1,8 +1,4 @@
 
-invoice_date
-: *Required* **string** in  ISO 8061 format `YYYY-MM-DD`
-: The date the invoice was issued.
-
 reference
 : *Optional* **string**
 : The invoice's reference identifier. If no value is provided, a value will be generated based on previous invoices.
@@ -50,3 +46,8 @@ show_project_summaries
 : *Optional* **boolean**
 : `true`: A summary of how many minutes were worked for each project will be shown when viewing the invoice.
 : `false` (**Default**): A summary of how many minutes were worked for each project will not be shown when viewing the invoice.
+
+show_project_name_for_expenses
+: *Optional* **boolean**
+: `true`: The expense's project name will be shown next to its description when viewing the invoice.
+: `false` (**Default**): The expense's project name will not be shown next to its description when viewing the invoice

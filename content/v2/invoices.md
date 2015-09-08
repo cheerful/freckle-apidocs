@@ -27,6 +27,7 @@ state
     * `awaiting_payment`
     * `in_progress`
     * `paid`
+    * `none`
 
 reference
 : *Optional* **string**
@@ -116,6 +117,11 @@ show_project_summaries
 : `true`: Only return invoices that show the summary of hours worked for each project.
 : `false`: Only return invoices that do not show the summary of hours worked for each project.
 
+show_project_name_for_expenses
+: *Optional* **boolean**
+: `true`: Only return invoices that show the expense's project name next to the expense description.
+: `false`: Only return invoices that do not show the expense's project name next to the expense description.
+
 locale
 : *Optional* **string**
 : Only invoices using this locale are returned.
@@ -165,6 +171,10 @@ POST /invoices/
 
 ### Input
 
+invoice_date
+: *Required* **string** in  ISO 8061 format `YYYY-MM-DD`
+: The date the invoice was issued.
+
 <%= render 'invoice_details_fields' %>
 <%= render 'invoice_rate_calculation_fields' %>
 
@@ -204,6 +214,10 @@ If entries or expenses cannot be added to an invoice, the invoice will not be cr
 <%= headers 400 %>
 <%= json :invoice_entries_and_expenses_error_example %>
 
+### Custom Error Codes
+
+* **locale_not_available**: The given locale is not a [Supported locale code](/locales_and_currencies/#locales)
+
 ## Edit an Invoice
 
 ~~~
@@ -211,6 +225,10 @@ PUT /invoices/:id
 ~~~
 
 ### Inputs
+
+invoice_date
+: *Optional* **string** in  ISO 8061 format `YYYY-MM-DD`
+: The date the invoice was issued.
 
 <%= render 'invoice_details_fields' %>
 
@@ -227,8 +245,30 @@ PUT /invoices/:id
 
 ### Custom Error Codes
 
+* **locale_not_available**: The given locale is not a [Supported locale code](/locales_and_currencies/#locales)
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
+
+## Mark an Invoice as paid
+
+~~~
+PUT /invoices/:id/paid
+~~~
+
+### Response
+
+<%= headers 204 %>
+
+
+## Mark an Invoice as unpaid
+
+~~~
+PUT /invoices/:id/paid
+~~~
+
+### Response
+
+<%= headers 204 %>
 
 ## Get the invoice's entries
 
@@ -286,7 +326,7 @@ If entries cannot be added to an invoice, the invoice will not be created and an
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
 
 ## Remove Entries from an Invoice
 
@@ -296,7 +336,7 @@ PUT /invoices/:id/remove_entries
 
 ### Inputs
 
-entries
+entry_ids
 : *Required* **array of integers**
 : the IDs of the entries to remove from this invoice. Any entries that are not associated with the invoice will be ignored and will not affect the Response.
 
@@ -307,7 +347,7 @@ entries
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
 
 ## Remove all Entries from an Invoice
 
@@ -322,7 +362,7 @@ PUT /invoices/:id/remove_all_entries
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
 
 ## Add Expenses to an Invoice
 
@@ -350,7 +390,7 @@ If entries cannot be added to an invoice, the invoice will not be created and an
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
 
 ## Remove Expenses from an Invoice
 
@@ -360,7 +400,7 @@ PUT /invoices/:id/remove_expenses
 
 ### Inputs
 
-expenses
+expense_ids
 : *Required* **array of integers**
 : the IDs of the expenses to remove from this invoice. Any expenses that are not associated with this invoice will be ignored and will not affect the Response.
 
@@ -371,7 +411,7 @@ expenses
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
 
 ## Remove all Expenses from an Invoice
 
@@ -386,7 +426,7 @@ PUT /invoices/:id/remove_all_expenses
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
 
 ## Add Taxes to an Invoice
 
@@ -416,7 +456,7 @@ taxes
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
 
 ## Remove Taxes from an Invoice
 
@@ -437,7 +477,7 @@ tax_ids
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
 
 ## Remove all Taxes from an Invoice
 
@@ -452,7 +492,7 @@ PUT /invoices/:id/remove_all_taxes
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid
 
 ## Delete an Invoice
 
@@ -466,9 +506,9 @@ DELETE /invoices/:id
 
 ### A note about invoice deletion
 
-When an invoice is deleted, the entries and expenses associated with that tag are marked as uninvoiced. An invoice cannot be deleted if it has been paid or one of the invoice's projects has been archived.
+When an invoice is deleted, the entries and expenses associated with that tag are marked as uninvoiced. An invoice cannot be deleted if it has been paid or is locked for payment.
 
 ### Custom Error Codes
 
 * **paid**: the Invoice has been paid
-* **archived_project**: the Invoice includes an archived Project
+* **locked**: the Invoice is locked while it is being paid

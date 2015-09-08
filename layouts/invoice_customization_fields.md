@@ -88,7 +88,7 @@ customization
     : *Optional* **string**
     : The custom currency symbol used in this invoice.
     : Defaults to the value used in a previous invoice for these projects.
-    : If no previous invoice is found, the currency symbol will automatically be selected based on the `currency_name`.
+    : If no previous invoice is found, the currency symbol will automatically be selected based on the `locale`.
 
     taxable_total
     : *Optional* **string**
@@ -121,7 +121,7 @@ customization
     : This object is used to setup the invoice so that it can be paid via paypal. The fields are:
 
         paypal_address
-        : *Required* **string**
+        : *Optional* **string**
         : The email address that will be receive the money for this invoice. **This should be *your* Paypal email address**.
         : Defaults to the value used in a previous invoice for these projects.
         : If no previous invoice is found, the field will be blank.

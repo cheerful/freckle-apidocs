@@ -555,6 +555,7 @@ module Freckle
       "show_full_report" => false,
       "show_user_summaries" => false,
       "show_project_summaries" => false,
+      "show_project_name_for_expenses" => false,
 
        #the customizations for the invoice
       "customization" => INVOICE_CUSTOMIZATION,
@@ -562,7 +563,7 @@ module Freckle
       #calculation fields
 
       #indicates the payment type for the invoice (whether hourly or flat-rate)
-      "rate_calculation" => RATE_CALCULATION,
+      "rate_calculation" => INVOICE_RATE_CALCULATION_FIELDS,
 
       "taxes" => [INVOICE_TAX],
 
