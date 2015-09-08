@@ -19,22 +19,22 @@ module Freckle
     }
 
     DELETE_ERROR_EXAMPLE = {
-      "message" => "Unable to be deleted",
+      "message" => "The Project cannot be deleted because it has entries, expenses, or invoices.",
       "errors" => [
         {
           "resource" => "Project",
-          "field" => "entries",
-          "code" => "dependent"
+          "field" => "base",
+          "code" => "not_deletable"
         }
       ]
     }
 
     ARCHIVE_ERROR_EXAMPLE = {
-      "message" => "Should be deleted",
+      "message" => "The Project should be deleted because it does not have any entries, expenses, or invoices.",
       "errors" => [
         {
           "resource" => "Project",
-          "field" => "id",
+          "field" => "base",
           "code" => "deletable"
         }
       ]

@@ -175,24 +175,20 @@ For these resources, we have two separate actions for deleting and archiving. Th
 
 ### When a resource cannot be deleted
 
-The delete action will only succeed if the resource is able to deleted. If the resource is unable to be deleted, a `422` error will be returned, with an explanation for why the resource cannot be deleted.
+The delete action will only succeed if the resource is able to deleted. If the resource is unable to be deleted, a `400` error will be returned, with an explanation for why the resource cannot be deleted.
 
 This explanation uses a new error code: **dependent**, and the **field** field will indicate which associated resources exist and are preventing this resource from being deleted.
 
 **Note that custom error codes can be defined for a resource's delete action, and will be documented in the resource's API page.**
 
-<%= headers 422 %>
+<%= headers 400 %>
 <%= json :delete_error_example %>
 
 ### When a resource cannot be archived
 
-The archive action will only succeeed if the resource is able to archived. If the resource is able to be deleted, then it is unable to be archived. If a resource is unable to be archived, a `422` error will be returned, with an explanation for why cd ..the resource cannot be archived.
+The archive action will only succeeed if the resource is able to archived. If the resource is able to be deleted, then it is unable to be archived. If a resource is unable to be archived, a `400` error will be returned, with an explanation for why the resource cannot be archived.
 
-This explanation uses a new error code: **deletable**, and the **field** field will point to the `id` field. This error code indicates that the delete action should be called on this resource.
-
-**Note that custom error codes can be defined for a resource's archive action, and will be documented in the resource's API page.**
-
-<%= headers 422 %>
+<%= headers 400 %>
 <%= json :archive_error_example %>
 
 ## Background Processing
