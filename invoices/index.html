@@ -62,6 +62,8 @@
   <li><a href="#get-a-single-invoice">Get a single Invoice</a></li>
   <li><a href="#create-an-invoice">Create an Invoice</a></li>
   <li><a href="#edit-an-invoice">Edit an Invoice</a></li>
+  <li><a href="#mark-an-invoice-as-paid">Mark an Invoice as paid</a></li>
+  <li><a href="#mark-an-invoice-as-unpaid">Mark an Invoice as unpaid</a></li>
   <li><a href="#get-the-invoices-entries">Get the invoice’s entries</a></li>
   <li><a href="#get-the-invoices-expenses">Get the invoice’s expenses</a></li>
   <li><a href="#add-entries-to-an-invoice">Add Entries to an Invoice</a></li>
@@ -93,6 +95,7 @@
       <li><code>awaiting_payment</code></li>
       <li><code>in_progress</code></li>
       <li><code>paid</code></li>
+      <li><code>none</code></li>
     </ul>
 </dd>
   <dt>reference</dt>
@@ -223,6 +226,14 @@
 <code>true</code>: Only return invoices that show the summary of hours worked for each project.</dd>
   <dd>
 <code>false</code>: Only return invoices that do not show the summary of hours worked for each project.</dd>
+  <dt>show_project_name_for_expenses</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>: Only return invoices that show the expense’s project name next to the expense description.</dd>
+  <dd>
+<code>false</code>: Only return invoices that do not show the expense’s project name next to the expense description.</dd>
   <dt>locale</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
@@ -280,6 +291,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
     <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
       <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
@@ -312,20 +324,14 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
     <span class="p">},</span>
     <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
+      <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
       <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-            <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-            <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-            <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-            <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-            <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-          <span class="p">},</span>
-          <span class="s2">"rate"</span><span class="o">:</span> <span class="mf">30.5</span><span class="p">,</span>
-          <span class="s2">"hourly_rate_with_currency"</span><span class="o">:</span> <span class="s2">"$30.50"</span>
+          <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+          <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
         <span class="p">}</span>
-      <span class="p">]</span>
+      <span class="p">],</span>
+      <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
     <span class="p">},</span>
     <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
@@ -402,6 +408,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
@@ -434,20 +441,14 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <span class="p">},</span>
   <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
+    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
     <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-          <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-          <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-          <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-          <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-          <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-        <span class="p">},</span>
-        <span class="s2">"rate"</span><span class="o">:</span> <span class="mf">30.5</span><span class="p">,</span>
-        <span class="s2">"hourly_rate_with_currency"</span><span class="o">:</span> <span class="s2">"$30.50"</span>
+        <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+        <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
       <span class="p">}</span>
-    <span class="p">]</span>
+    <span class="p">],</span>
+    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
   <span class="p">},</span>
   <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -579,6 +580,14 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 <code>true</code>: A summary of how many minutes were worked for each project will be shown when viewing the invoice.</dd>
   <dd>
 <code>false</code> (<strong>Default</strong>): A summary of how many minutes were worked for each project will not be shown when viewing the invoice.</dd>
+  <dt>show_project_name_for_expenses</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>: The expense’s project name will be shown next to its description when viewing the invoice.</dd>
+  <dd>
+<code>false</code> (<strong>Default</strong>): The expense’s project name will not be shown next to its description when viewing the invoice</dd>
   <dt>rate_calculation</dt>
   <dd>
 <em>Optional</em> <strong>object</strong>
@@ -613,12 +622,12 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>The standard hourly rate used to calculate the total amount for hours worked.</dd>
       <dt>custom_hourly_rates</dt>
       <dd>
-<em>Required if <code>calculation_method</code> equals <code>custom_hourly_rate</code></em> <strong>array of objects</strong>
+<em>Required if <code>calculation_method</code> equals <code>custom_hourly_rate</code> (ignored otherwise)</em> <strong>array of objects</strong>
 </dd>
       <dd>The custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
         <dl>
-<dt>user</dt>
+<dt>user_id</dt>
           <dd>
 <em>Required</em> <strong>integer</strong>
 </dd>
@@ -768,7 +777,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 </dd>
       <dd>The custom currency symbol used in this invoice.</dd>
       <dd>Defaults to the value used in a previous invoice for these projects.</dd>
-      <dd>If no previous invoice is found, the currency symbol will automatically be selected based on the <code>currency_name</code>.</dd>
+      <dd>If no previous invoice is found, the currency symbol will automatically be selected based on the <code>locale</code>.</dd>
       <dt>taxable_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -809,7 +818,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
         <dl>
 <dt>paypal_address</dt>
           <dd>
-<em>Required</em> <strong>string</strong>
+<em>Optional</em> <strong>string</strong>
 </dd>
           <dd>The email address that will be receive the money for this invoice. <strong>This should be <em>your</em> Paypal email address</strong>.</dd>
           <dd>Defaults to the value used in a previous invoice for these projects.</dd>
@@ -886,6 +895,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
@@ -918,20 +928,14 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <span class="p">},</span>
   <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
+    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
     <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-          <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-          <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-          <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-          <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-          <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-        <span class="p">},</span>
-        <span class="s2">"rate"</span><span class="o">:</span> <span class="mf">30.5</span><span class="p">,</span>
-        <span class="s2">"hourly_rate_with_currency"</span><span class="o">:</span> <span class="s2">"$30.50"</span>
+        <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+        <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
       <span class="p">}</span>
-    <span class="p">]</span>
+    <span class="p">],</span>
+    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
   <span class="p">},</span>
   <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -1005,7 +1009,13 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="edit-an-invoice">Edit an Invoice</h2>
+<h3 id="custom-error-codes">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>locale_not_available</strong>: The given locale is not a <a href="/locales_and_currencies/#locales">Supported locale code</a>
+</li>
+</ul><h2 id="edit-an-invoice">Edit an Invoice</h2>
 
 <pre><code>PUT /invoices/:id
 </code></pre>
@@ -1015,7 +1025,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 <dl>
 <dt>invoice_date</dt>
   <dd>
-<em>Required</em> <strong>string</strong> in  ISO 8061 format <code>YYYY-MM-DD</code>
+<em>Optional</em> <strong>string</strong> in  ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
   <dd>The date the invoice was issued.</dd>
   <dt>reference</dt>
@@ -1085,6 +1095,14 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 <code>true</code>: A summary of how many minutes were worked for each project will be shown when viewing the invoice.</dd>
   <dd>
 <code>false</code> (<strong>Default</strong>): A summary of how many minutes were worked for each project will not be shown when viewing the invoice.</dd>
+  <dt>show_project_name_for_expenses</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong>
+</dd>
+  <dd>
+<code>true</code>: The expense’s project name will be shown next to its description when viewing the invoice.</dd>
+  <dd>
+<code>false</code> (<strong>Default</strong>): The expense’s project name will not be shown next to its description when viewing the invoice</dd>
   <dt>rate_calculation</dt>
   <dd>
 <em>Optional</em> <strong>object</strong>
@@ -1119,12 +1137,12 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
       <dd>The standard hourly rate used to calculate the total amount for hours worked.</dd>
       <dt>custom_hourly_rates</dt>
       <dd>
-<em>Required if <code>calculation_method</code> equals <code>custom_hourly_rate</code></em> <strong>array of objects</strong>
+<em>Required if <code>calculation_method</code> equals <code>custom_hourly_rate</code> (ignored otherwise)</em> <strong>array of objects</strong>
 </dd>
       <dd>The custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
         <dl>
-<dt>user</dt>
+<dt>user_id</dt>
           <dd>
 <em>Required</em> <strong>integer</strong>
 </dd>
@@ -1246,7 +1264,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 </dd>
       <dd>The custom currency symbol used in this invoice.</dd>
       <dd>Defaults to the value used in a previous invoice for these projects.</dd>
-      <dd>If no previous invoice is found, the currency symbol will automatically be selected based on the <code>currency_name</code>.</dd>
+      <dd>If no previous invoice is found, the currency symbol will automatically be selected based on the <code>locale</code>.</dd>
       <dt>taxable_total</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
@@ -1287,7 +1305,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
         <dl>
 <dt>paypal_address</dt>
           <dd>
-<em>Required</em> <strong>string</strong>
+<em>Optional</em> <strong>string</strong>
 </dd>
           <dd>The email address that will be receive the money for this invoice. <strong>This should be <em>your</em> Paypal email address</strong>.</dd>
           <dd>Defaults to the value used in a previous invoice for these projects.</dd>
@@ -1352,6 +1370,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
@@ -1384,20 +1403,14 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <span class="p">},</span>
   <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
+    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
     <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-          <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-          <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-          <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-          <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-          <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-        <span class="p">},</span>
-        <span class="s2">"rate"</span><span class="o">:</span> <span class="mf">30.5</span><span class="p">,</span>
-        <span class="s2">"hourly_rate_with_currency"</span><span class="o">:</span> <span class="s2">"$30.50"</span>
+        <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+        <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
       <span class="p">}</span>
-    <span class="p">]</span>
+    <span class="p">],</span>
+    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
   <span class="p">},</span>
   <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -1449,14 +1462,35 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642"</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="custom-error-codes">Custom Error Codes</h3>
+<h3 id="custom-error-codes-1">Custom Error Codes</h3>
 
 <ul>
 <li>
+<strong>locale_not_available</strong>: The given locale is not a <a href="/locales_and_currencies/#locales">Supported locale code</a>
+</li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
-</ul><h2 id="get-the-invoices-entries">Get the invoice’s entries</h2>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
+</ul><h2 id="mark-an-invoice-as-paid">Mark an Invoice as paid</h2>
+
+<pre><code>PUT /invoices/:id/paid
+</code></pre>
+
+<h3 id="response-4">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="mark-an-invoice-as-unpaid">Mark an Invoice as unpaid</h2>
+
+<pre><code>PUT /invoices/:id/paid
+</code></pre>
+
+<h3 id="response-5">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="get-the-invoices-entries">Get the invoice’s entries</h2>
 
 <pre><code>GET /invoices/:id/entries
 </code></pre>
@@ -1465,7 +1499,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices?page=2&gt;; rel="next",
 
 <p>You can use the parameters specified in the <a href="/entries/index.html#list">Entry API’s List Action</a> to further limit the results</p>
 
-<h3 id="response-4">Response</h3>
+<h3 id="response-6">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
 Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/entries?page=2&gt;; rel="next",
@@ -1540,7 +1574,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/entries?page=2&gt;; rel="n
 
 <p>You can use the parameters specified in the <a href="/expenses/index.html#list">Expense API’s List Action</a> to further limit the results.</p>
 
-<h3 id="response-5">Response</h3>
+<h3 id="response-7">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
 Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="next",
@@ -1595,7 +1629,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of the entries to add to this invoice.</dd>
-</dl><h3 id="response-6">Response</h3>
+</dl><h3 id="response-8">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -1616,13 +1650,13 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="custom-error-codes-1">Custom Error Codes</h3>
+<h3 id="custom-error-codes-2">Custom Error Codes</h3>
 
 <ul>
 <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
 </ul><h2 id="remove-entries-from-an-invoice">Remove Entries from an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/remove_entries
@@ -1631,28 +1665,12 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
 <h3 id="inputs-2">Inputs</h3>
 
 <dl>
-<dt>entries</dt>
+<dt>entry_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of the entries to remove from this invoice. Any entries that are not associated with the invoice will be ignored and will not affect the Response.</dd>
-</dl><h3 id="response-7">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="custom-error-codes-2">Custom Error Codes</h3>
-
-<ul>
-<li>
-<strong>paid</strong>: the Invoice has been paid</li>
-  <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
-</ul><h2 id="remove-all-entries-from-an-invoice">Remove all Entries from an Invoice</h2>
-
-<pre><code>PUT /invoices/:id/remove_all_entries
-</code></pre>
-
-<h3 id="response-8">Response</h3>
+</dl><h3 id="response-9">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -1662,7 +1680,23 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
 <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
+</ul><h2 id="remove-all-entries-from-an-invoice">Remove all Entries from an Invoice</h2>
+
+<pre><code>PUT /invoices/:id/remove_all_entries
+</code></pre>
+
+<h3 id="response-10">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="custom-error-codes-4">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
 </ul><h2 id="add-expenses-to-an-invoice">Add Expenses to an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/add_expenses
@@ -1676,7 +1710,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of the expenses to add to this invoice.</dd>
-</dl><h3 id="response-9">Response</h3>
+</dl><h3 id="response-11">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -1697,13 +1731,13 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="custom-error-codes-4">Custom Error Codes</h3>
+<h3 id="custom-error-codes-5">Custom Error Codes</h3>
 
 <ul>
 <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
 </ul><h2 id="remove-expenses-from-an-invoice">Remove Expenses from an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/remove_expenses
@@ -1712,28 +1746,12 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
 <h3 id="inputs-4">Inputs</h3>
 
 <dl>
-<dt>expenses</dt>
+<dt>expense_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of the expenses to remove from this invoice. Any expenses that are not associated with this invoice will be ignored and will not affect the Response.</dd>
-</dl><h3 id="response-10">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="custom-error-codes-5">Custom Error Codes</h3>
-
-<ul>
-<li>
-<strong>paid</strong>: the Invoice has been paid</li>
-  <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
-</ul><h2 id="remove-all-expenses-from-an-invoice">Remove all Expenses from an Invoice</h2>
-
-<pre><code>PUT /invoices/:id/remove_all_expenses
-</code></pre>
-
-<h3 id="response-11">Response</h3>
+</dl><h3 id="response-12">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -1743,7 +1761,23 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
 <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
+</ul><h2 id="remove-all-expenses-from-an-invoice">Remove all Expenses from an Invoice</h2>
+
+<pre><code>PUT /invoices/:id/remove_all_expenses
+</code></pre>
+
+<h3 id="response-13">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="custom-error-codes-7">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
 </ul><h2 id="add-taxes-to-an-invoice">Add Taxes to an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/add_taxes
@@ -1770,17 +1804,17 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
       <dd>the name of the tax</dd>
     </dl>
 </dd>
-</dl><h3 id="response-12">Response</h3>
+</dl><h3 id="response-14">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="custom-error-codes-7">Custom Error Codes</h3>
+<h3 id="custom-error-codes-8">Custom Error Codes</h3>
 
 <ul>
 <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
 </ul><h2 id="remove-taxes-from-an-invoice">Remove Taxes from an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/remove_taxes
@@ -1794,23 +1828,7 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of taxes to remove from this invoice. Any taxes that are not associated with this invoice will be ignored.</dd>
-</dl><h3 id="response-13">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="custom-error-codes-8">Custom Error Codes</h3>
-
-<ul>
-<li>
-<strong>paid</strong>: the Invoice has been paid</li>
-  <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
-</ul><h2 id="remove-all-taxes-from-an-invoice">Remove all Taxes from an Invoice</h2>
-
-<pre><code>PUT /invoices/:id/remove_all_taxes
-</code></pre>
-
-<h3 id="response-14">Response</h3>
+</dl><h3 id="response-15">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -1820,19 +1838,15 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
 <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
-</ul><h2 id="delete-an-invoice">Delete an Invoice</h2>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
+</ul><h2 id="remove-all-taxes-from-an-invoice">Remove all Taxes from an Invoice</h2>
 
-<pre><code>DELETE /invoices/:id
+<pre><code>PUT /invoices/:id/remove_all_taxes
 </code></pre>
 
-<h3 id="response-15">Response</h3>
+<h3 id="response-16">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="a-note-about-invoice-deletion">A note about invoice deletion</h3>
-
-<p>When an invoice is deleted, the entries and expenses associated with that tag are marked as uninvoiced. An invoice cannot be deleted if it has been paid or one of the invoice’s projects has been archived.</p>
 
 <h3 id="custom-error-codes-10">Custom Error Codes</h3>
 
@@ -1840,7 +1854,27 @@ Link: &lt;https://api.letsfreckle.com/v2/invoices/:id/expenses?page=2&gt;; rel="
 <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
-<strong>archived_project</strong>: the Invoice includes an archived Project</li>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
+</ul><h2 id="delete-an-invoice">Delete an Invoice</h2>
+
+<pre><code>DELETE /invoices/:id
+</code></pre>
+
+<h3 id="response-17">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="a-note-about-invoice-deletion">A note about invoice deletion</h3>
+
+<p>When an invoice is deleted, the entries and expenses associated with that tag are marked as uninvoiced. An invoice cannot be deleted if it has been paid or is locked for payment.</p>
+
+<h3 id="custom-error-codes-11">Custom Error Codes</h3>
+
+<ul>
+<li>
+<strong>paid</strong>: the Invoice has been paid</li>
+  <li>
+<strong>locked</strong>: the Invoice is locked while it is being paid</li>
 </ul>
     </div>
   </div>

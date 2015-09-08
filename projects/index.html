@@ -453,6 +453,7 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/invoices?page=2&gt;; rel="
     <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
       <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
@@ -485,20 +486,14 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/invoices?page=2&gt;; rel="
     <span class="p">},</span>
     <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
+      <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
       <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-            <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-            <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-            <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-            <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-            <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-          <span class="p">},</span>
-          <span class="s2">"rate"</span><span class="o">:</span> <span class="mf">30.5</span><span class="p">,</span>
-          <span class="s2">"hourly_rate_with_currency"</span><span class="o">:</span> <span class="s2">"$30.50"</span>
+          <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+          <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
         <span class="p">}</span>
-      <span class="p">]</span>
+      <span class="p">],</span>
+      <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
     <span class="p">},</span>
     <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
