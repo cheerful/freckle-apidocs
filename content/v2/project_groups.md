@@ -127,21 +127,6 @@ You can use the parameters specified in the [Project API's List Action](/v2/proj
 <%= headers 200, :pagination => true, :pagination_resource => "project_groups/:id/projects" %>
 <%= json_array :project %>
 
-## List invoices for projects in a project group
-
-~~~
-GET /project_groups/:id/invoices
-~~~
-
-### Parameters
-
-You can use the parameters specified in the [Invoice API's List Action](/v2/invoices/index.html#list) to further limit the results
-
-### Response
-
-<%= headers 200, :pagination => true, :pagination_resource => "project_groups/:id/invoices" %>
-<%= json_array :invoice %>
-
 ## Add projects to a project group
 
 ~~~
