@@ -41,6 +41,14 @@ from
 to
 : *Optional* **string** of a date in ISO 8061 format: `YYYY-MM-DD`. Only expenses on or before this date will be returned.
 
+price_from
+: *Optional* **decimal**
+: Only expenses with a price greater than or equal to this will be returned
+
+price_to
+: *Optional* **decimal**
+: Only expenses with a price less than or equal to this will be returned
+
 taxable
 : *Optional* **boolean**: `true` only shows expenses where taxes are applied, `false` only shows expenses were taxes are not applied.
 
