@@ -72,7 +72,6 @@
   <li><a href="#edit-a-project-group">Edit a project group</a></li>
   <li><a href="#get-the-entries-for-projects-in-a-project-group">Get the entries for projects in a project group</a></li>
   <li><a href="#get-the-projects-in-a-project-group">Get the projects in a project group</a></li>
-  <li><a href="#list-invoices-for-projects-in-a-project-group">List invoices for projects in a project group</a></li>
   <li><a href="#add-projects-to-a-project-group">Add projects to a project group</a></li>
   <li><a href="#remove-projects-from-project-group">Remove projects from project group</a></li>
   <li><a href="#remove-all-projects-from-a-project-group">Remove all projects from a project group</a></li>
@@ -402,130 +401,6 @@ Link: &lt;https://api.letsfreckle.com/v2/project_groups/:id/projects?page=2&gt;;
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="list-invoices-for-projects-in-a-project-group">List invoices for projects in a project group</h2>
-
-<pre><code>GET /project_groups/:id/invoices
-</code></pre>
-
-<h3 id="parameters-3">Parameters</h3>
-
-<p>You can use the parameters specified in the <a href="/v2/invoices/index.html#list">Invoice API’s List Action</a> to further limit the results</p>
-
-<h3 id="response-6">Response</h3>
-
-<pre class="headers"><code>Status: 200 OK
-Link: &lt;https://api.letsfreckle.com/v2/project_groups/:id/invoices?page=2&gt;; rel="next",
- &lt;https://api.letsfreckle.com/v2/project_groups/:id/invoices?page=5&gt;; rel="last"</code></pre>
-
-<pre class="highlight"><code class="language-javascript"><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
-    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-    <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Freckle Support"</span><span class="p">,</span>
-    <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-    <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
-    <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
-      <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-      <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
-      <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
-      <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
-      <span class="s2">"project_summary"</span><span class="o">:</span> <span class="s2">"Project summary"</span><span class="p">,</span>
-      <span class="s2">"user_summary"</span><span class="o">:</span> <span class="s2">"People summary"</span><span class="p">,</span>
-      <span class="s2">"no_project_name"</span><span class="o">:</span> <span class="s2">"No project"</span><span class="p">,</span>
-      <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
-      <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-      <span class="s2">"work_total"</span><span class="o">:</span> <span class="s2">"Total worked"</span><span class="p">,</span>
-      <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-      <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
-      <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-      <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">"United States dollar"</span><span class="p">,</span>
-      <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
-      <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
-      <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
-      <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
-      <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-      <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">"My Custom Invoice"</span><span class="p">,</span>
-      <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-      <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-      <span class="s2">"paypal_address"</span><span class="o">:</span> <span class="s2">"payment@test.com"</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
-    <span class="p">},</span>
-    <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
-      <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
-      <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-          <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-          <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
-        <span class="p">}</span>
-      <span class="p">],</span>
-      <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
-    <span class="p">},</span>
-    <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">88292</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sales Tax"</span><span class="p">,</span>
-        <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
-      <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">"taxable_amount"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">"taxfree_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"tax_total_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"taxable_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$100.00"</span><span class="p">,</span>
-    <span class="s2">"taxfree_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-    <span class="s2">"tax_total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-    <span class="s2">"total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
-    <span class="s2">"payment"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"paid_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAABBBDDDEEEE22222"</span><span class="p">,</span>
-      <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span>
-    <span class="p">},</span>
-    <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-        <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Sent to Paypal"</span><span class="p">,</span>
-        <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
-        <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
-        <span class="s2">"invoice_state"</span><span class="o">:</span> <span class="s2">"in_progress"</span>
-      <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-        <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
-      <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
-    <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/entries"</span><span class="p">,</span>
-    <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">324</span><span class="p">,</span>
-    <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
-    <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/26642"</span>
-  <span class="p">}</span>
-<span class="p">]</span></code></pre>
-
 <h2 id="add-projects-to-a-project-group">Add projects to a project group</h2>
 
 <pre><code>POST /project_groups/:id/add_projects
@@ -539,7 +414,7 @@ Link: &lt;https://api.letsfreckle.com/v2/project_groups/:id/invoices?page=2&gt;;
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>The IDs of the projects to add to the project group. Any projects that are already associated with another project group will be ignored and will not affect the Response.</dd>
-</dl><h3 id="response-7">Response</h3>
+</dl><h3 id="response-6">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -609,7 +484,7 @@ Link: &lt;https://api.letsfreckle.com/v2/project_groups/:id/invoices?page=2&gt;;
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>The IDs of the projects to remove from the project group. Any projects that are not associated with the project group will be ignored and will not affect the Response.</dd>
-</dl><h3 id="response-8">Response</h3>
+</dl><h3 id="response-7">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -618,7 +493,7 @@ Link: &lt;https://api.letsfreckle.com/v2/project_groups/:id/invoices?page=2&gt;;
 <pre><code>PUT /project_groups/:id/remove_all_projects
 </code></pre>
 
-<h3 id="response-9">Response</h3>
+<h3 id="response-8">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -629,7 +504,7 @@ Link: &lt;https://api.letsfreckle.com/v2/project_groups/:id/invoices?page=2&gt;;
 <pre><code>DELETE /project_groups/:id/
 </code></pre>
 
-<h3 id="response-10">Response</h3>
+<h3 id="response-9">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
     </div>
