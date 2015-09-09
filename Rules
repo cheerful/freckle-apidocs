@@ -82,6 +82,20 @@ route 'v2/*', :rep => :default_version do
   end
 end
 
+route 'v1/*' do
+  if item.binary?
+    # Write item with identifier /foo/ to /foo.ext
+    item.identifier.chop + '.' + item[:extension]
+  else
+    # Write item with identifier /foo/ to /foo/index.html
+    if item.identifier == '/v1/'
+      "/v1/index.html"
+    else
+      item.identifier.chop + ".html"
+    end
+  end
+end
+
 route '*' do
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext
