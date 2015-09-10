@@ -3,19 +3,6 @@ layout: default
 title: Project Group
 ---
 
-<div class="note warning sticky">
-  <h2>Almost finished!</h2>
-  <p>This resource is almost finished, but the following actions will return a 404 error:</p>
-  <ul>
-    <li><a href="#edit-a-project-group">Edit a project group</a></li>
-    <li><a href="#list-invoices-for-projects-in-a-project-group">List invoices for projects in a project group</a></li>
-    <li><a href="#add-projects-to-a-project-group">Add projects to a project group</a></li>
-    <li><a href="#remove-projects-from-project-group">Remove projects from project group</a></li>
-    <li><a href="#remove-all-projects-from-a-project-group">Remove all projects from a project group</a></li>
-    <li><a href="#delete-a-project-group">Delete a project group</a></li>
-  </ul>
-</div>
-
 * TOC
 {:toc}
 
