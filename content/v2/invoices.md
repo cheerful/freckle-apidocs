@@ -142,6 +142,16 @@ rate_calculation
     * `standard_hourly_rate`
     * `flat_rate`
 
+updated_from
+: *Optional* **string** of a timestamp in ISO 8061 format `YYYY-MM-DDTHH:MM:SSZ`
+: Only invoices updated from or after this timestamp will be returned.
+: Example: `updated_from=2012-01-09T08:33:29Z`
+
+updated_to
+: *Optional* **string** of a timestamp in ISO 8061 format `YYYY-MM-DDTHH:MM:SSZ`
+: Only invoices updated on or before this timestamp will be returned.
+: Example: `updated_to=2012-01-09T08:33:29Z`
+
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "invoices" %>
@@ -258,7 +268,7 @@ PUT /invoices/:id/paid
 ## Mark an Invoice as unpaid
 
 ~~~
-PUT /invoices/:id/paid
+PUT /invoices/:id/unpaid
 ~~~
 
 ### Response
