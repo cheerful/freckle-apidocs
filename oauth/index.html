@@ -337,15 +337,15 @@ BAD:  http://example.org
 
 <p>This API allows users to manage their tokens, and is only accessible via <a href="/v2/authentication">Basic Authentication</a>.</p>
 
-<p>Access Tokens are not shared across accounts. When using the OAuth Authorizations API, you will need to specify which account you are accessing. This is done by including the desired account’s subdomain as part of the request URL.</p>
+<p>Access Tokens are not shared across accounts. When using the OAuth Authorizations API, you will need to specify which account you are accessing. This is done by including the desired account’s name as part of the request URL.</p>
 
 <p>The process for selecting which account to access should be:</p>
 
 <ol>
-<li>Present the user with a list of all the subdomains (with the corresponding avatar) they are associated with.</li>
+<li>Present the user with a list of all the names (with the corresponding avatar) they are associated with.</li>
   <li>User selects which account they want to access</li>
-  <li>Use the user-selected subdomain to access the OAuth Authorizations API</li>
-</ol><h3 id="list-all-the-subdomains-associated-with-this-user">List all the subdomains associated with this user</h3>
+  <li>Use the user-selected name to access the OAuth Authorizations API</li>
+</ol><h3 id="list-all-the-names-associated-with-this-user">List all the names associated with this user</h3>
 
 <p>In order to use the OAuth Authorizations API, you will need to specify which subdomain the user wants to authenticate with. This method returns a list of all the subdomains associated with the user, along with URLs to their respective avatars.</p>
 
@@ -358,8 +358,8 @@ BAD:  http://example.org
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="s2">"subdomain"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"avatar"</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"testit"</span><span class="p">,</span>
+    <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
