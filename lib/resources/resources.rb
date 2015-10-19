@@ -635,8 +635,8 @@ module Freckle
     }
 
     SUBDOMAIN = {
-      :subdomain => ACCOUNT["subdomain"],
-      :avatar => USER["avatar"]
+      :name => ACCOUNT["name"],
+      :avatar => USER["profile_image_url"]
     }
 
     OAUTH_ACCESS_TOKEN = {
