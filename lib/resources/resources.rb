@@ -144,30 +144,13 @@ module Freckle
 
     ACCOUNT = {
       "id" =>  3344,
-      "plan_name" =>  "Freelancer",
       "name" =>  "testit",
-      "address" =>  {
-        "address1" =>  "1345 Main Street",
-        "address2" =>  "Room 3",
-        "city" =>  "Mainsville",
-        "state" =>  "MA",
-        "zip" =>  "12345",
-        "country" =>  "USA",
-        "phone" =>  "(111)-222-3333",
-      },
-
-      "billing_email_cc"=>  "john.test@test.com",
       "invoicing_enabled"=>  true,
       "owner" =>  SIMPLE_USER,
 
       "url" =>  "#{API_V2_URL}/account/",
-      "signin_url" =>  "https://testit.letsfreckle.com/signin",
       "created_at" => "2012-01-09T08:33:29Z",
       "updated_at" => "2012-01-09T08:33:29Z",
-    }
-
-    ACCOUNT_EDITABLE_FIELDS = {
-      "address" => ACCOUNT["address"]
     }
 
     SIMPLE_PROJECT = {

@@ -17,7 +17,3 @@ GET /account/
 ### Response
 <%= headers 200 %>
 <%= json :account %>
-
-### Notes
-
-Only the account owner has access to this resource
