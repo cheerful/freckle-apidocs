@@ -247,7 +247,7 @@ All resources have one or more `*_url` properties linking to other resources or 
 
 ## Pagination
 
-Responses including multiple items will be paginated to 30 items by default. The page can be changed by using the `page` query parameter. Note that the `page` paremter starts with 1.
+Responses including multiple items will be paginated to 30 items by default. The page can be changed by using the `page` query parameter. Note that the `page` parameter starts with 1.
 
 
 Some actions can use the `per_page` parameter, which will be documented in the resource's API page.
