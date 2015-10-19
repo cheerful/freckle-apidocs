@@ -127,12 +127,30 @@ module Freckle
       "updated_at" => "2010-06-09T20:44:57Z",
     })
 
-    CURRENT_USER = USER.merge({
+    CURRENT_USER = SIMPLE_USER.merge({
+      "state" =>"active",
+      "role" => "member",
+
+      "participating_projects" => 0,
+      "participating_projects_url" => "#{API_V2_URL}/users/5538/participating_projects",
+
+      "accessible_projects" => 0,
+      "accessible_projects_url" => "#{API_V2_URL}/users/5538/accessible_projects",
+
+      "entries" => 0,
+      "entries_url" => "#{API_V2_URL}/users/5538/entries",
+
+      "expenses" => 0,
+      "expenses_url" => "#{API_V2_URL}/users/5538/expenses",
+
       "time_format" => "fraction",
       "week_start"=> "Sunday",
       "utc_offset" => -28800,
       "send_personal_weekly_report_email" => true,
       "send_team_weekly_report_email" => true,
+
+      "created_at" => "2010-06-09T20:44:57Z",
+      "updated_at" => "2010-06-09T20:44:57Z",
     })
 
     USER_EDITABLE_FIELDS = {
