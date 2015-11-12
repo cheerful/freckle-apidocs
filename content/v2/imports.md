@@ -113,7 +113,7 @@ field_delimeter
 
 ### Response
 
-<%= headers 202 %>
+<%= headers 202, :Location => "#{API_V2_URL}/imports/1/status"  %>
 <%= json :created_import_response %>
 
 ### Custom Error Codes

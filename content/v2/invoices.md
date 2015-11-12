@@ -209,7 +209,7 @@ taxes
 
 ### Response
 
-<%= headers 201 %>
+<%= headers 201, :Location => "#{API_V2_URL}/invoices/1"  %>
 <%= json :invoice %>
 
 ### A note about entries or expenses that cannot be added

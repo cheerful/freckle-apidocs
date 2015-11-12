@@ -99,7 +99,7 @@ color
 
 ### Response
 
-<%= headers 200 %>
+<%= headers 201, :Location => "#{API_V2_URL}/projects/1"  %>
 <%= json :project %>
 
 ### Custom Error Codes

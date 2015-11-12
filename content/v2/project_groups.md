@@ -51,7 +51,7 @@ project_ids
 
 ### Response
 
-<%= headers 200 %>
+<%= headers 201, :Location => "#{API_V2_URL}/project_groups/1"  %>
 <%= json :project_group %>
 
 ## Get a project group
