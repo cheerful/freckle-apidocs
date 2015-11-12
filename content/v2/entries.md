@@ -163,7 +163,7 @@ source_url
 
 ### Reponse
 
-<%= headers 201, :Location => "https://apitest.letsfreckle.com/api/v2/entries/1" %>
+<%= headers 201, :Location => "#{API_V2_URL}/entries/1" %>
 <%= json :entry %>
 
 

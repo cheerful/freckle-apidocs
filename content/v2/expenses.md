@@ -101,7 +101,7 @@ description
 
 ### Reponse
 
-<%= headers 201, :Location => "https://apitest.letsfreckle.com/api/v2/expenses/1" %>
+<%= headers 201, :Location => "#{API_V2_URL}/expenses/1" %>
 <%= json :expense %>
 
 ## Edit an Expense

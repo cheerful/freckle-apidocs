@@ -257,10 +257,10 @@ Some actions can use the `per_page` parameter, which will be documented in the r
 When pagination is used, the `Link` header includes the URLs used in Pagination. Clients should use these links instead of following their own, in case pagination rules change in the future.
 
 ~~~
-Link: <https://apitest.letsfreckle.com/api/v2/users/?page=3&per_page=100>; rel="next",
-  <https://apitest.letsfreckle.com/api/v2/users/?page=2&per_page=100>; rel="prev",
-  <https://apitest.letsfreckle.com/api/v2/users/?page=1&per_page=100>; rel="first",
-  <https://apitest.letsfreckle.com/api/v2/users/?page=50&per_page=100>; rel="last"
+Link: <<%= "#{API_V2_URL}" %>/users/?page=3&per_page=100>; rel="next",
+  <<%= "#{API_V2_URL}" %>/users/?page=2&per_page=100>; rel="prev",
+  <<%= "#{API_V2_URL}" %>/users/?page=1&per_page=100>; rel="first",
+  <<%= "#{API_V2_URL}" %>/users/?page=50&per_page=100>; rel="last"
 ~~~
 
 the `rel` attribute indicates what the URL links to:
