@@ -64,13 +64,13 @@ There are two ways to send the token—examples are given using the cURL command
 As an OAuth2 Token header:
 
 <pre class="terminal">
-curl -H "Authorization: token <%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>" -v <%= API_V2_URL %>/timers
+curl -H "Authorization: token YOUR_OAUTH_ACCESS_TOKEN" -v <%= API_V2_URL %>/timers
 </pre>
 
 As a *query parameter* named `access_token`:
 
 <pre class="terminal">
-curl -v <%= API_V2_URL %>/timers?access_token=<%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>
+curl -v <%= API_V2_URL %>/timers?access_token=YOUR_OAUTH_ACCESS_TOKEN
 </pre>
 
 ## Basic Authentication
