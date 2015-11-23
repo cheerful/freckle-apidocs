@@ -60,6 +60,10 @@
   <li><a href="#basic-authentication">Basic Authentication</a></li>
 </ul><p>The Freckle API provides multiple different ways to handle authentication in your application, each one suited for a particular type of application. It’s important to pick the right authentication method for your application, so we’ve created the guide below to help you choose the right one:</p>
 
+<p class="note">
+The examples below use <a href="http://radek.io/2015/10/20/httpie/">httpie</a>; which returns a pretty-printed and syntax highlighted response, and works on OS X, Linux, and Windows. You should try it out, we really like it!
+</p>
+
 <h2 id="which-type-of-authentication-should-i-choose">Which type of authentication should I choose?</h2>
 
 <dl>
@@ -89,16 +93,16 @@
 
 <p>There are two ways to send the token—examples are given using the cURL command line tool:</p>
 
-<p>As <em>query parameter</em> named <code>freckle_token</code>:</p>
+<p>As a <em>query parameter</em> named <code>freckle_token</code>:</p>
 
 <pre class="terminal">
-curl -v https://api.letsfreckle.com/v2/timers?freckle_token=scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d
+http GET https://api.letsfreckle.com/v2/timers freckle_token==scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d
 </pre>
 
-<p>As <em>HTTP header</em> <code>X-FreckleToken</code>:</p>
+<p>As a <em>HTTP header</em> named <code>X-FreckleToken</code>:</p>
 
 <pre class="terminal">
-curl -v -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/timers
+http GET https://api.letsfreckle.com/v2/timers X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d
 </pre>
 
 <h2 id="using-oauth-access-tokens">Using OAuth access tokens</h2>
@@ -112,13 +116,13 @@ curl -v -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48
 <p>As an OAuth2 Token header:</p>
 
 <pre class="terminal">
-curl -H "Authorization: token YOUR_OAUTH_ACCESS_TOKEN" -v https://api.letsfreckle.com/v2/timers
+http GET https://api.letsfreckle.com/v2/timers Authorization:"token YOUR_OAUTH_ACCESS_TOKEN"
 </pre>
 
 <p>As a <em>query parameter</em> named <code>access_token</code>:</p>
 
 <pre class="terminal">
-curl -v https://api.letsfreckle.com/v2/timers?access_token=YOUR_OAUTH_ACCESS_TOKEN
+http GET https://api.letsfreckle.com/v2/timers access_token==YOUR_OAUTH_ACCESS_TOKEN
 </pre>
 
 <h2 id="basic-authentication">Basic Authentication</h2>
@@ -136,7 +140,7 @@ curl -v https://api.letsfreckle.com/v2/timers?access_token=YOUR_OAUTH_ACCESS_TOK
 <p>To do so, provide the access token as the username and provide a blank password or a password of <code>x-oauth-basic</code>. For example:</p>
 
 <pre class="terminal">
-curl -u abcdefghijklmnop1234567890:x-oauth-basic https://api.letsfreckle.com/v2/entries
+http GET https://api.letsfreckle.com/v2/entries -a abcdefghijklmnop1234567890:x-oauth-basic
 </pre>
 
 <h3 id="api-access-via-personal-access-tokens">API access via Personal Access Tokens</h3>
@@ -146,7 +150,7 @@ curl -u abcdefghijklmnop1234567890:x-oauth-basic https://api.letsfreckle.com/v2/
 <p>To do so, provide the Personal Access Token as the username and provide a blank password or a password of <code>x-freckle-token</code>. For example:</p>
 
 <pre class="terminal">
-curl -u scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d:x-freckle-token https://api.letsfreckle.com/v2/entries
+http GET https://api.letsfreckle.com/v2/entries -a scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d:x-freckle-token
 </pre>
 
 <h3 id="to-interact-with-the-oauth-authorizations-api">To interact with the OAuth Authorizations API</h3>
@@ -155,10 +159,10 @@ curl -u scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d:x-freckl
 
 <p>To use Basic Authentication to interact with the OAuth Authorizations API, simply send the email and password associated with the user.</p>
 
-<p>For example, if you’re accessing the API via <a href="http://curl.haxx.se/">cURL</a>, the following command would authenticate with <code>john@test.com</code> as the email. (cURL will prompt you to enter the password).</p>
+<p>For example, if you’re accessing the API via <a href="http://radek.io/2015/10/20/httpie/">httpie</a>, the following command would authenticate with <code>john@test.com</code> as the email. (httpie will prompt you to enter the password).</p>
 
 <pre class="terminal">
-curl -u john@test.com https://api.letsfreckle.com/v2/subdomains
+http GET https://api.letsfreckle.com/v2/subdomains -a john@test.com
 </pre>
     </div>
   </div>
