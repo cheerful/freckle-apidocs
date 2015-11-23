@@ -45,6 +45,7 @@ Additionally, there are command line tools that can log time and access other AP
 ### API v2 Libraries:
 
 * Python: [bitmazk/python-freckle-client](https://github.com/bitmazk/python-freckle-client)
+* Ruby: [timcraft/freckle](https://github.com/timcraft/freckle)
 
 Additionally, the command-line tool [Pippi](https://github.com/sirkitree/pippi) can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script.
 
