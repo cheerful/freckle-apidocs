@@ -74,15 +74,15 @@ customization
 	: Defaults to the value used in a previous invoice for these projects, or "Report" if none is found.
 
     locale
-    : *Optional* **string** of a locale code ([Supported locale codes](/locales_and_currencies/#locales))
+    : *Optional* **string** of a locale code ([Supported locale codes](/invoice_locales/#locales))
     : The locale of the invoice, which is used to localize dates and other non-currency values.
     : Defaults to the value used in a previous invoice for these projects, or "en-US" if none is found.
 
-    currency_name
-    : *Optional* **string** of a currency name ([Supported Currency Names](/locales_and_currencies/#currency_names))
-    : The name of the currency used in this invoice, which is used to correctly represent the currency value in the correct format.
+    currency_code
+    : *Optional* **string** of a [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code ([Supported Currency Codes](/invoice_locales/#currency_names))
+    : The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency used in this invoice, which is used to correctly represent the currency value in the correct format.
     : Defaults to the value used in a previous invoice for these projects.
-    : If no previous invoice is found, the currency name will be automatically selected based on the `locale`.
+    : If no previous invoice is found, the currency code will be automatically selected based on the `locale`.
 
     currency_symbol
     : *Optional* **string**

@@ -89,172 +89,163 @@ The supported Locales are:
 
 The supported currencies are:
 
-<table>
-  <thead>
-    <tr>
-      <th>Currency Name</th>
-      <th>Currency Symbol</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Afghan afghani</td><td>؋</td></tr>
-    <tr><td>Albanian lek</td><td>L</td></tr>
-    <tr><td>Algerian dinar</td><td>د.ج</td></tr>
-    <tr><td>Angolan kwanza</td><td>Kz</td></tr>
-    <tr><td>Argentine peso</td><td>$</td></tr>
-    <tr><td>Armenian dram</td><td>դր.</td></tr>
-    <tr><td>Aruban florin</td><td>ƒ</td></tr>
-    <tr><td>Australian dollar</td><td>$</td></tr>
-    <tr><td>Azerbaijani manat</td><td></td></tr>
-    <tr><td>Bahamian dollar</td><td>$</td></tr>
-    <tr><td>Bahraini dinar</td><td>.د.ب</td></tr>
-    <tr><td>Bangladeshi taka</td><td>৳</td></tr>
-    <tr><td>Barbadian dollar</td><td>$</td></tr>
-    <tr><td>Belarusian ruble</td><td>Br</td></tr>
-    <tr><td>Belize dollar</td><td>$</td></tr>
-    <tr><td>Bermudian dollar</td><td>$</td></tr>
-    <tr><td>Bhutanese ngultrum</td><td>Nu.</td></tr>
-    <tr><td>Bolivian boliviano</td><td>Bs.</td></tr>
-    <tr><td>Bosnia and Herzegovina convertible mark</td><td>KM</td></tr>
-    <tr><td>Botswana pula</td><td>P</td></tr>
-    <tr><td>Brazilian real</td><td>R$</td></tr>
-    <tr><td>British pound</td><td>£</td></tr>
-    <tr><td>Brunei dollar</td><td>$</td></tr>
-    <tr><td>Bulgarian lev</td><td>лв</td></tr>
-    <tr><td>Burundian franc</td><td>Fr</td></tr>
-    <tr><td>CFP franc</td><td>Fr</td></tr>
-    <tr><td>Cambodian riel</td><td>៛</td></tr>
-    <tr><td>Canadian dollar</td><td>$</td></tr>
-    <tr><td>Cape Verdean escudo</td><td>$</td></tr>
-    <tr><td>Cayman Islands dollar</td><td>$</td></tr>
-    <tr><td>Central African CFA franc</td><td>Fr</td></tr>
-    <tr><td>Chilean peso</td><td>$</td></tr>
-    <tr><td>Chinese yuan</td><td>¥</td></tr>
-    <tr><td>Colombian peso</td><td>$</td></tr>
-    <tr><td>Comorian franc</td><td>Fr</td></tr>
-    <tr><td>Congolese franc</td><td>Fr</td></tr>
-    <tr><td>Costa Rican colón</td><td>₡</td></tr>
-    <tr><td>Croatian kuna</td><td>kn</td></tr>
-    <tr><td>Cuban convertible peso</td><td>$</td></tr>
-    <tr><td>Cuban peso</td><td>$</td></tr>
-    <tr><td>Czech koruna</td><td>Kč</td></tr>
-    <tr><td>Danish krone</td><td>kr</td></tr>
-    <tr><td>Djiboutian franc</td><td>Fr</td></tr>
-    <tr><td>Dominican peso</td><td>$</td></tr>
-    <tr><td>East Caribbean dollar</td><td>$</td></tr>
-    <tr><td>Egyptian pound</td><td>£</td></tr>
-    <tr><td>Eritrean nakfa</td><td>Nfk</td></tr>
-    <tr><td>Estonian kroon</td><td>kr</td></tr>
-    <tr><td>Ethiopian birr</td><td>Br</td></tr>
-    <tr><td>Euro</td><td>€</td></tr>
-    <tr><td>Falkland Islands pound</td><td>£</td></tr>
-    <tr><td>Fijian dollar</td><td>$</td></tr>
-    <tr><td>Gambian dalasi</td><td>D</td></tr>
-    <tr><td>Georgian lari</td><td>ლ</td></tr>
-    <tr><td>Ghanaian cedi</td><td>₵</td></tr>
-    <tr><td>Gibraltar pound</td><td>£</td></tr>
-    <tr><td>Guatemalan quetzal</td><td>Q</td></tr>
-    <tr><td>Guinean franc</td><td>Fr</td></tr>
-    <tr><td>Guyanese dollar</td><td>$</td></tr>
-    <tr><td>Haitian gourde</td><td>G</td></tr>
-    <tr><td>Honduran lempira</td><td>L</td></tr>
-    <tr><td>Hong Kong dollar</td><td>$</td></tr>
-    <tr><td>Hungarian forint</td><td>Ft</td></tr>
-    <tr><td>Icelandic króna</td><td>kr</td></tr>
-    <tr><td>Indian rupee</td><td>₹</td></tr>
-    <tr><td>Indonesian rupiah</td><td>Rp</td></tr>
-    <tr><td>Iranian rial</td><td>﷼</td></tr>
-    <tr><td>Iraqi dinar</td><td>ع.د</td></tr>
-    <tr><td>Israeli new shekel</td><td>₪</td></tr>
-    <tr><td>Israeli new sheqel</td><td>₪</td></tr>
-    <tr><td>Jamaican dollar</td><td>$</td></tr>
-    <tr><td>Japanese yen</td><td>¥</td></tr>
-    <tr><td>Jordanian dinar</td><td>د.ا</td></tr>
-    <tr><td>Kazakhstani tenge</td><td>₸</td></tr>
-    <tr><td>Kenyan shilling</td><td>Sh</td></tr>
-    <tr><td>Kuwaiti dinar</td><td>د.ك</td></tr>
-    <tr><td>Kyrgyzstani som</td><td>лв</td></tr>
-    <tr><td>Lao kip</td><td>₭</td></tr>
-    <tr><td>Latvian lats</td><td>Ls</td></tr>
-    <tr><td>Lebanese pound</td><td>ل.ل</td></tr>
-    <tr><td>Lesotho loti</td><td>L</td></tr>
-    <tr><td>Liberian dollar</td><td>$</td></tr>
-    <tr><td>Libyan dinar</td><td>ل.د</td></tr>
-    <tr><td>Lithuanian litas</td><td>Lt</td></tr>
-    <tr><td>Macanese pataca</td><td>P</td></tr>
-    <tr><td>Macedonian denar</td><td>ден</td></tr>
-    <tr><td>Malagasy ariary</td><td>Ar</td></tr>
-    <tr><td>Malawian kwacha</td><td>MK</td></tr>
-    <tr><td>Malaysian ringgit</td><td>RM</td></tr>
-    <tr><td>Maldivian rufiyaa</td><td>ރ.</td></tr>
-    <tr><td>Mauritanian ouguiya</td><td>UM</td></tr>
-    <tr><td>Mauritian rupee</td><td>₨</td></tr>
-    <tr><td>Mexican peso</td><td>$</td></tr>
-    <tr><td>Moldovan leu</td><td>L</td></tr>
-    <tr><td>Mongolian tögrög</td><td>₮</td></tr>
-    <tr><td>Moroccan dirham</td><td>د.م.</td></tr>
-    <tr><td>Mozambican metical</td><td>MTn</td></tr>
-    <tr><td>Myanma kyat</td><td>K</td></tr>
-    <tr><td>Namibian dollar</td><td>$</td></tr>
-    <tr><td>Nepalese rupee</td><td>₨</td></tr>
-    <tr><td>Netherlands Antillean guilder</td><td>ƒ</td></tr>
-    <tr><td>New Taiwan dollar</td><td>$</td></tr>
-    <tr><td>New Zealand dollar</td><td>$</td></tr>
-    <tr><td>Nicaraguan córdoba</td><td>C$</td></tr>
-    <tr><td>Nigerian naira</td><td>₦</td></tr>
-    <tr><td>North Korean won</td><td>₩</td></tr>
-    <tr><td>Norwegian krone</td><td>kr</td></tr>
-    <tr><td>Omani rial</td><td>ر.ع.</td></tr>
-    <tr><td>Pakistani rupee</td><td>₨</td></tr>
-    <tr><td>Panamanian balboa</td><td>B/.</td></tr>
-    <tr><td>Papua New Guinean kina</td><td>K</td></tr>
-    <tr><td>Paraguayan guaraní</td><td>₲</td></tr>
-    <tr><td>Peruvian nuevo sol</td><td>S/.</td></tr>
-    <tr><td>Philippine peso</td><td>₱</td></tr>
-    <tr><td>Polish złoty</td><td>zł</td></tr>
-    <tr><td>Qatari riyal</td><td>ر.ق</td></tr>
-    <tr><td>Romanian new leu</td><td>RON</td></tr>
-    <tr><td>Russian ruble</td><td>р.</td></tr>
-    <tr><td>Rwandan franc</td><td>Fr</td></tr>
-    <tr><td>Saint Helena pound</td><td>£</td></tr>
-    <tr><td>Salvadoran colón</td><td>₡</td></tr>
-    <tr><td>Samoan tala</td><td>T</td></tr>
-    <tr><td>Saudi riyal</td><td>ر.س</td></tr>
-    <tr><td>Serbian dinar</td><td>дин.</td></tr>
-    <tr><td>Seychellois rupee</td><td>₨</td></tr>
-    <tr><td>Sierra Leonean leone</td><td>Le</td></tr>
-    <tr><td>Singapore dollar</td><td>$</td></tr>
-    <tr><td>Solomon Islands dollar</td><td>$</td></tr>
-    <tr><td>Somali shilling</td><td>Sh</td></tr>
-    <tr><td>South African rand</td><td>R</td></tr>
-    <tr><td>South Korean won</td><td>₩</td></tr>
-    <tr><td>Sri Lankan rupee</td><td>Rs</td></tr>
-    <tr><td>Sudanese pound</td><td>£</td></tr>
-    <tr><td>Surinamese dollar</td><td>$</td></tr>
-    <tr><td>Swazi lilangeni</td><td>L</td></tr>
-    <tr><td>Swedish krona</td><td>kr</td></tr>
-    <tr><td>Swiss franc</td><td>SFr.</td></tr>
-    <tr><td>Syrian pound</td><td>£</td></tr>
-    <tr><td>São Tomé and Príncipe dobra</td><td>Db</td></tr>
-    <tr><td>Tajikistani somoni</td><td>ЅМ</td></tr>
-    <tr><td>Tanzanian shilling</td><td>Sh</td></tr>
-    <tr><td>Thai baht</td><td>฿</td></tr>
-    <tr><td>Tongan paʻanga</td><td>T$</td></tr>
-    <tr><td>Trinidad and Tobago dollar</td><td>$</td></tr>
-    <tr><td>Tunisian dinar</td><td>د.ت</td></tr>
-    <tr><td>Turkish lira</td><td>TL</td></tr>
-    <tr><td>Turkmenistani manat</td><td>m</td></tr>
-    <tr><td>Ugandan shilling</td><td>Sh</td></tr>
-    <tr><td>Ukrainian hryvnia</td><td>₴</td></tr>
-    <tr><td>United Arab Emirates dirham</td><td>د.إ</td></tr>
-    <tr><td>United States dollar</td><td>$</td></tr>
-    <tr><td>Uruguayan peso</td><td>$</td></tr>
-    <tr><td>Uzbekistani som</td><td>лв</td></tr>
-    <tr><td>Venezuelan bolívar</td><td>Bs F</td></tr>
-    <tr><td>Vietnamese đồng</td><td>₫</td></tr>
-    <tr><td>West African CFA franc</td><td>Fr</td></tr>
-    <tr><td>Yemeni rial</td><td>﷼</td></tr>
-    <tr><td>Zambian kwacha</td><td>ZK</td></tr>
-    <tr><td>Zimbabwean dollar</td><td>$</td></tr>
-  </tbody>
-</table>
+|  ISO Currency Code  |  Currency Name  |  Default Currency Symbol  |
+|-------------------------------------------|
+|  AED | United Arab Emirates dirham | د.إ  |
+|  AFN | Afghan afghani | ؋  |
+|  ALL | Albanian lek | L  |
+|  AMD | Armenian dram | դր.  |
+|  ANG | Netherlands Antillean guilder | ƒ  |
+|  AOA | Angolan kwanza | Kz  |
+|  ARS | Argentine peso | $  |
+|  AUD | Australian dollar | $  |
+|  AWG | Aruban florin | ƒ  |
+|  AZN | Azerbaijani manat |   |
+|  BAM | Bosnia and Herzegovina convertible mark | KM or КМ  |
+|  BBD | Barbadian dollar | $  |
+|  BDT | Bangladeshi taka | ৳  |
+|  BGN | Bulgarian lev | лв  |
+|  BHD | Bahraini dinar | .د.ب  |
+|  BIF | Burundian franc | Fr  |
+|  BMD | Bermudian dollar | $  |
+|  BND | Brunei dollar | $  |
+|  BOB | Bolivian boliviano | Bs.  |
+|  BRL | Brazilian real | R$  |
+|  BSD | Bahamian dollar | $  |
+|  BTN | Bhutanese ngultrum | Nu.  |
+|  BWP | Botswana pula | P  |
+|  BYR | Belarusian ruble | Br  |
+|  BZD | Belize dollar | $  |
+|  CAD | Canadian dollar | $  |
+|  CDF | Congolese franc | Fr  |
+|  CHF | Swiss franc | SFr.  |
+|  CLP | Chilean peso | $  |
+|  CNY | Chinese yuan | ¥ or 元  |
+|  COP | Colombian peso | $  |
+|  CRC | Costa Rican colón | ₡  |
+|  CUC | Cuban convertible peso | $  |
+|  CUP | Cuban peso | $  |
+|  CVE | Cape Verdean escudo |   |
+|  CZK | Czech koruna | Kč  |
+|  DJF | Djiboutian franc | Fr  |
+|  DKK | Danish krone | kr  |
+|  DOP | Dominican peso | $  |
+|  DZD | Algerian dinar | د.ج  |
+|  EEK | Estonian kroon | kr  |
+|  EGP | Egyptian pound | £ or ج.م  |
+|  ERN | Eritrean nakfa | Nfk  |
+|  ETB | Ethiopian birr | Br  |
+|  EUR | Euro | €  |
+|  FJD | Fijian dollar | $  |
+|  FKP | Falkland Islands pound | £  |
+|  GBP | British pound | £  |
+|  GEL | Georgian lari | ლ  |
+|  GHS | Ghanaian cedi | ₵  |
+|  GIP | Gibraltar pound | £  |
+|  GMD | Gambian dalasi | D  |
+|  GNF | Guinean franc | Fr  |
+|  GTQ | Guatemalan quetzal | Q  |
+|  GYD | Guyanese dollar | $  |
+|  HKD | Hong Kong dollar | $  |
+|  HNL | Honduran lempira | L  |
+|  HRK | Croatian kuna | kn  |
+|  HTG | Haitian gourde | G  |
+|  HUF | Hungarian forint | Ft  |
+|  IDR | Indonesian rupiah | Rp  |
+|  ILS | Israeli new sheqel | ₪  |
+|  INR | Indian rupee |   |
+|  IQD | Iraqi dinar | ع.د  |
+|  IRR | Iranian rial | ﷼  |
+|  ISK | Icelandic króna | kr  |
+|  JMD | Jamaican dollar | $  |
+|  JOD | Jordanian dinar | د.ا  |
+|  JPY | Japanese yen | ¥  |
+|  KES | Kenyan shilling | Sh  |
+|  KGS | Kyrgyzstani som | лв  |
+|  KHR | Cambodian riel | ៛  |
+|  KMF | Comorian franc | Fr  |
+|  KPW | North Korean won | ₩  |
+|  KRW | South Korean won | ₩  |
+|  KWD | Kuwaiti dinar | د.ك  |
+|  KYD | Cayman Islands dollar | $  |
+|  KZT | Kazakhstani tenge | ₸  |
+|  LAK | Lao kip | ₭  |
+|  LBP | Lebanese pound | ل.ل  |
+|  LKR | Sri Lankan rupee | Rs  |
+|  LRD | Liberian dollar | $  |
+|  LSL | Lesotho loti | L  |
+|  LTL | Lithuanian litas | Lt  |
+|  LVL | Latvian lats | Ls  |
+|  LYD | Libyan dinar | ل.د  |
+|  MAD | Moroccan dirham | د.م.  |
+|  MDL | Moldovan leu | L  |
+|  MGA | Malagasy ariary | Ar  |
+|  MKD | Macedonian denar | ден  |
+|  MMK | Myanma kyat | K  |
+|  MNT | Mongolian tögrög | ₮  |
+|  MOP | Macanese pataca | P  |
+|  MRO | Mauritanian ouguiya | UM  |
+|  MUR | Mauritian rupee | ₨  |
+|  MVR | Maldivian rufiyaa | ރ.  |
+|  MWK | Malawian kwacha | MK  |
+|  MXN | Mexican peso | $  |
+|  MYR | Malaysian ringgit | RM  |
+|  MZN | Mozambican metical | MTn  |
+|  NAD | Namibian dollar | $  |
+|  NGN | Nigerian naira | ₦  |
+|  NIO | Nicaraguan córdoba | C$  |
+|  NOK | Norwegian krone | kr  |
+|  NPR | Nepalese rupee | ₨  |
+|  NZD | New Zealand dollar | $  |
+|  OMR | Omani rial | ر.ع.  |
+|  PAB | Panamanian balboa | B/.  |
+|  PEN | Peruvian nuevo sol | S/.  |
+|  PGK | Papua New Guinean kina | K  |
+|  PHP | Philippine peso | ₱  |
+|  PKR | Pakistani rupee | ₨  |
+|  PLN | Polish złoty | zł  |
+|  PYG | Paraguayan guaraní | ₲  |
+|  QAR | Qatari riyal | ر.ق  |
+|  RON | Romanian new leu | RON  |
+|  RSD | Serbian dinar | дин. or din.  |
+|  RUB | Russian ruble | р.  |
+|  RWF | Rwandan franc | Fr  |
+|  SAR | Saudi riyal | ر.س  |
+|  SBD | Solomon Islands dollar | $  |
+|  SCR | Seychellois rupee | ₨  |
+|  SDG | Sudanese pound | £  |
+|  SEK | Swedish krona | kr  |
+|  SGD | Singapore dollar | $  |
+|  SHP | Saint Helena pound | £  |
+|  SLL | Sierra Leonean leone | Le  |
+|  SOS | Somali shilling | Sh  |
+|  SRD | Surinamese dollar | $  |
+|  STD | São Tomé and Príncipe dobra | Db  |
+|  SVC | Salvadoran colón | ₡  |
+|  SYP | Syrian pound | £ or ل.س  |
+|  SZL | Swazi lilangeni | L  |
+|  THB | Thai baht | ฿  |
+|  TJS | Tajikistani somoni | ЅМ  |
+|  TMT | Turkmenistani manat | m  |
+|  TND | Tunisian dinar | د.ت  |
+|  TOP | Tongan paʻanga | T$  |
+|  TRY | Turkish lira | TL  |
+|  TTD | Trinidad and Tobago dollar | $  |
+|  TWD | New Taiwan dollar | $  |
+|  TZS | Tanzanian shilling | Sh  |
+|  UAH | Ukrainian hryvnia | ₴  |
+|  UGX | Ugandan shilling | Sh  |
+|  USD | United States dollar | $  |
+|  UYU | Uruguayan peso | $  |
+|  UZS | Uzbekistani som | лв  |
+|  VEF | Venezuelan bolívar | Bs F  |
+|  VND | Vietnamese đồng | ₫  |
+|  WST | Samoan tala | T  |
+|  XAF | Central African CFA franc | Fr  |
+|  XCD | East Caribbean dollar | $  |
+|  XOF | West African CFA franc | Fr  |
+|  XPF | CFP franc | Fr  |
+|  YER | Yemeni rial | ﷼  |
+|  ZAR | South African rand | R  |
+|  ZMW | Zambian kwacha | ZK  |
+|  ZWL | Zimbabwean dollar | $  |

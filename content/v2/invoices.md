@@ -120,14 +120,14 @@ show_project_name_for_expenses
 locale
 : *Optional* **string**
 : Only invoices using this locale are returned.
-: Accepted values: ([Any of the supported locale codes](/locales_and_currencies/#locales))
+: Accepted values: ([Any of the supported locale codes](/invoice_locales/#locales))
 : Example: `locale=en-GB`
 
-currency_name
+currency_code
 : *Optional* **name**
 : Only invoices using this currency are returned
-: Accepted values: ([Any of the supported currency names](/locales_and_currencies/#currencies))
-: Example: `currency_name=Euro`
+: Accepted values: ([Any of the supported ISO currency codes](/invoice_locales/#currencies))
+: Example: `currency_code=EUR`
 
 currency_symbol
 : *Optional* **string**

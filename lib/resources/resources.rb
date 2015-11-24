@@ -462,7 +462,7 @@ module Freckle
       "total" => "TOTAL",
       "report" => "Report",
       "locale" => "en-US",
-      "currency_name" => "United States dollar",
+      "currency_code" => "USD",
       "currency_symbol" => "$",
       "taxable_total" => "Total taxable",
       "tax_total" => "Total tax",
@@ -476,6 +476,7 @@ module Freckle
     }
 
     INVOICE_CUSTOMIZATION = INVOICE_CUSTOMIZATION_EDITABLE_FIELDS.merge({
+      "currency_name" => "United States dollar",
       "created_at" => "2013-04-24T17:39:51Z",
       "updated_at" => "2013-04-24T17:39:51Z",
     })
