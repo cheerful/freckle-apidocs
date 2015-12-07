@@ -363,10 +363,10 @@ module Freckle
       # "recurring_goals" => [PROJECT_RECURRING_GOAL],
 
       "entries" => 0,
-      "entries_url" =>"#{API_V2_URL}/projects/34580/entries",
+      "entries_url" =>"#{API_V2_URL}/projects/37396/entries",
       "expenses" => 0,
-      "expenses_url" => "#{API_V2_URL}/projects/34580/expenses",
-      "url" =>"#{API_V2_URL}/projects/34580",
+      "expenses_url" => "#{API_V2_URL}/projects/37396/expenses",
+      "url" =>"#{API_V2_URL}/projects/37396",
       "created_at" => "2012-01-09T08:33:29Z",
       "updated_at" => "2012-01-09T08:33:29Z",
     })
@@ -647,10 +647,10 @@ module Freckle
       "description" => "freckle work",
       "user" => SIMPLE_USER,
       "project" => SIMPLE_PROJECT,
-      "url" => "#{API_V2_URL}/projects/34580/timer",
-      "start_url" => "#{API_V2_URL}/projects/34580/timer/start",
-      "pause_url" => "#{API_V2_URL}/projects/34580/timer/pause",
-      "log_url"   => "#{API_V2_URL}/projects/34580/timer/log"
+      "url" => "#{API_V2_URL}/projects/37396/timer",
+      "start_url" => "#{API_V2_URL}/projects/37396/timer/start",
+      "pause_url" => "#{API_V2_URL}/projects/37396/timer/pause",
+      "log_url"   => "#{API_V2_URL}/projects/37396/timer/log"
     }
 
     SUBDOMAIN = {
