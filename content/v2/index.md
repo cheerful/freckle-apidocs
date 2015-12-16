@@ -4,8 +4,13 @@ title: Basics
 ---
 
 <div class="note warning sticky">
-  <h2>API V2 is still in beta!</h2>
-  <p>Version 2 of the Freckle API is still in beta and subject to change. Have a question, feature request, or suggestion? <strong style="cursor:pointer" onclick="showMessageBox()">Send us a message!</strong></p>
+  <h2>End of life for TLSv1 support</h2>
+  <p>
+    To adhere to the PCI DSS (Credit card security standard), <a href="http://status.letsfreckle.com/incidents/7mnckpt5xhyn">the API will no
+    longer support TLSv1 from February 1, 2016</a>. We already support TLSv1.1 and
+    TLSv1.2, so please update your API clients that still use TLSv1.
+    Have a question, feature request, or suggestion? <strong style="cursor:pointer" onclick="showMessageBox()">Send us a message!</strong>
+  </p>
 </div>
 
 * TOC
