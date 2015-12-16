@@ -1,6 +1,6 @@
 ---
 layout: v2
-title: Basics
+title: Freckle API v2
 ---
 
 <div class="note warning sticky">
@@ -16,11 +16,15 @@ title: Basics
 * TOC
 {:toc}
 
-## Introduction
+## Overview
 
-Many applications use the Freckle API every day, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Pigment](http://pigmentapp.com) and [Punch](http://punch.fousa.be); as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
+Freckle provides a secure Restful JSON API over HTTP; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.
 
-Freckle is also one of the many services listed on [Zapier](https://zapier.com/zapbook/freckle/) which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Campfire chat room!).
+There's many public and internal apps using the Freckle API, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Punch](http://punch.fousa.be). Plus, many customers haveinternal applications that integrate Freckle with their own custom software and services.
+
+Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
+
+Freckle is also one of the many services listed on [Zapier](https://zapier.com/zapbook/freckle/) which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Slack chat room!).
 
 Freckle's API docs are on Github: if you find an error or omission
 in the API documentation, you can help fix it quickly by [forking the Freckle API docs](https://github.com/cheerful/freckle-apidocs) and submitting a pull request!
@@ -29,25 +33,6 @@ in the API documentation, you can help fix it quickly by [forking the Freckle AP
 
 There are several 3rd-party open source libraries for popular languages
 available:
-
-### API v1 Libraries:
-
-<p class="note">
-These libraries only support <a href="/">API v1</a>, meaning that some of the actions and options from API v2 will not be available in these libraries.
-</p>
-
-* Ruby: [letsfreckle-client](https://github.com/ryanlecompte/letsfreckle-client)
-* Python: [ipmb/freckle](https://github.com/ipmb/freckle)
-* Python: [bitmazk/python-freckle-client](https://github.com/bitmazk/python-freckle-client)
-* Node.js: [nodefreckle](https://github.com/tbranyen/nodefreckle)
-* Clojure: [clj-freckle](https://github.com/mlehman/clj-freckle)
-
-Additionally, there are command line tools that can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script:
-
-* [Pippi](https://github.com/sirkitree/pippi)
-* [freck](https://github.com/robinhouston/freckle-command)
-
-### API v2 Libraries:
 
 * Python: [bitmazk/python-freckle-client](https://github.com/bitmazk/python-freckle-client)
 * Ruby: [timcraft/freckle](https://github.com/timcraft/freckle)
@@ -102,7 +87,7 @@ GET <%= OAUTH2_URL %>/oauth/2/authorize
 
 The following rules define the general schema of the API:
 
-* Only HTTPS traffic is allowed when accessing the API.
+* Only HTTPS traffic is allowed when accessing the API. _You must use TLSv1.1 or TLSv1.2. TLSv1 support will end on January 31, 2016. We do not support any version of SSL._
 * All data is sent and received as JSON, with the exception of [File Uploads](#uploading-files).
 * Blank fields are included as `null` in responses.
 * The ISO 8061 Date and Timestamp formats are used across the application (`YYYY-MM-DD` and `YYYY-MM-DDTHH:MM:SSZ` respectively).
