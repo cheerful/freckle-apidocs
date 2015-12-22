@@ -52,6 +52,13 @@ If a project does not have a currently running or paused timer, then the respons
 
 <%= headers 404 %>
 
+Timers can have the following `state`:
+
+* `pending` (no time has elapsed)
+* `running`
+* `paused`
+* `stopped`
+
 ## Edit a project's timer
 
 Updates the details for a project's timer. If the timer does not exist, it will automatically be created.
