@@ -182,7 +182,15 @@ $ curl -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48a
 
 <pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
 
-<h2 id="edit-a-projects-timer">Edit a project’s timer</h2>
+<p>Timers can have the following <code>state</code>:</p>
+
+<ul>
+<li>
+<code>pending</code> (no time has elapsed)</li>
+  <li><code>running</code></li>
+  <li><code>paused</code></li>
+  <li><code>stopped</code></li>
+</ul><h2 id="edit-a-projects-timer">Edit a project’s timer</h2>
 
 <p>Updates the details for a project’s timer. If the timer does not exist, it will automatically be created.</p>
 

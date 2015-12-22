@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Freckle API: Basics</title>
+  <title>Freckle API: Freckle API v2</title>
   <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
@@ -51,7 +51,7 @@
       </ul>
     </div>
     <div id="content">
-      <h1>Basics</h1>
+      <h1>Freckle API v2</h1>
       <div class="note warning sticky">
   <h2>End of life for TLSv1 support</h2>
   <p>
@@ -63,7 +63,7 @@
 </div>
 
 <ul id="markdown-toc">
-<li><a href="#introduction">Introduction</a></li>
+<li><a href="#overview">Overview</a></li>
   <li><a href="#freckle-api-libraries">Freckle API Libraries</a></li>
   <li><a href="#naming-client-applications">Naming client applications</a></li>
   <li><a href="#api-urls">API URLs</a></li>
@@ -78,11 +78,15 @@
   <li><a href="#supported-http-verbs">Supported HTTP Verbs</a></li>
   <li><a href="#hypermedia">Hypermedia</a></li>
   <li><a href="#pagination">Pagination</a></li>
-</ul><h2 id="introduction">Introduction</h2>
+</ul><h2 id="overview">Overview</h2>
 
-<p>Many applications use the Freckle API every day, among them web applications like <a href="http://beanstalkapp.com">Beanstalk</a>, <a href="http://github.com">Github</a>, and <a href="http://planscope.io">Planscope</a>; native mobile and desktop applications like <a href="http://pigmentapp.com">Pigment</a> and <a href="http://punch.fousa.be">Punch</a>; as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a>, <a href="http://twitter.com/letsfreckle">tweet</a>, or <a href="https://www.facebook.com/FreckleTimeTracking">send us a message on Facebook</a>.</p>
+<p>Freckle provides a secure Restful JSON API over HTTP; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.</p>
 
-<p>Freckle is also one of the many services listed on <a href="https://zapier.com/zapbook/freckle/">Zapier</a> which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Campfire chat room!).</p>
+<p>There’s many public and internal apps using the Freckle API, among them web applications like <a href="http://beanstalkapp.com">Beanstalk</a>, <a href="http://github.com">Github</a>, and <a href="http://planscope.io">Planscope</a>; native mobile and desktop applications like <a href="http://punch.fousa.be">Punch</a>. Plus, many customers haveinternal applications that integrate Freckle with their own custom software and services.</p>
+
+<p>Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a>, <a href="http://twitter.com/letsfreckle">tweet</a>, or <a href="https://www.facebook.com/FreckleTimeTracking">send us a message on Facebook</a>.</p>
+
+<p>Freckle is also one of the many services listed on <a href="https://zapier.com/zapbook/freckle/">Zapier</a> which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Slack chat room!).</p>
 
 <p>Freckle’s API docs are on Github: if you find an error or omission
 in the API documentation, you can help fix it quickly by <a href="https://github.com/cheerful/freckle-apidocs">forking the Freckle API docs</a> and submitting a pull request!</p>
@@ -91,30 +95,6 @@ in the API documentation, you can help fix it quickly by <a href="https://github
 
 <p>There are several 3rd-party open source libraries for popular languages
 available:</p>
-
-<h3 id="api-v1-libraries">API v1 Libraries:</h3>
-
-<p class="note">
-These libraries only support <a href="/">API v1</a>, meaning that some of the actions and options from API v2 will not be available in these libraries.
-</p>
-
-<ul>
-<li>Ruby: <a href="https://github.com/ryanlecompte/letsfreckle-client">letsfreckle-client</a>
-</li>
-  <li>Python: <a href="https://github.com/ipmb/freckle">ipmb/freckle</a>
-</li>
-  <li>Python: <a href="https://github.com/bitmazk/python-freckle-client">bitmazk/python-freckle-client</a>
-</li>
-  <li>Node.js: <a href="https://github.com/tbranyen/nodefreckle">nodefreckle</a>
-</li>
-  <li>Clojure: <a href="https://github.com/mlehman/clj-freckle">clj-freckle</a>
-</li>
-</ul><p>Additionally, there are command line tools that can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script:</p>
-
-<ul>
-<li><a href="https://github.com/sirkitree/pippi">Pippi</a></li>
-  <li><a href="https://github.com/robinhouston/freckle-command">freck</a></li>
-</ul><h3 id="api-v2-libraries">API v2 Libraries:</h3>
 
 <ul>
 <li>Python: <a href="https://github.com/bitmazk/python-freckle-client">bitmazk/python-freckle-client</a>
@@ -167,7 +147,8 @@ This is different than API v1, where the API was accessed through an account-spe
 <p>The following rules define the general schema of the API:</p>
 
 <ul>
-<li>Only HTTPS traffic is allowed when accessing the API.</li>
+<li>Only HTTPS traffic is allowed when accessing the API. <em>You must use TLSv1.1 or TLSv1.2. TLSv1 support will end on January 31, 2016. We do not support any version of SSL.</em>
+</li>
   <li>All data is sent and received as JSON, with the exception of <a href="#uploading-files">File Uploads</a>.</li>
   <li>Blank fields are included as <code>null</code> in responses.</li>
   <li>The ISO 8061 Date and Timestamp formats are used across the application (<code>YYYY-MM-DD</code> and <code>YYYY-MM-DDTHH:MM:SSZ</code> respectively).</li>
