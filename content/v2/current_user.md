@@ -78,10 +78,10 @@ week_start
     * sunday
     * monday
 
-send_personal_weekly_report_email
+send_personal_weekly_report
 : *Optional* **boolean**: indicates whether a personal weekly report email should be sent.
 
-send_team_weekly_report_email
+send_team_weekly_report
 : *Optional* **boolean**: indicates whether a team weekly report should be sent. If the current user is not an admin, this field will be ignored.
 
 ### Response
