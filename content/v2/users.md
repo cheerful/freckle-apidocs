@@ -92,24 +92,9 @@ You can use the parameters specified in the [Expense API's List Action](/expense
 <%= headers 200, :pagination => true, :pagination_resource => "users/:id/expenses" %>
 <%= json :expense %>
 
-## Get the Projects the User has logged entries or expenses for
-
-~~~
-GET /users/:id/projects
-~~~
-
-### Parameters
-
-You can use the parameters specified in the [Project API's List Action](/projects/index.html#list) to further limit the results
-
-### Response
-
-<%= headers 200, :pagination => true, :pagination_resource => "users/:id/projects" %>
-<%= json :project %>
-
 ## Create a User
 
-*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
 
 ~~~
 POST /users/
@@ -158,10 +143,6 @@ PUT /users/:id
 
 ### Inputs
 
-email
-: *Optional* **string**
-: The email address of the user.
-
 first name
 : *Optional* **string**
 : The first name of the user
@@ -189,29 +170,11 @@ The following Custom Error codes can be returned for this action:
 
 * **deactivated**: The user is deactivated, and therefore cannot be edited until it is reactivated.
 
-## Resend a pending user's invitation email
-
-This action re-sends the invitation email for a pending user. This email allows pending users to set their password and start using Freckle.
-
-~~~
-PUT /users/:id/resend_invitation_email
-~~~
-
-### Response
-
-<%= headers 204 %>
-
-### Custom Error Codes
-
-The following Custom Error codes can be returned for this action:
-
-* **not_pending**: The user is not pending, meaning that they cannot be sent an invitiation email. This is usually because the user has used a previous invitation email to set their password and start using Freckle.
-
 ## Reactivate a Deactivated User
 
 This action reactivates a previously deactivated user, which allows the user to start using Freckle again.
 
-*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
 
 ~~~
 PUT /users/:id/activate
