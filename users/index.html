@@ -47,7 +47,6 @@
         <li><a href="/v2/account">Account</a></li>
         <li><a class="coming-soon" href="/v2/current_user">Current User</a></li>
         <li><a class="coming-soon" href="/v2/users">Users</a></li>
-        <li><a class="coming-soon" href="/v2/imports">Imports</a></li>
       </ul>
     </div>
     <div id="content">
@@ -62,10 +61,8 @@
   <li><a href="#get-a-single-user">Get a single user</a></li>
   <li><a href="#get-a-users-entries">Get a User’s Entries</a></li>
   <li><a href="#get-a-users-expenses">Get a User’s Expenses</a></li>
-  <li><a href="#get-the-projects-the-user-has-logged-entries-or-expenses-for">Get the Projects the User has logged entries or expenses for</a></li>
   <li><a href="#create-a-user">Create a User</a></li>
   <li><a href="#edit-a-user">Edit a User</a></li>
-  <li><a href="#resend-a-pending-users-invitation-email">Resend a pending user’s invitation email</a></li>
   <li><a href="#reactivate-a-deactivated-user">Reactivate a Deactivated User</a></li>
   <li><a href="#give-a-user-access-to-projects">Give a User Access to Projects</a></li>
   <li><a href="#revoke-a-users-access-to-projects">Revoke a User’s Access to Projects</a></li>
@@ -305,75 +302,9 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/expenses?page=2&gt;; rel="nex
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="get-the-projects-the-user-has-logged-entries-or-expenses-for">Get the Projects the User has logged entries or expenses for</h2>
-
-<pre><code>GET /users/:id/projects
-</code></pre>
-
-<h3 id="parameters-3">Parameters</h3>
-
-<p>You can use the parameters specified in the <a href="/projects/index.html#list">Project API’s List Action</a> to further limit the results</p>
-
-<h3 id="response-4">Response</h3>
-
-<pre class="headers"><code>Status: 200 OK
-Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="next",
- &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=5&gt;; rel="last"</code></pre>
-
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-  <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-  <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span><span class="p">,</span>
-  <span class="s2">"group"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">3768</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sprockets, Inc."</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/project_groups/3768"</span>
-  <span class="p">},</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
-  <span class="s2">"billable_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
-  <span class="s2">"unbillable_minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"invoiced_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
-  <span class="s2">"remaining_minutes"</span><span class="o">:</span> <span class="mi">630</span><span class="p">,</span>
-  <span class="s2">"budget_minutes"</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
-  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
-  <span class="p">},</span>
-  <span class="s2">"invoices"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-      <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-      <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"participants"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/expenses"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
-<span class="p">}</span></code></pre>
-
 <h2 id="create-a-user">Create a User</h2>
 
-<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
 
 <pre><code>POST /users/
 </code></pre>
@@ -408,7 +339,7 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/projects?page=2&gt;; rel="nex
       <li>freelancer</li>
     </ul>
 </dd>
-</dl><h3 id="response-5">Response</h3>
+</dl><h3 id="response-4">Response</h3>
 
 <pre class="headers"><code>Status: 201 Created
 Location: https://api.letsfreckle.com/v2/users/1</code></pre>
@@ -453,12 +384,7 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <h3 id="inputs-1">Inputs</h3>
 
 <dl>
-<dt>email</dt>
-  <dd>
-<em>Optional</em> <strong>string</strong>
-</dd>
-  <dd>The email address of the user.</dd>
-  <dt>first name</dt>
+<dt>first name</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -480,7 +406,7 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
       <li>freelancer</li>
     </ul>
 </dd>
-</dl><h3 id="response-6">Response</h3>
+</dl><h3 id="response-5">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -514,38 +440,20 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <ul>
 <li>
 <strong>deactivated</strong>: The user is deactivated, and therefore cannot be edited until it is reactivated.</li>
-</ul><h2 id="resend-a-pending-users-invitation-email">Resend a pending user’s invitation email</h2>
-
-<p>This action re-sends the invitation email for a pending user. This email allows pending users to set their password and start using Freckle.</p>
-
-<pre><code>PUT /users/:id/resend_invitation_email
-</code></pre>
-
-<h3 id="response-7">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="custom-error-codes-2">Custom Error Codes</h3>
-
-<p>The following Custom Error codes can be returned for this action:</p>
-
-<ul>
-<li>
-<strong>not_pending</strong>: The user is not pending, meaning that they cannot be sent an invitiation email. This is usually because the user has used a previous invitation email to set their password and start using Freckle.</li>
 </ul><h2 id="reactivate-a-deactivated-user">Reactivate a Deactivated User</h2>
 
 <p>This action reactivates a previously deactivated user, which allows the user to start using Freckle again.</p>
 
-<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
 
 <pre><code>PUT /users/:id/activate
 </code></pre>
 
-<h3 id="response-8">Response</h3>
+<h3 id="response-6">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="custom-error-codes-3">Custom Error Codes</h3>
+<h3 id="custom-error-codes-2">Custom Error Codes</h3>
 
 <p>The following Custom Error codes can be returned for this action:</p>
 
@@ -567,11 +475,11 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <dt>projects</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>: the IDs of the projects to give a User access to.</dd>
-</dl><h3 id="response-9">Response</h3>
+</dl><h3 id="response-7">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="custom-error-codes-4">Custom Error Codes</h3>
+<h3 id="custom-error-codes-3">Custom Error Codes</h3>
 
 <p>The following Custom Error codes can be returned for this action:</p>
 
@@ -595,11 +503,11 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <dt>projects</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>: the IDs of the projects to revoke a User’s access to.</dd>
-</dl><h3 id="response-10">Response</h3>
+</dl><h3 id="response-8">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="custom-error-codes-5">Custom Error Codes</h3>
+<h3 id="custom-error-codes-4">Custom Error Codes</h3>
 
 <p>The following Custom Error codes can be returned for this action:</p>
 
@@ -615,7 +523,7 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <pre><code>DELETE /users/:id
 </code></pre>
 
-<h3 id="response-11">Response</h3>
+<h3 id="response-9">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -634,7 +542,7 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <pre><code>PUT /users/:id/deactivate
 </code></pre>
 
-<h3 id="response-12">Response</h3>
+<h3 id="response-10">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 

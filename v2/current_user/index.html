@@ -47,7 +47,6 @@
         <li><a href="/v2/account">Account</a></li>
         <li><a class="coming-soon" href="/v2/current_user">Current User</a></li>
         <li><a class="coming-soon" href="/v2/users">Users</a></li>
-        <li><a class="coming-soon" href="/v2/imports">Imports</a></li>
       </ul>
     </div>
     <div id="content">
@@ -61,14 +60,7 @@
 <li><a href="#get-the-current-user">Get the Current User</a></li>
   <li><a href="#get-the-current-users-entries">Get the Current User’s Entries</a></li>
   <li><a href="#get-the-current-users-expenses">Get the Current User’s Expenses</a></li>
-  <li><a href="#get-the-projects-the-current-user-has-logged-entries-or-expenses-for">Get the Projects the Current User has logged entries or expenses for</a></li>
   <li><a href="#edit-the-current-user">Edit the Current User</a></li>
-  <li><a href="#replace-avatar-with-uploaded-image">Replace Avatar with uploaded image</a></li>
-  <li><a href="#replace-avatar-with-an-image-url">Replace Avatar with an image URL</a></li>
-  <li><a href="#replace-avatar-with-a-twitter-accounts-profile-image">Replace Avatar with a Twitter Account’s Profile Image</a></li>
-  <li><a href="#use-gravatar-for-picture">Use Gravatar for Picture</a></li>
-  <li><a href="#custom-error-codes-3">Custom Error Codes</a></li>
-  <li><a href="#remove-picture">Remove Picture</a></li>
 </ul><h2 id="get-the-current-user">Get the Current User</h2>
 
 <pre><code>GET /current_user/
@@ -230,72 +222,6 @@ Link: &lt;https://api.letsfreckle.com/v2/current_user/expenses?page=2&gt;; rel="
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="get-the-projects-the-current-user-has-logged-entries-or-expenses-for">Get the Projects the Current User has logged entries or expenses for</h2>
-
-<pre><code>GET /current_user/projects
-</code></pre>
-
-<h3 id="parameters-2">Parameters</h3>
-
-<p>You can use the parameters specified in the <a href="/projects/index.html#list">Project API’s List Action</a> to further limit the results</p>
-
-<h3 id="response-3">Response</h3>
-
-<pre class="headers"><code>Status: 200 OK
-Link: &lt;https://api.letsfreckle.com/v2/current_user/participating_projects?page=2&gt;; rel="next",
- &lt;https://api.letsfreckle.com/v2/current_user/participating_projects?page=5&gt;; rel="last"</code></pre>
-
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-  <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-  <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span><span class="p">,</span>
-  <span class="s2">"group"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">3768</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sprockets, Inc."</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/project_groups/3768"</span>
-  <span class="p">},</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
-  <span class="s2">"billable_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
-  <span class="s2">"unbillable_minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"invoiced_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
-  <span class="s2">"remaining_minutes"</span><span class="o">:</span> <span class="mi">630</span><span class="p">,</span>
-  <span class="s2">"budget_minutes"</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
-  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
-  <span class="p">},</span>
-  <span class="s2">"invoices"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-      <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-      <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"participants"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/expenses"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
-<span class="p">}</span></code></pre>
-
 <h2 id="edit-the-current-user">Edit the Current User</h2>
 
 <pre><code>PUT /current_user
@@ -304,10 +230,7 @@ Link: &lt;https://api.letsfreckle.com/v2/current_user/participating_projects?pag
 <h3 id="inputs">Inputs</h3>
 
 <dl>
-<dt>email</dt>
-  <dd>
-<em>Optional</em> <strong>string</strong>: the email address of the user.</dd>
-  <dt>first name</dt>
+<dt>first name</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>: the first name of the user</dd>
   <dt>last name</dt>
@@ -337,7 +260,7 @@ Link: &lt;https://api.letsfreckle.com/v2/current_user/participating_projects?pag
   <dt>send_team_weekly_report_email</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>: indicates whether a team weekly report should be sent. If the current user is not an admin, this field will be ignored.</dd>
-</dl><h3 id="response-4">Response</h3>
+</dl><h3 id="response-3">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -366,121 +289,6 @@ Link: &lt;https://api.letsfreckle.com/v2/current_user/participating_projects?pag
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
-
-<h2 id="replace-avatar-with-uploaded-image">Replace Avatar with uploaded image</h2>
-
-<p>Replace the Current User’s avatar with the uploaded image. The maximum filesize for the uploaded image is 2MB.</p>
-
-<pre><code>PUT /current_user/upload_picture
-</code></pre>
-
-<h3 id="an-important-note-about-uploading-files">An Important Note about Uploading Files</h3>
-<p>In order to upload a new avatar, you must send the request parameters as traditional HTTP key/value pairs and set the <code>Content-Type</code> header to <code>application/x-ww-form-urlencoded</code>. For more details, please review the API Basics section on <a href="/#uploading-files">Uploading Files</a></p>
-
-<h3 id="input">Input</h3>
-
-<dl>
-<dt>file</dt>
-  <dd>
-<em>Required</em> <strong>file</strong>: an HTTP file object containing the picure</dd>
-</dl><h3 id="response-5">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="custom-error-codes">Custom Error Codes</h3>
-
-<p>The following Custom Error codes can be returned for this action:</p>
-
-<ul>
-<li>
-<strong>invalid_image</strong>: The uploaded file is not a valid image</li>
-  <li>
-<strong>too_large</strong>: The uploaded file is too large</li>
-</ul><h2 id="replace-avatar-with-an-image-url">Replace Avatar with an image URL</h2>
-
-<p>Replace the Current User’s avatar with the image specified by the URL provided. The maximum filesize for the image specified by the URL is 2MB.</p>
-
-<pre><code>PUT /current_user/picture_url
-</code></pre>
-
-<h3 id="input-1">Input</h3>
-
-<dl>
-<dt>url</dt>
-  <dd>
-<em>Required</em> <strong>string</strong>: the URL where the image is located.</dd>
-</dl><h3 id="response-6">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="custom-error-codes-1">Custom Error Codes</h3>
-
-<p>The following Custom Error codes can be returned for this action:</p>
-
-<ul>
-<li>
-<strong>invalid_image</strong>: The URL provided does not point to an image.</li>
-  <li>
-<strong>invalid_url</strong>: The URL provided is invalid.</li>
-  <li>
-<strong>could_not_reach_url</strong>: we were unable to complete the request using the URL provided.</li>
-  <li>
-<strong>too_large</strong>: The image is too large.</li>
-</ul><h2 id="replace-avatar-with-a-twitter-accounts-profile-image">Replace Avatar with a Twitter Account’s Profile Image</h2>
-
-<p>Replace the Current User’s avatar with the profile image of a Twitter Account. Note that the Twitter account must be public in order to use its profile image.</p>
-
-<pre><code>PUT /current_user/twitter_picture
-</code></pre>
-
-<h3 id="input-2">Input</h3>
-
-<dl>
-<dt>twitter_handle</dt>
-  <dd>
-<em>Required</em> <strong>string</strong>: the Twitter handle you want to use (@-symbol optional)</dd>
-</dl><h3 id="response-7">Response</h3>
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="custom-error-codes-2">Custom Error Codes</h3>
-
-<p>The following Custom Error codes could be returned for this action:</p>
-
-<ul>
-<li>
-<strong>invalid_twitter_handle</strong>: The Twitter account provided could not be found, or is not public</li>
-  <li>
-<strong>unable_to_reach_twitter</strong>: We were unable to reach Twitter</li>
-</ul><h2 id="use-gravatar-for-picture">Use Gravatar for Picture</h2>
-
-<p>Replace the Current User’s avatar with the default image from their <a href="http://en.gravatar.com/">Gravatar</a> account. The Current User’s email address is used to retrieve the Gravatar Profile. The maximum filesize for the image specified in their Gravatar Profile is 2MB.</p>
-
-<pre><code>PUT /current_user/use_gravatar
-</code></pre>
-
-<h3 id="response-8">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h2 id="custom-error-codes-3">Custom Error Codes</h2>
-
-<p>The following Custom Error codes can be returned for this action:</p>
-
-<ul>
-<li>
-<strong>invalid_gravatar_profile</strong>: The email address does not have a Gravatar Profile associated with it, or is not accessible.</li>
-  <li>
-<strong>unable_to_reach_gravatar</strong>: We were unable to reach Gravatar.</li>
-</ul><h2 id="remove-picture">Remove Picture</h2>
-
-<p>Remove the Current User’s avatar and replace it with a generic Freckle Avatar.</p>
-
-<pre><code>DELETE /current_user/picture
-</code></pre>
-
-<h3 id="response-9">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
     </div>
   </div>
 
