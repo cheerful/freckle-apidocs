@@ -106,13 +106,7 @@ module Freckle
 
     USER = SIMPLE_USER.merge({
       "state" =>"active",
-      "role" => "member",
-
-      "participating_projects" => 0,
-      "participating_projects_url" => "#{API_V2_URL}/users/5538/participating_projects",
-
-      "accessible_projects" => 0,
-      "accessible_projects_url" => "#{API_V2_URL}/users/5538/accessible_projects",
+      "role" => "leader",
 
       "entries" => 0,
       "entries_url" => "#{API_V2_URL}/users/5538/entries",
@@ -129,13 +123,7 @@ module Freckle
 
     CURRENT_USER = SIMPLE_USER.merge({
       "state" =>"active",
-      "role" => "member",
-
-      "participating_projects" => 0,
-      "participating_projects_url" => "#{API_V2_URL}/users/5538/participating_projects",
-
-      "accessible_projects" => 0,
-      "accessible_projects_url" => "#{API_V2_URL}/users/5538/accessible_projects",
+      "role" => "leader",
 
       "entries" => 0,
       "entries_url" => "#{API_V2_URL}/users/5538/entries",
