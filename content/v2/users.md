@@ -33,9 +33,10 @@ role
 : *Optional* **string**
 : Only users with this role will be returned. Accepted values are:
 
-    * admin
-    * member
-    * freelancer
+    * supervisor
+    * leader
+    * coworker
+    * contractor
 
 state
 : *Optional* **string**
@@ -49,7 +50,7 @@ state
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "users" %>
-<%= json :user %>
+<%= json_array :user %>
 
 ## Get a single user
 
@@ -75,7 +76,7 @@ You can use the parameters specified in the [Entry API's List Action](/entries/i
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "users/:id/entries" %>
-<%= json :entry %>
+<%= json_array :entry %>
 
 ## Get a User's Expenses
 
@@ -90,7 +91,7 @@ You can use the parameters specified in the [Expense API's List Action](/expense
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "users/:id/expenses" %>
-<%= json :expense %>
+<%= json_array :expense %>
 
 ## Create a User
 
@@ -116,11 +117,12 @@ last name
 
 role
 : *Optional* **string**
-: The user's role. Accepted values are:
+: The user's [role](http://help.letsfreckle.com/article/86-setting-permissions). Accepted values are:
 
-    * member (**default**)
-    * admin
-    * freelancer
+    * supervisor
+    * leader (**default**)
+    * coworker
+    * contractor
 
 ### Response
 
@@ -135,7 +137,7 @@ The following Custom Error codes can be returned for this action:
 
 ## Edit a User
 
-*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
 
 ~~~
 PUT /users/:id
@@ -153,11 +155,12 @@ last name
 
 role
 : *Optional* **string**
-: The user's role. Accepted values are:
+: The user's [role](http://help.letsfreckle.com/article/86-setting-permissions). Accepted values are:
 
-    * member
-    * admin
-    * freelancer
+    * supervisor
+    * leader
+    * coworker
+    * contractor
 
 ### Response
 
@@ -168,7 +171,7 @@ role
 
 The following Custom Error codes can be returned for this action:
 
-* **deactivated**: The user is deactivated, and therefore cannot be edited until it is reactivated.
+* **deactivated**: The user is deactivated, and therefore cannot be edited until they are reactivated.
 
 ## Reactivate a Deactivated User
 
@@ -189,6 +192,7 @@ PUT /users/:id/activate
 The following Custom Error codes can be returned for this action:
 
 * **not_deactivated**: The user is not deactivated, and therefore cannot be reactivated.
+* **reached_user_limit**: the account has reached the maximum number of active users available for the current plan. The account owner will have to [upgrade their account](http://help.letsfreckle.com/article/69-upgrading-and-downgrading-your-account).
 
 ## Give a User Access to Projects
 
@@ -202,7 +206,7 @@ PUT /users/:id/give_access_to_projects
 
 ### Inputs
 
-projects
+project_ids
 : *Required* **array of integers**: the IDs of the projects to give a User access to.
 
 ### Response
@@ -213,8 +217,11 @@ projects
 
 The following Custom Error codes can be returned for this action:
 
-* **already_has_access**: The user already has access to this project
 * **deactivated**: The user is deactivated, and therefore cannot be given access to any projects.
+
+### A note about projects that the user cannot be given access to
+
+Any projects are included in this request that the user cannot be given access to will be ignored and will not affect the Response.
 
 ## Revoke a User's Access to Projects
 
@@ -228,7 +235,7 @@ PUT /users/:id/revoke_access_to_projects
 
 ### Inputs
 
-projects
+project_ids
 : *Required* **array of integers**: the IDs of the projects to revoke a User's access to.
 
 ### Response
@@ -254,13 +261,21 @@ DELETE /users/:id
 
 <%= headers 204 %>
 
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **authenticated_user**: Authenticated users cannot delete themselves.
+* **not_deletable**: the User cannot be deleted because they have entries
+
+
 ### A note about user deletion
 
-A user cannot be deleted if there are any entries this user.
+A user cannot be deleted if there are any entries associated with this user.
 
 You can deactivate the user, which will remove this user from the list of active users and increment the number of available users available until the account limit is reached.
 
-The error message for the delete action follows the pattern explained in the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources), but instead of using an "Archive" action, the [Disable](#disable) action is used.
+For more information about how deleting and archiving a user works, please the API basics section on [Deleting or Archiving Resources](/#deleting-or-archiving-resources)
 
 ## Deactivate a User
 
@@ -273,6 +288,13 @@ PUT /users/:id/deactivate
 ### Response
 
 <%= headers 204 %>
+
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **authenticated_user**: Authenticated users cannot deactivate themselves.
+* **deletable**: the user should be deleted because they do not have any entries
 
 ### A note about user deactivation
 
