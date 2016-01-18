@@ -114,11 +114,17 @@ module Freckle
       "expenses" => 0,
       "expenses_url" => "#{API_V2_URL}/users/5538/expenses",
 
-      "add_project_access" => "#{API_V2_URL}/users/5538/project_access/add",
-      "remove_project_access" => "#{API_V2_URL}/users/5538/project_access/remove",
+      "give_access_to_project_url" => "#{API_V2_URL}/users/5538/give_access_to_projects",
+      "revoke_access_to_project_url" => "#{API_V2_URL}/users/5538/revoke_access_to_projects",
+      "revoke_access_to_all_projects_url" => "#{API_V2_URL}/users/5538/revoke_access_to_all_projects",
+
+      "activate_url" => "#{API_V2_URL}/users/5538/activate",
+      "deactivate_url" => "#{API_V2_URL}/users/5538/deactivate",
 
       "created_at" => "2010-06-09T20:44:57Z",
       "updated_at" => "2010-06-09T20:44:57Z",
+
+      "activate_url" => "#{API_V2_URL}/users/5538/project_access/add"
     })
 
     CURRENT_USER = SIMPLE_USER.merge({
@@ -185,6 +191,10 @@ module Freckle
       "projects_url" => "#{API_V2_URL}/project_groups/3768/projects/",
       "created_at" => "2012-01-09T08:33:29Z",
       "updated_at" => "2012-01-09T08:33:29Z",
+
+      "add_projects_url" => "#{API_V2_URL}/project_groups/3768/add_projects",
+      "remove_projects_url" => "#{API_V2_URL}/project_groups/3768/remove_projects",
+      "remove_all_projects_url" => "#{API_V2_URL}/project_groups/3768/remove_all_projects",
     }
 
 
@@ -357,6 +367,10 @@ module Freckle
       "url" =>"#{API_V2_URL}/projects/37396",
       "created_at" => "2012-01-09T08:33:29Z",
       "updated_at" => "2012-01-09T08:33:29Z",
+
+      "project_merge_url" => "#{API_V2_URL}/projects/37396/merge",
+      "project_archive_url" => "#{API_V2_URL}/projects/37396/archive",
+      "project_unarchive_url" => "#{API_V2_URL}/projects/37396/unarchive",
     })
 
     SIMPLE_TAG = {
@@ -375,6 +389,8 @@ module Freckle
       "entries" => 0,
       "entries_url" => "#{API_V2_URL}/tags/55629/entries",
 
+
+      "merge_url" => "#{API_V2_URL}/tags/55629/merge",
       "created_at" => "2010-06-09T20:44:57Z",
       "updated_at" => "2010-06-09T20:44:57Z",
     })
@@ -395,6 +411,9 @@ module Freckle
       "approved_at" => "2012-01-10T08:33:29Z",
       "approved_by" => SIMPLE_USER,
       "url" => "#{API_V2_URL}/entries/1711626",
+      "invoiced_outside_of_freckle_url" => "#{API_V2_URL}/entries/1711626/invoiced_outside_of_freckle",
+      "approved_url" => "#{API_V2_URL}/entries/1711626/approved",
+      "unapproved_url" => "#{API_V2_URL}/entries/1711626/unapproved",
       "created_at" => "2012-01-09T08:33:29Z",
       "updated_at" => "2012-01-09T08:33:29Z",
     }
