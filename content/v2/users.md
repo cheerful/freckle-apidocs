@@ -172,6 +172,7 @@ role
 The following Custom Error codes can be returned for this action:
 
 * **deactivated**: The user is deactivated, and therefore cannot be edited until they are reactivated.
+* **authenticated_user**: Authenticated users cannot change certain properties about themselves.
 
 ## Reactivate a Deactivated User
 
@@ -218,6 +219,7 @@ project_ids
 The following Custom Error codes can be returned for this action:
 
 * **deactivated**: The user is deactivated, and therefore cannot be given access to any projects.
+* **authenticated_user**: Authenticated users cannot change their project access rules.
 
 ### A note about projects that the user cannot be given access to
 
@@ -248,6 +250,27 @@ The following Custom Error codes can be returned for this action:
 
 * **can_access_all_projects**: The user is has access all the projects in this account, and cannot be prevented from accessing specific projects.
 * **deactivated**: The user is deactivated, and therefore cannot be modified.
+* **authenticated_user**: Authenticated users cannot change their project access rules.
+
+## Revoke a user's access to all projects
+
+<div class="note">Currently, only freelancers are affected by project access rules.</div>
+
+~~~
+PUT /users/:id/revoke_access_to_all_projects
+~~~
+
+### Response
+
+<%= headers 204 %>
+
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **can_access_all_projects**: The user is has access all the projects in this account, and cannot be prevented from accessing specific projects.
+* **deactivated**: The user is deactivated, and therefore cannot be modified.
+* **authenticated_user**: Authenticated users cannot change their project access rules.
 
 ## Delete a User
 
@@ -265,6 +288,7 @@ DELETE /users/:id
 
 The following Custom Error codes can be returned for this action:
 
+* **account_owner**: Account owners cannot be deleted
 * **authenticated_user**: Authenticated users cannot delete themselves.
 * **not_deletable**: the User cannot be deleted because they have entries
 
@@ -293,6 +317,7 @@ PUT /users/:id/deactivate
 
 The following Custom Error codes can be returned for this action:
 
+* **account_owner**: Account owners cannot be deactivated
 * **authenticated_user**: Authenticated users cannot deactivate themselves.
 * **deletable**: the user should be deleted because they do not have any entries
 
