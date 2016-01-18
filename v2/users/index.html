@@ -45,8 +45,8 @@
       <h2>Account Management</h2>
       <ul id="resources">
         <li><a href="/v2/account">Account</a></li>
-        <li><a class="coming-soon" href="/v2/current_user">Current User</a></li>
-        <li><a class="coming-soon" href="/v2/users">Users</a></li>
+        <li><a href="/v2/current_user">Current User</a></li>
+        <li><a href="/v2/users">Users</a></li>
       </ul>
     </div>
     <div id="content">
@@ -66,6 +66,7 @@
   <li><a href="#reactivate-a-deactivated-user">Reactivate a Deactivated User</a></li>
   <li><a href="#give-a-user-access-to-projects">Give a User Access to Projects</a></li>
   <li><a href="#revoke-a-users-access-to-projects">Revoke a User’s Access to Projects</a></li>
+  <li><a href="#revoke-a-users-access-to-all-projects">Revoke a user’s access to all projects</a></li>
   <li><a href="#delete-a-user">Delete a User</a></li>
   <li><a href="#deactivate-a-user">Deactivate a User</a></li>
 </ul><h2 id="list-users">List Users</h2>
@@ -136,8 +137,11 @@ Link: &lt;https://api.letsfreckle.com/v2/users?page=2&gt;; rel="next",
     <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/entries"</span><span class="p">,</span>
     <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/expenses"</span><span class="p">,</span>
-    <span class="s2">"add_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
-    <span class="s2">"remove_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/remove"</span><span class="p">,</span>
+    <span class="s2">"give_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/give_access_to_projects"</span><span class="p">,</span>
+    <span class="s2">"revoke_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_projects"</span><span class="p">,</span>
+    <span class="s2">"revoke_access_to_all_projects_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_all_projects"</span><span class="p">,</span>
+    <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
+    <span class="s2">"deactivate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/deactivate"</span><span class="p">,</span>
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
   <span class="p">}</span>
@@ -165,8 +169,11 @@ Link: &lt;https://api.letsfreckle.com/v2/users?page=2&gt;; rel="next",
   <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/entries"</span><span class="p">,</span>
   <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/expenses"</span><span class="p">,</span>
-  <span class="s2">"add_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
-  <span class="s2">"remove_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/remove"</span><span class="p">,</span>
+  <span class="s2">"give_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/give_access_to_projects"</span><span class="p">,</span>
+  <span class="s2">"revoke_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_projects"</span><span class="p">,</span>
+  <span class="s2">"revoke_access_to_all_projects_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_all_projects"</span><span class="p">,</span>
+  <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
+  <span class="s2">"deactivate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/deactivate"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
@@ -243,6 +250,9 @@ Link: &lt;https://api.letsfreckle.com/v2/users/:id/entries?page=2&gt;; rel="next
       <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
     <span class="p">},</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
+    <span class="s2">"invoiced_outside_of_freckle_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/invoiced_outside_of_freckle"</span><span class="p">,</span>
+    <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/approved"</span><span class="p">,</span>
+    <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
   <span class="p">}</span>
@@ -357,8 +367,11 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
   <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/entries"</span><span class="p">,</span>
   <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/expenses"</span><span class="p">,</span>
-  <span class="s2">"add_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
-  <span class="s2">"remove_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/remove"</span><span class="p">,</span>
+  <span class="s2">"give_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/give_access_to_projects"</span><span class="p">,</span>
+  <span class="s2">"revoke_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_projects"</span><span class="p">,</span>
+  <span class="s2">"revoke_access_to_all_projects_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_all_projects"</span><span class="p">,</span>
+  <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
+  <span class="s2">"deactivate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/deactivate"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
@@ -420,8 +433,11 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
   <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/entries"</span><span class="p">,</span>
   <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/expenses"</span><span class="p">,</span>
-  <span class="s2">"add_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
-  <span class="s2">"remove_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/remove"</span><span class="p">,</span>
+  <span class="s2">"give_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/give_access_to_projects"</span><span class="p">,</span>
+  <span class="s2">"revoke_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_projects"</span><span class="p">,</span>
+  <span class="s2">"revoke_access_to_all_projects_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_all_projects"</span><span class="p">,</span>
+  <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
+  <span class="s2">"deactivate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/deactivate"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
 <span class="p">}</span></code></pre>
@@ -433,6 +449,8 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <ul>
 <li>
 <strong>deactivated</strong>: The user is deactivated, and therefore cannot be edited until they are reactivated.</li>
+  <li>
+<strong>authenticated_user</strong>: Authenticated users cannot change certain properties about themselves.</li>
 </ul><h2 id="reactivate-a-deactivated-user">Reactivate a Deactivated User</h2>
 
 <p>This action reactivates a previously deactivated user, which allows the user to start using Freckle again.</p>
@@ -481,6 +499,8 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <ul>
 <li>
 <strong>deactivated</strong>: The user is deactivated, and therefore cannot be given access to any projects.</li>
+  <li>
+<strong>authenticated_user</strong>: Authenticated users cannot change their project access rules.</li>
 </ul><h3 id="a-note-about-projects-that-the-user-cannot-be-given-access-to">A note about projects that the user cannot be given access to</h3>
 
 <p>Any projects are included in this request that the user cannot be given access to will be ignored and will not affect the Response.</p>
@@ -513,11 +533,13 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <strong>can_access_all_projects</strong>: The user is has access all the projects in this account, and cannot be prevented from accessing specific projects.</li>
   <li>
 <strong>deactivated</strong>: The user is deactivated, and therefore cannot be modified.</li>
-</ul><h2 id="delete-a-user">Delete a User</h2>
+  <li>
+<strong>authenticated_user</strong>: Authenticated users cannot change their project access rules.</li>
+</ul><h2 id="revoke-a-users-access-to-all-projects">Revoke a user’s access to all projects</h2>
 
-<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
+<div class="note">Currently, only freelancers are affected by project access rules.</div>
 
-<pre><code>DELETE /users/:id
+<pre><code>PUT /users/:id/revoke_access_to_all_projects
 </code></pre>
 
 <h3 id="response-9">Response</h3>
@@ -530,6 +552,30 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 
 <ul>
 <li>
+<strong>can_access_all_projects</strong>: The user is has access all the projects in this account, and cannot be prevented from accessing specific projects.</li>
+  <li>
+<strong>deactivated</strong>: The user is deactivated, and therefore cannot be modified.</li>
+  <li>
+<strong>authenticated_user</strong>: Authenticated users cannot change their project access rules.</li>
+</ul><h2 id="delete-a-user">Delete a User</h2>
+
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
+
+<pre><code>DELETE /users/:id
+</code></pre>
+
+<h3 id="response-10">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="custom-error-codes-6">Custom Error Codes</h3>
+
+<p>The following Custom Error codes can be returned for this action:</p>
+
+<ul>
+<li>
+<strong>account_owner</strong>: Account owners cannot be deleted</li>
+  <li>
 <strong>authenticated_user</strong>: Authenticated users cannot delete themselves.</li>
   <li>
 <strong>not_deletable</strong>: the User cannot be deleted because they have entries</li>
@@ -548,16 +594,18 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
 <pre><code>PUT /users/:id/deactivate
 </code></pre>
 
-<h3 id="response-10">Response</h3>
+<h3 id="response-11">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="custom-error-codes-6">Custom Error Codes</h3>
+<h3 id="custom-error-codes-7">Custom Error Codes</h3>
 
 <p>The following Custom Error codes can be returned for this action:</p>
 
 <ul>
 <li>
+<strong>account_owner</strong>: Account owners cannot be deactivated</li>
+  <li>
 <strong>authenticated_user</strong>: Authenticated users cannot deactivate themselves.</li>
   <li>
 <strong>deletable</strong>: the user should be deleted because they do not have any entries</li>

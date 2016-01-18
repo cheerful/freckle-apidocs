@@ -45,8 +45,8 @@
       <h2>Account Management</h2>
       <ul id="resources">
         <li><a href="/v2/account">Account</a></li>
-        <li><a class="coming-soon" href="/v2/current_user">Current User</a></li>
-        <li><a class="coming-soon" href="/v2/users">Users</a></li>
+        <li><a href="/v2/current_user">Current User</a></li>
+        <li><a href="/v2/users">Users</a></li>
       </ul>
     </div>
     <div id="content">
@@ -177,7 +177,10 @@ Link: &lt;https://api.letsfreckle.com/v2/projects?page=2&gt;; rel="next",
     <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/expenses"</span><span class="p">,</span>
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+    <span class="s2">"project_merge_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/merge"</span><span class="p">,</span>
+    <span class="s2">"project_archive_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/archive"</span><span class="p">,</span>
+    <span class="s2">"project_unarchive_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/unarchive"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
@@ -238,7 +241,10 @@ Link: &lt;https://api.letsfreckle.com/v2/projects?page=2&gt;; rel="next",
   <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/expenses"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+  <span class="s2">"project_merge_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/merge"</span><span class="p">,</span>
+  <span class="s2">"project_archive_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/archive"</span><span class="p">,</span>
+  <span class="s2">"project_unarchive_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/unarchive"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="create-a-project">Create a project</h2>
@@ -337,7 +343,10 @@ Location: https://api.letsfreckle.com/v2/projects/1</code></pre>
   <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/expenses"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+  <span class="s2">"project_merge_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/merge"</span><span class="p">,</span>
+  <span class="s2">"project_archive_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/archive"</span><span class="p">,</span>
+  <span class="s2">"project_unarchive_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/unarchive"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="custom-error-codes">Custom Error Codes</h3>
@@ -417,6 +426,9 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/entries?page=2&gt;; rel="n
       <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
     <span class="p">},</span>
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
+    <span class="s2">"invoiced_outside_of_freckle_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/invoiced_outside_of_freckle"</span><span class="p">,</span>
+    <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/approved"</span><span class="p">,</span>
+    <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
   <span class="p">}</span>
@@ -576,8 +588,11 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
     <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/entries"</span><span class="p">,</span>
     <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/expenses"</span><span class="p">,</span>
-    <span class="s2">"add_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
-    <span class="s2">"remove_project_access"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/remove"</span><span class="p">,</span>
+    <span class="s2">"give_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/give_access_to_projects"</span><span class="p">,</span>
+    <span class="s2">"revoke_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_projects"</span><span class="p">,</span>
+    <span class="s2">"revoke_access_to_all_projects_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_all_projects"</span><span class="p">,</span>
+    <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
+    <span class="s2">"deactivate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/deactivate"</span><span class="p">,</span>
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
   <span class="p">}</span>
@@ -672,7 +687,10 @@ Link: &lt;https://api.letsfreckle.com/v2/projects/:id/participants?page=2&gt;; r
   <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/expenses"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+  <span class="s2">"project_merge_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/merge"</span><span class="p">,</span>
+  <span class="s2">"project_archive_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/archive"</span><span class="p">,</span>
+  <span class="s2">"project_unarchive_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/unarchive"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="custom-error-codes-1">Custom Error Codes</h3>
