@@ -3,15 +3,6 @@ layout: default
 title: Project
 ---
 
-<div class="note warning sticky">
-  <h2>Almost finished!</h2>
-  <p>This resource is almost finished, but the following actions will return a 404 error:</p>
-  <ul>
-    <li><a href="#get-the-invoices-for-a-project">Get the invoices for a project</a></li>
-    <li><a href="#get-the-participants-in-a-project">Get the participants in a project</a></li>
-  </ul>
-</div>
-
 * TOC
 {:toc}
 
