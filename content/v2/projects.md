@@ -112,36 +112,20 @@ You can use the parameters specified in the [Entry API's List Action](/v2/entrie
 <%= headers 200, :pagination => true, :pagination_resource => "projects/:id/entries" %>
 <%= json_array :entry %>
 
-## Get the invoices for a project
+## Get the expenses for a project
 
 ~~~
-GET /projects/:id/invoices
-~~~
-
-### Parameters
-
-You can use the parameters specified in the [Invoice API's List Action](/v2/invoices/index.html#list) to further limit the results
-
-### Response
-
-<%= headers 200, :pagination => true, :pagination_resource => "projects/:id/invoices" %>
-<%= json_array :invoice %>
-
-## Get the participants in a project
-
-~~~
-GET /projects/:id/participants
+GET /projects/:id/expenses
 ~~~
 
 ### Parameters
 
-You can use the parameters specified in the [User API's List Action](/v2/users/index.html#list) to further limit the results
+You can use the parameters specified in the [Expense API's List Action](/v2/expenses/index.html#list) to further limit the results
 
 ### Response
 
-<%= headers 200, :pagination => true, :pagination_resource => "projects/:id/participants" %>
-<%= json_array :user %>
-
+<%= headers 200, :pagination => true, :pagination_resource => "projects/:id/expenses" %>
+<%= json_array :expense %>
 
 ## Edit a project
 
