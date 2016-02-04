@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="content">
     <h1><img id="logo" src="/assets/freckle.svg" alt="Freckle"> API: Basics</h1>
 
-    <p>Freckle’s RESTful API enables your application or script to 
+    <p>Freckle’s RESTful API enables your application or script to
 access <strong>entries</strong> (list/search, create, update, delete, mass import),
 <strong>projects</strong> (list, read, create, update, delete, archive, activate),
 <strong>tags</strong> (list) and <strong>users</strong> (list, read, create, update, deactivate, get avatar).</p>
@@ -77,10 +77,10 @@ and don’t do expensive API calls (mostly listing a lot of entries) too often.<
 
 <h3 id="naming-client-applications">Naming client applications</h3>
 
-<p>If you plan to release a public client app for Freckle (such as a native 
-mobile app, regardless if it’s paid-for or free) you’re welcome to do so. 
+<p>If you plan to release a public client app for Freckle (such as a native
+mobile app, regardless if it’s paid-for or free) you’re welcome to do so.
 <i>Do not name apps “Freckle” or “Freckle for &lt;platform&gt;”.</i>
-Please contact us first with more details about your app if you want to 
+Please contact us first with more details about your app if you want to
 use “Freckle” or the Freckle logo as name or icon of your app!</p>
 
 <h2 id="freckle-api-libraries">Freckle API Libraries</h2>
@@ -116,23 +116,23 @@ Please contact the library authors directly if you need help with these.
 <pre><code>https://&lt;subdomain&gt;.letsfreckle.com/api/&lt;resource&gt;
 </code></pre>
 
-<p>Where <strong>subdomain</strong> is the subdomain of the account you want to access and 
+<p>Where <strong>subdomain</strong> is the subdomain of the account you want to access and
 <strong>resource</strong> is the resource (e.g. entries, projects, tags, users and so on).</p>
 
-<p>For example, getting a list of projects from the “apitest” account via JSON would 
+<p>For example, getting a list of projects from the “apitest” account via JSON would
 result in the URL:</p>
 
 <pre><code>https://apitest.letsfreckle.com/api/projects.json
 </code></pre>
 
-<p>Resources are normally accessed via SSL only. Some resources can also be 
+<p>Resources are normally accessed via SSL only. Some resources can also be
 accessed through a regular HTTP request.</p>
 
 <h2 id="authentication">Authentication</h2>
 
 <p>An <em>authentication token</em> is needed for accessing the API. This token authenticates
-a specific user of the account and can be found in 
-<a href="http://letsfreckle.com/help/#faq_40">“settings &amp; tools &gt; API”</a> 
+a specific user of the account and can be found in
+<a href="http://letsfreckle.com/help/#faq_40">“settings &amp; tools &gt; API”</a>
 in the Freckle user interface. Treat authentications tokens like passwords!</p>
 
 <p>A user can reset the API token at any time—be sure to handle authentication errors
@@ -160,7 +160,7 @@ Freckle API calls in a library or module in your code.</p>
 
 <p>&lt;p class=note&gt;
 In order to make it easier for users to authenticate in interactive client applications
-such as on mobile devices, the token can be retrieved via the 
+such as on mobile devices, the token can be retrieved via the
 <code>/api/user/api_auth_token</code> API method by using HTTP Basic Auth with the
 user’s email and password. See the Users section for more information.
 &lt;/p&gt;</p>
@@ -221,20 +221,22 @@ This is rare but it does happen. Try the call again.</p>
   </li>
 </ul><h2 id="rate-limiting">Rate Limiting</h2>
 
-<p>You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will return a <code>429 Too Many Requests</code> response. If you receive a <code>429</code> response, make sure to wait a little longer between requests.</p>
+<p>You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will at first be slowed down (for up to 5 requests total). If you send more requests than that, remaining requests will be dropped and return an empty <code>429 Too Many Requests</code> response.</p>
+
+<p>If you receive a <code>429</code> response, make sure to wait a little longer between requests.</p>
 
 <h2 id="roles">Roles</h2>
 
-<p>There are currently four user roles in Freckle: <strong><code>administrator</code></strong>, <strong><code>owner</code></strong>, <strong><code>member</code></strong>, and <strong><code>freelancer</code></strong>. </p>
+<p>There are currently four user roles in Freckle: <strong><code>administrator</code></strong>, <strong><code>owner</code></strong>, <strong><code>member</code></strong>, and <strong><code>freelancer</code></strong>.</p>
 
 <p>Each Freckle user is assigned to one of these roles. Depending on the role, certain parts of the API
-may not be available. For each resource, this documentation explains which roles have access and 
-if there are any per-role restrictions (for example, a user with the “freelancer” role doesn’t 
+may not be available. For each resource, this documentation explains which roles have access and
+if there are any per-role restrictions (for example, a user with the “freelancer” role doesn’t
 have access to all projects).</p>
 
 <h2 id="data-formats">Data Formats</h2>
 
-<p>The Freckle API can accept and return data in JSON or XML. </p>
+<p>The Freckle API can accept and return data in JSON or XML.</p>
 
 <p>Because it’s awesome, we’ll mostly use examples in JSON in this documentation,
 however, XML works just as well.</p>
@@ -262,8 +264,8 @@ that you’ll hit those.</p>
 
 <h2 id="api-test-account">API Test Account</h2>
 
-<p>You can use our API test account for testing your code. The data from this test account 
-will be regularly wiped—don’t rely on your test data being there the next day. Also note that you 
+<p>You can use our API test account for testing your code. The data from this test account
+will be regularly wiped—don’t rely on your test data being there the next day. Also note that you
 might not be the only person using this token at a certain time.</p>
 
 <p>Domain: <code>apitest.letsfreckle.com</code><br>
@@ -290,8 +292,8 @@ so you can be sure your data stays intact while you develop!</p>
     You should see something like:
 
 
-<pre class="highlight"><code class="language-javascript"><span class="p">[</span> 
-  <span class="p">{</span> 
+<pre class="highlight"><code class="language-javascript"><span class="p">[</span>
+  <span class="p">{</span>
     <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"group_name"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
       <span class="s2">"remaining_minutes"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>

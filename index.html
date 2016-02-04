@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Freckle API: Freckle API v2</title>
+  <title>Freckle API v2 - Freckle Developer</title>
   <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
@@ -15,59 +15,49 @@
           <img src="/assets/freckle.svg" alt="Freckle">
         </a>
       </div>
-      API Documentation
+      Developer Documentation
       <ul id="version_switch">
         <li><a href="/v1/">API v1</a></li>
         <li><a href="/v2/">API v2</a></li>
       </ul>
       <h2>Topics</h2>
       <ul id="topics">
-        <li><a href="/v2">API Basics</a></li>
-        <li><a href="/v2/oauth">OAuth</a></li>
-        <li><a href="/v2/authentication">Authentication</a></li>
-        <li><a href="/v2/invoice_locales">Invoice Locales</a></li>
-      </ul>
-      <h2>Resources</h2>
-      <ul id="resources">
-        <li><a href="/v2/timers">Timers</a></li>
-        <li><a href="/v2/entries">Entries</a></li>
-        <li><a href="/v2/expenses">Expenses</a></li>
-        <li><a href="/v2/tags">Tags</a></li>
+        <li><a href="/v2/">API Basics</a></li>
+        <li><a href="/v2/authentication/">Authentication</a></li>
+        <li><a href="/v2/oauth/">OAuth</a></li>
       </ul>
 
-      <h2>Projects &amp; Invoices</h2>
-      <ul id="projects-and-invoices">
-        <li><a href="/v2/projects">Projects</a></li>
-        <li><a href="/v2/project_groups">Project Groups</a></li>
-        <li><a href="/v2/invoices">Invoices</a></li>
+      <h2>Resources</h2>
+      <ul id="resources">
+        <li><a href="/v2/entries/">Entries</a></li>
+        <li><a href="/v2/tags/">Tags</a></li>
+        <li><a href="/v2/timers/">Timers</a></li>
+        <li><a href="/v2/projects/">Projects</a></li>
+        <li><a href="/v2/project_groups/">Project Groups</a></li>
+        <li><a href="/v2/invoices/">Invoices</a></li>
+        <li><a href="/v2/expenses/">Expenses</a></li>
+        <li><a href="/v2/invoice_locales/">Invoice Locales</a></li>
       </ul>
 
       <h2>Account Management</h2>
       <ul id="account-management">
-        <li><a href="/v2/account">Account</a></li>
-        <li><a href="/v2/current_user">Current User</a></li>
-        <li><a href="/v2/users">Users</a></li>
+        <li><a href="/v2/account/">Account</a></li>
+        <li><a href="/v2/current_user/">Current User</a></li>
+        <li><a href="/v2/users/">Users</a></li>
       </ul>
     </div>
     <div id="content">
       <h1>Freckle API v2</h1>
-      <div class="note warning sticky">
-  <h2>End of life for TLSv1 support</h2>
-  <p>
-    To adhere to the PCI DSS (Credit card security standard), <a href="http://status.letsfreckle.com/incidents/7mnckpt5xhyn">the API will no
-    longer support TLSv1 from February 1, 2016</a>. We already support TLSv1.1 and
-    TLSv1.2, so please update your API clients that still use TLSv1.
-    Have a question, feature request, or suggestion? <strong style="cursor:pointer" onclick="showMessageBox()">Send us a message!</strong>
-  </p>
-</div>
+      <p>Welcome to the Freckle Developer Documentation!</p>
 
 <ul id="markdown-toc">
 <li><a href="#overview">Overview</a></li>
+  <li><a href="#not-a-developer">Not a developer?</a></li>
   <li><a href="#freckle-api-libraries">Freckle API Libraries</a></li>
   <li><a href="#naming-client-applications">Naming client applications</a></li>
   <li><a href="#api-urls">API URLs</a></li>
   <li><a href="#general-schema">General Schema</a></li>
-  <li><a href="#a-user-agent-is-required">A User Agent is Required</a></li>
+  <li><a href="#user-agent-required">User Agent (required)</a></li>
   <li><a href="#rate-limiting">Rate Limiting</a></li>
   <li><a href="#client-errors">Client Errors</a></li>
   <li><a href="#deleting-or-archiving-resources">Deleting or Archiving Resources</a></li>
@@ -79,16 +69,21 @@
   <li><a href="#pagination">Pagination</a></li>
 </ul><h2 id="overview">Overview</h2>
 
-<p>Freckle provides a secure Restful JSON API over HTTP; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.</p>
+<p>Freckle provides a secure Restful JSON API over HTTPS; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.</p>
 
-<p>There’s many public and internal apps using the Freckle API, among them web applications like <a href="http://beanstalkapp.com">Beanstalk</a>, <a href="http://github.com">Github</a>, and <a href="http://planscope.io">Planscope</a>; native mobile and desktop applications like <a href="http://punch.fousa.be">Punch</a>. Plus, many customers haveinternal applications that integrate Freckle with their own custom software and services.</p>
+<p>There’s many public and internal apps using the Freckle API, among them web applications like <a href="http://beanstalkapp.com">Beanstalk</a>, <a href="http://github.com">Github</a>, and <a href="http://planscope.io">Planscope</a>; native mobile and desktop applications like <a href="http://punch.fousa.be">Punch</a>. Plus, many customers have created internal applications that integrate Freckle with their own custom software and services.</p>
 
-<p>Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a>, <a href="http://twitter.com/letsfreckle">tweet</a>, or <a href="https://www.facebook.com/FreckleTimeTracking">send us a message on Facebook</a>.</p>
-
-<p>Freckle is also one of the many services listed on <a href="https://zapier.com/zapbook/freckle/">Zapier</a> which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Slack chat room!).</p>
+<p>Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a> or <a href="http://twitter.com/letsfreckle">tweet</a> us!</p>
 
 <p>Freckle’s API docs are on Github: if you find an error or omission
-in the API documentation, you can help fix it quickly by <a href="https://github.com/cheerful/freckle-apidocs">forking the Freckle API docs</a> and submitting a pull request!</p>
+in the API documentation, you can help fix it quickly by <a href="https://github.com/cheerful/freckle-apidocs">forking the Freckle API docs</a> and submitting a pull request.</p>
+
+<h2 id="not-a-developer">Not a developer?</h2>
+
+<p>If you’re not a developer, or just want to quickly connect Freckle to other
+internet-based apps your use, consider using <a href="https://zapier.com/zapbook/freckle/">Zapier</a>.</p>
+
+<p>Freckle is one of 500+ services supported by Zapier, which allows drag-and-drop integration and complex workflows with other internet-based software. For example, you could alert your Slack chat room that an invoice has been paid, or send new entries directly to a Google Doc!</p>
 
 <h2 id="freckle-api-libraries">Freckle API Libraries</h2>
 
@@ -109,24 +104,26 @@ Please contact the library authors directly if you need help with these.
 
 <h2 id="naming-client-applications">Naming client applications</h2>
 
-<p>If you plan to release a public client app for Freckle (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so. Do not name apps “Freckle” or “Freckle for <platform>”. Please contact us first with more details about your app if you want to use “Freckle” or the Freckle logo as name or icon of your app!</platform></p>
+<p>If you plan to release a public client app for Freckle (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so, and we’re happy to help!</p>
+
+<p>Please note that Freckle® is a registered trademark of Slash7 LLC. Do not name apps “Freckle” or “Freckle for <platform>”. Please contact us first with more details about your app if you want to use “Freckle” or the Freckle logo as name or icon of your app.</platform></p>
 
 <h2 id="api-urls">API URLs</h2>
 
 <h3 id="api-resources">API Resources</h3>
 
-<p>API Resources are accessed through a single endpoint:</p>
+<p>API Resources are accessed through this base endpoint:</p>
 
 <pre><code>https://api.letsfreckle.com/v2
 </code></pre>
 
-<p>For example: if we wanted to access a user’s timers, the URL would be:</p>
+<p>For example, the URL for accessing the timers of a user is:</p>
 
 <pre><code>https://api.letsfreckle.com/v2/timers
 </code></pre>
 
 <p class="note">
-This is different than API v1, where the API was accessed through an account-specific endpoint. If you are migrating from API v1, make sure to change the endpoint URL!
+This is different than API v1, where the API was accessed through an account-specific endpoint. If you are migrating from API v1, make sure to change the endpoint URL.
 </p>
 
 <h3 id="oauth">OAuth</h3>
@@ -136,7 +133,7 @@ This is different than API v1, where the API was accessed through an account-spe
 <pre><code>https://secure.letsfreckle.com
 </code></pre>
 
-<p>For example: if we wanted to redirect to users to Freckle to request access to their Freckle account:</p>
+<p>For example, the URL to redirect users to request access to their Freckle account is:</p>
 
 <pre><code>GET https://secure.letsfreckle.com/oauth/2/authorize
 </code></pre>
@@ -146,25 +143,25 @@ This is different than API v1, where the API was accessed through an account-spe
 <p>The following rules define the general schema of the API:</p>
 
 <ul>
-<li>Only HTTPS traffic is allowed when accessing the API. <em>You must use TLSv1.1 or TLSv1.2. TLSv1 support will end on January 31, 2016. We do not support any version of SSL.</em>
+<li>Only HTTPS traffic is allowed when accessing the API. <em>You must use TLSv1.1 or TLSv1.2.</em> <em>SSLv3 and TLSv1 is not supported.</em>
 </li>
   <li>All data is sent and received as JSON, with the exception of <a href="#uploading-files">File Uploads</a>.</li>
   <li>Blank fields are included as <code>null</code> in responses.</li>
-  <li>The ISO 8061 Date and Timestamp formats are used across the application (<code>YYYY-MM-DD</code> and <code>YYYY-MM-DDTHH:MM:SSZ</code> respectively).</li>
-</ul><h2 id="a-user-agent-is-required">A User Agent is Required</h2>
+  <li>Use ISO 8061 for dates and timestamps (<code>YYYY-MM-DD</code> and <code>YYYY-MM-DDTHH:MM:SSZ</code> respectively). <em>For timestamps, Freckle uses UTC internally; for consistency, please be sure to not accidentally use timestamps in your local time zone.</em>
+</li>
+</ul><h2 id="user-agent-required">User Agent (required)</h2>
 
-<p>All API Requests must include a valid <code>User-Agent</code> header. Requests with no <code>User-Agent</code> header will be rejected. We recommend two options:</p>
+<p>All API Requests must include a valid <code>User-Agent</code> header. Requests with no <code>User-Agent</code> header will be rejected. We highly recommend to set a name and version, e.g. <code>MyFreckleBot/1.0</code>. This will help us help you better in case debugging is required!</p>
 
-<ul>
-<li>Your Freckle account subdomain</li>
-  <li>The name of the application</li>
-</ul><h3 id="example">Example:</h3>
-<pre><code>User-Agent: My-Freckle-App
+<h3 id="example">Example:</h3>
+<pre><code>User-Agent: MyFreckleBot/1.0
 </code></pre>
 
 <h2 id="rate-limiting">Rate Limiting</h2>
 
-<p>You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will return a <code>429 Too Many Requests</code> response. If you receive a <code>429</code> response, make sure to wait a little longer between requests.</p>
+<p>You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will at first be slowed down (for up to 5 requests total). If you send more requests than that, remaining requests will be dropped and return an empty <code>429 Too Many Requests</code> response.</p>
+
+<p>If you receive a <code>429</code> response, make sure to wait a little longer between requests.</p>
 
 <pre class="headers"><code>Status: 429 Too Many Requests</code></pre>
 
@@ -240,7 +237,7 @@ This is different than API v1, where the API was accessed through an account-spe
 </li>
 </ul><h2 id="deleting-or-archiving-resources">Deleting or Archiving Resources</h2>
 
-<p>In certain cases, some resources can only be deleted if certain conditions are met. If these resources cannot be deleted, then they may be archived. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).</p>
+<p>In certain cases, resources can only be deleted if certain conditions are met. If these resources cannot be deleted, they may be archived instead. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).</p>
 
 <p>For these resources, we have two separate actions for deleting and archiving. The Delete action is accessible through the <code>DELETE</code> HTTP verb, while the archive action is accessible via <code>PUT archive/</code>.</p>
 
@@ -296,21 +293,21 @@ This is different than API v1, where the API was accessed through an account-spe
 
 <h2 id="uploading-files">Uploading Files</h2>
 
-<p>If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional multipart HTTP key/value pairs instead of as a JSON object.</p>
+<p>If an action includes a file as one of the request parameters, then you must send your request parameters as traditional multipart HTTP key/value pairs instead of a JSON object.</p>
 
-<p>Additionally, the <code>Content-Type</code> header of the request <strong>must</strong> be set to: <code>multipart/form-data</code>, otherwise the request will not be processed and a <code>400 Bad Request</code> error will be returned.</p>
+<p>Additionally, the <code>Content-Type</code> header of the request <strong>must</strong> be set to: <code>multipart/form-data</code>. If you don’t set the header, the request will not be processed and a <code>400 Bad Request</code> error will be returned.</p>
 
 <h2 id="http-redirection">HTTP Redirection</h2>
 
 <p>HTTP Redirection will be used when appropriate, meaning that clients should assume any request may result in a redirection.</p>
 
-<p>Redirect responses will have a <code>Location</code> header field which contains the URI of the resource to which the client should repeat the requests.</p>
+<p>Redirect responses will have a <code>Location</code> header field which contains the URI of the resource to which the client should repeat the request.</p>
 
 <h3 id="permanent-redirection">Permanent Redirection</h3>
 <pre class="headers"><code>Status: 301 Moved Permanently
 Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
 
-<p>This and all future requests should be directed to the new URI</p>
+<p>This and all future requests should be directed to the new URI.</p>
 
 <h3 id="temporary-redirection">Temporary Redirection</h3>
 <pre class="headers"><code>Status: 302 Found
@@ -319,13 +316,13 @@ Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
 <pre class="headers"><code>Status: 307 Temporary Redirect
 Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
 
-<p>Repeat the request verbatim to the URI specified in the <code>Location</code> header, but clients should still continue to use th original URI in future requests</p>
+<p>Repeat the request verbatim to the URI specified in the <code>Location</code> header, but clients should still continue to use th original URI in future requests.</p>
 
 <h2 id="supported-http-verbs">Supported HTTP Verbs</h2>
 
 <dl>
 <dt><strong><code>HEAD</code></strong></dt>
-  <dd>Can be issued against any <code>GET</code> request to return just the HTTP header info</dd>
+  <dd>Can be issued against any <code>GET</code> request to return just the HTTP header info.</dd>
 </dl><p><strong><code>GET</code></strong></p>
 
 <p><strong><code>POST</code></strong></p>
@@ -373,9 +370,9 @@ Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
 
 <h2 id="pagination">Pagination</h2>
 
-<p>Responses including multiple items will be paginated to 30 items by default. The page can be changed by using the <code>page</code> query parameter. Note that the <code>page</code> parameter starts with 1.</p>
+<p>Responses including multiple items will be paginated to 30 items per page by default. The page can be changed by using the <code>page</code> query parameter. Note that the <code>page</code> parameter starts with 1.</p>
 
-<p>Some actions can use the <code>per_page</code> parameter, which will be documented in the resource’s API page.</p>
+<p>Some actions can use the <code>per_page</code> parameter to return up to 1,000 items per page.</p>
 
 <h3 id="link-header">Link Header</h3>
 
@@ -387,7 +384,7 @@ Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
   &lt;https://api.letsfreckle.com/v2/users/?page=50&amp;per_page=100&gt;; rel="last"
 </code></pre>
 
-<p>the <code>rel</code> attribute indicates what the URL links to:</p>
+<p>The <code>rel</code> attribute indicates what the URL links to:</p>
 
 <ul>
 <li>
@@ -404,54 +401,52 @@ Location: https://api.letsfreckle.com/v2/new/uri</code></pre>
     document.getElementById('help_message_button').click();
   }
 </script>
-    </div>
-  </div>
 
-  <div id="footer">
-    <div>
+      <div id="footer">
 
-    <div class="columns four">
-      <div class="column">
-        <h3>About Freckle</h3>
-        <ul>
-          <li><a href="https://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
-          <li><a href="https://letsfreckle.com/"> Freckle plans and pricing</a></li>
-          <li><a href="https://letsfreckle.com/terms/">Our user agreement</a></li>
-          <li><a href="https://letsfreckle.com/privacy/">Privacy policy</a></li>
-        </ul>
+        <div class="columns four">
+          <div class="column">
+            <h3>About Freckle</h3>
+            <ul>
+              <li><a href="https://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
+              <li><a href="https://letsfreckle.com/"> Freckle plans and pricing</a></li>
+              <li><a href="https://letsfreckle.com/terms/">Our user agreement</a></li>
+              <li><a href="https://letsfreckle.com/privacy/">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h3>Us &amp; our company</h3>
+            <ul>
+              <li><a href="https://letsfreckle.com/team/">Meet our team</a></li>
+              <li><a href="https://letsfreckle.com/blog/">Read our blog</a></li>
+              <li><a href="https://letsfreckle.com/contact/">Write us</a></li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h3>Docs</h3>
+            <ul>
+              <li><a href="http://help.letsfreckle.com/">FAQs</a></li>
+              <li><a href="http://developer.letsfreckle.com">Developer Documentation</a></li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h3>You &amp; your account</h3>
+            <ul>
+              <li><a href="http://help.letsfreckle.com/article/13-signing-in-to-freckle">How to sign in</a></li>
+              <li><a href="http://help.letsfreckle.com/">Get help &amp; contact support</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="copyright">
+          &copy; 2008-2016 Slash7 LLC, all rights reserved.<br>
+          Freckle® is a registered trademark of Slash7 LLC.
+        </div>
       </div>
-
-      <div class="column">
-        <h3>Us &amp; our company</h3>
-        <ul>
-          <li><a href="https://letsfreckle.com/team/">Meet our team</a></li>
-          <li><a href="https://letsfreckle.com/blog/">Read our blog</a></li>
-          <li><a href="https://letsfreckle.com/contact/">Write us</a></li>
-        </ul>
-      </div>
-
-      <div class="column">
-        <h3>Docs</h3>
-        <ul>
-          <li><a href="http://help.letsfreckle.com/">FAQs</a></li>
-          <li><a href="http://developer.letsfreckle.com">Developer Documentation</a></li>
-        </ul>
-      </div>
-
-      <div class="column">
-        <h3>You &amp; your account</h3>
-        <ul>
-          <li><a href="http://help.letsfreckle.com/article/13-signing-in-to-freckle">How to sign in</a></li>
-          <li><a href="http://help.letsfreckle.com/">Get help &amp; contact support</a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="copyright">
-      &copy; 2008-2016 Slash7 LLC, all rights reserved.<br>
-      Freckle® is a registered trademark of Slash7 LLC.
-    </div>
     </div>
   </div>
 

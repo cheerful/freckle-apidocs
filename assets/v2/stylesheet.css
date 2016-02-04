@@ -49,9 +49,13 @@ h1 img {
 }
 
 h2 {
-  margin: 40px 0 20px 0;
+  margin: 60px 0 10px 0;
   font-size: 22px;
-  line-height: 28px;
+  line-height: 34px;
+}
+
+h3 {
+  margin-top: 30px;
 }
 
 #header {
@@ -147,19 +151,12 @@ h2 {
 }
 
 #footer {
-  margin: 40px 0 0 0;
-  padding: 0 0 10px 0;
-  background: #f0f0f0;
+  margin: 40px 0 20px 0;
   color: #000;
 }
 
 #footer a {
   color: #000;
-}
-
-#footer > div {
-  width: 700px;
-  margin: 0 auto;
 }
 
 #footer .copyright {
