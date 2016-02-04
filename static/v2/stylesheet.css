@@ -9,13 +9,20 @@
   font-family: 'OpenSans';
   src: url('/assets/fonts/embed/OpenSans-Semibold-webfont.woff') format('woff');
   font-weight: 700;
-  font-style: bold;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'OpenSans';
   src: url('/assets/fonts/embed/OpenSans-Italic-webfont.woff') format('woff');
   font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url('/assets/fonts/embed/OpenSans-SemiboldItalic-webfont.woff') format('woff');
+  font-weight: 700;
   font-style: italic;
 }
 
