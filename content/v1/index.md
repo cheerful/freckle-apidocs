@@ -4,7 +4,7 @@ title: Basics
 description: Connect your application to Freckle's RESTful API and track time, access projects and more.
 ---
 
-Freckle's RESTful API enables your application or script to 
+Freckle's RESTful API enables your application or script to
 access **entries** (list/search, create, update, delete, mass import),
 **projects** (list, read, create, update, delete, archive, activate),
 **tags** (list) and **users** (list, read, create, update, deactivate, get avatar).
@@ -33,10 +33,10 @@ and don't do expensive API calls (mostly listing a lot of entries) too often.
 
 ### Naming client applications
 
-If you plan to release a public client app for Freckle (such as a native 
-mobile app, regardless if it's paid-for or free) you're welcome to do so. 
+If you plan to release a public client app for Freckle (such as a native
+mobile app, regardless if it's paid-for or free) you're welcome to do so.
 <i>Do not name apps "Freckle" or "Freckle for &lt;platform&gt;".</i>
-Please contact us first with more details about your app if you want to 
+Please contact us first with more details about your app if you want to
 use "Freckle" or the Freckle logo as name or icon of your app!
 
 ## Freckle API Libraries
@@ -66,22 +66,22 @@ Accessing the Freckle API uses the following URL schema:
 
     https://<subdomain>.letsfreckle.com/api/<resource>
 
-Where **subdomain** is the subdomain of the account you want to access and 
+Where **subdomain** is the subdomain of the account you want to access and
 **resource** is the resource (e.g. entries, projects, tags, users and so on).
 
-For example, getting a list of projects from the "apitest" account via JSON would 
+For example, getting a list of projects from the "apitest" account via JSON would
 result in the URL:
 
     https://apitest.letsfreckle.com/api/projects.json
 
-Resources are normally accessed via SSL only. Some resources can also be 
+Resources are normally accessed via SSL only. Some resources can also be
 accessed through a regular HTTP request.
 
 ## Authentication
 
 An *authentication token* is needed for accessing the API. This token authenticates
-a specific user of the account and can be found in 
-<a href="http://letsfreckle.com/help/#faq_40">"settings & tools > API"</a> 
+a specific user of the account and can be found in
+<a href="http://letsfreckle.com/help/#faq_40">"settings & tools > API"</a>
 in the Freckle user interface. Treat authentications tokens like passwords!
 
 A user can reset the API token at any time—be sure to handle authentication errors
@@ -109,7 +109,7 @@ Freckle API calls in a library or module in your code.
 
 <p class=note>
 In order to make it easier for users to authenticate in interactive client applications
-such as on mobile devices, the token can be retrieved via the 
+such as on mobile devices, the token can be retrieved via the
 <code>/api/user/api_auth_token</code> API method by using HTTP Basic Auth with the
 user's email and password. See the Users section for more information.
 </p>
@@ -148,7 +148,7 @@ A call to the API can result in one of six different outcomes:
   an action, but it can happen especially if you cache data and it gets out of sync
   (for example the projects a "freelancer" user has access to). If you run into this
   issue, it's a good idea to invalidate your caches and fetch the data from the API again.
-  
+
 * On creating or updating, if required fields are missing, **`422 Unprocessable Entity`** is returned.
 
 * There was an unhandled exception on the server side: **`500 Internal Server Error`**:
@@ -162,21 +162,23 @@ A call to the API can result in one of six different outcomes:
 
 ## Rate Limiting
 
-You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will return a `429 Too Many Requests` response. If you receive a `429` response, make sure to wait a little longer between requests.
+You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will at first be slowed down (for up to 5 requests total). If you send more requests than that, remaining requests will be dropped and return an empty `429 Too Many Requests` response.
+
+If you receive a `429` response, make sure to wait a little longer between requests.
 
 ## Roles
 
-There are currently four user roles in Freckle: **`administrator`**, **`owner`**, **`member`**, and **`freelancer`**. 
+There are currently four user roles in Freckle: **`administrator`**, **`owner`**, **`member`**, and **`freelancer`**.
 
 Each Freckle user is assigned to one of these roles. Depending on the role, certain parts of the API
-may not be available. For each resource, this documentation explains which roles have access and 
-if there are any per-role restrictions (for example, a user with the "freelancer" role doesn't 
+may not be available. For each resource, this documentation explains which roles have access and
+if there are any per-role restrictions (for example, a user with the "freelancer" role doesn't
 have access to all projects).
 
 
 ## Data Formats
 
-The Freckle API can accept and return data in JSON or XML. 
+The Freckle API can accept and return data in JSON or XML.
 
 Because it's awesome, we'll mostly use examples in JSON in this documentation,
 however, XML works just as well.
@@ -199,8 +201,8 @@ that you'll hit those.
 
 ## API Test Account
 
-You can use our API test account for testing your code. The data from this test account 
-will be regularly wiped—don't rely on your test data being there the next day. Also note that you 
+You can use our API test account for testing your code. The data from this test account
+will be regularly wiped—don't rely on your test data being there the next day. Also note that you
 might not be the only person using this token at a certain time.
 
 Domain: `apitest.letsfreckle.com`<br>
@@ -229,8 +231,8 @@ Try it now!
 
 
 <%= code_block_start_tag("javascript") %>
-[ 
-  { 
+[
+  {
     "project": {
       "group_name": null,
       "remaining_minutes": null,

@@ -3,31 +3,28 @@ layout: v2
 title: Freckle API v2
 ---
 
-<div class="note warning sticky">
-  <h2>End of life for TLSv1 support</h2>
-  <p>
-    To adhere to the PCI DSS (Credit card security standard), <a href="http://status.letsfreckle.com/incidents/7mnckpt5xhyn">the API will no
-    longer support TLSv1 from February 1, 2016</a>. We already support TLSv1.1 and
-    TLSv1.2, so please update your API clients that still use TLSv1.
-    Have a question, feature request, or suggestion? <strong style="cursor:pointer" onclick="showMessageBox()">Send us a message!</strong>
-  </p>
-</div>
+Welcome to the Freckle Developer Documentation!
 
 * TOC
 {:toc}
 
 ## Overview
 
-Freckle provides a secure Restful JSON API over HTTP; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.
+Freckle provides a secure Restful JSON API over HTTPS; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.
 
-There's many public and internal apps using the Freckle API, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Punch](http://punch.fousa.be). Plus, many customers haveinternal applications that integrate Freckle with their own custom software and services.
+There's many public and internal apps using the Freckle API, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Punch](http://punch.fousa.be). Plus, many customers have created internal applications that integrate Freckle with their own custom software and services.
 
-Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
-
-Freckle is also one of the many services listed on [Zapier](https://zapier.com/zapbook/freckle/) which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Slack chat room!).
+Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com) or [tweet](http://twitter.com/letsfreckle) us!
 
 Freckle's API docs are on Github: if you find an error or omission
-in the API documentation, you can help fix it quickly by [forking the Freckle API docs](https://github.com/cheerful/freckle-apidocs) and submitting a pull request!
+in the API documentation, you can help fix it quickly by [forking the Freckle API docs](https://github.com/cheerful/freckle-apidocs) and submitting a pull request.
+
+## Not a developer?
+
+If you're not a developer, or just want to quickly connect Freckle to other
+internet-based apps your use, consider using [Zapier](https://zapier.com/zapbook/freckle/).
+
+Freckle is one of 500+ services supported by Zapier, which allows drag-and-drop integration and complex workflows with other internet-based software. For example, you could alert your Slack chat room that an invoice has been paid, or send new entries directly to a Google Doc!
 
 ## Freckle API Libraries
 
@@ -46,26 +43,28 @@ Please contact the library authors directly if you need help with these.
 
 ## Naming client applications
 
-If you plan to release a public client app for Freckle (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so. Do not name apps “Freckle” or “Freckle for <platform>”. Please contact us first with more details about your app if you want to use “Freckle” or the Freckle logo as name or icon of your app!
+If you plan to release a public client app for Freckle (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so, and we're happy to help!
+
+Please note that Freckle® is a registered trademark of Slash7 LLC. Do not name apps “Freckle” or “Freckle for <platform>”. Please contact us first with more details about your app if you want to use “Freckle” or the Freckle logo as name or icon of your app.
 
 ## API URLs
 
 ### API Resources
 
-API Resources are accessed through a single endpoint:
+API Resources are accessed through this base endpoint:
 
 ~~~
 <%= API_V2_URL %>
 ~~~
 
-For example: if we wanted to access a user's timers, the URL would be:
+For example, the URL for accessing the timers of a user is:
 
 ~~~
 <%= API_V2_URL + "/timers" %>
 ~~~
 
 <p class="note">
-This is different than API v1, where the API was accessed through an account-specific endpoint. If you are migrating from API v1, make sure to change the endpoint URL!
+This is different than API v1, where the API was accessed through an account-specific endpoint. If you are migrating from API v1, make sure to change the endpoint URL.
 </p>
 
 
@@ -77,7 +76,7 @@ Authenticating through [OAuth](/v2/oauth/) is handled through a different endpoi
 <%= OAUTH2_URL %>
 ~~~
 
-For example: if we wanted to redirect to users to Freckle to request access to their Freckle account:
+For example, the URL to redirect users to request access to their Freckle account is:
 
 ~~~~
 GET <%= OAUTH2_URL %>/oauth/2/authorize
@@ -87,26 +86,25 @@ GET <%= OAUTH2_URL %>/oauth/2/authorize
 
 The following rules define the general schema of the API:
 
-* Only HTTPS traffic is allowed when accessing the API. _You must use TLSv1.1 or TLSv1.2. TLSv1 support will end on January 31, 2016. We do not support any version of SSL._
+* Only HTTPS traffic is allowed when accessing the API. *You must use TLSv1.1 or TLSv1.2.* _SSLv3 and TLSv1 is not supported._
 * All data is sent and received as JSON, with the exception of [File Uploads](#uploading-files).
 * Blank fields are included as `null` in responses.
-* The ISO 8061 Date and Timestamp formats are used across the application (`YYYY-MM-DD` and `YYYY-MM-DDTHH:MM:SSZ` respectively).
+* Use ISO 8061 for dates and timestamps (`YYYY-MM-DD` and `YYYY-MM-DDTHH:MM:SSZ` respectively). _For timestamps, Freckle uses UTC internally; for consistency, please be sure to not accidentally use timestamps in your local time zone._
 
-## A User Agent is Required
+## User Agent (required)
 
-All API Requests must include a valid `User-Agent` header. Requests with no `User-Agent` header will be rejected. We recommend two options:
-
-* Your Freckle account subdomain
-* The name of the application
+All API Requests must include a valid `User-Agent` header. Requests with no `User-Agent` header will be rejected. We highly recommend to set a name and version, e.g. `MyFreckleBot/1.0`. This will help us help you better in case debugging is required!
 
 ### Example:
 ~~~
-User-Agent: My-Freckle-App
+User-Agent: MyFreckleBot/1.0
 ~~~
 
 ## Rate Limiting
 
-You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will return a `429 Too Many Requests` response. If you receive a `429` response, make sure to wait a little longer between requests.
+You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will at first be slowed down (for up to 5 requests total). If you send more requests than that, remaining requests will be dropped and return an empty `429 Too Many Requests` response.
+
+If you receive a `429` response, make sure to wait a little longer between requests.
 
 <%= headers 429 %>
 
@@ -160,7 +158,7 @@ When validation errors occur, the `errors` array is populated with objects that 
 
 ## Deleting or Archiving Resources
 
-In certain cases, some resources can only be deleted if certain conditions are met. If these resources cannot be deleted, then they may be archived. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).
+In certain cases, resources can only be deleted if certain conditions are met. If these resources cannot be deleted, they may be archived instead. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).
 
 For these resources, we have two separate actions for deleting and archiving. The Delete action is accessible through the `DELETE` HTTP verb, while the archive action is accessible via `PUT archive/`.
 
@@ -193,31 +191,31 @@ For example, a large tag merge may return the following response:
 
 ## Uploading Files
 
-If an action includes a file as one of the request parameters (such as when creating an import), then you must send your request parameters as traditional multipart HTTP key/value pairs instead of as a JSON object.
+If an action includes a file as one of the request parameters, then you must send your request parameters as traditional multipart HTTP key/value pairs instead of a JSON object.
 
-Additionally, the `Content-Type` header of the request **must** be set to: `multipart/form-data`, otherwise the request will not be processed and a `400 Bad Request` error will be returned.
+Additionally, the `Content-Type` header of the request **must** be set to: `multipart/form-data`. If you don't set the header, the request will not be processed and a `400 Bad Request` error will be returned.
 
 ## HTTP Redirection
 
 HTTP Redirection will be used when appropriate, meaning that clients should assume any request may result in a redirection.
 
-Redirect responses will have a `Location` header field which contains the URI of the resource to which the client should repeat the requests.
+Redirect responses will have a `Location` header field which contains the URI of the resource to which the client should repeat the request.
 
 ### Permanent Redirection
 <%= headers 301, :Location => API_V2_URL + "/new/uri" %>
 
-This and all future requests should be directed to the new URI
+This and all future requests should be directed to the new URI.
 
 ### Temporary Redirection
 <%= headers 302, :Location => API_V2_URL + "/new/uri" %>
 <%= headers 307, :Location => API_V2_URL + "/new/uri" %>
 
-Repeat the request verbatim to the URI specified in the `Location` header, but clients should still continue to use th original URI in future requests
+Repeat the request verbatim to the URI specified in the `Location` header, but clients should still continue to use th original URI in future requests.
 
 ## Supported HTTP Verbs
 
 **`HEAD`**
-: Can be issued against any `GET` request to return just the HTTP header info
+: Can be issued against any `GET` request to return just the HTTP header info.
 
 **`GET`**
 
@@ -238,10 +236,9 @@ All resources have one or more `*_url` properties linking to other resources or 
 
 ## Pagination
 
-Responses including multiple items will be paginated to 30 items by default. The page can be changed by using the `page` query parameter. Note that the `page` parameter starts with 1.
+Responses including multiple items will be paginated to 30 items per page by default. The page can be changed by using the `page` query parameter. Note that the `page` parameter starts with 1.
 
-
-Some actions can use the `per_page` parameter, which will be documented in the resource's API page.
+Some actions can use the `per_page` parameter to return up to 1,000 items per page.
 
 ### Link Header
 
@@ -254,14 +251,12 @@ Link: <<%= "#{API_V2_URL}" %>/users/?page=3&per_page=100>; rel="next",
   <<%= "#{API_V2_URL}" %>/users/?page=50&per_page=100>; rel="last"
 ~~~
 
-the `rel` attribute indicates what the URL links to:
+The `rel` attribute indicates what the URL links to:
 
 * **next**: shows the URL of the immediate next page of results
 * **last**: shows the URL of the last page of results
 * **first**: shows the URL of the first page of results
 * **prev**: shows the URL of the immediate previous page of results
-
-
 
 <script>
   window.showMessageBox = function(){
