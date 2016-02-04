@@ -35,7 +35,7 @@ There are several 3rd-party open source libraries for popular languages
 available:
 
 * Python: [bitmazk/python-freckle-client](https://github.com/bitmazk/python-freckle-client)
-* Ruby: [timcraft/freckle](https://github.com/timcraft/freckle)
+* Ruby: [timcraft/freckles](https://github.com/timcraft/freckles)
 
 Additionally, the command-line tool [Pippi](https://github.com/sirkitree/pippi) can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script.
 
