@@ -33,6 +33,7 @@ available:
 
 * Python: [bitmazk/python-freckle-client](https://github.com/bitmazk/python-freckle-client)
 * Ruby: [timcraft/freckles](https://github.com/timcraft/freckles)
+* Opauth (PHP OAuth library) strategy: [t1mmen/opauth-freckle](https://github.com/t1mmen/opauth-freckle)
 
 Additionally, the command-line tool [Pippi](https://github.com/sirkitree/pippi) can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script.
 
