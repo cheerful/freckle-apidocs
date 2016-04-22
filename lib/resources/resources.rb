@@ -353,7 +353,7 @@ module Freckle
       "unbillable_minutes" => 60,
       "invoiced_minutes" => 120,
       "remaining_minutes" => 630,
-      "budget_minutes" => 750,
+      "budgeted_minutes" => 750,
 
       "import" => SIMPLE_IMPORT,
       "invoices" => [SIMPLE_INVOICE],
