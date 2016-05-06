@@ -68,7 +68,7 @@ There are two ways to send the token—examples are given using the cURL command
 As an OAuth2 Token header:
 
 <pre class="terminal">
-http GET <%= API_V2_URL %>/timers Authorization:"token YOUR_OAUTH_ACCESS_TOKEN"
+http GET <%= API_V2_URL %>/timers Authorization:"Bearer YOUR_OAUTH_ACCESS_TOKEN"
 </pre>
 
 As a *query parameter* named `access_token`:
