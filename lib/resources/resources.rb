@@ -123,8 +123,6 @@ module Freckle
 
       "created_at" => "2010-06-09T20:44:57Z",
       "updated_at" => "2010-06-09T20:44:57Z",
-
-      "activate_url" => "#{API_V2_URL}/users/5538/project_access/add"
     })
 
     CURRENT_USER = SIMPLE_USER.merge({
