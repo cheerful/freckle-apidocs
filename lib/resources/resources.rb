@@ -104,9 +104,17 @@ module Freckle
       "url" =>  "#{API_V2_URL}/users/5538",
     }
 
+    SIMPLE_TEAM = {
+      "id" => 9283,
+      "name" => "R&D",
+      "url" => "#{API_V2_URL}/teams/9283"
+    }
+
     USER = SIMPLE_USER.merge({
       "state" =>"active",
       "role" => "leader",
+
+      "teams" => [SIMPLE_TEAM],
 
       "entries" => 0,
       "entries_url" => "#{API_V2_URL}/users/5538/entries",
@@ -150,6 +158,31 @@ module Freckle
       "first_name" => USER["first_name"],
       "last_name" => USER["last_name"],
       "role" => USER["role"]
+    }
+
+    TEAM = {
+      "id" => 9283,
+      "name" => "R&D",
+      "users" => [SIMPLE_USER],
+      "url" => "#{API_V2_URL}/teams/9283",
+      "entries_url" => "#{API_V2_URL}/teams/9283/entries/",
+      "users_url" => "#{API_V2_URL}/teams/9283/users/",
+      "created_at" => "2012-01-09T08:33:29Z",
+      "updated_at" => "2012-01-09T08:33:29Z",
+
+      "add_users_url" => "#{API_V2_URL}/teams/9283/add_users",
+      "remove_users_url" => "#{API_V2_URL}/teams/9283/remove_users",
+      "remove_all_users_url" => "#{API_V2_URL}/teams/9283/remove_all_users",
+    }
+
+
+    TEAM_CREATE_FIELDS = {
+      "name" => TEAM["name"],
+      "users" => [1,2,3],
+    }
+
+    TEAM_EDIT_FIELDS = {
+      "name" => TEAM["name"]
     }
 
     ACCOUNT = {
