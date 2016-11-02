@@ -44,6 +44,7 @@
         <li><a href="/v2/account/">Account</a></li>
         <li><a href="/v2/current_user/">Current User</a></li>
         <li><a href="/v2/users/">Users</a></li>
+        <li><a class="coming-soon" href="/v2/teams/">Teams</a></li>
       </ul>
     </div>
     <div id="content">
@@ -326,6 +327,11 @@ BAD:  http://example.org
 <span class="p">}</span></code></pre>
 
 <h2 id="non-web-application-flow">Non-Web Application Flow</h2>
+
+<div class="note warning sticky">
+  <h2>Not implemented yet!</h2>
+  <p>This is just a sneak peek into how this feature might work. Attempting to call any actions will return a 404 error.</p>
+</div>
 
 <p>If your application is not a Web-app, you will need to use the OAuth Authorizations API to <a href="#oauth-authorizations-api">generate a new access token</a> for the user. Note that the OAuth Authorization API is only available via <a href="/v2/authentication">Basic Authentication</a></p>
 
@@ -628,6 +634,11 @@ BAD:  http://example.org
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
 <h2 id="oauth-application-api">OAuth Application API</h2>
+
+<div class="note warning sticky">
+  <h2>Not implemented yet!</h2>
+  <p>This is just a sneak peek into how this feature might work. Attempting to call any actions will return a 404 error.</p>
+</div>
 
 <p>These methods are provided to allow your application to confirm a token’s validity and revoke tokens as necessary. They are only accessible by using Basic Authentication as follows:</p>
 

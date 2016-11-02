@@ -44,6 +44,7 @@
         <li><a href="/v2/account/">Account</a></li>
         <li><a href="/v2/current_user/">Current User</a></li>
         <li><a href="/v2/users/">Users</a></li>
+        <li><a class="coming-soon" href="/v2/teams/">Teams</a></li>
       </ul>
     </div>
     <div id="content">
@@ -125,6 +126,13 @@ Link: &lt;https://api.letsfreckle.com/v2/users?page=2&gt;; rel="next",
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span><span class="p">,</span>
     <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"active"</span><span class="p">,</span>
     <span class="s2">"role"</span><span class="o">:</span> <span class="s2">"leader"</span><span class="p">,</span>
+    <span class="s2">"teams"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">9283</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"R&amp;D"</span><span class="p">,</span>
+        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/teams/9283"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
     <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/entries"</span><span class="p">,</span>
     <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -132,7 +140,7 @@ Link: &lt;https://api.letsfreckle.com/v2/users?page=2&gt;; rel="next",
     <span class="s2">"give_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/give_access_to_projects"</span><span class="p">,</span>
     <span class="s2">"revoke_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_projects"</span><span class="p">,</span>
     <span class="s2">"revoke_access_to_all_projects_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_all_projects"</span><span class="p">,</span>
-    <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
+    <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/activate"</span><span class="p">,</span>
     <span class="s2">"deactivate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/deactivate"</span><span class="p">,</span>
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
@@ -157,6 +165,13 @@ Link: &lt;https://api.letsfreckle.com/v2/users?page=2&gt;; rel="next",
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span><span class="p">,</span>
   <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"active"</span><span class="p">,</span>
   <span class="s2">"role"</span><span class="o">:</span> <span class="s2">"leader"</span><span class="p">,</span>
+  <span class="s2">"teams"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">9283</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"R&amp;D"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/teams/9283"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
   <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/entries"</span><span class="p">,</span>
   <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -164,7 +179,7 @@ Link: &lt;https://api.letsfreckle.com/v2/users?page=2&gt;; rel="next",
   <span class="s2">"give_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/give_access_to_projects"</span><span class="p">,</span>
   <span class="s2">"revoke_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_projects"</span><span class="p">,</span>
   <span class="s2">"revoke_access_to_all_projects_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_all_projects"</span><span class="p">,</span>
-  <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
+  <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/activate"</span><span class="p">,</span>
   <span class="s2">"deactivate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/deactivate"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
@@ -355,6 +370,13 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span><span class="p">,</span>
   <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"active"</span><span class="p">,</span>
   <span class="s2">"role"</span><span class="o">:</span> <span class="s2">"leader"</span><span class="p">,</span>
+  <span class="s2">"teams"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">9283</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"R&amp;D"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/teams/9283"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
   <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/entries"</span><span class="p">,</span>
   <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -362,7 +384,7 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
   <span class="s2">"give_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/give_access_to_projects"</span><span class="p">,</span>
   <span class="s2">"revoke_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_projects"</span><span class="p">,</span>
   <span class="s2">"revoke_access_to_all_projects_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_all_projects"</span><span class="p">,</span>
-  <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
+  <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/activate"</span><span class="p">,</span>
   <span class="s2">"deactivate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/deactivate"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
@@ -421,6 +443,13 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span><span class="p">,</span>
   <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"active"</span><span class="p">,</span>
   <span class="s2">"role"</span><span class="o">:</span> <span class="s2">"leader"</span><span class="p">,</span>
+  <span class="s2">"teams"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">9283</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"R&amp;D"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/teams/9283"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
   <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/entries"</span><span class="p">,</span>
   <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -428,7 +457,7 @@ Location: https://api.letsfreckle.com/v2/users/1</code></pre>
   <span class="s2">"give_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/give_access_to_projects"</span><span class="p">,</span>
   <span class="s2">"revoke_access_to_project_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_projects"</span><span class="p">,</span>
   <span class="s2">"revoke_access_to_all_projects_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/revoke_access_to_all_projects"</span><span class="p">,</span>
-  <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/project_access/add"</span><span class="p">,</span>
+  <span class="s2">"activate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/activate"</span><span class="p">,</span>
   <span class="s2">"deactivate_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538/deactivate"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
