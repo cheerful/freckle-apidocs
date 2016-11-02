@@ -253,6 +253,11 @@ Accept: application/json
 
 ## Non-Web Application Flow
 
+<div class="note warning sticky">
+  <h2>Not implemented yet!</h2>
+  <p>This is just a sneak peek into how this feature might work. Attempting to call any actions will return a 404 error.</p>
+</div>
+
 If your application is not a Web-app, you will need to use the OAuth Authorizations API to [generate a new access token](#oauth-authorizations-api) for the user. Note that the OAuth Authorization API is only available via [Basic Authentication](/v2/authentication)
 
 
@@ -434,6 +439,11 @@ DELETE <%= OAUTH2_URL %>/authorizations/:subdomain/:id
 <%= headers 204 %>
 
 ## OAuth Application API
+
+<div class="note warning sticky">
+  <h2>Not implemented yet!</h2>
+  <p>This is just a sneak peek into how this feature might work. Attempting to call any actions will return a 404 error.</p>
+</div>
 
 These methods are provided to allow your application to confirm a token's validity and revoke tokens as necessary. They are only accessible by using Basic Authentication as follows:
 
