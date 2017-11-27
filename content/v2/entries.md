@@ -127,7 +127,7 @@ POST /v2/entries
 ### Input
 
 date
-: *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`
+: *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`
 : The date of the time entry.
 
 user_id
@@ -182,7 +182,7 @@ PUT /v2/entries/:id
 ### Input
 
 date
-: *Optional* **string** of a date in ISO 8061 format `YYY-MM-DD`
+: *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
 : the date of the time entry.
 
 user_id

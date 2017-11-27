@@ -80,7 +80,7 @@ POST /v2/expenses
 ### Input
 
 date
-: *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the expense.
+: *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`: the date of the expense.
 
 project_id
 : *Required* **integer**: The ID of the project this expense is for.
@@ -113,7 +113,7 @@ PUT /v2/expenses/:id
 ### Input
 
 date
-: *Required* **string** of a date in ISO 8061 format `YYY-MM-DD`: the date of the expense.
+: *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`: the date of the expense.
 
 project_id
 : *Required* **integer**: The ID of the project this expense is for.
