@@ -63,6 +63,11 @@ to
 : Only entries on or before this date will be returned.
 : Example: `to=2013-09-27`
 
+invoiced
+: *Optional* **boolean**
+: `true`: only show invoiced entries
+: `false`: only shows uninvoiced entries
+
 invoiced_at_from
 : *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
 : Only entries invoiced from or after this date will be returned.
