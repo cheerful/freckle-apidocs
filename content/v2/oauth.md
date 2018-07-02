@@ -17,7 +17,7 @@ title: OAuth
 
 OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Freckle account without requiring their password. Freckle supports access to API resources using OAuth because tokens can be easily generated as part of a 3rd party integration and revoked by users at any time.
 
-Before you can start developing with the Freckle API, you must first register your application. When you register, you will be given a unique Client ID and Secret. Your Client Secret should not be shared.
+Before you can start developing with the Freckle API, you must first [register your application](https://help.letsfreckle.com/article/122-registering-a-new-freckle-app). When you register, you will be given a unique Client ID and Secret. Your Client Secret should not be shared.
 
 There are two supported ways to generate an access token for a specific user from your application: One designed specifically for use by Web Applications, and another that allows other types of applications to list, create, and confirm their Authorization Token for a user.
 
