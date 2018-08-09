@@ -399,9 +399,9 @@ module Freckle
       "created_at" => "2012-01-09T08:33:29Z",
       "updated_at" => "2012-01-09T08:33:29Z",
 
-      "project_merge_url" => "#{API_V2_URL}/projects/37396/merge",
-      "project_archive_url" => "#{API_V2_URL}/projects/37396/archive",
-      "project_unarchive_url" => "#{API_V2_URL}/projects/37396/unarchive",
+      "merge_url" => "#{API_V2_URL}/projects/37396/merge",
+      "archive_url" => "#{API_V2_URL}/projects/37396/archive",
+      "unarchive_url" => "#{API_V2_URL}/projects/37396/unarchive",
     })
 
     SIMPLE_TAG = {
