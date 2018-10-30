@@ -54,6 +54,7 @@ Additionally, there are command line tools that can log time and access other AP
 
 * [Pippi](https://github.com/sirkitree/pippi)
 * [freck](https://github.com/robinhouston/freckle-command)
+* [freckle-overtime](https://github.com/sissbruecker/freckle-overtime)
 
 <p class="note">
 These are 3rd-party libraries and Freckle can't provide support for them.
