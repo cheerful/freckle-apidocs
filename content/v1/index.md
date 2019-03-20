@@ -12,6 +12,40 @@ access **entries** (list/search, create, update, delete, mass import),
 * TOC
 {:toc}
 
+<div id="migration-guide" markdown="block">
+## _Important_ Freckle is getting a new name: Noko!
+
+<p class="note">
+Below are the steps you'll need to take to make sure your integrations and apps still work!
+
+Want to learn more? You can read <a href="https://letsfreckle.com/blog/2019/03/freckle-getting-new-name-noko/">our announcement here</a>
+</p>
+
+<section markdown="block">
+### What is the timeline?
+
+| **[March 25, 2019](https://everytimezone.com/s/2737b6cc)** | `<subdomain>.nokotime.com/api` will be live, and the API docs will change to reference "Noko" to prevent regressions.|
+| **August 31, 2019** | All requests to `<subdomain>.letsfreckle.com/api` will return `301 Moved Permanently` and point to the corresponding URI in `api.nokotime.com/api` |
+| **September 15, 2019** | Requests to `<subdomain>.letsfreckle.com/api` will **no longer work** |
+
+### What do I need to do?
+
+Once `<subdomain>.nokotime.com/api` is live on March 25 ([click here to see this time on EveryTimeZone](https://everytimezone.com/s/2737b6cc)), change your apps and integrations to point to:
+
+~~~
+https://<subdomain>.nokotime.com/api
+~~~
+
+
+*Aside from the domain name change, the rest of the API will remain exactly the same.*
+
+
+### What if I have questions?
+
+If you have _any_ questions at all, please [email](mailto:support@letsfreckle.com) or [tweet](http://twitter.com/freckle) us! We're incredibly grateful that you use the API, and we want to make the transition as smooth as possible.
+</section>
+</div>
+
 Many applications use the Freckle API every day, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Pigment](http://pigmentapp.com) and [Punch](http://punch.fousa.be); as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
 
 Freckle is also one of the many services listed on [Zapier](https://zapier.com/zapbook/freckle/) which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Campfire chat room!).
