@@ -32,6 +32,12 @@ Once `api.nokotime.com` is live on March 25 ([click here to see this time on Eve
 https://api.nokotime.com/v2
 ~~~
 
+If you're using [OAuth](/v2/oauth/), change your OAuth authorization flow to point to:
+
+~~~
+https://secure.nokotime.com
+~~~
+
 *Aside from the domain name change, the rest of the API will remain exactly the same.*
 
 
