@@ -49,10 +49,14 @@
     </div>
     <div id="content">
       <h1>Freckle API v2</h1>
+      <p class="note warning">
+        Freckle is getting a new name: Noko! <a href="/index.html#migration-guide">Learn how to migrate your apps here</a>
+      </p>
       <p>Welcome to the Freckle Developer Documentation!</p>
 
 <ul id="markdown-toc">
-<li><a href="#overview">Overview</a></li>
+<li><a href="#important-freckle-is-getting-a-new-name-noko"><em>Important</em> Freckle is getting a new name: Noko!</a></li>
+  <li><a href="#overview">Overview</a></li>
   <li><a href="#not-a-developer">Not a developer?</a></li>
   <li><a href="#freckle-api-libraries">Freckle API Libraries</a></li>
   <li><a href="#naming-client-applications">Naming client applications</a></li>
@@ -68,13 +72,57 @@
   <li><a href="#supported-http-verbs">Supported HTTP Verbs</a></li>
   <li><a href="#hypermedia">Hypermedia</a></li>
   <li><a href="#pagination">Pagination</a></li>
-</ul><h2 id="overview">Overview</h2>
+</ul><div id="migration-guide">
+  <h2 id="important-freckle-is-getting-a-new-name-noko">
+<em>Important</em> Freckle is getting a new name: Noko!</h2>
+
+  <p class="note">
+Below are the steps you'll need to take to make sure your integrations and apps still work!
+
+Want to learn more? You can read <a href="https://letsfreckle.com/blog/2019/03/freckle-getting-new-name-noko/">our announcement here</a>
+</p>
+
+  <section><h3 id="what-is-the-timeline">What is the timeline?</h3>
+
+    <table><tbody>
+<tr>
+<td><strong><a href="https://everytimezone.com/s/2737b6cc">March 25</a></strong></td>
+          <td>
+<code>api.nokotime.com</code> will be live, and the API docs will change to reference “Noko” to prevent regressions.</td>
+        </tr>
+<tr>
+<td><strong>August 31</strong></td>
+          <td>All requests to <code>api.letsfreckle.com</code> will return <code>301 Moved Permanently</code> and point to the corresponding URI in <code>api.nokotime.com</code>
+</td>
+        </tr>
+<tr>
+<td><strong>September 15</strong></td>
+          <td>Requests to <code>api.letsfreckle.com</code> will <strong>no longer work</strong>
+</td>
+        </tr>
+</tbody></table>
+<h3 id="what-do-i-need-to-do">What do I need to do?</h3>
+
+    <p>Once <code>api.nokotime.com</code> is live on March 25 (<a href="https://everytimezone.com/s/2737b6cc">click here to see this time on EveryTimeZone</a>), change your apps and integrations to point to:</p>
+
+    <pre><code>https://api.nokotime.com/v2
+</code></pre>
+
+    <p><em>Aside from the domain name change, the rest of the API will remain exactly the same.</em></p>
+
+    <h3 id="what-if-i-have-questions">What if I have questions?</h3>
+
+    <p>If you have <em>any</em> questions at all, please <a href="mailto:support@letsfreckle.com">email</a> or <a href="http://twitter.com/freckle">tweet</a> us! We’re incredibly grateful that you use the API, and we want to make the transition as smooth as possible.</p>
+  </section>
+</div>
+
+<h2 id="overview">Overview</h2>
 
 <p>Freckle provides a secure Restful JSON API over HTTPS; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.</p>
 
 <p>There’s many public and internal apps using the Freckle API, among them web applications like <a href="http://beanstalkapp.com">Beanstalk</a>, <a href="http://github.com">Github</a>, and <a href="http://planscope.io">Planscope</a>; native mobile and desktop applications like <a href="http://punch.fousa.be">Punch</a>. Plus, many customers have created internal applications that integrate Freckle with their own custom software and services, such as <a href="http://ombulabs.github.io/pecas/">Pecas</a>. <a href="https://twitter.com/fixingyourvideo/status/718963570164297730">You can even make a giant LED display for your timer!</a></p>
 
-<p>Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a> or <a href="http://twitter.com/letsfreckle">tweet</a> us!</p>
+<p>Be creative! If you want to let us know about how you’re using the Freckle API, please <a href="mailto:support@letsfreckle.com">email</a> or <a href="http://twitter.com/freckle">tweet</a> us!</p>
 
 <p>Freckle’s API docs are on Github: if you find an error or omission
 in the API documentation, you can help fix it quickly by <a href="https://github.com/cheerful/freckle-apidocs">forking the Freckle API docs</a> and submitting a pull request.</p>
