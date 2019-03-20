@@ -20,9 +20,9 @@ Want to learn more? You can read <a href="https://letsfreckle.com/blog/2019/03/f
 <section markdown="block">
 ### What is the timeline?
 
-| **[March 25](https://everytimezone.com/s/2737b6cc)** | `api.nokotime.com` will be live, and the API docs will change to reference "Noko" to prevent regressions.|
-| **August 31** | All requests to `api.letsfreckle.com` will return `301 Moved Permanently` and point to the corresponding URI in `api.nokotime.com` |
-| **September 15** | Requests to `api.letsfreckle.com` will **no longer work** |
+| **[March 25, 2019](https://everytimezone.com/s/2737b6cc)** | `api.nokotime.com` will be live, and the API docs will change to reference "Noko" to prevent regressions.|
+| **August 31, 2019** | All requests to `api.letsfreckle.com` will return `301 Moved Permanently` and point to the corresponding URI in `api.nokotime.com` |
+| **September 15, 2019** | Requests to `api.letsfreckle.com` will **no longer work** |
 
 ### What do I need to do?
 

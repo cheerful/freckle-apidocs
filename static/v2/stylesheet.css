@@ -288,7 +288,7 @@ h3 {
 }
 
 #migration-guide table tr td:first-child{
-  min-width: 8em;
+  min-width: 10em;
   vertical-align: top;
 }
 
