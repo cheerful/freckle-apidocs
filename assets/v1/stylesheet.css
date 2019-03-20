@@ -85,6 +85,10 @@ h2 {
   background: #ec497c;
 }
 
+#noko-rename-banner{
+  background: #FFEAAD;
+}
+
 #apiv2-banner a{
   color: white;
   text-decoration: none;
@@ -94,6 +98,41 @@ h2 {
   text-decoration: underline;
 }
 
+
+#migration-guide{
+  border: 1px solid #5e8b31;
+  border-radius: 3px;
+}
+
+#migration-guide h2{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 2em;
+  padding: 5px;
+  background: #a1cc57;
+}
+
+#migration-guide .note{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#migration-guide section{
+  padding: 5px;
+}
+
+#migration-guide section h3:first-child{
+  margin-top: 10px;
+}
+
+#migration-guide table{
+  margin: auto;
+}
+
+#migration-guide table tr td:first-child{
+  min-width: 10em;
+  vertical-align: top;
+}
 
 
 #footer {
