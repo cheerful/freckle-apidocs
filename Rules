@@ -67,7 +67,7 @@ compile '*' do
   end
 end
 
-# Build the route for the default API version (the default for api.letsfreckle.com)
+# Build the route for the default API version (the default for api.nokotime.com)
 route 'v2/*', :rep => :default_version do
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext

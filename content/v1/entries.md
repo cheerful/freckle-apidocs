@@ -23,17 +23,17 @@ blue quick reports box in the Freckle user interface.
 </div>
 <div class="tab json active">
 Example request (search for entries with tag "freckle" after December 1, 2010, return JSON), try with
-<a href="http://apitest.developer.letsfreckle.com/hurls/ed0cec41f1abe07dd0e78086d78286b5c96d4742/9ff564aafaf908d23976cb0c3747c7d9acbd3ad2"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
+<a href="http://apitest.developer.nokotime.com/hurls/ed0cec41f1abe07dd0e78086d78286b5c96d4742/9ff564aafaf908d23976cb0c3747c7d9acbd3ad2"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
 
 <%= code_block_start_tag_custom_language("sh") %>
-curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json -d 'search[tags]=freckle' -d 'search[from]=2010-12-01'
+curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries.json -d 'search[tags]=freckle' -d 'search[from]=2010-12-01'
 <%= code_block_end_tag %>
 </div>
 <div class="tab xml">
-Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://apitest.developer.letsfreckle.com/hurls/dcba9d3b9fac45715e9e4db6741eff3bcdd5db72/0caa433303fad6052248c4790b829a82fe895b0c"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
+Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://apitest.developer.nokotime.com/hurls/dcba9d3b9fac45715e9e4db6741eff3bcdd5db72/0caa433303fad6052248c4790b829a82fe895b0c"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
 
 <%= code_block_start_tag_custom_language("sh") %>
-curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml -d 'search[people]=5538' -d 'search[tags]=conf call'
+curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries.xml -d 'search[people]=5538' -d 'search[tags]=conf call'
 <%= code_block_end_tag %>
 </div>
 </div>
@@ -52,8 +52,8 @@ Entries are returned sorted _descending by date_. By default, at most 100 entrie
 are returned per page. You can [fetch multiple pages](/#pagination) by reading
 the "next" URL from the `Link` response header and using it to repeat the request.
 
-    GET https://apitest.letsfreckle.com/api/entries.json
-    Link: <https://apitest.letsfreckle.com/api/entries.json?page=2&per_page=100>; rel="next"
+    GET https://apitest.nokotime.com/api/entries.json
+    Link: <https://apitest.nokotime.com/api/entries.json?page=2&per_page=100>; rel="next"
 
 ### Roles
 
@@ -152,7 +152,7 @@ Sample request:
 This call assumes there's an <code>entry.json</code> file in the current directory:
 
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -v -d @entry.json -H "Content-type: application/json" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json
+$ curl -v -d @entry.json -H "Content-type: application/json" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries.json
 <%= code_block_end_tag %>
 
 Here's what <code>entry.json</code> looks like:
@@ -161,7 +161,7 @@ Here's what <code>entry.json</code> looks like:
 {
   "entry": {
     "minutes": "2h",
-    "user": "apitest@letsfreckle.com",
+    "user": "apitest@nokotime.com",
     "project-id": 8475,
     "description": "Freckle RESTful API #test",
     "date": "2012-12-02",
@@ -170,7 +170,7 @@ Here's what <code>entry.json</code> looks like:
 }
 <%= code_block_end_tag %>
 
-Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/de1f2d95cb0dd113180de90e40d77bd849257acd/958090a5395705c87fa80c1fd6d39dc715c4b860"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try this example on <a href="http://apitest.developer.nokotime.com/hurls/de1f2d95cb0dd113180de90e40d77bd849257acd/958090a5395705c87fa80c1fd6d39dc715c4b860"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
 </div>
 <div class="tab xml">
@@ -178,7 +178,7 @@ Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/de1f
 This call assumes there's an <code>entry.xml</code> file in the current directory:
 
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -v -d @entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml
+$ curl -v -d @entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries.xml
 <%= code_block_end_tag %>
 
 Here's what <code>entry.xml</code> looks like:
@@ -186,7 +186,7 @@ Here's what <code>entry.xml</code> looks like:
 <div class="highlight"><pre><code class="xml"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;entry&gt;</span>
   <span class="nt">&lt;minutes&gt;</span>2h<span class="nt">&lt;/minutes&gt;</span>
-  <span class="nt">&lt;user&gt;</span>apitest@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;user&gt;</span>apitest@nokotime.com<span class="nt">&lt;/user&gt;</span>
   <span class="nt">&lt;project_id</span> <span class="na">type=</span><span class="s">&quot;integer&quot;</span><span class="nt">&gt;</span>8475<span class="nt">&lt;/project_id&gt;</span>
   <span class="nt">&lt;description&gt;</span>freckle restful api #test<span class="nt">&lt;/description&gt;</span>
   <span class="nt">&lt;date&gt;</span>2009-10-15<span class="nt">&lt;/date&gt;</span>
@@ -195,7 +195,7 @@ Here's what <code>entry.xml</code> looks like:
 </code></pre>
 </div>
 
-Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/2a4d0713be0f86371c920616fdef8818b22d6074/62e180ae64e8ae4f6f9b99a3823effb9a2c9e537"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try this example on <a href="http://apitest.developer.nokotime.com/hurls/2a4d0713be0f86371c920616fdef8818b22d6074/62e180ae64e8ae4f6f9b99a3823effb9a2c9e537"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
 </div>
 </div>
@@ -205,7 +205,7 @@ Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/2a4d
 These are the **required attributes** when creating new entries:
 
 **`minutes`** (required) is a string containing the amount of time which should be
-logged for the entry. Freckle uses the <a href="http://letsfreckle.com/blog/2011/10/more-than-meets-the-eye-the-quick-entry-box/">same logic that the QuickEntry box uses</a>
+logged for the entry. Freckle uses the <a href="http://nokotime.com/blog/2011/10/more-than-meets-the-eye-the-quick-entry-box/">same logic that the QuickEntry box uses</a>
 to parse the minutes field:
 
     0:01 → 1 minute
@@ -323,7 +323,7 @@ belong to an archived project.
 Sample request (assumes a `entry.xml` file in the current directory`):
 
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -v -X PUT -d @entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/33.xml
+$ curl -v -X PUT -d @entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries/33.xml
 <%= code_block_end_tag %>
 
 Contents of PUT body (`entry.xml` file in current directory):
@@ -331,7 +331,7 @@ Contents of PUT body (`entry.xml` file in current directory):
 <div class="highlight"><pre><code class="xml"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;entry&gt;</span>
   <span class="nt">&lt;minutes&gt;</span>2h<span class="nt">&lt;/minutes&gt;</span>
-  <span class="nt">&lt;user&gt;</span>apitest@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;user&gt;</span>apitest@nokotime.com<span class="nt">&lt;/user&gt;</span>
   <span class="nt">&lt;project-id</span> <span class="na">type=</span><span class="s">&quot;integer&quot;</span><span class="nt">&gt;</span>8475<span class="nt">&lt;/project-id&gt;</span>
   <span class="nt">&lt;description&gt;</span>freckle restful api test<span class="nt">&lt;/description&gt;</span>
   <span class="nt">&lt;date&gt;</span>2009-10-15<span class="nt">&lt;/date&gt;</span>
@@ -377,7 +377,7 @@ doesn't belong to an archived project.
 Sample request:
 
 <%= code_block_start_tag_custom_language("sh") %>
-curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/33.xml
+curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries/33.xml
 <%= code_block_end_tag %>
 </div>
 </div>
@@ -409,7 +409,7 @@ Use this API method instead of individual calls to POST /api/entries to create a
 Sample request (assumes a `entries_import.xml` file in the current directory):
 
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -d @entries_import.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/import.xml
+$ curl -d @entries_import.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries/import.xml
 <%= code_block_end_tag %>
 
 Sample POST body:
@@ -418,14 +418,14 @@ Sample POST body:
 <span class="nt">&lt;entries&gt;</span>
   <span class="nt">&lt;entry&gt;</span>
     <span class="nt">&lt;minutes&gt;</span>2h<span class="nt">&lt;/minutes&gt;</span>
-    <span class="nt">&lt;user&gt;</span>apitest@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
+    <span class="nt">&lt;user&gt;</span>apitest@nokotime.com<span class="nt">&lt;/user&gt;</span>
     <span class="nt">&lt;project-name&gt;</span>Fixture Company<span class="nt">&lt;/project-name&gt;</span>
     <span class="nt">&lt;description&gt;</span>freckle restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
     <span class="nt">&lt;date&gt;</span>2009-10-11<span class="nt">&lt;/date&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
   <span class="nt">&lt;entry&gt;</span>
     <span class="nt">&lt;minutes&gt;</span>30min<span class="nt">&lt;/minutes&gt;</span>
-    <span class="nt">&lt;user&gt;</span>apitest@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
+    <span class="nt">&lt;user&gt;</span>apitest@nokotime.com<span class="nt">&lt;/user&gt;</span>
     <span class="nt">&lt;description&gt;</span>freckle restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
     <span class="nt">&lt;date&gt;</span>2009-10-12<span class="nt">&lt;/date&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>

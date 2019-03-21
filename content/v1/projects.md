@@ -19,11 +19,11 @@ The projects resource returns projects accessible by the user. For all roles exc
   <div class="xml">XML</div>
 </div>
 <div class="tab json active">
-Example request (<a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/147e67ebb705a6a4a60bbf5f6b38883bc9f906b7">try live</a>):
+Example request (<a href="http://apitest.developer.nokotime.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/147e67ebb705a6a4a60bbf5f6b38883bc9f906b7">try live</a>):
 
 
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
+$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects.json
 <%= code_block_end_tag %>
 
 Response:
@@ -62,7 +62,7 @@ Response:
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
+$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects.xml
 <%= code_block_end_tag %>
 
 Response:
@@ -182,7 +182,7 @@ Here's an example project and a description of all the fields returned.
 </div>
 <div class="tab json active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.json
+$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/34572.json
 <%= code_block_end_tag %>
 
 Response:
@@ -220,7 +220,7 @@ Response:
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.xml
+$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/34572.xml
 <%= code_block_end_tag %>
 
 Response:
@@ -279,7 +279,7 @@ All roles have access to this resource.
 </div>
 <div class="tab xml active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
+$ curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects.xml
 <%= code_block_end_tag %>
 
 Post body:
@@ -333,7 +333,7 @@ All roles except for the **freelancer** role can create projects.
 </div>
 <div class="tab xml active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -v -X PUT -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.xml
+$ curl -v -X PUT -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/34572.xml
 <%= code_block_end_tag %>
 
 Post body:
@@ -380,7 +380,7 @@ We recommend to archive projects instead.
 </div>
 <div class="tab xml active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2.xml
+$ curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/2.xml
 <%= code_block_end_tag %>
 </div>
 </div>
@@ -409,7 +409,7 @@ All roles except freelancers can delete projects.
 </div>
 <div class="tab json active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/active.json
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/2/active.json
 <%= code_block_end_tag %>
 </div>
 </div>
@@ -434,7 +434,7 @@ Archive a project. Archived projects are "frozen" and time can't be logged for t
 </div>
 <div class="tab json active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/archive.json
+$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/2/archive.json
 <%= code_block_end_tag %>
 </div>
 </div>

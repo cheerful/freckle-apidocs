@@ -14,7 +14,7 @@ Welcome to the Freckle Developer Documentation!
 <p class="note">
 Below are the steps you'll need to take to make sure your integrations and apps still work!
 
-Want to learn more? You can read <a href="https://letsfreckle.com/blog/2019/03/freckle-getting-new-name-noko/">our announcement here</a>
+Want to learn more? You can read <a href="https://nokotime.com/blog/2019/03/freckle-getting-new-name-noko/">our announcement here</a>
 </p>
 
 <section markdown="block">
@@ -43,7 +43,7 @@ https://secure.nokotime.com
 
 ### What if I have questions?
 
-If you have _any_ questions at all, please [email](mailto:support@letsfreckle.com) or [tweet](http://twitter.com/freckle) us! We're incredibly grateful that you use the API, and we want to make the transition as smooth as possible.
+If you have _any_ questions at all, please [email](mailto:support@nokotime.com) or [tweet](http://twitter.com/freckle) us! We're incredibly grateful that you use the API, and we want to make the transition as smooth as possible.
 </section>
 </div>
 
@@ -53,7 +53,7 @@ Freckle provides a secure Restful JSON API over HTTPS; with authentification eit
 
 There's many public and internal apps using the Freckle API, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Punch](http://punch.fousa.be). Plus, many customers have created internal applications that integrate Freckle with their own custom software and services, such as [Pecas](http://ombulabs.github.io/pecas/). [You can even make a giant LED display for your timer!](https://twitter.com/fixingyourvideo/status/718963570164297730)
 
-Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com) or [tweet](http://twitter.com/freckle) us!
+Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@nokotime.com) or [tweet](http://twitter.com/freckle) us!
 
 Freckle's API docs are on Github: if you find an error or omission
 in the API documentation, you can help fix it quickly by [forking the Freckle API docs](https://github.com/cheerful/freckle-apidocs) and submitting a pull request.

@@ -38,7 +38,7 @@ def commit_message(no_commit_msg = false)
   mesg.gsub(/'/, '') # Allow this to be handed off via -m '#{message}'
 end
 
-desc "Publish to http://developer.letsfreckle.com"
+desc "Publish to http://developer.nokotime.com"
 task :publish, [:branch, :no_commit_msg] => [:clean, :remove_output_dir] do |t, args|
   args.with_defaults(:branch => 'alpha', :no_commit_msg => nil)
 

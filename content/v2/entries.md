@@ -160,7 +160,7 @@ project_name
 source_url
 : *Optional* **string**
 : A URL that corresponds to the work completed in this time entry. Some Examples Include:
-: * the URL to a commit in a version control platform like [Github or Beanstalk](http://help.letsfreckle.com/article/74-log-time-from-github)
+: * the URL to a commit in a version control platform like [Github or Beanstalk](http://help.nokotime.com/article/74-log-time-from-github)
 : * the URL to a specific task in a project management app like [Planscope](https://planscope.io/) or [Basecamp](https://planscope.io/)
 : * the URL to a client's website.
 
@@ -215,7 +215,7 @@ project_name
 source_url
 : *Optional* **string**
 : A URL that corresponds to the work completed in this time entry. Some Examples Include:
-: * the URL to a commit in a version control platform like [Github or Beanstalk](http://help.letsfreckle.com/article/74-log-time-from-github)
+: * the URL to a commit in a version control platform like [Github or Beanstalk](http://help.nokotime.com/article/74-log-time-from-github)
 : * the URL to a specific task in a project management app like [Planscope](https://planscope.io/) or [Basecamp](https://planscope.io/)
 : * the URL to a client's website.
 

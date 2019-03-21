@@ -1,7 +1,7 @@
 module Freckle
   module Resources
-    OAUTH2_URL = "https://secure.letsfreckle.com"
-    BASE_DOMAIN = "api.letsfreckle.com"
+    OAUTH2_URL = "https://secure.nokotime.com"
+    BASE_DOMAIN = "api.nokotime.com"
     API_V2_DOMAIN = BASE_DOMAIN + "/v2"
     BASE_URL   = "https://" + BASE_DOMAIN
     API_V2_URL = "https://" + API_V2_DOMAIN
@@ -645,7 +645,7 @@ module Freckle
       "expenses_url" => "#{API_V2_URL}/invoices/26642/expenses",
 
       # the public share URL
-      "share_url" => "https://apitest.letsfreckle.com/i/bqrnbojlbxqswtq9xla9uc40z",
+      "share_url" => "https://apitest.nokotime.com/i/bqrnbojlbxqswtq9xla9uc40z",
 
       "created_at" => "2013-07-09T23:04:05Z",
       "updated_at" => "2013-07-09T23:04:06Z",
