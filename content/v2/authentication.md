@@ -6,7 +6,7 @@ title: Authentication
 * TOC
 {:toc}
 
-The Freckle API provides multiple different ways to handle authentication in your application, each one suited for a particular type of application. It's important to pick the right authentication method for your application, so we've created the guide below to help you choose the right one:
+The Noko API provides multiple different ways to handle authentication in your application, each one suited for a particular type of application. It's important to pick the right authentication method for your application, so we've created the guide below to help you choose the right one:
 
 <p class="note">
 The examples below use <a href="http://radek.io/2015/10/20/httpie/">httpie</a>; which returns a pretty-printed and syntax highlighted response, and works on OS X, Linux, and Windows. You should try it out, we really like it!
@@ -22,7 +22,7 @@ The examples below use <a href="http://radek.io/2015/10/20/httpie/">httpie</a>; 
 
 ## Which authentication method do I choose?
 
-[Sending HTTP Header or `freckle_token` parameter for Personal Access Token](#using-personal-access-tokens)
+[Sending HTTP Header or `noko_token` parameter for Personal Access Token](#using-personal-access-tokens)
 : My application uses Personal Access Tokens for authentication
 
 [Sending HTTP Header or `access_token` parameter for OAuth access token](#using-oauth-access-tokens)
@@ -41,20 +41,20 @@ The examples below use <a href="http://radek.io/2015/10/20/httpie/">httpie</a>; 
 
 [Personal Access Tokens](http://help.letsfreckle.com/article/103-connecting-to-the-freckle-api) allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!
 
-The token has to be sent for each request your application makes to the Freckle API.
+The token has to be sent for each request your application makes to the Noko API.
 
 There are two ways to send the token—examples are given using the cURL command line tool:
 
-As a *query parameter* named `freckle_token`:
+As a *query parameter* named `noko_token`:
 
 <pre class="terminal">
-http GET <%= API_V2_URL %>/timers freckle_token==<%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>
+http GET <%= API_V2_URL %>/timers noko_token==<%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>
 </pre>
 
-As a *HTTP header* named `X-FreckleToken`:
+As a *HTTP header* named `X-NokoToken`:
 
 <pre class="terminal">
-http GET <%= API_V2_URL %>/timers X-FreckleToken:<%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>
+http GET <%= API_V2_URL %>/timers X-NokoToken:<%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>
 </pre>
 
 ## Using OAuth access tokens
@@ -98,10 +98,10 @@ http GET <%= API_V2_URL %>/entries -a abcdefghijklmnop1234567890:x-oauth-basic
 
 You can authenticate using [Personal Access Tokens](http://help.letsfreckle.com/article/103-connecting-to-the-freckle-api). This approach is useful if your tools only support Basic Authentication and you are using Personal Access Tokens for authentication.
 
-To do so, provide the Personal Access Token as the username and provide a blank password or a password of `x-freckle-token`. For example:
+To do so, provide the Personal Access Token as the username and provide a blank password or a password of `x-noko-token`. For example:
 
 <pre class='terminal'>
-http GET <%= API_V2_URL %>/entries -a <%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>:x-freckle-token
+http GET <%= API_V2_URL %>/entries -a <%= API_V2_EXAMPLE_PERSONAL_ACCESS_TOKEN %>:x-noko-token
 </pre>
 
 ### To interact with the OAuth Authorizations API

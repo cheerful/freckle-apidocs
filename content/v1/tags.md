@@ -1,7 +1,7 @@
 ---
 layout: v1
 title: Tags
-description: Access Tags with the Freckle Time Tracking RESTful API.
+description: Access Tags with the Noko Time Tracking RESTful API.
 ---
 
 Currently the only available tags API method is listing tags.
@@ -19,7 +19,7 @@ The tags resource returns all tags for the account.
 </div>
 <div class="tab json active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/tags.json
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/tags.json
 <%= code_block_end_tag %>
 
 Response:
@@ -45,7 +45,7 @@ Try with <a href="http://apitest.developer.nokotime.com/hurls/684cc1abac7137e247
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/tags.xml
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/tags.xml
 <%= code_block_end_tag %>
 
 Response:

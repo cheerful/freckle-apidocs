@@ -1,7 +1,7 @@
 ---
 layout: v1
 title: Users
-description: Manage Freckle users with the Freckle Time Tracking RESTful API.
+description: Manage Noko users with the Noko Time Tracking RESTful API.
 ---
 
 * TOC
@@ -20,7 +20,7 @@ Return a list of all active users in the account (doesn't return any deactivated
 </div>
 <div class="tab json active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users.json
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users.json
 <%= code_block_end_tag %>
 
 Response:
@@ -30,7 +30,7 @@ Response:
     "user": {
       "week_start": null,
       "id": 5538,
-      "last_name": "Freckle",
+      "last_name": "Noko",
       "permissions": "integration, time, invoicing, reports, tags, 
         expenses, projects, team, people, account, billing, import",
       "login": "admin",
@@ -46,7 +46,7 @@ Try with <a href="http://apitest.developer.nokotime.com/hurls/274cffe2634174d4be
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users.xml
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users.xml
 <%= code_block_end_tag %>
 
 Response:
@@ -57,7 +57,7 @@ Response:
     <span class="nt">&lt;email&gt;</span>apitestadmin@nokotime.com<span class="nt">&lt;/email&gt;</span>
     <span class="nt">&lt;first-name&gt;</span>Lets<span class="nt">&lt;/first-name&gt;</span>
     <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">&quot;integer&quot;</span><span class="nt">&gt;</span>5538<span class="nt">&lt;/id&gt;</span>
-    <span class="nt">&lt;last-name&gt;</span>Freckle<span class="nt">&lt;/last-name&gt;</span>
+    <span class="nt">&lt;last-name&gt;</span>Noko<span class="nt">&lt;/last-name&gt;</span>
     <span class="nt">&lt;login&gt;</span>admin<span class="nt">&lt;/login&gt;</span>
     <span class="nt">&lt;time-format&gt;</span>fraction<span class="nt">&lt;/time-format&gt;</span>
     <span class="nt">&lt;week-start</span> <span class="na">nil=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;&lt;/week-start&gt;</span>
@@ -96,7 +96,7 @@ Returns details about a specific user. This method works with active and deactiv
 </div>
 <div class="tab json active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538.json
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538.json
 <%= code_block_end_tag %>
 
 Response:
@@ -105,7 +105,7 @@ Response:
   "user": {
     "week_start": null,
     "id": 5538,
-    "last_name": "Freckle",
+    "last_name": "Noko",
     "permissions": "integration, time, invoicing, reports, tags,
       expenses, projects, team, people, account, billing, import",
     "time_format": "fraction",
@@ -120,7 +120,7 @@ Try with <a href="http://apitest.developer.nokotime.com/hurls/406175f1eb7a4e07c9
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538.xml
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538.xml
 <%= code_block_end_tag %>
 
 Response:
@@ -130,7 +130,7 @@ Response:
   <span class="nt">&lt;email&gt;</span>apitestadmin@nokotime.com<span class="nt">&lt;/email&gt;</span>
   <span class="nt">&lt;first-name&gt;</span>Lets<span class="nt">&lt;/first-name&gt;</span>
   <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">&quot;integer&quot;</span><span class="nt">&gt;</span>5538<span class="nt">&lt;/id&gt;</span>
-  <span class="nt">&lt;last-name&gt;</span>Freckle<span class="nt">&lt;/last-name&gt;</span>
+  <span class="nt">&lt;last-name&gt;</span>Noko<span class="nt">&lt;/last-name&gt;</span>
   <span class="nt">&lt;time-format&gt;</span>fraction<span class="nt">&lt;/time-format&gt;</span>
   <span class="nt">&lt;week-start</span> <span class="na">nil=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;&lt;/week-start&gt;</span>
   <span class="nt">&lt;permissions&gt;</span>integration, time, invoicing, reports, tags, 
@@ -180,7 +180,7 @@ we strongly suggest caching these images.
 </div>
 <div class="tab json active">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538/avatar.json
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538/avatar.json
 <%= code_block_end_tag %>
 
 Response:
@@ -199,7 +199,7 @@ Try with <a href="http://apitest.developer.nokotime.com/hurls/fa45bad8cdbcf57ee5
 </div>
 <div class="tab xml">
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538/avatar.xml
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538/avatar.xml
 <%= code_block_end_tag %>
 
 Response:
@@ -316,7 +316,7 @@ Anyone can retrieve their authentication token using this resource.
 
     POST /api/users
 
-*You can create new users, as long as your account limits are not reached. For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+*You can create new users, as long as your account limits are not reached. For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Noko account.*
 
 This method, as well as the update and delete methods, are intended to make
 it easier to synchronize users with your own systems. Note that you can't set
@@ -324,12 +324,12 @@ or change passwords.
 
 Only the `first_name`, `last_name` and `email` fields can be set.
 
-Creating a user immediately sends them an invite email to the Freckle account.
+Creating a user immediately sends them an invite email to the Noko account.
 
 Request example, expects a `users.xml` file in the current directory:
 
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -d @data/users.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j https://somaccount.nokotime.com/api/users.xml
+$ curl -d @data/users.xml -H "Content-type: text/xml" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j https://somaccount.nokotime.com/api/users.xml
 <%= code_block_end_tag %>
 
 Sample post body:
@@ -363,7 +363,7 @@ The method updates a user's name and email address.
 Request example, expects a `users.xml` file in the current directory:
 
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -d @user.xml -X PUT -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://somaccount.nokotime.com/api/user/ID.xml
+$ curl -d @user.xml -X PUT -H "Content-type: text/xml" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://somaccount.nokotime.com/api/user/ID.xml
 <%= code_block_end_tag %>
 
 Request body example:
@@ -393,16 +393,16 @@ Only administrators and the account owner can use this API method.
 
     DELETE /api/users/<id>
 
-*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.*
+*For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Noko account.*
 
 Deactivates a user, or deletes the user if they have no entries.
 
-Users that have logged time in Freckle are never actually deleted, just deactivated.
+Users that have logged time in Noko are never actually deleted, just deactivated.
 Currently, reactivation of a user is only available
-on the team page in the Freckle interface.
+on the team page in the Noko interface.
 
 <%= code_block_start_tag_custom_language("sh") %>
-$ curl -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/user/12345678.xml
+$ curl -X DELETE -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/user/12345678.xml
 <%= code_block_end_tag %>
 
 ### Response codes

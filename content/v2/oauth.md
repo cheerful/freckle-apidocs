@@ -15,9 +15,9 @@ title: OAuth
 * TOC
 {:toc}
 
-OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Freckle account without requiring their password. Freckle supports access to API resources using OAuth because tokens can be easily generated as part of a 3rd party integration and revoked by users at any time.
+OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Noko account without requiring their password. Noko supports access to API resources using OAuth because tokens can be easily generated as part of a 3rd party integration and revoked by users at any time.
 
-Before you can start developing with the Freckle API, you must first [register your application](https://help.letsfreckle.com/article/122-registering-a-new-freckle-app). When you register, you will be given a unique Client ID and Secret. Your Client Secret should not be shared.
+Before you can start developing with the Noko API, you must first [register your application](https://help.letsfreckle.com/article/122-registering-a-new-freckle-app). When you register, you will be given a unique Client ID and Secret. Your Client Secret should not be shared.
 
 There are two supported ways to generate an access token for a specific user from your application: One designed specifically for use by Web Applications, and another that allows other types of applications to list, create, and confirm their Authorization Token for a user.
 
@@ -31,9 +31,9 @@ All OAuth2 authorization requests are made through a single endpoint
 
 ## Web Application Flow
 
-Below are the steps required to generate an access token for a Freckle user through an initial `GET` request to Freckle and a corresponding redirect back to your application.
+Below are the steps required to generate an access token for a Noko user through an initial `GET` request to Noko and a corresponding redirect back to your application.
 
-### 1. Redirect users to request Freckle access
+### 1. Redirect users to request Noko access
 
 ~~~~
 GET <%= OAUTH2_URL %>/oauth/2/authorize
@@ -43,7 +43,7 @@ GET <%= OAUTH2_URL %>/oauth/2/authorize
 
 client_id
 : *Required* **string**
-: The client ID you received from Freckle when you registered
+: The client ID you received from Noko when you registered
 : Example: `client_id=abcdefghi1234`
 
 response_type
@@ -56,7 +56,7 @@ state
 
 redirect_uri
 : *Optional* **string**
-: The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data. If no `redirect_uri` is included in the request, Freckle will redirect users to the callback URL configured in the OAuth2 application settings.
+: The URL pointing to your application where users will be redirected to after they have authorized your application to use their Noko data. If no `redirect_uri` is included in the request, Noko will redirect users to the callback URL configured in the OAuth2 application settings.
 
   #### Rules:
 
@@ -77,17 +77,17 @@ redirect_uri
   BAD:  http://example.org
   ~~~
 
-### 2. Freckle redirects back to your site with two parameters:
+### 2. Noko redirects back to your site with two parameters:
 
-When the user has authorized your application, Freckle will redirect back to your application (either to the URL configured in the OAuth2 application settings, or the url specified in `redirect_uri`). The redirection will include the following query parameters:
+When the user has authorized your application, Noko will redirect back to your application (either to the URL configured in the OAuth2 application settings, or the url specified in `redirect_uri`). The redirection will include the following query parameters:
 
 code
 : **string**
-: A temporary code that you will send back to Freckle to get the access token. This code confirms that the user authorized your application to use their Freckle data, and that you received the request. This temporary code expires shortly after it's issued, so be sure to use it quickly!
+: A temporary code that you will send back to Noko to get the access token. This code confirms that the user authorized your application to use their Noko data, and that you received the request. This temporary code expires shortly after it's issued, so be sure to use it quickly!
 
 state
 : **string**
-: If you provided a state in your [initial request](#redirect-users-to-request-freckle-access) it will be returned back to you. Reject the redirect if this parameter does not match what you previously sent.
+: If you provided a state in your [initial request](#redirect-users-to-request-noko-access) it will be returned back to you. Reject the redirect if this parameter does not match what you previously sent.
 
 #### Errors:
 
@@ -106,9 +106,9 @@ error_description
 : **string**
 : A short explanation of the error
 
-### 3. POST to Freckle to get the access token.
+### 3. POST to Noko to get the access token.
 
-After you have received the temporary code, you will need to `POST` to Freckle to exchange this temporary code for an access token
+After you have received the temporary code, you will need to `POST` to Noko to exchange this temporary code for an access token
 
 ~~~
 POST <%= OAUTH2_URL %>/oauth/2/access_token
@@ -118,23 +118,23 @@ POST <%= OAUTH2_URL %>/oauth/2/access_token
 
 client_id
 : *Required* **string**
-: The client ID you received from Freckle when you registered your application.
+: The client ID you received from Noko when you registered your application.
 
 client_secret
 : *Required* **string**
-: the client secret you received from Freckle when you registered your application.
+: the client secret you received from Noko when you registered your application.
 
 code
 : *Required* **string**
-: the code you received as a response in [step 2](#freckle-redirects-back-to-your-site-with-two-parameters).
+: the code you received as a response in [step 2](#noko-redirects-back-to-your-site-with-two-parameters).
 
 grant_type
 : *Required* **string**
 : Must be set to `authorization_code`. This is usually handled by an OAuth2 client library.
 
 redirect_uri
-: *Required if provided in [step 1](#redirect-users-to-request-freckle-access)* **string**
-: The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data. This must exactly match the value given in [step 1](#redirect-users-to-request-freckle-access).
+: *Required if provided in [step 1](#redirect-users-to-request-noko-access)* **string**
+: The URL pointing to your application where users will be redirected to after they have authorized your application to use their Noko data. This must exactly match the value given in [step 1](#redirect-users-to-request-noko-access).
 
 #### Reponse
 
@@ -204,11 +204,11 @@ POST <%= OAUTH2_URL %>/oauth/2/access_token
 
 client_id
 : *Required* **string**
-: The client ID you received from Freckle when you registered your application.
+: The client ID you received from Noko when you registered your application.
 
 client_secret
 : *Required* **string**
-: the client secret you received from Freckle when you registered your application.
+: the client secret you received from Noko when you registered your application.
 
 refresh_token
 : *Required* **string**
@@ -333,7 +333,7 @@ client_secret
 
 scopes
 : *Optional* **array of strings**
-: The type of access your application needs to the user's Freckle data.
+: The type of access your application needs to the user's Noko data.
 : If no value is provided, then the permissions you chose when you setup your application will be used.
 
 note
@@ -370,7 +370,7 @@ client_secret
 
 scopes
 : *Optional* **array of strings**
-: The type of access your application needs to the user's Freckle data.
+: The type of access your application needs to the user's Noko data.
 : If no value is provided, then the permissions you chose when you setup your application will be used.
 
 note
@@ -413,11 +413,11 @@ note_url
 
 add_scopes
 : *Optional* **array of strings**
-: The list of scopes to add to this authorization. Adding new scopes allows your application to access additional information from the user's Freckle account. Non-existent scopes, or scopes already applied for this authorization will be ignored.
+: The list of scopes to add to this authorization. Adding new scopes allows your application to access additional information from the user's Noko account. Non-existent scopes, or scopes already applied for this authorization will be ignored.
 
 remove_scopes
 : *Optional* **array of strings**
-: The list of scopes to remove from this authorization. Removing scopes prevents your application from accessing specific information from the user's Freckle account. Scopes that are not currently applied for this authorization will be ignored.
+: The list of scopes to remove from this authorization. Removing scopes prevents your application from accessing specific information from the user's Noko account. Scopes that are not currently applied for this authorization will be ignored.
 
 #### Response
 

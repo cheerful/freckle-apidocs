@@ -233,21 +233,21 @@ source_url
 * **cannot_create_projects**: The authenticated user is unable to create projects.
 * **cannot_create_tags**: The authenticated user is unable to create new tags.
 
-## Mark Entry as invoiced outside of Freckle
+## Mark Entry as invoiced outside of Noko
 
-Update the Entry so that is recognized as being invoiced outside of Freckle by providing the date the Entry was invoiced.
+Update the Entry so that is recognized as being invoiced outside of Noko by providing the date the Entry was invoiced.
 
-If the entry has already been marked as invoiced outside of freckle, this action modifies the `invoiced_at` date for the entry.
+If the entry has already been marked as invoiced outside of Noko, this action modifies the `invoiced_at` date for the entry.
 
 ~~~
-PUT /v2/entries/:id/invoiced_outside_of_freckle
+PUT /v2/entries/:id/invoiced_outside_of_noko
 ~~~
 
 ### Input
 
 date
 : *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`
-: The date the time entry was invoiced outside of Freckle.
+: The date the time entry was invoiced outside of Noko.
 
 ### Response
 
@@ -257,39 +257,39 @@ date
 
 The following Custom Error codes can be returned for this action:
 
-* **already_invoiced**: the Entry has already been invoiced inside of Freckle.
+* **already_invoiced**: the Entry has already been invoiced inside of Noko.
 
-## Mark multiple Entries as invoiced outside of Freckle
+## Mark multiple Entries as invoiced outside of Noko
 
-Update the Entries provided so that they are recognized as being invoiced outside of Freckle by providing the date the Entries was invoiced.
+Update the Entries provided so that they are recognized as being invoiced outside of Noko by providing the date the Entries was invoiced.
 
-If an entry has already been marked as invoiced outside of Freckle, this action modifies the `invoiced_at` date for that entry.
+If an entry has already been marked as invoiced outside of Noko, this action modifies the `invoiced_at` date for that entry.
 
 ~~~
-PUT /v2/entries/invoiced_outside_of_freckle
+PUT /v2/entries/invoiced_outside_of_noko
 ~~~
 
 ### Input
 
 entry_ids
 : *Required* **array of integers**
-: The IDs of the entries that will be marked as invoiced outside of Freckle.
+: The IDs of the entries that will be marked as invoiced outside of Noko.
 
 date
 : *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`
-: The date the time entry was invoiced outside of Freckle.
+: The date the time entry was invoiced outside of Noko.
 
 ### Response
 
 <%= headers 204 %>
 
-### A note about Entries that cannot be marked as invoiced outside of Freckle
+### A note about Entries that cannot be marked as invoiced outside of Noko
 
-Any entries that are included in this request that cannot be marked as invoiced outside of Freckle will be ignored and will not affect the Response.
+Any entries that are included in this request that cannot be marked as invoiced outside of Noko will be ignored and will not affect the Response.
 
 ## Mark Entry as approved
 
-Mark the Entry as "approved" in Freckle. Approved entries cannot be edited or deleted.
+Mark the Entry as "approved" in Noko. Approved entries cannot be edited or deleted.
 
 ~~~
 PUT /v2/entries/:id/approved
@@ -314,7 +314,7 @@ The following Custom Error codes can be returned for this action:
 
 ## Mark multiple Entries as approved
 
-Mark the Entries provided as "approved" in Freckle. Approved entries cannot be edited or deleted.
+Mark the Entries provided as "approved" in Noko. Approved entries cannot be edited or deleted.
 
 ~~~
 PUT /v2/entries/approved
@@ -340,7 +340,7 @@ Any entries that are included in this request that cannot be marked as approved 
 
 ## Mark Entry as unapproved
 
-Mark the Entry as "unapproved" in Freckle. Unapproved entries can be edited or deleted.
+Mark the Entry as "unapproved" in Noko. Unapproved entries can be edited or deleted.
 
 ~~~
 PUT /v2/entries/:id/unapproved
@@ -358,7 +358,7 @@ The following Custom Error codes can be returned for this action:
 
 ## Mark multiple Entries as unapproved
 
-Mark the Entries provided as "unapproved" in Freckle. Unapproved entries can be edited or deleted.
+Mark the Entries provided as "unapproved" in Noko. Unapproved entries can be edited or deleted.
 
 ~~~
 PUT /v2/entries/unapproved

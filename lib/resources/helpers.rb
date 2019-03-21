@@ -1,6 +1,6 @@
 require 'json'
 
-module Freckle
+module Noko
   module Resources
     module Helpers
       API_HOST = "https://api.nokotime.com/"
@@ -20,7 +20,7 @@ module Freckle
         command = "-X POST " if method == :post
         command = "-X PUT " if method == :put
         command = "-X DELETE " if method == :delete
-        "# cURL\n$ curl #{command}-H \"X-FreckleToken:#{TOKEN}\" #{API_HOST}#{path}"
+        "# cURL\n$ curl #{command}-H \"X-NokoToken:#{TOKEN}\" #{API_HOST}#{path}"
       end
 
       def json_array(key)
@@ -64,4 +64,4 @@ module Freckle
   end
 end
 
-include Freckle::Resources::Helpers
+include Noko::Resources::Helpers

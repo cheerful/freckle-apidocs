@@ -1,4 +1,4 @@
-module Freckle
+module Noko
   module Resources
     OAUTH2_URL = "https://secure.nokotime.com"
     BASE_DOMAIN = "api.nokotime.com"
@@ -84,8 +84,8 @@ module Freckle
       "scopes" => ["current_user","project"],
       "token" => "abc123",
       "app" => {
-        "url" => "http://dabestfreckleapp.com",
-        "name" => "Da Best Freckle App",
+        "url" => "http://dabestnokoapp.com",
+        "name" => "Da Best Noko App",
         "client_id" => "98643ycvfjfswx"
       },
       "note" => "describes what the token is generated for",
@@ -406,9 +406,9 @@ module Freckle
 
     SIMPLE_TAG = {
       "id" => 249397,
-      "name" => "freckle",
+      "name" => "noko",
       "billable" => true,
-      "formatted_name" => "#freckle",
+      "formatted_name" => "#noko",
       "url" => "#{API_V2_URL}/tags/249397"
     }
 
@@ -432,7 +432,7 @@ module Freckle
       "user" => SIMPLE_USER,
       "billable" => true,
       "minutes" => 60,
-      "description" => "freckle",
+      "description" => "noko",
       "project" => SIMPLE_PROJECT,
       "tags" => [SIMPLE_TAG],
       "source_url" => "http://someapp.com/special/url/",
@@ -442,7 +442,7 @@ module Freckle
       "approved_at" => "2012-01-10T08:33:29Z",
       "approved_by" => SIMPLE_USER,
       "url" => "#{API_V2_URL}/entries/1711626",
-      "invoiced_outside_of_freckle_url" => "#{API_V2_URL}/entries/1711626/invoiced_outside_of_freckle",
+      "invoiced_outside_of_noko_url" => "#{API_V2_URL}/entries/1711626/invoiced_outside_of_noko",
       "approved_url" => "#{API_V2_URL}/entries/1711626/approved",
       "unapproved_url" => "#{API_V2_URL}/entries/1711626/unapproved",
       "created_at" => "2012-01-09T08:33:29Z",
@@ -581,7 +581,7 @@ module Freckle
       #the date of the invoice
       "invoice_date" => "2013-07-09",
       #the generated name for the invoice
-      "project_name" => "Knockd, Freckle Support",
+      "project_name" => "Knockd, Noko Support",
 
       #invoice display information
       "company_name" => "John Test",
@@ -682,7 +682,7 @@ module Freckle
       "seconds" => 180,
       "formatted_time" => "00:03:00",
       "date" => "2013-07-09",
-      "description" => "freckle work",
+      "description" => "noko work",
       "user" => SIMPLE_USER,
       "project" => SIMPLE_PROJECT,
       "url" => "#{API_V2_URL}/projects/37396/timer",
@@ -711,4 +711,4 @@ module Freckle
   end
 end
 
-include Freckle::Resources
+include Noko::Resources

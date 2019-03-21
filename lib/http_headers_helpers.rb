@@ -1,4 +1,4 @@
-module Freckle
+module Noko
 	module HTTPHeaders
 		module Helpers
 			STATUSES = {
@@ -44,4 +44,4 @@ module Freckle
 	end
 end
 
-include Freckle::HTTPHeaders::Helpers
+include Noko::HTTPHeaders::Helpers

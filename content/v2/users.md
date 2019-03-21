@@ -90,7 +90,7 @@ You can use the parameters specified in the [Expense API's List Action](/expense
 
 ## Create a User
 
-<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Noko account.</p>
 
 ~~~
 POST /users/
@@ -132,7 +132,7 @@ The following Custom Error codes can be returned for this action:
 
 ## Edit a User
 
-<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Noko account.</p>
 
 ~~~
 PUT /users/:id
@@ -171,9 +171,9 @@ The following Custom Error codes can be returned for this action:
 
 ## Reactivate a Deactivated User
 
-This action reactivates a previously deactivated user, which allows the user to start using Freckle again.
+This action reactivates a previously deactivated user, which allows the user to start using Noko again.
 
-<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Noko account.</p>
 
 ~~~
 PUT /users/:id/activate
@@ -269,7 +269,7 @@ The following Custom Error codes can be returned for this action:
 
 ## Delete a User
 
-<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Noko account.</p>
 
 ~~~
 DELETE /users/:id
@@ -298,7 +298,7 @@ For more information about how deleting and archiving a user works, please the A
 
 ## Deactivate a User
 
-<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</p>
+<p class="note warning">For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Noko account.</p>
 
 ~~~
 PUT /users/:id/deactivate
