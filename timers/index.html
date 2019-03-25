@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Timers - Freckle Developer</title>
+  <title>Timers - Noko Developer</title>
   <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
@@ -12,7 +12,7 @@
     <div id="nav">
       <div id="logo">
         <a href="/">
-          <img src="/assets/freckle.svg" alt="Freckle">
+          <img src="/assets/noko.svg" alt="Noko">
         </a>
       </div>
       Developer Documentation
@@ -68,7 +68,7 @@ first, then the paused timers. Only timers for the current user are returned.</p
 <div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">GET /v2/timers
 
 # cURL
-$ curl -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/timers</code></pre></div></div>
+$ curl -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.nokotime.com/v2/timers</code></pre></div></div>
 
 <h3 id="parameters">Parameters</h3>
 
@@ -102,8 +102,8 @@ return the timers with that description text for those projects).</p>
 </dl><h3 id="response">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
-Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
- &lt;https://api.letsfreckle.com/v2/timers?page=5&gt;; rel="last"</code></pre>
+Link: &lt;https://api.nokotime.com/v2/timers?page=2&gt;; rel="next",
+ &lt;https://api.nokotime.com/v2/timers?page=5&gt;; rel="last"</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
@@ -112,14 +112,14 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
     <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
     <span class="s2">"formatted_time"</span><span class="o">:</span> <span class="s2">"00:03:00"</span><span class="p">,</span>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko work"</span><span class="p">,</span>
     <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
       <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
       <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
       <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
     <span class="p">},</span>
     <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
@@ -128,12 +128,12 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
       <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
     <span class="p">},</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer"</span><span class="p">,</span>
-    <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
-    <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
-    <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/log"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
+    <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
+    <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+    <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
@@ -142,7 +142,7 @@ Link: &lt;https://api.letsfreckle.com/v2/timers?page=2&gt;; rel="next",
 <div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">GET /v2/projects/:project_id/timer
 
 # cURL
-$ curl -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/projects/:project_id/timer</code></pre></div></div>
+$ curl -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.nokotime.com/v2/projects/:project_id/timer</code></pre></div></div>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -152,14 +152,14 @@ $ curl -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48a
   <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
   <span class="s2">"formatted_time"</span><span class="o">:</span> <span class="s2">"00:03:00"</span><span class="p">,</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko work"</span><span class="p">,</span>
   <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
@@ -168,12 +168,12 @@ $ curl -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48a
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer"</span><span class="p">,</span>
-  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
-  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
-  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/log"</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="notes">Notes</h3>
@@ -197,7 +197,7 @@ $ curl -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48a
 <div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">PUT /v2/projects/:project_id/timer
 
 # cURL
-$ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/projects/:project_id/timer</code></pre></div></div>
+$ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.nokotime.com/v2/projects/:project_id/timer</code></pre></div></div>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -207,14 +207,14 @@ $ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75
   <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
   <span class="s2">"formatted_time"</span><span class="o">:</span> <span class="s2">"00:03:00"</span><span class="p">,</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko work"</span><span class="p">,</span>
   <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
@@ -223,12 +223,12 @@ $ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer"</span><span class="p">,</span>
-  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
-  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
-  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/log"</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="input">Input</h3>
@@ -244,10 +244,10 @@ $ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75
 <div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">PUT /v2/projects/:project_id/timer/start
 
 # cURL
-$ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/projects/:project_id/timer/start</code></pre></div></div>
+$ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.nokotime.com/v2/projects/:project_id/timer/start</code></pre></div></div>
 
 <pre class="headers"><code>Status: 200 OK
-Location: https://api.letsfreckle.com/v2/projects/1/timer</code></pre>
+Location: https://api.nokotime.com/v2/projects/1/timer</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
@@ -255,14 +255,14 @@ Location: https://api.letsfreckle.com/v2/projects/1/timer</code></pre>
   <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
   <span class="s2">"formatted_time"</span><span class="o">:</span> <span class="s2">"00:03:00"</span><span class="p">,</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko work"</span><span class="p">,</span>
   <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
@@ -271,12 +271,12 @@ Location: https://api.letsfreckle.com/v2/projects/1/timer</code></pre>
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer"</span><span class="p">,</span>
-  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
-  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
-  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/log"</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="input-1">Input</h3>
@@ -304,7 +304,7 @@ Location: https://api.letsfreckle.com/v2/projects/1/timer</code></pre>
 <div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">PUT /v2/projects/:project_id/timer/pause
 
 # cURL
-$ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/projects/:project_id/timer/pause</code></pre></div></div>
+$ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.nokotime.com/v2/projects/:project_id/timer/pause</code></pre></div></div>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -314,14 +314,14 @@ $ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75
   <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
   <span class="s2">"formatted_time"</span><span class="o">:</span> <span class="s2">"00:03:00"</span><span class="p">,</span>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle work"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko work"</span><span class="p">,</span>
   <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
@@ -330,12 +330,12 @@ $ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer"</span><span class="p">,</span>
-  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
-  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
-  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396/timer/log"</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="notes-2">Notes</h3>
@@ -351,7 +351,7 @@ $ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75
 <div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">PUT /v2/projects/:project_id/timer/log
 
 # cURL
-$ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/projects/:project_id/timer/log</code></pre></div></div>
+$ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.nokotime.com/v2/projects/:project_id/timer/log</code></pre></div></div>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -391,7 +391,7 @@ $ curl -X PUT -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75
 <div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">DELETE /v2/projects/:project_id/timer
 
 # cURL
-$ curl -X DELETE -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.letsfreckle.com/v2/projects/:project_id/timer</code></pre></div></div>
+$ curl -X DELETE -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.nokotime.com/v2/projects/:project_id/timer</code></pre></div></div>
 
 <h3 id="response-1">Response</h3>
 
@@ -401,51 +401,51 @@ $ curl -X DELETE -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pn
 
         <div class="columns four">
           <div class="column">
-            <h3>About Freckle</h3>
+            <h3>About Noko</h3>
             <ul>
-              <li><a href="https://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
-              <li><a href="https://letsfreckle.com/"> Freckle plans and pricing</a></li>
-              <li><a href="https://letsfreckle.com/terms/">Our user agreement</a></li>
-              <li><a href="https://letsfreckle.com/privacy/">Privacy policy</a></li>
+              <li><a href="https://nokotime.com/manifesto">The Noko manifesto</a></li>
+              <li><a href="https://nokotime.com/"> Noko plans and pricing</a></li>
+              <li><a href="https://nokotime.com/terms/">Our user agreement</a></li>
+              <li><a href="https://nokotime.com/privacy/">Privacy policy</a></li>
             </ul>
           </div>
 
           <div class="column">
             <h3>Us &amp; our company</h3>
             <ul>
-              <li><a href="https://letsfreckle.com/team/">Meet our team</a></li>
-              <li><a href="https://letsfreckle.com/blog/">Read our blog</a></li>
-              <li><a href="https://letsfreckle.com/contact/">Write us</a></li>
+              <li><a href="https://nokotime.com/team/">Meet our team</a></li>
+              <li><a href="https://nokotime.com/blog/">Read our blog</a></li>
+              <li><a href="https://nokotime.com/contact/">Write us</a></li>
             </ul>
           </div>
 
           <div class="column">
             <h3>Docs</h3>
             <ul>
-              <li><a href="http://help.letsfreckle.com/">FAQs</a></li>
-              <li><a href="http://developer.letsfreckle.com">Developer Documentation</a></li>
+              <li><a href="http://help.nokotime.com/">FAQs</a></li>
+              <li><a href="http://developer.nokotime.com">Developer Documentation</a></li>
             </ul>
           </div>
 
           <div class="column">
             <h3>You &amp; your account</h3>
             <ul>
-              <li><a href="http://help.letsfreckle.com/article/13-signing-in-to-freckle">How to sign in</a></li>
-              <li><a href="http://help.letsfreckle.com/">Get help &amp; contact support</a></li>
+              <li><a href="http://help.nokotime.com/article/13-signing-in-to-freckle">How to sign in</a></li>
+              <li><a href="http://help.nokotime.com/">Get help &amp; contact support</a></li>
             </ul>
           </div>
 
         </div>
 
         <div class="copyright">
-          &copy; 2008-2016 Slash7 LLC, all rights reserved.<br>
-          Freckle® is a registered trademark of Slash7 LLC.
+          &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
+          Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>
     </div>
   </div>
 
-  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
+  <script async src="https://secure.nokotime.com/help/help.js"></script>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
@@ -484,7 +484,7 @@ $ curl -X DELETE -H "X-FreckleToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pn
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-37896092-1']);
-    _gaq.push(['_setDomainName', 'letsfreckle.com']);
+    _gaq.push(['_setDomainName', 'nokotime.com']);
     _gaq.push(['_trackPageview']);
 
     (function() {

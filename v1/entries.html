@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Freckle API: Entries</title>
+  <title>Noko API: Entries</title>
   <link rel="stylesheet" href="/assets/v1/stylesheet.css" type="text/css">
-  <meta name="description" content="Create and search for time entries with the Freckle Time Tracking RESTful API.">
+  <meta name="description" content="Create and search for time entries with the Noko Time Tracking RESTful API.">
 </head>
 
 <!-- Google Tag Manager -->
@@ -20,7 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body>
   <div id="nav" class="banner">
     <div>
-    <a href="http://letsfreckle.com" class="back">&larr; Freckle</a>
+    <a href="http://nokotime.com" class="back">&larr; Noko</a>
     <a href="index.html">API Basics</a>
     <a href="entries.html">Entries</a>
     <a href="projects.html">Projects</a>
@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <div id="content">
-    <h1><img id="logo" src="/assets/freckle.svg" alt="Freckle"> API: Entries</h1>
+    <h1><img id="logo" src="/assets/noko.svg" alt="Noko"> API: Entries</h1>
 
     <p>The entries resource represents logged time. Each entry, at the minimum, is assigned to a user, has 0 or more minutes logged and has a date set (all other fields, including project, tags and description are optional).</p>
 
@@ -62,7 +62,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </code></pre>
 
 <p>The parameters to list and search entries via the API is very similar to the
-blue quick reports box in the Freckle user interface.</p>
+blue quick reports box in the Noko user interface.</p>
 
 <div class="tabs">
 <div class="selector">
@@ -70,18 +70,18 @@ blue quick reports box in the Freckle user interface.</p>
   <div class="xml">XML</div>
 </div>
 <div class="tab json active">
-Example request (search for entries with tag "freckle" after December 1, 2010, return JSON), try with
-<a href="http://apitest.developer.letsfreckle.com/hurls/ed0cec41f1abe07dd0e78086d78286b5c96d4742/9ff564aafaf908d23976cb0c3747c7d9acbd3ad2"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
+Example request (search for entries with tag "noko" after December 1, 2010, return JSON), try with
+<a href="http://apitest.developer.nokotime.com/hurls/ed0cec41f1abe07dd0e78086d78286b5c96d4742/9ff564aafaf908d23976cb0c3747c7d9acbd3ad2"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
 
 <pre class="highlight"><code class="sh">
-curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json -d 'search[tags]=freckle' -d 'search[from]=2010-12-01'
+curl -v -G -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries.json -d 'search[tags]=noko' -d 'search[from]=2010-12-01'
 </code></pre>
 </div>
 <div class="tab xml">
-Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://apitest.developer.letsfreckle.com/hurls/dcba9d3b9fac45715e9e4db6741eff3bcdd5db72/0caa433303fad6052248c4790b829a82fe895b0c"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
+Example request (search for entries tagged "conf call" for user 5538, return XML), try with <a href="http://apitest.developer.nokotime.com/hurls/dcba9d3b9fac45715e9e4db6741eff3bcdd5db72/0caa433303fad6052248c4790b829a82fe895b0c"><img src="/assets/hurl.png" alt="hurl" width="35"></a>:
 
 <pre class="highlight"><code class="sh">
-curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml -d 'search[people]=5538' -d 'search[tags]=conf call'
+curl -v -G -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries.xml -d 'search[people]=5538' -d 'search[tags]=conf call'
 </code></pre>
 </div>
 </div>
@@ -107,8 +107,8 @@ curl -v -G -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.l
 are returned per page. You can <a href="/#pagination">fetch multiple pages</a> by reading
 the “next” URL from the <code>Link</code> response header and using it to repeat the request.</p>
 
-<pre><code>GET https://apitest.letsfreckle.com/api/entries.json
-Link: &lt;https://apitest.letsfreckle.com/api/entries.json?page=2&amp;per_page=100&gt;; rel="next"
+<pre><code>GET https://apitest.nokotime.com/api/entries.json
+Link: &lt;https://apitest.nokotime.com/api/entries.json?page=2&amp;per_page=100&gt;; rel="next"
 </code></pre>
 
 <h3 id="roles">Roles</h3>
@@ -129,7 +129,7 @@ in projects they currently have access to.</p>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
     <span class="c1">// User ID the time is logged for (integer)</span>
     <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"user_name"</span> <span class="o">:</span> <span class="s2">"Lets Freckle"</span>
+    <span class="s2">"user_name"</span> <span class="o">:</span> <span class="s2">"Lets Noko"</span>
 
     <span class="c1">// false if entry or project are unbillable</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -140,7 +140,7 @@ in projects they currently have access to.</p>
     <span class="c1">// UTC timestamp when entry was last updated</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
     <span class="c1">// full description text (includes tags)</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
 
     <span class="c1">// All following fields are OPTIONAL</span>
     <span class="c1">// (optional) project_id, can be null</span>
@@ -153,7 +153,7 @@ in projects they currently have access to.</p>
     <span class="c1">// (optional) array of tags assigned to entry</span>
     <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
         <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
         <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span>
       <span class="p">}</span>
@@ -180,7 +180,7 @@ in projects they currently have access to.</p>
 <span class="p">}</span></code></pre>
 
 <p class="note">
-Please note that in Freckle an entry does not have to belong to a Project so the
+Please note that in Noko an entry does not have to belong to a Project so the
 project_id field is optional. It's set to <code>null</code> in JSON or
 <code>&lt;project-id type='integer' nil='true'/&gt;</code> in XML
 when there's no project assigned to an entry. Make sure your application does not
@@ -207,7 +207,7 @@ post body, as either XML or JSON.</p>
 This call assumes there's an <code>entry.json</code> file in the current directory:
 
 <pre class="highlight"><code class="sh">
-$ curl -v -d @entry.json -H "Content-type: application/json" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.json
+$ curl -v -d @entry.json -H "Content-type: application/json" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries.json
 </code></pre>
 
 Here's what <code>entry.json</code> looks like:
@@ -215,15 +215,15 @@ Here's what <code>entry.json</code> looks like:
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"entry"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"minutes"</span><span class="o">:</span> <span class="s2">"2h"</span><span class="p">,</span>
-    <span class="s2">"user"</span><span class="o">:</span> <span class="s2">"apitest@letsfreckle.com"</span><span class="p">,</span>
+    <span class="s2">"user"</span><span class="o">:</span> <span class="s2">"apitest@nokotime.com"</span><span class="p">,</span>
     <span class="s2">"project-id"</span><span class="o">:</span> <span class="mi">8475</span><span class="p">,</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Freckle RESTful API #test"</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Noko RESTful API #test"</span><span class="p">,</span>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-12-02"</span><span class="p">,</span>
     <span class="s2">"allow_hashtags"</span><span class="o">:</span> <span class="kc">true</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/de1f2d95cb0dd113180de90e40d77bd849257acd/958090a5395705c87fa80c1fd6d39dc715c4b860"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try this example on <a href="http://apitest.developer.nokotime.com/hurls/de1f2d95cb0dd113180de90e40d77bd849257acd/958090a5395705c87fa80c1fd6d39dc715c4b860"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
 </div>
 <div class="tab xml">
@@ -231,7 +231,7 @@ Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/de1f
 This call assumes there's an <code>entry.xml</code> file in the current directory:
 
 <pre class="highlight"><code class="sh">
-$ curl -v -d @entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries.xml
+$ curl -v -d @entry.xml -H "Content-type: text/xml" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries.xml
 </code></pre>
 
 Here's what <code>entry.xml</code> looks like:
@@ -240,16 +240,16 @@ Here's what <code>entry.xml</code> looks like:
 <pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;entry&gt;</span>
   <span class="nt">&lt;minutes&gt;</span>2h<span class="nt">&lt;/minutes&gt;</span>
-  <span class="nt">&lt;user&gt;</span>apitest@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;user&gt;</span>apitest@nokotime.com<span class="nt">&lt;/user&gt;</span>
   <span class="nt">&lt;project_id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>8475<span class="nt">&lt;/project_id&gt;</span>
-  <span class="nt">&lt;description&gt;</span>freckle restful api #test<span class="nt">&lt;/description&gt;</span>
+  <span class="nt">&lt;description&gt;</span>noko restful api #test<span class="nt">&lt;/description&gt;</span>
   <span class="nt">&lt;date&gt;</span>2009-10-15<span class="nt">&lt;/date&gt;</span>
   <span class="nt">&lt;allow_hashtags</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/allow_hashtags&gt;</span>
 <span class="nt">&lt;/entry&gt;</span>
 </code></pre>
 </div>
 
-Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/2a4d0713be0f86371c920616fdef8818b22d6074/62e180ae64e8ae4f6f9b99a3823effb9a2c9e537"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try this example on <a href="http://apitest.developer.nokotime.com/hurls/2a4d0713be0f86371c920616fdef8818b22d6074/62e180ae64e8ae4f6f9b99a3823effb9a2c9e537"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
 </div>
 </div>
@@ -259,7 +259,7 @@ Try this example on <a href="http://apitest.developer.letsfreckle.com/hurls/2a4d
 <p>These are the <strong>required attributes</strong> when creating new entries:</p>
 
 <p><strong><code>minutes</code></strong> (required) is a string containing the amount of time which should be
-logged for the entry. Freckle uses the <a href="http://letsfreckle.com/blog/2011/10/more-than-meets-the-eye-the-quick-entry-box/">same logic that the QuickEntry box uses</a>
+logged for the entry. Noko uses the <a href="http://nokotime.com/blog/2011/10/more-than-meets-the-eye-the-quick-entry-box/">same logic that the QuickEntry box uses</a>
 to parse the minutes field:</p>
 
 <pre><code>0:01 → 1 minute
@@ -291,15 +291,15 @@ the project the entry should be associated with. This field takes precedence if
 specifies the name of the project the entry should be associated with.</p>
 
 <p><strong><code>description</code></strong> (optional) contains the entries description, including tags.
-For classic Freckle accounts, and if you do not set the <code>allow_hashtags</code>
+For classic Noko accounts, and if you do not set the <code>allow_hashtags</code>
 option, tags are any substrings of the description that are not preceded
 by a “!!”, are one or two words in length, start and end with the beginning
 of the entry, the end of the entry or a comma “,”, are 30 characters or less in
 total and don’t start with a “!”.</p>
 
 <p><strong><code>allow_hashtags</code></strong> (optional, defaults to false) can be set to <code>true</code> if
-your application is hashtag-aware. In this case, Freckle will create hashtags
-for Hashtag-enabled accounts. This defaults to false so Freckle stays
+your application is hashtag-aware. In this case, Noko will create hashtags
+for Hashtag-enabled accounts. This defaults to false so Noko stays
 backwards-compatible with existing API clients.</p>
 
 <p>Here are some examples how tags are parsed:</p>
@@ -327,12 +327,12 @@ backwards-compatible with existing API clients.</p>
 
 <p>A “!!” anywhere in the description will stop tag parsing afterwards.</p>
 
-<p>Descriptions are automatically normalized by Freckle, by removing any extra whitespace,
+<p>Descriptions are automatically normalized by Noko, by removing any extra whitespace,
 and moving tags to the front in alphabetical order.</p>
 
 <h3 id="response-codes">Response codes</h3>
 
-<p><strong><code>201 Created</code></strong> means that the entry was successfully created in is now visible in Freckle.
+<p><strong><code>201 Created</code></strong> means that the entry was successfully created in is now visible in Noko.
 The <code>Location</code> header in the HTTP response contains the path to this
 new entry in the API. This path contains the entry ID which your application can
 store so it can update the same entry later.</p>
@@ -377,7 +377,7 @@ belong to an archived project.</p>
 Sample request (assumes a `entry.xml` file in the current directory`):
 
 <pre class="highlight"><code class="sh">
-$ curl -v -X PUT -d @entry.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/33.xml
+$ curl -v -X PUT -d @entry.xml -H "Content-type: text/xml" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries/33.xml
 </code></pre>
 
 Contents of PUT body (`entry.xml` file in current directory):
@@ -386,9 +386,9 @@ Contents of PUT body (`entry.xml` file in current directory):
 <pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;entry&gt;</span>
   <span class="nt">&lt;minutes&gt;</span>2h<span class="nt">&lt;/minutes&gt;</span>
-  <span class="nt">&lt;user&gt;</span>apitest@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;user&gt;</span>apitest@nokotime.com<span class="nt">&lt;/user&gt;</span>
   <span class="nt">&lt;project-id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>8475<span class="nt">&lt;/project-id&gt;</span>
-  <span class="nt">&lt;description&gt;</span>freckle restful api test<span class="nt">&lt;/description&gt;</span>
+  <span class="nt">&lt;description&gt;</span>noko restful api test<span class="nt">&lt;/description&gt;</span>
   <span class="nt">&lt;date&gt;</span>2009-10-15<span class="nt">&lt;/date&gt;</span>
 <span class="nt">&lt;/entry&gt;</span>
 </code></pre>
@@ -433,7 +433,7 @@ doesn’t belong to an archived project.</p>
 Sample request:
 
 <pre class="highlight"><code class="sh">
-curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/33.xml
+curl -v -X DELETE -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries/33.xml
 </code></pre>
 </div>
 </div>
@@ -454,9 +454,9 @@ invoiced or that the entry belongs to an archived project.</p>
 <pre><code>POST /api/entries/import
 </code></pre>
 
-<p>Use this API method instead of individual calls to POST /api/entries to create a larger number of entries at once. This is great when you want to import existing data to your Freckle account, and also a great fit for applications that collect data offline and want to bulk upload entries in one go.</p>
+<p>Use this API method instead of individual calls to POST /api/entries to create a larger number of entries at once. This is great when you want to import existing data to your Noko account, and also a great fit for applications that collect data offline and want to bulk upload entries in one go.</p>
 
-<p class="note">This is not the same as the *data import* functionality in the Freckle UI (where you can import files from various other services). Imports done with this API call can not be automatically rolled back.</p>
+<p class="note">This is not the same as the *data import* functionality in the Noko UI (where you can import files from various other services). Imports done with this API call can not be automatically rolled back.</p>
 
 <div class="tabs">
 <div class="selector">
@@ -466,7 +466,7 @@ invoiced or that the entry belongs to an archived project.</p>
 Sample request (assumes a `entries_import.xml` file in the current directory):
 
 <pre class="highlight"><code class="sh">
-$ curl -d @entries_import.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/entries/import.xml
+$ curl -d @entries_import.xml -H "Content-type: text/xml" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/entries/import.xml
 </code></pre>
 
 Sample POST body:
@@ -476,15 +476,15 @@ Sample POST body:
 <span class="nt">&lt;entries&gt;</span>
   <span class="nt">&lt;entry&gt;</span>
     <span class="nt">&lt;minutes&gt;</span>2h<span class="nt">&lt;/minutes&gt;</span>
-    <span class="nt">&lt;user&gt;</span>apitest@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
+    <span class="nt">&lt;user&gt;</span>apitest@nokotime.com<span class="nt">&lt;/user&gt;</span>
     <span class="nt">&lt;project-name&gt;</span>Fixture Company<span class="nt">&lt;/project-name&gt;</span>
-    <span class="nt">&lt;description&gt;</span>freckle restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;description&gt;</span>noko restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
     <span class="nt">&lt;date&gt;</span>2009-10-11<span class="nt">&lt;/date&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
   <span class="nt">&lt;entry&gt;</span>
     <span class="nt">&lt;minutes&gt;</span>30min<span class="nt">&lt;/minutes&gt;</span>
-    <span class="nt">&lt;user&gt;</span>apitest@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
-    <span class="nt">&lt;description&gt;</span>freckle restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;user&gt;</span>apitest@nokotime.com<span class="nt">&lt;/user&gt;</span>
+    <span class="nt">&lt;description&gt;</span>noko restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
     <span class="nt">&lt;date&gt;</span>2009-10-12<span class="nt">&lt;/date&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/entries&gt;</span>
@@ -516,7 +516,7 @@ an array of the newly created entries:</p>
     <span class="nt">&lt;billable</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/billable&gt;</span>
     <span class="nt">&lt;created-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2009-10-16T09:57:22Z<span class="nt">&lt;/created-at&gt;</span>
     <span class="nt">&lt;date</span> <span class="na">type=</span><span class="s">"date"</span><span class="nt">&gt;</span>2009-10-11<span class="nt">&lt;/date&gt;</span>
-    <span class="nt">&lt;description&gt;</span>freckle restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;description&gt;</span>noko restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
     <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>83601<span class="nt">&lt;/id&gt;</span>
     <span class="nt">&lt;minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>120<span class="nt">&lt;/minutes&gt;</span>
     <span class="nt">&lt;project-id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>8475<span class="nt">&lt;/project-id&gt;</span>
@@ -528,7 +528,7 @@ an array of the newly created entries:</p>
     <span class="nt">&lt;billable</span> <span class="na">type=</span><span class="s">"boolean"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/billable&gt;</span>
     <span class="nt">&lt;created-at</span> <span class="na">type=</span><span class="s">"date time"</span><span class="nt">&gt;</span>2009-10-16T09:57:22Z<span class="nt">&lt;/created-at&gt;</span>
     <span class="nt">&lt;date</span> <span class="na">type=</span><span class="s">"date"</span><span class="nt">&gt;</span>2009-10-12<span class="nt">&lt;/date&gt;</span>
-    <span class="nt">&lt;description&gt;</span>freckle restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;description&gt;</span>noko restful api test, bulk import<span class="nt">&lt;/description&gt;</span>
     <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>83602<span class="nt">&lt;/id&gt;</span>
     <span class="nt">&lt;minutes</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>30<span class="nt">&lt;/minutes&gt;</span>
     <span class="nt">&lt;project-id</span> <span class="na">type=</span><span class="s">"integer"</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/project-id&gt;</span>
@@ -554,45 +554,45 @@ entries referenced users that don’t exist or a no longer active.</p>
 
     <div class="columns four">
       <div class="column">
-        <h3>About Freckle</h3>
+        <h3>About Noko</h3>
         <ul>
-          <li><a href="https://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
-          <li><a href="https://letsfreckle.com/"> Freckle plans and pricing</a></li>
-          <li><a href="https://letsfreckle.com/terms/">Our user agreement</a></li>
-          <li><a href="https://letsfreckle.com/privacy/">Privacy policy</a></li>
+          <li><a href="https://nokotime.com/manifesto">The Noko manifesto</a></li>
+          <li><a href="https://nokotime.com/"> Noko plans and pricing</a></li>
+          <li><a href="https://nokotime.com/terms/">Our user agreement</a></li>
+          <li><a href="https://nokotime.com/privacy/">Privacy policy</a></li>
         </ul>
       </div>
 
       <div class="column">
         <h3>Us &amp; our company</h3>
         <ul>
-          <li><a href="https://letsfreckle.com/team/">Meet our team</a></li>
-          <li><a href="https://letsfreckle.com/blog/">Read our blog</a></li>
-          <li><a href="https://letsfreckle.com/contact/">Write us</a></li>
+          <li><a href="https://nokotime.com/team/">Meet our team</a></li>
+          <li><a href="https://nokotime.com/blog/">Read our blog</a></li>
+          <li><a href="https://nokotime.com/contact/">Write us</a></li>
         </ul>
       </div>
 
       <div class="column">
         <h3>Docs</h3>
         <ul>
-          <li><a href="http://help.letsfreckle.com/">FAQs</a></li>
-          <li><a href="http://developer.letsfreckle.com">Developer Documentation</a></li>
+          <li><a href="http://help.nokotime.com/">FAQs</a></li>
+          <li><a href="http://developer.nokotime.com">Developer Documentation</a></li>
         </ul>
       </div>
 
       <div class="column">
         <h3>You &amp; your account</h3>
         <ul>
-          <li><a href="http://help.letsfreckle.com/article/13-signing-in-to-freckle">How to sign in</a></li>
-          <li><a href="http://help.letsfreckle.com/">Get help &amp; contact support</a></li>
+          <li><a href="http://help.nokotime.com/article/13-signing-in-to-freckle">How to sign in</a></li>
+          <li><a href="http://help.nokotime.com/">Get help &amp; contact support</a></li>
         </ul>
       </div>
 
     </div>
 
     <div class="copyright">
-      &copy; 2008-2016 Slash7 LLC, all rights reserved.<br>
-      Freckle® is a registered trademark of Slash7 LLC.
+      &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
+      Noko® is a registered trademark of Slash7 LLC.
     </div>
     </div>
   </div>
@@ -638,6 +638,6 @@ entries referenced users that don’t exist or a no longer active.</p>
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
     })();
   </script>
-  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
+  <script async src="https://secure.nokotime.com/help/help.js"></script>
 </body>
 </html>

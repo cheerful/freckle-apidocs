@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>OAuth - Freckle Developer</title>
+  <title>OAuth - Noko Developer</title>
   <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
@@ -12,7 +12,7 @@
     <div id="nav">
       <div id="logo">
         <a href="/">
-          <img src="/assets/freckle.svg" alt="Freckle">
+          <img src="/assets/noko.svg" alt="Noko">
         </a>
       </div>
       Developer Documentation
@@ -65,9 +65,9 @@
 <li><a href="#web-application-flow">Web Application Flow</a></li>
   <li><a href="#non-web-application-flow">Non-Web Application Flow</a></li>
   <li><a href="#oauth-application-api">OAuth Application API</a></li>
-</ul><p>OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Freckle account without requiring their password. Freckle supports access to API resources using OAuth because tokens can be easily generated as part of a 3rd party integration and revoked by users at any time.</p>
+</ul><p>OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Noko account without requiring their password. Noko supports access to API resources using OAuth because tokens can be easily generated as part of a 3rd party integration and revoked by users at any time.</p>
 
-<p>Before you can start developing with the Freckle API, you must first <a href="https://help.letsfreckle.com/article/122-registering-a-new-freckle-app">register your application</a>. When you register, you will be given a unique Client ID and Secret. Your Client Secret should not be shared.</p>
+<p>Before you can start developing with the Noko API, you must first <a href="https://help.letsfreckle.com/article/122-registering-a-new-freckle-app">register your application</a>. When you register, you will be given a unique Client ID and Secret. Your Client Secret should not be shared.</p>
 
 <p>There are two supported ways to generate an access token for a specific user from your application: One designed specifically for use by Web Applications, and another that allows other types of applications to list, create, and confirm their Authorization Token for a user.</p>
 
@@ -75,16 +75,16 @@
 
 <p>All OAuth2 authorization requests are made through a single endpoint</p>
 
-<pre><code>https://secure.letsfreckle.com
+<pre><code>https://secure.nokotime.com
 </code></pre>
 
 <h2 id="web-application-flow">Web Application Flow</h2>
 
-<p>Below are the steps required to generate an access token for a Freckle user through an initial <code>GET</code> request to Freckle and a corresponding redirect back to your application.</p>
+<p>Below are the steps required to generate an access token for a Noko user through an initial <code>GET</code> request to Noko and a corresponding redirect back to your application.</p>
 
-<h3 id="redirect-users-to-request-freckle-access">1. Redirect users to request Freckle access</h3>
+<h3 id="redirect-users-to-request-noko-access">1. Redirect users to request Noko access</h3>
 
-<pre><code>GET https://secure.letsfreckle.com/oauth/2/authorize
+<pre><code>GET https://secure.nokotime.com/oauth/2/authorize
 </code></pre>
 
 <h4 id="parameters">Parameters:</h4>
@@ -94,7 +94,7 @@
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
-  <dd>The client ID you received from Freckle when you registered</dd>
+  <dd>The client ID you received from Noko when you registered</dd>
   <dd>Example: <code>client_id=abcdefghi1234</code>
 </dd>
   <dt>response_type</dt>
@@ -111,7 +111,7 @@
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data. If no <code>redirect_uri</code> is included in the request, Freckle will redirect users to the callback URL configured in the OAuth2 application settings.
+  <dd>The URL pointing to your application where users will be redirected to after they have authorized your application to use their Noko data. If no <code>redirect_uri</code> is included in the request, Noko will redirect users to the callback URL configured in the OAuth2 application settings.
 
     <h4 id="rules">Rules:</h4>
 
@@ -131,17 +131,17 @@ BAD:  http://oauth.example.com:8080/path
 BAD:  http://example.org
 </code></pre>
   </dd>
-</dl><h3 id="freckle-redirects-back-to-your-site-with-two-parameters">2. Freckle redirects back to your site with two parameters:</h3>
+</dl><h3 id="noko-redirects-back-to-your-site-with-two-parameters">2. Noko redirects back to your site with two parameters:</h3>
 
-<p>When the user has authorized your application, Freckle will redirect back to your application (either to the URL configured in the OAuth2 application settings, or the url specified in <code>redirect_uri</code>). The redirection will include the following query parameters:</p>
+<p>When the user has authorized your application, Noko will redirect back to your application (either to the URL configured in the OAuth2 application settings, or the url specified in <code>redirect_uri</code>). The redirection will include the following query parameters:</p>
 
 <dl>
 <dt>code</dt>
   <dd><strong>string</strong></dd>
-  <dd>A temporary code that you will send back to Freckle to get the access token. This code confirms that the user authorized your application to use their Freckle data, and that you received the request. This temporary code expires shortly after it’s issued, so be sure to use it quickly!</dd>
+  <dd>A temporary code that you will send back to Noko to get the access token. This code confirms that the user authorized your application to use their Noko data, and that you received the request. This temporary code expires shortly after it’s issued, so be sure to use it quickly!</dd>
   <dt>state</dt>
   <dd><strong>string</strong></dd>
-  <dd>If you provided a state in your <a href="#redirect-users-to-request-freckle-access">initial request</a> it will be returned back to you. Reject the redirect if this parameter does not match what you previously sent.</dd>
+  <dd>If you provided a state in your <a href="#redirect-users-to-request-noko-access">initial request</a> it will be returned back to you. Reject the redirect if this parameter does not match what you previously sent.</dd>
 </dl><h4 id="errors">Errors:</h4>
 
 <p>If the user denied access or there was a problem with the API request, the redirect will include the following query parameters:</p>
@@ -164,11 +164,11 @@ BAD:  http://example.org
   <dt>error_description</dt>
   <dd><strong>string</strong></dd>
   <dd>A short explanation of the error</dd>
-</dl><h3 id="post-to-freckle-to-get-the-access-token">3. POST to Freckle to get the access token.</h3>
+</dl><h3 id="post-to-noko-to-get-the-access-token">3. POST to Noko to get the access token.</h3>
 
-<p>After you have received the temporary code, you will need to <code>POST</code> to Freckle to exchange this temporary code for an access token</p>
+<p>After you have received the temporary code, you will need to <code>POST</code> to Noko to exchange this temporary code for an access token</p>
 
-<pre><code>POST https://secure.letsfreckle.com/oauth/2/access_token
+<pre><code>POST https://secure.nokotime.com/oauth/2/access_token
 </code></pre>
 
 <h4 id="parameters-1">Parameters:</h4>
@@ -178,17 +178,17 @@ BAD:  http://example.org
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
-  <dd>The client ID you received from Freckle when you registered your application.</dd>
+  <dd>The client ID you received from Noko when you registered your application.</dd>
   <dt>client_secret</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
-  <dd>the client secret you received from Freckle when you registered your application.</dd>
+  <dd>the client secret you received from Noko when you registered your application.</dd>
   <dt>code</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
-  <dd>the code you received as a response in <a href="#freckle-redirects-back-to-your-site-with-two-parameters">step 2</a>.</dd>
+  <dd>the code you received as a response in <a href="#noko-redirects-back-to-your-site-with-two-parameters">step 2</a>.</dd>
   <dt>grant_type</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
@@ -196,9 +196,9 @@ BAD:  http://example.org
   <dd>Must be set to <code>authorization_code</code>. This is usually handled by an OAuth2 client library.</dd>
   <dt>redirect_uri</dt>
   <dd>
-<em>Required if provided in <a href="#redirect-users-to-request-freckle-access">step 1</a></em> <strong>string</strong>
+<em>Required if provided in <a href="#redirect-users-to-request-noko-access">step 1</a></em> <strong>string</strong>
 </dd>
-  <dd>The URL pointing to your application where users will be redirected to after they have authorized your application to use their Freckle data. This must exactly match the value given in <a href="#redirect-users-to-request-freckle-access">step 1</a>.</dd>
+  <dd>The URL pointing to your application where users will be redirected to after they have authorized your application to use their Noko data. This must exactly match the value given in <a href="#redirect-users-to-request-noko-access">step 1</a>.</dd>
 </dl><h4 id="reponse">Reponse</h4>
 
 <p>The response will include the following values:</p>
@@ -269,7 +269,7 @@ BAD:  http://example.org
 
 <p>Once an access token has expired, you will need to use the <code>refresh_token</code> to request a new <code>access_token</code>.</p>
 
-<pre><code>POST https://secure.letsfreckle.com/oauth/2/access_token
+<pre><code>POST https://secure.nokotime.com/oauth/2/access_token
 </code></pre>
 
 <h4 id="parameters-2">Parameters</h4>
@@ -279,12 +279,12 @@ BAD:  http://example.org
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
-  <dd>The client ID you received from Freckle when you registered your application.</dd>
+  <dd>The client ID you received from Noko when you registered your application.</dd>
   <dt>client_secret</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
-  <dd>the client secret you received from Freckle when you registered your application.</dd>
+  <dd>the client secret you received from Noko when you registered your application.</dd>
   <dt>refresh_token</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
@@ -354,7 +354,7 @@ BAD:  http://example.org
 
 <p>In order to use the OAuth Authorizations API, you will need to specify which subdomain the user wants to authenticate with. This method returns a list of all the subdomains associated with the user, along with URLs to their respective avatars.</p>
 
-<pre><code>GET https://secure.letsfreckle.com/subdomains
+<pre><code>GET https://secure.nokotime.com/subdomains
 </code></pre>
 
 <h4 id="response-1">Response</h4>
@@ -364,13 +364,13 @@ BAD:  http://example.org
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"testit"</span><span class="p">,</span>
-    <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
+    <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
 <h3 id="list-all-authorizations">List all authorizations</h3>
 
-<pre><code>GET https://secure.letsfreckle.com/authorizations/:subdomain
+<pre><code>GET https://secure.nokotime.com/authorizations/:subdomain
 </code></pre>
 
 <h4 id="response-2">Response</h4>
@@ -380,15 +380,15 @@ BAD:  http://example.org
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
     <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
       <span class="s2">"current_user"</span><span class="p">,</span>
       <span class="s2">"project"</span>
     <span class="p">],</span>
     <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
     <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
       <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
     <span class="p">},</span>
     <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
@@ -404,7 +404,7 @@ BAD:  http://example.org
 
 <h3 id="get-a-single-authorization">Get a single Authorization</h3>
 
-<pre><code>GET https://secure.letsfreckle.com/authorizations/:subdomain/:id
+<pre><code>GET https://secure.nokotime.com/authorizations/:subdomain/:id
 </code></pre>
 
 <h4 id="response-3">Response</h4>
@@ -413,15 +413,15 @@ BAD:  http://example.org
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
   <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">"current_user"</span><span class="p">,</span>
     <span class="s2">"project"</span>
   <span class="p">],</span>
   <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
   <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
     <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
   <span class="p">},</span>
   <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
@@ -434,7 +434,7 @@ BAD:  http://example.org
 
 <p>When you are not building a Web Application, it might be easier to generate a token using a single POST request.</p>
 
-<pre><code>POST https://secure.letsfreckle.com/authorizations/:subdomain
+<pre><code>POST https://secure.nokotime.com/authorizations/:subdomain
 </code></pre>
 
 <h4 id="inputs">Inputs</h4>
@@ -454,7 +454,7 @@ BAD:  http://example.org
   <dd>
 <em>Optional</em> <strong>array of strings</strong>
 </dd>
-  <dd>The type of access your application needs to the user’s Freckle data.</dd>
+  <dd>The type of access your application needs to the user’s Noko data.</dd>
   <dd>If no value is provided, then the permissions you chose when you setup your application will be used.</dd>
   <dt>note</dt>
   <dd>
@@ -472,15 +472,15 @@ BAD:  http://example.org
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
   <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">"current_user"</span><span class="p">,</span>
     <span class="s2">"project"</span>
   <span class="p">],</span>
   <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
   <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
     <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
   <span class="p">},</span>
   <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
@@ -497,7 +497,7 @@ BAD:  http://example.org
 
 <p>This method checks for an authorization for the specified OAuth application. If the authorization does not exist for this user, it is automatically created.</p>
 
-<pre><code>PUT https://secure.letsfreckle.com/authorizations/:subdomain/clients/:client_id
+<pre><code>PUT https://secure.nokotime.com/authorizations/:subdomain/clients/:client_id
 </code></pre>
 
 <h4 id="inputs-1">Inputs</h4>
@@ -512,7 +512,7 @@ BAD:  http://example.org
   <dd>
 <em>Optional</em> <strong>array of strings</strong>
 </dd>
-  <dd>The type of access your application needs to the user’s Freckle data.</dd>
+  <dd>The type of access your application needs to the user’s Noko data.</dd>
   <dd>If no value is provided, then the permissions you chose when you setup your application will be used.</dd>
   <dt>note</dt>
   <dd>
@@ -529,15 +529,15 @@ BAD:  http://example.org
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
   <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">"current_user"</span><span class="p">,</span>
     <span class="s2">"project"</span>
   <span class="p">],</span>
   <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
   <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
     <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
   <span class="p">},</span>
   <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
@@ -551,15 +551,15 @@ BAD:  http://example.org
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
   <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">"current_user"</span><span class="p">,</span>
     <span class="s2">"project"</span>
   <span class="p">],</span>
   <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
   <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
     <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
   <span class="p">},</span>
   <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
@@ -574,7 +574,7 @@ BAD:  http://example.org
 
 <h3 id="update-an-existing-authorization">Update an existing Authorization</h3>
 
-<pre><code>PUT https://secure.letsfreckle.com/authroizations/:subdomain/:id
+<pre><code>PUT https://secure.nokotime.com/authroizations/:subdomain/:id
 </code></pre>
 
 <h4 id="parameters-3">Parameters:</h4>
@@ -594,27 +594,27 @@ BAD:  http://example.org
   <dd>
 <em>Optional</em> <strong>array of strings</strong>
 </dd>
-  <dd>The list of scopes to add to this authorization. Adding new scopes allows your application to access additional information from the user’s Freckle account. Non-existent scopes, or scopes already applied for this authorization will be ignored.</dd>
+  <dd>The list of scopes to add to this authorization. Adding new scopes allows your application to access additional information from the user’s Noko account. Non-existent scopes, or scopes already applied for this authorization will be ignored.</dd>
   <dt>remove_scopes</dt>
   <dd>
 <em>Optional</em> <strong>array of strings</strong>
 </dd>
-  <dd>The list of scopes to remove from this authorization. Removing scopes prevents your application from accessing specific information from the user’s Freckle account. Scopes that are not currently applied for this authorization will be ignored.</dd>
+  <dd>The list of scopes to remove from this authorization. Removing scopes prevents your application from accessing specific information from the user’s Noko account. Scopes that are not currently applied for this authorization will be ignored.</dd>
 </dl><h4 id="response-5">Response</h4>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
   <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">"current_user"</span><span class="p">,</span>
     <span class="s2">"project"</span>
   <span class="p">],</span>
   <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
   <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
     <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
   <span class="p">},</span>
   <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
@@ -629,7 +629,7 @@ BAD:  http://example.org
 
 <h3 id="delete-an-authorization">Delete an Authorization</h3>
 
-<pre><code>DELETE https://secure.letsfreckle.com/authorizations/:subdomain/:id
+<pre><code>DELETE https://secure.nokotime.com/authorizations/:subdomain/:id
 </code></pre>
 
 <h4 id="response-6">Response</h4>
@@ -656,7 +656,7 @@ BAD:  http://example.org
 
 <p>This method allows you to confirm a token’s validity. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
-<pre><code>GET https://secure.letsfreckle.com/applications/:client_id/tokens/:access_token
+<pre><code>GET https://secure.nokotime.com/applications/:client_id/tokens/:access_token
 </code></pre>
 
 <h4 id="response-if-the-token-does-not-exist">Response if the token does not exist</h4>
@@ -668,15 +668,15 @@ BAD:  http://example.org
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/authorizations/1"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
   <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">"current_user"</span><span class="p">,</span>
     <span class="s2">"project"</span>
   <span class="p">],</span>
   <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
   <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestfreckleapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Freckle App"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
     <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
   <span class="p">},</span>
   <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
@@ -689,7 +689,7 @@ BAD:  http://example.org
 
 <p>The owner of an OAuth application can revoke every token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
-<pre><code>DELETE https://secure.letsfreckle.com/applications/:client_id/tokens
+<pre><code>DELETE https://secure.nokotime.com/applications/:client_id/tokens
 </code></pre>
 
 <h4 id="response-8">Response</h4>
@@ -699,7 +699,7 @@ BAD:  http://example.org
 
 <p>The owner of an OAuth application can also revoke a single token that has been created for this authorization. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
-<pre><code>DELETE https://secure.letsfreckle.com/applications/:client_id/tokens/:access_token
+<pre><code>DELETE https://secure.nokotime.com/applications/:client_id/tokens/:access_token
 </code></pre>
 
 <h4 id="response-9">Response</h4>
@@ -710,51 +710,51 @@ BAD:  http://example.org
 
         <div class="columns four">
           <div class="column">
-            <h3>About Freckle</h3>
+            <h3>About Noko</h3>
             <ul>
-              <li><a href="https://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
-              <li><a href="https://letsfreckle.com/"> Freckle plans and pricing</a></li>
-              <li><a href="https://letsfreckle.com/terms/">Our user agreement</a></li>
-              <li><a href="https://letsfreckle.com/privacy/">Privacy policy</a></li>
+              <li><a href="https://nokotime.com/manifesto">The Noko manifesto</a></li>
+              <li><a href="https://nokotime.com/"> Noko plans and pricing</a></li>
+              <li><a href="https://nokotime.com/terms/">Our user agreement</a></li>
+              <li><a href="https://nokotime.com/privacy/">Privacy policy</a></li>
             </ul>
           </div>
 
           <div class="column">
             <h3>Us &amp; our company</h3>
             <ul>
-              <li><a href="https://letsfreckle.com/team/">Meet our team</a></li>
-              <li><a href="https://letsfreckle.com/blog/">Read our blog</a></li>
-              <li><a href="https://letsfreckle.com/contact/">Write us</a></li>
+              <li><a href="https://nokotime.com/team/">Meet our team</a></li>
+              <li><a href="https://nokotime.com/blog/">Read our blog</a></li>
+              <li><a href="https://nokotime.com/contact/">Write us</a></li>
             </ul>
           </div>
 
           <div class="column">
             <h3>Docs</h3>
             <ul>
-              <li><a href="http://help.letsfreckle.com/">FAQs</a></li>
-              <li><a href="http://developer.letsfreckle.com">Developer Documentation</a></li>
+              <li><a href="http://help.nokotime.com/">FAQs</a></li>
+              <li><a href="http://developer.nokotime.com">Developer Documentation</a></li>
             </ul>
           </div>
 
           <div class="column">
             <h3>You &amp; your account</h3>
             <ul>
-              <li><a href="http://help.letsfreckle.com/article/13-signing-in-to-freckle">How to sign in</a></li>
-              <li><a href="http://help.letsfreckle.com/">Get help &amp; contact support</a></li>
+              <li><a href="http://help.nokotime.com/article/13-signing-in-to-freckle">How to sign in</a></li>
+              <li><a href="http://help.nokotime.com/">Get help &amp; contact support</a></li>
             </ul>
           </div>
 
         </div>
 
         <div class="copyright">
-          &copy; 2008-2016 Slash7 LLC, all rights reserved.<br>
-          Freckle® is a registered trademark of Slash7 LLC.
+          &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
+          Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>
     </div>
   </div>
 
-  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
+  <script async src="https://secure.nokotime.com/help/help.js"></script>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
@@ -793,7 +793,7 @@ BAD:  http://example.org
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-37896092-1']);
-    _gaq.push(['_setDomainName', 'letsfreckle.com']);
+    _gaq.push(['_setDomainName', 'nokotime.com']);
     _gaq.push(['_trackPageview']);
 
     (function() {

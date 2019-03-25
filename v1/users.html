@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Freckle API: Users</title>
+  <title>Noko API: Users</title>
   <link rel="stylesheet" href="/assets/v1/stylesheet.css" type="text/css">
-  <meta name="description" content="Manage Freckle users with the Freckle Time Tracking RESTful API.">
+  <meta name="description" content="Manage Noko users with the Noko Time Tracking RESTful API.">
 </head>
 
 <!-- Google Tag Manager -->
@@ -20,7 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body>
   <div id="nav" class="banner">
     <div>
-    <a href="http://letsfreckle.com" class="back">&larr; Freckle</a>
+    <a href="http://nokotime.com" class="back">&larr; Noko</a>
     <a href="index.html">API Basics</a>
     <a href="entries.html">Entries</a>
     <a href="projects.html">Projects</a>
@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <div id="content">
-    <h1><img id="logo" src="/assets/freckle.svg" alt="Freckle"> API: Users</h1>
+    <h1><img id="logo" src="/assets/noko.svg" alt="Noko"> API: Users</h1>
 
     <ul id="markdown-toc">
 <li><a href="#list-users">List users</a></li>
@@ -71,7 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="tab json active">
 <pre class="highlight"><code class="sh">
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users.json
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users.json
 </code></pre>
 
 Response:
@@ -80,22 +80,22 @@ Response:
     <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"week_start"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
       <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Freckle"</span><span class="p">,</span>
+      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Noko"</span><span class="p">,</span>
       <span class="s2">"permissions"</span><span class="o">:</span> <span class="s2">"integration, time, invoicing, reports, tags, </span>
 <span class="s2">        expenses, projects, team, people, account, billing, import"</span><span class="p">,</span>
       <span class="s2">"login"</span><span class="o">:</span> <span class="s2">"admin"</span><span class="p">,</span>
       <span class="s2">"time_format"</span><span class="o">:</span> <span class="s2">"fraction"</span><span class="p">,</span>
-      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"apitestadmin@letsfreckle.com"</span><span class="p">,</span>
+      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"apitestadmin@nokotime.com"</span><span class="p">,</span>
       <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"Lets"</span><span class="p">,</span>
       <span class="s2">"hashtags"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">},</span></code></pre>
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/274cffe2634174d4be8aedc1ede1b7aa8b1152e1/3effedf1507d0e1f33e601216e60ef059291dabe"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try with <a href="http://apitest.developer.nokotime.com/hurls/274cffe2634174d4be8aedc1ede1b7aa8b1152e1/3effedf1507d0e1f33e601216e60ef059291dabe"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 <div class="tab xml">
 <pre class="highlight"><code class="sh">
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users.xml
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users.xml
 </code></pre>
 
 Response:
@@ -104,10 +104,10 @@ Response:
 <pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;users</span> <span class="na">type=</span><span class="s">"array"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;user&gt;</span>
-    <span class="nt">&lt;email&gt;</span>apitestadmin@letsfreckle.com<span class="nt">&lt;/email&gt;</span>
+    <span class="nt">&lt;email&gt;</span>apitestadmin@nokotime.com<span class="nt">&lt;/email&gt;</span>
     <span class="nt">&lt;first-name&gt;</span>Lets<span class="nt">&lt;/first-name&gt;</span>
     <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>5538<span class="nt">&lt;/id&gt;</span>
-    <span class="nt">&lt;last-name&gt;</span>Freckle<span class="nt">&lt;/last-name&gt;</span>
+    <span class="nt">&lt;last-name&gt;</span>Noko<span class="nt">&lt;/last-name&gt;</span>
     <span class="nt">&lt;login&gt;</span>admin<span class="nt">&lt;/login&gt;</span>
     <span class="nt">&lt;time-format&gt;</span>fraction<span class="nt">&lt;/time-format&gt;</span>
     <span class="nt">&lt;week-start</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/week-start&gt;</span>
@@ -121,7 +121,7 @@ Response:
 </div>
 
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/3d18d9ab851f3f7a5b97a92a22d9a07901afae4f/5774bcd466bb2529d08ab4f4bd69b81233d73ee1"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try with <a href="http://apitest.developer.nokotime.com/hurls/3d18d9ab851f3f7a5b97a92a22d9a07901afae4f/5774bcd466bb2529d08ab4f4bd69b81233d73ee1"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 </div>
 
@@ -147,7 +147,7 @@ Try with <a href="http://apitest.developer.letsfreckle.com/hurls/3d18d9ab851f3f7
 </div>
 <div class="tab json active">
 <pre class="highlight"><code class="sh">
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538.json
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538.json
 </code></pre>
 
 Response:
@@ -155,21 +155,21 @@ Response:
   <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"week_start"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Freckle"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Noko"</span><span class="p">,</span>
     <span class="s2">"permissions"</span><span class="o">:</span> <span class="s2">"integration, time, invoicing, reports, tags,</span>
 <span class="s2">      expenses, projects, team, people, account, billing, import"</span><span class="p">,</span>
     <span class="s2">"time_format"</span><span class="o">:</span> <span class="s2">"fraction"</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"apitestadmin@letsfreckle.com"</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"apitestadmin@nokotime.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"Lets"</span><span class="p">,</span>
     <span class="s2">"hashtags"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/406175f1eb7a4e07c9b8f284217c084b23e7cb20/9cdff37a372430b3721f557537ce5595c828bb5a"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try with <a href="http://apitest.developer.nokotime.com/hurls/406175f1eb7a4e07c9b8f284217c084b23e7cb20/9cdff37a372430b3721f557537ce5595c828bb5a"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 <div class="tab xml">
 <pre class="highlight"><code class="sh">
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538.xml
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538.xml
 </code></pre>
 
 Response:
@@ -177,10 +177,10 @@ Response:
 <div class="highlight">
 <pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;user&gt;</span>
-  <span class="nt">&lt;email&gt;</span>apitestadmin@letsfreckle.com<span class="nt">&lt;/email&gt;</span>
+  <span class="nt">&lt;email&gt;</span>apitestadmin@nokotime.com<span class="nt">&lt;/email&gt;</span>
   <span class="nt">&lt;first-name&gt;</span>Lets<span class="nt">&lt;/first-name&gt;</span>
   <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>5538<span class="nt">&lt;/id&gt;</span>
-  <span class="nt">&lt;last-name&gt;</span>Freckle<span class="nt">&lt;/last-name&gt;</span>
+  <span class="nt">&lt;last-name&gt;</span>Noko<span class="nt">&lt;/last-name&gt;</span>
   <span class="nt">&lt;time-format&gt;</span>fraction<span class="nt">&lt;/time-format&gt;</span>
   <span class="nt">&lt;week-start</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/week-start&gt;</span>
   <span class="nt">&lt;permissions&gt;</span>integration, time, invoicing, reports, tags, 
@@ -191,7 +191,7 @@ Response:
 </div>
 
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/9e4b54872c4c0ccc8f2d87a304e15bb918b6e1e5/859678e18961ddc7a59b5931ffc1070476c66541"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try with <a href="http://apitest.developer.nokotime.com/hurls/9e4b54872c4c0ccc8f2d87a304e15bb918b6e1e5/859678e18961ddc7a59b5931ffc1070476c66541"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 </div>
 
@@ -215,7 +215,7 @@ Other roles have access to all users in the account.</p>
 <p>Returns details about the currently logged in user. 
 This method is otherwise identical with <code>GET /api/users/&lt;id&gt;</code>.</p>
 
-<p>Try on <a href="http://apitest.developer.letsfreckle.com/hurls/2ada287ae61ad278c44fdf081db506e88deb22b2/17b262450ddfd8195aa4f3e77626dfa115988ced"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.</p>
+<p>Try on <a href="http://apitest.developer.nokotime.com/hurls/2ada287ae61ad278c44fdf081db506e88deb22b2/17b262450ddfd8195aa4f3e77626dfa115988ced"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.</p>
 
 <h2 id="get-a-users-avatar">Get a user’s avatar</h2>
 
@@ -232,24 +232,24 @@ we strongly suggest caching these images.</p>
 </div>
 <div class="tab json active">
 <pre class="highlight"><code class="sh">
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538/avatar.json
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538/avatar.json
 </code></pre>
 
 Response:
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
+  <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"http://apitest.nokotime.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-  <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span>
+  <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"http://apitest.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span>
 <span class="p">}</span></code></pre>
 
 If the user has no current avatar, the `thumbnail` and `avatar` tag attributes are set to empty strings.
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/fa45bad8cdbcf57ee5d39f2086d74360d6d2ffd8/73f2a3532443e9f206f4809c656ecb5a84178c42"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try with <a href="http://apitest.developer.nokotime.com/hurls/fa45bad8cdbcf57ee5d39f2086d74360d6d2ffd8/73f2a3532443e9f206f4809c656ecb5a84178c42"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 <div class="tab xml">
 <pre class="highlight"><code class="sh">
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/users/5538/avatar.xml
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/users/5538/avatar.xml
 </code></pre>
 
 Response:
@@ -257,8 +257,8 @@ Response:
 <div class="highlight">
 <pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;user&gt;</span>
-  <span class="nt">&lt;thumbnail&gt;</span>http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar_profile.jpg<span class="nt">&lt;/thumbnail&gt;</span>
-  <span class="nt">&lt;avatar&gt;</span>http://apitest.letsfreckle.com/images/avatars/0000/0001/avatar.jpg<span class="nt">&lt;/avatar&gt;</span>
+  <span class="nt">&lt;thumbnail&gt;</span>http://apitest.nokotime.com/images/avatars/0000/0001/avatar_profile.jpg<span class="nt">&lt;/thumbnail&gt;</span>
+  <span class="nt">&lt;avatar&gt;</span>http://apitest.nokotime.com/images/avatars/0000/0001/avatar.jpg<span class="nt">&lt;/avatar&gt;</span>
   <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>5538<span class="nt">&lt;/id&gt;</span>
 <span class="nt">&lt;/user&gt;</span>
 </code></pre>
@@ -276,7 +276,7 @@ If the user has no current avatar, the `thumbnail` and `avatar` tags will be emp
 </code></pre>
 </div>
 
-Try with <a href="http://apitest.developer.letsfreckle.com/hurls/fc7ae5b212e6271a6a92c64a605d748b4b04f692/a23d67c210866dbe9dc9dfa96593c58532253b82"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+Try with <a href="http://apitest.developer.nokotime.com/hurls/fc7ae5b212e6271a6a92c64a605d748b4b04f692/a23d67c210866dbe9dc9dfa96593c58532253b82"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 </div>
 </div>
 
@@ -317,7 +317,7 @@ We plan to support OAuth authentication in a future API version.
 </div>
 <div class="tab json active">
 <pre class="highlight"><code class="sh">
-$ curl https://test:testtest@apitest.letsfreckle.com/api/user/api_auth_token.json
+$ curl https://test:testtest@apitest.nokotime.com/api/user/api_auth_token.json
 </code></pre>
 
 Note that no API token is given, instead HTTP Basic Auth is used.
@@ -332,7 +332,7 @@ Response:
 </div>
 <div class="tab xml">
 <pre class="highlight"><code class="sh">
-$ curl https://test:testtest@apitest.letsfreckle.com/api/user/api_auth_token.xml
+$ curl https://test:testtest@apitest.nokotime.com/api/user/api_auth_token.xml
 </code></pre>
 
 Note that no API token is given, instead HTTP Basic Auth is used.
@@ -368,7 +368,7 @@ email and password.</p>
 <pre><code>POST /api/users
 </code></pre>
 
-<p><em>You can create new users, as long as your account limits are not reached. For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
+<p><em>You can create new users, as long as your account limits are not reached. For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Noko account.</em></p>
 
 <p>This method, as well as the update and delete methods, are intended to make
 it easier to synchronize users with your own systems. Note that you can’t set
@@ -376,12 +376,12 @@ or change passwords.</p>
 
 <p>Only the <code>first_name</code>, <code>last_name</code> and <code>email</code> fields can be set.</p>
 
-<p>Creating a user immediately sends them an invite email to the Freckle account.</p>
+<p>Creating a user immediately sends them an invite email to the Noko account.</p>
 
 <p>Request example, expects a <code>users.xml</code> file in the current directory:</p>
 
 <pre class="highlight"><code class="sh">
-$ curl -d @data/users.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j https://somaccount.letsfreckle.com/api/users.xml
+$ curl -d @data/users.xml -H "Content-type: text/xml" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j https://somaccount.nokotime.com/api/users.xml
 </code></pre>
 
 <p>Sample post body:</p>
@@ -389,7 +389,7 @@ $ curl -d @data/users.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6p
 <div class="highlight">
 <pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;user&gt;</span>
-  <span class="nt">&lt;email&gt;</span>foobar@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;email&gt;</span>foobar@nokotime.com<span class="nt">&lt;/user&gt;</span>
   <span class="nt">&lt;first_name&gt;</span>foo<span class="nt">&lt;/first_name&gt;</span>
   <span class="nt">&lt;last_name&gt;</span>bar<span class="nt">&lt;/last_name&gt;</span>
 <span class="nt">&lt;/user&gt;</span>
@@ -417,7 +417,7 @@ created user.</p>
 <p>Request example, expects a <code>users.xml</code> file in the current directory:</p>
 
 <pre class="highlight"><code class="sh">
-$ curl -d @user.xml -X PUT -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://somaccount.letsfreckle.com/api/user/ID.xml
+$ curl -d @user.xml -X PUT -H "Content-type: text/xml" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://somaccount.nokotime.com/api/user/ID.xml
 </code></pre>
 
 <p>Request body example:</p>
@@ -425,7 +425,7 @@ $ curl -d @user.xml -X PUT -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6
 <div class="highlight">
 <pre><code class="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;user&gt;</span>
-  <span class="nt">&lt;email&gt;</span>foobar@letsfreckle.com<span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;email&gt;</span>foobar@nokotime.com<span class="nt">&lt;/user&gt;</span>
   <span class="nt">&lt;first_name&gt;</span>foo<span class="nt">&lt;/first_name&gt;</span>
   <span class="nt">&lt;last_name&gt;</span>bar<span class="nt">&lt;/last_name&gt;</span>
 <span class="nt">&lt;/user&gt;</span>
@@ -449,16 +449,16 @@ data was invalid (for example, email address is a invalid format).</p>
 <pre><code>DELETE /api/users/&lt;id&gt;
 </code></pre>
 
-<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Freckle account.</em></p>
+<p><em>For accounts with subscriptions that include per-user pricing, calling this action may change the billing amount total for the next monthly billing cycle and/or change the next billing date if there is an active prepayment for this Noko account.</em></p>
 
 <p>Deactivates a user, or deletes the user if they have no entries.</p>
 
-<p>Users that have logged time in Freckle are never actually deleted, just deactivated.
+<p>Users that have logged time in Noko are never actually deleted, just deactivated.
 Currently, reactivation of a user is only available
-on the team page in the Freckle interface.</p>
+on the team page in the Noko interface.</p>
 
 <pre class="highlight"><code class="sh">
-$ curl -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/user/12345678.xml
+$ curl -X DELETE -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/user/12345678.xml
 </code></pre>
 
 <h3 id="response-codes-6">Response codes</h3>
@@ -479,45 +479,45 @@ The account owner can’t delete him- or herself.</p>
 
     <div class="columns four">
       <div class="column">
-        <h3>About Freckle</h3>
+        <h3>About Noko</h3>
         <ul>
-          <li><a href="https://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
-          <li><a href="https://letsfreckle.com/"> Freckle plans and pricing</a></li>
-          <li><a href="https://letsfreckle.com/terms/">Our user agreement</a></li>
-          <li><a href="https://letsfreckle.com/privacy/">Privacy policy</a></li>
+          <li><a href="https://nokotime.com/manifesto">The Noko manifesto</a></li>
+          <li><a href="https://nokotime.com/"> Noko plans and pricing</a></li>
+          <li><a href="https://nokotime.com/terms/">Our user agreement</a></li>
+          <li><a href="https://nokotime.com/privacy/">Privacy policy</a></li>
         </ul>
       </div>
 
       <div class="column">
         <h3>Us &amp; our company</h3>
         <ul>
-          <li><a href="https://letsfreckle.com/team/">Meet our team</a></li>
-          <li><a href="https://letsfreckle.com/blog/">Read our blog</a></li>
-          <li><a href="https://letsfreckle.com/contact/">Write us</a></li>
+          <li><a href="https://nokotime.com/team/">Meet our team</a></li>
+          <li><a href="https://nokotime.com/blog/">Read our blog</a></li>
+          <li><a href="https://nokotime.com/contact/">Write us</a></li>
         </ul>
       </div>
 
       <div class="column">
         <h3>Docs</h3>
         <ul>
-          <li><a href="http://help.letsfreckle.com/">FAQs</a></li>
-          <li><a href="http://developer.letsfreckle.com">Developer Documentation</a></li>
+          <li><a href="http://help.nokotime.com/">FAQs</a></li>
+          <li><a href="http://developer.nokotime.com">Developer Documentation</a></li>
         </ul>
       </div>
 
       <div class="column">
         <h3>You &amp; your account</h3>
         <ul>
-          <li><a href="http://help.letsfreckle.com/article/13-signing-in-to-freckle">How to sign in</a></li>
-          <li><a href="http://help.letsfreckle.com/">Get help &amp; contact support</a></li>
+          <li><a href="http://help.nokotime.com/article/13-signing-in-to-freckle">How to sign in</a></li>
+          <li><a href="http://help.nokotime.com/">Get help &amp; contact support</a></li>
         </ul>
       </div>
 
     </div>
 
     <div class="copyright">
-      &copy; 2008-2016 Slash7 LLC, all rights reserved.<br>
-      Freckle® is a registered trademark of Slash7 LLC.
+      &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
+      Noko® is a registered trademark of Slash7 LLC.
     </div>
     </div>
   </div>
@@ -563,6 +563,6 @@ The account owner can’t delete him- or herself.</p>
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
     })();
   </script>
-  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
+  <script async src="https://secure.nokotime.com/help/help.js"></script>
 </body>
 </html>

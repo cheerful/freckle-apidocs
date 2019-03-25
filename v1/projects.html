@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Freckle API: Projects</title>
+  <title>Noko API: Projects</title>
   <link rel="stylesheet" href="/assets/v1/stylesheet.css" type="text/css">
-  <meta name="description" content="Access Freckle projects with the Freckle Time Tracking RESTful API.">
+  <meta name="description" content="Access Noko projects with the Noko Time Tracking RESTful API.">
 </head>
 
 <!-- Google Tag Manager -->
@@ -20,7 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body>
   <div id="nav" class="banner">
     <div>
-    <a href="http://letsfreckle.com" class="back">&larr; Freckle</a>
+    <a href="http://nokotime.com" class="back">&larr; Noko</a>
     <a href="index.html">API Basics</a>
     <a href="entries.html">Entries</a>
     <a href="projects.html">Projects</a>
@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <div id="content">
-    <h1><img id="logo" src="/assets/freckle.svg" alt="Freckle"> API: Projects</h1>
+    <h1><img id="logo" src="/assets/noko.svg" alt="Noko"> API: Projects</h1>
 
     <ul id="markdown-toc">
 <li><a href="#list-projects">List projects</a></li>
@@ -69,11 +69,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="xml">XML</div>
 </div>
 <div class="tab json active">
-Example request (<a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/147e67ebb705a6a4a60bbf5f6b38883bc9f906b7">try live</a>):
+Example request (<a href="http://apitest.developer.nokotime.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/147e67ebb705a6a4a60bbf5f6b38883bc9f906b7">try live</a>):
 
 
 <pre class="highlight"><code class="sh">
-$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
+$ curl -v -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects.json
 </code></pre>
 
 Response:
@@ -110,7 +110,7 @@ Response:
 </div>
 <div class="tab xml">
 <pre class="highlight"><code class="sh">
-$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
+$ curl -v -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects.xml
 </code></pre>
 
 Response:
@@ -230,7 +230,7 @@ Response:
 </div>
 <div class="tab json active">
 <pre class="highlight"><code class="sh">
-$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.json
+$ curl -v -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/34572.json
 </code></pre>
 
 Response:
@@ -266,7 +266,7 @@ Response:
 </div>
 <div class="tab xml">
 <pre class="highlight"><code class="sh">
-$ curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.xml
+$ curl -v -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/34572.xml
 </code></pre>
 
 Response:
@@ -327,7 +327,7 @@ Response:
 </div>
 <div class="tab xml active">
 <pre class="highlight"><code class="sh">
-$ curl -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
+$ curl -d @data/project.xml -H "Content-type: text/xml" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects.xml
 </code></pre>
 
 Post body:
@@ -346,7 +346,7 @@ Post body:
 
 <h3 id="response-codes-2">Response codes</h3>
 
-<p><strong><code>201 Created</code></strong> means that the project was successfully created in is now visible in Freckle.
+<p><strong><code>201 Created</code></strong> means that the project was successfully created in is now visible in Noko.
 The <code>Location</code> header in the HTTP response contains the path to this new project in the API. 
 This path contains the project ID which your application can
 store so it can use the project later in other API calls.</p>
@@ -367,7 +367,7 @@ Cache-Control: private, max-age=0, must-revalidate
 
 <p><strong><code>422 Unprocessable Entity</code></strong> means the request data was not valid, for example a
 required field was omitted, a project with the same name already exists, or the 
-1 project limit of free Freckle accounts has been reached.</p>
+1 project limit of free Noko accounts has been reached.</p>
 
 <h3 id="roles-2">Roles</h3>
 
@@ -384,7 +384,7 @@ required field was omitted, a project with the same name already exists, or the
 </div>
 <div class="tab xml active">
 <pre class="highlight"><code class="sh">
-$ curl -v -X PUT -d @data/project.xml -H "Content-type: text/xml" -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/34572.xml
+$ curl -v -X PUT -d @data/project.xml -H "Content-type: text/xml" -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/34572.xml
 </code></pre>
 
 Post body:
@@ -411,7 +411,7 @@ Post body:
 
 <p><strong><code>422 Unprocessable Entity</code></strong> means the request data was not valid, for example a
 required field was omitted, a project with the same name already exists, or the 
-1 project limit of free Freckle accounts has been reached.</p>
+1 project limit of free Noko accounts has been reached.</p>
 
 <p><strong><code>400 Bad Request</code></strong> means the request data wasn’t properly formatted, for example a field has the incorrect data type.</p>
 
@@ -433,7 +433,7 @@ We recommend to archive projects instead.</p>
 </div>
 <div class="tab xml active">
 <pre class="highlight"><code class="sh">
-$ curl -v -X DELETE -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2.xml
+$ curl -v -X DELETE -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/2.xml
 </code></pre>
 </div>
 </div>
@@ -462,7 +462,7 @@ as plain text in the response body.</p>
 </div>
 <div class="tab json active">
 <pre class="highlight"><code class="sh">
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/active.json
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/2/active.json
 </code></pre>
 </div>
 </div>
@@ -488,7 +488,7 @@ $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsf
 </div>
 <div class="tab json active">
 <pre class="highlight"><code class="sh">
-$ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects/2/archive.json
+$ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects/2/archive.json
 </code></pre>
 </div>
 </div>
@@ -507,45 +507,45 @@ $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsf
 
     <div class="columns four">
       <div class="column">
-        <h3>About Freckle</h3>
+        <h3>About Noko</h3>
         <ul>
-          <li><a href="https://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
-          <li><a href="https://letsfreckle.com/"> Freckle plans and pricing</a></li>
-          <li><a href="https://letsfreckle.com/terms/">Our user agreement</a></li>
-          <li><a href="https://letsfreckle.com/privacy/">Privacy policy</a></li>
+          <li><a href="https://nokotime.com/manifesto">The Noko manifesto</a></li>
+          <li><a href="https://nokotime.com/"> Noko plans and pricing</a></li>
+          <li><a href="https://nokotime.com/terms/">Our user agreement</a></li>
+          <li><a href="https://nokotime.com/privacy/">Privacy policy</a></li>
         </ul>
       </div>
 
       <div class="column">
         <h3>Us &amp; our company</h3>
         <ul>
-          <li><a href="https://letsfreckle.com/team/">Meet our team</a></li>
-          <li><a href="https://letsfreckle.com/blog/">Read our blog</a></li>
-          <li><a href="https://letsfreckle.com/contact/">Write us</a></li>
+          <li><a href="https://nokotime.com/team/">Meet our team</a></li>
+          <li><a href="https://nokotime.com/blog/">Read our blog</a></li>
+          <li><a href="https://nokotime.com/contact/">Write us</a></li>
         </ul>
       </div>
 
       <div class="column">
         <h3>Docs</h3>
         <ul>
-          <li><a href="http://help.letsfreckle.com/">FAQs</a></li>
-          <li><a href="http://developer.letsfreckle.com">Developer Documentation</a></li>
+          <li><a href="http://help.nokotime.com/">FAQs</a></li>
+          <li><a href="http://developer.nokotime.com">Developer Documentation</a></li>
         </ul>
       </div>
 
       <div class="column">
         <h3>You &amp; your account</h3>
         <ul>
-          <li><a href="http://help.letsfreckle.com/article/13-signing-in-to-freckle">How to sign in</a></li>
-          <li><a href="http://help.letsfreckle.com/">Get help &amp; contact support</a></li>
+          <li><a href="http://help.nokotime.com/article/13-signing-in-to-freckle">How to sign in</a></li>
+          <li><a href="http://help.nokotime.com/">Get help &amp; contact support</a></li>
         </ul>
       </div>
 
     </div>
 
     <div class="copyright">
-      &copy; 2008-2016 Slash7 LLC, all rights reserved.<br>
-      Freckle® is a registered trademark of Slash7 LLC.
+      &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
+      Noko® is a registered trademark of Slash7 LLC.
     </div>
     </div>
   </div>
@@ -591,6 +591,6 @@ $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsf
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
     })();
   </script>
-  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
+  <script async src="https://secure.nokotime.com/help/help.js"></script>
 </body>
 </html>

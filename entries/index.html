@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Entries - Freckle Developer</title>
+  <title>Entries - Noko Developer</title>
   <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
@@ -12,7 +12,7 @@
     <div id="nav">
       <div id="logo">
         <a href="/">
-          <img src="/assets/freckle.svg" alt="Freckle">
+          <img src="/assets/noko.svg" alt="Noko">
         </a>
       </div>
       Developer Documentation
@@ -57,8 +57,8 @@
   <li><a href="#get-a-single-entry">Get a single Entry</a></li>
   <li><a href="#create-an-entry">Create an Entry</a></li>
   <li><a href="#edit-an-entry">Edit an Entry</a></li>
-  <li><a href="#mark-entry-as-invoiced-outside-of-freckle">Mark Entry as invoiced outside of Freckle</a></li>
-  <li><a href="#mark-multiple-entries-as-invoiced-outside-of-freckle">Mark multiple Entries as invoiced outside of Freckle</a></li>
+  <li><a href="#mark-entry-as-invoiced-outside-of-noko">Mark Entry as invoiced outside of Noko</a></li>
+  <li><a href="#mark-multiple-entries-as-invoiced-outside-of-noko">Mark multiple Entries as invoiced outside of Noko</a></li>
   <li><a href="#mark-entry-as-approved">Mark Entry as approved</a></li>
   <li><a href="#mark-multiple-entries-as-approved">Mark multiple Entries as approved</a></li>
   <li><a href="#mark-entry-as-unapproved">Mark Entry as unapproved</a></li>
@@ -208,8 +208,8 @@
 </dl><h3 id="response">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
-Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
- &lt;https://api.letsfreckle.com/v2/entries?page=5&gt;; rel="last"</code></pre>
+Link: &lt;https://api.nokotime.com/v2/entries?page=2&gt;; rel="next",
+ &lt;https://api.nokotime.com/v2/entries?page=5&gt;; rel="last"</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
@@ -220,12 +220,12 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
       <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
       <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
       <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
     <span class="p">},</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
     <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
       <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
@@ -233,15 +233,15 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
       <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
     <span class="p">},</span>
     <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
         <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#freckle"</span><span class="p">,</span>
-        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/249397"</span>
+        <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
+        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
       <span class="p">}</span>
     <span class="p">],</span>
     <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
@@ -252,11 +252,11 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
       <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
       <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
       <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
     <span class="p">},</span>
     <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
     <span class="p">},</span>
     <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
     <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
@@ -264,13 +264,13 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
       <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
       <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
       <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
     <span class="p">},</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
-    <span class="s2">"invoiced_outside_of_freckle_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/invoiced_outside_of_freckle"</span><span class="p">,</span>
-    <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-    <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
+    <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/invoiced_outside_of_noko"</span><span class="p">,</span>
+    <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
+    <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
   <span class="p">}</span>
@@ -291,12 +291,12 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
@@ -304,15 +304,15 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
   <span class="p">},</span>
   <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
       <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#freckle"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/249397"</span>
+      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
@@ -323,11 +323,11 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
     <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
     <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
     <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
   <span class="p">},</span>
   <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
   <span class="p">},</span>
   <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
   <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
@@ -335,13 +335,13 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
-  <span class="s2">"invoiced_outside_of_freckle_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/invoiced_outside_of_freckle"</span><span class="p">,</span>
-  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
+  <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/invoiced_outside_of_noko"</span><span class="p">,</span>
+  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
+  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
 <span class="p">}</span></code></pre>
@@ -393,7 +393,7 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
   <dd>A URL that corresponds to the work completed in this time entry. Some Examples Include:</dd>
   <dd>
     <ul>
-<li>the URL to a commit in a version control platform like <a href="http://help.letsfreckle.com/article/74-log-time-from-github">Github or Beanstalk</a>
+<li>the URL to a commit in a version control platform like <a href="http://help.nokotime.com/article/74-log-time-from-github">Github or Beanstalk</a>
 </li>
     </ul>
 </dd>
@@ -412,7 +412,7 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
   <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
   <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
   <span class="s2">"project_id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
   <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
   <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span>
@@ -421,7 +421,7 @@ Link: &lt;https://api.letsfreckle.com/v2/entries?page=2&gt;; rel="next",
 <h3 id="reponse">Reponse</h3>
 
 <pre class="headers"><code>Status: 201 Created
-Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
+Location: https://api.nokotime.com/v2/entries/1</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -431,12 +431,12 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
@@ -444,15 +444,15 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
   <span class="p">},</span>
   <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
       <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#freckle"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/249397"</span>
+      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
@@ -463,11 +463,11 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
     <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
     <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
     <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
   <span class="p">},</span>
   <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
   <span class="p">},</span>
   <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
   <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
@@ -475,13 +475,13 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
-  <span class="s2">"invoiced_outside_of_freckle_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/invoiced_outside_of_freckle"</span><span class="p">,</span>
-  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
+  <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/invoiced_outside_of_noko"</span><span class="p">,</span>
+  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
+  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
 <span class="p">}</span></code></pre>
@@ -542,7 +542,7 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
   <dd>A URL that corresponds to the work completed in this time entry. Some Examples Include:</dd>
   <dd>
     <ul>
-<li>the URL to a commit in a version control platform like <a href="http://help.letsfreckle.com/article/74-log-time-from-github">Github or Beanstalk</a>
+<li>the URL to a commit in a version control platform like <a href="http://help.nokotime.com/article/74-log-time-from-github">Github or Beanstalk</a>
 </li>
     </ul>
 </dd>
@@ -561,7 +561,7 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
   <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
   <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
   <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
   <span class="s2">"project_id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
   <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
   <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span>
@@ -579,12 +579,12 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
   <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
   <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
@@ -592,15 +592,15 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
     <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/projects/37396"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
   <span class="p">},</span>
   <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"freckle"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
       <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#freckle"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/tags/249397"</span>
+      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
@@ -611,11 +611,11 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
     <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
     <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
     <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/invoices/12345678"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
   <span class="p">},</span>
   <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/imports/8910"</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
   <span class="p">},</span>
   <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
   <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
@@ -623,13 +623,13 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
     <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/users/5538"</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626"</span><span class="p">,</span>
-  <span class="s2">"invoiced_outside_of_freckle_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/invoiced_outside_of_freckle"</span><span class="p">,</span>
-  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.letsfreckle.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
+  <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/invoiced_outside_of_noko"</span><span class="p">,</span>
+  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
+  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
   <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
 <span class="p">}</span></code></pre>
@@ -645,13 +645,13 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
 <strong>cannot_create_projects</strong>: The authenticated user is unable to create projects.</li>
   <li>
 <strong>cannot_create_tags</strong>: The authenticated user is unable to create new tags.</li>
-</ul><h2 id="mark-entry-as-invoiced-outside-of-freckle">Mark Entry as invoiced outside of Freckle</h2>
+</ul><h2 id="mark-entry-as-invoiced-outside-of-noko">Mark Entry as invoiced outside of Noko</h2>
 
-<p>Update the Entry so that is recognized as being invoiced outside of Freckle by providing the date the Entry was invoiced.</p>
+<p>Update the Entry so that is recognized as being invoiced outside of Noko by providing the date the Entry was invoiced.</p>
 
-<p>If the entry has already been marked as invoiced outside of freckle, this action modifies the <code>invoiced_at</code> date for the entry.</p>
+<p>If the entry has already been marked as invoiced outside of Noko, this action modifies the <code>invoiced_at</code> date for the entry.</p>
 
-<pre><code>PUT /v2/entries/:id/invoiced_outside_of_freckle
+<pre><code>PUT /v2/entries/:id/invoiced_outside_of_noko
 </code></pre>
 
 <h3 id="input-2">Input</h3>
@@ -661,7 +661,7 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
   <dd>
 <em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
-  <dd>The date the time entry was invoiced outside of Freckle.</dd>
+  <dd>The date the time entry was invoiced outside of Noko.</dd>
 </dl><h3 id="response-2">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
@@ -672,14 +672,14 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
 
 <ul>
 <li>
-<strong>already_invoiced</strong>: the Entry has already been invoiced inside of Freckle.</li>
-</ul><h2 id="mark-multiple-entries-as-invoiced-outside-of-freckle">Mark multiple Entries as invoiced outside of Freckle</h2>
+<strong>already_invoiced</strong>: the Entry has already been invoiced inside of Noko.</li>
+</ul><h2 id="mark-multiple-entries-as-invoiced-outside-of-noko">Mark multiple Entries as invoiced outside of Noko</h2>
 
-<p>Update the Entries provided so that they are recognized as being invoiced outside of Freckle by providing the date the Entries was invoiced.</p>
+<p>Update the Entries provided so that they are recognized as being invoiced outside of Noko by providing the date the Entries was invoiced.</p>
 
-<p>If an entry has already been marked as invoiced outside of Freckle, this action modifies the <code>invoiced_at</code> date for that entry.</p>
+<p>If an entry has already been marked as invoiced outside of Noko, this action modifies the <code>invoiced_at</code> date for that entry.</p>
 
-<pre><code>PUT /v2/entries/invoiced_outside_of_freckle
+<pre><code>PUT /v2/entries/invoiced_outside_of_noko
 </code></pre>
 
 <h3 id="input-3">Input</h3>
@@ -689,23 +689,23 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
-  <dd>The IDs of the entries that will be marked as invoiced outside of Freckle.</dd>
+  <dd>The IDs of the entries that will be marked as invoiced outside of Noko.</dd>
   <dt>date</dt>
   <dd>
 <em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
-  <dd>The date the time entry was invoiced outside of Freckle.</dd>
+  <dd>The date the time entry was invoiced outside of Noko.</dd>
 </dl><h3 id="response-3">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="a-note-about-entries-that-cannot-be-marked-as-invoiced-outside-of-freckle">A note about Entries that cannot be marked as invoiced outside of Freckle</h3>
+<h3 id="a-note-about-entries-that-cannot-be-marked-as-invoiced-outside-of-noko">A note about Entries that cannot be marked as invoiced outside of Noko</h3>
 
-<p>Any entries that are included in this request that cannot be marked as invoiced outside of Freckle will be ignored and will not affect the Response.</p>
+<p>Any entries that are included in this request that cannot be marked as invoiced outside of Noko will be ignored and will not affect the Response.</p>
 
 <h2 id="mark-entry-as-approved">Mark Entry as approved</h2>
 
-<p>Mark the Entry as “approved” in Freckle. Approved entries cannot be edited or deleted.</p>
+<p>Mark the Entry as “approved” in Noko. Approved entries cannot be edited or deleted.</p>
 
 <pre><code>PUT /v2/entries/:id/approved
 </code></pre>
@@ -733,7 +733,7 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
 <strong>archived_project</strong>: the Entry is associated with an archived Project</li>
 </ul><h2 id="mark-multiple-entries-as-approved">Mark multiple Entries as approved</h2>
 
-<p>Mark the Entries provided as “approved” in Freckle. Approved entries cannot be edited or deleted.</p>
+<p>Mark the Entries provided as “approved” in Noko. Approved entries cannot be edited or deleted.</p>
 
 <pre><code>PUT /v2/entries/approved
 </code></pre>
@@ -761,7 +761,7 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
 
 <h2 id="mark-entry-as-unapproved">Mark Entry as unapproved</h2>
 
-<p>Mark the Entry as “unapproved” in Freckle. Unapproved entries can be edited or deleted.</p>
+<p>Mark the Entry as “unapproved” in Noko. Unapproved entries can be edited or deleted.</p>
 
 <pre><code>PUT /v2/entries/:id/unapproved
 </code></pre>
@@ -779,7 +779,7 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
 <strong>archived_project</strong>: the Entry is associated with an archived Project</li>
 </ul><h2 id="mark-multiple-entries-as-unapproved">Mark multiple Entries as unapproved</h2>
 
-<p>Mark the Entries provided as “unapproved” in Freckle. Unapproved entries can be edited or deleted.</p>
+<p>Mark the Entries provided as “unapproved” in Noko. Unapproved entries can be edited or deleted.</p>
 
 <pre><code>PUT /v2/entries/unapproved
 </code></pre>
@@ -830,51 +830,51 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
 
         <div class="columns four">
           <div class="column">
-            <h3>About Freckle</h3>
+            <h3>About Noko</h3>
             <ul>
-              <li><a href="https://letsfreckle.com/manifesto">The Freckle manifesto</a></li>
-              <li><a href="https://letsfreckle.com/"> Freckle plans and pricing</a></li>
-              <li><a href="https://letsfreckle.com/terms/">Our user agreement</a></li>
-              <li><a href="https://letsfreckle.com/privacy/">Privacy policy</a></li>
+              <li><a href="https://nokotime.com/manifesto">The Noko manifesto</a></li>
+              <li><a href="https://nokotime.com/"> Noko plans and pricing</a></li>
+              <li><a href="https://nokotime.com/terms/">Our user agreement</a></li>
+              <li><a href="https://nokotime.com/privacy/">Privacy policy</a></li>
             </ul>
           </div>
 
           <div class="column">
             <h3>Us &amp; our company</h3>
             <ul>
-              <li><a href="https://letsfreckle.com/team/">Meet our team</a></li>
-              <li><a href="https://letsfreckle.com/blog/">Read our blog</a></li>
-              <li><a href="https://letsfreckle.com/contact/">Write us</a></li>
+              <li><a href="https://nokotime.com/team/">Meet our team</a></li>
+              <li><a href="https://nokotime.com/blog/">Read our blog</a></li>
+              <li><a href="https://nokotime.com/contact/">Write us</a></li>
             </ul>
           </div>
 
           <div class="column">
             <h3>Docs</h3>
             <ul>
-              <li><a href="http://help.letsfreckle.com/">FAQs</a></li>
-              <li><a href="http://developer.letsfreckle.com">Developer Documentation</a></li>
+              <li><a href="http://help.nokotime.com/">FAQs</a></li>
+              <li><a href="http://developer.nokotime.com">Developer Documentation</a></li>
             </ul>
           </div>
 
           <div class="column">
             <h3>You &amp; your account</h3>
             <ul>
-              <li><a href="http://help.letsfreckle.com/article/13-signing-in-to-freckle">How to sign in</a></li>
-              <li><a href="http://help.letsfreckle.com/">Get help &amp; contact support</a></li>
+              <li><a href="http://help.nokotime.com/article/13-signing-in-to-freckle">How to sign in</a></li>
+              <li><a href="http://help.nokotime.com/">Get help &amp; contact support</a></li>
             </ul>
           </div>
 
         </div>
 
         <div class="copyright">
-          &copy; 2008-2016 Slash7 LLC, all rights reserved.<br>
-          Freckle® is a registered trademark of Slash7 LLC.
+          &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
+          Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>
     </div>
   </div>
 
-  <script async src="https://secure.letsfreckle.com/help/help.js"></script>
+  <script async src="https://secure.nokotime.com/help/help.js"></script>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
@@ -913,7 +913,7 @@ Location: https://api.letsfreckle.com/v2/entries/1</code></pre>
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-37896092-1']);
-    _gaq.push(['_setDomainName', 'letsfreckle.com']);
+    _gaq.push(['_setDomainName', 'nokotime.com']);
     _gaq.push(['_trackPageview']);
 
     (function() {
