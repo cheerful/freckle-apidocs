@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Basics
-description: Connect your application to Freckle's RESTful API and track time, access projects and more.
+description: Connect your application to Noko's RESTful API and track time, access projects and more.
 ---
 
-Freckle's RESTful API enables your application or script to
+Noko's RESTful API enables your application or script to
 access **entries** (list/search, create, update, delete, mass import),
 **projects** (list, read, create, update, delete, archive, activate),
 **tags** (list) and **users** (list, read, create, update, deactivate, get avatar).
@@ -18,7 +18,7 @@ access **entries** (list/search, create, update, delete, mass import),
 <p class="note">
 Below are the steps you'll need to take to make sure your integrations and apps still work!
 
-Want to learn more? You can read <a href="https://letsfreckle.com/blog/2019/03/freckle-getting-new-name-noko/">our announcement here</a>
+Want to learn more? You can read <a href="https://nokotime.com/blog/2019/03/freckle-getting-new-name-noko/">our announcement here</a>
 </p>
 
 <section markdown="block">
@@ -42,16 +42,16 @@ https://<subdomain>.nokotime.com/api
 
 ### What if I have questions?
 
-If you have _any_ questions at all, please [email](mailto:support@letsfreckle.com) or [tweet](http://twitter.com/freckle) us! We're incredibly grateful that you use the API, and we want to make the transition as smooth as possible.
+If you have _any_ questions at all, please [email](mailto:support@nokotime.com) or [tweet](http://twitter.com/freckle) us! We're incredibly grateful that you use the API, and we want to make the transition as smooth as possible.
 </section>
 </div>
 
-Many applications use the Freckle API every day, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Pigment](http://pigmentapp.com) and [Punch](http://punch.fousa.be); as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you're using the Freckle API, please [email](mailto:support@letsfreckle.com), [tweet](http://twitter.com/letsfreckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
+Many applications use the Noko API every day, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Pigment](http://pigmentapp.com) and [Punch](http://punch.fousa.be); as well as many internal applications that our customers write to integrate with other software and services. Be creative! If you want to let us know about how you're using the Noko API, please [email](mailto:support@nokotime.com), [tweet](http://twitter.com/freckle), or [send us a message on Facebook](https://www.facebook.com/FreckleTimeTracking).
 
-Freckle is also one of the many services listed on [Zapier](https://zapier.com/zapbook/freckle/) which allows drag-and-drop integration of Freckle with other internet-based software (for example, you can send new Freckle entries to your Campfire chat room!).
+Noko is also one of the many services listed on [Zapier](https://zapier.com/zapbook/freckle/) which allows drag-and-drop integration of Noko with other internet-based software (for example, you can send new Noko entries to your Campfire chat room!).
 
-Freckle's API docs are on Github: if you find an error or omission
-in the API documentation, you can help fix it quickly by [forking the Freckle API docs](https://github.com/cheerful/freckle-apidocs) and submitting a pull request!
+Noko's API docs are on Github: if you find an error or omission
+in the API documentation, you can help fix it quickly by [forking the Noko API docs](https://github.com/cheerful/freckle-apidocs) and submitting a pull request!
 
 ### API limitations
 
@@ -67,13 +67,13 @@ and don't do expensive API calls (mostly listing a lot of entries) too often.
 
 ### Naming client applications
 
-If you plan to release a public client app for Freckle (such as a native
+If you plan to release a public client app for Noko (such as a native
 mobile app, regardless if it's paid-for or free) you're welcome to do so.
-<i>Do not name apps "Freckle" or "Freckle for &lt;platform&gt;".</i>
+<i>Do not name apps "Noko" or "Noko for &lt;platform&gt;".</i>
 Please contact us first with more details about your app if you want to
-use "Freckle" or the Freckle logo as name or icon of your app!
+use "Noko" or the Noko logo as name or icon of your app!
 
-## Freckle API Libraries
+## Noko API Libraries
 
 There are several 3rd-party open source libraries for popular languages
 available:
@@ -84,22 +84,22 @@ available:
 * Node.js: [nodefreckle](https://github.com/tbranyen/nodefreckle)
 * Clojure: [clj-freckle](https://github.com/mlehman/clj-freckle)
 
-Additionally, there are command line tools that can log time and access other API functionality, which is great if you want to use the Freckle API from a shell script:
+Additionally, there are command line tools that can log time and access other API functionality, which is great if you want to use the Noko API from a shell script:
 
 * [Pippi](https://github.com/sirkitree/pippi)
 * [freck](https://github.com/robinhouston/freckle-command)
 * [freckle-overtime](https://github.com/sissbruecker/freckle-overtime)
 
 <p class="note">
-These are 3rd-party libraries and Freckle can't provide support for them.
+These are 3rd-party libraries and Noko can't provide support for them.
 Please contact the library authors directly if you need help with these.
 </p>
 
 ## URLs
 
-Accessing the Freckle API uses the following URL schema:
+Accessing the Noko API uses the following URL schema:
 
-    https://<subdomain>.letsfreckle.com/api/<resource>
+    https://<subdomain>.nokotime.com/api/<resource>
 
 Where **subdomain** is the subdomain of the account you want to access and
 **resource** is the resource (e.g. entries, projects, tags, users and so on).
@@ -107,7 +107,7 @@ Where **subdomain** is the subdomain of the account you want to access and
 For example, getting a list of projects from the "apitest" account via JSON would
 result in the URL:
 
-    https://apitest.letsfreckle.com/api/projects.json
+    https://apitest.nokotime.com/api/projects.json
 
 Resources are normally accessed via SSL only. Some resources can also be
 accessed through a regular HTTP request.
@@ -116,31 +116,31 @@ accessed through a regular HTTP request.
 
 An *authentication token* is needed for accessing the API. This token authenticates
 a specific user of the account and can be found in
-<a href="http://letsfreckle.com/help/#faq_40">"settings & tools > API"</a>
-in the Freckle user interface. Treat authentications tokens like passwords!
+<a href="http://nokotime.com/help/#faq_40">"settings & tools > API"</a>
+in the Noko user interface. Treat authentications tokens like passwords!
 
 A user can reset the API token at any time—be sure to handle authentication errors
 in your application.
 
-The token has to be sent for each request your application makes to the Freckle API.
+The token has to be sent for each request your application makes to the Noko API.
 
 There are two ways to send the token—examples are given using the [cURL](http://curl.haxx.se) command line tool:
 
 As *query parameter* named `token`:
 
 <%= code_block_start_tag_custom_language("sh") %>
-curl -v https://apitest.letsfreckle.com/api/projects.json?token=lx3gi6pxdjtjn57afp8c2bv1me7g89j
+curl -v https://apitest.nokotime.com/api/projects.json?token=lx3gi6pxdjtjn57afp8c2bv1me7g89j
 <%= code_block_end_tag %>
 
-As *HTTP header* `X-FreckleToken`:
+As *HTTP header* `X-NokoToken`:
 
 <%= code_block_start_tag_custom_language("sh") %>
-curl -v -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
+curl -v -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects.json
 <%= code_block_end_tag %>
 
 For better readability of URLs, in this documentation the HTTP header method will be used for
 the cURL examples. It's generally also a good idea to use the HTTP header method if you wrap
-Freckle API calls in a library or module in your code.
+Noko API calls in a library or module in your code.
 
 <p class=note>
 In order to make it easier for users to authenticate in interactive client applications
@@ -158,8 +158,8 @@ could become paginated in the future.
 When there are more results available for a request, a "next" URL will be
 present in the `Link` response header
 
-    GET https://apitest.letsfreckle.com/api/entries.json
-    Link: <https://apitest.letsfreckle.com/api/entries.json?page=2&per_page=100>; rel="next"
+    GET https://apitest.nokotime.com/api/entries.json
+    Link: <https://apitest.nokotime.com/api/entries.json?page=2&per_page=100>; rel="next"
 
 To get more results, simply repeat the request with the new URL until there are
 enough results in total, or there is no more "next" link (if it's necessary to
@@ -203,9 +203,9 @@ If you receive a `429` response, make sure to wait a little longer between reque
 
 ## Roles
 
-There are currently four user roles in Freckle: **`administrator`**, **`owner`**, **`member`**, and **`freelancer`**.
+There are currently four user roles in Noko: **`administrator`**, **`owner`**, **`member`**, and **`freelancer`**.
 
-Each Freckle user is assigned to one of these roles. Depending on the role, certain parts of the API
+Each Noko user is assigned to one of these roles. Depending on the role, certain parts of the API
 may not be available. For each resource, this documentation explains which roles have access and
 if there are any per-role restrictions (for example, a user with the "freelancer" role doesn't
 have access to all projects).
@@ -213,7 +213,7 @@ have access to all projects).
 
 ## Data Formats
 
-The Freckle API can accept and return data in JSON or XML.
+The Noko API can accept and return data in JSON or XML.
 
 Because it's awesome, we'll mostly use examples in JSON in this documentation,
 however, XML works just as well.
@@ -224,7 +224,7 @@ a `.xml` or `.json` extension to URL you are calling, or set the
 
 ## Field formats
 
-Freckle uses the following field formats:
+Noko uses the following field formats:
 
 * **IDs** are stored as 4-byte integers (range 1 to 2147483647)
 * **Timestamps** are given UTC-based, e.g. `2012-01-09T08:33:29Z`
@@ -240,11 +240,11 @@ You can use our API test account for testing your code. The data from this test 
 will be regularly wiped—don't rely on your test data being there the next day. Also note that you
 might not be the only person using this token at a certain time.
 
-Domain: `apitest.letsfreckle.com`<br>
+Domain: `apitest.nokotime.com`<br>
 Token: `lx3gi6pxdjtjn57afp8c2bv1me7g89j`
 
 If you do any kind of non-trivial client application or have special needs for API testing,
-we recommend that you create a Freckle account specifically just for testing your application,
+we recommend that you create a Noko account specifically just for testing your application,
 so you can be sure your data stays intact while you develop!
 
 Try it now!
@@ -257,10 +257,10 @@ Try it now!
   </div>
   <div class="tab json active">
     <%= code_block_start_tag_custom_language("sh") %>
-    $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.json
+    $ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects.json
     <%= code_block_end_tag %>
 
-    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/21d1e53251a9bf5941d0bd25aeb7557a3ca52a26"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.nokotime.com/hurls/fad3d73a5f2d60de3a41397d330e75856beeaddd/21d1e53251a9bf5941d0bd25aeb7557a3ca52a26"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
     You should see something like:
 
@@ -299,10 +299,10 @@ Try it now!
   </div>
   <div class="tab xml">
     <%= code_block_start_tag_custom_language("sh") %>
-    $ curl -H "X-FreckleToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.letsfreckle.com/api/projects.xml
+    $ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime.com/api/projects.xml
     <%= code_block_end_tag %>
 
-    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.letsfreckle.com/hurls/d35c949a5d7d4fe2d8f94fd095f324825a70696a/ff572a02badd43a6e6e62d3a9f963c56c53e7fdc"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
+    Instead of using cURL, you can also try it directly in your browser with <a href="http://apitest.developer.nokotime.com/hurls/d35c949a5d7d4fe2d8f94fd095f324825a70696a/ff572a02badd43a6e6e62d3a9f963c56c53e7fdc"><img src="/assets/hurl.png" alt="hurl" width="35"></a>.
 
     You should see something like:
 
