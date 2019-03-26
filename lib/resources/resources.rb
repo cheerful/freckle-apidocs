@@ -442,7 +442,7 @@ module Noko
       "approved_at" => "2012-01-10T08:33:29Z",
       "approved_by" => SIMPLE_USER,
       "url" => "#{API_V2_URL}/entries/1711626",
-      "invoiced_outside_of_noko_url" => "#{API_V2_URL}/entries/1711626/invoiced_outside_of_noko",
+      "invoiced_outside_of_noko_url" => "#{API_V2_URL}/entries/1711626/marked_as_invoiced",
       "approved_url" => "#{API_V2_URL}/entries/1711626/approved",
       "unapproved_url" => "#{API_V2_URL}/entries/1711626/unapproved",
       "created_at" => "2012-01-09T08:33:29Z",
