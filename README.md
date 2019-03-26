@@ -1,4 +1,4 @@
-#Freckle API v2 Documentation
+# Freckle API v2 Documentation
 
 This is the Documentation for version 2 of the Freckle API. Contributions are welcome, so please fork this repo and submit a [pull request](http://help.github.com/send-pull-requests/) with your changes!
 
