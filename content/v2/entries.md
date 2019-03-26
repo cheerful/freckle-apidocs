@@ -240,7 +240,7 @@ Update the Entry so that is recognized as being invoiced outside of Noko by prov
 If the entry has already been marked as invoiced outside of Noko, this action modifies the `invoiced_at` date for the entry.
 
 ~~~
-PUT /v2/entries/:id/invoiced_outside_of_noko
+PUT /v2/entries/:id/marked_as_invoiced
 ~~~
 
 ### Input
@@ -266,7 +266,7 @@ Update the Entries provided so that they are recognized as being invoiced outsid
 If an entry has already been marked as invoiced outside of Noko, this action modifies the `invoiced_at` date for that entry.
 
 ~~~
-PUT /v2/entries/invoiced_outside_of_noko
+PUT /v2/entries/marked_as_invoiced
 ~~~
 
 ### Input
