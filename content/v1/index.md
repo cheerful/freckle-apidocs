@@ -26,7 +26,7 @@ Want to learn more? You can read <a href="https://nokotime.com/blog/2019/03/frec
 
 | **[March 25, 2019](https://everytimezone.com/s/2737b6cc)** | `<subdomain>.nokotime.com/api` will be live, and the API docs will change to reference "Noko" to prevent regressions.|
 | **August 31, 2019** | All requests to `<subdomain>.letsfreckle.com/api` will return `301 Moved Permanently` and point to the corresponding URI in `api.nokotime.com/api` |
-| **September 15, 2019** | Requests to `<subdomain>.letsfreckle.com/api` will **no longer work** |
+| **September 12, 2019** | Requests to `<subdomain>.letsfreckle.com/api` will **no longer work** |
 
 ### What do I need to do?
 
