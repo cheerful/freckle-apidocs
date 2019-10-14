@@ -8,45 +8,6 @@ Welcome to the Noko Developer Documentation!
 * TOC
 {:toc}
 
-<div id="migration-guide" markdown="block">
-## _Important_ Freckle is getting a new name: Noko!
-
-<p class="note">
-Below are the steps you'll need to take to make sure your integrations and apps still work!
-
-Want to learn more? You can read <a href="https://nokotime.com/blog/2019/03/freckle-getting-new-name-noko/">our announcement here</a>
-</p>
-
-<section markdown="block">
-### What is the timeline?
-
-| **[March 25, 2019](https://everytimezone.com/s/2737b6cc)** | `api.nokotime.com` will be live, and the API docs will change to reference "Noko" to prevent regressions.|
-| **August 31, 2019** | All requests to `api.letsfreckle.com` will return `301 Moved Permanently` and point to the corresponding URI in `api.nokotime.com` |
-| **September 12, 2019** | Requests to `api.letsfreckle.com` will **no longer work** |
-
-### What do I need to do?
-
-Once `api.nokotime.com` is live on March 25 ([click here to see this time on EveryTimeZone](https://everytimezone.com/s/2737b6cc)), change your apps and integrations to point to:
-
-~~~
-https://api.nokotime.com/v2
-~~~
-
-If you're using [OAuth](/v2/oauth/), change your OAuth authorization flow to point to:
-
-~~~
-https://secure.nokotime.com
-~~~
-
-*Aside from the domain name change, the rest of the API will remain exactly the same.*
-
-
-### What if I have questions?
-
-If you have _any_ questions at all, please [email](mailto:support@nokotime.com) or [tweet](http://twitter.com/freckle) us! We're incredibly grateful that you use the API, and we want to make the transition as smooth as possible.
-</section>
-</div>
-
 ## Overview
 
 Noko provides a secure Restful JSON API over HTTPS; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.
