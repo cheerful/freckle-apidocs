@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Account - Noko Developer</title>
+  <title> - Noko Developer</title>
   <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
@@ -49,34 +49,38 @@
       </ul>
     </div>
     <div id="content">
-      <h1>Account</h1>
+      <h1></h1>
       <p class="note warning">
         Freckle is now Noko! <a href="/migration_guide/">Learn how to migrate your apps here</a>
       </p>
-      <h2 id="get-your-accounts-details">Get your Account’s details</h2>
+      <div id="migration-guide">
+  <h2 id="freckle-has-a-new-name-noko">Freckle has a new name: Noko!</h2>
 
-<pre><code>GET /account/
+  <p class="note">
+Below are the steps you'll need to take to make sure your integrations and apps still work!
+
+Want to learn more? You can read <a href="https://nokotime.com/blog/2019/03/freckle-getting-new-name-noko/">our announcement here</a>
+</p>
+
+  <section><h3 id="what-do-i-need-to-do">What do I need to do?</h3>
+
+    <p>Change your apps and integrations to point to:</p>
+
+    <pre><code>https://api.nokotime.com/v2
 </code></pre>
 
-<h3 id="response">Response</h3>
-<pre class="headers"><code>Status: 200 OK</code></pre>
+    <p>If you’re using <a href="/v2/oauth/">OAuth</a>, change your OAuth authorization flow to point to:</p>
 
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">3344</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"testit"</span><span class="p">,</span>
-  <span class="s2">"invoicing_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"owner"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
-  <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/account/"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
-<span class="p">}</span></code></pre>
+    <pre><code>https://secure.nokotime.com
+</code></pre>
+
+    <p><em>Aside from the domain name change, the rest of the API will remain exactly the same.</em></p>
+
+    <h3 id="what-if-i-have-questions">What if I have questions?</h3>
+
+    <p>If you have <em>any</em> questions at all, please <a href="mailto:support@nokotime.com">email</a> or <a href="http://twitter.com/freckle">tweet</a> us! We’re incredibly grateful that you use the API, and we want to make the transition as smooth as possible.</p>
+  </section>
+</div>
 
       <div id="footer">
 
