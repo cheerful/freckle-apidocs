@@ -22,7 +22,7 @@ If you're using [OAuth](/v2/oauth/), change your OAuth authorization flow to poi
 https://secure.nokotime.com
 ~~~
 
-*Aside from the domain name change, the rest of the API will remain exactly the same.*
+*Aside from the domain name change, the rest of the API is exactly the same.*
 
 
 ### What if I have questions?
