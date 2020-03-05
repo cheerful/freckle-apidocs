@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-ruby '2.5.1'
+ruby '2.5.7'
 
 gem 'kramdown'
 gem 'pygments.rb'
