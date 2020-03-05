@@ -111,6 +111,33 @@ If a project does not have a currently running or paused timer, then the respons
 
 <%= headers 404 %>
 
+
+## Add or subtract time to a project's timer
+
+The response does not change if the timer has already been paused or does not exist
+
+<%= api_call :put, '/v2/projects/:project_id/timer/add_or_subtract_time' %>
+
+<%= headers 200 %>
+<%= json :timer %>
+
+### Input
+
+minutes
+: *Optional* **integer**
+: The number of minutes to add or subtract to the timer. This number can be positive to add minutes, and negative to subtract minutes.
+
+seconds
+: *Optional* **integer**
+: The number of seconds to add or subtract to the timer. This number can be positive to add seconds, and negative to subtract seconds.
+
+### Notes
+
+* Using both the `minutes` and `seconds` fields allows you to precisely update a timer. For example, you can add `1:30` to a timer with:
+  * <%= json :timer_update_example %>
+* If a project does not have a currently running or paused timer, then the response will return a `404` status code.
+  * <%= headers 404 %>
+
 ## Log the time in a project's timer
 
 When a timer is logged, a new entry is created for the user with the description provided.

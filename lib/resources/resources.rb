@@ -688,7 +688,13 @@ module Noko
       "url" => "#{API_V2_URL}/projects/37396/timer",
       "start_url" => "#{API_V2_URL}/projects/37396/timer/start",
       "pause_url" => "#{API_V2_URL}/projects/37396/timer/pause",
+      "add_or_subtract_time_url" => "#{API_V2_URL}/projects/37396/timer/add_or_subtract_time",
       "log_url"   => "#{API_V2_URL}/projects/37396/timer/log"
+    }
+
+    TIMER_UPDATE_EXAMPLE = {
+      "minutes": 1,
+      "seconds": 30
     }
 
     SUBDOMAIN = {
