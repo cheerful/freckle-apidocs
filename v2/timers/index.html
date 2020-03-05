@@ -59,6 +59,7 @@
   <li><a href="#edit-a-projects-timer">Edit a project’s timer</a></li>
   <li><a href="#start-a-projects-timer">Start a project’s timer</a></li>
   <li><a href="#pause-a-projects-timer">Pause a project’s timer</a></li>
+  <li><a href="#add-or-subtract-time-to-a-projects-timer">Add or subtract time to a project’s timer</a></li>
   <li><a href="#log-the-time-in-a-projects-timer">Log the time in a project’s timer</a></li>
   <li><a href="#discard-a-projects-timer">Discard a project’s timer</a></li>
 </ul><h2 id="list-all-currently-running-or-paused-timers">List all currently running or paused timers</h2>
@@ -134,6 +135,7 @@ Link: &lt;https://api.nokotime.com/v2/timers?page=2&gt;; rel="next",
     <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
     <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
     <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+    <span class="s2">"add_or_subtract_time_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/add_or_subtract_time"</span><span class="p">,</span>
     <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
@@ -174,6 +176,7 @@ $ curl -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2w
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
   <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
   <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"add_or_subtract_time_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/add_or_subtract_time"</span><span class="p">,</span>
   <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
 <span class="p">}</span></code></pre>
 
@@ -229,6 +232,7 @@ $ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjn
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
   <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
   <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"add_or_subtract_time_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/add_or_subtract_time"</span><span class="p">,</span>
   <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
 <span class="p">}</span></code></pre>
 
@@ -277,6 +281,7 @@ Location: https://api.nokotime.com/v2/projects/1/timer</code></pre>
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
   <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
   <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"add_or_subtract_time_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/add_or_subtract_time"</span><span class="p">,</span>
   <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
 <span class="p">}</span></code></pre>
 
@@ -336,6 +341,7 @@ $ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjn
   <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
   <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
   <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"add_or_subtract_time_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/add_or_subtract_time"</span><span class="p">,</span>
   <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
 <span class="p">}</span></code></pre>
 
@@ -345,7 +351,82 @@ $ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjn
 
 <pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
 
-<h2 id="log-the-time-in-a-projects-timer">Log the time in a project’s timer</h2>
+<h2 id="add-or-subtract-time-to-a-projects-timer">Add or subtract time to a project’s timer</h2>
+
+<p>The response does not change if the timer has already been paused or does not exist</p>
+
+<div class="CodeRay"><div class="code"><pre class="highlight"><code class="language-sh">PUT /v2/projects/:project_id/timer/add_or_subtract_time
+
+# cURL
+$ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjni48ad2wwsgr1d" https://api.nokotime.com/v2/projects/:project_id/timer/add_or_subtract_time</code></pre></div></div>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"running"</span><span class="p">,</span>
+  <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+  <span class="s2">"formatted_time"</span><span class="o">:</span> <span class="s2">"00:03:00"</span><span class="p">,</span>
+  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko work"</span><span class="p">,</span>
+  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="p">},</span>
+  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+  <span class="p">},</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
+  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
+  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
+  <span class="s2">"add_or_subtract_time_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/add_or_subtract_time"</span><span class="p">,</span>
+  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="input-2">Input</h3>
+
+<dl>
+<dt>minutes</dt>
+  <dd>
+<em>Optional</em> <strong>integer</strong>
+</dd>
+  <dd>The number of minutes to add or subtract to the timer. This number can be positive to add minutes, and negative to subtract minutes.</dd>
+  <dt>seconds</dt>
+  <dd>
+<em>Optional</em> <strong>integer</strong>
+</dd>
+  <dd>The number of seconds to add or subtract to the timer. This number can be positive to add seconds, and negative to subtract seconds.</dd>
+</dl><h3 id="notes-3">Notes</h3>
+
+<ul>
+<li>Using both the <code>minutes</code> and <code>seconds</code> fields allows you to precisely update a timer. For example, you can add <code>1:30</code> to a timer with:
+    <ul>
+<li>
+        <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+<span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">30</span>
+<span class="p">}</span></code></pre>
+      </li>
+    </ul>
+</li>
+  <li>If a project does not have a currently running or paused timer, then the response will return a <code>404</code> status code.
+    <ul>
+<li>
+        <pre class="headers no-response"><code>Status: 404 Not Found</code></pre>
+      </li>
+    </ul>
+</li>
+</ul><h2 id="log-the-time-in-a-projects-timer">Log the time in a project’s timer</h2>
 
 <p>When a timer is logged, a new entry is created for the user with the description provided.</p>
 
@@ -356,7 +437,7 @@ $ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjn
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="input-2">Input</h3>
+<h3 id="input-3">Input</h3>
 
 <dl>
 <dt>entry_date</dt>
@@ -374,7 +455,7 @@ $ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjn
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>The description that will be used when the timer is logged. Any tags or hashtags will be automatically parsed.</dd>
-</dl><h3 id="notes-3">Notes</h3>
+</dl><h3 id="notes-4">Notes</h3>
 
 <p>If a project does not have a currently running or paused timer, then the response will return a <code>404</code> status code.</p>
 
