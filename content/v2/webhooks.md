@@ -156,6 +156,17 @@ events
 <%= json :webhook %>
 
 
+## Re-roll a Webhook's secret
+
+~~~
+PUT /v2/webhooks/:id/reroll_secret
+~~~
+
+### Response
+
+<%= headers 200 %>
+<%= json :webhook_secret_data %>
+
 ## Disable a Webhook
 
 ~~~
