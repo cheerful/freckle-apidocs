@@ -75,6 +75,7 @@
   <li><a href="#edit-a-webhook">Edit a Webhook</a></li>
   <li><a href="#add-events-to-a-webhook">Add events to a Webhook</a></li>
   <li><a href="#remove-events-from-a-webhook">Remove events from a Webhook</a></li>
+  <li><a href="#re-roll-a-webhooks-secret">Re-roll a Webhook’s secret</a></li>
   <li><a href="#disable-a-webhook">Disable a Webhook</a></li>
   <li><a href="#enable-a-webhook">Enable a Webhook</a></li>
   <li><a href="#delete-a-webhook">Delete a Webhook</a></li>
@@ -183,7 +184,7 @@ Link: &lt;https://api.nokotime.com/v2/webhooks?page=2&gt;; rel="next",
 <em>Required</em> <strong>string</strong>
 </dd>
   <dd>The name of the Webhook</dd>
-  <dt>payload_url</dt>
+  <dt>payload_uri</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
@@ -253,7 +254,7 @@ Location: https://api.nokotime.com/v2/webhooks/123456</code></pre>
 <em>Required</em> <strong>string</strong>
 </dd>
   <dd>The name of the Webhook</dd>
-  <dt>payload_url</dt>
+  <dt>payload_uri</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
@@ -392,12 +393,25 @@ Location: https://api.nokotime.com/v2/webhooks/123456</code></pre>
   <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/disable"</span>
 <span class="p">}</span></code></pre>
 
+<h2 id="re-roll-a-webhooks-secret">Re-roll a Webhook’s secret</h2>
+
+<pre><code>PUT /v2/webhooks/:id/reroll_secret
+</code></pre>
+
+<h3 id="response-5">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"secret"</span><span class="o">:</span> <span class="s2">"abcd-1234-secret-value"</span>
+<span class="p">}</span></code></pre>
+
 <h2 id="disable-a-webhook">Disable a Webhook</h2>
 
 <pre><code>PUT /v2/webhooks/:id/disable
 </code></pre>
 
-<h3 id="response-5">Response</h3>
+<h3 id="response-6">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -406,7 +420,7 @@ Location: https://api.nokotime.com/v2/webhooks/123456</code></pre>
 <pre><code>PUT /v2/webhooks/:id/enable
 </code></pre>
 
-<h3 id="response-6">Response</h3>
+<h3 id="response-7">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -415,7 +429,7 @@ Location: https://api.nokotime.com/v2/webhooks/123456</code></pre>
 <pre><code>DELETE /v2/webhooks/:id
 </code></pre>
 
-<h3 id="response-7">Response</h3>
+<h3 id="response-8">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
