@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Webhooks - Noko Developer</title>
+  <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="nav">
+      <div id="logo">
+        <a href="/">
+          <img src="/assets/noko.svg" alt="Noko">
+        </a>
+      </div>
+      Developer Documentation
+      <ul id="version_switch">
+        <li><a href="/v1/">API v1</a></li>
+        <li><a href="/v2/">API v2</a></li>
+      </ul>
+      <h2>Topics</h2>
+      <ul id="topics">
+        <li><a href="/v2/">API Basics</a></li>
+        <li><a href="/v2/authentication/">Authentication</a></li>
+        <li><a href="/v2/oauth/">OAuth</a></li>
+        <li><a class='coming-soon' href="/v2/webhooks/">Webhooks</a></li>
+        <li><a href="/v2/migration_guide/">Migrating to Noko</a></li>
+      </ul>
+
+      <h2>Resources</h2>
+      <ul id="resources">
+        <li><a href="/v2/entries/">Entries</a></li>
+        <li><a href="/v2/tags/">Tags</a></li>
+        <li><a href="/v2/timers/">Timers</a></li>
+        <li><a href="/v2/projects/">Projects</a></li>
+        <li><a href="/v2/project_groups/">Project Groups</a></li>
+        <li><a href="/v2/invoices/">Invoices</a></li>
+        <li><a href="/v2/expenses/">Expenses</a></li>
+        <li><a href="/v2/invoice_locales/">Invoice Locales</a></li>
+        <li><a class='coming-soon' href="/v2/webhook_events/">Webhook Events</a></li>
+      </ul>
+
+      <h2>Account Management</h2>
+      <ul id="account-management">
+        <li><a href="/v2/account/">Account</a></li>
+        <li><a href="/v2/current_user/">Current User</a></li>
+        <li><a href="/v2/users/">Users</a></li>
+        <li><a href="/v2/teams/">Teams</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <h1>Webhooks</h1>
+      <p class="note warning">
+        Freckle is now Noko! <a href="/migration_guide/">Learn how to migrate your apps here</a>
+      </p>
+      <div class="note warning sticky">
+   <h2>Not implemented yet!</h2>
+   <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+ </div>
+
+<ul id="markdown-toc">
+<li><a href="#how-do-i-create-a-webhook">How do I create a Webhook?</a></li>
+  <li><a href="#how-are-webhooks-different-than-the-api">How are Webhooks different than the API?</a></li>
+  <li><a href="#what-does-a-webhook-payload-look-like">What does a Webhook payload look like?</a></li>
+  <li><a href="#verifying-a-webhook-payload">Verifying a Webhook payload</a></li>
+  <li><a href="#list-webhooks">List Webhooks</a></li>
+  <li><a href="#get-a-single-webhook">Get a single Webhook</a></li>
+  <li><a href="#create-a-webhook">Create a Webhook</a></li>
+  <li><a href="#edit-a-webhook">Edit a Webhook</a></li>
+  <li><a href="#add-events-to-a-webhook">Add events to a Webhook</a></li>
+  <li><a href="#remove-events-from-a-webhook">Remove events from a Webhook</a></li>
+  <li><a href="#disable-a-webhook">Disable a Webhook</a></li>
+  <li><a href="#enable-a-webhook">Enable a Webhook</a></li>
+  <li><a href="#delete-a-webhook">Delete a Webhook</a></li>
+</ul><h1 id="how-do-webhooks-work">How do Webhooks work?</h1>
+
+<p>Webhooks allow your application or integration to be notified of specific events in your Noko account. You can use this to automatically update project estimates, generate summary reports for the time logged every day, integrate your Noko invoices with your bookkeeping software; the possibilities are endless!</p>
+
+<p>Rather than polling for new data or changes, you can subscribe to specific events, and we’ll notify you as soon as they happen!</p>
+
+<p>Once a Webhook has been created, we’ll send <code>POST</code> requests for the events that you’ve subscribed to for that webhook.</p>
+
+<h2 id="how-do-i-create-a-webhook">How do I create a Webhook?</h2>
+
+<div class="note warning">
+ <h2>Supervisor access required</h2>
+ <p>In the current version of Webhooks, you will need supervisor access to Noko in order to use webhooks. This will likely change in the future 😊</p>
+</div>
+
+<p>To create a webhook, you’ll need:</p>
+
+<ul>
+<li>A publicly accessible URI for us to send events to</li>
+  <li>An idea of what <a href="/v2/webhook_events/">events</a> you want to be notified of</li>
+  <li>A good name for the webhook (so you don’t forget what it’s for!)</li>
+</ul><h3 id="which-type-of-setup-should-i-choose">Which type of setup should I choose?</h3>
+
+<dl>
+<dt>
+<a href="#creating-a-webhook">Webhooks Endpoint</a> (<strong>Strongly recommended</strong>)</dt>
+  <dd>My application will be running in a production environment, I’m writing an integration for Noko in my project, or I want to automate setup.</dd>
+  <dt><a href="#creating-a-webhook-from-the-webapp">Creating a webhook from the Webapp</a></dt>
+  <dd>My application is a script or for internal use only.</dd>
+</dl><h3 id="creating-a-webhook-from-the-api">Creating a Webhook from the API</h3>
+
+<p>In order to create a Webhook from the API, <a href="/v2/authentication">you’ll need to have valid API credentials</a>. Using the API to manage your webhooks allows you automatically set up your integration, without requiring a user to copy/paste any URLs, or configure anything else!</p>
+
+<h3 id="creating-a-webhook-from-the-webapp">Creating a Webhook from the Webapp</h3>
+
+<p>You can create a Webhook from the main Noko app by going to the “Webhooks” tab in your “Integrations &amp; Connected Apps” section.</p>
+
+<h2 id="how-are-webhooks-different-than-the-api">How are Webhooks different than the API?</h2>
+
+<p>Webhooks are a way to be <strong>notified</strong> of changes in your Noko account, while the API is a way to <strong>access and interact</strong> with your Noko account.</p>
+
+<p>When a Webhook is notified of an event, it will receive an <code>object</code> that matches the way the resource is given in the API. This is so you can reuse the same code between your Webhooks &amp; API actions.</p>
+
+<p>Oftentimes, an integration will use both Webhooks &amp; the API to connect with Noko.</p>
+
+<h3 id="example-project-management-tool">Example: Project Management Tool</h3>
+
+<p>Let’s say you have a project management tool that integrates with your Noko account.</p>
+
+<ul>
+<li>You want to update your dashboards in real-time, as people log their time in Noko. To do this, you’d create a Webhook that listens to the <code>entry</code> events, and your webhook would update your dashboards</li>
+  <li>As soon as a project is created in your project managent tool, you want to immediately create the project in Noko so your team can log time against it. You would use the <a href="/v2/projects/#create-a-project">API to create a new project</a>
+</li>
+</ul><h2 id="what-does-a-webhook-payload-look-like">What does a Webhook payload look like?</h2>
+
+<p>A Webhook payload has the following structure:</p>
+
+<pre><code>POST http://dabestnokoapp.com/webhooks/entry_events
+</code></pre>
+
+<pre class="headers"><code>Content-Type: application/json
+X-Noko-EventCategory: event
+X-Noko-Delivery: 050db47d-20f3-4479-86c3-e7a237f670e5
+X-Noko-Signature: 97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8fe
+User-Agent: Noko-Webhooks</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"webhook"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span>
+  <span class="p">},</span>
+  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"entry.updated"</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+  <span class="s2">"object"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
+    <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+    <span class="p">},</span>
+    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
+    <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+      <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+    <span class="p">},</span>
+    <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
+        <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
+        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
+    <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
+    <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
+      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
+      <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
+      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
+      <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
+    <span class="p">},</span>
+    <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
+    <span class="p">},</span>
+    <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
+    <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
+      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
+      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
+      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
+      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
+      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+    <span class="p">},</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
+    <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced"</span><span class="p">,</span>
+    <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
+    <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="verifying-a-webhook-payload">Verifying a Webhook payload</h2>
+
+<p>A secret key is automatically generated when a webhook is created, <strong>make sure you store this signature when you create your webhook!</strong> (but you can always re-roll the signature if you need to). We use this secret to generate a signature for each webhook payload, so you can verify that the request came from Noko. This signature is stored in the <code>X-Noko-Signature</code> request header.</p>
+
+<p>To verify the signature:</p>
+
+<ol>
+<li>Retrieve the <code>secret</code> value that you stored</li>
+  <li>Use a SHA 256 HMAC hexdigest to compute the hash, using the <code>secret</code> as the key.</li>
+  <li>Compare your generated signature with the one in <code>X-Noko-Signature</code>.</li>
+</ol><p><strong>Make sure to use a secure comparison method, like <a href="https://www.rubydoc.info/gems/rack/Rack/Utils#secure_compare-class_method"><code>Rack::Utils.secure_compare</code></a></strong></p>
+
+<h1 id="the-webhooks-api">The Webhooks API</h1>
+
+<p>This API allows you to manage your webhooks entirely from the API, so you can set up your integrations automatically without requiring any user configuration.</p>
+
+<h2 id="list-webhooks">List Webhooks</h2>
+
+<p>Get all webhooks, sorted by the most recently created</p>
+
+<pre><code>GET /v2/webhooks
+</code></pre>
+
+<dl>
+<dt>name</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>Only webhooks containing this text in their name are returned.</dd>
+  <dd>Example: <code>name=Notifier</code>
+</dd>
+  <dt>events</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>A comma-separated list of <a href="/v2/webhook_events/">events</a> to filter by. Accepted values are:</dd>
+  <dd>Example: <code>events=entry.updated,entry.updated.approved</code>
+</dd>
+  <dt>state</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>Only webhooks in this state will be returned. Accepted Values are:
+
+    <ul>
+<li><code>enabled</code></li>
+      <li><code>disabled</code></li>
+    </ul>
+</dd>
+</dl><h3 id="response">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK
+Link: &lt;https://api.nokotime.com/v2/webhooks?page=2&gt;; rel="next",
+ &lt;https://api.nokotime.com/v2/webhooks?page=5&gt;; rel="last"</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span><span class="p">,</span>
+    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
+    <span class="s2">"events"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s2">"entry.created"</span><span class="p">,</span>
+      <span class="s2">"entry.updated"</span><span class="p">,</span>
+      <span class="s2">"entry.deleted"</span><span class="p">,</span>
+      <span class="s2">"entry.updated.approved"</span><span class="p">,</span>
+      <span class="s2">"entry.updated.unapproved"</span><span class="p">,</span>
+      <span class="s2">"entry.updated.invoiced"</span><span class="p">,</span>
+      <span class="s2">"entry.updated.uninvoiced"</span>
+    <span class="p">],</span>
+    <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/webhooks/entry_events"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456"</span><span class="p">,</span>
+    <span class="s2">"add_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/add_events"</span><span class="p">,</span>
+    <span class="s2">"remove_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/remove_events"</span><span class="p">,</span>
+    <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/reroll_secret"</span><span class="p">,</span>
+    <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/enable"</span><span class="p">,</span>
+    <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/disable"</span>
+  <span class="p">}</span>
+<span class="p">]</span></code></pre>
+
+<h2 id="get-a-single-webhook">Get a single Webhook</h2>
+
+<pre><code>GET /v2/webhooks/:id
+</code></pre>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
+  <span class="s2">"events"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"entry.created"</span><span class="p">,</span>
+    <span class="s2">"entry.updated"</span><span class="p">,</span>
+    <span class="s2">"entry.deleted"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.approved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.unapproved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.invoiced"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.uninvoiced"</span>
+  <span class="p">],</span>
+  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/webhooks/entry_events"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456"</span><span class="p">,</span>
+  <span class="s2">"add_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/add_events"</span><span class="p">,</span>
+  <span class="s2">"remove_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/remove_events"</span><span class="p">,</span>
+  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/reroll_secret"</span><span class="p">,</span>
+  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/enable"</span><span class="p">,</span>
+  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/disable"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="create-a-webhook">Create a Webhook</h2>
+
+<pre><code>POST /v2/webhooks/
+</code></pre>
+
+<h3 id="inputs">Inputs</h3>
+
+<dl>
+<dt>name</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The name of the Webhook</dd>
+  <dt>payload_url</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The URI to send the payloads to.</dd>
+  <dt>events</dt>
+  <dd>
+<em>Required</em> <strong>array of strings</strong>
+</dd>
+  <dd>The <a href="/v2/webhook_events/">events</a> this webhook should be subscribed to.</dd>
+  <dd>You can also specify <code>'*'</code>, which is a wildcard for all current and future events.</dd>
+</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span><span class="p">,</span>
+  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/webhooks/entry_events"</span><span class="p">,</span>
+  <span class="s2">"events"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"entry.created"</span><span class="p">,</span>
+    <span class="s2">"entry.updated"</span><span class="p">,</span>
+    <span class="s2">"entry.deleted"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.approved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.unapproved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.invoiced"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.uninvoiced"</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-1">Response</h3>
+
+<pre class="headers"><code>Status: 201 Created
+Location: https://api.nokotime.com/v2/webhooks/123456</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
+  <span class="s2">"events"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"entry.created"</span><span class="p">,</span>
+    <span class="s2">"entry.updated"</span><span class="p">,</span>
+    <span class="s2">"entry.deleted"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.approved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.unapproved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.invoiced"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.uninvoiced"</span>
+  <span class="p">],</span>
+  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/webhooks/entry_events"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456"</span><span class="p">,</span>
+  <span class="s2">"add_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/add_events"</span><span class="p">,</span>
+  <span class="s2">"remove_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/remove_events"</span><span class="p">,</span>
+  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/reroll_secret"</span><span class="p">,</span>
+  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/enable"</span><span class="p">,</span>
+  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/disable"</span><span class="p">,</span>
+  <span class="s2">"secret"</span><span class="o">:</span> <span class="s2">"abcd-1234-secret-value"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="storing-your-webhooks-secret">Storing your webhook’s secret.</h3>
+
+<p>You will only receive the webhook’s <code>secret</code> when first creating the webhook, so make sure to store it!</p>
+
+<h2 id="edit-a-webhook">Edit a Webhook</h2>
+
+<pre><code>PUT /v2/webhooks/:id
+</code></pre>
+
+<h3 id="inputs-1">Inputs</h3>
+
+<dl>
+<dt>name</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The name of the Webhook</dd>
+  <dt>payload_url</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The URI to send the payloads to.</dd>
+</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span><span class="p">,</span>
+  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/webhooks/entry_events"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-2">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
+  <span class="s2">"events"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"entry.created"</span><span class="p">,</span>
+    <span class="s2">"entry.updated"</span><span class="p">,</span>
+    <span class="s2">"entry.deleted"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.approved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.unapproved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.invoiced"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.uninvoiced"</span>
+  <span class="p">],</span>
+  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/webhooks/entry_events"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456"</span><span class="p">,</span>
+  <span class="s2">"add_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/add_events"</span><span class="p">,</span>
+  <span class="s2">"remove_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/remove_events"</span><span class="p">,</span>
+  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/reroll_secret"</span><span class="p">,</span>
+  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/enable"</span><span class="p">,</span>
+  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/disable"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="add-events-to-a-webhook">Add events to a Webhook</h2>
+
+<pre><code>PUT /v2/webhooks/:id/add_events
+</code></pre>
+
+<h3 id="inputs-2">Inputs</h3>
+
+<dl>
+<dt>events</dt>
+  <dd>
+<em>Required</em> <strong>array of strings</strong>
+</dd>
+  <dd>The <a href="/v2/webhook_events/">events</a> this webhook should be subscribed to. Any events the webhook is already subscribed to will be ignored and will not affect the response.</dd>
+  <dd>You can also specify <code>'*'</code>, which is a wildcard for all current and future events.</dd>
+</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"events"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"entry.created"</span><span class="p">,</span>
+    <span class="s2">"entry.updated"</span><span class="p">,</span>
+    <span class="s2">"entry.deleted"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.approved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.unapproved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.invoiced"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.uninvoiced"</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-3">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
+  <span class="s2">"events"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"entry.created"</span><span class="p">,</span>
+    <span class="s2">"entry.updated"</span><span class="p">,</span>
+    <span class="s2">"entry.deleted"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.approved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.unapproved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.invoiced"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.uninvoiced"</span>
+  <span class="p">],</span>
+  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/webhooks/entry_events"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456"</span><span class="p">,</span>
+  <span class="s2">"add_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/add_events"</span><span class="p">,</span>
+  <span class="s2">"remove_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/remove_events"</span><span class="p">,</span>
+  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/reroll_secret"</span><span class="p">,</span>
+  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/enable"</span><span class="p">,</span>
+  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/disable"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="remove-events-from-a-webhook">Remove events from a Webhook</h2>
+
+<pre><code>PUT /v2/webhooks/:id/remove_events
+</code></pre>
+
+<h3 id="inputs-3">Inputs</h3>
+
+<dl>
+<dt>events</dt>
+  <dd>
+<em>Required</em> <strong>array of strings</strong>
+</dd>
+  <dd>The <a href="/v2/webhook_events/">events</a> this webhook should not be subscribed to. Any events the webhook is not already subscribed to will be ignored and will not affect the response.</dd>
+</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"events"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"entry.created"</span><span class="p">,</span>
+    <span class="s2">"entry.updated"</span><span class="p">,</span>
+    <span class="s2">"entry.deleted"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.approved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.unapproved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.invoiced"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.uninvoiced"</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-4">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span><span class="p">,</span>
+  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
+  <span class="s2">"events"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">"entry.created"</span><span class="p">,</span>
+    <span class="s2">"entry.updated"</span><span class="p">,</span>
+    <span class="s2">"entry.deleted"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.approved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.unapproved"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.invoiced"</span><span class="p">,</span>
+    <span class="s2">"entry.updated.uninvoiced"</span>
+  <span class="p">],</span>
+  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/webhooks/entry_events"</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456"</span><span class="p">,</span>
+  <span class="s2">"add_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/add_events"</span><span class="p">,</span>
+  <span class="s2">"remove_events_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/remove_events"</span><span class="p">,</span>
+  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/reroll_secret"</span><span class="p">,</span>
+  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/enable"</span><span class="p">,</span>
+  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/webhooks/123456/disable"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="disable-a-webhook">Disable a Webhook</h2>
+
+<pre><code>PUT /v2/webhooks/:id/disable
+</code></pre>
+
+<h3 id="response-5">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="enable-a-webhook">Enable a Webhook</h2>
+
+<pre><code>PUT /v2/webhooks/:id/enable
+</code></pre>
+
+<h3 id="response-6">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="delete-a-webhook">Delete a Webhook</h2>
+
+<pre><code>DELETE /v2/webhooks/:id
+</code></pre>
+
+<h3 id="response-7">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+      <div id="footer">
+
+        <div class="columns four">
+          <div class="column">
+            <h3>About Noko</h3>
+            <ul>
+              <li><a href="https://nokotime.com/manifesto">The Noko manifesto</a></li>
+              <li><a href="https://nokotime.com/"> Noko plans and pricing</a></li>
+              <li><a href="https://nokotime.com/terms/">Our user agreement</a></li>
+              <li><a href="https://nokotime.com/privacy/">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h3>Us &amp; our company</h3>
+            <ul>
+              <li><a href="https://nokotime.com/team/">Meet our team</a></li>
+              <li><a href="https://nokotime.com/blog/">Read our blog</a></li>
+              <li><a href="https://nokotime.com/contact/">Write us</a></li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h3>Docs</h3>
+            <ul>
+              <li><a href="http://help.nokotime.com/">FAQs</a></li>
+              <li><a href="http://developer.nokotime.com">Developer Documentation</a></li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h3>You &amp; your account</h3>
+            <ul>
+              <li><a href="http://help.nokotime.com/article/13-signing-in-to-freckle">How to sign in</a></li>
+              <li><a href="http://help.nokotime.com/">Get help &amp; contact support</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="copyright">
+          &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
+          Noko® is a registered trademark of Slash7 LLC.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script async src="https://secure.nokotime.com/help/help.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      function setTabs(to){
+        // change all tabs on page to value
+        var tabs = $('.tabs')
+        tabs.find('.selector DIV').removeClass('active')
+        tabs.find('.selector DIV.'+to).addClass('active')
+        tabs.find('.tab').removeClass('active')
+        tabs.find('.tab.'+to).addClass('active')
+
+        // change tabs that don't have an active tab to show first tab
+        tabs.find('.selector').each(function(){
+          if ($(this).find('DIV.active').length > 0) return
+
+          console.log(this)
+          $(this).find('DIV').first().addClass('active')
+          $(this).closest('.tabs').find('.tab').first().addClass('active')
+        })
+
+        // save for later
+        localStorage && (localStorage.dataFormat = to)
+      }
+
+      $('.tabs .selector div').on('click', function(){
+        setTabs($(this).attr('class'))
+      })
+
+      setTabs(localStorage ? (localStorage.dataFormat || 'json') : 'json')
+    })
+  </script>
+
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37896092-1']);
+    _gaq.push(['_setDomainName', 'nokotime.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</body>
+</html>
