@@ -101,11 +101,11 @@ PUT /v2/webhooks/:id
 ### Inputs
 
 name
-: *Required* **string**
+: *Optional* **string**
 : The name of the Webhook
 
 payload_uri
-: *Required* **string**
+: *Optional* **string**
 : The URI to send the payloads to.
 
 <%= json :webhook_edit_fields %>
