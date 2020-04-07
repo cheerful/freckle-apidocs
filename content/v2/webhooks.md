@@ -71,7 +71,7 @@ name
 : *Required* **string**
 : The name of the Webhook
 
-payload_url
+payload_uri
 : *Required* **string**
 : The URI to send the payloads to.
 
@@ -104,7 +104,7 @@ name
 : *Required* **string**
 : The name of the Webhook
 
-payload_url
+payload_uri
 : *Required* **string**
 : The URI to send the payloads to.
 
