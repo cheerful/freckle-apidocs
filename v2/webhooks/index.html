@@ -25,7 +25,7 @@
         <li><a href="/v2/">API Basics</a></li>
         <li><a href="/v2/authentication/">Authentication</a></li>
         <li><a href="/v2/oauth/">OAuth</a></li>
-        <li><a class='coming-soon' href="/v2/webhooks/">Webhooks</a></li>
+        <li><a class='coming-soon' href="/v2/using_webhooks/">Using Webhooks</a></li>
         <li><a href="/v2/migration_guide/">Migrating to Noko</a></li>
       </ul>
 
@@ -39,6 +39,7 @@
         <li><a href="/v2/invoices/">Invoices</a></li>
         <li><a href="/v2/expenses/">Expenses</a></li>
         <li><a href="/v2/invoice_locales/">Invoice Locales</a></li>
+        <li><a class='coming-soon' href="/v2/webhooks/">Webhooks</a></li>
         <li><a class='coming-soon' href="/v2/webhook_events/">Webhook Events</a></li>
       </ul>
 
@@ -56,16 +57,19 @@
         Freckle is now Noko! <a href="/migration_guide/">Learn how to migrate your apps here</a>
       </p>
       <div class="note warning sticky">
-   <h2>Not implemented yet!</h2>
-   <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
- </div>
+ <h2>Not implemented yet!</h2>
+ <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+</div>
+
+<div class="note warning">
+ <h2>Supervisor access required</h2>
+ <p>In the current version of Webhooks, you will need supervisor access to Noko in order to use webhooks. This will likely change in the future 😊</p>
+</div>
+
+<p>This API allows you to manage your webhooks entirely from the API, so you can set up your integrations automatically without requiring any user configuration.</p>
 
 <ul id="markdown-toc">
-<li><a href="#how-do-i-create-a-webhook">How do I create a Webhook?</a></li>
-  <li><a href="#how-are-webhooks-different-than-the-api">How are Webhooks different than the API?</a></li>
-  <li><a href="#what-does-a-webhook-payload-look-like">What does a Webhook payload look like?</a></li>
-  <li><a href="#verifying-a-webhook-payload">Verifying a Webhook payload</a></li>
-  <li><a href="#list-webhooks">List Webhooks</a></li>
+<li><a href="#list-webhooks">List Webhooks</a></li>
   <li><a href="#get-a-single-webhook">Get a single Webhook</a></li>
   <li><a href="#create-a-webhook">Create a Webhook</a></li>
   <li><a href="#edit-a-webhook">Edit a Webhook</a></li>
@@ -74,160 +78,7 @@
   <li><a href="#disable-a-webhook">Disable a Webhook</a></li>
   <li><a href="#enable-a-webhook">Enable a Webhook</a></li>
   <li><a href="#delete-a-webhook">Delete a Webhook</a></li>
-</ul><h1 id="how-do-webhooks-work">How do Webhooks work?</h1>
-
-<p>Webhooks allow your application or integration to be notified of specific events in your Noko account. You can use this to automatically update project estimates, generate summary reports for the time logged every day, integrate your Noko invoices with your bookkeeping software; the possibilities are endless!</p>
-
-<p>Rather than polling for new data or changes, you can subscribe to specific events, and we’ll notify you as soon as they happen!</p>
-
-<p>Once a Webhook has been created, we’ll send <code>POST</code> requests for the events that you’ve subscribed to for that webhook.</p>
-
-<h2 id="how-do-i-create-a-webhook">How do I create a Webhook?</h2>
-
-<div class="note warning">
- <h2>Supervisor access required</h2>
- <p>In the current version of Webhooks, you will need supervisor access to Noko in order to use webhooks. This will likely change in the future 😊</p>
-</div>
-
-<p>To create a webhook, you’ll need:</p>
-
-<ul>
-<li>A publicly accessible URI for us to send events to</li>
-  <li>An idea of what <a href="/v2/webhook_events/">events</a> you want to be notified of</li>
-  <li>A good name for the webhook (so you don’t forget what it’s for!)</li>
-</ul><h3 id="which-type-of-setup-should-i-choose">Which type of setup should I choose?</h3>
-
-<dl>
-<dt>
-<a href="#creating-a-webhook">Webhooks Endpoint</a> (<strong>Strongly recommended</strong>)</dt>
-  <dd>My application will be running in a production environment, I’m writing an integration for Noko in my project, or I want to automate setup.</dd>
-  <dt><a href="#creating-a-webhook-from-the-webapp">Creating a webhook from the Webapp</a></dt>
-  <dd>My application is a script or for internal use only.</dd>
-</dl><h3 id="creating-a-webhook-from-the-api">Creating a Webhook from the API</h3>
-
-<p>In order to create a Webhook from the API, <a href="/v2/authentication">you’ll need to have valid API credentials</a>. Using the API to manage your webhooks allows you automatically set up your integration, without requiring a user to copy/paste any URLs, or configure anything else!</p>
-
-<h3 id="creating-a-webhook-from-the-webapp">Creating a Webhook from the Webapp</h3>
-
-<p>You can create a Webhook from the main Noko app by going to the “Webhooks” tab in your “Integrations &amp; Connected Apps” section.</p>
-
-<h2 id="how-are-webhooks-different-than-the-api">How are Webhooks different than the API?</h2>
-
-<p>Webhooks are a way to be <strong>notified</strong> of changes in your Noko account, while the API is a way to <strong>access and interact</strong> with your Noko account.</p>
-
-<p>When a Webhook is notified of an event, it will receive an <code>object</code> that matches the way the resource is given in the API. This is so you can reuse the same code between your Webhooks &amp; API actions.</p>
-
-<p>Oftentimes, an integration will use both Webhooks &amp; the API to connect with Noko.</p>
-
-<h3 id="example-project-management-tool">Example: Project Management Tool</h3>
-
-<p>Let’s say you have a project management tool that integrates with your Noko account.</p>
-
-<ul>
-<li>You want to update your dashboards in real-time, as people log their time in Noko. To do this, you’d create a Webhook that listens to the <code>entry</code> events, and your webhook would update your dashboards</li>
-  <li>As soon as a project is created in your project managent tool, you want to immediately create the project in Noko so your team can log time against it. You would use the <a href="/v2/projects/#create-a-project">API to create a new project</a>
-</li>
-</ul><h2 id="what-does-a-webhook-payload-look-like">What does a Webhook payload look like?</h2>
-
-<p>A Webhook payload has the following structure:</p>
-
-<pre><code>POST http://dabestnokoapp.com/webhooks/entry_events
-</code></pre>
-
-<pre class="headers"><code>Content-Type: application/json
-X-Noko-EventCategory: event
-X-Noko-Delivery: 050db47d-20f3-4479-86c3-e7a237f670e5
-X-Noko-Signature: 97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8fe
-User-Agent: Noko-Webhooks</code></pre>
-
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"webhook"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span>
-  <span class="p">},</span>
-  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"entry.updated"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"object"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
-    <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
-    <span class="p">},</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-      <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
-    <span class="p">},</span>
-    <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-        <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
-        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
-      <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
-    <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-    <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-      <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-      <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
-    <span class="p">},</span>
-    <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
-    <span class="p">},</span>
-    <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-    <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
-    <span class="p">},</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
-    <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced"</span><span class="p">,</span>
-    <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-    <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-
-<h2 id="verifying-a-webhook-payload">Verifying a Webhook payload</h2>
-
-<p>A secret key is automatically generated when a webhook is created, <strong>make sure you store this signature when you create your webhook!</strong> (but you can always re-roll the signature if you need to). We use this secret to generate a signature for each webhook payload, so you can verify that the request came from Noko. This signature is stored in the <code>X-Noko-Signature</code> request header.</p>
-
-<p>To verify the signature:</p>
-
-<ol>
-<li>Retrieve the <code>secret</code> value that you stored</li>
-  <li>Use a SHA 256 HMAC hexdigest to compute the hash, using the <code>secret</code> as the key.</li>
-  <li>Compare your generated signature with the one in <code>X-Noko-Signature</code>.</li>
-</ol><p><strong>Make sure to use a secure comparison method, like <a href="https://www.rubydoc.info/gems/rack/Rack/Utils#secure_compare-class_method"><code>Rack::Utils.secure_compare</code></a></strong></p>
-
-<h1 id="the-webhooks-api">The Webhooks API</h1>
-
-<p>This API allows you to manage your webhooks entirely from the API, so you can set up your integrations automatically without requiring any user configuration.</p>
-
-<h2 id="list-webhooks">List Webhooks</h2>
+</ul><h2 id="list-webhooks">List Webhooks</h2>
 
 <p>Get all webhooks, sorted by the most recently created</p>
 
