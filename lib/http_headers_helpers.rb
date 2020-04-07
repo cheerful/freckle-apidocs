@@ -40,6 +40,24 @@ module Noko
 
         %(<pre class="#{css_class}"><code>#{lines * "\n"}</code></pre>\n)
       end
+
+      def request_headers(head = {})
+        css_class = 'headers'
+        pagination_resource = !head[:pagination_resource].nil? ? head[:pagination_resource] : 'resource'
+        lines = []
+        head.each do |key, value|
+          case key
+            when :pagination
+              lines << "Link: <#{API_V2_URL}/#{pagination_resource}?page=2>; rel=\"next\","
+              lines << " <#{API_V2_URL}/#{pagination_resource}?page=5>; rel=\"last\""
+            when :pagination_resource
+              nil
+            else lines << "#{key}: #{value}"
+          end
+        end
+
+        %(<pre class="#{css_class}"><code>#{lines * "\n"}</code></pre>\n)
+      end
 		end
 	end
 end
