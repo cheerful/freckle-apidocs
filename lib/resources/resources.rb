@@ -714,6 +714,65 @@ module Noko
       :error => "invalid_grant",
       :error_description => "The provided access grant is invalid, expired, or revoked (e.g. invalid assertion, expired authorization token, bad end-user password credentials, or mismatching authorization code and redirection URI)."
     }
+
+    WEBHOOK_ENTRY_EVENTS = [
+      'entry.created',
+      'entry.updated',
+      'entry.deleted',
+      'entry.updated.approved',
+      'entry.updated.unapproved',
+      'entry.updated.invoiced',
+      'entry.updated.uninvoiced',
+    ]
+
+    EXAMPLE_WEBHOOK_PAYLOAD_URI = "http://dabestnokoapp.com/webhooks/entry_events"
+
+    EXAMPLE_WEBHOOK_SUMMARY = {
+      id: 123456,
+      name: "Da Best Noko Webhook"
+    }
+
+    WEBHOOK = EXAMPLE_WEBHOOK_SUMMARY.merge({
+      state: "enabled",
+      events: WEBHOOK_ENTRY_EVENTS,
+      payload_uri: EXAMPLE_WEBHOOK_PAYLOAD_URI,
+      url: "#{API_V2_URL}/webhooks/123456",
+      add_events_url: "#{API_V2_URL}/webhooks/123456/add_events",
+      remove_events_url: "#{API_V2_URL}/webhooks/123456/remove_events",
+      reroll_secret_url: "#{API_V2_URL}/webhooks/123456/reroll_secret",
+      enable_url: "#{API_V2_URL}/webhooks/123456/enable",
+      disable_url: "#{API_V2_URL}/webhooks/123456/disable",
+    })
+
+    WEBHOOK_EDIT_FIELDS = {
+      name: "Da Best Noko Webhook",
+      payload_uri: EXAMPLE_WEBHOOK_PAYLOAD_URI,
+    }
+
+    WEBHOOK_EDIT_EVENTS_FIELDS = {
+      events: WEBHOOK_ENTRY_EVENTS
+    }
+
+    WEBHOOK_CREATE_FIELDS = WEBHOOK_EDIT_FIELDS.merge(WEBHOOK_EDIT_EVENTS_FIELDS)
+
+    WEBHOOK_SECRET_DATA = { secret: "abcd-1234-secret-value" }
+
+    CREATED_WEBHOOK = WEBHOOK.merge(WEBHOOK_SECRET_DATA)
+
+    EXAMPLE_WEBHOOK_PAYLOAD_HEADERS = {
+      "Content-Type" => 'application/json',
+      "X-Noko-EventCategory" => "event",
+      "X-Noko-Delivery" => "050db47d-20f3-4479-86c3-e7a237f670e5",
+      "X-Noko-Signature" => "97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8fe",
+      "User-Agent" => "Noko-Webhooks"
+    }
+
+    EXAMPLE_WEBHOOK_PAYLOAD_BODY = {
+      webhook: EXAMPLE_WEBHOOK_SUMMARY,
+      type: "entry.updated",
+      created_at: ENTRY["updated_at"],
+      object: ENTRY,
+    }
   end
 end
 
