@@ -761,7 +761,7 @@ module Noko
 
     EXAMPLE_WEBHOOK_PAYLOAD_HEADERS = {
       "Content-Type" => 'application/json',
-      "X-Noko-EventCategory" => "event",
+      "X-Noko-EventCategory" => "entry",
       "X-Noko-Delivery" => "050db47d-20f3-4479-86c3-e7a237f670e5",
       "X-Noko-Signature" => "97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8fe",
       "User-Agent" => "Noko-Webhooks"
