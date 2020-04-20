@@ -725,6 +725,13 @@ module Noko
       'entry.updated.uninvoiced',
     ]
 
+    WEBHOOK_TAG_EVENTS = [
+      'tag.created',
+      'tag.updated',
+      'tag.deleted',
+      'tag.deleted.merged',
+    ]
+
     EXAMPLE_WEBHOOK_PAYLOAD_URI = "http://dabestnokoapp.com/webhooks/entry_events"
 
     EXAMPLE_WEBHOOK_SUMMARY = {

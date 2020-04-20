@@ -20,3 +20,10 @@ There is a special event, `*`, which you can use to subscribe a webhook to all c
 <% WEBHOOK_ENTRY_EVENTS.each do |event| %>
 - `<%= event %>`
 <% end %>
+
+
+# Tag Events
+
+<% WEBHOOK_TAG_EVENTS.each do |event| %>
+- `<%= event %>`
+<% end %>
