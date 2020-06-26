@@ -20,11 +20,11 @@ recipient_details
 : The mailing address and other information for the invoice's recipient.
 
 description
-: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting)
+: *Optional* **string** that supports a [limited version of Markdown](http://help.nokotime.com/article/84-customizing-invoice-labels-and-formatting)
 : A description of the invoice.
 
 footer
-: *Optional* **string** that supports a [limited version of Markdown](http://help.letsfreckle.com/article/84-customizing-invoice-labels-and-formatting)
+: *Optional* **string** that supports a [limited version of Markdown](http://help.nokotime.com/article/84-customizing-invoice-labels-and-formatting)
 : The footer for each page of the invoice.
 
 show_hours_worked

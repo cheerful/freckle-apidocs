@@ -112,7 +112,7 @@ last name
 
 role
 : *Optional* **string**
-: The user's [role](http://help.letsfreckle.com/article/86-setting-permissions). Accepted values are:
+: The user's [role](http://help.nokotime.com/article/86-setting-permissions). Accepted values are:
 
     * supervisor
     * leader (**default**)
@@ -128,7 +128,7 @@ role
 
 The following Custom Error codes can be returned for this action:
 
-* **reached_user_limit**: the account has reached the maximum number of active users available for the current plan. The account owner will have to [upgrade their account](http://help.letsfreckle.com/article/69-upgrading-and-downgrading-your-account).
+* **reached_user_limit**: the account has reached the maximum number of active users available for the current plan. The account owner will have to [upgrade their account](http://help.nokotime.com/article/69-upgrading-and-downgrading-your-account).
 
 ## Edit a User
 
@@ -150,7 +150,7 @@ last name
 
 role
 : *Optional* **string**
-: The user's [role](http://help.letsfreckle.com/article/86-setting-permissions). Accepted values are:
+: The user's [role](http://help.nokotime.com/article/86-setting-permissions). Accepted values are:
 
     * supervisor
     * leader
@@ -188,7 +188,7 @@ PUT /users/:id/activate
 The following Custom Error codes can be returned for this action:
 
 * **not_deactivated**: The user is not deactivated, and therefore cannot be reactivated.
-* **reached_user_limit**: the account has reached the maximum number of active users available for the current plan. The account owner will have to [upgrade their account](http://help.letsfreckle.com/article/69-upgrading-and-downgrading-your-account).
+* **reached_user_limit**: the account has reached the maximum number of active users available for the current plan. The account owner will have to [upgrade their account](http://help.nokotime.com/article/69-upgrading-and-downgrading-your-account).
 
 ## Give a User Access to Projects
 
