@@ -780,6 +780,23 @@ module Noko
       created_at: ENTRY["updated_at"],
       object: ENTRY,
     }
+
+    EXAMPLE_WEBHOOK_PING_HEADERS = {
+      "Content-Type" => 'application/json',
+      "X-Noko-EventCategory" => "webhook",
+      "X-Noko-Delivery" => "6578e997-d144-46fb-a67d-07c886d1a7a1",
+      "X-Noko-Signature" => "97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8fe",
+      "User-Agent" => "Noko-Webhooks"
+    }
+
+    EXAMPLE_WEBHOOK_PING_BODY = {
+      "payload_id" => "6578e997-d144-46fb-a67d-07c886d1a7a1",
+      "created_at" => "2020-07-29T15:19:28Z",
+      "type" => "webhook.ping",
+      "object"=> {},
+      "webhook" => EXAMPLE_WEBHOOK_SUMMARY
+    }
+
   end
 end
 

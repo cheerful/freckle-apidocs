@@ -58,6 +58,18 @@ Let's say you have a project management tool that integrates with your Noko acco
 * You want to update your dashboards in real-time, as people log their time in Noko. To do this, you'd create a Webhook that listens to the `entry` events, and your webhook would update your dashboards
 * As soon as a project is created in your project managent tool, you want to immediately create the project in Noko so your team can log time against it. You would use the [API to create a new project](/v2/projects/#create-a-project)
 
+
+## Pinging your Webhook
+
+When your Webhook is created (either through the Webapp or from the API), we send a `webhook.ping` event, so you can verify that your webhook is receiving data from Noko.
+
+You can also manually trigger a ping at any time, either from the Webapp (if it's a standalone webhook), or using the [Ping action in the Webhook Endpoint](/v2/webhooks/#ping-a-webhook) for API Webhooks.
+
+A Ping event has the following structure:
+
+<%= request_headers EXAMPLE_WEBHOOK_PING_HEADERS %>
+<%= json :EXAMPLE_WEBHOOK_PING_BODY %>
+
 ## What does a Webhook payload look like?
 
 A Webhook payload has the following structure:

@@ -182,6 +182,16 @@ PUT /v2/webhooks/:id/enable
 
 <%= headers 204 %>
 
+## Ping a Webhook
+
+~~~
+PUT /v2/webhooks/:id/ping
+~~~
+
+### Response
+
+<%= headers 202 %>
+
 ## Delete a Webhook
 
 ~~~
