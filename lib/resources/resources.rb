@@ -739,6 +739,12 @@ module Noko
       name: "Da Best Noko Webhook"
     }
 
+    EXAMPLE_WEBHOOK_PAYLOAD_CHANGES = {
+      "minutes" => [30, ENTRY["minutes"]],
+      "invoiced_at" => [nil, ENTRY["invoiced_at"]],
+      "invoice" => [nil, ENTRY["invoice"]],
+    }
+
     WEBHOOK = EXAMPLE_WEBHOOK_SUMMARY.merge({
       state: "enabled",
       events: WEBHOOK_ENTRY_EVENTS,
@@ -778,6 +784,7 @@ module Noko
       webhook: EXAMPLE_WEBHOOK_SUMMARY,
       type: "entry.updated",
       created_at: ENTRY["updated_at"],
+      changes: EXAMPLE_WEBHOOK_PAYLOAD_CHANGES,
       object: ENTRY,
     }
 
