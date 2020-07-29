@@ -28,7 +28,7 @@ name
 
 events
 : *Optional* **string**
-: A comma-separated list of [events](/v2/webhook_events/) to filter by. Accepted values are:
+: A comma-separated list of [events](/v2/webhook_events/) to filter by.
 : Example: `events=entry.updated,entry.updated.approved`
 
 state
