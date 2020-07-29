@@ -192,6 +192,17 @@ PUT /v2/webhooks/:id/ping
 
 <%= headers 202 %>
 
+
+## Retry a Webhook Payload
+
+~~~
+PUT /v2/webhooks/:id/retry/:payload_id
+~~~
+
+### Response
+
+<%= headers 202 %>
+
 ## Delete a Webhook
 
 ~~~

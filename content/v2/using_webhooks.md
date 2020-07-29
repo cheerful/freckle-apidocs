@@ -95,3 +95,8 @@ To verify the signature:
 **Make sure to use a secure comparison method, like [`Rack::Utils.secure_compare`](https://www.rubydoc.info/gems/rack/Rack/Utils#secure_compare-class_method)**
 
 
+## Webhook failures and retries
+
+Each webhook sends its payloads serially, **and will not send future payloads if a payload fails**. We wait until the webhook responds with a successful status code before sending the next payload to help prevent state bugs and simplify the bugfixing process on your end. We want any bugs to be as easy and straightforward to fix as possible, and consistent, serialized results help with that.
+
+We retry failed payloads for up to 3 days, using an exponential backoff algorithm to space out the retries. Because each Webhook sends its payloads serially, **a webhook will stop receiving events if it's failed to successfully process a payload after 3 days**. You can manually retry a failing payload from the Webapp (if it's a standalone Webhook) or using the [Retry action in the Webhook Endpoint](/v2/webhooks/#retry-a-webhook-payload).
