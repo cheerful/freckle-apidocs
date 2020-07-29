@@ -8,12 +8,6 @@ title: Webhooks
  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
 </div>
 
-<div class="note warning">
- <h2>Supervisor access required</h2>
- <p>In the current version of Webhooks, you will need supervisor access to Noko in order to use webhooks. This will likely change in the future 😊</p>
-</div>
-
-
 This API allows you to manage your webhooks entirely from the API, so you can set up your integrations automatically without requiring any user configuration.
 
 * TOC

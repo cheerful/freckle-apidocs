@@ -21,11 +21,6 @@ Once a Webhook has been created, we'll send `POST` requests for the events that 
 
 ## How do I create a Webhook?
 
-<div class="note warning">
- <h2>Supervisor access required</h2>
- <p>In the current version of Webhooks, you will need supervisor access to Noko in order to use webhooks. This will likely change in the future 😊</p>
-</div>
-
 To create a webhook, you'll need:
 
 * A publicly accessible URI for us to send events to
