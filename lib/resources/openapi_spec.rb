@@ -10,7 +10,7 @@ module Noko
       "contact": {
         "name": "API Support",
         "url": "http://developer.nokotime.com",
-        "email": "support@nokotime.com.com"
+        "email": "support@nokotime.com"
       },
       "version": SPEC_VERSION
     }
