@@ -33,6 +33,33 @@ module Noko
     DATE_PROPERTY = {type: "string", format: "date"}
     BOOLEAN_PROPERTY = {type: "boolean"}
 
+    def content(content)
+      return {
+        "application/json": content
+      }
+    end
+
+    def webhook_callback(summary:, description:, schema:)
+      return {
+        "$request.body#payload_uri": {
+          post: {
+            summary: summary,
+            requestBody: {
+              description: description,
+              content: content(schema: schema),
+            },
+            "responses": {
+              "200": { "$ref": '#/components/responses/WebhookPayload200Response'},
+              "202": { "$ref": '#/components/responses/WebhookPayload202Response'},
+              "410": { "$ref": '#/components/responses/WebhookPayload410Response'},
+              "500": { "$ref": '#/components/responses/WebhookPayload500Response'},
+              "501": { "$ref": '#/components/responses/WebhookPayload501Response'},
+            },
+            tags: [WEBHOOKS_TAG]
+          },
+        }
+      }
+    end
 
     ENTRY_PATHS = {
       "/entries": {
@@ -116,35 +143,6 @@ module Noko
         }
       }
     }
-
-    def self.content(content)
-      return {
-        "application/json": content
-      }
-    end
-
-    def self.webhook_callback(summary:, description:, schema:)
-      return {
-        "$request.body#payload_uri": {
-          post: {
-            summary: summary,
-            requestBody: {
-              description: description,
-              content: content(schema: schema),
-            },
-            "responses": {
-              "200": { "$ref": '#/components/responses/WebhookPayload200Response'},
-              "202": { "$ref": '#/components/responses/WebhookPayload202Response'},
-              "410": { "$ref": '#/components/responses/WebhookPayload410Response'},
-              "500": { "$ref": '#/components/responses/WebhookPayload500Response'},
-              "501": { "$ref": '#/components/responses/WebhookPayload501Response'},
-            },
-            tags: [WEBHOOKS_TAG]
-          },
-        }
-      }
-    end
-
 
     WEBHOOK_PATHS = {
       "/webhooks": {
