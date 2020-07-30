@@ -8,6 +8,7 @@ gem 'nokogiri'
 gem 'nanoc'
 
 group :development do
+  gem 'rake'
 	gem 'guard'
 	gem 'guard-nanoc'
   gem 'html-proofer'
