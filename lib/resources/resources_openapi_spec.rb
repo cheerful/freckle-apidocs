@@ -213,7 +213,7 @@ module Noko
 
     ENTRY_SCHEMA = {
       Entry: {
-        summary: "Entry",
+        description: "Entry",
         type: "object",
         required: [
           "id",
@@ -240,7 +240,7 @@ module Noko
 
     ENTRIES_SCHEMA = {
       Entries: {
-        summary: "The list of entries from Noko",
+        description: "The list of entries from Noko",
         type: "array",
         items: ENTRY_SCHEMA_REF
       }
@@ -267,15 +267,6 @@ module Noko
           color: {type: "string", format: "CSS Hexadecimal color", example: SIMPLE_PROJECT["color"]},
           billable: BOOLEAN_PROPERTY,
           project_group: SIMPLE_PROJECT_GROUP_SCHEMA_REF,
-        },
-        links:{
-          url: {
-            summary: "Get this project full details",
-            operationId: "get-project",
-            parameters: {
-              id: "$id"
-            }
-          }
         }
       }
     }
