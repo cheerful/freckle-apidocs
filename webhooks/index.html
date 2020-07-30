@@ -41,6 +41,7 @@
         <li><a href="/v2/invoice_locales/">Invoice Locales</a></li>
         <li><a class='coming-soon' href="/v2/webhooks/">Webhooks</a></li>
         <li><a class='coming-soon' href="/v2/webhook_events/">Webhook Events</a></li>
+        <li><a class='coming-soon' href="/v2/openapi-spec.json">OpenAPI Specification</a></li>
       </ul>
 
       <h2>Account Management</h2>
@@ -61,6 +62,11 @@
  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
 </div>
 
+<div class="note warning">
+ <h2>Supervisor access required</h2>
+ <p>In the current version of Webhooks, you will need supervisor access to Noko in order to use webhooks. This will likely change in the future 😊</p>
+</div>
+
 <p>This API allows you to manage your webhooks entirely from the API, so you can set up your integrations automatically without requiring any user configuration.</p>
 
 <ul id="markdown-toc">
@@ -73,8 +79,6 @@
   <li><a href="#re-roll-a-webhooks-secret">Re-roll a Webhook’s secret</a></li>
   <li><a href="#disable-a-webhook">Disable a Webhook</a></li>
   <li><a href="#enable-a-webhook">Enable a Webhook</a></li>
-  <li><a href="#ping-a-webhook">Ping a Webhook</a></li>
-  <li><a href="#retry-a-webhook-payload">Retry a Webhook Payload</a></li>
   <li><a href="#delete-a-webhook">Delete a Webhook</a></li>
 </ul><h2 id="list-webhooks">List Webhooks</h2>
 
@@ -95,7 +99,7 @@
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>A comma-separated list of <a href="/v2/webhook_events/">events</a> to filter by.</dd>
+  <dd>A comma-separated list of <a href="/v2/webhook_events/">events</a> to filter by. Accepted values are:</dd>
   <dd>Example: <code>events=entry.updated,entry.updated.approved</code>
 </dd>
   <dt>state</dt>
@@ -421,30 +425,12 @@ Location: https://api.nokotime.com/v2/webhooks/123456</code></pre>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h2 id="ping-a-webhook">Ping a Webhook</h2>
-
-<pre><code>PUT /v2/webhooks/:id/ping
-</code></pre>
-
-<h3 id="response-8">Response</h3>
-
-<pre class="headers"><code>Status: 202 Accepted</code></pre>
-
-<h2 id="retry-a-webhook-payload">Retry a Webhook Payload</h2>
-
-<pre><code>PUT /v2/webhooks/:id/retry/:payload_id
-</code></pre>
-
-<h3 id="response-9">Response</h3>
-
-<pre class="headers"><code>Status: 202 Accepted</code></pre>
-
 <h2 id="delete-a-webhook">Delete a Webhook</h2>
 
 <pre><code>DELETE /v2/webhooks/:id
 </code></pre>
 
-<h3 id="response-10">Response</h3>
+<h3 id="response-8">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -489,7 +475,7 @@ Location: https://api.nokotime.com/v2/webhooks/123456</code></pre>
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>

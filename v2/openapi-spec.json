@@ -1,0 +1,1092 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Noko API v2",
+    "description": "The JSON API for Noko Time Tracking",
+    "termsOfService": "http://nokotime.com/terms/",
+    "contact": {
+      "name": "API Support",
+      "url": "http://developer.nokotime.com",
+      "email": "support@nokotime.com"
+    },
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "https://api.nokotime.com/v2",
+      "description": "API Endpoint"
+    }
+  ],
+  "paths": {
+    "/entries": {
+      "get": {
+        "summary": "Get all entries, sorted by the most recent entry date.",
+        "operationId": "list-entries",
+        "parameters": [
+          {
+            "name": "user_ids",
+            "in": "query",
+            "description": "A comma-separated list of user IDs to filter by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paged array of entries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entries"
+                }
+              }
+            },
+            "links": {
+              "Project": {
+                "$ref": "#/components/links/LinkToProjectFromSummaryProject"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Entries"
+        ]
+      }
+    },
+    "/projects": {
+      "get": {
+        "summary": "List all projects the authenticated user has access to.",
+        "operationId": "list-projects",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Only projects containing this text in their name are returned.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Gear"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paged array of projects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Projects"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/projects/#{id}": {
+      "get": {
+        "summary": "Get a single project",
+        "operationId": "get-project",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the project to retrieve",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/webhooks": {
+      "post": {
+        "operationId": "add-webhook",
+        "summary": "Create a Webhook to listen to events from Noko",
+        "requestBody": {
+          "description": "subscribe a Webhook to receive events from Noko",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewWebhook"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Webhook successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                }
+              }
+            }
+          }
+        },
+        "callbacks": {
+          "entry-created": {
+            "$request.body#payload_uri": {
+              "post": {
+                "summary": "Entry Created",
+                "requestBody": {
+                  "description": "An entry has been created in Noko",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/EntryCreatedWebhookPayload"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "$ref": "#/components/responses/WebhookPayload200Response"
+                  },
+                  "202": {
+                    "$ref": "#/components/responses/WebhookPayload202Response"
+                  },
+                  "410": {
+                    "$ref": "#/components/responses/WebhookPayload410Response"
+                  },
+                  "500": {
+                    "$ref": "#/components/responses/WebhookPayload500Response"
+                  },
+                  "501": {
+                    "$ref": "#/components/responses/WebhookPayload501Response"
+                  }
+                },
+                "tags": [
+                  "Webhooks"
+                ]
+              }
+            }
+          },
+          "entry-updated": {
+            "$request.body#payload_uri": {
+              "post": {
+                "summary": "Entry Updated",
+                "requestBody": {
+                  "description": "An entry has been updated in Noko",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/EntryUpdatedWebhookPayload"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "$ref": "#/components/responses/WebhookPayload200Response"
+                  },
+                  "202": {
+                    "$ref": "#/components/responses/WebhookPayload202Response"
+                  },
+                  "410": {
+                    "$ref": "#/components/responses/WebhookPayload410Response"
+                  },
+                  "500": {
+                    "$ref": "#/components/responses/WebhookPayload500Response"
+                  },
+                  "501": {
+                    "$ref": "#/components/responses/WebhookPayload501Response"
+                  }
+                },
+                "tags": [
+                  "Webhooks"
+                ]
+              }
+            }
+          },
+          "entry-approved": {
+            "$request.body#payload_uri": {
+              "post": {
+                "summary": "Entry Approved",
+                "requestBody": {
+                  "description": "An entry has been approved in Noko",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/EntryApprovedWebhookPayload"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "$ref": "#/components/responses/WebhookPayload200Response"
+                  },
+                  "202": {
+                    "$ref": "#/components/responses/WebhookPayload202Response"
+                  },
+                  "410": {
+                    "$ref": "#/components/responses/WebhookPayload410Response"
+                  },
+                  "500": {
+                    "$ref": "#/components/responses/WebhookPayload500Response"
+                  },
+                  "501": {
+                    "$ref": "#/components/responses/WebhookPayload501Response"
+                  }
+                },
+                "tags": [
+                  "Webhooks"
+                ]
+              }
+            }
+          },
+          "entry-unapproved": {
+            "$request.body#payload_uri": {
+              "post": {
+                "summary": "Entry Unapproved",
+                "requestBody": {
+                  "description": "An entry has been unapproved in Noko",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/EntryUnapprovedWebhookPayload"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "$ref": "#/components/responses/WebhookPayload200Response"
+                  },
+                  "202": {
+                    "$ref": "#/components/responses/WebhookPayload202Response"
+                  },
+                  "410": {
+                    "$ref": "#/components/responses/WebhookPayload410Response"
+                  },
+                  "500": {
+                    "$ref": "#/components/responses/WebhookPayload500Response"
+                  },
+                  "501": {
+                    "$ref": "#/components/responses/WebhookPayload501Response"
+                  }
+                },
+                "tags": [
+                  "Webhooks"
+                ]
+              }
+            }
+          },
+          "entry-invoiced": {
+            "$request.body#payload_uri": {
+              "post": {
+                "summary": "Entry Invoiced",
+                "requestBody": {
+                  "description": "An entry has been invoiced in Noko",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/EntryInvoicedWebhookPayload"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "$ref": "#/components/responses/WebhookPayload200Response"
+                  },
+                  "202": {
+                    "$ref": "#/components/responses/WebhookPayload202Response"
+                  },
+                  "410": {
+                    "$ref": "#/components/responses/WebhookPayload410Response"
+                  },
+                  "500": {
+                    "$ref": "#/components/responses/WebhookPayload500Response"
+                  },
+                  "501": {
+                    "$ref": "#/components/responses/WebhookPayload501Response"
+                  }
+                },
+                "tags": [
+                  "Webhooks"
+                ]
+              }
+            }
+          },
+          "entry-uninvoiced": {
+            "$request.body#payload_uri": {
+              "post": {
+                "summary": "Entry Uninvoiced",
+                "requestBody": {
+                  "description": "An entry has been uninvoiced in Noko",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/EntryUninvoicedWebhookPayload"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "$ref": "#/components/responses/WebhookPayload200Response"
+                  },
+                  "202": {
+                    "$ref": "#/components/responses/WebhookPayload202Response"
+                  },
+                  "410": {
+                    "$ref": "#/components/responses/WebhookPayload410Response"
+                  },
+                  "500": {
+                    "$ref": "#/components/responses/WebhookPayload500Response"
+                  },
+                  "501": {
+                    "$ref": "#/components/responses/WebhookPayload501Response"
+                  }
+                },
+                "tags": [
+                  "Webhooks"
+                ]
+              }
+            }
+          },
+          "entry-deleted": {
+            "$request.body#payload_uri": {
+              "post": {
+                "summary": "Entry Deleted",
+                "requestBody": {
+                  "description": "An entry has been deleted in Noko",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/EntryDeletedWebhookPayload"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "$ref": "#/components/responses/WebhookPayload200Response"
+                  },
+                  "202": {
+                    "$ref": "#/components/responses/WebhookPayload202Response"
+                  },
+                  "410": {
+                    "$ref": "#/components/responses/WebhookPayload410Response"
+                  },
+                  "500": {
+                    "$ref": "#/components/responses/WebhookPayload500Response"
+                  },
+                  "501": {
+                    "$ref": "#/components/responses/WebhookPayload501Response"
+                  }
+                },
+                "tags": [
+                  "Webhooks"
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": [
+
+      ],
+      "personal_access_token": [
+
+      ]
+    }
+  ],
+  "components": {
+    "responses": {
+      "WebhookPayload200Response": {
+        "description": "Your webhook should return `200 OK` if the payload was received successfully."
+      },
+      "WebhookPayload202Response": {
+        "description": "Your webhook should return `202 Accepted` if the payload was received successfully, but will not be acted on."
+      },
+      "WebhookPayload410Response": {
+        "description": "Your webhook should return `410 Gone` if the webhook has been removed or disabled. This will disable the webhook in Noko and stop it from sending future events."
+      },
+      "WebhookPayload500Response": {
+        "description": "Your webhook should return `500 InternalServer Error` if you encountered an error processing the webhook."
+      },
+      "WebhookPayload501Response": {
+        "description": "Your webhook should return `501 Not Implemented` if you have not implemented this event yet."
+      }
+    },
+    "schemas": {
+      "Entry": {
+        "description": "Entry",
+        "type": "object",
+        "required": [
+          "id",
+          "date",
+          "minutes"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "example": 1234
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "integer",
+            "description": "The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's `billing_increment` settings. If no value is provided, then the entry will have `0` minutes."
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserSummary"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectSummary"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the time entry, including any hashtags."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          },
+          "approved_by": {
+            "$ref": "#/components/schemas/UserSummary"
+          }
+        },
+        "example": {
+          "id": 1,
+          "date": "2012-01-09",
+          "user": {
+            "id": 5538,
+            "email": "john.test@test.com",
+            "first_name": "John",
+            "last_name": "Test",
+            "profile_image_url": "https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg",
+            "url": "https://api.nokotime.com/v2/users/5538"
+          },
+          "billable": true,
+          "minutes": 60,
+          "description": "noko",
+          "project": {
+            "id": 37396,
+            "name": "Gear GmbH",
+            "billing_increment": 10,
+            "enabled": true,
+            "billable": true,
+            "color": "#ff9898",
+            "url": "https://api.nokotime.com/v2/projects/37396"
+          },
+          "tags": [
+            {
+              "id": 249397,
+              "name": "noko",
+              "billable": true,
+              "formatted_name": "#noko",
+              "url": "https://api.nokotime.com/v2/tags/249397"
+            }
+          ],
+          "source_url": "http://someapp.com/special/url/",
+          "invoiced_at": "2012-01-10T08:33:29Z",
+          "invoice": {
+            "id": 12345678,
+            "reference": "AA001",
+            "invoice_date": "2013-07-09",
+            "state": "unpaid",
+            "total_amount": 189.33,
+            "url": "https://api.nokotime.com/v2/invoices/12345678"
+          },
+          "import": {
+            "id": 8910,
+            "url": "https://api.nokotime.com/v2/imports/8910"
+          },
+          "approved_at": "2012-01-10T08:33:29Z",
+          "approved_by": {
+            "id": 5538,
+            "email": "john.test@test.com",
+            "first_name": "John",
+            "last_name": "Test",
+            "profile_image_url": "https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg",
+            "url": "https://api.nokotime.com/v2/users/5538"
+          },
+          "url": "https://api.nokotime.com/v2/entries/1711626",
+          "invoiced_outside_of_noko_url": "https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced",
+          "approved_url": "https://api.nokotime.com/v2/entries/1711626/approved",
+          "unapproved_url": "https://api.nokotime.com/v2/entries/1711626/unapproved",
+          "created_at": "2012-01-09T08:33:29Z",
+          "updated_at": "2012-01-09T08:33:29Z"
+        }
+      },
+      "Entries": {
+        "description": "The list of entries from Noko",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Entry"
+        }
+      },
+      "Project": {
+        "description": "A Project in Noko",
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "enabled",
+          "billing_increment",
+          "color",
+          "billable"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "example": 1234
+          },
+          "name": {
+            "type": "string",
+            "example": "Gear GmbH"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "billing_increment": {
+            "$ref": "#/components/schemas/BillingIncrement"
+          },
+          "color": {
+            "type": "string",
+            "format": "CSS Hexadecimal color",
+            "example": "#ff9898"
+          },
+          "billable": {
+            "type": "boolean"
+          },
+          "project_group": {
+            "$ref": "#/components/schemas/ProjectGroupSummary"
+          }
+        }
+      },
+      "Projects": {
+        "summary": "The list of projects from Noko",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Project"
+        }
+      },
+      "ProjectGroupSummary": {
+        "description": "A Summary of a Project Group",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "example": 1234
+          },
+          "name": {
+            "type": "string",
+            "example": "Sprockets, Inc."
+          }
+        }
+      },
+      "UserSummary": {
+        "description": "A Summary of a User",
+        "type": "object",
+        "required": [
+          "id",
+          "email"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "example": 1234
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.test@test.com"
+          }
+        }
+      },
+      "ProjectSummary": {
+        "description": "A Summary of a Project",
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "enabled",
+          "billing_increment",
+          "color",
+          "billable"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "example": 1234
+          },
+          "name": {
+            "type": "string",
+            "example": "Gear GmbH"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "billing_increment": {
+            "$ref": "#/components/schemas/BillingIncrement"
+          },
+          "color": {
+            "type": "string",
+            "format": "CSS Hexadecimal color",
+            "example": "#ff9898"
+          },
+          "billable": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Tag": {
+        "required": [
+          "id",
+          "name",
+          "billable",
+          "formatted_name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "example": 1234
+          },
+          "name": {
+            "type": "sting"
+          },
+          "billable": {
+            "type": "boolean"
+          },
+          "formatted_name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 249397,
+          "name": "noko",
+          "billable": true,
+          "formatted_name": "#noko",
+          "url": "https://api.nokotime.com/v2/tags/249397",
+          "import": {
+            "id": 8910,
+            "url": "https://api.nokotime.com/v2/imports/8910"
+          },
+          "entries": 0,
+          "entries_url": "https://api.nokotime.com/v2/tags/55629/entries",
+          "merge_url": "https://api.nokotime.com/v2/tags/55629/merge",
+          "created_at": "2010-06-09T20:44:57Z",
+          "updated_at": "2010-06-09T20:44:57Z"
+        }
+      },
+      "BillingIncrement": {
+        "description": "The billing increment used by this project. The default value is the account's default billing increment (which is `15` by default).",
+        "enum": [
+          1,
+          5,
+          6,
+          10,
+          15,
+          2,
+          30,
+          60
+        ],
+        "default": 15
+      },
+      "WebhookEvent": {
+        "enum": [
+          "entry.created",
+          "entry.updated",
+          "entry.deleted",
+          "entry.updated.approved",
+          "entry.updated.unapproved",
+          "entry.updated.invoiced",
+          "entry.updated.uninvoiced",
+          "tag.created",
+          "tag.updated",
+          "tag.deleted",
+          "tag.deleted.merged",
+          "*"
+        ],
+        "default": "*"
+      },
+      "NewWebhook": {
+        "description": "A new Webhook to subscribe to Noko",
+        "required": [
+          "id",
+          "name",
+          "payload_uri",
+          "events"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "example": 1234
+          },
+          "name": {
+            "description": "The name of the Webhook",
+            "type": "string",
+            "example": "Da Best Noko Webhook"
+          },
+          "payload_uri": {
+            "description": "The URI to send the payloads to",
+            "type": "string",
+            "format": "uri",
+            "example": "http://dabestnokoapp.com/webhooks/entry_events"
+          },
+          "events": {
+            "description": "The events this webhook should be subscribed to. You can also specify `'*'`, which is a wildcard for all current and future events.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookEvent"
+            }
+          }
+        }
+      },
+      "Webhook": {
+        "description": "A Webhook",
+        "required": [
+          "id",
+          "name",
+          "payload_uri"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "example": 1234
+          },
+          "name": {
+            "description": "The name of the Webhook",
+            "type": "string",
+            "example": null
+          },
+          "payload_uri": {
+            "description": "The URI to send the payloads to",
+            "type": "string",
+            "format": "uri",
+            "example": "http://dabestnokoapp.com/webhooks/entry_events"
+          }
+        },
+        "example": {
+          "id": 123456,
+          "name": "Da Best Noko Webhook",
+          "state": "enabled",
+          "events": [
+            "entry.created",
+            "entry.updated",
+            "entry.deleted",
+            "entry.updated.approved",
+            "entry.updated.unapproved",
+            "entry.updated.invoiced",
+            "entry.updated.uninvoiced"
+          ],
+          "payload_uri": "http://dabestnokoapp.com/webhooks/entry_events",
+          "url": "https://api.nokotime.com/v2/webhooks/123456",
+          "add_events_url": "https://api.nokotime.com/v2/webhooks/123456/add_events",
+          "remove_events_url": "https://api.nokotime.com/v2/webhooks/123456/remove_events",
+          "reroll_secret_url": "https://api.nokotime.com/v2/webhooks/123456/reroll_secret",
+          "enable_url": "https://api.nokotime.com/v2/webhooks/123456/enable",
+          "disable_url": "https://api.nokotime.com/v2/webhooks/123456/disable"
+        }
+      },
+      "WebhookPayload": {
+        "type": "object",
+        "description": "A Webhook Payload",
+        "required": [
+          "id",
+          "type",
+          "created_at",
+          "object"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "EntryCreatedWebhookPayload": {
+        "allOf": [
+          {
+            "type": "object",
+            "description": "The Webhook Payload for when an entry is created",
+            "properties": {
+              "type": {
+                "type": "WebhookEvent",
+                "enum": [
+                  "entry.created"
+                ]
+              },
+              "object": {
+                "$ref": "#/components/schemas/Entry"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/WebhookPayload"
+          }
+        ]
+      },
+      "EntryUpdatedWebhookPayload": {
+        "allOf": [
+          {
+            "type": "object",
+            "description": "The Webhook Payload for when an entry is updated",
+            "properties": {
+              "type": {
+                "type": "WebhookEvent",
+                "enum": [
+                  "entry.updated"
+                ]
+              },
+              "object": {
+                "$ref": "#/components/schemas/Entry"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/WebhookPayload"
+          }
+        ]
+      },
+      "EntryApprovedWebhookPayload": {
+        "allOf": [
+          {
+            "type": "object",
+            "description": "The Webhook Payload for when an entry is approved",
+            "properties": {
+              "type": {
+                "type": "WebhookEvent",
+                "enum": [
+                  "entry.updated.approved"
+                ]
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/EntryUpdatedWebhookPayload"
+          }
+        ]
+      },
+      "EntryUnapprovedWebhookPayload": {
+        "allOf": [
+          {
+            "type": "object",
+            "description": "The Webhook Payload for when an entry is unapproved",
+            "properties": {
+              "type": {
+                "type": "WebhookEvent",
+                "enum": [
+                  "entry.updated.unapproved"
+                ]
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/EntryUpdatedWebhookPayload"
+          }
+        ]
+      },
+      "EntryInvoicedWebhookPayload": {
+        "allOf": [
+          {
+            "type": "object",
+            "description": "The Webhook Payload for when an entry is invoiced",
+            "properties": {
+              "type": {
+                "type": "WebhookEvent",
+                "enum": [
+                  "entry.updated.invoiced"
+                ]
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/EntryUpdatedWebhookPayload"
+          }
+        ]
+      },
+      "EntryUninvoicedWebhookPayload": {
+        "allOf": [
+          {
+            "type": "object",
+            "description": "The Webhook Payload for when an entry is uninvoiced",
+            "properties": {
+              "type": {
+                "type": "WebhookEvent",
+                "enum": [
+                  "entry.updated.uninvoiced"
+                ]
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/EntryUpdatedWebhookPayload"
+          }
+        ]
+      },
+      "EntryDeletedWebhookPayload": {
+        "allOf": [
+          {
+            "type": "object",
+            "description": "The Webhook Payload for when an entry is deleted",
+            "properties": {
+              "type": {
+                "type": "WebhookEvent",
+                "enum": [
+                  "entry.deleted"
+                ]
+              },
+              "object": {
+                "$ref": "#/components/schemas/Entry"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/WebhookPayload"
+          }
+        ]
+      }
+    },
+    "examples": {
+      "Entry": {
+        "summary": "A single time entry",
+        "value": {
+          "id": 1,
+          "date": "2012-01-09",
+          "user": {
+            "id": 5538,
+            "email": "john.test@test.com",
+            "first_name": "John",
+            "last_name": "Test",
+            "profile_image_url": "https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg",
+            "url": "https://api.nokotime.com/v2/users/5538"
+          },
+          "billable": true,
+          "minutes": 60,
+          "description": "noko",
+          "project": {
+            "id": 37396,
+            "name": "Gear GmbH",
+            "billing_increment": 10,
+            "enabled": true,
+            "billable": true,
+            "color": "#ff9898",
+            "url": "https://api.nokotime.com/v2/projects/37396"
+          },
+          "tags": [
+            {
+              "id": 249397,
+              "name": "noko",
+              "billable": true,
+              "formatted_name": "#noko",
+              "url": "https://api.nokotime.com/v2/tags/249397"
+            }
+          ],
+          "source_url": "http://someapp.com/special/url/",
+          "invoiced_at": "2012-01-10T08:33:29Z",
+          "invoice": {
+            "id": 12345678,
+            "reference": "AA001",
+            "invoice_date": "2013-07-09",
+            "state": "unpaid",
+            "total_amount": 189.33,
+            "url": "https://api.nokotime.com/v2/invoices/12345678"
+          },
+          "import": {
+            "id": 8910,
+            "url": "https://api.nokotime.com/v2/imports/8910"
+          },
+          "approved_at": "2012-01-10T08:33:29Z",
+          "approved_by": {
+            "id": 5538,
+            "email": "john.test@test.com",
+            "first_name": "John",
+            "last_name": "Test",
+            "profile_image_url": "https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg",
+            "url": "https://api.nokotime.com/v2/users/5538"
+          },
+          "url": "https://api.nokotime.com/v2/entries/1711626",
+          "invoiced_outside_of_noko_url": "https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced",
+          "approved_url": "https://api.nokotime.com/v2/entries/1711626/approved",
+          "unapproved_url": "https://api.nokotime.com/v2/entries/1711626/unapproved",
+          "created_at": "2012-01-09T08:33:29Z",
+          "updated_at": "2012-01-09T08:33:29Z"
+        }
+      }
+    },
+    "links": {
+      "LinkToProjectFromSummaryProject": {
+        "operationId": "get-project",
+        "parameters": {
+          "id": "$response.body#/project.id"
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://secure.nokotime.com/oauth/2/authorize",
+            "refreshUrl": "https://secure.nokotime.com/oauth/2/access_token"
+          },
+          "authorizationCode": {
+            "authorizationUrl": "https://secure.nokotime.com/oauth/2/authorize",
+            "tokenUrl": "https://secure.nokotime.com/oauth/2/access_token",
+            "refreshUrl": "https://secure.nokotime.com/oauth/2/access_token"
+          }
+        }
+      },
+      "personal_access_token": {
+        "type": "apiKey",
+        "name": "X-NokoToken",
+        "in": "header"
+      }
+    }
+  }
+}

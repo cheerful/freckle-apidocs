@@ -41,6 +41,7 @@
         <li><a href="/v2/invoice_locales/">Invoice Locales</a></li>
         <li><a class='coming-soon' href="/v2/webhooks/">Webhooks</a></li>
         <li><a class='coming-soon' href="/v2/webhook_events/">Webhook Events</a></li>
+        <li><a class='coming-soon' href="/v2/openapi-spec.json">OpenAPI Specification</a></li>
       </ul>
 
       <h2>Account Management</h2>
@@ -64,10 +65,8 @@
 <ul id="markdown-toc">
 <li><a href="#how-do-i-create-a-webhook">How do I create a Webhook?</a></li>
   <li><a href="#how-are-webhooks-different-than-the-api">How are Webhooks different than the API?</a></li>
-  <li><a href="#pinging-your-webhook">Pinging your Webhook</a></li>
   <li><a href="#what-does-a-webhook-payload-look-like">What does a Webhook payload look like?</a></li>
   <li><a href="#verifying-a-webhook-payload">Verifying a Webhook payload</a></li>
-  <li><a href="#webhook-failures-and-retries">Webhook failures and retries</a></li>
 </ul><h1 id="how-do-webhooks-work">How do Webhooks work?</h1>
 
 <p>Webhooks allow your application or integration to be notified of specific events in your Noko account. You can use this to automatically update project estimates, generate summary reports for the time logged every day, integrate your Noko invoices with your bookkeeping software; the possibilities are endless!</p>
@@ -77,6 +76,11 @@
 <p>Once a Webhook has been created, we’ll send <code>POST</code> requests for the events that you’ve subscribed to for that webhook.</p>
 
 <h2 id="how-do-i-create-a-webhook">How do I create a Webhook?</h2>
+
+<div class="note warning">
+ <h2>Supervisor access required</h2>
+ <p>In the current version of Webhooks, you will need supervisor access to Noko in order to use webhooks. This will likely change in the future 😊</p>
+</div>
 
 <p>To create a webhook, you’ll need:</p>
 
@@ -116,33 +120,7 @@
 <li>You want to update your dashboards in real-time, as people log their time in Noko. To do this, you’d create a Webhook that listens to the <code>entry</code> events, and your webhook would update your dashboards</li>
   <li>As soon as a project is created in your project managent tool, you want to immediately create the project in Noko so your team can log time against it. You would use the <a href="/v2/projects/#create-a-project">API to create a new project</a>
 </li>
-</ul><h2 id="pinging-your-webhook">Pinging your Webhook</h2>
-
-<p>When your Webhook is created (either through the Webapp or from the API), we send a <code>webhook.ping</code> event, so you can verify that your webhook is receiving data from Noko.</p>
-
-<p>You can also manually trigger a ping at any time, either from the Webapp (if it’s a standalone webhook), or using the <a href="/v2/webhooks/#ping-a-webhook">Ping action in the Webhook Endpoint</a> for API Webhooks.</p>
-
-<p>A Ping event has the following structure:</p>
-
-<pre class="headers"><code>Content-Type: application/json
-X-Noko-EventCategory: webhook
-X-Noko-Delivery: 6578e997-d144-46fb-a67d-07c886d1a7a1
-X-Noko-Signature: 97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8fe
-User-Agent: Noko-Webhooks</code></pre>
-
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"payload_id"</span><span class="o">:</span> <span class="s2">"6578e997-d144-46fb-a67d-07c886d1a7a1"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2020-07-29T15:19:28Z"</span><span class="p">,</span>
-  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"webhook.ping"</span><span class="p">,</span>
-  <span class="s2">"object"</span><span class="o">:</span> <span class="p">{</span>
-  <span class="p">},</span>
-  <span class="s2">"webhook"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-
-<h2 id="what-does-a-webhook-payload-look-like">What does a Webhook payload look like?</h2>
+</ul><h2 id="what-does-a-webhook-payload-look-like">What does a Webhook payload look like?</h2>
 
 <p>A Webhook payload has the following structure:</p>
 
@@ -156,33 +134,13 @@ X-Noko-Signature: 97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8
 User-Agent: Noko-Webhooks</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"050db47d-20f3-4479-86c3-e7a237f670e5"</span><span class="p">,</span>
   <span class="s2">"webhook"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko Webhook"</span>
   <span class="p">},</span>
   <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"entry.updated"</span><span class="p">,</span>
   <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"changes"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"minutes"</span><span class="o">:</span> <span class="p">[</span>
-      <span class="mi">30</span><span class="p">,</span>
-      <span class="mi">60</span>
-    <span class="p">],</span>
-    <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="p">[</span>
-      <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"2012-01-10T08:33:29Z"</span>
-    <span class="p">],</span>
-    <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">[</span>
-      <span class="kc">null</span><span class="p">,</span>
-      <span class="p">{</span>
-        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-        <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-        <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-        <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-        <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
   <span class="s2">"object"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
@@ -259,12 +217,6 @@ User-Agent: Noko-Webhooks</code></pre>
   <li>Compare your generated signature with the one in <code>X-Noko-Signature</code>.</li>
 </ol><p><strong>Make sure to use a secure comparison method, like <a href="https://www.rubydoc.info/gems/rack/Rack/Utils#secure_compare-class_method"><code>Rack::Utils.secure_compare</code></a></strong></p>
 
-<h2 id="webhook-failures-and-retries">Webhook failures and retries</h2>
-
-<p>Each webhook sends its payloads serially, <strong>and will not send future payloads if a payload fails</strong>. We wait until the webhook responds with a successful status code before sending the next payload to help prevent state bugs and simplify the bugfixing process on your end. We want any bugs to be as easy and straightforward to fix as possible, and consistent, serialized results help with that.</p>
-
-<p>We retry failed payloads for up to 3 days, using an exponential backoff algorithm to space out the retries. Because each Webhook sends its payloads serially, <strong>a webhook will stop receiving events if it’s failed to successfully process a payload after 3 days</strong>. You can manually retry a failing payload from the Webapp (if it’s a standalone Webhook) or using the <a href="/v2/webhooks/#retry-a-webhook-payload">Retry action in the Webhook Endpoint</a>.</p>
-
       <div id="footer">
 
         <div class="columns four">
@@ -306,7 +258,7 @@ User-Agent: Noko-Webhooks</code></pre>
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>

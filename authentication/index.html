@@ -41,6 +41,7 @@
         <li><a href="/v2/invoice_locales/">Invoice Locales</a></li>
         <li><a class='coming-soon' href="/v2/webhooks/">Webhooks</a></li>
         <li><a class='coming-soon' href="/v2/webhook_events/">Webhook Events</a></li>
+        <li><a class='coming-soon' href="/v2/openapi-spec.json">OpenAPI Specification</a></li>
       </ul>
 
       <h2>Account Management</h2>
@@ -91,7 +92,7 @@ The examples below use <a href="http://radek.io/2015/10/20/httpie/">httpie</a>; 
   <dd>I am writing a non-web application that will be using OAuth, and I need to generate an OAuth access token to allow my application to access the API.</dd>
 </dl><h2 id="using-personal-access-tokens">Using Personal Access Tokens</h2>
 
-<p><a href="http://help.nokotime.com/article/103-connecting-to-the-freckle-api">Personal Access Tokens</a> allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!</p>
+<p><a href="http://help.letsfreckle.com/article/103-connecting-to-the-freckle-api">Personal Access Tokens</a> allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!</p>
 
 <p>The token has to be sent for each request your application makes to the Noko API.</p>
 
@@ -149,7 +150,7 @@ http GET https://api.nokotime.com/v2/entries -a abcdefghijklmnop1234567890:x-oau
 
 <h3 id="api-access-via-personal-access-tokens">API access via Personal Access Tokens</h3>
 
-<p>You can authenticate using <a href="http://help.nokotime.com/article/103-connecting-to-the-freckle-api">Personal Access Tokens</a>. This approach is useful if your tools only support Basic Authentication and you are using Personal Access Tokens for authentication.</p>
+<p>You can authenticate using <a href="http://help.letsfreckle.com/article/103-connecting-to-the-freckle-api">Personal Access Tokens</a>. This approach is useful if your tools only support Basic Authentication and you are using Personal Access Tokens for authentication.</p>
 
 <p>To do so, provide the Personal Access Token as the username and provide a blank password or a password of <code>x-noko-token</code>. For example:</p>
 
@@ -210,7 +211,7 @@ http GET https://api.nokotime.com/v2/subdomains -a john@test.com
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>
