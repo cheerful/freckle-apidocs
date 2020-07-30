@@ -1,11 +1,20 @@
 module Noko
   module Resources
     OPENAPI_VERSION = "3.1.0"
-    SPEC_VERSION = "0.1.0"
+    SPEC_VERSION = "0.0.1"
+
+    ENTRIES_TAG = "Entries"
+    WEBHOOKS_TAG = "Webhooks"
 
     ENTRIES_SCHEMA_REF = { "$ref": "#/components/schemas/Entries" }
     ENTRY_SCHEMA_REF = { "$ref": "#/components/schemas/Entry" }
+    SIMPLE_USER_SCHEMA_REF = { "$ref": "#/components/schemas/UserSummary" }
+    SIMPLE_PROJECT_SCHEMA_REF = { "$ref": "#/components/schemas/ProjectSummary" }
+
     TAG_SCHEMA_REF = { "$ref": "#/components/schemas/Tag" }
+
+
+    BILLING_INCREMENT_ENUM_REF = {"$ref": "#/components/schemas/BillingIncrement"}
     WEBHOOK_EVENT_SCHEMA_REF = { "$ref": "#/components/schemas/WebhookEvent" }
     NEW_WEBHOOK_SCHEMA_REF = { "$ref": "#/components/schemas/NewWebhook" }
     WEBHOOK_SCHEMA_REF = { "$ref": "#/components/schemas/Webhook" }
@@ -13,9 +22,10 @@ module Noko
     WEBHOOK_PAYLOAD_CALLBACKS_SCHEMA_REF = { "$ref": "#/components/schemas/WebhookPayloadCallbacks" }
     ENTRY_EXAMPLE_REF = { "$ref": "#/components/examples/Entry" }
 
-
-    ID_PROPERTY = {type: "integer", format: "int64", readOnly: true}
+    ID_PROPERTY = {type: "integer", format: "int64", example: 1234}
     DATE_PROPERTY = {type: "string", format: "date"}
+    BOOLEAN_PROPERTY = {type: "boolean"}
+
 
     ENTRY_PATHS = {
       "/entries": {
@@ -42,10 +52,17 @@ module Noko
                 }
               }
             }
-          }
+          },
+          tags: [ENTRIES_TAG]
         }
       }
     }
+
+    def self.content(content)
+      return {
+        "application/json": content
+      }
+    end
 
     def self.webhook_callback(summary:, description:, schema:)
       return {
@@ -54,13 +71,30 @@ module Noko
             summary: summary,
             requestBody: {
               description: description,
-              content: {
-                "application/json": {
-                  schema: schema
-                }
+              content: content(schema: schema),
+            },
+            "responses": {
+              "200": {
+                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[200]}` if the payload was received successfully."
+              },
+              "202": {
+                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[202]}` if the payload was received successfully, but will not be acted on."
+              },
+
+              "410": {
+                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[410]}` if the webhook has been removed or disabled. This will disable the webhook in Noko and stop it from sending future events."
+              },
+
+              "500": {
+                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[500]}` if you encountered an error processing the webhook."
+              },
+
+              "501": {
+                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[501]}` if you have not implemented this event yet."
               }
-            }
-          }
+            },
+            tags: [WEBHOOKS_TAG]
+          },
         }
       }
     end
@@ -69,6 +103,7 @@ module Noko
     WEBHOOK_PATHS = {
       "/webhooks": {
         post: {
+          summary: "Create a Webhook to listen to events from Noko",
           requestBody: {
             "description": "subscribe a Webhook to receive events from Noko",
             content: {
@@ -92,13 +127,47 @@ module Noko
             entryUpdated: webhook_callback(summary: "Entry Updated", description: "An entry has been updated in Noko", schema: {"$ref" => "#/components/schemas/EntryUpdatedWebhookPayload"}),
             entryApproved: webhook_callback(summary: "Entry Approved", description: "An entry has been approved in Noko", schema: {"$ref" => "#/components/schemas/EntryApprovedWebhookPayload"}),
             entryUnapproved: webhook_callback(summary: "Entry Unapproved", description: "An entry has been unapproved in Noko", schema: {"$ref" => "#/components/schemas/EntryUnapprovedWebhookPayload"}),
-          }
+            entryInvoiced: webhook_callback(summary: "Entry Invoiced", description: "An entry has been invoiced in Noko", schema: {"$ref" => "#/components/schemas/EntryInvoicedWebhookPayload"}),
+            entryUninvoiced: webhook_callback(summary: "Entry Uninvoiced", description: "An entry has been uninvoiced in Noko", schema: {"$ref" => "#/components/schemas/EntryUninvoicedWebhookPayload"}),
+            entryDeleted: webhook_callback(summary: "Entry Deleted", description: "An entry has been deleted in Noko", schema: {"$ref" => "#/components/schemas/EntryDeletedWebhookPayload"}),
+          },
+          tags: [WEBHOOKS_TAG]
+        }
+      }
+    }
+
+    SIMPLE_USER_SCHEMA = {
+      UserSummary: {
+        description: "A Summary of a User",
+        type: "object",
+        required: ["id", "email"],
+        properties: {
+          id: ID_PROPERTY,
+          email: { type: "string", format: "email", example: SIMPLE_USER["email"] }
+        }
+      }
+    }
+
+    SIMPLE_PROJECT_SCHEMA = {
+      ProjectSummary: {
+        description: "A Summary of a Project",
+        type: "object",
+        required: ["id", "name", "enabled", "billing_increment", "color", "billable"],
+        properties: {
+          id: ID_PROPERTY,
+          name: {type: "string", example: SIMPLE_PROJECT["name"]},
+          enabled: BOOLEAN_PROPERTY,
+          billing_increment: BILLING_INCREMENT_ENUM_REF,
+          color: {type: "string", format: "CSS Hexadecimal color", example: SIMPLE_PROJECT["color"]},
+          billable: BOOLEAN_PROPERTY,
         }
       }
     }
 
     ENTRY_SCHEMA = {
       Entry: {
+        summary: "Entry",
+        type: "object",
         required: [
           "id",
           "date",
@@ -107,7 +176,16 @@ module Noko
         properties: {
           id: ID_PROPERTY,
           date: DATE_PROPERTY,
-          minutes: {type: "integer", format: "int64"}
+          minutes: {type: "integer", format: "int64", description: "The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's `billing_increment` settings. If no value is provided, then the entry will have `0` minutes."},
+          user: SIMPLE_USER_SCHEMA_REF,
+          project: SIMPLE_PROJECT_SCHEMA_REF,
+          description: {type: "string", description: "The description of the time entry, including any hashtags."},
+          tags: {
+            type: "array",
+            items: TAG_SCHEMA_REF
+          },
+
+          approved_by: SIMPLE_USER_SCHEMA_REF,
         },
         example: ENTRY
       },
@@ -115,6 +193,7 @@ module Noko
 
     ENTRIES_SCHEMA = {
       Entries: {
+        summary: "The list of entries from Noko",
         type: "array",
         items: ENTRY_SCHEMA_REF
       }
@@ -138,9 +217,7 @@ module Noko
           name: {
             type: "sting"
           },
-          billable: {
-            type: "boolean"
-          },
+          billable: BOOLEAN_PROPERTY,
           formatted_name: {
             type: "string"
           }
@@ -253,8 +330,7 @@ module Noko
             type: "object",
             description: "The Webhook Payload for when an entry is approved",
             properties: {
-              type: {type: "WebhookEvent", enum: ["entry.updated.approved"]},
-              object: ENTRY_SCHEMA_REF
+              type: {type: "WebhookEvent", enum: ["entry.updated.approved"]}
             }
           },
           {"$ref": '#/components/schemas/EntryUpdatedWebhookPayload'},
@@ -267,13 +343,61 @@ module Noko
             type: "object",
             description: "The Webhook Payload for when an entry is unapproved",
             properties: {
-              type: {type: "WebhookEvent", enum: ["entry.updated.unapproved"]},
-              object: ENTRY_SCHEMA_REF
+              type: {type: "WebhookEvent", enum: ["entry.updated.unapproved"]}
             }
           },
           {"$ref": '#/components/schemas/EntryUpdatedWebhookPayload'},
         ]
       },
+
+
+      EntryInvoicedWebhookPayload: {
+        allOf: [
+          {
+            type: "object",
+            description: "The Webhook Payload for when an entry is invoiced",
+            properties: {
+              type: {type: "WebhookEvent", enum: ["entry.updated.invoiced"]}
+            }
+          },
+          {"$ref": '#/components/schemas/EntryUpdatedWebhookPayload'},
+        ]
+      },
+
+      EntryUninvoicedWebhookPayload: {
+        allOf: [
+          {
+            type: "object",
+            description: "The Webhook Payload for when an entry is uninvoiced",
+            properties: {
+              type: {type: "WebhookEvent", enum: ["entry.updated.uninvoiced"]}
+            }
+          },
+          {"$ref": '#/components/schemas/EntryUpdatedWebhookPayload'},
+        ]
+      },
+
+      EntryDeletedWebhookPayload: {
+        allOf: [
+          {
+            type: "object",
+            description: "The Webhook Payload for when an entry is deleted",
+            properties: {
+              type: {type: "WebhookEvent", enum: ["entry.deleted"]},
+              object: ENTRY_SCHEMA_REF
+            }
+          },
+          {"$ref": '#/components/schemas/WebhookPayload'},
+        ]
+      },
+    }
+
+    BILLING_INCREMENT_ENUM = {
+      BillingIncrement: {
+        description: "The billing increment used by this project. The default value is the account's default billing increment (which is `15` by default).",
+        enum: [1, 5, 6, 10, 15, 2, 30, 60],
+        default: 15,
+      }
     }
 
     INFO = {
@@ -319,7 +443,7 @@ module Noko
 
     PATHS = ENTRY_PATHS.merge(WEBHOOK_PATHS)
     SECURITY = [OAUTH2_FLOW_SPEC, PERSONAL_ACCESS_TOKEN_SPEC]
-    SCHEMAS = ENTRY_SCHEMA.merge(ENTRIES_SCHEMA).merge(TAG_SCHEMA).merge(WEBHOOK_EVENT_SCHEMA).merge(NEW_WEBHOOK_SCHEMA).merge(WEBHOOK_SCHEMA).merge(WEBHOOK_PAYLOAD_CALLBACKS_SCHEMA)
+    SCHEMAS = ENTRY_SCHEMA.merge(ENTRIES_SCHEMA).merge(SIMPLE_USER_SCHEMA).merge(SIMPLE_PROJECT_SCHEMA).merge(TAG_SCHEMA).merge(BILLING_INCREMENT_ENUM).merge(WEBHOOK_EVENT_SCHEMA).merge(NEW_WEBHOOK_SCHEMA).merge(WEBHOOK_SCHEMA).merge(WEBHOOK_PAYLOAD_CALLBACKS_SCHEMA)
     EXAMPLES = ENTRY_EXAMPLE
 
     COMPONENTS = {
