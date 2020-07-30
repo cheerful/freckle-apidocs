@@ -17,9 +17,11 @@ module Noko
         404 => '404 Not Found',
         405 => '405 Method not allowed',
         409 => '409 Conflict',
+        410 => '410 Gone',
         422 => '422 Unprocessable Entity',
         429 => '429 Too Many Requests',
-        500 => '500 Server Error',
+        500 => '500 InternalServer Error',
+        501 => '501 Not Implemented',
         503 => '503 Service Unavailable'
       }
 
