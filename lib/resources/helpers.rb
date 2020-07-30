@@ -60,6 +60,11 @@ module Noko
 
         return hash
       end
+
+
+      def openapi_specification
+        JSON.pretty_generate(generate_hash(OPENAPI_SPEC))
+      end
     end
   end
 end

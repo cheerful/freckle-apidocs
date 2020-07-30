@@ -766,15 +766,18 @@ module Noko
 
     CREATED_WEBHOOK = WEBHOOK.merge(WEBHOOK_SECRET_DATA)
 
+    EXAMPLE_WEBHOOK_PAYLOAD_ID= "050db47d-20f3-4479-86c3-e7a237f670e5"
+
     EXAMPLE_WEBHOOK_PAYLOAD_HEADERS = {
       "Content-Type" => 'application/json',
       "X-Noko-EventCategory" => "entry",
-      "X-Noko-Delivery" => "050db47d-20f3-4479-86c3-e7a237f670e5",
+      "X-Noko-Delivery" => EXAMPLE_WEBHOOK_PAYLOAD_ID,
       "X-Noko-Signature" => "97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8fe",
       "User-Agent" => "Noko-Webhooks"
     }
 
     EXAMPLE_WEBHOOK_PAYLOAD_BODY = {
+      id: EXAMPLE_WEBHOOK_PAYLOAD_ID,
       webhook: EXAMPLE_WEBHOOK_SUMMARY,
       type: "entry.updated",
       created_at: ENTRY["updated_at"],
