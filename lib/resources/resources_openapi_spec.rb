@@ -1,6 +1,6 @@
 module Noko
   module Resources
-    OPENAPI_VERSION = "3.1.0"
+    OPENAPI_VERSION = "3.0.1"
     SPEC_VERSION = "0.0.1"
 
     ENTRIES_TAG = "Entries"
