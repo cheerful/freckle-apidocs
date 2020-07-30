@@ -133,24 +133,11 @@ module Noko
               content: content(schema: schema),
             },
             "responses": {
-              "200": {
-                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[200]}` if the payload was received successfully."
-              },
-              "202": {
-                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[202]}` if the payload was received successfully, but will not be acted on."
-              },
-
-              "410": {
-                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[410]}` if the webhook has been removed or disabled. This will disable the webhook in Noko and stop it from sending future events."
-              },
-
-              "500": {
-                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[500]}` if you encountered an error processing the webhook."
-              },
-
-              "501": {
-                "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[501]}` if you have not implemented this event yet."
-              }
+              "200": { "$ref": '#/components/responses/WebhookPayload200Response'},
+              "202": { "$ref": '#/components/responses/WebhookPayload202Response'},
+              "410": { "$ref": '#/components/responses/WebhookPayload410Response'},
+              "500": { "$ref": '#/components/responses/WebhookPayload500Response'},
+              "501": { "$ref": '#/components/responses/WebhookPayload501Response'},
             },
             tags: [WEBHOOKS_TAG]
           },
@@ -507,6 +494,27 @@ module Noko
       },
     }
 
+    WEBHOOK_PAYLOAD_RESPONSES = {
+      "WebhookPayload200Response":{
+        "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[200]}` if the payload was received successfully."
+      },
+      "WebhookPayload202Response": {
+        "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[202]}` if the payload was received successfully, but will not be acted on."
+      },
+
+      "WebhookPayload410Response": {
+        "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[410]}` if the webhook has been removed or disabled. This will disable the webhook in Noko and stop it from sending future events."
+      },
+
+      "WebhookPayload500Response": {
+        "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[500]}` if you encountered an error processing the webhook."
+      },
+
+      "WebhookPayload501Response": {
+        "description": "Your webhook should return `#{Noko::HTTPHeaders::Helpers::STATUSES[501]}` if you have not implemented this event yet."
+      },
+    }
+
     BILLING_INCREMENT_ENUM = {
       BillingIncrement: {
         description: "The billing increment used by this project. The default value is the account's default billing increment (which is `15` by default).",
@@ -556,6 +564,7 @@ module Noko
     }
 
     PATHS = ENTRY_PATHS.merge(PROJECT_PATHS).merge(WEBHOOK_PATHS)
+    RESPONSES = WEBHOOK_PAYLOAD_RESPONSES
     SECURITY = [{"oauth2": [], "personal_access_token": []}]
     LINKS = SUMMARY_PROJECT_LINK_TO_PROJECT
 
@@ -563,6 +572,7 @@ module Noko
     EXAMPLES = ENTRY_EXAMPLE
 
     COMPONENTS = {
+      responses: RESPONSES,
       schemas: SCHEMAS,
       examples: EXAMPLES,
       links: LINKS,
