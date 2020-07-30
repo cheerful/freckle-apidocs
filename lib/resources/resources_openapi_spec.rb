@@ -4,15 +4,22 @@ module Noko
     SPEC_VERSION = "0.0.1"
 
     ENTRIES_TAG = "Entries"
+    PROJECTS_TAG = "Projects"
     WEBHOOKS_TAG = "Webhooks"
 
     ENTRIES_SCHEMA_REF = { "$ref": "#/components/schemas/Entries" }
+    PROJECTS_SCHEMA_REF = { "$ref": "#/components/schemas/Projects" }
     ENTRY_SCHEMA_REF = { "$ref": "#/components/schemas/Entry" }
+    PROJECT_SCHEMA_REF = { "$ref": "#/components/schemas/Project" }
+
     SIMPLE_USER_SCHEMA_REF = { "$ref": "#/components/schemas/UserSummary" }
+    SIMPLE_PROJECT_GROUP_SCHEMA_REF = { "$ref": "#/components/schemas/ProjectGroupSummary" }
     SIMPLE_PROJECT_SCHEMA_REF = { "$ref": "#/components/schemas/ProjectSummary" }
 
     TAG_SCHEMA_REF = { "$ref": "#/components/schemas/Tag" }
 
+
+    SUMMARY_PROJECT_LINK_TO_PROJECT_REF = {"$ref": '#/components/links/LinkToProjectFromSummaryProject'}
 
     BILLING_INCREMENT_ENUM_REF = {"$ref": "#/components/schemas/BillingIncrement"}
     WEBHOOK_EVENT_SCHEMA_REF = { "$ref": "#/components/schemas/WebhookEvent" }
@@ -22,7 +29,7 @@ module Noko
     WEBHOOK_PAYLOAD_CALLBACKS_SCHEMA_REF = { "$ref": "#/components/schemas/WebhookPayloadCallbacks" }
     ENTRY_EXAMPLE_REF = { "$ref": "#/components/examples/Entry" }
 
-    ID_PROPERTY = {type: "integer", format: "int64", example: 1234}
+    ID_PROPERTY = {type: "integer", format: "integer", example: 1234}
     DATE_PROPERTY = {type: "string", format: "date"}
     BOOLEAN_PROPERTY = {type: "boolean"}
 
@@ -31,7 +38,7 @@ module Noko
       "/entries": {
         get: {
           summary: "Get all entries, sorted by the most recent entry date.",
-          operationId: "listEntries",
+          operationId: "list-entries",
           parameters: [
             {
               name: "user_ids",
@@ -50,10 +57,62 @@ module Noko
                 "application/json": {
                   schema: ENTRIES_SCHEMA_REF
                 }
+              },
+              links: {
+                "Project": SUMMARY_PROJECT_LINK_TO_PROJECT_REF
               }
             }
           },
           tags: [ENTRIES_TAG]
+        }
+      }
+    }
+
+    PROJECT_PATHS = {
+      "/projects": {
+        get: {
+          summary: "List all projects the authenticated user has access to.",
+          operationId: "list-projects",
+          parameters: [
+            {
+              name: "name",
+              in: "query",
+              description: "Only projects containing this text in their name are returned.",
+              required: false,
+              schema: {type: "string", example: "Gear"}
+            }
+          ],
+          "responses": {
+            "200": {
+              description: "A paged array of projects",
+              content: content(schema: PROJECTS_SCHEMA_REF)
+            }
+          },
+          tags: [PROJECTS_TAG],
+        },
+      },
+      '/projects/#{id}': {
+        get: {
+          summary: "Get a single project",
+          operationId: "get-project",
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              description: "The ID of the project to retrieve",
+              required: true,
+              schema: {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              description: "A single project",
+              content: content(schema: PROJECT_SCHEMA_REF)
+            }
+          },
+          tags: [PROJECTS_TAG],
         }
       }
     }
@@ -103,6 +162,7 @@ module Noko
     WEBHOOK_PATHS = {
       "/webhooks": {
         post: {
+          operationId: "add-webhook",
           summary: "Create a Webhook to listen to events from Noko",
           requestBody: {
             "description": "subscribe a Webhook to receive events from Noko",
@@ -123,13 +183,13 @@ module Noko
             }
           },
           callbacks: {
-            entryCreated: webhook_callback(summary: "Entry Created", description: "An entry has been created in Noko", schema: {"$ref" => "#/components/schemas/EntryCreatedWebhookPayload"}),
-            entryUpdated: webhook_callback(summary: "Entry Updated", description: "An entry has been updated in Noko", schema: {"$ref" => "#/components/schemas/EntryUpdatedWebhookPayload"}),
-            entryApproved: webhook_callback(summary: "Entry Approved", description: "An entry has been approved in Noko", schema: {"$ref" => "#/components/schemas/EntryApprovedWebhookPayload"}),
-            entryUnapproved: webhook_callback(summary: "Entry Unapproved", description: "An entry has been unapproved in Noko", schema: {"$ref" => "#/components/schemas/EntryUnapprovedWebhookPayload"}),
-            entryInvoiced: webhook_callback(summary: "Entry Invoiced", description: "An entry has been invoiced in Noko", schema: {"$ref" => "#/components/schemas/EntryInvoicedWebhookPayload"}),
-            entryUninvoiced: webhook_callback(summary: "Entry Uninvoiced", description: "An entry has been uninvoiced in Noko", schema: {"$ref" => "#/components/schemas/EntryUninvoicedWebhookPayload"}),
-            entryDeleted: webhook_callback(summary: "Entry Deleted", description: "An entry has been deleted in Noko", schema: {"$ref" => "#/components/schemas/EntryDeletedWebhookPayload"}),
+            "entry-created": webhook_callback(summary: "Entry Created", description: "An entry has been created in Noko", schema: {"$ref" => "#/components/schemas/EntryCreatedWebhookPayload"}),
+            "entry-updated": webhook_callback(summary: "Entry Updated", description: "An entry has been updated in Noko", schema: {"$ref" => "#/components/schemas/EntryUpdatedWebhookPayload"}),
+            "entry-approved": webhook_callback(summary: "Entry Approved", description: "An entry has been approved in Noko", schema: {"$ref" => "#/components/schemas/EntryApprovedWebhookPayload"}),
+            "entry-unapproved": webhook_callback(summary: "Entry Unapproved", description: "An entry has been unapproved in Noko", schema: {"$ref" => "#/components/schemas/EntryUnapprovedWebhookPayload"}),
+            "entry-invoiced": webhook_callback(summary: "Entry Invoiced", description: "An entry has been invoiced in Noko", schema: {"$ref" => "#/components/schemas/EntryInvoicedWebhookPayload"}),
+            "entry-uninvoiced": webhook_callback(summary: "Entry Uninvoiced", description: "An entry has been uninvoiced in Noko", schema: {"$ref" => "#/components/schemas/EntryUninvoicedWebhookPayload"}),
+            "entry-deleted": webhook_callback(summary: "Entry Deleted", description: "An entry has been deleted in Noko", schema: {"$ref" => "#/components/schemas/EntryDeletedWebhookPayload"}),
           },
           tags: [WEBHOOKS_TAG]
         }
@@ -176,7 +236,7 @@ module Noko
         properties: {
           id: ID_PROPERTY,
           date: DATE_PROPERTY,
-          minutes: {type: "integer", format: "int64", description: "The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's `billing_increment` settings. If no value is provided, then the entry will have `0` minutes."},
+          minutes: {type: "integer", format: "integer", description: "The number of minutes logged in this time entry. This number will automatically be rounded up based on the project's `billing_increment` settings. If no value is provided, then the entry will have `0` minutes."},
           user: SIMPLE_USER_SCHEMA_REF,
           project: SIMPLE_PROJECT_SCHEMA_REF,
           description: {type: "string", description: "The description of the time entry, including any hashtags."},
@@ -205,6 +265,61 @@ module Noko
         summary: "A single time entry",
         value: ENTRY
       }
+    }
+
+    PROJECT_SCHEMA = {
+      Project: {
+        description: "A Project in Noko",
+        type: "object",
+        required: ["id", "name", "enabled", "billing_increment", "color", "billable"],
+        properties: {
+          id: ID_PROPERTY,
+          name: {type: "string", example: SIMPLE_PROJECT["name"]},
+          enabled: BOOLEAN_PROPERTY,
+          billing_increment: BILLING_INCREMENT_ENUM_REF,
+          color: {type: "string", format: "CSS Hexadecimal color", example: SIMPLE_PROJECT["color"]},
+          billable: BOOLEAN_PROPERTY,
+          project_group: SIMPLE_PROJECT_GROUP_SCHEMA_REF,
+        },
+        links:{
+          url: {
+            summary: "Get this project full details",
+            operationId: "get-project",
+            parameters: {
+              id: "$id"
+            }
+          }
+        }
+      }
+    }
+
+    PROJECTS_SCHEMA = {
+      Projects: {
+        summary: "The list of projects from Noko",
+        type: "array",
+        items: PROJECT_SCHEMA_REF
+      }
+    }
+
+    SIMPLE_PROJECT_GROUP_SCHEMA = {
+      ProjectGroupSummary: {
+        description: "A Summary of a Project Group",
+        required: ["id", "name"],
+        properties: {
+          id: ID_PROPERTY,
+          name: {type: "string", example: SIMPLE_PROJECT_GROUP["name"]}
+        },
+      }
+    }
+
+
+    SUMMARY_PROJECT_LINK_TO_PROJECT = {
+      LinkToProjectFromSummaryProject: {
+        operationId: "get-project",
+        parameters: {
+          id: "$response.body#/project.id"
+        }
+      },
     }
 
     TAG_SCHEMA = {
@@ -441,14 +556,17 @@ module Noko
       }
     }
 
-    PATHS = ENTRY_PATHS.merge(WEBHOOK_PATHS)
+    PATHS = ENTRY_PATHS.merge(PROJECT_PATHS).merge(WEBHOOK_PATHS)
     SECURITY = [OAUTH2_FLOW_SPEC, PERSONAL_ACCESS_TOKEN_SPEC]
-    SCHEMAS = ENTRY_SCHEMA.merge(ENTRIES_SCHEMA).merge(SIMPLE_USER_SCHEMA).merge(SIMPLE_PROJECT_SCHEMA).merge(TAG_SCHEMA).merge(BILLING_INCREMENT_ENUM).merge(WEBHOOK_EVENT_SCHEMA).merge(NEW_WEBHOOK_SCHEMA).merge(WEBHOOK_SCHEMA).merge(WEBHOOK_PAYLOAD_CALLBACKS_SCHEMA)
+    LINKS = SUMMARY_PROJECT_LINK_TO_PROJECT
+
+    SCHEMAS = ENTRY_SCHEMA.merge(ENTRIES_SCHEMA).merge(PROJECT_SCHEMA).merge(PROJECTS_SCHEMA).merge(SIMPLE_PROJECT_GROUP_SCHEMA).merge(SIMPLE_USER_SCHEMA).merge(SIMPLE_PROJECT_SCHEMA).merge(TAG_SCHEMA).merge(BILLING_INCREMENT_ENUM).merge(WEBHOOK_EVENT_SCHEMA).merge(NEW_WEBHOOK_SCHEMA).merge(WEBHOOK_SCHEMA).merge(WEBHOOK_PAYLOAD_CALLBACKS_SCHEMA)
     EXAMPLES = ENTRY_EXAMPLE
 
     COMPONENTS = {
       schemas: SCHEMAS,
       examples: EXAMPLES,
+      links: LINKS,
     }
 
     OPENAPI_SPEC = {
