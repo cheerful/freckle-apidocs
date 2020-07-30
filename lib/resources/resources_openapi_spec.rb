@@ -536,8 +536,8 @@ module Noko
 
     PERSONAL_ACCESS_TOKEN_SPEC = {
       "type": "apiKey",
-      "name": "Personal Access Token",
-      "in": "header"
+      "name": "X-NokoToken",
+      "in": "header",
     }
 
     OAUTH2_FLOW_SPEC = {
@@ -545,7 +545,6 @@ module Noko
       "flows": {
         "implicit": {
           "authorizationUrl": "#{OAUTH2_URL}/oauth/2/authorize",
-          "tokenUrl": "#{OAUTH2_URL}/oauth/2/access_token",
           "refreshUrl": "#{OAUTH2_URL}/oauth/2/access_token",
         },
         "authorizationCode": {
@@ -557,7 +556,7 @@ module Noko
     }
 
     PATHS = ENTRY_PATHS.merge(PROJECT_PATHS).merge(WEBHOOK_PATHS)
-    SECURITY = [OAUTH2_FLOW_SPEC, PERSONAL_ACCESS_TOKEN_SPEC]
+    SECURITY = [{"oauth2": [], "personal_access_token": []}]
     LINKS = SUMMARY_PROJECT_LINK_TO_PROJECT
 
     SCHEMAS = ENTRY_SCHEMA.merge(ENTRIES_SCHEMA).merge(PROJECT_SCHEMA).merge(PROJECTS_SCHEMA).merge(SIMPLE_PROJECT_GROUP_SCHEMA).merge(SIMPLE_USER_SCHEMA).merge(SIMPLE_PROJECT_SCHEMA).merge(TAG_SCHEMA).merge(BILLING_INCREMENT_ENUM).merge(WEBHOOK_EVENT_SCHEMA).merge(NEW_WEBHOOK_SCHEMA).merge(WEBHOOK_SCHEMA).merge(WEBHOOK_PAYLOAD_CALLBACKS_SCHEMA)
@@ -567,6 +566,10 @@ module Noko
       schemas: SCHEMAS,
       examples: EXAMPLES,
       links: LINKS,
+      securitySchemes: {
+        "oauth2": OAUTH2_FLOW_SPEC,
+        "personal_access_token": PERSONAL_ACCESS_TOKEN_SPEC
+      }
     }
 
     OPENAPI_SPEC = {
