@@ -271,7 +271,7 @@ module Noko
 
     PROJECTS_SCHEMA = {
       Projects: {
-        summary: "The list of projects from Noko",
+        description: "The list of projects from Noko",
         type: "array",
         items: PROJECT_SCHEMA_REF
       }
@@ -306,7 +306,7 @@ module Noko
         properties: {
           id: ID_PROPERTY,
           name: {
-            type: "sting"
+            type: "string"
           },
           billable: BOOLEAN_PROPERTY,
           formatted_name: {
@@ -393,7 +393,7 @@ module Noko
             type: "object",
             description: "The Webhook Payload for when an entry is created",
             properties: {
-              type: {type: "WebhookEvent", enum: ["entry.created"]},
+              type: {type: "string", enum: ["entry.created"]},
               object: ENTRY_SCHEMA_REF
             }
           },
@@ -407,7 +407,7 @@ module Noko
             type: "object",
             description: "The Webhook Payload for when an entry is updated",
             properties: {
-              type: {type: "WebhookEvent", enum: ["entry.updated"]},
+              type: {type: "string", enum: ["entry.updated"]},
               object: ENTRY_SCHEMA_REF
             }
           },
@@ -421,7 +421,7 @@ module Noko
             type: "object",
             description: "The Webhook Payload for when an entry is approved",
             properties: {
-              type: {type: "WebhookEvent", enum: ["entry.updated.approved"]}
+              type: {type: "string", enum: ["entry.updated.approved"]}
             }
           },
           {"$ref": '#/components/schemas/EntryUpdatedWebhookPayload'},
@@ -434,7 +434,7 @@ module Noko
             type: "object",
             description: "The Webhook Payload for when an entry is unapproved",
             properties: {
-              type: {type: "WebhookEvent", enum: ["entry.updated.unapproved"]}
+              type: {type: "string", enum: ["entry.updated.unapproved"]}
             }
           },
           {"$ref": '#/components/schemas/EntryUpdatedWebhookPayload'},
@@ -448,7 +448,7 @@ module Noko
             type: "object",
             description: "The Webhook Payload for when an entry is invoiced",
             properties: {
-              type: {type: "WebhookEvent", enum: ["entry.updated.invoiced"]}
+              type: {type: "string", enum: ["entry.updated.invoiced"]}
             }
           },
           {"$ref": '#/components/schemas/EntryUpdatedWebhookPayload'},
@@ -461,7 +461,7 @@ module Noko
             type: "object",
             description: "The Webhook Payload for when an entry is uninvoiced",
             properties: {
-              type: {type: "WebhookEvent", enum: ["entry.updated.uninvoiced"]}
+              type: {type: "string", enum: ["entry.updated.uninvoiced"]}
             }
           },
           {"$ref": '#/components/schemas/EntryUpdatedWebhookPayload'},
@@ -474,7 +474,7 @@ module Noko
             type: "object",
             description: "The Webhook Payload for when an entry is deleted",
             properties: {
-              type: {type: "WebhookEvent", enum: ["entry.deleted"]},
+              type: {type: "string", enum: ["entry.deleted"]},
               object: ENTRY_SCHEMA_REF
             }
           },
@@ -543,11 +543,13 @@ module Noko
         "implicit": {
           "authorizationUrl": "#{OAUTH2_URL}/oauth/2/authorize",
           "refreshUrl": "#{OAUTH2_URL}/oauth/2/access_token",
+          "scopes": {}
         },
         "authorizationCode": {
           "authorizationUrl": "#{OAUTH2_URL}/oauth/2/authorize",
           "tokenUrl": "#{OAUTH2_URL}/oauth/2/access_token",
           "refreshUrl": "#{OAUTH2_URL}/oauth/2/access_token",
+          "scopes": {}
         }
       }
     }
