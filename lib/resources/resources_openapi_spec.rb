@@ -362,7 +362,7 @@ module Noko
           name: {
             description: "The name of the Webhook",
             type: "string",
-            example: EXAMPLE_WEBHOOK_SUMMARY["name"],
+            example: EXAMPLE_WEBHOOK_SUMMARY[:name],
           },
 
           payload_uri: {
