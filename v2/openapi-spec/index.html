@@ -596,7 +596,7 @@
         }
       },
       "Projects": {
-        "summary": "The list of projects from Noko",
+        "description": "The list of projects from Noko",
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Project"
@@ -691,7 +691,7 @@
             "example": 1234
           },
           "name": {
-            "type": "sting"
+            "type": "string"
           },
           "billable": {
             "type": "boolean"
@@ -856,7 +856,7 @@
             "description": "The Webhook Payload for when an entry is created",
             "properties": {
               "type": {
-                "type": "WebhookEvent",
+                "type": "string",
                 "enum": [
                   "entry.created"
                 ]
@@ -878,7 +878,7 @@
             "description": "The Webhook Payload for when an entry is updated",
             "properties": {
               "type": {
-                "type": "WebhookEvent",
+                "type": "string",
                 "enum": [
                   "entry.updated"
                 ]
@@ -900,7 +900,7 @@
             "description": "The Webhook Payload for when an entry is approved",
             "properties": {
               "type": {
-                "type": "WebhookEvent",
+                "type": "string",
                 "enum": [
                   "entry.updated.approved"
                 ]
@@ -919,7 +919,7 @@
             "description": "The Webhook Payload for when an entry is unapproved",
             "properties": {
               "type": {
-                "type": "WebhookEvent",
+                "type": "string",
                 "enum": [
                   "entry.updated.unapproved"
                 ]
@@ -938,7 +938,7 @@
             "description": "The Webhook Payload for when an entry is invoiced",
             "properties": {
               "type": {
-                "type": "WebhookEvent",
+                "type": "string",
                 "enum": [
                   "entry.updated.invoiced"
                 ]
@@ -957,7 +957,7 @@
             "description": "The Webhook Payload for when an entry is uninvoiced",
             "properties": {
               "type": {
-                "type": "WebhookEvent",
+                "type": "string",
                 "enum": [
                   "entry.updated.uninvoiced"
                 ]
@@ -976,7 +976,7 @@
             "description": "The Webhook Payload for when an entry is deleted",
             "properties": {
               "type": {
-                "type": "WebhookEvent",
+                "type": "string",
                 "enum": [
                   "entry.deleted"
                 ]
@@ -1073,12 +1073,16 @@
         "flows": {
           "implicit": {
             "authorizationUrl": "https://secure.nokotime.com/oauth/2/authorize",
-            "refreshUrl": "https://secure.nokotime.com/oauth/2/access_token"
+            "refreshUrl": "https://secure.nokotime.com/oauth/2/access_token",
+            "scopes": {
+            }
           },
           "authorizationCode": {
             "authorizationUrl": "https://secure.nokotime.com/oauth/2/authorize",
             "tokenUrl": "https://secure.nokotime.com/oauth/2/access_token",
-            "refreshUrl": "https://secure.nokotime.com/oauth/2/access_token"
+            "refreshUrl": "https://secure.nokotime.com/oauth/2/access_token",
+            "scopes": {
+            }
           }
         }
       },
