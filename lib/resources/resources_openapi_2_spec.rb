@@ -312,6 +312,7 @@ module Noko
 
       BILLING_INCREMENT_ENUM = {
         BillingIncrement: {
+          type: "string",
           description: "The billing increment used by this project. The default value is the account's default billing increment (which is `15` by default).",
           enum: [1, 5, 6, 10, 15, 2, 30, 60],
           default: 15,
