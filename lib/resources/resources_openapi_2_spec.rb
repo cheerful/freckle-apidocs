@@ -357,17 +357,6 @@ module Noko
 
       SCHEMAS = ENTRY_SCHEMA.merge(ENTRIES_SCHEMA).merge(PROJECT_SCHEMA).merge(PROJECTS_SCHEMA).merge(SIMPLE_PROJECT_GROUP_SCHEMA).merge(SIMPLE_USER_SCHEMA).merge(SIMPLE_PROJECT_SCHEMA).merge(TAG_SCHEMA).merge(BILLING_INCREMENT_ENUM).merge(WEBHOOK_EVENT_SCHEMA).merge(NEW_WEBHOOK_SCHEMA).merge(WEBHOOK_SCHEMA)
 
-      COMPONENTS = {
-        responses: RESPONSES,
-        schemas: SCHEMAS,
-        examples: EXAMPLES,
-        links: LINKS,
-        securitySchemes: {
-          "oauth2": OAUTH2_FLOW_SPEC,
-          "personal_access_token": PERSONAL_ACCESS_TOKEN_SPEC
-        }
-      }
-
       OPENAPI_2_SPEC = {
         "swagger" => SWAGGER_VERSION,
         "info" => INFO,
