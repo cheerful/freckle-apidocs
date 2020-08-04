@@ -65,6 +65,10 @@ module Noko
       def openapi_specification
         JSON.pretty_generate(generate_hash(OPENAPI_SPEC))
       end
+
+      def openapi_2_specification
+        JSON.pretty_generate(generate_hash(OpenAPI2::OPENAPI_2_SPEC))
+      end
     end
   end
 end

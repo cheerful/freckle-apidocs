@@ -77,7 +77,7 @@ route 'v2/*', :rep => :default_version do
     # Write item with identifier /foo/ to /foo.ext
     item.identifier.chop + '.' + item[:extension]
   elsif item.identifier.include?("openapi-spec")
-    "/v2/openapi-spec.json"
+    "#{item.identifier.chop}.json"
   else
     # Write item with identifier /foo/ to /foo/index.html
     if item.identifier == '/v2/'
