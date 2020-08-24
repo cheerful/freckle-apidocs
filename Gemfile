@@ -11,4 +11,5 @@ group :development do
 	gem 'guard'
 	gem 'guard-nanoc'
   gem 'html-proofer'
+  gem 'rake'
 end
