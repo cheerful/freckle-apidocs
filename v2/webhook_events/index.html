@@ -41,7 +41,6 @@
         <li><a href="/v2/invoice_locales/">Invoice Locales</a></li>
         <li><a class='coming-soon' href="/v2/webhooks/">Webhooks</a></li>
         <li><a class='coming-soon' href="/v2/webhook_events/">Webhook Events</a></li>
-        <!-- <li><a class='coming-soon' href="/v2/openapi-spec.json">OpenAPI Specification</a></li> -->
       </ul>
 
       <h2>Account Management</h2>
@@ -66,6 +65,10 @@
 <h1 id="the-wildcard-event">The Wildcard Event</h1>
 
 <p>There is a special event, <code>*</code>, which you can use to subscribe a webhook to all current &amp; future events</p>
+
+<h1 id="the-ping-event">The Ping Event</h1>
+
+<p>There is a special event, <code>webhook.ping</code>, which is fired when a webhook is created, or when you manually trigger a ping from the Webapp or <a href="/v2/webhooks/#ping-a-webhook">Webhooks Endpoint</a></p>
 
 <h1 id="entry-events">Entry Events</h1>
 
@@ -149,7 +152,7 @@
         </div>
 
         <div class="copyright">
-          &copy; 2008-2019 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>
