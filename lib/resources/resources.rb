@@ -804,6 +804,30 @@ module Noko
       "webhook" => EXAMPLE_WEBHOOK_SUMMARY
     }
 
+    EXAMPLE_BROADCAST_RECEIVER_URI = "http://dabestnokoapp.com/broadcasts/timer_messages"
+
+    EXAMPLE_BROADCAST_RECEIVER_SUMMARY = {
+      id: 77885522,
+      name: "Da Best Timer Sync"
+    }
+
+    EXAMPLE_BROADCAST_HEADERS = {
+      "Content-Type" => 'application/json',
+      "X-Noko-BroadcastSubject" => "timer",
+      "X-Noko-Delivery" => "050db47d-20f3-4479-86c3-e7a237f670e5",
+      "X-Noko-Signature" => "97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8fe",
+      "User-Agent" => "Noko-Broadcasts"
+    }
+
+    EXAMPLE_BROADCAST_BODY = {
+      "broadcast_receiver" => EXAMPLE_BROADCAST_RECEIVER_SUMMARY,
+      "sent_at" => "2020-09-30T15:19:28Z",
+      "last_event" => "timer.running",
+      "subject" => {
+        "type" => "timer",
+        "url" => TIMER["url"]
+      }
+    }
   end
 end
 
