@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Webhook Events - Noko Developer</title>
+  <title>Broadcast Subjects - Noko Developer</title>
   <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
@@ -64,7 +64,7 @@
       </ul>
     </div>
     <div id="content">
-      <h1>Webhook Events</h1>
+      <h1>Broadcast Subjects</h1>
       <p class="note warning">
         Freckle is now Noko! <a href="/migration_guide/">Learn how to migrate your apps here</a>
       </p>
@@ -76,51 +76,12 @@
 
 <h1 id="the-wildcard-event">The Wildcard Event</h1>
 
-<p>There is a special event, <code>*</code>, which you can use to subscribe a webhook to all current &amp; future events</p>
+<p>There is a special subject, <code>*</code>, which you can use to subscribe a webhook to all current &amp; future subjects</p>
 
-<h1 id="the-ping-event">The Ping Event</h1>
-
-<p>There is a special event, <code>webhook.ping</code>, which is fired when a webhook is created, or when you manually trigger a ping from the Webapp or <a href="/v2/webhooks/#ping-a-webhook">Webhooks Endpoint</a></p>
-
-<h1 id="entry-events">Entry Events</h1>
+<h1 id="subjects">Subjects</h1>
 
 <ul>
-<li>
-    <p><code>entry.created</code></p>
-  </li>
-  <li>
-    <p><code>entry.updated</code></p>
-  </li>
-  <li>
-    <p><code>entry.deleted</code></p>
-  </li>
-  <li>
-    <p><code>entry.updated.approved</code></p>
-  </li>
-  <li>
-    <p><code>entry.updated.unapproved</code></p>
-  </li>
-  <li>
-    <p><code>entry.updated.invoiced</code></p>
-  </li>
-  <li>
-    <p><code>entry.updated.uninvoiced</code></p>
-  </li>
-</ul><h1 id="tag-events">Tag Events</h1>
-
-<ul>
-<li>
-    <p><code>tag.created</code></p>
-  </li>
-  <li>
-    <p><code>tag.updated</code></p>
-  </li>
-  <li>
-    <p><code>tag.deleted</code></p>
-  </li>
-  <li>
-    <p><code>tag.deleted.merged</code></p>
-  </li>
+<li><code>timer</code></li>
 </ul>
 
       <div id="footer">
