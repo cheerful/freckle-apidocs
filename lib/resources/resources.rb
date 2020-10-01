@@ -804,6 +804,59 @@ module Noko
       "webhook" => EXAMPLE_WEBHOOK_SUMMARY
     }
 
+    BROADCAST_RECEIVER_SUBJECTS = ['timer']
+
+    EXAMPLE_BROADCAST_RECEIVER_URI = "http://dabestnokoapp.com/broadcasts/timer_messages"
+
+    EXAMPLE_BROADCAST_RECEIVER_SUMMARY = {
+      id: 77885522,
+      name: "Da Best Timer Sync"
+    }
+
+     BROADCAST_RECEIVER = EXAMPLE_BROADCAST_RECEIVER_SUMMARY.merge({
+      state: "enabled",
+      subjects: BROADCAST_RECEIVER_SUBJECTS,
+      payload_uri: EXAMPLE_BROADCAST_RECEIVER_URI,
+      url: "#{API_V2_URL}/broadcast_receivers/987654",
+      add_subjects_url: "#{API_V2_URL}/broadcast_receivers/987654/add_subjects",
+      remove_subjects_url: "#{API_V2_URL}/broadcast_receivers/987654/remove_subjects",
+      reroll_secret_url: "#{API_V2_URL}/broadcast_receivers/987654/reroll_secret",
+      enable_url: "#{API_V2_URL}/broadcast_receivers/987654/enable",
+      disable_url: "#{API_V2_URL}/broadcast_receivers/987654/disable",
+    })
+
+    BROADCAST_RECEIVER_EDIT_FIELDS = {
+      name: "Da Best Timer Sync",
+      payload_uri: EXAMPLE_BROADCAST_RECEIVER_URI
+    }
+
+    BROADCAST_RECEIVER_EDIT_SUBJECTS_FIELDS = {
+      subjects: BROADCAST_RECEIVER_SUBJECTS
+    }
+
+    BROADCAST_RECEIVER_CREATE_FIELDS = BROADCAST_RECEIVER_EDIT_FIELDS.merge(BROADCAST_RECEIVER_EDIT_SUBJECT_FIELDS)
+
+    BROADCAST_RECEIVER_SECRET_DATA = {secret: "gfds-64563-secret-value"}
+
+    CREATED_BROADCAST_RECEIVER = BROADCAST_RECEIVER.merge(BROADCAST_RECEIVER_SECRET_DATA)
+
+    EXAMPLE_BROADCAST_HEADERS = {
+      "Content-Type" => 'application/json',
+      "X-Noko-BroadcastSubject" => "timer",
+      "X-Noko-Delivery" => "050db47d-20f3-4479-86c3-e7a237f670e5",
+      "X-Noko-Signature" => "97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8fe",
+      "User-Agent" => "Noko-Broadcasts"
+    }
+
+    EXAMPLE_BROADCAST_BODY = {
+      "broadcast_receiver" => EXAMPLE_BROADCAST_RECEIVER_SUMMARY,
+      "sent_at" => "2020-09-30T15:19:28Z",
+      "last_event" => "timer.running",
+      "subject" => {
+        "type" => "timer",
+        "url" => TIMER["url"]
+      }
+    }
   end
 end
 
