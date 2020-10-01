@@ -45,19 +45,21 @@ You can create a Broadcast Receiver from the main Noko app by going to the "Broa
 
 ## How are Broadcasts different than Webhooks?
 
-Even though Broadcasts and Webhooks have a similar workflow, they operate very differently.
+Even though Broadcasts and Webhooks are similar, they solve different problems.
 
 For certain parts of Noko's API, such as [Timers](/v2/timers), a traditional webhook is not a good fit. These parts of Noko can change rapidly, which would generate a lot of spurious updates if they were sent as webhooks.
 
 Instead, Noko tracks the latest messages as they happen, and sends them to you at regular intervals. You can then use the message to get the latest update from Noko's API.
 
-Broadcasts also do not track failures or retry messages that fail. This is to help ensure you do not accidentally receive stale data, since these parts of the API can change rapidly.
+Rather than providing an instance of the resource after an event has occured, Broadcasts notify your application to request the latest version.
+
+Broadcasts also do not track failures or retry messages that fail. This makes sure that you do not accidentally receive stale data, since these parts of the API can change rapidly.
 
 ### Example: Timer Syncing in a Project Management Tool
 
 Let's say you're writing a project management tool that integrates with your Noko account.
 
-* You want to show which Timers are running in Noko, so team members can see what you're working on. To do this, you'd create a Broadcast Receiver that is subscribed to the `timer` subject. Noko will keep track of your latest timer activities, and send them to your app using the broadcast receiver. You can use these messages, along with the API, to show which timers are currently running.
+* You want to show which Timers are running in Noko, so team members can see what you're working on. To do this, you'd create a Broadcast Receiver that is subscribed to the `timer` subject. Noko will keep track of your latest timer activities, and send them to your app using the broadcast receiver. You can use these messages, along with the API, to show which timers are running or paused.
 * You also want to be able to start a timer directly from your project management tool. You would use the [API to start a timer](https://developer.nokotime.com/v2/timers/#start-a-projects-timer)
 
 ## What does a Broadcast look like?
@@ -71,6 +73,9 @@ POST <%= EXAMPLE_BROADCAST_RECEIVER_URI %>
 <%= request_headers EXAMPLE_BROADCAST_HEADERS %>
 <%= json :example_broadcast_body %>
 
+### Using the Hypermedia URL to get the latest data
+
+Broadcasts include a [Hypermedia URL](/v2/#hypermedia) for the resource that the message is for, as part of the `subject` object. You can use this URL to get the latest version of this resource, using your [API credentials](/v2/authentication/)
 
 ## Verifying a Broadcast payload
 
@@ -87,4 +92,4 @@ To verify the signature:
 
 ## Broadcast failures and retries
 
-**Broadcasts do not track failures or retry messages that fail.** This is to help ensure you do not accidentally receive stale data, since these parts of the API can change rapidly.
+**Broadcasts do not track failures or retry messages that fail.** This is to help ensure you do not accidentally receive stale data, since these resources can change rapidly.
