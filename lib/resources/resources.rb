@@ -732,6 +732,51 @@ module Noko
       'tag.deleted.merged',
     ]
 
+    WEBHOOK_EXPENSE_EVENTS = [
+      'expense.created',
+      'expense.updated',
+      'expense.deleted',
+    ]
+
+    WEBHOOK_INVOICE_EVENTS = [
+      'invoice.created',
+      'invoice.updated',
+      'invoice.deleted',
+      'invoice.updated.paid',
+      'invoice.updated.unpaid',
+    ]
+
+    WEBHOOK_PROJECT_EVENTS = [
+      'project.created',
+      'project.updated',
+      'project.updated.archived',
+      'project.updated.unarchived',
+      'project.deleted',
+      'project.deleted.merged',
+    ]
+
+    WEBHOOK_PROJECT_GROUP_EVENTS = [
+      'project_group.created',
+      'project_group.updated',
+      'project_group.deleted',
+      'project_group.deleted.merged',
+    ]
+
+
+    WEBHOOK_TEAM_EVENTS = [
+      'team.created',
+      'team.updated',
+      'team.deleted',
+    ]
+
+    WEBHOOK_USER_EVENTS =[
+      'user.created',
+      'user.updated',
+      'user.updated.deactivated',
+      'user.updated.activated',
+      'user.deleted',
+    ]
+
     EXAMPLE_WEBHOOK_PAYLOAD_URI = "http://dabestnokoapp.com/webhooks/entry_events"
 
     EXAMPLE_WEBHOOK_SUMMARY = {

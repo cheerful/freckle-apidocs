@@ -32,3 +32,44 @@ There is a special event, `webhook.ping`, which is fired when a webhook is creat
 <% WEBHOOK_TAG_EVENTS.each do |event| %>
 - `<%= event %>`
 <% end %>
+
+
+# Project Events
+
+<% WEBHOOK_PROJECT_EVENTS.each do |event| %>
+- `<%= event %>`
+<% end %>
+
+
+# Project Group Events
+
+<% WEBHOOK_PROJECT_GROUP_EVENTS.each do |event| %>
+- `<%= event %>`
+<% end %>
+
+# Invoice Events
+
+<% WEBHOOK_INVOICE_EVENTS.each do |event| %>
+- `<%= event %>`
+<% end %>
+
+
+# Expense Events
+
+<% WEBHOOK_EXPENSE_EVENTS.each do |event| %>
+- `<%= event %>`
+<% end %>
+
+
+# Team Events
+
+<% WEBHOOK_TEAM_EVENTS.each do |event| %>
+- `<%= event %>`
+<% end %>
+
+
+# User Events
+
+<% WEBHOOK_USER_EVENTS.each do |event| %>
+- `<%= event %>`
+<% end %>
