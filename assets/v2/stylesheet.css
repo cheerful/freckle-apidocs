@@ -257,6 +257,17 @@ h3 {
   line-height: 11px;
 }
 
+.beta:after{
+  content: "beta";
+  background: #fedbe9;
+  padding: 0 4px;
+  border-radius: 5px;
+  color: #e64382;
+  margin-left: 5px;
+  font-size: 10px;
+  line-height: 11px;
+}
+
 #migration-guide{
   border: 1px solid #5e8b31;
   border-radius: 3px;
