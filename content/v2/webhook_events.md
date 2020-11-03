@@ -3,10 +3,10 @@ layout: default
 title: Webhook Events
 ---
 
-<div class="note warning sticky">
-   <h2>Not implemented yet!</h2>
-   <p>This is just a sneak peek into how this resource might work.</p>
- </div>
+<div class="note warning">
+ <h2>In Beta!</h2>
+ <p>Webhooks and Broadcasts are in beta while we make sure they're rock solid. The specs are finalized though, so they're safe to add to your integration!</p>
+</div>
 
 * TOC
 {:toc}
