@@ -1,15 +1,18 @@
 source "http://rubygems.org"
 
-ruby '2.5.7'
+ruby '2.6.2'
 
+gem 'rake'
 gem 'kramdown'
-gem 'pygments.rb'
+gem 'rouge'
 gem 'nokogiri'
 gem 'nanoc'
 
 group :development do
-	gem 'guard'
-	gem 'guard-nanoc'
+  gem 'guard'
+  gem 'guard-nanoc'
   gem 'html-proofer'
-  gem 'rake'
+  gem 'rack'
+  gem 'byebug'
+  gem 'adsf'
 end

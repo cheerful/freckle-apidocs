@@ -13,6 +13,12 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+require 'byebug'
+require 'pathname'
+
+KRAMDOWN_OPTS = {toc_levels: [2], auto_ids: true}
+COLORIZER_OPTIONS = {colorizers: {javascript: :rouge, bash: :rouge}}
+
 passthrough '/assets/*'
 
 # Use a specific compiler for anything in the `/v2` directory, since it needs to use the v2 layout
@@ -21,10 +27,9 @@ compile '/v2/*' do
     # don’t filter binary items
   else
     filter :erb
-    filter :kramdown, :toc_levels => [2]
-    filter :colorize_syntax,
-    :colorizers => {:javascript => :pygmentsrb, :bash => :pygmentsrb}
-    layout 'v2'
+    filter :kramdown, KRAMDOWN_OPTS
+    filter :colorize_syntax, COLORIZER_OPTIONS
+    layout '/v2.html'
   end
 end
 
@@ -34,10 +39,9 @@ compile '/v2/*', :rep => :default_version do
     # don’t filter binary items
   else
     filter :erb
-    filter :kramdown, :toc_levels => [2]
-    filter :colorize_syntax,
-    :colorizers => {:javascript => :pygmentsrb, :bash => :pygmentsrb}
-    layout 'v2'
+    filter :kramdown, KRAMDOWN_OPTS
+    filter :colorize_syntax, COLORIZER_OPTIONS
+    layout '/v2.html'
   end
 end
 
@@ -47,67 +51,104 @@ compile '/v1/*' do
     # don’t filter binary items
   else
     filter :erb
-    filter :kramdown, :toc_levels => [2]
-    filter :colorize_syntax,
-    :colorizers => {:javascript => :pygmentsrb, :bash => :pygmentsrb}
-    layout 'v1'
+    filter :kramdown, KRAMDOWN_OPTS
+    filter :colorize_syntax, COLORIZER_OPTIONS
+    layout '/v1.html'
   end
 end
 
+
+compile '/static/**/*' do
+end
+
+route '/static/**/*' do
+  "/assets" + item.identifier.to_s.sub(/\A\/static/, '')
+end
+
+
 # a fallback compiler, which uses the barebones, unstylized "default" layout for any `md` files that haven't been compiled yet
-compile '*' do
+compile '/**/*' do
   if item.binary?
     # don’t filter binary items
   else
     filter :erb
-    filter :kramdown, :toc_levels => [2]
-    filter :colorize_syntax,
-    :colorizers => {:javascript => :pygmentsrb, :bash => :pygmentsrb}
-    layout 'default'
+    filter :kramdown, KRAMDOWN_OPTS
+    layout item[:layout].nil? ? '/default.html' : "/#{item[:layout]}"
+  end
+end
+
+route '/v2/*' do
+  if item.binary?
+    # Write item with identifier /foo/ to /foo.ext
+    if item.identifier.exts.to_s.empty?
+      identifier.without_ext
+    else
+      item.identifier.to_s
+    end
+  else
+    # Items at the top-level directory should just have the HTML extension
+    if item.identifier.without_exts == "/v2/index"
+      "/v2/index.html"
+    else
+      item.identifier.without_exts + '/index.html'
+    end
   end
 end
 
 # Build the route for the default API version (the default for api.nokotime.com)
-route 'v2/*', :rep => :default_version do
+route '/v2/*', :rep => :default_version do
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext
-    item.identifier.chop + '.' + item[:extension]
+    if item.identifier.exts.to_s.empty?
+      identifier.without_ext
+    else
+      item.identifier.to_s
+    end
   else
-    # Write item with identifier /foo/ to /foo/index.html
-    if item.identifier == '/v2/'
+    # Items at the top-level directory should just have the HTML extension
+    if item.identifier.without_exts == "/v2/index"
       "/index.html"
     else
-      item.identifier.gsub("v2/","") + "index.html"
+      item.identifier.without_exts.gsub("v2/","") + '/index.html'
     end
   end
 end
 
-route 'v1/*' do
+route '/v1/*' do
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext
-    item.identifier.chop + '.' + item[:extension]
+    if item.identifier.exts.to_s.empty?
+      identifier.without_ext
+    else
+      item.identifier.to_s
+    end
   else
-    # Write item with identifier /foo/ to /foo/index.html
-    if item.identifier == '/v1/'
+    # Items at the top-level directory should just have the HTML extension
+    if item.identifier.without_exts == "/v1/index"
       "/v1/index.html"
     else
-      item.identifier.chop + ".html"
+      item.identifier.without_exts + '/index.html'
     end
   end
 end
 
-route '*' do
+route '/**/*' do
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext
-    if item[:extension].nil?
-      item.identifier.chop
+    if item.identifier.exts.to_s.empty?
+      identifier.without_ext
     else
-      item.identifier.chop + '.' + item[:extension]
+      item.identifier.to_s
     end
   else
-    # Write item with identifier /foo/ to /foo/index.html
-    item.identifier + 'index.html'
+    # Items at the top-level directory should just have the HTML extension
+    puts item.identifier
+    if Pathname.new(item.identifier.to_s).parent.to_s == '.'
+      item.identifier.without_exts + '.html' #+ '/index.html'
+    else
+      item.identifier.without_exts + '/index.html'
+    end
   end
 end
 
-layout '*', :erb
+layout '/**/*', :erb
