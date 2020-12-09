@@ -147,4 +147,4 @@ customization
         currency_code
         : *Optional* **string** of a [Stripe currency code](https://stripe.com/docs/currencies)
         : The ISO currency code used for this invoice.
-        : Defaults to the value used in a previous invoice for these projects, or "USD" if none is found.
+        : Defaults to the value used in a previous invoice for these projects, or "usd" if none is found.
