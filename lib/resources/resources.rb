@@ -508,9 +508,12 @@ module Noko
       "total_report" => "TOTAL",
       "custom_html" => "<h1>My Custom Invoice</h1>",
       "allow_paypal_invoice" => true,
-      "paypal_invoice_title" => "",
+      "paypal_invoice_title" => "Paypal Invoice Title",
       "paypal_currency_code" => "USD",
       "paypal_address" => "payment@test.com",
+      "allow_stripe_connect_invoice" => true,
+      "stripe_connect_payment_description" => "Stripe Payment Description",
+      "stripe_connect_currency_code" => "usd",
     }
 
     INVOICE_CUSTOMIZATION = INVOICE_CUSTOMIZATION_EDITABLE_FIELDS.merge({
