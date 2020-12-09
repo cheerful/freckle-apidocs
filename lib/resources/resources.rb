@@ -511,7 +511,7 @@ module Noko
       "paypal_invoice_title" => "Paypal Invoice Title",
       "paypal_currency_code" => "USD",
       "paypal_address" => "payment@test.com",
-      "allow_stripe_connect_invoice" => true,
+      "allow_stripe_connect_payment" => true,
       "stripe_connect_payment_description" => "Stripe Payment Description",
       "stripe_connect_currency_code" => "usd",
     }
