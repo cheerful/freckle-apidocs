@@ -49,14 +49,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h1><img id="logo" src="/assets/noko.svg" alt="Noko"> API: Projects</h1>
 
     <ul id="markdown-toc">
-<li><a href="#list-projects">List projects</a></li>
-  <li><a href="#show-project">Show project</a></li>
-  <li><a href="#create-project">Create project</a></li>
-  <li><a href="#update-project">Update project</a></li>
-  <li><a href="#delete-project">Delete project</a></li>
-  <li><a href="#activate-project">Activate project</a></li>
-  <li><a href="#archive-project">Archive project</a></li>
-</ul><h2 id="list-projects">List projects</h2>
+  <li><a href="#list-projects" id="markdown-toc-list-projects">List projects</a></li>
+  <li><a href="#show-project" id="markdown-toc-show-project">Show project</a></li>
+  <li><a href="#create-project" id="markdown-toc-create-project">Create project</a></li>
+  <li><a href="#update-project" id="markdown-toc-update-project">Update project</a></li>
+  <li><a href="#delete-project" id="markdown-toc-delete-project">Delete project</a></li>
+  <li><a href="#activate-project" id="markdown-toc-activate-project">Activate project</a></li>
+  <li><a href="#archive-project" id="markdown-toc-archive-project">Archive project</a></li>
+</ul>
+
+<h2 id="list-projects">List projects</h2>
 
 <pre><code>GET /api/projects
 </code></pre>
@@ -80,29 +82,29 @@ Response:
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="s2">"project"</span><span class="o">:</span><span class="p">{</span>
-      <span class="s2">"name"</span><span class="o">:</span><span class="s2">"Nutsnbolts"</span><span class="p">,</span>
-      <span class="s2">"unbillable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span><span class="s2">"2010-11-30T21:56:39Z"</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"budget_minutes"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"cached_tags"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"remaining_minutes"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span><span class="s2">"2011-10-19T15:59:56Z"</span><span class="p">,</span>
-      <span class="s2">"import_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"account_id"</span><span class="o">:</span><span class="mi">5039</span><span class="p">,</span>
-      <span class="s2">"group_name"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"project_group_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"id"</span><span class="o">:</span><span class="mi">34580</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"billable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"user_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"unbillable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"color_hex"</span><span class="o">:</span><span class="s2">"ff9898"</span><span class="p">,</span>
-      <span class="s2">"budget"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"stepping"</span><span class="o">:</span><span class="mi">15</span><span class="p">,</span>
-      <span class="s2">"invoice_recipient_details"</span><span class="o">:</span><span class="kc">null</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:{</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">Nutsnbolts</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unbillable_minutes</span><span class="dl">"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">2010-11-30T21:56:39Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">budget_minutes</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">cached_tags</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">remaining_minutes</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">2011-10-19T15:59:56Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">import_id</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">account_id</span><span class="dl">"</span><span class="p">:</span><span class="mi">5039</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">group_name</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">project_group_id</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span><span class="mi">34580</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable_minutes</span><span class="dl">"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">user_id</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unbillable_minutes</span><span class="dl">"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">color_hex</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">ff9898</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">budget</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">stepping</span><span class="dl">"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">invoice_recipient_details</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="c1">// ...more projects...</span>
@@ -165,56 +167,56 @@ Response:
 <p>Here’s an example project and a description of all the fields returned.</p>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
+  <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
     <span class="c1">// ID of the project (integer)</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">34580</span><span class="p">,</span>    
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">34580</span><span class="p">,</span>    
     <span class="c1">// Name of the project</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
     <span class="c1">// Group name of the project (or null)</span>
-    <span class="s2">"group_name"</span><span class="o">:</span> <span class="s2">"Sprockets, Inc."</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">group_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sprockets, Inc.</span><span class="dl">"</span><span class="p">,</span>
     <span class="c1">// Group ID of the project (or null)</span>
-    <span class="s2">"project_group_id"</span><span class="o">:</span> <span class="mi">3768</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project_group_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">3768</span><span class="p">,</span>
     
     <span class="c1">// UTC timestamp when the project was created</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
     <span class="c1">// UTC timestamp when the project was last updated</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
     
     <span class="c1">// total amount of logged minutes (can be null)</span>
-    <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">180</span><span class="p">,</span>
     <span class="c1">// total amount of logged billable minutes (can be null)</span>
-    <span class="s2">"billable_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable_minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
     <span class="c1">// total amount of unbillable minutes (can be null)</span>
-    <span class="s2">"unbillable_minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">unbillable_minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
     <span class="c1">// total amount of logged invoiced minutes (can be null)</span>
-    <span class="s2">"invoiced_minutes"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoiced_minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
     <span class="c1">// amount of remaining minutes within budget (can be null)</span>
-    <span class="s2">"remaining_minutes"</span><span class="o">:</span> <span class="mi">630</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">remaining_minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">630</span><span class="p">,</span>
     <span class="c1">// budgeted minutes (can be null)</span>
-    <span class="s2">"budget_minutes"</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">budget_minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">750</span><span class="p">,</span>
 
     <span class="c1">// true if project is billable</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="c1">// ID of the import if the project was part of an import (can be null)</span>
-    <span class="s2">"import_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">import_id</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
     <span class="c1">// true if project is enabled, false if archived</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="c1">// rrggbb hexadecimal color for the project</span>
-    <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"ff9898"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">color_hex</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ff9898</span><span class="dl">"</span><span class="p">,</span>
     <span class="c1">// billing increment in minutes</span>
     <span class="c1">// if you build client software that creates entries</span>
     <span class="c1">// it should only allow multiples of stepping logged</span>
     <span class="c1">// (in minutes). if the user enters a non-multiple you</span>
     <span class="c1">// should round time up.</span>
-    <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">stepping</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     
     <span class="c1">// all following fields are deprecated, and may </span>
     <span class="c1">// be removed in the next API version</span>
-    <span class="s2">"user_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"budget"</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
-    <span class="s2">"account_id"</span><span class="o">:</span> <span class="mi">5039</span><span class="p">,</span>
-    <span class="s2">"invoice_recipient_details"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"cached_tags"</span><span class="o">:</span> <span class="p">[</span> <span class="p">...</span> <span class="p">]</span>
+    <span class="dl">"</span><span class="s2">user_id</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">budget</span><span class="dl">"</span><span class="p">:</span> <span class="mi">750</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">account_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5039</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoice_recipient_details</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">cached_tags</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span> <span class="p">...</span> <span class="p">]</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
@@ -236,30 +238,30 @@ $ curl -v -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokot
 Response:
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-   <span class="s2">"project"</span><span class="o">:</span><span class="p">{</span>
-      <span class="s2">"name"</span><span class="o">:</span><span class="s2">"Activity_1_doloressequiunde"</span><span class="p">,</span>
-      <span class="s2">"unbillable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span><span class="s2">"2010-11-30T21:56:39Z"</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"budget_minutes"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"cached_tags"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"remaining_minutes"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span><span class="s2">"2011-10-19T15:59:56Z"</span><span class="p">,</span>
-      <span class="s2">"import_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"account_id"</span><span class="o">:</span><span class="mi">5039</span><span class="p">,</span>
-      <span class="s2">"group_name"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"project_group_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"id"</span><span class="o">:</span><span class="mi">34572</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"billable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"user_id"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"unbillable_minutes"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"color_hex"</span><span class="o">:</span><span class="s2">"f1f353"</span><span class="p">,</span>
-      <span class="s2">"budget"</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"stepping"</span><span class="o">:</span><span class="mi">15</span><span class="p">,</span>
-      <span class="s2">"invoice_recipient_details"</span><span class="o">:</span><span class="kc">null</span>
+   <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:{</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">Activity_1_doloressequiunde</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unbillable_minutes</span><span class="dl">"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">2010-11-30T21:56:39Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">budget_minutes</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">cached_tags</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">remaining_minutes</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">2011-10-19T15:59:56Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">import_id</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">account_id</span><span class="dl">"</span><span class="p">:</span><span class="mi">5039</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">group_name</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">project_group_id</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span><span class="mi">34572</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable_minutes</span><span class="dl">"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">user_id</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unbillable_minutes</span><span class="dl">"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">color_hex</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">f1f353</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">budget</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">stepping</span><span class="dl">"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">invoice_recipient_details</span><span class="dl">"</span><span class="p">:</span><span class="kc">null</span>
    <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
@@ -500,6 +502,7 @@ $ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime
 <h3 id="roles-6">Roles</h3>
 
 <p>Everyone except freelancers can archive projects.</p>
+
   </div>
 
   <div id="footer">
@@ -544,7 +547,7 @@ $ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime
     </div>
 
     <div class="copyright">
-      &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+      &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
       Noko® is a registered trademark of Slash7 LLC.
     </div>
     </div>

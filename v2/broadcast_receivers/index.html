@@ -75,17 +75,19 @@
 <p>This API allows you to manage your broadcast receivers entirely from the API, so you can set up your integrations automatically without requiring any user configuration.</p>
 
 <ul id="markdown-toc">
-<li><a href="#list-broadcast-receivers">List Broadcast Receivers</a></li>
-  <li><a href="#get-a-single-broadcast-receiver">Get a single Broadcast Receiver</a></li>
-  <li><a href="#create-a-broadcast-receiver">Create a Broadcast Receiver</a></li>
-  <li><a href="#edit-a-broadcast-receiver">Edit a Broadcast Receiver</a></li>
-  <li><a href="#add-subjects-to-a-broadcast-receiver">Add subjects to a Broadcast Receiver</a></li>
-  <li><a href="#remove-subjects-from-a-broadcast-receiver">Remove subjects from a Broadcast Receiver</a></li>
-  <li><a href="#re-roll-a-broadcast-receivers-secret">Re-roll a Broadcast Receiver’s secret</a></li>
-  <li><a href="#disable-a-broadcast-receiver">Disable a Broadcast Receiver</a></li>
-  <li><a href="#enable-a-broadcast-receiver">Enable a Broadcast Receiver</a></li>
-  <li><a href="#delete-a-broadcast-receiver">Delete a Broadcast Receiver</a></li>
-</ul><h2 id="list-broadcast-receivers">List Broadcast Receivers</h2>
+  <li><a href="#list-broadcast-receivers" id="markdown-toc-list-broadcast-receivers">List Broadcast Receivers</a></li>
+  <li><a href="#get-a-single-broadcast-receiver" id="markdown-toc-get-a-single-broadcast-receiver">Get a single Broadcast Receiver</a></li>
+  <li><a href="#create-a-broadcast-receiver" id="markdown-toc-create-a-broadcast-receiver">Create a Broadcast Receiver</a></li>
+  <li><a href="#edit-a-broadcast-receiver" id="markdown-toc-edit-a-broadcast-receiver">Edit a Broadcast Receiver</a></li>
+  <li><a href="#add-subjects-to-a-broadcast-receiver" id="markdown-toc-add-subjects-to-a-broadcast-receiver">Add subjects to a Broadcast Receiver</a></li>
+  <li><a href="#remove-subjects-from-a-broadcast-receiver" id="markdown-toc-remove-subjects-from-a-broadcast-receiver">Remove subjects from a Broadcast Receiver</a></li>
+  <li><a href="#re-roll-a-broadcast-receivers-secret" id="markdown-toc-re-roll-a-broadcast-receivers-secret">Re-roll a Broadcast Receiver’s secret</a></li>
+  <li><a href="#disable-a-broadcast-receiver" id="markdown-toc-disable-a-broadcast-receiver">Disable a Broadcast Receiver</a></li>
+  <li><a href="#enable-a-broadcast-receiver" id="markdown-toc-enable-a-broadcast-receiver">Enable a Broadcast Receiver</a></li>
+  <li><a href="#delete-a-broadcast-receiver" id="markdown-toc-delete-a-broadcast-receiver">Delete a Broadcast Receiver</a></li>
+</ul>
+
+<h2 id="list-broadcast-receivers">List Broadcast Receivers</h2>
 
 <p>Get all broadcast receivers, sorted by the most recently created</p>
 
@@ -93,7 +95,7 @@
 </code></pre>
 
 <dl>
-<dt>name</dt>
+  <dt>name</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -114,11 +116,13 @@
   <dd>Only broadcast receivers in this state will be returned. Accepted Values are:
 
     <ul>
-<li><code>enabled</code></li>
+      <li><code>enabled</code></li>
       <li><code>disabled</code></li>
     </ul>
-</dd>
-</dl><h3 id="response">Response</h3>
+  </dd>
+</dl>
+
+<h3 id="response">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
 Link: &lt;https://api.nokotime.com/v2/broadcast_receivers?page=2&gt;; rel="next",
@@ -126,19 +130,19 @@ Link: &lt;https://api.nokotime.com/v2/broadcast_receivers?page=2&gt;; rel="next"
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">77885522</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Timer Sync"</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
-    <span class="s2">"subjects"</span><span class="o">:</span> <span class="p">[</span>
-      <span class="s2">"timer"</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">77885522</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Timer Sync</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">subjects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span>
     <span class="p">],</span>
-    <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/broadcasts/timer_messages"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654"</span><span class="p">,</span>
-    <span class="s2">"add_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects"</span><span class="p">,</span>
-    <span class="s2">"remove_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects"</span><span class="p">,</span>
-    <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret"</span><span class="p">,</span>
-    <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/enable"</span><span class="p">,</span>
-    <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/disable"</span>
+    <span class="dl">"</span><span class="s2">payload_uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com/broadcasts/timer_messages</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">add_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">remove_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reroll_secret_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">enable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/enable</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">disable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/disable</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
@@ -150,19 +154,19 @@ Link: &lt;https://api.nokotime.com/v2/broadcast_receivers?page=2&gt;; rel="next"
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">77885522</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Timer Sync"</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
-  <span class="s2">"subjects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"timer"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">77885522</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Timer Sync</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">subjects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/broadcasts/timer_messages"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654"</span><span class="p">,</span>
-  <span class="s2">"add_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects"</span><span class="p">,</span>
-  <span class="s2">"remove_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects"</span><span class="p">,</span>
-  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret"</span><span class="p">,</span>
-  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/enable"</span><span class="p">,</span>
-  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/disable"</span>
+  <span class="dl">"</span><span class="s2">payload_uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com/broadcasts/timer_messages</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">add_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">remove_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reroll_secret_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">enable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/enable</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">disable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/disable</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="create-a-broadcast-receiver">Create a Broadcast Receiver</h2>
@@ -173,7 +177,7 @@ Link: &lt;https://api.nokotime.com/v2/broadcast_receivers?page=2&gt;; rel="next"
 <h3 id="inputs">Inputs</h3>
 
 <dl>
-<dt>name</dt>
+  <dt>name</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
@@ -189,11 +193,13 @@ Link: &lt;https://api.nokotime.com/v2/broadcast_receivers?page=2&gt;; rel="next"
 </dd>
   <dd>The <a href="/v2/broadcast_subjects/">subjects</a> this broadcast receiver should be subscribed to.</dd>
   <dd>You can also specify <code>'*'</code>, which is a wildcard for all current and future subjects.</dd>
-</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Timer Sync"</span><span class="p">,</span>
-  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/broadcasts/timer_messages"</span><span class="p">,</span>
-  <span class="s2">"subjects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"timer"</span>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Timer Sync</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">payload_uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com/broadcasts/timer_messages</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">subjects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
 
@@ -203,20 +209,20 @@ Link: &lt;https://api.nokotime.com/v2/broadcast_receivers?page=2&gt;; rel="next"
 Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">77885522</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Timer Sync"</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
-  <span class="s2">"subjects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"timer"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">77885522</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Timer Sync</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">subjects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/broadcasts/timer_messages"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654"</span><span class="p">,</span>
-  <span class="s2">"add_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects"</span><span class="p">,</span>
-  <span class="s2">"remove_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects"</span><span class="p">,</span>
-  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret"</span><span class="p">,</span>
-  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/enable"</span><span class="p">,</span>
-  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/disable"</span><span class="p">,</span>
-  <span class="s2">"secret"</span><span class="o">:</span> <span class="s2">"gfds-64563-secret-value"</span>
+  <span class="dl">"</span><span class="s2">payload_uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com/broadcasts/timer_messages</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">add_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">remove_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reroll_secret_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">enable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/enable</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">disable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/disable</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">secret</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">gfds-64563-secret-value</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="storing-your-broadcast-receivers-secret">Storing your broadcast receiver’s secret.</h3>
@@ -231,7 +237,7 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 <h3 id="inputs-1">Inputs</h3>
 
 <dl>
-<dt>name</dt>
+  <dt>name</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -241,9 +247,11 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>The URI to send the payloads to.</dd>
-</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Timer Sync"</span><span class="p">,</span>
-  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/broadcasts/timer_messages"</span>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Timer Sync</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">payload_uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com/broadcasts/timer_messages</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="response-2">Response</h3>
@@ -251,19 +259,19 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">77885522</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Timer Sync"</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
-  <span class="s2">"subjects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"timer"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">77885522</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Timer Sync</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">subjects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/broadcasts/timer_messages"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654"</span><span class="p">,</span>
-  <span class="s2">"add_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects"</span><span class="p">,</span>
-  <span class="s2">"remove_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects"</span><span class="p">,</span>
-  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret"</span><span class="p">,</span>
-  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/enable"</span><span class="p">,</span>
-  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/disable"</span>
+  <span class="dl">"</span><span class="s2">payload_uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com/broadcasts/timer_messages</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">add_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">remove_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reroll_secret_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">enable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/enable</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">disable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/disable</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="add-subjects-to-a-broadcast-receiver">Add subjects to a Broadcast Receiver</h2>
@@ -274,15 +282,17 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 <h3 id="inputs-2">Inputs</h3>
 
 <dl>
-<dt>subjects</dt>
+  <dt>subjects</dt>
   <dd>
 <em>Required</em> <strong>array of strings</strong>
 </dd>
   <dd>The <a href="/v2/broadcast_subjects/">subjects</a> this broadcast receiver should be subscribed to. Any subjects the broadcast receiver is already subscribed to will be ignored and will not affect the response.</dd>
   <dd>You can also specify <code>'*'</code>, which is a wildcard for all current and future subjects.</dd>
-</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"subjects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"timer"</span>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">subjects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
 
@@ -291,19 +301,19 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">77885522</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Timer Sync"</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
-  <span class="s2">"subjects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"timer"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">77885522</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Timer Sync</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">subjects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/broadcasts/timer_messages"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654"</span><span class="p">,</span>
-  <span class="s2">"add_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects"</span><span class="p">,</span>
-  <span class="s2">"remove_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects"</span><span class="p">,</span>
-  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret"</span><span class="p">,</span>
-  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/enable"</span><span class="p">,</span>
-  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/disable"</span>
+  <span class="dl">"</span><span class="s2">payload_uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com/broadcasts/timer_messages</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">add_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">remove_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reroll_secret_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">enable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/enable</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">disable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/disable</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="remove-subjects-from-a-broadcast-receiver">Remove subjects from a Broadcast Receiver</h2>
@@ -314,14 +324,16 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 <h3 id="inputs-3">Inputs</h3>
 
 <dl>
-<dt>subjects</dt>
+  <dt>subjects</dt>
   <dd>
 <em>Required</em> <strong>array of strings</strong>
 </dd>
   <dd>The <a href="/v2/broadcast_subjects/">subjects</a> this broadcast receiver should not be subscribed to. Any subjects the broadcast receiver is not already subscribed to will be ignored and will not affect the response.</dd>
-</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"subjects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"timer"</span>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">subjects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
 
@@ -330,19 +342,19 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">77885522</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Timer Sync"</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"enabled"</span><span class="p">,</span>
-  <span class="s2">"subjects"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"timer"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">77885522</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Timer Sync</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">subjects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"payload_uri"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com/broadcasts/timer_messages"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654"</span><span class="p">,</span>
-  <span class="s2">"add_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects"</span><span class="p">,</span>
-  <span class="s2">"remove_subjects_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects"</span><span class="p">,</span>
-  <span class="s2">"reroll_secret_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret"</span><span class="p">,</span>
-  <span class="s2">"enable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/enable"</span><span class="p">,</span>
-  <span class="s2">"disable_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/broadcast_receivers/987654/disable"</span>
+  <span class="dl">"</span><span class="s2">payload_uri</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com/broadcasts/timer_messages</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">add_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/add_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">remove_subjects_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/remove_subjects</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reroll_secret_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/reroll_secret</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">enable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/enable</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">disable_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/broadcast_receivers/987654/disable</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="re-roll-a-broadcast-receivers-secret">Re-roll a Broadcast Receiver’s secret</h2>
@@ -355,7 +367,7 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"secret"</span><span class="o">:</span> <span class="s2">"gfds-64563-secret-value"</span>
+  <span class="dl">"</span><span class="s2">secret</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">gfds-64563-secret-value</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="disable-a-broadcast-receiver">Disable a Broadcast Receiver</h2>
@@ -384,6 +396,7 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
 <h3 id="response-8">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
 
       <div id="footer">
 
@@ -426,7 +439,7 @@ Location: https://api.nokotime.com/v2/broadcast_receivers/123456</code></pre>
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>

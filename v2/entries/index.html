@@ -68,18 +68,20 @@
         Freckle is now Noko! <a href="/migration_guide/">Learn how to migrate your apps here</a>
       </p>
       <ul id="markdown-toc">
-<li><a href="#list-entries">List Entries</a></li>
-  <li><a href="#get-a-single-entry">Get a single Entry</a></li>
-  <li><a href="#create-an-entry">Create an Entry</a></li>
-  <li><a href="#edit-an-entry">Edit an Entry</a></li>
-  <li><a href="#mark-entry-as-invoiced-outside-of-noko">Mark Entry as invoiced outside of Noko</a></li>
-  <li><a href="#mark-multiple-entries-as-invoiced-outside-of-noko">Mark multiple Entries as invoiced outside of Noko</a></li>
-  <li><a href="#mark-entry-as-approved">Mark Entry as approved</a></li>
-  <li><a href="#mark-multiple-entries-as-approved">Mark multiple Entries as approved</a></li>
-  <li><a href="#mark-entry-as-unapproved">Mark Entry as unapproved</a></li>
-  <li><a href="#mark-multiple-entries-as-unapproved">Mark multiple Entries as unapproved</a></li>
-  <li><a href="#delete-an-entry">Delete an Entry</a></li>
-</ul><h2 id="list-entries">List Entries</h2>
+  <li><a href="#list-entries" id="markdown-toc-list-entries">List Entries</a></li>
+  <li><a href="#get-a-single-entry" id="markdown-toc-get-a-single-entry">Get a single Entry</a></li>
+  <li><a href="#create-an-entry" id="markdown-toc-create-an-entry">Create an Entry</a></li>
+  <li><a href="#edit-an-entry" id="markdown-toc-edit-an-entry">Edit an Entry</a></li>
+  <li><a href="#mark-entry-as-invoiced-outside-of-noko" id="markdown-toc-mark-entry-as-invoiced-outside-of-noko">Mark Entry as invoiced outside of Noko</a></li>
+  <li><a href="#mark-multiple-entries-as-invoiced-outside-of-noko" id="markdown-toc-mark-multiple-entries-as-invoiced-outside-of-noko">Mark multiple Entries as invoiced outside of Noko</a></li>
+  <li><a href="#mark-entry-as-approved" id="markdown-toc-mark-entry-as-approved">Mark Entry as approved</a></li>
+  <li><a href="#mark-multiple-entries-as-approved" id="markdown-toc-mark-multiple-entries-as-approved">Mark multiple Entries as approved</a></li>
+  <li><a href="#mark-entry-as-unapproved" id="markdown-toc-mark-entry-as-unapproved">Mark Entry as unapproved</a></li>
+  <li><a href="#mark-multiple-entries-as-unapproved" id="markdown-toc-mark-multiple-entries-as-unapproved">Mark multiple Entries as unapproved</a></li>
+  <li><a href="#delete-an-entry" id="markdown-toc-delete-an-entry">Delete an Entry</a></li>
+</ul>
+
+<h2 id="list-entries">List Entries</h2>
 
 <p>Get all entries, sorted by the most recent entry date.</p>
 
@@ -91,7 +93,7 @@
 <p>Each parameter passed will filter the results, and parameters are chained (meaning that if you search by <code>users</code> and <code>projects</code>, it will only return entries from those users for those projects).</p>
 
 <dl>
-<dt>user_ids</dt>
+  <dt>user_ids</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -220,7 +222,9 @@
   <dd>Only entries that have been approved by these users will be returned.</dd>
   <dd>Example: <code>approved_by_ids=1,2,3</code>
 </dd>
-</dl><h3 id="response">Response</h3>
+</dl>
+
+<h3 id="response">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
 Link: &lt;https://api.nokotime.com/v2/entries?page=2&gt;; rel="next",
@@ -228,66 +232,66 @@ Link: &lt;https://api.nokotime.com/v2/entries?page=2&gt;; rel="next",
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
-    <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-      <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">tags</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-        <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
-        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
+        <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">formatted_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#noko</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/249397</span><span class="dl">"</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
-    <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-    <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-      <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-      <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-      <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
+    <span class="dl">"</span><span class="s2">source_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://someapp.com/special/url/</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoiced_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoice</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AA001</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">unpaid</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mf">189.33</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/12345678</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
+    <span class="dl">"</span><span class="s2">import</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8910</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/imports/8910</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-    <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-      <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+    <span class="dl">"</span><span class="s2">approved_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">approved_by</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
-    <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced"</span><span class="p">,</span>
-    <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-    <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoiced_outside_of_noko_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">approved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/approved</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">unapproved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/unapproved</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
@@ -299,66 +303,66 @@ Link: &lt;https://api.nokotime.com/v2/entries?page=2&gt;; rel="next",
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+  <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">tags</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">formatted_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#noko</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/249397</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
-  <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
+  <span class="dl">"</span><span class="s2">source_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://someapp.com/special/url/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoiced_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoice</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AA001</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">unpaid</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mf">189.33</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/12345678</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
+  <span class="dl">"</span><span class="s2">import</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8910</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/imports/8910</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">approved_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">approved_by</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
-  <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced"</span><span class="p">,</span>
-  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoiced_outside_of_noko_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">approved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/approved</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">unapproved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/unapproved</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="create-an-entry">Create an Entry</h2>
@@ -369,7 +373,7 @@ Link: &lt;https://api.nokotime.com/v2/entries?page=2&gt;; rel="next",
 <h3 id="input">Input</h3>
 
 <dl>
-<dt>date</dt>
+  <dt>date</dt>
   <dd>
 <em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
@@ -408,29 +412,31 @@ Link: &lt;https://api.nokotime.com/v2/entries?page=2&gt;; rel="next",
   <dd>A URL that corresponds to the work completed in this time entry. Some Examples Include:</dd>
   <dd>
     <ul>
-<li>the URL to a commit in a version control platform like <a href="http://help.nokotime.com/article/74-log-time-from-github">Github or Beanstalk</a>
+      <li>the URL to a commit in a version control platform like <a href="http://help.nokotime.com/article/74-log-time-from-github">Github or Beanstalk</a>
 </li>
     </ul>
-</dd>
+  </dd>
   <dd>
     <ul>
-<li>the URL to a specific task in a project management app like <a href="https://planscope.io/">Planscope</a> or <a href="https://planscope.io/">Basecamp</a>
+      <li>the URL to a specific task in a project management app like <a href="https://planscope.io/">Planscope</a> or <a href="https://planscope.io/">Basecamp</a>
 </li>
     </ul>
-</dd>
+  </dd>
   <dd>
     <ul>
-<li>the URL to a client’s website.</li>
+      <li>the URL to a client’s website.</li>
     </ul>
-</dd>
-</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
-  <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-  <span class="s2">"project_id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-  <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span>
+  </dd>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">user_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">source_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://someapp.com/special/url/</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="reponse">Reponse</h3>
@@ -439,78 +445,80 @@ Link: &lt;https://api.nokotime.com/v2/entries?page=2&gt;; rel="next",
 Location: https://api.nokotime.com/v2/entries/1</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+  <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">tags</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">formatted_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#noko</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/249397</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
-  <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
+  <span class="dl">"</span><span class="s2">source_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://someapp.com/special/url/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoiced_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoice</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AA001</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">unpaid</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mf">189.33</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/12345678</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
+  <span class="dl">"</span><span class="s2">import</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8910</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/imports/8910</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">approved_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">approved_by</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
-  <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced"</span><span class="p">,</span>
-  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoiced_outside_of_noko_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">approved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/approved</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">unapproved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/unapproved</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="custom-error-codes">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>reached_project_limit</strong>: The account has reached its project limit, so no more projects can be created until the account has been upgraded.</li>
   <li>
 <strong>cannot_create_projects</strong>: The authenticated user is unable to create projects.</li>
   <li>
 <strong>cannot_create_tags</strong>: The authenticated user is unable to create new tags.</li>
-</ul><h2 id="edit-an-entry">Edit an Entry</h2>
+</ul>
+
+<h2 id="edit-an-entry">Edit an Entry</h2>
 
 <pre><code>PUT /v2/entries/:id
 </code></pre>
@@ -518,7 +526,7 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <h3 id="input-1">Input</h3>
 
 <dl>
-<dt>date</dt>
+  <dt>date</dt>
   <dd>
 <em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
@@ -557,29 +565,31 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
   <dd>A URL that corresponds to the work completed in this time entry. Some Examples Include:</dd>
   <dd>
     <ul>
-<li>the URL to a commit in a version control platform like <a href="http://help.nokotime.com/article/74-log-time-from-github">Github or Beanstalk</a>
+      <li>the URL to a commit in a version control platform like <a href="http://help.nokotime.com/article/74-log-time-from-github">Github or Beanstalk</a>
 </li>
     </ul>
-</dd>
+  </dd>
   <dd>
     <ul>
-<li>the URL to a specific task in a project management app like <a href="https://planscope.io/">Planscope</a> or <a href="https://planscope.io/">Basecamp</a>
+      <li>the URL to a specific task in a project management app like <a href="https://planscope.io/">Planscope</a> or <a href="https://planscope.io/">Basecamp</a>
 </li>
     </ul>
-</dd>
+  </dd>
   <dd>
     <ul>
-<li>the URL to a client’s website.</li>
+      <li>the URL to a client’s website.</li>
     </ul>
-</dd>
-</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
-  <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-  <span class="s2">"project_id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-  <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span>
+  </dd>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">user_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">source_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://someapp.com/special/url/</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="response-1">Response</h3>
@@ -587,72 +597,72 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+  <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">tags</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">formatted_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#noko</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/249397</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
-  <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
+  <span class="dl">"</span><span class="s2">source_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://someapp.com/special/url/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoiced_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoice</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AA001</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">unpaid</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mf">189.33</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/12345678</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
+  <span class="dl">"</span><span class="s2">import</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8910</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/imports/8910</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">approved_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">approved_by</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
-  <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced"</span><span class="p">,</span>
-  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoiced_outside_of_noko_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">approved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/approved</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">unapproved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/unapproved</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="custom-error-codes-1">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>approved_and_locked</strong>: This entry has been approved and locked, and cannot be modified</li>
   <li>
 <strong>reached_project_limit</strong>: The account has reached its project limit, so no more projects can be created until the account has been upgraded.</li>
@@ -660,7 +670,9 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <strong>cannot_create_projects</strong>: The authenticated user is unable to create projects.</li>
   <li>
 <strong>cannot_create_tags</strong>: The authenticated user is unable to create new tags.</li>
-</ul><h2 id="mark-entry-as-invoiced-outside-of-noko">Mark Entry as invoiced outside of Noko</h2>
+</ul>
+
+<h2 id="mark-entry-as-invoiced-outside-of-noko">Mark Entry as invoiced outside of Noko</h2>
 
 <p>Update the Entry so that is recognized as being invoiced outside of Noko by providing the date the Entry was invoiced.</p>
 
@@ -672,12 +684,14 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <h3 id="input-2">Input</h3>
 
 <dl>
-<dt>date</dt>
+  <dt>date</dt>
   <dd>
 <em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
   <dd>The date the time entry was invoiced outside of Noko.</dd>
-</dl><h3 id="response-2">Response</h3>
+</dl>
+
+<h3 id="response-2">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -686,9 +700,11 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <p>The following Custom Error codes can be returned for this action:</p>
 
 <ul>
-<li>
+  <li>
 <strong>already_invoiced</strong>: the Entry has already been invoiced inside of Noko.</li>
-</ul><h2 id="mark-multiple-entries-as-invoiced-outside-of-noko">Mark multiple Entries as invoiced outside of Noko</h2>
+</ul>
+
+<h2 id="mark-multiple-entries-as-invoiced-outside-of-noko">Mark multiple Entries as invoiced outside of Noko</h2>
 
 <p>Update the Entries provided so that they are recognized as being invoiced outside of Noko by providing the date the Entries was invoiced.</p>
 
@@ -700,7 +716,7 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <h3 id="input-3">Input</h3>
 
 <dl>
-<dt>entry_ids</dt>
+  <dt>entry_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
@@ -710,7 +726,9 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
   <dd>The date the time entry was invoiced outside of Noko.</dd>
-</dl><h3 id="response-3">Response</h3>
+</dl>
+
+<h3 id="response-3">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -728,12 +746,14 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <h3 id="input-4">Input</h3>
 
 <dl>
-<dt>approved_at</dt>
+  <dt>approved_at</dt>
   <dd>
 <em>Optional</em> <strong>string</strong> of a timestamp in ISO 8061 format <code>YYYY-MM-DDTHH:MM:SSZ</code>
 </dd>
   <dd>The timestamp for when the entry was approved. If no value is provided, the current time will be used.</dd>
-</dl><h3 id="response-4">Response</h3>
+</dl>
+
+<h3 id="response-4">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -742,11 +762,13 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <p>The following Custom Error codes can be returned for this action:</p>
 
 <ul>
-<li>
+  <li>
 <strong>already_approved</strong>: the Entry has already been approved.</li>
   <li>
 <strong>archived_project</strong>: the Entry is associated with an archived Project</li>
-</ul><h2 id="mark-multiple-entries-as-approved">Mark multiple Entries as approved</h2>
+</ul>
+
+<h2 id="mark-multiple-entries-as-approved">Mark multiple Entries as approved</h2>
 
 <p>Mark the Entries provided as “approved” in Noko. Approved entries cannot be edited or deleted.</p>
 
@@ -756,7 +778,7 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <h3 id="input-5">Input</h3>
 
 <dl>
-<dt>entry_ids</dt>
+  <dt>entry_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
@@ -766,7 +788,9 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <em>Optional</em> <strong>string</strong> of a timestamp in ISO 8061 format <code>YYYY-MM-DDTHH:MM:SSZ</code>
 </dd>
   <dd>The timestamp for when the entry was approved. If no value is provided, the current time will be used.</dd>
-</dl><h3 id="response-5">Response</h3>
+</dl>
+
+<h3 id="response-5">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -790,9 +814,11 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <p>The following Custom Error codes can be returned for this action:</p>
 
 <ul>
-<li>
+  <li>
 <strong>archived_project</strong>: the Entry is associated with an archived Project</li>
-</ul><h2 id="mark-multiple-entries-as-unapproved">Mark multiple Entries as unapproved</h2>
+</ul>
+
+<h2 id="mark-multiple-entries-as-unapproved">Mark multiple Entries as unapproved</h2>
 
 <p>Mark the Entries provided as “unapproved” in Noko. Unapproved entries can be edited or deleted.</p>
 
@@ -802,12 +828,14 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <h3 id="input-6">Input</h3>
 
 <dl>
-<dt>entry_ids</dt>
+  <dt>entry_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>The IDs of the entries that will be marked as approved.</dd>
-</dl><h3 id="response-7">Response</h3>
+</dl>
+
+<h3 id="response-7">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -833,13 +861,14 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 <p>The following Custom Error codes can be returned for this action:</p>
 
 <ul>
-<li>
+  <li>
 <strong>approved_and_locked</strong>: This entry has been approved and locked, and cannot be deleted</li>
   <li>
 <strong>invoiced</strong>: the Entry has been invoiced</li>
   <li>
 <strong>archived_project</strong>: the Entry is associated with an archived Project</li>
 </ul>
+
 
       <div id="footer">
 
@@ -882,7 +911,7 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>

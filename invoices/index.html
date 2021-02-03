@@ -68,25 +68,27 @@
         Freckle is now Noko! <a href="/migration_guide/">Learn how to migrate your apps here</a>
       </p>
       <ul id="markdown-toc">
-<li><a href="#list-invoices">List Invoices</a></li>
-  <li><a href="#get-a-single-invoice">Get a single Invoice</a></li>
-  <li><a href="#create-an-invoice">Create an Invoice</a></li>
-  <li><a href="#edit-an-invoice">Edit an Invoice</a></li>
-  <li><a href="#mark-an-invoice-as-paid">Mark an Invoice as paid</a></li>
-  <li><a href="#mark-an-invoice-as-unpaid">Mark an Invoice as unpaid</a></li>
-  <li><a href="#get-the-invoices-entries">Get the invoice’s entries</a></li>
-  <li><a href="#get-the-invoices-expenses">Get the invoice’s expenses</a></li>
-  <li><a href="#add-entries-to-an-invoice">Add Entries to an Invoice</a></li>
-  <li><a href="#remove-entries-from-an-invoice">Remove Entries from an Invoice</a></li>
-  <li><a href="#remove-all-entries-from-an-invoice">Remove all Entries from an Invoice</a></li>
-  <li><a href="#add-expenses-to-an-invoice">Add Expenses to an Invoice</a></li>
-  <li><a href="#remove-expenses-from-an-invoice">Remove Expenses from an Invoice</a></li>
-  <li><a href="#remove-all-expenses-from-an-invoice">Remove all Expenses from an Invoice</a></li>
-  <li><a href="#add-taxes-to-an-invoice">Add Taxes to an Invoice</a></li>
-  <li><a href="#remove-taxes-from-an-invoice">Remove Taxes from an Invoice</a></li>
-  <li><a href="#remove-all-taxes-from-an-invoice">Remove all Taxes from an Invoice</a></li>
-  <li><a href="#delete-an-invoice">Delete an Invoice</a></li>
-</ul><h2 id="list-invoices">List Invoices</h2>
+  <li><a href="#list-invoices" id="markdown-toc-list-invoices">List Invoices</a></li>
+  <li><a href="#get-a-single-invoice" id="markdown-toc-get-a-single-invoice">Get a single Invoice</a></li>
+  <li><a href="#create-an-invoice" id="markdown-toc-create-an-invoice">Create an Invoice</a></li>
+  <li><a href="#edit-an-invoice" id="markdown-toc-edit-an-invoice">Edit an Invoice</a></li>
+  <li><a href="#mark-an-invoice-as-paid" id="markdown-toc-mark-an-invoice-as-paid">Mark an Invoice as paid</a></li>
+  <li><a href="#mark-an-invoice-as-unpaid" id="markdown-toc-mark-an-invoice-as-unpaid">Mark an Invoice as unpaid</a></li>
+  <li><a href="#get-the-invoices-entries" id="markdown-toc-get-the-invoices-entries">Get the invoice’s entries</a></li>
+  <li><a href="#get-the-invoices-expenses" id="markdown-toc-get-the-invoices-expenses">Get the invoice’s expenses</a></li>
+  <li><a href="#add-entries-to-an-invoice" id="markdown-toc-add-entries-to-an-invoice">Add Entries to an Invoice</a></li>
+  <li><a href="#remove-entries-from-an-invoice" id="markdown-toc-remove-entries-from-an-invoice">Remove Entries from an Invoice</a></li>
+  <li><a href="#remove-all-entries-from-an-invoice" id="markdown-toc-remove-all-entries-from-an-invoice">Remove all Entries from an Invoice</a></li>
+  <li><a href="#add-expenses-to-an-invoice" id="markdown-toc-add-expenses-to-an-invoice">Add Expenses to an Invoice</a></li>
+  <li><a href="#remove-expenses-from-an-invoice" id="markdown-toc-remove-expenses-from-an-invoice">Remove Expenses from an Invoice</a></li>
+  <li><a href="#remove-all-expenses-from-an-invoice" id="markdown-toc-remove-all-expenses-from-an-invoice">Remove all Expenses from an Invoice</a></li>
+  <li><a href="#add-taxes-to-an-invoice" id="markdown-toc-add-taxes-to-an-invoice">Add Taxes to an Invoice</a></li>
+  <li><a href="#remove-taxes-from-an-invoice" id="markdown-toc-remove-taxes-from-an-invoice">Remove Taxes from an Invoice</a></li>
+  <li><a href="#remove-all-taxes-from-an-invoice" id="markdown-toc-remove-all-taxes-from-an-invoice">Remove all Taxes from an Invoice</a></li>
+  <li><a href="#delete-an-invoice" id="markdown-toc-delete-an-invoice">Delete an Invoice</a></li>
+</ul>
+
+<h2 id="list-invoices">List Invoices</h2>
 
 <pre><code>GET /invoices/
 </code></pre>
@@ -94,20 +96,20 @@
 <h3 id="parameters">Parameters</h3>
 
 <dl>
-<dt>state</dt>
+  <dt>state</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>Only invoices in this state will be returned. Accepted Values are:
 
     <ul>
-<li><code>unpaid</code></li>
+      <li><code>unpaid</code></li>
       <li><code>awaiting_payment</code></li>
       <li><code>in_progress</code></li>
       <li><code>paid</code></li>
       <li><code>none</code></li>
     </ul>
-</dd>
+  </dd>
   <dt>reference</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
@@ -274,11 +276,11 @@
   <dd>How the rate for the hours worked is calculated. The Accepted values are:
 
     <ul>
-<li><code>custom_hourly_rates</code></li>
+      <li><code>custom_hourly_rates</code></li>
       <li><code>standard_hourly_rate</code></li>
       <li><code>flat_rate</code></li>
     </ul>
-</dd>
+  </dd>
   <dt>updated_from</dt>
   <dd>
 <em>Optional</em> <strong>string</strong> of a timestamp in ISO 8061 format <code>YYYY-MM-DDTHH:MM:SSZ</code>
@@ -293,7 +295,9 @@
   <dd>Only invoices updated on or before this timestamp will be returned.</dd>
   <dd>Example: <code>updated_to=2012-01-09T08:33:29Z</code>
 </dd>
-</dl><h3 id="response">Response</h3>
+</dl>
+
+<h3 id="response">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
 Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
@@ -301,111 +305,114 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
-    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-    <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Noko Support"</span><span class="p">,</span>
-    <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-    <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
-    <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
-      <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-      <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
-      <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
-      <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
-      <span class="s2">"project_summary"</span><span class="o">:</span> <span class="s2">"Project summary"</span><span class="p">,</span>
-      <span class="s2">"user_summary"</span><span class="o">:</span> <span class="s2">"People summary"</span><span class="p">,</span>
-      <span class="s2">"no_project_name"</span><span class="o">:</span> <span class="s2">"No project"</span><span class="p">,</span>
-      <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
-      <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-      <span class="s2">"work_total"</span><span class="o">:</span> <span class="s2">"Total worked"</span><span class="p">,</span>
-      <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-      <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
-      <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-      <span class="s2">"currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-      <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
-      <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
-      <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
-      <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
-      <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-      <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">"My Custom Invoice"</span><span class="p">,</span>
-      <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-      <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-      <span class="s2">"paypal_address"</span><span class="o">:</span> <span class="s2">"payment@test.com"</span><span class="p">,</span>
-      <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">"United States dollar"</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">26642</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paid</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AB 0001</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Knockd, Noko Support</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">company_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">company_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 Main Street</span><span class="se">\n</span><span class="s2">Mainsville, MA 11122</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">recipient_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">footer</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">show_hours_worked</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">show_full_report</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">show_user_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">show_project_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">show_project_name_for_expenses</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">customization</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invoice</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Date</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invoice reference</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">total_due</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total amount due</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Summary</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">project_summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project summary</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">user_summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">People summary</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">no_project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">No project</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">work_time</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">work time</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">no_tax</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">no tax</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">work_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total worked</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TOTAL</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">report</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Report</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">locale</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">en-US</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">USD</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">currency_symbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">taxable_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total taxable</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">tax_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total tax</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">taxfree_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total taxfree</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">total_report</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TOTAL</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">custom_html</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">My Custom Invoice</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">allow_paypal_invoice</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">paypal_invoice_title</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Paypal Invoice Title</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">paypal_currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">USD</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">paypal_address</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">payment@test.com</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">allow_stripe_connect_payment</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">stripe_connect_payment_description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Stripe Payment Description</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">stripe_connect_currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">usd</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">currency_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">United States dollar</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-04-24T17:39:51Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-04-24T17:39:51Z</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
-      <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
-      <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">rate_calculation</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">calculation_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">standard_hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">30.75</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-          <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
+          <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.25</span>
         <span class="p">}</span>
       <span class="p">],</span>
-      <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
+      <span class="dl">"</span><span class="s2">flat_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">11000.72</span>
     <span class="p">},</span>
-    <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">taxes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">88292</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sales Tax"</span><span class="p">,</span>
-        <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
+        <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">88292</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sales Tax</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">percentage</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.0</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"taxable_amount"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">"taxfree_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"tax_total_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"taxable_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$100.00"</span><span class="p">,</span>
-    <span class="s2">"taxfree_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-    <span class="s2">"tax_total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-    <span class="s2">"total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
-    <span class="s2">"payment"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"paid_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAABBBDDDEEEE22222"</span><span class="p">,</span>
-      <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span>
+    <span class="dl">"</span><span class="s2">taxable_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">taxfree_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">tax_total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">taxable_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$100.00</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">taxfree_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$0.00</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">tax_total_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$0.00</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$1.00</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">payment</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">paid_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AP-AAABBBDDDEEEE22222</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">payment_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paypal</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">payment_transactions</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-        <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Sent to Paypal"</span><span class="p">,</span>
-        <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
-        <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
-        <span class="s2">"invoice_state"</span><span class="o">:</span> <span class="s2">"in_progress"</span>
+        <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sent to Paypal</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">payment_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paypal</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AP-AAAAABBBCCCCDDD111</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">invoice_state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">in_progress</span><span class="dl">"</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">projects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-        <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-        <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+        <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
-    <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642/entries"</span><span class="p">,</span>
-    <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">324</span><span class="p">,</span>
-    <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
-    <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.nokotime.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642"</span>
+    <span class="dl">"</span><span class="s2">entries</span><span class="dl">"</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">entries_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642/entries</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">expenses</span><span class="dl">"</span><span class="p">:</span> <span class="mi">324</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">expenses_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642/expenses</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">share_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://apitest.nokotime.com/i/bqrnbojlbxqswtq9xla9uc40z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:05Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
@@ -419,111 +426,114 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
-  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
-  <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Noko Support"</span><span class="p">,</span>
-  <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
-  <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
-    <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
-    <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
-    <span class="s2">"project_summary"</span><span class="o">:</span> <span class="s2">"Project summary"</span><span class="p">,</span>
-    <span class="s2">"user_summary"</span><span class="o">:</span> <span class="s2">"People summary"</span><span class="p">,</span>
-    <span class="s2">"no_project_name"</span><span class="o">:</span> <span class="s2">"No project"</span><span class="p">,</span>
-    <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
-    <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-    <span class="s2">"work_total"</span><span class="o">:</span> <span class="s2">"Total worked"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
-    <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-    <span class="s2">"currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
-    <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
-    <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
-    <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
-    <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">"My Custom Invoice"</span><span class="p">,</span>
-    <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"paypal_address"</span><span class="o">:</span> <span class="s2">"payment@test.com"</span><span class="p">,</span>
-    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">"United States dollar"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">26642</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paid</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AB 0001</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Knockd, Noko Support</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Test</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 Main Street</span><span class="se">\n</span><span class="s2">Mainsville, MA 11122</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">recipient_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">footer</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_hours_worked</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_full_report</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_user_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_project_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_project_name_for_expenses</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">customization</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invoice</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Date</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invoice reference</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_due</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total amount due</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Summary</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project_summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project summary</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">user_summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">People summary</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">no_project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">No project</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">work_time</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">work time</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">no_tax</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">no tax</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">work_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total worked</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TOTAL</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">report</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Report</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">locale</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">en-US</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">USD</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">currency_symbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">taxable_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total taxable</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">tax_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total tax</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">taxfree_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total taxfree</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_report</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TOTAL</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">custom_html</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">My Custom Invoice</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">allow_paypal_invoice</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paypal_invoice_title</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Paypal Invoice Title</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paypal_currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">USD</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paypal_address</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">payment@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">allow_stripe_connect_payment</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">stripe_connect_payment_description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Stripe Payment Description</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">stripe_connect_currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">usd</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">currency_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">United States dollar</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-04-24T17:39:51Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-04-24T17:39:51Z</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
-    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
-    <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">rate_calculation</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">calculation_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">standard_hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">30.75</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-        <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
+        <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.25</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
+    <span class="dl">"</span><span class="s2">flat_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">11000.72</span>
   <span class="p">},</span>
-  <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">taxes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">88292</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sales Tax"</span><span class="p">,</span>
-      <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">88292</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sales Tax</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">percentage</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.0</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"taxable_amount"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s2">"taxfree_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"tax_total_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"taxable_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$100.00"</span><span class="p">,</span>
-  <span class="s2">"taxfree_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-  <span class="s2">"tax_total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-  <span class="s2">"total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
-  <span class="s2">"payment"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"paid_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAABBBDDDEEEE22222"</span><span class="p">,</span>
-    <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span>
+  <span class="dl">"</span><span class="s2">taxable_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxfree_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">tax_total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxable_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$100.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxfree_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$0.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">tax_total_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$0.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">total_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$1.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">payment</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">paid_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AP-AAABBBDDDEEEE22222</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">payment_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paypal</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">payment_transactions</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Sent to Paypal"</span><span class="p">,</span>
-      <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
-      <span class="s2">"invoice_state"</span><span class="o">:</span> <span class="s2">"in_progress"</span>
+      <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sent to Paypal</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">payment_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paypal</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AP-AAAAABBBCCCCDDD111</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">invoice_state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">in_progress</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">projects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-      <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
-  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">324</span><span class="p">,</span>
-  <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
-  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.nokotime.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642"</span>
+  <span class="dl">"</span><span class="s2">entries</span><span class="dl">"</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">entries_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642/entries</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">expenses</span><span class="dl">"</span><span class="p">:</span> <span class="mi">324</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">expenses_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642/expenses</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">share_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://apitest.nokotime.com/i/bqrnbojlbxqswtq9xla9uc40z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:05Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="create-an-invoice">Create an Invoice</h2>
@@ -534,7 +544,7 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
 <h3 id="input">Input</h3>
 
 <dl>
-<dt>invoice_date</dt>
+  <dt>invoice_date</dt>
   <dd>
 <em>Required</em> <strong>string</strong> in  ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
@@ -621,21 +631,21 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
   <dd>How to calculate the total amount for hours worked. The fields are:
 
     <dl>
-<dt>calculation_method</dt>
+      <dt>calculation_method</dt>
       <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
       <dd>What method will be used to calculate the total amount for hours worked. Accepted values are:
 
         <ul>
-<li>
+          <li>
 <code>standard_hourly_rate</code>: a single hourly rate is used across the entire invoice.</li>
           <li>
 <code>custom_hourly_rates</code>: custom hourly rates can be defined for individual users in the <code>custom_hourly_rates</code> array. If no <code>custom_hourly_rate</code> is defined for an individual user, the <code>standard_hourly_rate</code> is used for that user.</li>
           <li>
 <code>flat_rate</code>: a flat rate is used for the the total cost of the hours in the invoice.</li>
         </ul>
-</dd>
+      </dd>
       <dt>flat_rate</dt>
       <dd>
 <em>Required if payment_type equals <code>flat_rate</code></em> <strong>decimal</strong>
@@ -653,7 +663,7 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
       <dd>The custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
         <dl>
-<dt>user_id</dt>
+          <dt>user_id</dt>
           <dd>
 <em>Required</em> <strong>integer</strong>
 </dd>
@@ -664,9 +674,9 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
 </dd>
           <dd>the hourly rate for this specific user.</dd>
         </dl>
-</dd>
+      </dd>
     </dl>
-</dd>
+  </dd>
   <dt>entry_ids</dt>
   <dd>
 <em>Optional</em> <strong>array of integers</strong>
@@ -684,7 +694,7 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
   <dd>The taxes to apply to this invoice. The fields are:
 
     <dl>
-<dt>percentage</dt>
+      <dt>percentage</dt>
       <dd>
 <em>Required</em> <strong>decimal</strong> in percentage format (<code>00.00</code>)</dd>
       <dd>the numeric percentage of the tax</dd>
@@ -694,7 +704,7 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
 </dd>
       <dd>the name of the tax</dd>
     </dl>
-</dd>
+  </dd>
   <dt>customization</dt>
   <dd>
 <em>Optional</em> <strong>object</strong>
@@ -702,7 +712,7 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
   <dd>These fields define the labels and localization settings used when viewing an invoice, and the details for making an invoice payable via Paypal. The fields are:
 
     <dl>
-<dt>title</dt>
+      <dt>title</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -842,7 +852,7 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
       <dd>This object is used to setup the invoice so that it can be paid via paypal. The fields are:
 
         <dl>
-<dt>paypal_address</dt>
+          <dt>paypal_address</dt>
           <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -861,43 +871,65 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
           <dd>The paypal currency code used for this invoice.</dd>
           <dd>Defaults to the value used in a previous invoice for these projects, or “USD” if none is found.</dd>
         </dl>
+      </dd>
+      <dt>stripe_connect_payment</dt>
+      <dd>
+<em>Optional</em> <strong>object</strong>
 </dd>
+      <dd>This object is used to setup the invoice so that it can be paid via Stripe Connect. The fields are:
+
+        <dl>
+          <dt>payment_description</dt>
+          <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+          <dd>The description for the payment in Stripe. If no value is provided, then the <code>invoice_number</code> will be used.</dd>
+          <dt>currency_code</dt>
+          <dd>
+<em>Optional</em> <strong>string</strong> of a <a href="https://stripe.com/docs/currencies">Stripe currency code</a>
+</dd>
+          <dd>The ISO currency code used for this invoice.</dd>
+          <dd>Defaults to the value used in a previous invoice for these projects, or “usd” if none is found.</dd>
+        </dl>
+      </dd>
     </dl>
-</dd>
-</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
-  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Noko Support"</span><span class="p">,</span>
-  <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
-  <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
-    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
-    <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
+  </dd>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AB 0001</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Knockd, Noko Support</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Test</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 Main Street</span><span class="se">\n</span><span class="s2">Mainsville, MA 11122</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">recipient_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">footer</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_hours_worked</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_full_report</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_user_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_project_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">rate_calculation</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">calculation_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">standard_hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">30.75</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-        <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
+        <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.25</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
+    <span class="dl">"</span><span class="s2">flat_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">11000.72</span>
   <span class="p">},</span>
-  <span class="s2">"entry_ids"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">entry_ids</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="mi">1</span>
   <span class="p">],</span>
-  <span class="s2">"expense_ids"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">expense_ids</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="mi">2233</span>
   <span class="p">],</span>
-  <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">taxes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sales Tax"</span><span class="p">,</span>
-      <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sales Tax</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">percentage</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.0</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
@@ -908,111 +940,114 @@ Link: &lt;https://api.nokotime.com/v2/invoices?page=2&gt;; rel="next",
 Location: https://api.nokotime.com/v2/invoices/1</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
-  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
-  <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Noko Support"</span><span class="p">,</span>
-  <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
-  <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
-    <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
-    <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
-    <span class="s2">"project_summary"</span><span class="o">:</span> <span class="s2">"Project summary"</span><span class="p">,</span>
-    <span class="s2">"user_summary"</span><span class="o">:</span> <span class="s2">"People summary"</span><span class="p">,</span>
-    <span class="s2">"no_project_name"</span><span class="o">:</span> <span class="s2">"No project"</span><span class="p">,</span>
-    <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
-    <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-    <span class="s2">"work_total"</span><span class="o">:</span> <span class="s2">"Total worked"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
-    <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-    <span class="s2">"currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
-    <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
-    <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
-    <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
-    <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">"My Custom Invoice"</span><span class="p">,</span>
-    <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"paypal_address"</span><span class="o">:</span> <span class="s2">"payment@test.com"</span><span class="p">,</span>
-    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">"United States dollar"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">26642</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paid</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AB 0001</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Knockd, Noko Support</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Test</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 Main Street</span><span class="se">\n</span><span class="s2">Mainsville, MA 11122</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">recipient_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">footer</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_hours_worked</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_full_report</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_user_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_project_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_project_name_for_expenses</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">customization</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invoice</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Date</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invoice reference</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_due</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total amount due</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Summary</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project_summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project summary</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">user_summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">People summary</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">no_project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">No project</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">work_time</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">work time</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">no_tax</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">no tax</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">work_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total worked</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TOTAL</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">report</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Report</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">locale</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">en-US</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">USD</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">currency_symbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">taxable_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total taxable</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">tax_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total tax</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">taxfree_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total taxfree</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_report</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TOTAL</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">custom_html</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">My Custom Invoice</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">allow_paypal_invoice</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paypal_invoice_title</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Paypal Invoice Title</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paypal_currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">USD</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paypal_address</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">payment@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">allow_stripe_connect_payment</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">stripe_connect_payment_description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Stripe Payment Description</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">stripe_connect_currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">usd</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">currency_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">United States dollar</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-04-24T17:39:51Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-04-24T17:39:51Z</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
-    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
-    <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">rate_calculation</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">calculation_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">standard_hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">30.75</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-        <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
+        <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.25</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
+    <span class="dl">"</span><span class="s2">flat_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">11000.72</span>
   <span class="p">},</span>
-  <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">taxes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">88292</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sales Tax"</span><span class="p">,</span>
-      <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">88292</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sales Tax</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">percentage</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.0</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"taxable_amount"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s2">"taxfree_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"tax_total_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"taxable_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$100.00"</span><span class="p">,</span>
-  <span class="s2">"taxfree_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-  <span class="s2">"tax_total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-  <span class="s2">"total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
-  <span class="s2">"payment"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"paid_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAABBBDDDEEEE22222"</span><span class="p">,</span>
-    <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span>
+  <span class="dl">"</span><span class="s2">taxable_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxfree_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">tax_total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxable_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$100.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxfree_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$0.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">tax_total_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$0.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">total_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$1.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">payment</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">paid_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AP-AAABBBDDDEEEE22222</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">payment_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paypal</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">payment_transactions</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Sent to Paypal"</span><span class="p">,</span>
-      <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
-      <span class="s2">"invoice_state"</span><span class="o">:</span> <span class="s2">"in_progress"</span>
+      <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sent to Paypal</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">payment_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paypal</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AP-AAAAABBBCCCCDDD111</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">invoice_state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">in_progress</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">projects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-      <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
-  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">324</span><span class="p">,</span>
-  <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
-  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.nokotime.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642"</span>
+  <span class="dl">"</span><span class="s2">entries</span><span class="dl">"</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">entries_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642/entries</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">expenses</span><span class="dl">"</span><span class="p">:</span> <span class="mi">324</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">expenses_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642/expenses</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">share_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://apitest.nokotime.com/i/bqrnbojlbxqswtq9xla9uc40z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:05Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="a-note-about-entries-or-expenses-that-cannot-be-added">A note about entries or expenses that cannot be added</h3>
@@ -1022,17 +1057,17 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Entries or Expenses could not be added"</span><span class="p">,</span>
-  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Entries or Expenses could not be added</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">errors</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Entry"</span><span class="p">,</span>
-      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"entry_ids[1]"</span><span class="p">,</span>
-      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"archived_project"</span>
+      <span class="dl">"</span><span class="s2">resource</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Entry</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">entry_ids[1]</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">archived_project</span><span class="dl">"</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Expense"</span><span class="p">,</span>
-      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"expense_ids[4]"</span><span class="p">,</span>
-      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"missing"</span>
+      <span class="dl">"</span><span class="s2">resource</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Expense</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">expense_ids[4]</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">missing</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
@@ -1040,10 +1075,12 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
 <h3 id="custom-error-codes">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>locale_not_available</strong>: The given locale is not a <a href="/locales_and_currencies/#locales">Supported locale code</a>
 </li>
-</ul><h2 id="edit-an-invoice">Edit an Invoice</h2>
+</ul>
+
+<h2 id="edit-an-invoice">Edit an Invoice</h2>
 
 <pre><code>PUT /invoices/:id
 </code></pre>
@@ -1051,7 +1088,7 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
 <h3 id="inputs">Inputs</h3>
 
 <dl>
-<dt>invoice_date</dt>
+  <dt>invoice_date</dt>
   <dd>
 <em>Optional</em> <strong>string</strong> in  ISO 8061 format <code>YYYY-MM-DD</code>
 </dd>
@@ -1138,21 +1175,21 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
   <dd>How to calculate the total amount for hours worked. The fields are:
 
     <dl>
-<dt>calculation_method</dt>
+      <dt>calculation_method</dt>
       <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
       <dd>What method will be used to calculate the total amount for hours worked. Accepted values are:
 
         <ul>
-<li>
+          <li>
 <code>standard_hourly_rate</code>: a single hourly rate is used across the entire invoice.</li>
           <li>
 <code>custom_hourly_rates</code>: custom hourly rates can be defined for individual users in the <code>custom_hourly_rates</code> array. If no <code>custom_hourly_rate</code> is defined for an individual user, the <code>standard_hourly_rate</code> is used for that user.</li>
           <li>
 <code>flat_rate</code>: a flat rate is used for the the total cost of the hours in the invoice.</li>
         </ul>
-</dd>
+      </dd>
       <dt>flat_rate</dt>
       <dd>
 <em>Required if payment_type equals <code>flat_rate</code></em> <strong>decimal</strong>
@@ -1170,7 +1207,7 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
       <dd>The custom hourly rates for users, which are used to calculate the total amount for the hours they worked in this invoice. The fields are:
 
         <dl>
-<dt>user_id</dt>
+          <dt>user_id</dt>
           <dd>
 <em>Required</em> <strong>integer</strong>
 </dd>
@@ -1181,9 +1218,9 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
 </dd>
           <dd>the hourly rate for this specific user.</dd>
         </dl>
-</dd>
+      </dd>
     </dl>
-</dd>
+  </dd>
   <dt>customization</dt>
   <dd>
 <em>Optional</em> <strong>object</strong>
@@ -1191,7 +1228,7 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
   <dd>These fields define the labels and localization settings used when viewing an invoice, and the details for making an invoice payable via Paypal. The fields are:
 
     <dl>
-<dt>title</dt>
+      <dt>title</dt>
       <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -1331,7 +1368,7 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
       <dd>This object is used to setup the invoice so that it can be paid via paypal. The fields are:
 
         <dl>
-<dt>paypal_address</dt>
+          <dt>paypal_address</dt>
           <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -1350,32 +1387,54 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
           <dd>The paypal currency code used for this invoice.</dd>
           <dd>Defaults to the value used in a previous invoice for these projects, or “USD” if none is found.</dd>
         </dl>
+      </dd>
+      <dt>stripe_connect_payment</dt>
+      <dd>
+<em>Optional</em> <strong>object</strong>
 </dd>
+      <dd>This object is used to setup the invoice so that it can be paid via Stripe Connect. The fields are:
+
+        <dl>
+          <dt>payment_description</dt>
+          <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+          <dd>The description for the payment in Stripe. If no value is provided, then the <code>invoice_number</code> will be used.</dd>
+          <dt>currency_code</dt>
+          <dd>
+<em>Optional</em> <strong>string</strong> of a <a href="https://stripe.com/docs/currencies">Stripe currency code</a>
+</dd>
+          <dd>The ISO currency code used for this invoice.</dd>
+          <dd>Defaults to the value used in a previous invoice for these projects, or “usd” if none is found.</dd>
+        </dl>
+      </dd>
     </dl>
-</dd>
-</dl><pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
-  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Noko Support"</span><span class="p">,</span>
-  <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
-  <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
-    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
-    <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
+  </dd>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AB 0001</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Knockd, Noko Support</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Test</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 Main Street</span><span class="se">\n</span><span class="s2">Mainsville, MA 11122</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">recipient_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">footer</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_hours_worked</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_full_report</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_user_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_project_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">rate_calculation</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">calculation_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">standard_hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">30.75</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-        <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
+        <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.25</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
+    <span class="dl">"</span><span class="s2">flat_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">11000.72</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
@@ -1384,124 +1443,129 @@ Location: https://api.nokotime.com/v2/invoices/1</code></pre>
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">26642</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"paid"</span><span class="p">,</span>
-  <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AB 0001"</span><span class="p">,</span>
-  <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"project_name"</span><span class="o">:</span> <span class="s2">"Knockd, Noko Support"</span><span class="p">,</span>
-  <span class="s2">"company_name"</span><span class="o">:</span> <span class="s2">"John Test"</span><span class="p">,</span>
-  <span class="s2">"company_details"</span><span class="o">:</span> <span class="s2">"1 Main Street\nMainsville, MA 11122"</span><span class="p">,</span>
-  <span class="s2">"recipient_details"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"show_hours_worked"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"show_full_report"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_user_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_project_summaries"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"show_project_name_for_expenses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">"customization"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Invoice"</span><span class="p">,</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"Date"</span><span class="p">,</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"Invoice reference"</span><span class="p">,</span>
-    <span class="s2">"total_due"</span><span class="o">:</span> <span class="s2">"Total amount due"</span><span class="p">,</span>
-    <span class="s2">"summary"</span><span class="o">:</span> <span class="s2">"Summary"</span><span class="p">,</span>
-    <span class="s2">"project_summary"</span><span class="o">:</span> <span class="s2">"Project summary"</span><span class="p">,</span>
-    <span class="s2">"user_summary"</span><span class="o">:</span> <span class="s2">"People summary"</span><span class="p">,</span>
-    <span class="s2">"no_project_name"</span><span class="o">:</span> <span class="s2">"No project"</span><span class="p">,</span>
-    <span class="s2">"work_time"</span><span class="o">:</span> <span class="s2">"work time"</span><span class="p">,</span>
-    <span class="s2">"no_tax"</span><span class="o">:</span> <span class="s2">"no tax"</span><span class="p">,</span>
-    <span class="s2">"work_total"</span><span class="o">:</span> <span class="s2">"Total worked"</span><span class="p">,</span>
-    <span class="s2">"total"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"report"</span><span class="o">:</span> <span class="s2">"Report"</span><span class="p">,</span>
-    <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en-US"</span><span class="p">,</span>
-    <span class="s2">"currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"currency_symbol"</span><span class="o">:</span> <span class="s2">"$"</span><span class="p">,</span>
-    <span class="s2">"taxable_total"</span><span class="o">:</span> <span class="s2">"Total taxable"</span><span class="p">,</span>
-    <span class="s2">"tax_total"</span><span class="o">:</span> <span class="s2">"Total tax"</span><span class="p">,</span>
-    <span class="s2">"taxfree_total"</span><span class="o">:</span> <span class="s2">"Total taxfree"</span><span class="p">,</span>
-    <span class="s2">"total_report"</span><span class="o">:</span> <span class="s2">"TOTAL"</span><span class="p">,</span>
-    <span class="s2">"custom_html"</span><span class="o">:</span> <span class="s2">"My Custom Invoice"</span><span class="p">,</span>
-    <span class="s2">"allow_paypal_invoice"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"paypal_invoice_title"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"paypal_currency_code"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"paypal_address"</span><span class="o">:</span> <span class="s2">"payment@test.com"</span><span class="p">,</span>
-    <span class="s2">"currency_name"</span><span class="o">:</span> <span class="s2">"United States dollar"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-04-24T17:39:51Z"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">26642</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paid</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AB 0001</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Knockd, Noko Support</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Test</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">company_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 Main Street</span><span class="se">\n</span><span class="s2">Mainsville, MA 11122</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">recipient_details</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">footer</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_hours_worked</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_full_report</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_user_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_project_summaries</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">show_project_name_for_expenses</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">customization</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invoice</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Date</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invoice reference</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_due</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total amount due</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Summary</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project_summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project summary</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">user_summary</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">People summary</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">no_project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">No project</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">work_time</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">work time</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">no_tax</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">no tax</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">work_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total worked</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TOTAL</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">report</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Report</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">locale</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">en-US</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">USD</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">currency_symbol</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">taxable_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total taxable</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">tax_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total tax</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">taxfree_total</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Total taxfree</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_report</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TOTAL</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">custom_html</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">My Custom Invoice</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">allow_paypal_invoice</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paypal_invoice_title</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Paypal Invoice Title</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paypal_currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">USD</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paypal_address</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">payment@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">allow_stripe_connect_payment</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">stripe_connect_payment_description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Stripe Payment Description</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">stripe_connect_currency_code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">usd</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">currency_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">United States dollar</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-04-24T17:39:51Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-04-24T17:39:51Z</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"rate_calculation"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"calculation_method"</span><span class="o">:</span> <span class="s2">"custom_hourly_rates"</span><span class="p">,</span>
-    <span class="s2">"standard_hourly_rate"</span><span class="o">:</span> <span class="mf">30.75</span><span class="p">,</span>
-    <span class="s2">"custom_hourly_rates"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">rate_calculation</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">calculation_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">standard_hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">30.75</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">custom_hourly_rates</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"user"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-        <span class="s2">"hourly_rate"</span><span class="o">:</span> <span class="mf">15.25</span>
+        <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">hourly_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.25</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"flat_rate"</span><span class="o">:</span> <span class="mf">11000.72</span>
+    <span class="dl">"</span><span class="s2">flat_rate</span><span class="dl">"</span><span class="p">:</span> <span class="mf">11000.72</span>
   <span class="p">},</span>
-  <span class="s2">"taxes"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">taxes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">88292</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sales Tax"</span><span class="p">,</span>
-      <span class="s2">"percentage"</span><span class="o">:</span> <span class="mf">15.0</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">88292</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sales Tax</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">percentage</span><span class="dl">"</span><span class="p">:</span> <span class="mf">15.0</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"taxable_amount"</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s2">"taxfree_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"tax_total_amount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"taxable_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$100.00"</span><span class="p">,</span>
-  <span class="s2">"taxfree_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-  <span class="s2">"tax_total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$0.00"</span><span class="p">,</span>
-  <span class="s2">"total_amount_with_currency"</span><span class="o">:</span> <span class="s2">"$1.00"</span><span class="p">,</span>
-  <span class="s2">"payment"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"paid_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAABBBDDDEEEE22222"</span><span class="p">,</span>
-    <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span>
+  <span class="dl">"</span><span class="s2">taxable_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxfree_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">tax_total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxable_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$100.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxfree_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$0.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">tax_total_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$0.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">total_amount_with_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$1.00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">payment</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">paid_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AP-AAABBBDDDEEEE22222</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">payment_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paypal</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"payment_transactions"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">payment_transactions</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Sent to Paypal"</span><span class="p">,</span>
-      <span class="s2">"payment_method"</span><span class="o">:</span> <span class="s2">"paypal"</span><span class="p">,</span>
-      <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AP-AAAAABBBCCCCDDD111"</span><span class="p">,</span>
-      <span class="s2">"invoice_state"</span><span class="o">:</span> <span class="s2">"in_progress"</span>
+      <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sent to Paypal</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">payment_method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">paypal</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AP-AAAAABBBCCCCDDD111</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">invoice_state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">in_progress</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"projects"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">projects</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-      <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"entries"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
-  <span class="s2">"entries_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642/entries"</span><span class="p">,</span>
-  <span class="s2">"expenses"</span><span class="o">:</span> <span class="mi">324</span><span class="p">,</span>
-  <span class="s2">"expenses_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642/expenses"</span><span class="p">,</span>
-  <span class="s2">"share_url"</span><span class="o">:</span> <span class="s2">"https://apitest.nokotime.com/i/bqrnbojlbxqswtq9xla9uc40z"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:05Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2013-07-09T23:04:06Z"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/26642"</span>
+  <span class="dl">"</span><span class="s2">entries</span><span class="dl">"</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">entries_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642/entries</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">expenses</span><span class="dl">"</span><span class="p">:</span> <span class="mi">324</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">expenses_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642/expenses</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">share_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://apitest.nokotime.com/i/bqrnbojlbxqswtq9xla9uc40z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:05Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09T23:04:06Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/26642</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="custom-error-codes-1">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>locale_not_available</strong>: The given locale is not a <a href="/locales_and_currencies/#locales">Supported locale code</a>
 </li>
   <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="mark-an-invoice-as-paid">Mark an Invoice as paid</h2>
+</ul>
+
+<h2 id="mark-an-invoice-as-paid">Mark an Invoice as paid</h2>
 
 <pre><code>PUT /invoices/:id/paid
 </code></pre>
@@ -1535,66 +1599,66 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/entries?page=2&gt;; rel="next
  &lt;https://api.nokotime.com/v2/invoices/:id/entries?page=5&gt;; rel="last"</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+  <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">tags</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"formatted_name"</span><span class="o">:</span> <span class="s2">"#noko"</span><span class="p">,</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/tags/249397"</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">formatted_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#noko</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/249397</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s2">"source_url"</span><span class="o">:</span> <span class="s2">"http://someapp.com/special/url/"</span><span class="p">,</span>
-  <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
+  <span class="dl">"</span><span class="s2">source_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://someapp.com/special/url/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoiced_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoice</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AA001</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">unpaid</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mf">189.33</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/12345678</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"import"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/imports/8910"</span>
+  <span class="dl">"</span><span class="s2">import</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8910</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/imports/8910</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"approved_at"</span><span class="o">:</span> <span class="s2">"2012-01-10T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"approved_by"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">approved_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-10T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">approved_by</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626"</span><span class="p">,</span>
-  <span class="s2">"invoiced_outside_of_noko_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced"</span><span class="p">,</span>
-  <span class="s2">"approved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/approved"</span><span class="p">,</span>
-  <span class="s2">"unapproved_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/entries/1711626/unapproved"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">invoiced_outside_of_noko_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/marked_as_invoiced</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">approved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/approved</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">unapproved_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/1711626/unapproved</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="get-the-invoices-expenses">Get the invoice’s expenses</h2>
@@ -1613,39 +1677,39 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
  &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=5&gt;; rel="last"</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2233</span><span class="p">,</span>
-  <span class="s2">"price"</span><span class="o">:</span> <span class="mf">14.55</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"new software"</span><span class="p">,</span>
-  <span class="s2">"taxable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2010-06-09"</span><span class="p">,</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">2233</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">price</span><span class="dl">"</span><span class="p">:</span> <span class="mf">14.55</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">new software</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">taxable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"invoice"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="s2">"reference"</span><span class="o">:</span> <span class="s2">"AA001"</span><span class="p">,</span>
-    <span class="s2">"invoice_date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-    <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"unpaid"</span><span class="p">,</span>
-    <span class="s2">"total_amount"</span><span class="o">:</span> <span class="mf">189.33</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/invoices/12345678"</span>
+  <span class="dl">"</span><span class="s2">invoice</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">reference</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AA001</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoice_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">unpaid</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">total_amount</span><span class="dl">"</span><span class="p">:</span> <span class="mf">189.33</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/invoices/12345678</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/expense/2233"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-06-09T20:44:57Z"</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/expense/2233</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="add-entries-to-an-invoice">Add Entries to an Invoice</h2>
@@ -1656,12 +1720,14 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="inputs-1">Inputs</h3>
 
 <dl>
-<dt>entry_ids</dt>
+  <dt>entry_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of the entries to add to this invoice.</dd>
-</dl><h3 id="response-8">Response</h3>
+</dl>
+
+<h3 id="response-8">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -1672,12 +1738,12 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Entries could not be added"</span><span class="p">,</span>
-  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Entries could not be added</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">errors</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Entry"</span><span class="p">,</span>
-      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"entry_ids[1]"</span><span class="p">,</span>
-      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"archived_project"</span>
+      <span class="dl">"</span><span class="s2">resource</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Entry</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">entry_ids[1]</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">archived_project</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
@@ -1685,11 +1751,13 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="custom-error-codes-2">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="remove-entries-from-an-invoice">Remove Entries from an Invoice</h2>
+</ul>
+
+<h2 id="remove-entries-from-an-invoice">Remove Entries from an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/remove_entries
 </code></pre>
@@ -1697,23 +1765,27 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="inputs-2">Inputs</h3>
 
 <dl>
-<dt>entry_ids</dt>
+  <dt>entry_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of the entries to remove from this invoice. Any entries that are not associated with the invoice will be ignored and will not affect the Response.</dd>
-</dl><h3 id="response-9">Response</h3>
+</dl>
+
+<h3 id="response-9">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
 <h3 id="custom-error-codes-3">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="remove-all-entries-from-an-invoice">Remove all Entries from an Invoice</h2>
+</ul>
+
+<h2 id="remove-all-entries-from-an-invoice">Remove all Entries from an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/remove_all_entries
 </code></pre>
@@ -1725,11 +1797,13 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="custom-error-codes-4">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="add-expenses-to-an-invoice">Add Expenses to an Invoice</h2>
+</ul>
+
+<h2 id="add-expenses-to-an-invoice">Add Expenses to an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/add_expenses
 </code></pre>
@@ -1737,12 +1811,14 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="inputs-3">Inputs</h3>
 
 <dl>
-<dt>expense_ids</dt>
+  <dt>expense_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of the expenses to add to this invoice.</dd>
-</dl><h3 id="response-11">Response</h3>
+</dl>
+
+<h3 id="response-11">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -1753,12 +1829,12 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Entries could not be added"</span><span class="p">,</span>
-  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Entries could not be added</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">errors</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Entry"</span><span class="p">,</span>
-      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"entry_ids[1]"</span><span class="p">,</span>
-      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"archived_project"</span>
+      <span class="dl">"</span><span class="s2">resource</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Entry</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">entry_ids[1]</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">archived_project</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
@@ -1766,11 +1842,13 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="custom-error-codes-5">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="remove-expenses-from-an-invoice">Remove Expenses from an Invoice</h2>
+</ul>
+
+<h2 id="remove-expenses-from-an-invoice">Remove Expenses from an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/remove_expenses
 </code></pre>
@@ -1778,23 +1856,27 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="inputs-4">Inputs</h3>
 
 <dl>
-<dt>expense_ids</dt>
+  <dt>expense_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of the expenses to remove from this invoice. Any expenses that are not associated with this invoice will be ignored and will not affect the Response.</dd>
-</dl><h3 id="response-12">Response</h3>
+</dl>
+
+<h3 id="response-12">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
 <h3 id="custom-error-codes-6">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="remove-all-expenses-from-an-invoice">Remove all Expenses from an Invoice</h2>
+</ul>
+
+<h2 id="remove-all-expenses-from-an-invoice">Remove all Expenses from an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/remove_all_expenses
 </code></pre>
@@ -1806,11 +1888,13 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="custom-error-codes-7">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="add-taxes-to-an-invoice">Add Taxes to an Invoice</h2>
+</ul>
+
+<h2 id="add-taxes-to-an-invoice">Add Taxes to an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/add_taxes
 </code></pre>
@@ -1818,14 +1902,14 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="inputs-5">Inputs</h3>
 
 <dl>
-<dt>taxes</dt>
+  <dt>taxes</dt>
   <dd>
 <em>Required</em> <strong>array of objects</strong>
 </dd>
   <dd>the taxes to add to this invoice. The fields are:
 
     <dl>
-<dt>percentage</dt>
+      <dt>percentage</dt>
       <dd>
 <em>Required</em> <strong>decimal</strong> in percentage format (<code>00.00</code>)</dd>
       <dd>the numeric percentage of the tax</dd>
@@ -1835,19 +1919,23 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 </dd>
       <dd>the name of the tax</dd>
     </dl>
-</dd>
-</dl><h3 id="response-14">Response</h3>
+  </dd>
+</dl>
+
+<h3 id="response-14">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
 <h3 id="custom-error-codes-8">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="remove-taxes-from-an-invoice">Remove Taxes from an Invoice</h2>
+</ul>
+
+<h2 id="remove-taxes-from-an-invoice">Remove Taxes from an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/remove_taxes
 </code></pre>
@@ -1855,23 +1943,27 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="inputs-6">Inputs</h3>
 
 <dl>
-<dt>tax_ids</dt>
+  <dt>tax_ids</dt>
   <dd>
 <em>Required</em> <strong>array of integers</strong>
 </dd>
   <dd>the IDs of taxes to remove from this invoice. Any taxes that are not associated with this invoice will be ignored.</dd>
-</dl><h3 id="response-15">Response</h3>
+</dl>
+
+<h3 id="response-15">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
 <h3 id="custom-error-codes-9">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="remove-all-taxes-from-an-invoice">Remove all Taxes from an Invoice</h2>
+</ul>
+
+<h2 id="remove-all-taxes-from-an-invoice">Remove all Taxes from an Invoice</h2>
 
 <pre><code>PUT /invoices/:id/remove_all_taxes
 </code></pre>
@@ -1883,11 +1975,13 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="custom-error-codes-10">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
-</ul><h2 id="delete-an-invoice">Delete an Invoice</h2>
+</ul>
+
+<h2 id="delete-an-invoice">Delete an Invoice</h2>
 
 <pre><code>DELETE /invoices/:id
 </code></pre>
@@ -1903,11 +1997,12 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
 <h3 id="custom-error-codes-11">Custom Error Codes</h3>
 
 <ul>
-<li>
+  <li>
 <strong>paid</strong>: the Invoice has been paid</li>
   <li>
 <strong>locked</strong>: the Invoice is locked while it is being paid</li>
 </ul>
+
 
       <div id="footer">
 
@@ -1950,7 +2045,7 @@ Link: &lt;https://api.nokotime.com/v2/invoices/:id/expenses?page=2&gt;; rel="nex
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>

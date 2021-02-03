@@ -54,18 +54,20 @@ access <strong>entries</strong> (list/search, create, update, delete, mass impor
 <strong>tags</strong> (list) and <strong>users</strong> (list, read, create, update, deactivate, get avatar).</p>
 
 <ul id="markdown-toc">
-<li><a href="#important-freckle-is-getting-a-new-name-noko"><em>Important</em> Freckle is getting a new name: Noko!</a></li>
-  <li><a href="#noko-api-libraries">Noko API Libraries</a></li>
-  <li><a href="#urls">URLs</a></li>
-  <li><a href="#authentication">Authentication</a></li>
-  <li><a href="#pagination">Pagination</a></li>
-  <li><a href="#response-codes-and-error-handling">Response codes and error handling</a></li>
-  <li><a href="#rate-limiting">Rate Limiting</a></li>
-  <li><a href="#roles">Roles</a></li>
-  <li><a href="#data-formats">Data Formats</a></li>
-  <li><a href="#field-formats">Field formats</a></li>
-  <li><a href="#api-test-account">API Test Account</a></li>
-</ul><div id="migration-guide">
+  <li><a href="#important-freckle-is-getting-a-new-name-noko" id="markdown-toc-important-freckle-is-getting-a-new-name-noko"><em>Important</em> Freckle is getting a new name: Noko!</a></li>
+  <li><a href="#noko-api-libraries" id="markdown-toc-noko-api-libraries">Noko API Libraries</a></li>
+  <li><a href="#urls" id="markdown-toc-urls">URLs</a></li>
+  <li><a href="#authentication" id="markdown-toc-authentication">Authentication</a></li>
+  <li><a href="#pagination" id="markdown-toc-pagination">Pagination</a></li>
+  <li><a href="#response-codes-and-error-handling" id="markdown-toc-response-codes-and-error-handling">Response codes and error handling</a></li>
+  <li><a href="#rate-limiting" id="markdown-toc-rate-limiting">Rate Limiting</a></li>
+  <li><a href="#roles" id="markdown-toc-roles">Roles</a></li>
+  <li><a href="#data-formats" id="markdown-toc-data-formats">Data Formats</a></li>
+  <li><a href="#field-formats" id="markdown-toc-field-formats">Field formats</a></li>
+  <li><a href="#api-test-account" id="markdown-toc-api-test-account">API Test Account</a></li>
+</ul>
+
+<div id="migration-guide">
   <h2 id="important-freckle-is-getting-a-new-name-noko">
 <em>Important</em> Freckle is getting a new name: Noko!</h2>
 
@@ -75,26 +77,30 @@ Below are the steps you'll need to take to make sure your integrations and apps 
 Want to learn more? You can read <a href="https://nokotime.com/blog/2019/03/freckle-getting-new-name-noko/">our announcement here</a>
 </p>
 
-  <section><h3 id="what-is-the-timeline">What is the timeline?</h3>
+  <section>
+    <h3 id="what-is-the-timeline">What is the timeline?</h3>
 
-    <table><tbody>
-<tr>
-<td><strong><a href="https://everytimezone.com/s/2737b6cc">March 25, 2019</a></strong></td>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong><a href="https://everytimezone.com/s/2737b6cc">March 25, 2019</a></strong></td>
           <td>
 <code>&lt;subdomain&gt;.nokotime.com/api</code> will be live, and the API docs will change to reference “Noko” to prevent regressions.</td>
         </tr>
-<tr>
-<td><strong>August 31, 2019</strong></td>
+        <tr>
+          <td><strong>August 31, 2019</strong></td>
           <td>All requests to <code>&lt;subdomain&gt;.nokotime.com/api</code> will return <code>301 Moved Permanently</code> and point to the corresponding URI in <code>api.nokotime.com/api</code>
 </td>
         </tr>
-<tr>
-<td><strong>September 12, 2019</strong></td>
+        <tr>
+          <td><strong>September 12, 2019</strong></td>
           <td>Requests to <code>&lt;subdomain&gt;.nokotime.com/api</code> will <strong>no longer work</strong>
 </td>
         </tr>
-</tbody></table>
-<h3 id="what-do-i-need-to-do">What do I need to do?</h3>
+      </tbody>
+    </table>
+
+    <h3 id="what-do-i-need-to-do">What do I need to do?</h3>
 
     <p>Once <code>&lt;subdomain&gt;.nokotime.com/api</code> is live on March 25 (<a href="https://everytimezone.com/s/2737b6cc">click here to see this time on EveryTimeZone</a>), change your apps and integrations to point to:</p>
 
@@ -142,7 +148,7 @@ use “Noko” or the Noko logo as name or icon of your app!</p>
 available:</p>
 
 <ul>
-<li>Ruby: <a href="https://github.com/ryanlecompte/letsfreckle-client">letsfreckle-client</a>
+  <li>Ruby: <a href="https://github.com/ryanlecompte/letsfreckle-client">letsfreckle-client</a>
 </li>
   <li>Python: <a href="https://github.com/ipmb/freckle">ipmb/freckle</a>
 </li>
@@ -152,13 +158,17 @@ available:</p>
 </li>
   <li>Clojure: <a href="https://github.com/mlehman/clj-freckle">clj-freckle</a>
 </li>
-</ul><p>Additionally, there are command line tools that can log time and access other API functionality, which is great if you want to use the Noko API from a shell script:</p>
+</ul>
+
+<p>Additionally, there are command line tools that can log time and access other API functionality, which is great if you want to use the Noko API from a shell script:</p>
 
 <ul>
-<li><a href="https://github.com/sirkitree/pippi">Pippi</a></li>
+  <li><a href="https://github.com/sirkitree/pippi">Pippi</a></li>
   <li><a href="https://github.com/robinhouston/freckle-command">freck</a></li>
   <li><a href="https://github.com/sissbruecker/freckle-overtime">freckle-overtime</a></li>
-</ul><p class="note">
+</ul>
+
+<p class="note">
 These are 3rd-party libraries and Noko can't provide support for them.
 Please contact the library authors directly if you need help with these.
 </p>
@@ -212,12 +222,12 @@ curl -v -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotim
 the cURL examples. It’s generally also a good idea to use the HTTP header method if you wrap
 Noko API calls in a library or module in your code.</p>
 
-<p>&lt;p class=note&gt;
+<p class="note">
 In order to make it easier for users to authenticate in interactive client applications
 such as on mobile devices, the token can be retrieved via the
 <code>/api/user/api_auth_token</code> API method by using HTTP Basic Auth with the
-user’s email and password. See the Users section for more information.
-&lt;/p&gt;</p>
+user's email and password. See the Users section for more information.
+</p>
 
 <h2 id="pagination">Pagination</h2>
 
@@ -244,7 +254,7 @@ that are not currently paginated.</p>
 <p>A call to the API can result in one of six different outcomes:</p>
 
 <ul>
-<li>
+  <li>
     <p>Everything works fine—a HTTP status code in the 200 range is returned;
 for reads and updates <strong><code>200 OK</code></strong> and for newly created resources <strong><code>201 Created</code></strong>
 (which also return a <code>Location</code> header pointing to the newly created resource).</p>
@@ -273,7 +283,9 @@ This is rare but it does happen. Try the call again.</p>
   <li>
     <p>If too many requests are performed and the <a href="#rate-limiting">rate limits</a> are exceeded: <strong><code>429 Too Many Requests</code></strong>.</p>
   </li>
-</ul><h2 id="rate-limiting">Rate Limiting</h2>
+</ul>
+
+<h2 id="rate-limiting">Rate Limiting</h2>
 
 <p>You can perform up to 2 requests per second from the same IP address. Requests that exceed this limit will at first be slowed down (for up to 5 requests total). If you send more requests than that, remaining requests will be dropped and return an empty <code>429 Too Many Requests</code> response.</p>
 
@@ -304,7 +316,7 @@ a <code>.xml</code> or <code>.json</code> extension to URL you are calling, or s
 <p>Noko uses the following field formats:</p>
 
 <ul>
-<li>
+  <li>
 <strong>IDs</strong> are stored as 4-byte integers (range 1 to 2147483647)</li>
   <li>
 <strong>Timestamps</strong> are given UTC-based, e.g. <code>2012-01-09T08:33:29Z</code>
@@ -312,7 +324,9 @@ a <code>.xml</code> or <code>.json</code> extension to URL you are calling, or s
   <li>
 <strong>Dates</strong> are given YYYY-MM-DD, e.g. <code>2011-07-26</code>
 </li>
-</ul><p>There’s limits on the text length of some fields, but, with the exception
+</ul>
+
+<p>There’s limits on the text length of some fields, but, with the exception
 of tags which are limited to 30 characters, it’s highly unlikely
 that you’ll hit those.</p>
 
@@ -348,28 +362,28 @@ so you can be sure your data stays intact while you develop!</p>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"group_name"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"remaining_minutes"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"From iPhone 5"</span><span class="p">,</span>
-      <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-02-04T06:12:31Z"</span><span class="p">,</span>
-      <span class="s2">"cached_tags"</span><span class="o">:</span> <span class="p">[</span> <span class="cm">/* ... */</span> <span class="p">],</span>
-      <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
-      <span class="s2">"import_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-10-19T15:59:56Z"</span><span class="p">,</span>
-      <span class="s2">"account_id"</span><span class="o">:</span> <span class="mi">5039</span><span class="p">,</span>
-      <span class="s2">"billable_minutes"</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
-      <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">40413</span><span class="p">,</span>
-      <span class="s2">"project_group_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"user_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"unbillable_minutes"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"budget"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"color_hex"</span><span class="o">:</span> <span class="s2">"55c9ef"</span><span class="p">,</span>
-      <span class="s2">"budget_minutes"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"invoice_recipient_details"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"stepping"</span><span class="o">:</span> <span class="mi">15</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">group_name</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">remaining_minutes</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">From iPhone 5</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-02-04T06:12:31Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">cached_tags</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span> <span class="cm">/* ... */</span> <span class="p">],</span>
+      <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">import_id</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-10-19T15:59:56Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">account_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5039</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">billable_minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">40413</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">project_group_id</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">user_id</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">unbillable_minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">budget</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">color_hex</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">55c9ef</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">budget_minutes</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">invoice_recipient_details</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">stepping</span><span class="dl">"</span><span class="p">:</span> <span class="mi">15</span>
     <span class="p">}</span>
     <span class="cm">/* ... */</span>
   <span class="p">}</span>
@@ -422,6 +436,7 @@ so you can be sure your data stays intact while you develop!</p>
 </div>
 </div>
 </div>
+
   </div>
 
   <div id="footer">
@@ -466,7 +481,7 @@ so you can be sure your data stays intact while you develop!</p>
     </div>
 
     <div class="copyright">
-      &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+      &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
       Noko® is a registered trademark of Slash7 LLC.
     </div>
     </div>

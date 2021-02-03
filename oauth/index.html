@@ -71,16 +71,18 @@
   <h2>Almost finished!</h2>
   <p>This authentication method is almost finished, but the following sections will return a 404 error:</p>
   <ul>
-<li><a href="#non-web-application-flow">Non-Web Application Flow</a></li>
+    <li><a href="#non-web-application-flow">Non-Web Application Flow</a></li>
     <li><a href="#oauth-application-api">OAuth Application API</a></li>
   </ul>
 </div>
 
 <ul id="markdown-toc">
-<li><a href="#web-application-flow">Web Application Flow</a></li>
-  <li><a href="#non-web-application-flow">Non-Web Application Flow</a></li>
-  <li><a href="#oauth-application-api">OAuth Application API</a></li>
-</ul><p>OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Noko account without requiring their password. Noko supports access to API resources using OAuth because tokens can be easily generated as part of a 3rd party integration and revoked by users at any time.</p>
+  <li><a href="#web-application-flow" id="markdown-toc-web-application-flow">Web Application Flow</a></li>
+  <li><a href="#non-web-application-flow" id="markdown-toc-non-web-application-flow">Non-Web Application Flow</a></li>
+  <li><a href="#oauth-application-api" id="markdown-toc-oauth-application-api">OAuth Application API</a></li>
+</ul>
+
+<p>OAuth2 is a protocol that lets external apps request authorization to the private details in a user’s Noko account without requiring their password. Noko supports access to API resources using OAuth because tokens can be easily generated as part of a 3rd party integration and revoked by users at any time.</p>
 
 <p>Before you can start developing with the Noko API, you must first <a href="https://help.nokotime.com/article/122-registering-a-new-freckle-app">register your application</a>. When you register, you will be given a unique Client ID and Secret. Your Client Secret should not be shared.</p>
 
@@ -105,7 +107,7 @@
 <h4 id="parameters">Parameters:</h4>
 
 <dl>
-<dt>client_id</dt>
+  <dt>client_id</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
@@ -146,23 +148,27 @@ BAD:  http://oauth.example.com:8080/path
 BAD:  http://example.org
 </code></pre>
   </dd>
-</dl><h3 id="noko-redirects-back-to-your-site-with-two-parameters">2. Noko redirects back to your site with two parameters:</h3>
+</dl>
+
+<h3 id="noko-redirects-back-to-your-site-with-two-parameters">2. Noko redirects back to your site with two parameters:</h3>
 
 <p>When the user has authorized your application, Noko will redirect back to your application (either to the URL configured in the OAuth2 application settings, or the url specified in <code>redirect_uri</code>). The redirection will include the following query parameters:</p>
 
 <dl>
-<dt>code</dt>
+  <dt>code</dt>
   <dd><strong>string</strong></dd>
   <dd>A temporary code that you will send back to Noko to get the access token. This code confirms that the user authorized your application to use their Noko data, and that you received the request. This temporary code expires shortly after it’s issued, so be sure to use it quickly!</dd>
   <dt>state</dt>
   <dd><strong>string</strong></dd>
   <dd>If you provided a state in your <a href="#redirect-users-to-request-noko-access">initial request</a> it will be returned back to you. Reject the redirect if this parameter does not match what you previously sent.</dd>
-</dl><h4 id="errors">Errors:</h4>
+</dl>
+
+<h4 id="errors">Errors:</h4>
 
 <p>If the user denied access or there was a problem with the API request, the redirect will include the following query parameters:</p>
 
 <dl>
-<dt>error</dt>
+  <dt>error</dt>
   <dd><strong>string</strong></dd>
   <dd>
 <code>invalid_request</code>: The request was not properly formed.</dd>
@@ -179,7 +185,9 @@ BAD:  http://example.org
   <dt>error_description</dt>
   <dd><strong>string</strong></dd>
   <dd>A short explanation of the error</dd>
-</dl><h3 id="post-to-noko-to-get-the-access-token">3. POST to Noko to get the access token.</h3>
+</dl>
+
+<h3 id="post-to-noko-to-get-the-access-token">3. POST to Noko to get the access token.</h3>
 
 <p>After you have received the temporary code, you will need to <code>POST</code> to Noko to exchange this temporary code for an access token</p>
 
@@ -189,7 +197,7 @@ BAD:  http://example.org
 <h4 id="parameters-1">Parameters:</h4>
 
 <dl>
-<dt>client_id</dt>
+  <dt>client_id</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
@@ -214,12 +222,14 @@ BAD:  http://example.org
 <em>Required if provided in <a href="#redirect-users-to-request-noko-access">step 1</a></em> <strong>string</strong>
 </dd>
   <dd>The URL pointing to your application where users will be redirected to after they have authorized your application to use their Noko data. This must exactly match the value given in <a href="#redirect-users-to-request-noko-access">step 1</a>.</dd>
-</dl><h4 id="reponse">Reponse</h4>
+</dl>
+
+<h4 id="reponse">Reponse</h4>
 
 <p>The response will include the following values:</p>
 
 <dl>
-<dt>access_token</dt>
+  <dt>access_token</dt>
   <dd><strong>string</strong></dd>
   <dd>The token you will use to access the API on behalf of a user.</dd>
   <dt>refresh_token</dt>
@@ -231,7 +241,9 @@ BAD:  http://example.org
   <dt>token_type</dt>
   <dd><strong>string</strong></dd>
   <dd>The type of access that has been sent to your application. The default value is <code>bearer</code>.</dd>
-</dl><p>By default, the response will have the following format:</p>
+</dl>
+
+<p>By default, the response will have the following format:</p>
 
 <pre><code>access_token=abcedfghijk1234567890&amp;expires_in=12345678&amp;refresh_token=poiuytrew098765&amp;scope=&amp;token_type=bearer
 </code></pre>
@@ -241,11 +253,11 @@ BAD:  http://example.org
 <pre><code>Accept: application/json
 </code></pre>
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"access_token"</span><span class="o">:</span> <span class="s2">"abcedfghijk1234567890"</span><span class="p">,</span>
-  <span class="s2">"refresh_token"</span><span class="o">:</span> <span class="s2">"poiuytrew098765"</span><span class="p">,</span>
-  <span class="s2">"expires_in"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-  <span class="s2">"scope"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"token_type"</span><span class="o">:</span> <span class="s2">"bearer"</span>
+  <span class="dl">"</span><span class="s2">access_token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abcedfghijk1234567890</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">refresh_token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">poiuytrew098765</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">expires_in</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">scope</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">token_type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">bearer</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h4 id="errors-1">Errors</h4>
@@ -255,14 +267,14 @@ BAD:  http://example.org
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"error"</span><span class="o">:</span> <span class="s2">"invalid_grant"</span><span class="p">,</span>
-  <span class="s2">"error_description"</span><span class="o">:</span> <span class="s2">"The provided access grant is invalid, expired, or revoked (e.g. invalid assertion, expired authorization token, bad end-user password credentials, or mismatching authorization code and redirection URI)."</span>
+  <span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">invalid_grant</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">error_description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">The provided access grant is invalid, expired, or revoked (e.g. invalid assertion, expired authorization token, bad end-user password credentials, or mismatching authorization code and redirection URI).</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <p>The possible errors are:</p>
 
 <ul>
-<li>
+  <li>
 <code>invalid_request</code>: The request was not properly formed.</li>
   <li>
 <code>invalid_client</code>: The client provided is invalid.</li>
@@ -272,7 +284,9 @@ BAD:  http://example.org
 <code>unauthorized_client</code>: The client cannot use this grant type.</li>
   <li>
 <code>unsupported_grant_type</code>: This grant type is not supported by the authorization server.</li>
-</ul><h3 id="use-the-access-token-to-make-api-requests-on-behalf-of-the-user">4. Use the access token to make API requests on behalf of the user</h3>
+</ul>
+
+<h3 id="use-the-access-token-to-make-api-requests-on-behalf-of-the-user">4. Use the access token to make API requests on behalf of the user</h3>
 
 <p>Now that you have an access token for the user, you can use it to make API requests on their behalf. Please review the <a href="/v2/authentication">API basics section on how to include the access token in your requests</a>.</p>
 
@@ -290,7 +304,7 @@ BAD:  http://example.org
 <h4 id="parameters-2">Parameters</h4>
 
 <dl>
-<dt>client_id</dt>
+  <dt>client_id</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
@@ -310,12 +324,14 @@ BAD:  http://example.org
 <em>Required</em> <strong>string</strong>
 </dd>
   <dd>The value must be set to <code>refresh_token</code>. This is usually handled by an OAuth2 client library.</dd>
-</dl><h4 id="response">Response</h4>
+</dl>
+
+<h4 id="response">Response</h4>
 
 <p>The response will include the following values:</p>
 
 <dl>
-<dt>access_token</dt>
+  <dt>access_token</dt>
   <dd><strong>string</strong></dd>
   <dd>The new token you will use to access the API on behalf of a user.</dd>
   <dt>refresh_token</dt>
@@ -327,7 +343,9 @@ BAD:  http://example.org
   <dt>token_type</dt>
   <dd><strong>string</strong></dd>
   <dd>The type of access that has been sent to your application. The default value is <code>bearer</code>.</dd>
-</dl><p>By default, the response will have the following format:</p>
+</dl>
+
+<p>By default, the response will have the following format:</p>
 
 <pre><code>access_token=abcedfghijk1234567890&amp;expires_in=12345678&amp;refresh_token=poiuytrew098765&amp;scope=&amp;token_type=bearer
 </code></pre>
@@ -337,11 +355,11 @@ BAD:  http://example.org
 <pre><code>Accept: application/json
 </code></pre>
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"access_token"</span><span class="o">:</span> <span class="s2">"abcedfghijk1234567890"</span><span class="p">,</span>
-  <span class="s2">"refresh_token"</span><span class="o">:</span> <span class="s2">"poiuytrew098765"</span><span class="p">,</span>
-  <span class="s2">"expires_in"</span><span class="o">:</span> <span class="mi">12345678</span><span class="p">,</span>
-  <span class="s2">"scope"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"token_type"</span><span class="o">:</span> <span class="s2">"bearer"</span>
+  <span class="dl">"</span><span class="s2">access_token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abcedfghijk1234567890</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">refresh_token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">poiuytrew098765</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">expires_in</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">scope</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">token_type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">bearer</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="non-web-application-flow">Non-Web Application Flow</h2>
@@ -362,10 +380,12 @@ BAD:  http://example.org
 <p>The process for selecting which account to access should be:</p>
 
 <ol>
-<li>Present the user with a list of all the subdomains (with the corresponding avatar) they are associated with.</li>
+  <li>Present the user with a list of all the subdomains (with the corresponding avatar) they are associated with.</li>
   <li>User selects which account they want to access</li>
   <li>Use the user-selected subdomain to access the OAuth Authorizations API</li>
-</ol><h3 id="list-all-the-subdomains-associated-with-this-user">List all the subdomains associated with this user</h3>
+</ol>
+
+<h3 id="list-all-the-subdomains-associated-with-this-user">List all the subdomains associated with this user</h3>
 
 <p>In order to use the OAuth Authorizations API, you will need to specify which subdomain the user wants to authenticate with. This method returns a list of all the subdomains associated with the user, along with URLs to their respective avatars.</p>
 
@@ -378,8 +398,8 @@ BAD:  http://example.org
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"testit"</span><span class="p">,</span>
-    <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">testit</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">avatar</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
@@ -394,22 +414,22 @@ BAD:  http://example.org
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
-    <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
-      <span class="s2">"current_user"</span><span class="p">,</span>
-      <span class="s2">"project"</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/authorizations/1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">scopes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="dl">"</span><span class="s2">current_user</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span>
     <span class="p">],</span>
-    <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
-    <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
-      <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+    <span class="dl">"</span><span class="s2">token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abc123</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">app</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Noko App</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">client_id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">98643ycvfjfswx</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
-    <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+    <span class="dl">"</span><span class="s2">note</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">describes what the token is generated for</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">note_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://explanation.com/</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T20:39:23Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T17:26:27Z</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
@@ -427,22 +447,22 @@ BAD:  http://example.org
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
-  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"current_user"</span><span class="p">,</span>
-    <span class="s2">"project"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/authorizations/1</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">scopes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">current_user</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
-  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
-    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="dl">"</span><span class="s2">token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abc123</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">app</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Noko App</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">client_id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">98643ycvfjfswx</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
-  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+  <span class="dl">"</span><span class="s2">note</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">describes what the token is generated for</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">note_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://explanation.com/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T20:39:23Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T17:26:27Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="create-a-new-authorization-token">Create a new Authorization Token</h3>
@@ -455,7 +475,7 @@ BAD:  http://example.org
 <h4 id="inputs">Inputs</h4>
 
 <dl>
-<dt>client_id</dt>
+  <dt>client_id</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
@@ -481,27 +501,29 @@ BAD:  http://example.org
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>a URL to remind users what app the OAuth token was generated for.</dd>
-</dl><h4 id="response-4">Response</h4>
+</dl>
+
+<h4 id="response-4">Response</h4>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
-  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"current_user"</span><span class="p">,</span>
-    <span class="s2">"project"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/authorizations/1</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">scopes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">current_user</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
-  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
-    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="dl">"</span><span class="s2">token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abc123</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">app</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Noko App</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">client_id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">98643ycvfjfswx</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
-  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+  <span class="dl">"</span><span class="s2">note</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">describes what the token is generated for</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">note_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://explanation.com/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T20:39:23Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T17:26:27Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h4 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-1">Response if the user is not associated with the subdomain provided</h4>
@@ -518,7 +540,7 @@ BAD:  http://example.org
 <h4 id="inputs-1">Inputs</h4>
 
 <dl>
-<dt>client_secret</dt>
+  <dt>client_secret</dt>
   <dd>
 <em>Required</em> <strong>string</strong>
 </dd>
@@ -539,48 +561,50 @@ BAD:  http://example.org
 <em>Optional</em> <strong>string</strong>
 </dd>
   <dd>a URL to remind users what app the OAuth token was generated for.</dd>
-</dl><h3 id="response-if-a-new-authorization-is-created">Response if a new authorization is created</h3>
+</dl>
+
+<h3 id="response-if-a-new-authorization-is-created">Response if a new authorization is created</h3>
 <pre class="headers"><code>Status: 201 Created</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
-  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"current_user"</span><span class="p">,</span>
-    <span class="s2">"project"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/authorizations/1</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">scopes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">current_user</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
-  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
-    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="dl">"</span><span class="s2">token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abc123</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">app</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Noko App</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">client_id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">98643ycvfjfswx</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
-  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+  <span class="dl">"</span><span class="s2">note</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">describes what the token is generated for</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">note_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://explanation.com/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T20:39:23Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T17:26:27Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="response-if-an-authorization-already-exists">Response if an authorization already exists</h3>
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
-  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"current_user"</span><span class="p">,</span>
-    <span class="s2">"project"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/authorizations/1</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">scopes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">current_user</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
-  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
-    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="dl">"</span><span class="s2">token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abc123</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">app</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Noko App</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">client_id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">98643ycvfjfswx</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
-  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+  <span class="dl">"</span><span class="s2">note</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">describes what the token is generated for</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">note_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://explanation.com/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T20:39:23Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T17:26:27Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-2">Response if the user is not associated with the subdomain provided</h3>
@@ -595,7 +619,7 @@ BAD:  http://example.org
 <h4 id="parameters-3">Parameters:</h4>
 
 <dl>
-<dt>note</dt>
+  <dt>note</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
@@ -615,27 +639,29 @@ BAD:  http://example.org
 <em>Optional</em> <strong>array of strings</strong>
 </dd>
   <dd>The list of scopes to remove from this authorization. Removing scopes prevents your application from accessing specific information from the user’s Noko account. Scopes that are not currently applied for this authorization will be ignored.</dd>
-</dl><h4 id="response-5">Response</h4>
+</dl>
+
+<h4 id="response-5">Response</h4>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
-  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"current_user"</span><span class="p">,</span>
-    <span class="s2">"project"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/authorizations/1</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">scopes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">current_user</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
-  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
-    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="dl">"</span><span class="s2">token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abc123</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">app</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Noko App</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">client_id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">98643ycvfjfswx</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
-  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+  <span class="dl">"</span><span class="s2">note</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">describes what the token is generated for</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">note_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://explanation.com/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T20:39:23Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T17:26:27Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h4 id="response-if-the-user-is-not-associated-with-the-subdomain-provided-3">Response if the user is not associated with the subdomain provided</h4>
@@ -661,13 +687,15 @@ BAD:  http://example.org
 <p>These methods are provided to allow your application to confirm a token’s validity and revoke tokens as necessary. They are only accessible by using Basic Authentication as follows:</p>
 
 <dl>
-<dt>Username</dt>
+  <dt>Username</dt>
   <dd>Your application’s <code>client_id</code>
 </dd>
   <dt>Password</dt>
   <dd>Your application’s <code>client_secret</code>
 </dd>
-</dl><h3 id="check-an-authorization">Check an Authorization</h3>
+</dl>
+
+<h3 id="check-an-authorization">Check an Authorization</h3>
 
 <p>This method allows you to confirm a token’s validity. The owner must use Basic Authentication when calling this method, where the username is the <code>client_id</code> of the application and the password is its <code>client_secret</code></p>
 
@@ -682,22 +710,22 @@ BAD:  http://example.org
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/authorizations/1"</span><span class="p">,</span>
-  <span class="s2">"scopes"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"current_user"</span><span class="p">,</span>
-    <span class="s2">"project"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/authorizations/1</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">scopes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">current_user</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span>
   <span class="p">],</span>
-  <span class="s2">"token"</span><span class="o">:</span> <span class="s2">"abc123"</span><span class="p">,</span>
-  <span class="s2">"app"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://dabestnokoapp.com"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Noko App"</span><span class="p">,</span>
-    <span class="s2">"client_id"</span><span class="o">:</span> <span class="s2">"98643ycvfjfswx"</span>
+  <span class="dl">"</span><span class="s2">token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abc123</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">app</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://dabestnokoapp.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Noko App</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">client_id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">98643ycvfjfswx</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"describes what the token is generated for"</span><span class="p">,</span>
-  <span class="s2">"note_url"</span><span class="o">:</span> <span class="s2">"http://explanation.com/"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T20:39:23Z"</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-09-06T17:26:27Z"</span>
+  <span class="dl">"</span><span class="s2">note</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">describes what the token is generated for</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">note_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://explanation.com/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T20:39:23Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2011-09-06T17:26:27Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="revoke-all-authorizations-for-an-application">Revoke all Authorizations for an application</h3>
@@ -720,6 +748,7 @@ BAD:  http://example.org
 <h4 id="response-9">Response</h4>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
 
       <div id="footer">
 
@@ -762,7 +791,7 @@ BAD:  http://example.org
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>

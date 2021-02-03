@@ -68,12 +68,14 @@
         Freckle is now Noko! <a href="/migration_guide/">Learn how to migrate your apps here</a>
       </p>
       <ul id="markdown-toc">
-<li><a href="#which-type-of-authentication-should-i-choose">Which type of authentication should I choose?</a></li>
-  <li><a href="#which-authentication-method-do-i-choose">Which authentication method do I choose?</a></li>
-  <li><a href="#using-personal-access-tokens">Using Personal Access Tokens</a></li>
-  <li><a href="#using-oauth-access-tokens">Using OAuth access tokens</a></li>
-  <li><a href="#basic-authentication">Basic Authentication</a></li>
-</ul><p>The Noko API provides multiple different ways to handle authentication in your application, each one suited for a particular type of application. It’s important to pick the right authentication method for your application, so we’ve created the guide below to help you choose the right one:</p>
+  <li><a href="#which-type-of-authentication-should-i-choose" id="markdown-toc-which-type-of-authentication-should-i-choose">Which type of authentication should I choose?</a></li>
+  <li><a href="#which-authentication-method-do-i-choose" id="markdown-toc-which-authentication-method-do-i-choose">Which authentication method do I choose?</a></li>
+  <li><a href="#using-personal-access-tokens" id="markdown-toc-using-personal-access-tokens">Using Personal Access Tokens</a></li>
+  <li><a href="#using-oauth-access-tokens" id="markdown-toc-using-oauth-access-tokens">Using OAuth access tokens</a></li>
+  <li><a href="#basic-authentication" id="markdown-toc-basic-authentication">Basic Authentication</a></li>
+</ul>
+
+<p>The Noko API provides multiple different ways to handle authentication in your application, each one suited for a particular type of application. It’s important to pick the right authentication method for your application, so we’ve created the guide below to help you choose the right one:</p>
 
 <p class="note">
 The examples below use <a href="http://radek.io/2015/10/20/httpie/">httpie</a>; which returns a pretty-printed and syntax highlighted response, and works on OS X, Linux, and Windows. You should try it out, we really like it!
@@ -82,15 +84,17 @@ The examples below use <a href="http://radek.io/2015/10/20/httpie/">httpie</a>; 
 <h2 id="which-type-of-authentication-should-i-choose">Which type of authentication should I choose?</h2>
 
 <dl>
-<dt>
+  <dt>
 <a href="/v2/oauth">OAuth</a> (<strong>Strongly recommended</strong>)</dt>
   <dd>My application will be running in a production environment, is not a script, or I am concerned about security.</dd>
   <dt><a href="#using-personal-access-tokens">Personal Access Token</a></dt>
   <dd>My application is a script or for internal use only.</dd>
-</dl><h2 id="which-authentication-method-do-i-choose">Which authentication method do I choose?</h2>
+</dl>
+
+<h2 id="which-authentication-method-do-i-choose">Which authentication method do I choose?</h2>
 
 <dl>
-<dt><a href="#using-personal-access-tokens">Sending HTTP Header or <code>noko_token</code> parameter for Personal Access Token</a></dt>
+  <dt><a href="#using-personal-access-tokens">Sending HTTP Header or <code>noko_token</code> parameter for Personal Access Token</a></dt>
   <dd>My application uses Personal Access Tokens for authentication</dd>
   <dt><a href="#using-oauth-access-tokens">Sending HTTP Header or <code>access_token</code> parameter for OAuth access token</a></dt>
   <dd>My application uses OAuth access tokens for authentication</dd>
@@ -100,7 +104,9 @@ The examples below use <a href="http://radek.io/2015/10/20/httpie/">httpie</a>; 
   <dd>My tools only allow me to use Basic Authentication and I am using Personal Access Tokens for authentication.</dd>
   <dt><a href="#to-interact-with-the-oauth-authorizations-api">Basic Authentication to interact with the OAuth Authorizations API</a></dt>
   <dd>I am writing a non-web application that will be using OAuth, and I need to generate an OAuth access token to allow my application to access the API.</dd>
-</dl><h2 id="using-personal-access-tokens">Using Personal Access Tokens</h2>
+</dl>
+
+<h2 id="using-personal-access-tokens">Using Personal Access Tokens</h2>
 
 <p><a href="http://help.nokotime.com/article/103-connecting-to-the-freckle-api">Personal Access Tokens</a> allow users to issue individual tokens for apps and revoke them at will—be sure to handle authentication errors in your application. Treat Personal Access Tokens like passwords!</p>
 
@@ -145,10 +151,12 @@ http GET https://api.nokotime.com/v2/timers access_token==YOUR_OAUTH_ACCESS_TOKE
 <p>The API supports Basic Authentication as defined in <a href="http://www.ietf.org/rfc/rfc2617.txt">RFC2617</a>. There are two ways Basic Authentication can be used:</p>
 
 <ul>
-<li>to allow API access with an OAuth access token or Personal Access Token</li>
+  <li>to allow API access with an OAuth access token or Personal Access Token</li>
   <li>to interact with the <a href="/v2/oauth#oauth-authorizations-api">OAuth Authorizations API</a>
 </li>
-</ul><h3 id="api-access-via-oauth-access-tokens">API access via OAuth access tokens</h3>
+</ul>
+
+<h3 id="api-access-via-oauth-access-tokens">API access via OAuth access tokens</h3>
 
 <p>You can authenticate using <a href="/v2/oauth">OAuth access tokens</a>. This approach is useful if your tools only support Basic Authentication but you want to take advantage of the security benefits provided by OAuth Access Tokens.</p>
 
@@ -179,6 +187,7 @@ http GET https://api.nokotime.com/v2/entries -a scbp72wdc528hm8n52fowkma321tn58-
 <pre class="terminal">
 http GET https://api.nokotime.com/v2/subdomains -a john@test.com
 </pre>
+
 
       <div id="footer">
 
@@ -221,7 +230,7 @@ http GET https://api.nokotime.com/v2/subdomains -a john@test.com
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>

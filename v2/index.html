@@ -70,23 +70,25 @@
       <p>Welcome to the Noko Developer Documentation!</p>
 
 <ul id="markdown-toc">
-<li><a href="#overview">Overview</a></li>
-  <li><a href="#not-a-developer">Not a developer?</a></li>
-  <li><a href="#noko-api-libraries">Noko API Libraries</a></li>
-  <li><a href="#naming-client-applications">Naming client applications</a></li>
-  <li><a href="#api-urls">API URLs</a></li>
-  <li><a href="#general-schema">General Schema</a></li>
-  <li><a href="#user-agent-required">User Agent (required)</a></li>
-  <li><a href="#rate-limiting">Rate Limiting</a></li>
-  <li><a href="#client-errors">Client Errors</a></li>
-  <li><a href="#deleting-or-archiving-resources">Deleting or Archiving Resources</a></li>
-  <li><a href="#background-processing">Background Processing</a></li>
-  <li><a href="#uploading-files">Uploading Files</a></li>
-  <li><a href="#http-redirection">HTTP Redirection</a></li>
-  <li><a href="#supported-http-verbs">Supported HTTP Verbs</a></li>
-  <li><a href="#hypermedia">Hypermedia</a></li>
-  <li><a href="#pagination">Pagination</a></li>
-</ul><h2 id="overview">Overview</h2>
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#not-a-developer" id="markdown-toc-not-a-developer">Not a developer?</a></li>
+  <li><a href="#noko-api-libraries" id="markdown-toc-noko-api-libraries">Noko API Libraries</a></li>
+  <li><a href="#naming-client-applications" id="markdown-toc-naming-client-applications">Naming client applications</a></li>
+  <li><a href="#api-urls" id="markdown-toc-api-urls">API URLs</a></li>
+  <li><a href="#general-schema" id="markdown-toc-general-schema">General Schema</a></li>
+  <li><a href="#user-agent-required" id="markdown-toc-user-agent-required">User Agent (required)</a></li>
+  <li><a href="#rate-limiting" id="markdown-toc-rate-limiting">Rate Limiting</a></li>
+  <li><a href="#client-errors" id="markdown-toc-client-errors">Client Errors</a></li>
+  <li><a href="#deleting-or-archiving-resources" id="markdown-toc-deleting-or-archiving-resources">Deleting or Archiving Resources</a></li>
+  <li><a href="#background-processing" id="markdown-toc-background-processing">Background Processing</a></li>
+  <li><a href="#uploading-files" id="markdown-toc-uploading-files">Uploading Files</a></li>
+  <li><a href="#http-redirection" id="markdown-toc-http-redirection">HTTP Redirection</a></li>
+  <li><a href="#supported-http-verbs" id="markdown-toc-supported-http-verbs">Supported HTTP Verbs</a></li>
+  <li><a href="#hypermedia" id="markdown-toc-hypermedia">Hypermedia</a></li>
+  <li><a href="#pagination" id="markdown-toc-pagination">Pagination</a></li>
+</ul>
+
+<h2 id="overview">Overview</h2>
 
 <p>Noko provides a secure Restful JSON API over HTTPS; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.</p>
 
@@ -110,13 +112,15 @@ internet-based apps your use, consider using <a href="https://zapier.com/zapbook
 available:</p>
 
 <ul>
-<li>Python: <a href="https://github.com/bitmazk/python-freckle-client">bitmazk/python-freckle-client</a>
+  <li>Python: <a href="https://github.com/bitmazk/python-freckle-client">bitmazk/python-freckle-client</a>
 </li>
   <li>Ruby: <a href="https://github.com/timcraft/freckles">timcraft/freckles</a>
 </li>
   <li>Opauth (PHP OAuth library) strategy: <a href="https://github.com/t1mmen/opauth-freckle">t1mmen/opauth-freckle</a>
 </li>
-</ul><p>Additionally, the command-line tool <a href="https://github.com/sirkitree/pippi">Pippi</a> can log time and access other API functionality, which is great if you want to use the Noko API from a shell script.</p>
+</ul>
+
+<p>Additionally, the command-line tool <a href="https://github.com/sirkitree/pippi">Pippi</a> can log time and access other API functionality, which is great if you want to use the Noko API from a shell script.</p>
 
 <p class="note">
 These are 3rd-party libraries and Noko can't provide support for them.
@@ -127,7 +131,7 @@ Please contact the library authors directly if you need help with these.
 
 <p>If you plan to release a public client app for Noko (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so, and we’re happy to help!</p>
 
-<p>Please note that Noko® is a registered trademark of Slash7 LLC. Do not name apps “Noko” or “Noko for <platform>”. Please contact us first with more details about your app if you want to use “Noko” or the Noko logo as name or icon of your app.</platform></p>
+<p>Please note that Noko® is a registered trademark of Slash7 LLC. Do not name apps “Noko” or “Noko for &lt;platform&gt;”. Please contact us first with more details about your app if you want to use “Noko” or the Noko logo as name or icon of your app.</p>
 
 <h2 id="api-urls">API URLs</h2>
 
@@ -164,13 +168,15 @@ This is different than API v1, where the API was accessed through an account-spe
 <p>The following rules define the general schema of the API:</p>
 
 <ul>
-<li>Only HTTPS traffic is allowed when accessing the API. <em>You must use TLSv1.1 or TLSv1.2.</em> <em>SSLv3 and TLSv1 is not supported.</em>
+  <li>Only HTTPS traffic is allowed when accessing the API. <em>You must use TLSv1.1 or TLSv1.2.</em> <em>SSLv3 and TLSv1 is not supported.</em>
 </li>
   <li>All data is sent and received as JSON, with the exception of <a href="#uploading-files">File Uploads</a>.</li>
   <li>Blank fields are included as <code>null</code> in responses.</li>
   <li>Use ISO 8061 for dates and timestamps (<code>YYYY-MM-DD</code> and <code>YYYY-MM-DDTHH:MM:SSZ</code> respectively). <em>For timestamps, Noko uses UTC internally; for consistency, please be sure to not accidentally use timestamps in your local time zone.</em>
 </li>
-</ul><h2 id="user-agent-required">User Agent (required)</h2>
+</ul>
+
+<h2 id="user-agent-required">User Agent (required)</h2>
 
 <p>All API Requests must include a valid <code>User-Agent</code> header. Requests with no <code>User-Agent</code> header will be rejected. We highly recommend to set a name and version, e.g. <code>MyNokoBot/1.0</code>. This will help us help you better in case debugging is required!</p>
 
@@ -195,7 +201,7 @@ This is different than API v1, where the API was accessed through an account-spe
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"JSON Parsing Error"</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">JSON Parsing Error</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="wrong-type-of-json-sent">Wrong type of JSON sent</h3>
@@ -203,7 +209,7 @@ This is different than API v1, where the API was accessed through an account-spe
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Body should be JSON Hash"</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Body should be JSON Hash</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="fields-were-not-in-the-correct-format">Fields were not in the correct format</h3>
@@ -219,7 +225,7 @@ This is different than API v1, where the API was accessed through an account-spe
 <pre class="headers"><code>Status: 403 Forbidden</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Account does not include this feature"</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Account does not include this feature</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="account-is-currently-locked-for-migration">Account is currently locked for migration</h3>
@@ -227,7 +233,7 @@ This is different than API v1, where the API was accessed through an account-spe
 <pre class="headers"><code>Status: 503 Service Unavailable</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Noko is changing the internal data for your account so you can start using hashtags"</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Noko is changing the internal data for your account so you can start using hashtags</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="the-errors-array">The <code>errors</code> array</h3>
@@ -235,7 +241,7 @@ This is different than API v1, where the API was accessed through an account-spe
 <p>When validation errors occur, the <code>errors</code> array is populated with objects that explain why the request was invalid. Each object has the following fields:</p>
 
 <ul>
-<li>
+  <li>
     <p><strong>resource</strong>: The type of object the user was trying to affect.</p>
   </li>
   <li>
@@ -245,7 +251,7 @@ This is different than API v1, where the API was accessed through an account-spe
     <p><strong>Code</strong>: Why the request was invalid. The standard error codes are:</p>
 
     <ul>
-<li>
+      <li>
 <strong>missing</strong>: the resource does not exist</li>
       <li>
 <strong>missing_field</strong>: a required field on the resource has not been set</li>
@@ -255,8 +261,10 @@ This is different than API v1, where the API was accessed through an account-spe
 <strong>insufficent_permissions</strong>: the user does not have the necessary permissions to use this field.</li>
       <li><strong>Custom errors codes can be defined for resources, and will be documented in the resource’s API page.</strong></li>
     </ul>
-</li>
-</ul><h2 id="deleting-or-archiving-resources">Deleting or Archiving Resources</h2>
+  </li>
+</ul>
+
+<h2 id="deleting-or-archiving-resources">Deleting or Archiving Resources</h2>
 
 <p>In certain cases, resources can only be deleted if certain conditions are met. If these resources cannot be deleted, they may be archived instead. An example of this is the Project resource: a project cannot be deleted if it has any entries, invoices, or expenses; but it can be archived. However, if a project does not have any entries, invoices, or expenses; then it cannot be archived (it can only be deleted).</p>
 
@@ -273,12 +281,12 @@ This is different than API v1, where the API was accessed through an account-spe
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"The Project cannot be deleted because it has entries, expenses, or invoices."</span><span class="p">,</span>
-  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">The Project cannot be deleted because it has entries, expenses, or invoices.</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">errors</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
-      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"base"</span><span class="p">,</span>
-      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"not_deletable"</span>
+      <span class="dl">"</span><span class="s2">resource</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">base</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">not_deletable</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
@@ -290,12 +298,12 @@ This is different than API v1, where the API was accessed through an account-spe
 <pre class="headers"><code>Status: 400 Bad Request</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"The Project should be deleted because it does not have any entries, expenses, or invoices."</span><span class="p">,</span>
-  <span class="s2">"errors"</span><span class="o">:</span> <span class="p">[</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">The Project should be deleted because it does not have any entries, expenses, or invoices.</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">errors</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"resource"</span><span class="o">:</span> <span class="s2">"Project"</span><span class="p">,</span>
-      <span class="s2">"field"</span><span class="o">:</span> <span class="s2">"base"</span><span class="p">,</span>
-      <span class="s2">"code"</span><span class="o">:</span> <span class="s2">"deletable"</span>
+      <span class="dl">"</span><span class="s2">resource</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">base</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">deletable</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
@@ -309,7 +317,7 @@ This is different than API v1, where the API was accessed through an account-spe
 <pre class="headers"><code>Status: 202 Accepted</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"The user will be sent an email once this tag merge is complete."</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">The user will be sent an email once this tag merge is complete.</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="uploading-files">Uploading Files</h2>
@@ -342,16 +350,20 @@ Location: https://api.nokotime.com/v2/new/uri</code></pre>
 <h2 id="supported-http-verbs">Supported HTTP Verbs</h2>
 
 <dl>
-<dt><strong><code>HEAD</code></strong></dt>
+  <dt><strong><code>HEAD</code></strong></dt>
   <dd>Can be issued against any <code>GET</code> request to return just the HTTP header info.</dd>
-</dl><p><strong><code>GET</code></strong></p>
+</dl>
+
+<p><strong><code>GET</code></strong></p>
 
 <p><strong><code>POST</code></strong></p>
 
 <dl>
-<dt><strong><code>PUT</code></strong></dt>
+  <dt><strong><code>PUT</code></strong></dt>
   <dd>Used for replacing resources or collections and performing actions on a resource.</dd>
-</dl><p><strong><code>DELETE</code></strong></p>
+</dl>
+
+<p><strong><code>DELETE</code></strong></p>
 
 <h2 id="hypermedia">Hypermedia</h2>
 
@@ -360,34 +372,34 @@ Location: https://api.nokotime.com/v2/new/uri</code></pre>
 <h3 id="example-timer-object">Example (Timer Object):</h3>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
-  <span class="s2">"state"</span><span class="o">:</span> <span class="s2">"running"</span><span class="p">,</span>
-  <span class="s2">"seconds"</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
-  <span class="s2">"formatted_time"</span><span class="o">:</span> <span class="s2">"00:03:00"</span><span class="p">,</span>
-  <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2013-07-09"</span><span class="p">,</span>
-  <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko work"</span><span class="p">,</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"john.test@test.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"John"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Test"</span><span class="p">,</span>
-    <span class="s2">"profile_image_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/users/5538"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">123456</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">state</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">running</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">seconds</span><span class="dl">"</span><span class="p">:</span> <span class="mi">180</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">formatted_time</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">00:03:00</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko work</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">john.test@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">profile_image_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/users/5538</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Gear GmbH"</span><span class="p">,</span>
-    <span class="s2">"billing_increment"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff9898"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396"</span>
+  <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billing_increment</span><span class="dl">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">enabled</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ff9898</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span><span class="p">,</span>
-  <span class="s2">"start_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/start"</span><span class="p">,</span>
-  <span class="s2">"pause_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/pause"</span><span class="p">,</span>
-  <span class="s2">"add_or_subtract_time_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/add_or_subtract_time"</span><span class="p">,</span>
-  <span class="s2">"log_url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer/log"</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396/timer</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">start_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396/timer/start</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">pause_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396/timer/pause</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">add_or_subtract_time_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396/timer/add_or_subtract_time</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">log_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396/timer/log</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 <h2 id="pagination">Pagination</h2>
@@ -409,7 +421,7 @@ Location: https://api.nokotime.com/v2/new/uri</code></pre>
 <p>The <code>rel</code> attribute indicates what the URL links to:</p>
 
 <ul>
-<li>
+  <li>
 <strong>next</strong>: shows the URL of the immediate next page of results</li>
   <li>
 <strong>last</strong>: shows the URL of the last page of results</li>
@@ -417,12 +429,16 @@ Location: https://api.nokotime.com/v2/new/uri</code></pre>
 <strong>first</strong>: shows the URL of the first page of results</li>
   <li>
 <strong>prev</strong>: shows the URL of the immediate previous page of results</li>
-</ul><script>
+</ul>
+
+<script>
   window.showMessageBox = function(){
     document.getElementById('help_tab').click();
     document.getElementById('help_message_button').click();
   }
 </script>
+
+
 
       <div id="footer">
 
@@ -465,7 +481,7 @@ Location: https://api.nokotime.com/v2/new/uri</code></pre>
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>

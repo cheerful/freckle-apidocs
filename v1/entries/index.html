@@ -51,12 +51,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>The entries resource represents logged time. Each entry, at the minimum, is assigned to a user, has 0 or more minutes logged and has a date set (all other fields, including project, tags and description are optional).</p>
 
 <ul id="markdown-toc">
-<li><a href="#list--search">List &amp; Search</a></li>
-  <li><a href="#creating-entries">Creating entries</a></li>
-  <li><a href="#update-entries">Update entries</a></li>
-  <li><a href="#deleting-entries">Deleting entries</a></li>
-  <li><a href="#bulk-import">Bulk import</a></li>
-</ul><h2 id="list--search">List &amp; Search</h2>
+  <li><a href="#list--search" id="markdown-toc-list--search">List &amp; Search</a></li>
+  <li><a href="#creating-entries" id="markdown-toc-creating-entries">Creating entries</a></li>
+  <li><a href="#update-entries" id="markdown-toc-update-entries">Update entries</a></li>
+  <li><a href="#deleting-entries" id="markdown-toc-deleting-entries">Deleting entries</a></li>
+  <li><a href="#bulk-import" id="markdown-toc-bulk-import">Bulk import</a></li>
+</ul>
+
+<h2 id="list--search">List &amp; Search</h2>
 
 <pre><code>GET /api/entries
 </code></pre>
@@ -89,7 +91,7 @@ curl -v -G -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.noko
 <p>Supported options for searching are:</p>
 
 <ul>
-<li>
+  <li>
 <code>per_page</code>: a number from 1–1000 to limit the number of results (default: 100)</li>
   <li>
 <code>search[people]</code>: comma separated user ids</li>
@@ -103,7 +105,9 @@ curl -v -G -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.noko
 <code>search[to]</code>: entries to this date</li>
   <li>
 <code>search[billable]</code>: <em>true</em> only shows billable entries; <em>false</em> only shows unbillable entries</li>
-</ul><p>Entries are returned sorted <em>descending by date</em>. By default, at most 100 entries
+</ul>
+
+<p>Entries are returned sorted <em>descending by date</em>. By default, at most 100 entries
 are returned per page. You can <a href="/#pagination">fetch multiple pages</a> by reading
 the “next” URL from the <code>Link</code> response header and using it to repeat the request.</p>
 
@@ -121,61 +125,61 @@ in projects they currently have access to.</p>
 <p>Here’s an example entry and a description of all the fields returned.</p>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"entry"</span><span class="o">:</span> <span class="p">{</span>
+  <span class="dl">"</span><span class="s2">entry</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
     <span class="c1">// ID of the entry (integer)</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1711626</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1711626</span><span class="p">,</span>
 
     <span class="c1">// date the time is logged for YYYY-MM-DD</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-01-09"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
     <span class="c1">// User ID the time is logged for (integer)</span>
-    <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"user_name"</span> <span class="o">:</span> <span class="s2">"Lets Noko"</span>
+    <span class="dl">"</span><span class="s2">user_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">user_name</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">Lets Noko</span><span class="dl">"</span>
 
     <span class="c1">// false if entry or project are unbillable</span>
-    <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="c1">// UTC timestamp when entry was created</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
     <span class="c1">// logged time in minutes (integer)</span>
-    <span class="s2">"minutes"</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
     <span class="c1">// UTC timestamp when entry was last updated</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
     <span class="c1">// full description text (includes tags)</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
 
     <span class="c1">// All following fields are OPTIONAL</span>
     <span class="c1">// (optional) project_id, can be null</span>
-    <span class="s2">"project_id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
     <span class="c1">// (optional) project object, can be null</span>
-    <span class="s2">"project"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">37396</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Sprocketwerks, Inc."</span>
+    <span class="dl">"</span><span class="s2">project</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">37396</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sprocketwerks, Inc.</span><span class="dl">"</span>
     <span class="p">},</span>
     <span class="c1">// (optional) array of tags assigned to entry</span>
-    <span class="s2">"tags"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">tags</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"noko"</span><span class="p">,</span>
-        <span class="s2">"billable"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"id"</span><span class="o">:</span> <span class="mi">249397</span>
+        <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span>
       <span class="p">}</span>
     <span class="p">],</span>
     <span class="c1">// (optional) link to source of entry (e.g. Github commit)</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
     <span class="c1">// (optional) UTC timestamp when entry was added to an invoice</span>
-    <span class="s2">"invoiced_at"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">invoiced_at</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
     <span class="c1">// (optional) Invoice ID</span>
-    <span class="s2">"project_invoice_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project_invoice_id</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
     <span class="c1">// (optional) set if imported from a file</span>
-    <span class="s2">"import_id"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">import_id</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
 
     <span class="c1">// all following fields are deprecated, and will</span>
     <span class="c1">// be removed in the next API version</span>
-    <span class="s2">"time_to"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"recently_updated_at"</span><span class="o">:</span> <span class="s2">"2012-01-09T08:33:29Z"</span><span class="p">,</span>
-    <span class="s2">"description_text"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"formatted_description"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"money_status"</span><span class="o">:</span> <span class="s2">"not_invoiced"</span><span class="p">,</span>
-    <span class="s2">"time_from"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"billable_status"</span><span class="o">:</span> <span class="s2">"billable"</span>
+    <span class="dl">"</span><span class="s2">time_to</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">recently_updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">description_text</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">formatted_description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">money_status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">not_invoiced</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">time_from</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">billable_status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
@@ -213,13 +217,13 @@ $ curl -v -d @entry.json -H "Content-type: application/json" -H "X-NokoToken:lx3
 Here's what <code>entry.json</code> looks like:
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"entry"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"minutes"</span><span class="o">:</span> <span class="s2">"2h"</span><span class="p">,</span>
-    <span class="s2">"user"</span><span class="o">:</span> <span class="s2">"apitest@nokotime.com"</span><span class="p">,</span>
-    <span class="s2">"project-id"</span><span class="o">:</span> <span class="mi">8475</span><span class="p">,</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"Noko RESTful API #test"</span><span class="p">,</span>
-    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2012-12-02"</span><span class="p">,</span>
-    <span class="s2">"allow_hashtags"</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="dl">"</span><span class="s2">entry</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2h</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">apitest@nokotime.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project-id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8475</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Noko RESTful API #test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-12-02</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">allow_hashtags</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
@@ -305,25 +309,25 @@ backwards-compatible with existing API clients.</p>
 <p>Here are some examples how tags are parsed:</p>
 
 <pre class="highlight"><code class="language-javascript"><span class="c1">// no tags; description text: "This is a description."</span>
-<span class="s2">"This is a description."</span>
+<span class="dl">"</span><span class="s2">This is a description.</span><span class="dl">"</span>
 
 <span class="c1">// tags: TagA, Tag B; no description text</span>
-<span class="s2">"TagA, Tag B"</span>
+<span class="dl">"</span><span class="s2">TagA, Tag B</span><span class="dl">"</span>
 
 <span class="c1">// tags: TagA, Tag B; description text: ThisWouldBeATagButItsLongerThan30Chars</span>
-<span class="s2">"TagA, Tag B, ThisWouldBeATagButItsLongerThan30Chars"</span>
+<span class="dl">"</span><span class="s2">TagA, Tag B, ThisWouldBeATagButItsLongerThan30Chars</span><span class="dl">"</span>
 
 <span class="c1">// no tags; description text: "TagA, TagB"</span>
-<span class="s2">"!!TagA, Tag B"</span>
+<span class="dl">"</span><span class="s2">!!TagA, Tag B</span><span class="dl">"</span>
 
 <span class="c1">// tags: TagB; description text: "TagA"</span>
-<span class="s2">"!TagA, Tag B"</span>
+<span class="dl">"</span><span class="s2">!TagA, Tag B</span><span class="dl">"</span>
 
 <span class="c1">// tags: TagA; description text: "TagB"</span>
-<span class="s2">"TagA, !Tag B"</span>
+<span class="dl">"</span><span class="s2">TagA, !Tag B</span><span class="dl">"</span>
 
 <span class="c1">// tags: TagA; description text: "This is quite the description"</span>
-<span class="s2">"This is quite the description, TagA"</span></code></pre>
+<span class="dl">"</span><span class="s2">This is quite the description, TagA</span><span class="dl">"</span></code></pre>
 
 <p>A “!!” anywhere in the description will stop tag parsing afterwards.</p>
 
@@ -547,6 +551,7 @@ entries referenced users that don’t exist or a no longer active.</p>
 <h3 id="roles-4">Roles</h3>
 
 <p>Every role except for freelancers can use the import entries API method.</p>
+
   </div>
 
   <div id="footer">
@@ -591,7 +596,7 @@ entries referenced users that don’t exist or a no longer active.</p>
     </div>
 
     <div class="copyright">
-      &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+      &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
       Noko® is a registered trademark of Slash7 LLC.
     </div>
     </div>

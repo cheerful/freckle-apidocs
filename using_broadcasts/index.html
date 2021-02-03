@@ -73,12 +73,14 @@
 </div>
 
 <ul id="markdown-toc">
-<li><a href="#how-do-i-setup-a-broadcast-receiver">How do I setup a Broadcast Receiver?</a></li>
-  <li><a href="#how-are-broadcasts-different-than-webhooks">How are Broadcasts different than Webhooks?</a></li>
-  <li><a href="#what-does-a-broadcast-look-like">What does a Broadcast look like?</a></li>
-  <li><a href="#verifying-a-broadcast-payload">Verifying a Broadcast payload</a></li>
-  <li><a href="#broadcast-failures-and-retries">Broadcast failures and retries</a></li>
-</ul><h1 id="what-are-broadcast-receivers">What are Broadcast Receivers?</h1>
+  <li><a href="#how-do-i-setup-a-broadcast-receiver" id="markdown-toc-how-do-i-setup-a-broadcast-receiver">How do I setup a Broadcast Receiver?</a></li>
+  <li><a href="#how-are-broadcasts-different-than-webhooks" id="markdown-toc-how-are-broadcasts-different-than-webhooks">How are Broadcasts different than Webhooks?</a></li>
+  <li><a href="#what-does-a-broadcast-look-like" id="markdown-toc-what-does-a-broadcast-look-like">What does a Broadcast look like?</a></li>
+  <li><a href="#verifying-a-broadcast-payload" id="markdown-toc-verifying-a-broadcast-payload">Verifying a Broadcast payload</a></li>
+  <li><a href="#broadcast-failures-and-retries" id="markdown-toc-broadcast-failures-and-retries">Broadcast failures and retries</a></li>
+</ul>
+
+<h1 id="what-are-broadcast-receivers">What are Broadcast Receivers?</h1>
 
 <p>Broadcast Receivers allow your application or integration to be notified that it should call the API to get the latest version of specific parts of the API. You can use this to automatically keep <a href="/v2/timers">Timers</a> in sync.</p>
 
@@ -91,18 +93,22 @@
 <p>To create a Broadcast Receiver, you’ll need:</p>
 
 <ul>
-<li>A publicly accessible URI for us to send events to</li>
+  <li>A publicly accessible URI for us to send events to</li>
   <li>An idea of what <a href="#broadcast-subjects">subjects</a> you want to be notified for</li>
   <li>A good name for the broadcast receiver (so you don’t forget what it’s for!)</li>
-</ul><h3 id="which-type-of-setup-should-i-choose">Which type of setup should I choose?</h3>
+</ul>
+
+<h3 id="which-type-of-setup-should-i-choose">Which type of setup should I choose?</h3>
 
 <dl>
-<dt>
+  <dt>
 <a href="/v2/broadcast_receiver/">Broadcast Receiver Endpoint</a> (<strong>Strongly recommended</strong>)</dt>
   <dd>My application will be running in a production environment, I’m writing an integration for Noko in my project, or I want to automate setup.</dd>
   <dt><a href="#creating-a-broadcast-receiver-from-the-webapp">Creating a Broadcast Receiver from the Webapp</a></dt>
   <dd>My application is a script or for internal use only.</dd>
-</dl><h3 id="creating-a-broadcast-receiver-from-the-api">Creating a Broadcast Receiver from the API</h3>
+</dl>
+
+<h3 id="creating-a-broadcast-receiver-from-the-api">Creating a Broadcast Receiver from the API</h3>
 
 <p>In order to create a Broadcast Receiver from the API, <a href="/v2/authentication">you’ll need to have valid API credentials</a>. Using the API to manage your broadcast receivers allows you automatically set up your integration, without requiring a user to copy/paste any URLs, or configure anything else!</p>
 
@@ -127,10 +133,12 @@
 <p>Let’s say you’re writing a project management tool that integrates with your Noko account.</p>
 
 <ul>
-<li>You want to show which Timers are running in Noko, so team members can see what you’re working on. To do this, you’d create a Broadcast Receiver that is subscribed to the <code>timer</code> subject. Noko will keep track of your latest timer activities, and send them to your app using the broadcast receiver. You can use these messages, along with the API, to show which timers are running or paused.</li>
+  <li>You want to show which Timers are running in Noko, so team members can see what you’re working on. To do this, you’d create a Broadcast Receiver that is subscribed to the <code>timer</code> subject. Noko will keep track of your latest timer activities, and send them to your app using the broadcast receiver. You can use these messages, along with the API, to show which timers are running or paused.</li>
   <li>You also want to be able to start a timer directly from your project management tool. You would use the <a href="https://developer.nokotime.com/v2/timers/#start-a-projects-timer">API to start a timer</a>
 </li>
-</ul><h2 id="what-does-a-broadcast-look-like">What does a Broadcast look like?</h2>
+</ul>
+
+<h2 id="what-does-a-broadcast-look-like">What does a Broadcast look like?</h2>
 
 <p>A Broadcast has the following structure:</p>
 
@@ -143,15 +151,15 @@ X-Noko-Signature: 97edbb33123042fb0df0f78eef173123d50b095b769f419a601fbdf40918b8
 User-Agent: Noko-Broadcasts</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"broadcast_receiver"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">77885522</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Da Best Timer Sync"</span>
+  <span class="dl">"</span><span class="s2">broadcast_receiver</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">77885522</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Da Best Timer Sync</span><span class="dl">"</span>
   <span class="p">},</span>
-  <span class="s2">"sent_at"</span><span class="o">:</span> <span class="s2">"2020-09-30T15:19:28Z"</span><span class="p">,</span>
-  <span class="s2">"last_event"</span><span class="o">:</span> <span class="s2">"timer.running"</span><span class="p">,</span>
-  <span class="s2">"subject"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"timer"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"https://api.nokotime.com/v2/projects/37396/timer"</span>
+  <span class="dl">"</span><span class="s2">sent_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2020-09-30T15:19:28Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">last_event</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">timer.running</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">subject</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">timer</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/projects/37396/timer</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
@@ -166,14 +174,17 @@ User-Agent: Noko-Broadcasts</code></pre>
 <p>To verify the signature:</p>
 
 <ol>
-<li>Retrieve the <code>secret</code> value that you stored</li>
+  <li>Retrieve the <code>secret</code> value that you stored</li>
   <li>Use a SHA 256 HMAC hexdigest to compute the hash, using the <code>secret</code> as the key.</li>
   <li>Compare your generated signature with the one in <code>X-Noko-Signature</code>.</li>
-</ol><p><strong>Make sure to use a secure comparison method, like <a href="https://www.rubydoc.info/gems/rack/Rack/Utils#secure_compare-class_method"><code>Rack::Utils.secure_compare</code></a></strong></p>
+</ol>
+
+<p><strong>Make sure to use a secure comparison method, like <a href="https://www.rubydoc.info/gems/rack/Rack/Utils#secure_compare-class_method"><code>Rack::Utils.secure_compare</code></a></strong></p>
 
 <h2 id="broadcast-failures-and-retries">Broadcast failures and retries</h2>
 
 <p><strong>Broadcasts do not track failures or retry messages that fail.</strong> This is to help ensure you do not accidentally receive stale data, since these resources can change rapidly.</p>
+
 
       <div id="footer">
 
@@ -216,7 +227,7 @@ User-Agent: Noko-Broadcasts</code></pre>
         </div>
 
         <div class="copyright">
-          &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>

@@ -49,15 +49,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h1><img id="logo" src="/assets/noko.svg" alt="Noko"> API: Users</h1>
 
     <ul id="markdown-toc">
-<li><a href="#list-users">List users</a></li>
-  <li><a href="#show-user">Show user</a></li>
-  <li><a href="#get-current-user">Get current user</a></li>
-  <li><a href="#get-a-users-avatar">Get a user’s avatar</a></li>
-  <li><a href="#get-authentication-token">Get authentication token</a></li>
-  <li><a href="#create-user">Create user</a></li>
-  <li><a href="#update-user">Update user</a></li>
-  <li><a href="#delete-user">Delete user</a></li>
-</ul><h2 id="list-users">List users</h2>
+  <li><a href="#list-users" id="markdown-toc-list-users">List users</a></li>
+  <li><a href="#show-user" id="markdown-toc-show-user">Show user</a></li>
+  <li><a href="#get-current-user" id="markdown-toc-get-current-user">Get current user</a></li>
+  <li><a href="#get-a-users-avatar" id="markdown-toc-get-a-users-avatar">Get a user’s avatar</a></li>
+  <li><a href="#get-authentication-token" id="markdown-toc-get-authentication-token">Get authentication token</a></li>
+  <li><a href="#create-user" id="markdown-toc-create-user">Create user</a></li>
+  <li><a href="#update-user" id="markdown-toc-update-user">Update user</a></li>
+  <li><a href="#delete-user" id="markdown-toc-delete-user">Delete user</a></li>
+</ul>
+
+<h2 id="list-users">List users</h2>
 
 <pre><code>GET /api/users
 </code></pre>
@@ -77,17 +79,17 @@ $ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime
 Response:
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"week_start"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-      <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Noko"</span><span class="p">,</span>
-      <span class="s2">"permissions"</span><span class="o">:</span> <span class="s2">"integration, time, invoicing, reports, tags, </span>
-<span class="s2">        expenses, projects, team, people, account, billing, import"</span><span class="p">,</span>
-      <span class="s2">"login"</span><span class="o">:</span> <span class="s2">"admin"</span><span class="p">,</span>
-      <span class="s2">"time_format"</span><span class="o">:</span> <span class="s2">"fraction"</span><span class="p">,</span>
-      <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"apitestadmin@nokotime.com"</span><span class="p">,</span>
-      <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"Lets"</span><span class="p">,</span>
-      <span class="s2">"hashtags"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">week_start</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Noko</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">permissions</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">integration, time, invoicing, reports, tags, 
+        expenses, projects, team, people, account, billing, import</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">login</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">admin</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">time_format</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">fraction</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">apitestadmin@nokotime.com</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Lets</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">hashtags</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">},</span></code></pre>
 
@@ -152,16 +154,16 @@ $ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime
 
 Response:
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"week_start"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Noko"</span><span class="p">,</span>
-    <span class="s2">"permissions"</span><span class="o">:</span> <span class="s2">"integration, time, invoicing, reports, tags,</span>
-<span class="s2">      expenses, projects, team, people, account, billing, import"</span><span class="p">,</span>
-    <span class="s2">"time_format"</span><span class="o">:</span> <span class="s2">"fraction"</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"apitestadmin@nokotime.com"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"Lets"</span><span class="p">,</span>
-    <span class="s2">"hashtags"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">week_start</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">last_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Noko</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">permissions</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">integration, time, invoicing, reports, tags,
+      expenses, projects, team, people, account, billing, import</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">time_format</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">fraction</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">apitestadmin@nokotime.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">first_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Lets</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">hashtags</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
@@ -238,9 +240,9 @@ $ curl -H "X-NokoToken:lx3gi6pxdjtjn57afp8c2bv1me7g89j" https://apitest.nokotime
 Response:
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"thumbnail"</span><span class="o">:</span> <span class="s2">"http://apitest.nokotime.com/images/avatars/0000/0001/avatar_profile.jpg"</span><span class="p">,</span>
-  <span class="s2">"id"</span><span class="o">:</span> <span class="mi">5538</span><span class="p">,</span>
-  <span class="s2">"avatar"</span><span class="o">:</span> <span class="s2">"http://apitest.nokotime.com/images/avatars/0000/0001/avatar.jpg"</span>
+  <span class="dl">"</span><span class="s2">thumbnail</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://apitest.nokotime.com/images/avatars/0000/0001/avatar_profile.jpg</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">5538</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">avatar</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://apitest.nokotime.com/images/avatars/0000/0001/avatar.jpg</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
 If the user has no current avatar, the `thumbnail` and `avatar` tag attributes are set to empty strings.
@@ -325,8 +327,8 @@ Note that no API token is given, instead HTTP Basic Auth is used.
 Response:
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="s2">"user"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"api_auth_token"</span><span class="o">:</span> <span class="s2">"lx3gi6pxdjtjn57afp8c2bv1me7g89j"</span>
+  <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">api_auth_token</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">lx3gi6pxdjtjn57afp8c2bv1me7g89j</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 </div>
@@ -472,6 +474,7 @@ account owner or the account owner is trying to delete him- or herself.</p>
 
 <p>Only the account owner can use this API method.
 The account owner can’t delete him- or herself.</p>
+
   </div>
 
   <div id="footer">
@@ -516,7 +519,7 @@ The account owner can’t delete him- or herself.</p>
     </div>
 
     <div class="copyright">
-      &copy; 2008-2020 Slash7 LLC, all rights reserved.<br>
+      &copy; 2008-2021 Slash7 LLC, all rights reserved.<br>
       Noko® is a registered trademark of Slash7 LLC.
     </div>
     </div>
