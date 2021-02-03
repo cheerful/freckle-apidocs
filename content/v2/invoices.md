@@ -180,8 +180,8 @@ invoice_date
 : *Required* **string** in  ISO 8061 format `YYYY-MM-DD`
 : The date the invoice was issued.
 
-<%= render 'invoice_details_fields' %>
-<%= render 'invoice_rate_calculation_fields' %>
+<%= render '/invoice_details_fields.md' %>
+<%= render '/invoice_rate_calculation_fields.md' %>
 
 entry_ids
 : *Optional* **array of integers**
@@ -203,7 +203,7 @@ taxes
     : *Optional* **string**
     : the name of the tax
 
-<%= render 'invoice_customization_fields' %>
+<%= render '/invoice_customization_fields.md' %>
 
 <%= json :invoice_create_fields %>
 
@@ -235,11 +235,11 @@ invoice_date
 : *Optional* **string** in  ISO 8061 format `YYYY-MM-DD`
 : The date the invoice was issued.
 
-<%= render 'invoice_details_fields' %>
+<%= render '/invoice_details_fields.md' %>
 
-<%= render 'invoice_rate_calculation_fields' %>
+<%= render '/invoice_rate_calculation_fields.md' %>
 
-<%= render 'invoice_customization_fields' %>
+<%= render '/invoice_customization_fields.md' %>
 
 <%= json :invoice_edit_fields %>
 

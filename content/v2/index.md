@@ -46,7 +46,7 @@ Please contact the library authors directly if you need help with these.
 
 If you plan to release a public client app for Noko (such as a native mobile app, regardless if it’s paid-for or free) you’re welcome to do so, and we're happy to help!
 
-Please note that Noko® is a registered trademark of Slash7 LLC. Do not name apps “Noko” or “Noko for <platform>”. Please contact us first with more details about your app if you want to use “Noko” or the Noko logo as name or icon of your app.
+Please note that Noko® is a registered trademark of Slash7 LLC. Do not name apps “Noko” or “Noko for &lt;platform&gt;”. Please contact us first with more details about your app if you want to use “Noko” or the Noko logo as name or icon of your app.
 
 ## API URLs
 

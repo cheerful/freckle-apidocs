@@ -135,3 +135,16 @@ customization
         : The paypal currency code used for this invoice.
 	    : Defaults to the value used in a previous invoice for these projects, or "USD" if none is found.
 
+
+    stripe_connect_payment
+    : *Optional* **object**
+    : This object is used to setup the invoice so that it can be paid via Stripe Connect. The fields are:
+
+        payment_description
+        : *Optional* **string**
+        : The description for the payment in Stripe. If no value is provided, then the `invoice_number` will be used.
+
+        currency_code
+        : *Optional* **string** of a [Stripe currency code](https://stripe.com/docs/currencies)
+        : The ISO currency code used for this invoice.
+        : Defaults to the value used in a previous invoice for these projects, or "usd" if none is found.

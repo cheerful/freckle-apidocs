@@ -1,6 +1,5 @@
 # Adapted from Github's API documentation Deployment Rakefile
 # https://github.com/github/developer.github.com/blob/master/Rakefile
-require 'nanoc3/tasks'
 require 'tmpdir'
 require 'rake'
 
@@ -12,14 +11,24 @@ task :compile do
 end
 
 desc "Test the output"
-task :test => [:clean, :remove_output_dir, :compile] do
-  require 'html/proofer'
-  HTML::Proofer.new("./public").run
+task :test => [:remove_tmp_dir, :remove_output_dir, :compile] do
+  require 'html-proofer'
+
+  proofer_opts = {
+      :parallel => { :in_processes => 5 }
+  }
+
+  HTMLProofer.check_directory("./public", proofer_opts).run
 end
 
 desc "Remove the output dir"
 task :remove_output_dir do
   FileUtils.rm_r('public') if File.exist?('public')
+end
+
+desc "Remove the tmp dir"
+task :remove_tmp_dir do
+  FileUtils.rm_r('tmp') if File.exist?('tmp')
 end
 
 # Prompt user for a commit message; default: P U B L I S H :emoji:
@@ -39,7 +48,7 @@ def commit_message(no_commit_msg = false)
 end
 
 desc "Publish to http://developer.nokotime.com"
-task :publish, [:branch, :no_commit_msg] => [:clean, :remove_output_dir] do |t, args|
+task :publish, [:branch, :no_commit_msg] => [:remove_tmp_dir, :remove_output_dir] do |t, args|
   args.with_defaults(:branch => 'alpha', :no_commit_msg => nil)
 
   puts "publishing `#{args[:branch]}` to github pages"

@@ -4,3 +4,4 @@ public/
 tmp/
 crash.log
 static/fonts/*
+.byebug_history

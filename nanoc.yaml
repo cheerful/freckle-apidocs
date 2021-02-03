@@ -1,3 +1,9 @@
+base_url: https://developer.nokotime.com
+
+author_name: Noko Time Tracking
+author_uri: https://developer.nokotime.com
+title: Noko Developer
+
 # A list of file extensions that nanoc will consider to be textual rather than
 # binary. If an item with an extension not in this list is found,  the file
 # will be considered as binary.
@@ -59,8 +65,10 @@ data_sources:
     allow_periods_in_identifiers: false
   # For assets that are just copied over
   -
-    type: static
-    items_root: /assets/
+    type: filesystem
+    items_root: /static
+    content_dir: 'static'
+    layouts_dir: null
 
 # Configuration for the “watch” command, which watches a site for changes and
 # recompiles if necessary.
