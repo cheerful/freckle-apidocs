@@ -12,7 +12,7 @@ Welcome to the Noko Developer Documentation!
 
 Noko provides a secure Restful JSON API over HTTPS; with authentification either via OAuth or, for non-user-facing integrations, generated tokens.
 
-There's many public and internal apps using the Noko API, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Punch](http://punch.fousa.be). Plus, many customers have created internal applications that integrate Noko with their own custom software and services, such as [Pecas](http://ombulabs.github.io/pecas/). [You can even make a giant LED display for your timer!](https://twitter.com/fixingyourvideo/status/718963570164297730)
+There are many public and internal apps using the Noko API, among them web applications like [Beanstalk](http://beanstalkapp.com), [Github](http://github.com), and [Planscope](http://planscope.io); native mobile and desktop applications like [Punch](http://punch.fousa.be). Plus, many customers have created internal applications that integrate Noko with their own custom software and services, such as [Pecas](https://fastruby.github.io/pecas/). [You can even make a giant LED display for your timer!](https://twitter.com/fixingyourvideo/status/718963570164297730)
 
 Be creative! If you want to let us know about how you're using the Noko API, please [email](mailto:support@nokotime.com) or [tweet](http://twitter.com/freckle) us!
 
