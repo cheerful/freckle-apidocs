@@ -904,6 +904,28 @@ module Noko
         "url" => TIMER["url"]
       }
     }
+
+
+    INBOX_ENTRY = {
+      "id" => 1711626,
+      "date" => "2012-01-09",
+      "minutes" => 60,
+      "description" => "#meeting",
+      "project_name" => SIMPLE_PROJECT["name"],
+      "logged" => true,
+      "entry_url" => "#{API_V2_URL}/entries/2",
+      "url" => "#{API_V2_URL}/inbox_entries/1711626",
+      "log_url" => "#{API_V2_URL}/inbox_entries/1711626/log",
+      "created_at" => "2012-01-09T08:33:29Z",
+      "updated_at" => "2012-01-09T08:33:29Z",
+    }
+
+    INBOX_ENTRY_EDITABLE_FIELDS = {
+      "date" => INBOX_ENTRY["date"],
+      "description" => INBOX_ENTRY["description"],
+      "minutes" => INBOX_ENTRY["minutes"],
+      "project_name" => SIMPLE_PROJECT["name"],
+    }
   end
 end
 
