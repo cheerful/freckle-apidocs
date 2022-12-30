@@ -148,7 +148,7 @@ DEPENDENCIES
   rouge
 
 RUBY VERSION
-   ruby 2.6.2p47
+   ruby 2.7.6p219
 
 BUNDLED WITH
    2.1.4
