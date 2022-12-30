@@ -3,11 +3,6 @@ layout: default
 title: Broadcast Subjects
 ---
 
-<div class="note warning sticky">
-   <h2>Not implemented yet!</h2>
-   <p>This is just a sneak peek into how this resource might work.</p>
- </div>
-
 * TOC
 {:toc}
 
