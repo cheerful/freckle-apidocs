@@ -3,11 +3,6 @@ layout: v2
 title: Broadcast Receivers
 ---
 
-<div class="note warning sticky">
- <h2>Not implemented yet!</h2>
- <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
-</div>
-
 This API allows you to manage your broadcast receivers entirely from the API, so you can set up your integrations automatically without requiring any user configuration.
 
 * TOC
