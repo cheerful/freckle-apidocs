@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tag - Noko Developer</title>
+  <title>Inbox Entries - Noko Developer</title>
   <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/v2/stylesheet.css" type="text/css">
 </head>
@@ -65,151 +65,241 @@
       </ul>
     </div>
     <div id="content">
-      <h1>Tag</h1>
+      <h1>Inbox Entries</h1>
       <p class="note warning">
         Freckle is now Noko! <a href="/migration_guide/">Learn how to migrate your apps here</a>
       </p>
-      <ul id="markdown-toc">
-  <li><a href="#list-all-tags" id="markdown-toc-list-all-tags">List all Tags</a></li>
-  <li><a href="#create-multiple-tags-at-once" id="markdown-toc-create-multiple-tags-at-once">Create multiple Tags at once</a></li>
-  <li><a href="#get-a-single-tag" id="markdown-toc-get-a-single-tag">Get a single tag</a></li>
-  <li><a href="#get-the-entries-for-a-tag" id="markdown-toc-get-the-entries-for-a-tag">Get the entries for a tag</a></li>
-  <li><a href="#edit-a-tag" id="markdown-toc-edit-a-tag">Edit a Tag</a></li>
-  <li><a href="#merge-a-tag-into-this-tag" id="markdown-toc-merge-a-tag-into-this-tag">Merge a Tag into this Tag</a></li>
-  <li><a href="#delete-a-tag" id="markdown-toc-delete-a-tag">Delete a Tag</a></li>
-  <li><a href="#delete-multiple-tags-at-once" id="markdown-toc-delete-multiple-tags-at-once">Delete Multiple Tags at once</a></li>
+      <div class="note warning sticky">
+ <h2>Not implemented yet!</h2>
+ <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
+</div>
+
+<ul id="markdown-toc">
+  <li><a href="#list-inbox-entries" id="markdown-toc-list-inbox-entries">List Inbox Entries</a></li>
+  <li><a href="#get-a-single-inbox-entry" id="markdown-toc-get-a-single-inbox-entry">Get a single Inbox Entry</a></li>
+  <li><a href="#create-an-inbox-entry" id="markdown-toc-create-an-inbox-entry">Create an Inbox Entry</a></li>
+  <li><a href="#edit-an-inbox-entry" id="markdown-toc-edit-an-inbox-entry">Edit an Inbox Entry</a></li>
+  <li><a href="#log-an-inbox-entry" id="markdown-toc-log-an-inbox-entry">Log an Inbox Entry</a></li>
+  <li><a href="#delete-an-inbox-entry" id="markdown-toc-delete-an-inbox-entry">Delete an Inbox Entry</a></li>
 </ul>
 
-<h2 id="list-all-tags">List all Tags</h2>
+<h2 id="list-inbox-entries">List Inbox Entries</h2>
 
-<pre><code>GET /tags/
+<p>Get all inbox entries for the authenticated user, sorted by the most recent inbox entry date.</p>
+
+<pre><code>GET /v2/inbox_entries
 </code></pre>
 
 <h3 id="parameters">Parameters</h3>
 
+<p>Each parameter passed will filter the results, and parameters are chained (meaning that if you search by <code>description</code> and <code>project_name</code>, it will only return inbox entries with the given project name and description).</p>
+
 <dl>
-  <dt>name</dt>
+  <dt>description</dt>
   <dd>
 <em>Optional</em> <strong>string</strong>
 </dd>
-  <dd>Only tags containing this string will be returned.</dd>
-  <dd>Example: <code>name=meeting</code>
+  <dd>Only inbox entries containing this text in their description are returned.</dd>
+  <dd>Example: <code>description=meeting</code>
 </dd>
-  <dt>billable</dt>
+  <dt>project_name</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>Only inbox entries containing this text in their project name are returned.</dd>
+  <dd>Example: <code>name=Gear</code>
+</dd>
+  <dt>from</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>Only inbox entries from or after this date will be returned.</dd>
+  <dd>Example: <code>from=2013-09-27</code>
+</dd>
+  <dt>to</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>Only inbox entries on or before this date will be returned.</dd>
+  <dd>Example: <code>to=2013-09-27</code>
+</dd>
+  <dt>logged</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong>
 </dd>
   <dd>
-<code>true</code>: return all billable tags.</dd>
+<code>true</code>: only show logged inbox entries</dd>
   <dd>
-<code>false</code>: returns all unbillable tags.</dd>
+<code>false</code>: only shows unlogged inbox entries</dd>
 </dl>
 
 <h3 id="response">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
-Link: &lt;https://api.nokotime.com/v2/tags?page=2&gt;; rel="next",
- &lt;https://api.nokotime.com/v2/tags?page=5&gt;; rel="last"</code></pre>
-
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">formatted_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#noko</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/249397</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">import</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/imports/8910</span><span class="dl">"</span>
-  <span class="p">},</span>
-  <span class="dl">"</span><span class="s2">entries</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">entries_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/55629/entries</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">merge_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/55629/merge</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span>
-<span class="p">}</span></code></pre>
-
-<h2 id="create-multiple-tags-at-once">Create multiple Tags at once</h2>
-
-<pre><code>POST /tags/
-</code></pre>
-
-<h3 id="inputs">Inputs</h3>
-
-<dl>
-  <dt>names</dt>
-  <dd>
-<em>Required</em> <strong>array of string</strong>
-</dd>
-  <dd>The names of the tags to create. Adding a “*” at the end of a string indicates that the tag is unbillable.</dd>
-</dl>
-
-<h3 id="response-1">Response</h3>
-
-<pre class="headers"><code>Status: 201 Created</code></pre>
+Link: &lt;https://api.nokotime.com/v2/inbox_entries?page=2&gt;; rel="next",
+ &lt;https://api.nokotime.com/v2/inbox_entries?page=5&gt;; rel="last"</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">formatted_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#noko</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/249397</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">import</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8910</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/imports/8910</span><span class="dl">"</span>
-    <span class="p">},</span>
-    <span class="dl">"</span><span class="s2">entries</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">entries_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/55629/entries</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">merge_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/55629/merge</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1711626</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#meeting</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">logged</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">entry_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/2</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/inbox_entries/1711626</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">log_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/inbox_entries/1711626/log</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h3 id="a-note-about-tag-creation">A note about tag creation</h3>
+<h2 id="get-a-single-inbox-entry">Get a single Inbox Entry</h2>
 
-<p>Any tag that cannot be created or already exists will be ignored and not affect the response</p>
-
-<h2 id="get-a-single-tag">Get a single tag</h2>
-
-<pre><code>GET /tags/:id
+<pre><code>GET /v2/inbox_entries/:id
 </code></pre>
-
-<h3 id="response-2">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">formatted_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#noko</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/249397</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">import</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/imports/8910</span><span class="dl">"</span>
-  <span class="p">},</span>
-  <span class="dl">"</span><span class="s2">entries</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">entries_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/55629/entries</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">merge_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/55629/merge</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1711626</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#meeting</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">logged</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">entry_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/2</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/inbox_entries/1711626</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">log_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/inbox_entries/1711626/log</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="get-the-entries-for-a-tag">Get the entries for a tag</h2>
+<h2 id="create-an-inbox-entry">Create an Inbox Entry</h2>
 
-<pre><code>GET /tags/:id/entries
+<pre><code>POST /v2/inbox_entries
+</code></pre>
+
+<h3 id="input">Input</h3>
+
+<dl>
+  <dt>date</dt>
+  <dd>
+<em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>The date of the inbox entry.</dd>
+  <dt>description</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The description of the inbox entry.</dd>
+  <dt>minutes</dt>
+  <dd>
+<em>Optional</em> <strong>integer</strong>
+</dd>
+  <dd>The number of minutes logged in this inbox entry.</dd>
+  <dt>project_name</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>The project name this inbox entry is prefilled with.</dd>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#meeting</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="reponse">Reponse</h3>
+
+<pre class="headers"><code>Status: 201 Created
+Location: https://api.nokotime.com/v2/inbox_entries/1</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1711626</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#meeting</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">logged</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">entry_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/2</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/inbox_entries/1711626</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">log_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/inbox_entries/1711626/log</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="edit-an-inbox-entry">Edit an Inbox Entry</h2>
+
+<pre><code>PUT /v2/inbox_entries/:id
+</code></pre>
+
+<h3 id="input-1">Input</h3>
+
+<dl>
+  <dt>date</dt>
+  <dd>
+<em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>The date of the inbox entry.</dd>
+  <dt>description</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The description of the inbox entry.</dd>
+  <dt>minutes</dt>
+  <dd>
+<em>Optional</em> <strong>integer</strong>
+</dd>
+  <dd>The number of minutes logged in this inbox entry.</dd>
+  <dt>project_name</dt>
+  <dd>
+<em>Optional</em> <strong>string</strong>
+</dd>
+  <dd>The project name this inbox entry is prefilled with.</dd>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#meeting</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-1">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1711626</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#meeting</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">project_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gear GmbH</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">logged</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">entry_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/entries/2</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/inbox_entries/1711626</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">log_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/inbox_entries/1711626/log</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="log-an-inbox-entry">Log an Inbox Entry</h2>
+
+<pre><code>POST /v2/inbox_entries/:id/log
 </code></pre>
 
 <h3 id="parameters-1">Parameters</h3>
 
-<p>You can use the parameters specified in the <a href="/entries/index.html#list">Entry API’s List Action</a> to further limit the results</p>
+<p>Use the parameters specified in the <a href="/v2/entries/index.html#create-an-entry">Entry API’s Create Action</a> to log the entry.</p>
 
-<h3 id="response-3">Response</h3>
+<h3 id="response-2">Response</h3>
 
-<pre class="headers"><code>Status: 200 OK
-Link: &lt;https://api.nokotime.com/v2/tags/:id/entries?page=2&gt;; rel="next",
- &lt;https://api.nokotime.com/v2/tags/:id/entries?page=5&gt;; rel="last"</code></pre>
+<pre class="headers"><code>Status: 201 Created
+Location: https://api.nokotime.com/v2/entries/1</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -274,119 +364,27 @@ Link: &lt;https://api.nokotime.com/v2/tags/:id/entries?page=2&gt;; rel="next",
   <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="edit-a-tag">Edit a Tag</h2>
+<h2 id="delete-an-inbox-entry">Delete an Inbox Entry</h2>
 
-<pre><code>PUT /tags/:id
+<pre><code>DELETE /v2/inbox_entries/:id
 </code></pre>
 
-<h3 id="inputs-1">Inputs</h3>
+<h3 id="response-3">Response</h3>
 
-<dl>
-  <dt>name</dt>
-  <dd>
-<em>Optional</em> <strong>string</strong>
-</dd>
-  <dd>The name for the tag. Adding a “*” at the end of the string indicates that the tag is unbillable.</dd>
-</dl>
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
-<h3 id="response-4">Response</h3>
+<h3 id="a-note-about-inbox-entry-deletion">A note about inbox entry deletion</h3>
 
-<pre class="headers"><code>Status: 200 OK</code></pre>
-
-<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
-  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">249397</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">billable</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">formatted_name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#noko</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/249397</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">import</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">8910</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/imports/8910</span><span class="dl">"</span>
-  <span class="p">},</span>
-  <span class="dl">"</span><span class="s2">entries</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">entries_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/55629/entries</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">merge_url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.nokotime.com/v2/tags/55629/merge</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">created_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2010-06-09T20:44:57Z</span><span class="dl">"</span>
-<span class="p">}</span></code></pre>
+<p>An inbox entry cannot be deleted if it has been logged.</p>
 
 <h3 id="custom-error-codes">Custom Error Codes</h3>
 
-<ul>
-  <li>
-<strong>locked</strong>: The tag is currently locked for merging and cannot be modified.</li>
-</ul>
-
-<h2 id="merge-a-tag-into-this-tag">Merge a Tag into this Tag</h2>
-
-<p>When one tag is merged into another, the entries associated with the tag are associated with the new tag, and any instances of the old tags are replaced with the new tags in the Entry Description. <strong>This action is permanent</strong>, so you cannot undo after you merge tags.</p>
-
-<pre><code>PUT /tags/:id/merge
-</code></pre>
-
-<h3 id="inputs-2">Inputs</h3>
-
-<dl>
-  <dt>tag_id</dt>
-  <dd>
-<em>Required</em> <strong>integer</strong>
-</dd>
-  <dd>The ID of the tag to merge into this tag.</dd>
-</dl>
-
-<h3 id="response-5">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="custom-error-codes-1">Custom Error Codes</h3>
+<p>The following Custom Error codes can be returned for this action:</p>
 
 <ul>
   <li>
-<strong>locked</strong>: The tag is currently locked for merging and cannot be modified.</li>
+<strong>logged</strong>: the Inbox Entry has been logged</li>
 </ul>
-
-<h2 id="delete-a-tag">Delete a Tag</h2>
-
-<p>When a tag is deleted, the entries associated with that tag <strong>are not</strong> deleted. Instead, their descriptions are updated so that the tag’s text becomes part of the description.</p>
-
-<pre><code>DELETE /tags/:id
-</code></pre>
-
-<h3 id="response-6">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="custom-error-codes-2">Custom Error Codes</h3>
-
-<ul>
-  <li>
-<strong>locked</strong>: The tag is currently locked for merging and cannot be modified.</li>
-</ul>
-
-<h2 id="delete-multiple-tags-at-once">Delete Multiple Tags at once</h2>
-
-<p>When a tag is deleted, the entries associated with that tag <strong>are not</strong> deleted. Instead, their descriptions are updated so that the tag’s text becomes part of the description.</p>
-
-<pre><code>PUT /tags/delete
-</code></pre>
-
-<h3 id="inputs-3">Inputs</h3>
-
-<dl>
-  <dt>tag_ids</dt>
-  <dd>
-<em>Required</em> <strong>array of integers</strong>
-</dd>
-  <dd>The IDs of the tags to delete. If no IDs are provided, then no tags are deleted.</dd>
-</dl>
-
-<h3 id="response-7">Response</h3>
-
-<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
-
-<h3 id="a-note-about-tags-that-cannot-be-deleted">A note about Tags that cannot be deleted</h3>
-
-<p>Any entries that are included in this request that cannot be deleted will be ignored and will not affect the Response.</p>
 
 
       <div id="footer">

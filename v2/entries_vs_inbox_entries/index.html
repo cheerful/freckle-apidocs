@@ -25,12 +25,14 @@
         <li><a href="/v2/">API Basics</a></li>
         <li><a href="/v2/authentication/">Authentication</a></li>
         <li><a href="/v2/oauth/">OAuth</a></li>
+        <li><a href="/v2/entries_vs_inbox_entries/">Entries vs. Inbox Entries</a></li>
         <li><a href="/v2/migration_guide/">Migrating to Noko</a></li>
       </ul>
 
       <h2>Resources</h2>
       <ul id="resources">
         <li><a href="/v2/entries/">Entries</a></li>
+        <li><a href="/v2/inbox_entries/">Inbox Entries</a></li>
         <li><a href="/v2/tags/">Tags</a></li>
         <li><a href="/v2/timers/">Timers</a></li>
         <li><a href="/v2/projects/">Projects</a></li>
@@ -67,7 +69,30 @@
       <p class="note warning">
         Freckle is now Noko! <a href="/migration_guide/">Learn how to migrate your apps here</a>
       </p>
-      
+      <h1 id="entries-vs-inbox-entries">Entries vs. Inbox Entries</h1>
+
+<p>Inbox Entries are for pre-filled entries that require <strong>manual approval by the user</strong> before they’re logged. Entries are actual logged time, which the user has verified. Inbox Entries do not show up in reports, and cannot be used in Invoices.</p>
+
+<h3 id="use-cases-for-inbox-entries">Use-cases for Inbox Entries</h3>
+
+<p>Some example use-cases for Inbox Entries are:</p>
+
+<ul>
+  <li>Calendar syncing tools</li>
+  <li>Heuristic-based tools, such as Internet Of Things “egg timer” tools</li>
+  <li>On-the-go interfaces, such as a smart watch app</li>
+</ul>
+
+<h3 id="use-cases-for-entries">Use-cases for Entries</h3>
+
+<p>Some example use-cases for Entries are:</p>
+
+<ul>
+  <li>Importing existing data from legacy systems</li>
+  <li>Syncing data across systems</li>
+  <li>A native app with a logging interface</li>
+  <li>Commit-message processing</li>
+</ul>
 
 
       <div id="footer">
