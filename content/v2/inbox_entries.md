@@ -84,7 +84,7 @@ minutes
 
 project_name
 : *Optional* **string**
-: The name of the project this inbox entry is logged under.
+: The project name this inbox entry is prefilled with.
 
 <%= json :inbox_entry_editable_fields %>
 
@@ -115,7 +115,7 @@ minutes
 
 project_name
 : *Optional* **string**
-: The name of the project this inbox entry is logged under.
+: The project name this inbox entry is prefilled with.
 
 <%= json :inbox_entry_editable_fields %>
 
