@@ -179,7 +179,7 @@ If a project does not have a currently running or paused timer, then the respons
 </div>
 
 ~~~
-PUT '/v2/projects/:project_id/timer/log_inbox_entry'
+PUT /v2/projects/:project_id/timer/log_inbox_entry
 ~~~
 
 ### Input
