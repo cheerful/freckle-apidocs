@@ -134,6 +134,12 @@ project_name
 <%= headers 200 %>
 <%= json :inbox_entry %>
 
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **logged**: the Inbox Entry has been logged and cannot be updated
+
 ## Log an Inbox Entry
 
 ~~~
@@ -148,6 +154,12 @@ Use the parameters specified in the [Entry API's Create Action](/v2/entries/inde
 
 <%= headers 201, :Location => "#{API_V2_URL}/entries/1" %>
 <%= json :entry %>
+
+### Custom Error Codes
+
+The following Custom Error codes can be returned for this action:
+
+* **logged**: the Inbox Entry has already been logged
 
 ## Delete an Inbox Entry
 
