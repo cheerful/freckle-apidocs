@@ -77,6 +77,7 @@
   <li><a href="#pause-a-projects-timer" id="markdown-toc-pause-a-projects-timer">Pause a project’s timer</a></li>
   <li><a href="#add-or-subtract-time-to-a-projects-timer" id="markdown-toc-add-or-subtract-time-to-a-projects-timer">Add or subtract time to a project’s timer</a></li>
   <li><a href="#log-the-time-in-a-projects-timer" id="markdown-toc-log-the-time-in-a-projects-timer">Log the time in a project’s timer</a></li>
+  <li><a href="#log-the-time-in-a-projects-timer-as-an-inbox-entry" id="markdown-toc-log-the-time-in-a-projects-timer-as-an-inbox-entry">Log the time in a project’s timer as an Inbox Entry</a></li>
   <li><a href="#discard-a-projects-timer" id="markdown-toc-discard-a-projects-timer">Discard a project’s timer</a></li>
 </ul>
 
@@ -502,6 +503,50 @@ $ curl -X PUT -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75xjn
 <strong>cannot_create_tags</strong>: The authenticated user is unable to create new tags</li>
 </ul>
 
+<h2 id="log-the-time-in-a-projects-timer-as-an-inbox-entry">Log the time in a project’s timer as an Inbox Entry</h2>
+
+<div class="note warning sticky">
+ <h2>Not implemented yet!</h2>
+ <p>This is just a sneak peek into how this endpoint might work. Attempting to call it will return a 404 error.</p>
+</div>
+
+<pre><code>PUT '/v2/projects/:project_id/timer/log_inbox_entry'
+</code></pre>
+
+<h3 id="input-4">Input</h3>
+
+<dl>
+  <dt>inbox_entry_date</dt>
+  <dd>
+<em>Required</em> <strong>string</strong> of a date in ISO 8061 format <code>YYYY-MM-DD</code>
+</dd>
+  <dd>The date that will be used when creating an inbox entry based on this timer. If no value is provided, then the <code>entry_date</code> provided when the timer was started will be used.</dd>
+  <dt>description</dt>
+  <dd>
+<em>Required</em> <strong>string</strong>
+</dd>
+  <dd>The description of the inbox entry.</dd>
+  <dt>minutes</dt>
+  <dd>
+<em>Optional</em> <strong>integer</strong>
+</dd>
+  <dd>The number of minutes logged in this inbox entry. If no value is provided, then the timer’s elapsed minutes will be used.</dd>
+</dl>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">inbox_entry_date</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2013-07-09</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">noko work</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minutes</span><span class="dl">"</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="reponse">Reponse</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="notes-5">Notes</h3>
+
+<p>If a project does not have a currently running or paused timer, then the response will return a <code>404</code> status code.</p>
+
 <h2 id="discard-a-projects-timer">Discard a project’s timer</h2>
 
 <p>When a project’s timer is discarded, the timer is deleted and no time entry is recorded.</p>
@@ -558,7 +603,7 @@ $ curl -X DELETE -H "X-NokoToken:scbp72wdc528hm8n52fowkma321tn58-jc1l2dkil0pnb75
         </div>
 
         <div class="copyright">
-          &copy; 2008-2022 Slash7 LLC, all rights reserved.<br>
+          &copy; 2008-2023 Slash7 LLC, all rights reserved.<br>
           Noko® is a registered trademark of Slash7 LLC.
         </div>
       </div>
