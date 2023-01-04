@@ -301,6 +301,15 @@ Location: https://api.nokotime.com/v2/inbox_entries/1</code></pre>
   <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
+<h3 id="custom-error-codes">Custom Error Codes</h3>
+
+<p>The following Custom Error codes can be returned for this action:</p>
+
+<ul>
+  <li>
+<strong>logged</strong>: the Inbox Entry has been logged and cannot be updated</li>
+</ul>
+
 <h2 id="log-an-inbox-entry">Log an Inbox Entry</h2>
 
 <pre><code>POST /v2/inbox_entries/:id/log
@@ -378,6 +387,15 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
   <span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-01-09T08:33:29Z</span><span class="dl">"</span>
 <span class="p">}</span></code></pre>
 
+<h3 id="custom-error-codes-1">Custom Error Codes</h3>
+
+<p>The following Custom Error codes can be returned for this action:</p>
+
+<ul>
+  <li>
+<strong>logged</strong>: the Inbox Entry has already been logged</li>
+</ul>
+
 <h2 id="delete-an-inbox-entry">Delete an Inbox Entry</h2>
 
 <pre><code>DELETE /v2/inbox_entries/:id
@@ -391,7 +409,7 @@ Location: https://api.nokotime.com/v2/entries/1</code></pre>
 
 <p>An inbox entry cannot be deleted if it has been logged.</p>
 
-<h3 id="custom-error-codes">Custom Error Codes</h3>
+<h3 id="custom-error-codes-2">Custom Error Codes</h3>
 
 <p>The following Custom Error codes can be returned for this action:</p>
 
