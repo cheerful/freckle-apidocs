@@ -171,6 +171,41 @@ If a project does not have a currently running or paused timer, then the respons
 * **cannot_create_tags**: The authenticated user is unable to create new tags
 
 
+## Log the time in a project's timer as an Inbox Entry
+
+<div class="note warning sticky">
+ <h2>Not implemented yet!</h2>
+ <p>This is just a sneak peek into how this endpoint might work. Attempting to call it will return a 404 error.</p>
+</div>
+
+~~~
+PUT '/v2/projects/:project_id/timer/log_inbox_entry'
+~~~
+
+### Input
+
+inbox_entry_date
+: *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`
+: The date that will be used when creating an inbox entry based on this timer. If no value is provided, then the `entry_date` provided when the timer was started will be used.
+
+description
+: *Required* **string**
+: The description of the inbox entry.
+
+minutes
+: *Optional* **integer**
+: The number of minutes logged in this inbox entry. If no value is provided, then the timer's elapsed minutes will be used.
+
+<%= json :timer_log_inbox_entry_editable_fields %>
+
+### Reponse
+
+<%= headers 204 %>
+
+### Notes
+
+If a project does not have a currently running or paused timer, then the response will return a `404` status code.
+
 ## Discard a project's timer
 
 When a project's timer is discarded, the timer is deleted and no time entry is recorded.

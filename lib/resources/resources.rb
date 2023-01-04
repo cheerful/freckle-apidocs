@@ -926,6 +926,12 @@ module Noko
       "minutes" => INBOX_ENTRY["minutes"],
       "project_name" => SIMPLE_PROJECT["name"],
     }
+
+    TIMER_LOG_INBOX_ENTRY_EDITABLE_FIELDS = {
+      "inbox_entry_date" => TIMER["date"],
+      "description" => TIMER["description"],
+      "minutes" => TIMER["seconds"]/60,
+    }
   end
 end
 
