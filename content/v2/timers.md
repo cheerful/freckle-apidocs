@@ -185,12 +185,12 @@ PUT /v2/projects/:project_id/timer/log_inbox_entry
 ### Input
 
 inbox_entry_date
-: *Required* **string** of a date in ISO 8061 format `YYYY-MM-DD`
+: *Optional* **string** of a date in ISO 8061 format `YYYY-MM-DD`
 : The date that will be used when creating an inbox entry based on this timer. If no value is provided, then the `entry_date` provided when the timer was started will be used.
 
 description
-: *Required* **string**
-: The description of the inbox entry.
+: *Optional* **string**
+: The description of the inbox entry. If no value is provided, then the timer's `description` will be used.
 
 minutes
 : *Optional* **integer**
