@@ -48,6 +48,16 @@ logged
 : `true`: only show logged inbox entries
 : `false`: only shows unlogged inbox entries
 
+updated_from
+: *Optional* **string** of a timestamp in ISO 8061 format `YYYY-MM-DDTHH:MM:SSZ`
+: Only inbox entries updated from or after this timestamp will be returned.
+: Example: `updated_from=2012-01-09T08:33:29Z`
+
+updated_to
+: *Optional* **string** of a timestamp in ISO 8061 format `YYYY-MM-DDTHH:MM:SSZ`
+: Only inbox entries updated on or before this timestamp will be returned.
+: Example: `updated_to=2012-01-09T08:33:29Z`
+
 ### Response
 
 <%= headers 200, :pagination => true, :pagination_resource => "inbox_entries" %>
