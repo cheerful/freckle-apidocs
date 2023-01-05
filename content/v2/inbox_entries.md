@@ -8,6 +8,8 @@ title: Inbox Entries
  <p>This is just a sneak peek into how this resource might work. Attempting to call any actions will return a 404 error.</p>
 </div>
 
+Inbox Entries are pending entries that are placed on the authenticated user's dashboard, so that they can be manually reviewed before they are logged. You can learn more about [Entries vs. Inbox Entries here](/entries_vs_inbox_entries/)
+
 * TOC
 {:toc}
 

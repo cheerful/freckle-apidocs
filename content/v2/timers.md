@@ -178,6 +178,8 @@ If a project does not have a currently running or paused timer, then the respons
  <p>This is just a sneak peek into how this endpoint might work. Attempting to call it will return a 404 error.</p>
 </div>
 
+Inbox Entries are pending entries that are placed on the authenticated user's dashboard, so that they can be manually reviewed before they are logged. You can learn more about [Entries vs. Inbox Entries here](/entries_vs_inbox_entries/)
+
 ~~~
 PUT /v2/projects/:project_id/timer/log_inbox_entry
 ~~~
